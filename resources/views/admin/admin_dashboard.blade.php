@@ -24,6 +24,10 @@
     <link rel="stylesheet" href="{{ asset('adminbackend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('adminbackend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('adminbackend/assets/css/header-colors.css') }}" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+
     <title>Admin Dashboard</title>
 </head>
 
@@ -33,16 +37,12 @@
         <!--sidebar wrapper -->
         @include('admin.body.sidebar')
         <!--end sidebar wrapper -->
-
-
         <!--start header -->
         @include('admin.body.header')
         <!--end header -->
-
-
         <!--start page wrapper -->
         <div class="page-wrapper">
-            @yield('admin') 
+            @yield('admin')
         </div>
         <!--end page wrapper -->
 
@@ -70,8 +70,7 @@
             <hr />
             <div class="d-flex align-items-center justify-content-between">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode"
-                        checked>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="lightmode" checked>
                     <label class="form-check-label" for="lightmode">Light</label>
                 </div>
                 <div class="form-check">
@@ -177,6 +176,33 @@
     <script src="{{ asset('adminbackend/assets/js/index.js') }}"></script>
     <!--app JS-->
     <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
+
+
 </body>
 
 </html>
