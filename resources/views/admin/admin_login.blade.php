@@ -130,8 +130,6 @@
                     },
                     password: {
                         required: true,
-                        validatePassword: true,
-                        minlength: 8
                     },
                 },
                 messages: {
@@ -140,7 +138,6 @@
                     },
                     password: {
                         required: 'Please Enter Your Password',
-                        minlength: ''
                     },
                 },
                 errorElement: 'span',
@@ -155,12 +152,6 @@
                     $(element).removeClass('is-invalid');
                 },
             });
-            $.validator.addMethod("validatePassword", function(value, element) {
-                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
-                        value);
-                },
-                "Password must be between 8 and 16 characters containing at least one number and special character"
-            );
         });
     </script>
 </body>
