@@ -81,7 +81,9 @@ class AdminController extends Controller
         //Validation
         $request->validate([
             'old_password' => 'required',
-            'new_password' => 'required|confirmed|between:8,16',
+            'new_password' => 'required|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
+        ],[
+            'new_password.regex'=>' Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.'
         ]);
 
         //Match the old password
