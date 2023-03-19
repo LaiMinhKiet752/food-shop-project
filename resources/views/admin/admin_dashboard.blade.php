@@ -201,7 +201,7 @@
             }
         @endif
     </script>
-
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>   
 
 </body>
 
