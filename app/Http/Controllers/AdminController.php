@@ -51,12 +51,16 @@ class AdminController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
+        $data->vendor_join = $request->vendor_join;
+        $data->vendor_short_info = $request->address;
 
 
         if ($request->file('photo')) {
             $file = $request->file('photo');
+            $ext = $request->file('photo')->extension();
+            $date = date('YmdHi');
+            $filename = $date . '_admin' . '.' . $ext;
             @unlink(public_path('upload/admin_images/' . $data->photo));
-            $filename = date('YmdHi') . $file->getClientOriginalName();
             $file->move(public_path('upload/admin_images'), $filename);
             $data['photo'] = $filename;
         }
@@ -64,7 +68,7 @@ class AdminController extends Controller
         $data->save();
 
         $notification = array(
-            'message' => 'Admin Profile Updated Successfully',
+            'message' => 'Admin Profile Updated Successfully!',
             'alert-type' => 'success'
         );
 
@@ -82,8 +86,8 @@ class AdminController extends Controller
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
-        ],[
-            'new_password.regex'=>' Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.'
+        ], [
+            'new_password.regex' => ' Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.'
         ]);
 
         //Match the old password
