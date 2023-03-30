@@ -369,7 +369,6 @@
                     <img src="{{ !empty($vendorData->photo) ? url('upload/vendor_images/' . $vendorData->photo) : url('upload/no_image.jpg') }}"
                         class="user-img" alt="user avatar">
 
-
                     <div class="user-info ps-3">
                         <p class="user-name mb-0">{{ Auth::user()->name }}</p>
                         <p class="designattion mb-0">{{ Auth::user()->username }}</p>
@@ -379,7 +378,7 @@
                     <li><a class="dropdown-item" href="{{ route('vendor.profile') }}"><i
                                 class="bx bx-user"></i><span>Profile</span></a>
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('admin.change.password') }}"><i
+                    <li><a class="dropdown-item" href="{{ route('vendor.change.password') }}"><i
                                 class="bx bx-cog"></i><span>Change Password</span></a>
                     </li>
                     <li><a class="dropdown-item" href="javascript:;"><i
