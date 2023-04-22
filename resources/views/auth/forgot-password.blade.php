@@ -49,6 +49,19 @@
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">{{ session('status') }}
+                                            </div>
+                                        @elseif (session('error'))
+                                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <ul class="text-danger" style="font-weight: bold;">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li><br>
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                         <form method="POST" action="{{ route('password.email') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">

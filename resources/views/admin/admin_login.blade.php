@@ -40,6 +40,13 @@
                                         <h3 class="">Admin Sign in</h3>
 
                                     </div>
+                                    @if ($errors->any())
+                                            <ul class="text-danger" style="font-weight: bold;">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                     <div class="form-body">
                                         <form class="row g-3" method="POST" action="{{ route('login') }}"
                                             id="myForm">
