@@ -205,7 +205,7 @@
                     return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
                         value);
                 },
-                "Password must be between 8 and 16 characters containing at least one number and special character"
+                "Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character."
             );
         });
     </script>

@@ -39,7 +39,8 @@
                     <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
                         <div class="row">
                             <div class="col-lg-6 pr-30 d-none d-lg-block">
-                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}" alt="" />
+                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}"
+                                    alt="" />
                             </div>
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
@@ -59,8 +60,8 @@
                                                     placeholder="Your password *" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password" name="password_confirmation"
-                                                    placeholder="Confirm password *" />
+                                                <input required="" id="password_confirmation" type="password"
+                                                    name="password_confirmation" placeholder="Confirm password *" />
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up"
@@ -160,10 +161,11 @@
                 },
             });
             $.validator.addMethod("validatePassword", function(value, element) {
-                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
-                        value);
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
+                        .test(
+                            value);
                 },
-                "Password must be between 8 and 16 characters containing at least one number and special character"
+                "Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character."
             );
         });
     </script>
