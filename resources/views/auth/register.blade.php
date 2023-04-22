@@ -46,31 +46,31 @@
                                             <p class="mb-30">Already have an account? <a
                                                     href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('register') }}">
+                                        <form method="POST" action="{{ route('register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="name" required="" name="name"
-                                                    placeholder="Username" />
+                                                    placeholder="Username *" />
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
-                                                    placeholder="Email" />
+                                                    placeholder="Email *" />
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
-                                                    placeholder="Password" />
+                                                    placeholder="Password *" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password" name="password_confirmation"
-                                                    placeholder="Confirm password" />
+                                                <input required="" id="password_confirmation" type="password"
+                                                    name="password_confirmation" placeholder="Confirm password *" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="checkbox" id="exampleCheckbox12" value="" />
-                                                        <label class="form-check-label"
-                                                            for="exampleCheckbox12"><span>I agree to terms &amp;
+                                                        <input class="form-check-input" type="checkbox" name="checkbox"
+                                                            id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I
+                                                                agree to terms &amp;
                                                                 Policy.</span></label>
                                                     </div>
                                                 </div>
@@ -80,7 +80,7 @@
                                             <div class="form-group mb-30">
                                                 <button type="submit"
                                                     class="btn btn-fill-out btn-block hover-up font-weight-bold"
-                                                    name="login">Submit &amp; Register</button>
+                                                    name="login">Register</button>
                                             </div>
                                             <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will
                                                 be used to support your experience throughout this website, to manage
@@ -147,6 +147,68 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    email: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                        validatePassword: true,
+                        minlength: 8
+                    },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password",
+                    },
+                },
+                messages: {
+                    name: {
+                        required: 'Please Enter Your User Name',
+                    },
+                    email: {
+                        required: 'Please Enter Your Email',
+                    },
+                    password: {
+                        required: 'Please Enter Your Password',
+                        minlength: ''
+                    },
+                    password_confirmation: {
+                        required: 'Please Enter Your Confirmation Password',
+                        equalTo: "The two passwords must be the same",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+            $.validator.addMethod("validatePassword", function(value, element) {
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
+                        value);
+                },
+                "Password must be between 8 and 16 characters containing at least one number and special character"
+            );
+        });
+    </script>
 </body>
 
 </html>

@@ -49,7 +49,7 @@
                                             <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create
                                                     here</a></p>
                                         </div>
-                                        <form method="POST" action="{{ route('login') }}">
+                                        <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
@@ -120,6 +120,44 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    email: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    email: {
+                        required: 'Please Enter Your Email',
+                    },
+                    password: {
+                        required: 'Please Enter Your Password',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+        });
+    </script>
 </body>
 
 </html>

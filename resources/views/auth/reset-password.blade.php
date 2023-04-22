@@ -47,7 +47,7 @@
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Reset Password</h1>
                                         </div>
-                                        <form method="POST" action="{{ route('password.store') }}">
+                                        <form method="POST" action="{{ route('password.store') }}" id="myForm">
                                             @csrf
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                             <div class="form-group">
@@ -112,6 +112,61 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    email: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                        validatePassword: true,
+                        minlength: 8
+                    },
+                    password_confirmation: {
+                        required: true,
+                        equalTo: "#password",
+                    },
+                },
+                messages: {
+                    email: {
+                        required: 'Please Enter Your Email',
+                    },
+                    password: {
+                        required: 'Please Enter Your Password',
+                        minlength: ''
+                    },
+                    password_confirmation: {
+                        required: 'Please Enter Your Confirmation Password',
+                        equalTo: "The two passwords must be the same",
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+            $.validator.addMethod("validatePassword", function(value, element) {
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
+                        value);
+                },
+                "Password must be between 8 and 16 characters containing at least one number and special character"
+            );
+        });
+    </script>
 </body>
 
 </html>
