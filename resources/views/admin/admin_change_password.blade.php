@@ -32,7 +32,7 @@
                                     @if (session('status'))
                                         <div class="alert alert-success" role="alert">{{ session('status') }}</div>
                                     @elseif (session('error'))
-                                        <div class="alert alert-danger">{{ session('error') }}</div>
+                                        <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
                                     @endif
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">  
+                                    <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">New Password</h6>
                                         </div>
@@ -66,14 +66,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="row mb-3">  
+                                    <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Confirm New Password</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="password" name="new_password_confirmation"
                                                 class="form-control"
-                                                id="new_password_confirmation" placeholder=" Confirm New Password" />
+                                                id="new_password_confirmation" placeholder="Confirm New Password" />
                                         </div>
                                     </div>
                                     <div class="row">

@@ -13,13 +13,13 @@ class AdminController extends Controller
     {
 
         return view('admin.index');
-    } // End Mehtod 
+    } // End Mehtod
 
 
     public function AdminLogin()
     {
         return view('admin.admin_login');
-    } // End Mehtod 
+    } // End Mehtod
 
 
     public function AdminDestroy(Request $request)
@@ -31,7 +31,7 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/admin/login');
-    } // End Mehtod 
+    } // End Mehtod
 
 
     public function AdminProfile()
@@ -40,7 +40,7 @@ class AdminController extends Controller
         $id = Auth::user()->id;
         $adminData = User::find($id);
         return view('admin.admin_profile_view', compact('adminData'));
-    } // End Mehtod 
+    } // End Mehtod
 
     public function AdminProfileStore(Request $request)
     {
@@ -73,7 +73,7 @@ class AdminController extends Controller
         );
 
         return redirect()->back()->with($notification);
-    } // End Mehtod 
+    } // End Mehtod
 
     public function AdminChangePassword()
     {
@@ -98,6 +98,6 @@ class AdminController extends Controller
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
-        return back()->with('status', 'Password Change Successfully!');
+        return back()->with('status', 'Password Changed Successfully!');
     }//End Method
 }
