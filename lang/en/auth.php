@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'Invalid information, Please check and try again!',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'password' => 'The provided password is incorrect!',
+    'throttle' => 'Too many login attempts. Please try again in :seconds seconds!',
 
 ];
