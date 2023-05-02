@@ -60,6 +60,7 @@
                                                 @endforeach
                                             </ul>
                                         @endif
+                                        <br>
                                         <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
 

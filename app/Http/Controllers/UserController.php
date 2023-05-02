@@ -71,7 +71,7 @@ class UserController extends Controller
 
         //Match the old password
         if (!Hash::check($request->old_password, auth::user()->password)) {
-            return back()->with('error', "Old Password Doesn't Match!");
+            return back()->with('error', "Old Password Doesn't Match. Please Check And Try Again!");
         }
         //Update the new password
         User::whereId(auth()->user()->id)->update([
