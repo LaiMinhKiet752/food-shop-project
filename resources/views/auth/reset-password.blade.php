@@ -48,6 +48,14 @@
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Reset Password</h1>
                                         </div>
+                                        @if ($errors->any())
+                                            <ul class="text-danger" style="font-weight: bold;">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li><br>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+
                                         <form method="POST" action="{{ route('password.store') }}" id="myForm">
                                             @csrf
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">

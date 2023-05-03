@@ -15,6 +15,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+    <!-- Toaster -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
@@ -39,18 +41,29 @@
                     <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
                         <div class="row">
                             <div class="col-lg-6 pr-30 d-none d-lg-block">
-                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}" alt="" />
+                                <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/login-1.png') }}"
+                                    alt="" />
                             </div>
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Login</h1>
-                                            <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create
+                                            <p class="mb-30">Don't have an account? <a
+                                                    href="{{ route('register') }}">Create
                                                     here</a></p>
                                         </div>
+                                        @if ($errors->any())
+                                            <ul class="text-danger" style="font-weight: bold;">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                        <br>
                                         <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
+
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
                                                     placeholder="Your email *" />
@@ -68,7 +81,8 @@
                                                             for="exampleCheckbox1"><span>Remember me</span></label>
                                                     </div>
                                                 </div>
-                                                <a class="text-muted" href="{{ route('password.request') }}">Forgot password?</a>
+                                                <a class="text-muted" href="{{ route('password.request') }}">Forgot
+                                                    password?</a>
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up"
@@ -124,6 +138,31 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {

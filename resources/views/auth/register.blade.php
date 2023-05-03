@@ -46,6 +46,19 @@
                                             <p class="mb-30">Already have an account? <a
                                                     href="{{ route('login') }}">Login</a></p>
                                         </div>
+                                        @if (session('status'))
+                                            <div class="alert alert-success" role="alert">{{ session('status') }}
+                                            </div>
+                                        @elseif (session('error'))
+                                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
+                                        @endif
+                                        @if ($errors->any())
+                                            <ul class="text-danger" style="font-weight: bold;">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li><br>
+                                                @endforeach
+                                            </ul>
+                                        @endif
                                         <form method="POST" action="{{ route('register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">

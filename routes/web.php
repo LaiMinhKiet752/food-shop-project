@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -22,12 +23,12 @@ Route::get('/', function () {
 });
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-});//End Group middleware
+}); //End Group middleware
 
 
 // Route::get('/dashboard', function () {
@@ -58,8 +59,19 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 });
 
 
+
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::controller(BrandController::class)->group(function () {
+
+        //Brand All Route
+        Route::get('/all/brand', 'AllBrand')->name('all.brand');
+        Route::get('/add/brand', 'AddBrand')->name('add.brand');
+    });
+});
 
 //Edit Profile
 Route::middleware('auth')->group(function () {
