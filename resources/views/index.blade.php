@@ -231,6 +231,9 @@
                                                         <label>User Photo <span class="required">*</span></label>
                                                         <input class="form-control" name="photo" type="file"
                                                             id="image" />
+                                                        @if ($errors->has('photo'))
+                                                            <span class="text-danger">{{ $errors->first('photo') }}</span>
+                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label> <span class="required">*</span></label>

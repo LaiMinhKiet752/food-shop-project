@@ -169,6 +169,9 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="file" name="photo" class="form-control" id="image" />
+                                            @if ($errors->has('photo'))
+                                                <span class="text-danger">{{ $errors->first('photo') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 

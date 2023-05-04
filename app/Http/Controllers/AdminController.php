@@ -56,6 +56,9 @@ class AdminController extends Controller
 
 
         if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'required|mimes:jpeg,png,jpg'
+            ]);
             $file = $request->file('photo');
             $ext = $request->file('photo')->extension();
             $date = date('YmdHi');
@@ -69,7 +72,7 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => 'Admin Profile Updated Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         );
 
         return redirect()->back()->with($notification);
