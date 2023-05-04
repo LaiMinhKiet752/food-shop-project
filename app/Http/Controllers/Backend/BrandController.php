@@ -29,7 +29,7 @@ class BrandController extends Controller
         $ext = $request->file('brand_image')->extension();
         $date = date('YmdHi');
         $filename = $date . '_brand' . '.' . $ext;
-        Image::make($file)->resize(300, 300)->save('upload/brand/' . $filename);
+        Image::make($file)->resize(120, 120)->save('upload/brand/' . $filename);
         $save_url = 'upload/brand/' . $filename;
 
         Brand::insert([
@@ -65,7 +65,7 @@ class BrandController extends Controller
             $ext = $request->file('brand_image')->extension();
             $date = date('YmdHi');
             $filename = $date . '_brand' . '.' . $ext;
-            Image::make($file)->resize(300, 300)->save('upload/brand/' . $filename);
+            Image::make($file)->resize(120,120)->save('upload/brand/' . $filename);
             $save_url = 'upload/brand/' . $filename;
 
             if (file_exists($old_image)) {
