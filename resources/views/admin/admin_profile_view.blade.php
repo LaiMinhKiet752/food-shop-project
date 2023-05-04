@@ -28,7 +28,8 @@
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <img src="{{ !empty($adminData->photo) ? url('upload/admin_images/' . $adminData->photo) : url('upload/no_image.jpg') }}"
-                                        alt="Admin" class="rounded-circle p-1 bg-primary" style="width: 100px; height: 100px;">
+                                        alt="Admin" class="rounded-circle p-1 bg-primary"
+                                        style="width: 100px; height: 100px;">
                                     <div class="mt-3">
                                         <h4>{{ $adminData->name }}</h4>
                                         <p class="text-secondary mb-1">{{ $adminData->email }}</p>
@@ -130,6 +131,9 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="file" name="photo" class="form-control" id="image" />
+                                            @if ($errors->has('photo'))
+                                                <span class="text-danger">{{ $errors->first('photo') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 

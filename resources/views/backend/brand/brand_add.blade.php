@@ -43,8 +43,11 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Brand Image</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="brand_image" class="form-control" id="image" />
+                                            @if ($errors->has('brand_image'))
+                                                <span class="text-danger">{{ $errors->first('brand_image') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">

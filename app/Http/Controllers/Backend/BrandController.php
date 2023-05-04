@@ -22,6 +22,9 @@ class BrandController extends Controller
 
     public function StoreBrand(Request $request)
     {
+        $request->validate([
+            'brand_image' => 'required|mimes:jpeg,png,jpg'
+        ]);
         $file = $request->file('brand_image');
         $ext = $request->file('brand_image')->extension();
         $date = date('YmdHi');
@@ -53,7 +56,11 @@ class BrandController extends Controller
         $brand_id = $request->id;
         $old_image = $request->old_image;
 
+
         if ($request->file('brand_image')) {
+            $request->validate([
+                'brand_image' => 'required|mimes:jpeg,png,jpg'
+            ]);
             $file = $request->file('brand_image');
             $ext = $request->file('brand_image')->extension();
             $date = date('YmdHi');

@@ -26,6 +26,9 @@ class UserController extends Controller
         $data->address = $request->address;
 
         if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'required|mimes:jpeg,png,jpg'
+            ]);
             $file = $request->file('photo');
             $ext = $request->file('photo')->extension();
             $date = date('YmdHi');

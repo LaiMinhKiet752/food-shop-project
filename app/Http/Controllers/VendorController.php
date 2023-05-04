@@ -26,7 +26,7 @@ class VendorController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/vendor/login');
-    } // End Mehtod 
+    } // End Mehtod
     public function VendorProfile()
     {
         $id = Auth::user()->id;
@@ -45,6 +45,9 @@ class VendorController extends Controller
         $data->vendor_short_info = $request->vendor_short_info;
 
         if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'required|mimes:jpeg,png,jpg'
+            ]);
             $file = $request->file('photo');
             $ext = $request->file('photo')->extension();
             $date = date('YmdHi');
