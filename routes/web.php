@@ -23,7 +23,6 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
@@ -47,8 +46,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 });
 
-
-
 //Vendor Dashborad
 Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
@@ -60,9 +57,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 });
 
 
-
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
+
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -77,10 +77,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
     });
 
-    
-
-        //Category All Route
-        Route::controller(CategoryController::class)->group(function () {
+    //Category All Route
+    Route::controller(CategoryController::class)->group(function () {
         Route::get('/all/category', 'AllCategory')->name('all.category');
         Route::get('/add/category', 'AddCategory')->name('add.category');
         Route::post('/store/category', 'StoreCategory')->name('store.category');
@@ -89,16 +87,26 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
     });
 
-           //SubCategory All Route
-           Route::controller(SubCategoryController::class)->group(function () {
-            Route::get('/all/subcategory', 'AllSubCategory')->name('all.subcategory');
-            Route::get('/add/subcategory', 'AddSubCategory')->name('add.subcategory');
-            Route::post('/store/subcategory', 'StoreSubCategory')->name('store.subcategory');
-            Route::get('/edit/subcategory/{id}', 'EditSubcategory')->name('edit.subcategory');
-            Route::post('/update/subcategory', 'UpdateSubcategory')->name('update.subcategory');
-            Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
-        });
-});
+    //SubCategory All Route
+    Route::controller(SubCategoryController::class)->group(function () {
+        Route::get('/all/subcategory', 'AllSubCategory')->name('all.subcategory');
+        Route::get('/add/subcategory', 'AddSubCategory')->name('add.subcategory');
+        Route::post('/store/subcategory', 'StoreSubCategory')->name('store.subcategory');
+        Route::get('/edit/subcategory/{id}', 'EditSubcategory')->name('edit.subcategory');
+        Route::post('/update/subcategory', 'UpdateSubcategory')->name('update.subcategory');
+        Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
+    });
+
+     //Vendor Active And Inactive All Route
+     Route::controller(AdminController::class)->group(function () {
+        Route::get('/inactive/vendor', 'InActiveVendor')->name('inactive.vendor');
+        Route::get('/active/vendor', 'ActiveVendor')->name('active.vendor');
+        Route::get('/inactive/vendor/details/{id}', 'InActiveVendorDetails')->name('inactive.vendor.details');
+        Route::post('/active/vendor/approve', 'ActiveVendorApprove')->name('active.vendor.approve');
+        Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
+        Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
+    });
+});//End Middleware
 
 
 //Edit Profile

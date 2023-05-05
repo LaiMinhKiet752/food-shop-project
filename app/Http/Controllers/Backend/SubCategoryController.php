@@ -15,13 +15,11 @@ class SubCategoryController extends Controller
         return view('backend.subcategory.subcategory_all', compact('subcategories'));
     } //End Method
 
-
     public function AddSubCategory()
     {
-        $categories = Category::orderBy('category_name','ASC')->get();
+        $categories = Category::orderBy('category_name', 'ASC')->get();
         return view('backend.subcategory.subcategory_add', compact('categories'));
     } //End Method
-
 
     public function StoreSubCategory(Request $request)
     {
@@ -39,17 +37,16 @@ class SubCategoryController extends Controller
         return redirect()->route('all.subcategory')->with($notification);
     } //End Method
 
-
-    public function EditSubcategory($id){
-        $categories = Category::orderBy('category_name','ASC')->get();
+    public function EditSubcategory($id)
+    {
+        $categories = Category::orderBy('category_name', 'ASC')->get();
         $subcategory = SubCategory::findOrFail($id);
-        return view('backend.subcategory.subcategory_edit', compact('categories','subcategory'));
+        return view('backend.subcategory.subcategory_edit', compact('categories', 'subcategory'));
     } //End Method
 
-
-    public function UpdateSubcategory(Request $request){
+    public function UpdateSubcategory(Request $request)
+    {
         $subcat_id = $request->id;
-
         SubCategory::findOrFail($subcat_id)->update([
             'category_id' => $request->category_id,
             'subcategory_name' => $request->subcategory_name,
@@ -62,10 +59,6 @@ class SubCategoryController extends Controller
         );
         return redirect()->route('all.subcategory')->with($notification);
     } //End Method
-
-
-
-
 
     public function DeleteSubcategory($id)
     {
