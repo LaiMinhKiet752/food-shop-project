@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
-
+use App\Http\Controllers\Backend\SubCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,6 +88,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/category', 'UpdateCategory')->name('update.category');
         Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
     });
+
+           //SubCategory All Route
+           Route::controller(SubCategoryController::class)->group(function () {
+            Route::get('/all/subcategory', 'AllSubCategory')->name('all.subcategory');
+            Route::get('/add/subcategory', 'AddSubCategory')->name('add.subcategory');
+            Route::post('/store/subcategory', 'StoreSubCategory')->name('store.subcategory');
+            Route::get('/edit/subcategory/{id}', 'EditSubcategory')->name('edit.subcategory');
+            Route::post('/update/subcategory', 'UpdateSubcategory')->name('update.subcategory');
+            Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
+        });
 });
 
 
