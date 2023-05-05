@@ -153,7 +153,7 @@
                     },
                     password_confirmation: {
                         required: 'Please Enter Your Confirmation Password',
-                        equalTo: "The two passwords must be the same",
+                        equalTo: "The Two Passwords Must Be The Same",
                     },
                 },
                 errorElement: 'span',

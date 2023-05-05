@@ -16,7 +16,7 @@ class CategoryController extends Controller
         return view('backend.category.category_all', compact('categories'));
     } //End Method
 
-    
+
     public function AddCategory()
     {
         return view('backend.category.category_add');
@@ -57,7 +57,6 @@ class CategoryController extends Controller
     } //End Method
 
 
-
     public function UpdateCategory(Request $request)
     {
         $cat_id = $request->id;
@@ -71,7 +70,7 @@ class CategoryController extends Controller
             $file = $request->file('category_image');
             $ext = $request->file('category_image')->extension();
             $date = date('YmdHi');
-            $filename = $date . 'category' . '.' . $ext;
+            $filename = $date . '_category' . '.' . $ext;
             Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
             $save_url = 'upload/category/' . $filename;
 

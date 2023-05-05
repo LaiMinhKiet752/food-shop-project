@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Register - Nest Food Shop</title>
+    <title>Become Vendor Page </title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,17 +19,15 @@
 
 <body>
 
-    <!-- Header  -->
     @include('frontend.body.header')
-
-    <!-- End Header  -->
+    <!--End header-->
 
     <main class="main pages">
         <div class="page-header breadcrumb-wrap">
             <div class="container">
                 <div class="breadcrumb">
                     <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> My Account
+                    <span></span> Become Vendor
                 </div>
             </div>
         </div>
@@ -42,9 +40,9 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
-                                            <h1 class="mb-5">Create an Account</h1>
-                                            <p class="mb-30">Already have an account? <a
-                                                    href="{{ route('login') }}">Login</a></p>
+                                            <h1 class="mb-5">Become Vendor</h1>
+                                            <p class="mb-30">Already have an Vendor account? <a
+                                                    href="{{ route('vendor.login') }}">Vendor Login</a></p>
                                         </div>
                                         @if (session('status'))
                                             <div class="alert alert-success" role="alert">{{ session('status') }}
@@ -59,16 +57,40 @@
                                                 @endforeach
                                             </ul>
                                         @endif
-                                        <form method="POST" action="{{ route('register') }}" id="myForm">
+                                        <form method="POST" action="{{ route('vendor.register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="name" required="" name="name"
-                                                    placeholder="Username *" />
+                                                    placeholder="Shop Name *" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" id="username" required="" name="username"
+                                                    placeholder="User Name *" />
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
                                                     placeholder="Email *" />
                                             </div>
+
+                                            <div class="form-group">
+                                                <input type="text" id="phone" required="" name="phone"
+                                                    placeholder="Phone *" />
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select name="vendor_join" class="form-select mb-3"
+                                                    aria-label="Default select example">
+                                                    <option selected="">Open this select Join Date</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                </select>
+                                            </div>
+
+
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
                                                     placeholder="Password *" />
@@ -77,14 +99,16 @@
                                                 <input required="" id="password_confirmation" type="password"
                                                     name="password_confirmation" placeholder="Confirm password *" />
                                             </div>
+
+
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                                            id="exampleCheckbox12" value="" />
-                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I
-                                                                agree to terms &amp;
-                                                                Policy.</span></label>
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label"
+                                                            for="exampleCheckbox12"><span>I
+                                                                agree to terms &amp; Policy.</span></label>
                                                     </div>
                                                 </div>
                                                 <a href="page-privacy-policy.html"><i
@@ -93,7 +117,7 @@
                                             <div class="form-group mb-30">
                                                 <button type="submit"
                                                     class="btn btn-fill-out btn-block hover-up font-weight-bold"
-                                                    name="login">Register</button>
+                                                    name="login">Submit &amp; Register</button>
                                             </div>
                                             <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will
                                                 be used to support your experience throughout this website, to manage
@@ -126,7 +150,10 @@
         </div>
     </main>
 
+
     @include('frontend.body.footer')
+
+
     <!-- Preloader Start -->
     <div id="preloader-active">
         <div class="preloader d-flex align-items-center justify-content-center">
@@ -161,7 +188,6 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
@@ -173,7 +199,13 @@
                     name: {
                         required: true,
                     },
+                    username: {
+                        required: true,
+                    },
                     email: {
+                        required: true,
+                    },
+                    phone: {
                         required: true,
                     },
                     password: {
@@ -188,10 +220,16 @@
                 },
                 messages: {
                     name: {
+                        required: 'Please Enter Your Shop Name',
+                    },
+                    username: {
                         required: 'Please Enter Your User Name',
                     },
                     email: {
                         required: 'Please Enter Your Email',
+                    },
+                    phone: {
+                        required: 'Please Enter Your Phone Number',
                     },
                     password: {
                         required: 'Please Enter Your Password',
@@ -215,8 +253,9 @@
                 },
             });
             $.validator.addMethod("validatePassword", function(value, element) {
-                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
-                        value);
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
+                        .test(
+                            value);
                 },
                 "Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character."
             );
