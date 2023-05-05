@@ -5,13 +5,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Add Category </div>
+            <div class="breadcrumb-title pe-3">Add SubCategory</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Category </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add SubCategory</li>
                     </ol>
                 </nav>
             </div>
@@ -23,13 +23,11 @@
         <div class="container">
             <div class="main-body">
                 <div class="row">
-
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
 
-                                <form id="myForm" method="post" action="{{ route('store.category') }}"
-                                    enctype="multipart/form-data">
+                                <form method="post" action="{{ route('store.subcategory') }}">
                                     @csrf
 
                                     <div class="row mb-3">
@@ -37,40 +35,26 @@
                                             <h6 class="mb-0">Category Name</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="category_name" class="form-control" />
+                                        <select name="category_id" class = "form-select mb-3" aria-label= "Default select example">
+                                            <option selected="">Open This Select Menu</option>
+                                          
+                                            @foreach($categories as $category)
+                                            <option value ="{{$category->id}}">{{$category->category_name}}</option>
+                                            @endforeach
+
+                                         </select>
                                         </div>
                                     </div>
-
-
+                                   
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Image </h6>
+                                            <h6 class="mb-0">SubCategory Name</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="category_image" class="form-control"
-                                                id="image" />
-                                                @if ($errors->has('category_image'))
-                                                <span class="text-danger">{{ $errors->first('category_image') }}</span>
-                                            @endif
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <input type="text" name="subcategory_name" class="form-control" />
                                         </div>
                                     </div>
-
-
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0"> </h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <img id="showImage" src="{{ url('upload/no_image.jpg') }}" alt="Category"
-                                                style="width:100px; height: 100px;">
-                                        </div>
-                                    </div>
-
-
-
-
-
+                                   
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
@@ -78,10 +62,8 @@
                                         </div>
                                     </div>
                             </div>
-
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -90,18 +72,19 @@
 
 
 
+    
 
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    category_name: {
+                    subcategory_name: {
                         required: true,
                     },
                 },
                 messages: {
-                    category_name: {
-                        required: 'Please Enter Category Name',
+                    subcategory_name: {
+                        required: 'Please Enter SubCategory Name',
                     },
                 },
                 errorElement: 'span',
@@ -115,21 +98,6 @@
                 unhighlight: function(element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                 },
-            });
-        });
-    </script>
-
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#image').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
             });
         });
     </script>
