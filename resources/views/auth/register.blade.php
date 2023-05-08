@@ -87,7 +87,7 @@
                                                                 Policy.</span></label>
                                                     </div>
                                                 </div>
-                                                <a href="page-privacy-policy.html"><i
+                                                <a href="{{ route('privacy_policy') }}"><i
                                                         class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
                                             </div>
                                             <div class="form-group mb-30">

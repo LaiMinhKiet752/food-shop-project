@@ -197,7 +197,6 @@
                                             <h5>Account Details</h5>
                                         </div>
                                         <div class="card-body">
-                                            <p>Already have an account? <a href="page-login.html">Log in instead!</a></p>
                                             <form method="post" action="{{ route('user.profile.store') }}"
                                                 enctype="multipart/form-data">
                                                 @csrf
@@ -294,7 +293,7 @@
                                     </div>
                                 </div>
                                 {{-- End Change Password --}}
-                                
+
                             </div>
                         </div>
                     </div>
