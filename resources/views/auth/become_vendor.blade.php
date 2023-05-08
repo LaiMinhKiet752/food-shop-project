@@ -44,12 +44,6 @@
                                             <p class="mb-30">Already have an Vendor account? <a
                                                     href="{{ route('vendor.login') }}">Vendor Login</a></p>
                                         </div>
-                                        @if (session('status'))
-                                            <div class="alert alert-success" role="alert">{{ session('status') }}
-                                            </div>
-                                        @elseif (session('error'))
-                                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
-                                        @endif
                                         @if ($errors->any())
                                             <ul class="text-danger" style="font-weight: bold;">
                                                 @foreach ($errors->all() as $error)
@@ -81,7 +75,7 @@
                                             <div class="form-group">
                                                 <select name="vendor_join" class="form-select mb-3"
                                                     aria-label="Default select example">
-                                                    <option selected="">Open this select Join Date</option>
+                                                    <option selected="">Open this select join date</option>
                                                     <option value="2022">2022</option>
                                                     <option value="2023">2023</option>
                                                     <option value="2024">2024</option>
@@ -130,15 +124,15 @@
                             <div class="col-lg-6 pr-30 d-none d-lg-block">
                                 <div class="card-login mt-115">
                                     <a href="#" class="social-login facebook-login">
-                                        <img src="assets/imgs/theme/icons/logo-facebook.svg" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
                                         <span>Continue with Facebook</span>
                                     </a>
                                     <a href="#" class="social-login google-login">
-                                        <img src="assets/imgs/theme/icons/logo-google.svg" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
                                         <span>Continue with Google</span>
                                     </a>
                                     <a href="#" class="social-login apple-login">
-                                        <img src="assets/imgs/theme/icons/logo-apple.svg" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-apple.svg') }}" alt="" />
                                         <span>Continue with Apple</span>
                                     </a>
                                 </div>
@@ -220,24 +214,24 @@
                 },
                 messages: {
                     name: {
-                        required: 'Please Enter Your Shop Name',
+                        required: 'Please enter your shop name.',
                     },
                     username: {
-                        required: 'Please Enter Your User Name',
+                        required: 'Please enter your user name.',
                     },
                     email: {
-                        required: 'Please Enter Your Email',
+                        required: 'Please enter your email.',
                     },
                     phone: {
-                        required: 'Please Enter Your Phone Number',
+                        required: 'Please enter your phone number.',
                     },
                     password: {
-                        required: 'Please Enter Your Password',
+                        required: 'Please enter your password.',
                         minlength: ''
                     },
                     password_confirmation: {
-                        required: 'Please Enter Your Confirmation Password',
-                        equalTo: "The Two Passwords Must Be The Same",
+                        required: 'Please enter your confirmation password.',
+                        equalTo: "The two passwords must be the same.",
                     },
                 },
                 errorElement: 'span',

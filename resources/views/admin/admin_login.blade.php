@@ -37,7 +37,7 @@
                             <div class="card-body">
                                 <div class="border p-4 rounded">
                                     <div class="text-center">
-                                        <h3 class="">Admin Sign in</h3>
+                                        <h3 class="">Admin Sign In</h3>
                                     </div>
                                     @if ($errors->any())
                                             <ul class="text-danger" style="font-weight: bold;">
@@ -139,10 +139,10 @@
                 },
                 messages: {
                     email: {
-                        required: 'Please Enter Your Email',
+                        required: 'Please enter your email.',
                     },
                     password: {
-                        required: 'Please Enter Your Password',
+                        required: 'Please enter your password.',
                     },
                 },
                 errorElement: 'span',

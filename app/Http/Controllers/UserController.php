@@ -42,7 +42,7 @@ class UserController extends Controller
 
         $notification = array(
             'message' => 'User Profile Updated Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         );
 
         return redirect()->back()->with($notification);
@@ -57,29 +57,30 @@ class UserController extends Controller
 
         $notification = array(
             'message' => 'User Logout Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         );
 
         return redirect('/login')->with($notification);
     } // End Mehtod
     public function UserUpdatePassword(Request $request)
     {
-        //Validation
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/',
-        ], [
-            'new_password.regex' => ' Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.'
-        ]);
 
         //Match the old password
         if (!Hash::check($request->old_password, auth::user()->password)) {
-            return back()->with('error', "Old Password Doesn't Match. Please Check And Try Again!");
+            $notification = array(
+                'message' => "Old Password Doesn't Match!",
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
         }
         //Update the new password
         User::whereId(auth()->user()->id)->update([
             'password' => Hash::make($request->new_password)
         ]);
-        return back()->with('status', 'Password Changed Successfully!');
+        $notification = array(
+            'message' => 'Password Changed Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     }//End Method
 }
