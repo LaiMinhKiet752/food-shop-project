@@ -177,10 +177,10 @@
                 },
                 messages: {
                     email: {
-                        required: 'Please Enter Your Email',
+                        required: 'Please enter your email.',
                     },
                     password: {
-                        required: 'Please Enter Your Password',
+                        required: 'Please enter your password.',
                     },
                 },
                 errorElement: 'span',

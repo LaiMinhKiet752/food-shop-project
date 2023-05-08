@@ -41,7 +41,7 @@
                             <div class="heading_s1">
                                 <img class="border-radius-15"
                                     src="{{ asset('frontend/assets/imgs/page/reset_password.svg') }}" alt="" />
-                                <h2 class="mb-15 mt-15">Set new password</h2>
+                                <h2 class="mb-15 mt-15">Set New Password</h2>
                                 <p class="mb-30">Forgot your password? No problem. Just let us know your email address
                                     and we will email you a password reset link that will allow you to choose a new one.
                                 </p>
@@ -50,7 +50,8 @@
                                 <div class="login_wrap widget-taber-content background-white">
                                     <div class="padding_eight_all bg-white">
                                         @if (session('status'))
-                                            <div class="alert alert-success" role="alert">{{ session('status') }}
+                                            <div class="alert alert-success" role="alert">
+                                                {{ session('status') }}
                                             </div>
                                         @elseif (session('error'))
                                             <div class="alert alert-danger" role="alert">{{ session('error') }}</div>

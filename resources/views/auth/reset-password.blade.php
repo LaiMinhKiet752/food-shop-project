@@ -145,15 +145,15 @@
                 },
                 messages: {
                     email: {
-                        required: 'Please Enter Your Email',
+                        required: 'Please enter your email.',
                     },
                     password: {
-                        required: 'Please Enter Your Password',
+                        required: 'Please enter your password.',
                         minlength: ''
                     },
                     password_confirmation: {
-                        required: 'Please Enter Your Confirmation Password',
-                        equalTo: "The Two Passwords Must Be The Same",
+                        required: 'Please enter your confirmation password.',
+                        equalTo: "The two passwords must be the same.",
                     },
                 },
                 errorElement: 'span',
