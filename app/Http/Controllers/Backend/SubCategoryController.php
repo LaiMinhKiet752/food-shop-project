@@ -54,7 +54,7 @@ class SubCategoryController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'SubCategory Update Successfully!',
+            'message' => 'SubCategory Updated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.subcategory')->with($notification);
@@ -65,7 +65,7 @@ class SubCategoryController extends Controller
         SubCategory::findOrFail($id)->delete();
 
         $notification = array(
-            'message' => 'SubCategory Delete Successfully!',
+            'message' => 'SubCategory Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

@@ -132,7 +132,7 @@
                 },
                 messages: {
                     email: {
-                        required: 'Please Enter Your Email',
+                        required: 'Please enter your email.',
                     },
                 },
                 errorElement: 'span',

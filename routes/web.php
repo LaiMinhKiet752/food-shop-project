@@ -58,9 +58,9 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin']);
+
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin']);
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login');
-
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 
@@ -106,7 +106,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
-});//End Middleware
+});//End Middleware 'Admin'
 
 
 //Edit Profile

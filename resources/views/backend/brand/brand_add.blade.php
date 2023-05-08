@@ -95,10 +95,16 @@
                     brand_name: {
                         required: true,
                     },
+                    brand_image: {
+                        required: true,
+                    },
                 },
                 messages: {
                     brand_name: {
-                        required: 'Please Enter Brand Name',
+                        required: 'Please enter brand name.',
+                    },
+                    brand_image: {
+                        required: 'The brand image is required.',
                     },
                 },
                 errorElement: 'span',
