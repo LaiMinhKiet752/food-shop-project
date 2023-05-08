@@ -1,3 +1,4 @@
+//Delete Data
 $(function () {
     $(document).on("click", "#delete", function (e) {
         e.preventDefault();
@@ -19,3 +20,5 @@ $(function () {
         });
     });
 });
+
+

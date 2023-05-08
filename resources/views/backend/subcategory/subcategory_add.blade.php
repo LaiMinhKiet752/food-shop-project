@@ -27,25 +27,27 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <form method="post" action="{{ route('store.subcategory') }}">
+                                <form method="post" action="{{ route('store.subcategory') }}" id="myForm">
                                     @csrf
 
-                                    <div class="row mb-3">
+                                    <div class="row mb-3 ">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Category Name</h6>
                                         </div>
-                                        <div class="form-group col-sm-9 text-secondary">
-                                        <select name="category_id" class = "form-select mb-3" aria-label= "Default select example">
-                                            <option selected="">Open This Select Menu</option>
-                                          
-                                            @foreach($categories as $category)
-                                            <option value ="{{$category->id}}">{{$category->category_name}}</option>
-                                            @endforeach
+                                        <div class="form-group col-sm-9 text-dark">
+                                            <select name="category_name" class="form-select mb-3 single-select"
+                                                aria-label="Default select example">
+                                                <option value="">Open this select a category</option>
 
-                                         </select>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}
+                                                    </option>
+                                                @endforeach
+
+                                            </select>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">SubCategory Name</h6>
@@ -54,11 +56,12 @@
                                             <input type="text" name="subcategory_name" class="form-control" />
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
+                                            <input type="submit" class="btn btn-primary px-4 savedata"
+                                                value="Save Changes" />
                                         </div>
                                     </div>
                             </div>
@@ -72,8 +75,6 @@
 
 
 
-    
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#myForm').validate({
@@ -81,10 +82,16 @@
                     subcategory_name: {
                         required: true,
                     },
+                    category_name: {
+                        required: true,
+                    },
                 },
                 messages: {
                     subcategory_name: {
-                        required: 'Please Enter SubCategory Name',
+                        required: 'Please enter subcategory name.',
+                    },
+                    category_name: {
+                        required: 'Please select a category name.',
                     },
                 },
                 errorElement: 'span',

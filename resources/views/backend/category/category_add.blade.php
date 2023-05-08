@@ -46,17 +46,14 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Category Image </h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="category_image" class="form-control"
                                                 id="image" />
-                                                @if ($errors->has('category_image'))
+                                            @if ($errors->has('category_image'))
                                                 <span class="text-danger">{{ $errors->first('category_image') }}</span>
                                             @endif
                                         </div>
                                     </div>
-
-
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0"> </h6>
@@ -66,11 +63,6 @@
                                                 style="width:100px; height: 100px;">
                                         </div>
                                     </div>
-
-
-
-
-
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
@@ -98,10 +90,16 @@
                     category_name: {
                         required: true,
                     },
+                    category_image: {
+                        required: true,
+                    },
                 },
                 messages: {
                     category_name: {
-                        required: 'Please Enter Category Name',
+                        required: 'Please enter category name.',
+                    },
+                    category_image: {
+                        required: 'The category image is required.',
                     },
                 },
                 errorElement: 'span',

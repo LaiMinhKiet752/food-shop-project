@@ -20,14 +20,14 @@ class CategoryController extends Controller
     public function AddCategory()
     {
         return view('backend.category.category_add');
-    }//End Method
+    } //End Method
 
 
 
     public function StoreCategory(Request $request)
     {
         $request->validate([
-            'category_image' => 'required|mimes:jpeg,png,jpg'
+            'category_image' => 'mimes:jpeg,png,jpg'
         ]);
         $file = $request->file('category_image');
         $ext = $request->file('category_image')->extension();

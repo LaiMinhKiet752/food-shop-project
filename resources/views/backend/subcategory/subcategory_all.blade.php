@@ -3,19 +3,19 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All SubCategogy</div>
+            <div class="breadcrumb-title pe-3">All SubCategory</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All SubCategogy</li>
+                        <li class="breadcrumb-item active" aria-current="page">All SubCategory</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.subcategory') }}" class="btn btn-primary">Add SubCategogy</a>
+                    <a href="{{ route('add.subcategory') }}" class="btn btn-primary">Add SubCategory</a>
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
                         <thead>
                             <tr>
                                 <th>SL</th>
-                                <th>Categogy Name</th>
-                                <th>SubCategogy Name</th>
+                                <th>Category Name</th>
+                                <th>SubCategory Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -49,8 +49,8 @@
                         <tfoot>
                             <tr>
                                 <th>SL</th>
-                                <th>Categogy Name</th>
-                                <th>SubCategogy Name</th>
+                                <th>Category Name</th>
+                                <th>SubCategory Name</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

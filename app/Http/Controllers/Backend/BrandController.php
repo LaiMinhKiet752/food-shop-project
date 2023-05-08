@@ -23,7 +23,7 @@ class BrandController extends Controller
     public function StoreBrand(Request $request)
     {
         $request->validate([
-            'brand_image' => 'required|mimes:jpeg,png,jpg'
+            'brand_image' => 'mimes:jpeg,png,jpg'
         ]);
         $file = $request->file('brand_image');
         $ext = $request->file('brand_image')->extension();
