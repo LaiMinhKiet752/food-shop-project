@@ -8,6 +8,8 @@ use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,12 +25,14 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
+Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-}); //End Group middleware
+}); //End Group Middleware 'Auth'
 
 
 // Route::get('/dashboard', function () {
@@ -66,9 +70,9 @@ Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->na
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::controller(BrandController::class)->group(function () {
 
-        //Brand All Route
+    //Brand All Route
+    Route::controller(BrandController::class)->group(function () {
         Route::get('/all/brand', 'AllBrand')->name('all.brand');
         Route::get('/add/brand', 'AddBrand')->name('add.brand');
         Route::post('/store/brand', 'StoreBrand')->name('store.brand');
