@@ -194,7 +194,7 @@
                                     aria-labelledby="account-detail-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Account Details</h5>
+                                            <h3>Account Details</h3>
                                         </div>
                                         <div class="card-body">
                                             <form method="post" action="{{ route('user.profile.store') }}"
@@ -257,7 +257,7 @@
                                     aria-labelledby="change-password-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>Change Password</h5>
+                                            <h3>Change Password</h3>
                                         </div>
                                         <div class="card-body">
                                             <form method="post" action="{{ route('user.update.password') }}"
@@ -267,19 +267,16 @@
                                                     <div class="form-group col-md-12">
                                                         <label>Old Password <span class="required">*</span></label>
                                                         <input class="form-control" id="current_password"
-                                                            placeholder="Old Password" name="old_password"
-                                                            type="password" />
+                                                            name="old_password" type="password" />
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>New Password <span class="required">*</span></label>
-                                                        <input class="form-control" id="new_password"
-                                                            placeholder="New Password" name="new_password"
+                                                        <input class="form-control" id="new_password" name="new_password"
                                                             type="password" />
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Confirm New Password <span class="required">*</span></label>
                                                         <input class="form-control" id="new_password_confirmation"
-                                                            placeholder="Confirm New Password"
                                                             name="new_password_confirmation" type="password" />
                                                     </div>
                                                     <div class="col-md-12">

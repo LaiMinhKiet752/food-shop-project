@@ -105,18 +105,15 @@
                             </div>
                             <div class="col-lg-6 pr-30 d-none d-lg-block">
                                 <div class="card-login mt-115">
-                                    <a href="#" class="social-login facebook-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
-                                        <span>Continue with Facebook</span>
-                                    </a>
-                                    <a href="#" class="social-login google-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
-                                        <span>Continue with Google</span>
-                                    </a>
-                                    <a href="#" class="social-login apple-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-apple.svg') }}" alt="" />
-                                        <span>Continue with Apple</span>
-                                    </a>
+                                    <h6 class="mb-15">Password must:</h6>
+                                    <p>Be more than 8 characters long.</p>
+                                    <p>Include at least tow of the following:</p>
+                                    <ol class="list-insider">
+                                        <li>An uppercase character</li>
+                                        <li>A lowercase character</li>
+                                        <li>A number</li>
+                                        <li>A special character</li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
