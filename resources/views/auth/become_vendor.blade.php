@@ -136,6 +136,17 @@
                                         <span>Continue with Apple</span>
                                     </a>
                                 </div>
+                                <div class="card-login mt-1">
+                                    <h6 class="mb-15">Password must:</h6>
+                                    <p>Be more than 8 characters long.</p>
+                                    <p>Include at least tow of the following:</p>
+                                    <ol class="list-insider">
+                                        <li>An uppercase character</li>
+                                        <li>A lowercase character</li>
+                                        <li>A number</li>
+                                        <li>A special character</li>
+                                    </ol>
+                                </div>
                             </div>
                         </div>
                     </div>
