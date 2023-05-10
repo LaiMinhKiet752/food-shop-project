@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\MultiImage;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -17,10 +18,13 @@ class ProductController extends Controller
     {
         $products = Product::latest()->get();
         return view('backend.product.product_all', compact('products'));
-    }//End Method
+    } //End Method
 
     public function AddProduct()
     {
-        return view('backend.product.product_add');
-    }//End Method
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        return view('backend.product.product_add', compact('brands', 'categories','activeVendor'));
+    } //End Method
 }

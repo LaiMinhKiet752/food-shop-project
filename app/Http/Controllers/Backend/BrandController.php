@@ -32,11 +32,17 @@ class BrandController extends Controller
         Image::make($file)->resize(120, 120)->save('upload/brand/' . $filename);
         $save_url = 'upload/brand/' . $filename;
 
-        Brand::insert([
-            'brand_name' => $request->brand_name,
-            'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
-            'brand_image' => $save_url,
-        ]);
+        $brand = new Brand();
+        $brand->brand_name = $request->brand_name;
+        $brand->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
+        $brand->brand_image = $save_url;
+        $brand->save();
+
+        // Brand::insert([
+        //     'brand_name' => $request->brand_name,
+        //     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+        //     'brand_image' => $save_url,
+        // ]);
 
         $notification = array(
             'message' => 'Brand Inserted Successfully!',
