@@ -13,6 +13,7 @@
     <!-- End Select 2  -->
     <!--plugins-->
     <link href="{{ asset('adminbackend/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+    <link href="{{ asset('adminbackend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
     <link href="{{ asset('adminbackend/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('adminbackend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}"
         rel="stylesheet" />
@@ -167,6 +168,7 @@
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
     <script src="{{ asset('adminbackend/assets/js/jquery.min.js') }}"></script>
+    <script src="{{ asset('adminbackend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
     <script src="{{ asset('adminbackend/assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('adminbackend/assets/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('adminbackend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
@@ -227,6 +229,14 @@
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
+    <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: "#mytextarea",
+        });
+    </script>
+
     <!-- Select2 -->
     <script src="{{ asset('adminbackend/assets/plugins/select2/js/select2.min.js') }}"></script>
     <script>
@@ -244,7 +254,7 @@
         });
     </script>
     <!-- End Select2 -->
-    
+
 </body>
 
 </html>
