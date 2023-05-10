@@ -24,11 +24,17 @@ class SubCategoryController extends Controller
     public function StoreSubCategory(Request $request)
     {
 
-        SubCategory::insert([
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
-        ]);
+        $subcategory = new SubCategory();
+        $subcategory->category_id = $request->category_id;
+        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->subcategory_slug = strtolower(str_replace(' ', '-', $request->subcategory_name));
+        $subcategory->save();
+
+        // SubCategory::insert([
+        //     'category_id' => $request->category_id,
+        //     'subcategory_name' => $request->subcategory_name,
+        //     'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
+        // ]);
 
         $notification = array(
             'message' => 'SubCategory Inserted Successfully!',
@@ -70,4 +76,10 @@ class SubCategoryController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
+
+    public function GetSubCategory($category_id)
+    {
+        $sub_category = SubCategory::where('category_id', $category_id)->orderBy('subcategory_name', 'ASC')->get();
+        return json_encode($sub_category);
+    } // End Method
 }

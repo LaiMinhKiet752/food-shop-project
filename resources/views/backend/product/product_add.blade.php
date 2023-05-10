@@ -26,7 +26,7 @@
 
                                 <div class="mb-3">
                                     <label for="inputProductTitle" class="form-label">Product Name *</label>
-                                    <input type="text" name="product_name" class="form-control" id="inputProductTitle">
+                                    <input type="text" name="product_name" class="form-control">
                                 </div>
 
                                 <div class="mb-3">
@@ -49,7 +49,7 @@
 
                                 <div class="mb-3">
                                     <label for="inputProductDescription" class="form-label">Short Description *</label>
-                                    <textarea name="short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
+                                    <textarea name="short_description" class="form-control" rows="3"></textarea>
                                 </div>
 
                                 <div class="mb-3">
@@ -59,7 +59,7 @@
                                 <br>
                                 <div class="mb-3">
                                     <label for="inputProductTitle" class="form-label">Main Thumbnail *</label>
-                                    <input name="product_thumbnail" class="form-control" type="file" id="formFile"
+                                    <input name="product_thumbnail" class="form-control" type="file"
                                         onchange="mainThumbnailUrl(this)"><br>
                                     <img src="" id="mainthumbnail" alt="">
                                 </div>
@@ -110,41 +110,41 @@
 
                                     <div class="col-12">
                                         <label for="inputProductType" class="form-label">Product Brand *</label>
-                                        <select name="brand_id" class="form-select" id="inputProductType">
+                                        <select name="brand_id" class="form-select single-select">
                                             <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="inputVendor" class="form-label">Product Category *</label>
-                                        <select name="category_id" class="form-select" id="inputVendor">
+                                        <select name="category_id" class="form-select single-select">
                                             <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="inputCollection" class="form-label">Product SubCategory *</label>
-                                        <select name="subcategory_id" class="form-select" id="inputCollection">
+                                        <label for="inputVendor" class="form-label">Product SubCategory *</label>
+                                        <select name="subcategory_id" class="form-select single-select">
                                             <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="inputCollection" class="form-label">Select Vendor *</label>
-                                        <select name="vendor_id" class="form-select" id="inputCollection">
+                                        <select name="vendor_id" class="form-select single-select">
                                             <option></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            @foreach ($activeVendor as $vendor)
+                                                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
@@ -153,7 +153,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="hot_deals" type="checkbox"
-                                                        value="1" id="flexCheckDefault" />
+                                                        value="1" />
                                                     <label class="form-check-label" for="flexCheckDefault">
                                                         Hot Deals</label>
                                                 </div>
@@ -162,7 +162,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="featured" type="checkbox"
-                                                        value="1" id="flexCheckDefault" />
+                                                        value="1" />
                                                     <label class="form-check-label"
                                                         for="flexCheckDefault">Featured</label>
                                                 </div>
@@ -171,7 +171,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="special_offer" type="checkbox"
-                                                        value="1" id="flexCheckDefault" />
+                                                        value="1" />
                                                     <label class="form-check-label" for="flexCheckDefault">Special
                                                         Offer</label>
                                                 </div>
@@ -180,7 +180,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="special_deals" type="checkbox"
-                                                        value="1" id="flexCheckDefault" />
+                                                        value="1" />
                                                     <label class="form-check-label" for="flexCheckDefault">Special
                                                         Deals</label>
                                                 </div>
@@ -192,7 +192,7 @@
                                     <hr>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <button type="button" class="btn btn-primary">Save Product</button>
+                                            <button type="button" class="btn btn-primary">Add Product</button>
                                         </div>
                                     </div>
                                 </div>
@@ -246,6 +246,33 @@
 
                 } else {
                     alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="category_id"]').on('change', function() {
+                var category_id = $(this).val();
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/subcategory/ajax') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="subcategory_id"]').html('');
+                            var d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .subcategory_name + '</option>');
+                            });
+                        },
+
+                    });
+                } else {
+                    alert('danger');
                 }
             });
         });

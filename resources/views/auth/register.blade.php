@@ -103,17 +103,21 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 pr-30 d-none d-lg-block">
-                                <div class="card-login mt-115">
-                                    <h6 class="mb-15">Password must:</h6>
-                                    <p>Be more than 8 characters long.</p>
-                                    <p>Include at least tow of the following:</p>
-                                    <ol class="list-insider">
-                                        <li>An uppercase character</li>
-                                        <li>A lowercase character</li>
-                                        <li>A number</li>
-                                        <li>A special character</li>
-                                    </ol>
+                            <div class="col-lg-6 col-md-8">
+                                <div class="login_wrap widget-taber-content background-white">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="card-login mt-115">
+                                            <h6 class="mb-15">Password must:</h6>
+                                            <p>Be more than 8 characters long.</p>
+                                            <p>Include at least tow of the following:</p>
+                                            <ol class="list-insider">
+                                                <li>An uppercase character</li>
+                                                <li>A lowercase character</li>
+                                                <li>A number</li>
+                                                <li>A special character</li>
+                                            </ol>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -212,8 +216,9 @@
                 },
             });
             $.validator.addMethod("validatePassword", function(value, element) {
-                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i.test(
-                        value);
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
+                        .test(
+                            value);
                 },
                 "Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character."
             );

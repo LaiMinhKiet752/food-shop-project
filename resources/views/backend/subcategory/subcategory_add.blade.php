@@ -35,7 +35,7 @@
                                             <h6 class="mb-0">Category Name</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-dark">
-                                            <select name="category_name" class="form-select mb-3 single-select"
+                                            <select name="category_id" class="form-select mb-3 single-select"
                                                 aria-label="Default select example">
                                                 <option value="">Open this select a category</option>
 
