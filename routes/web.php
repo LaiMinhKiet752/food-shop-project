@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
 
@@ -27,7 +28,7 @@ Route::get('/', function () {
 
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
@@ -101,8 +102,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
     });
 
-     //Vendor Active And Inactive All Route
-     Route::controller(AdminController::class)->group(function () {
+    //Product All Route
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/all/product', 'AllProduct')->name('all.product');
+        Route::get('/add/product', 'AddProduct')->name('add.product');
+    });
+
+    //Vendor Active And Inactive All Route
+    Route::controller(AdminController::class)->group(function () {
         Route::get('/inactive/vendor', 'InActiveVendor')->name('inactive.vendor');
         Route::get('/active/vendor', 'ActiveVendor')->name('active.vendor');
         Route::get('/inactive/vendor/details/{id}', 'InActiveVendorDetails')->name('inactive.vendor.details');
@@ -110,7 +117,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
-});//End Middleware 'Admin'
+}); //End Middleware 'Admin'
 
 
 //Edit Profile
