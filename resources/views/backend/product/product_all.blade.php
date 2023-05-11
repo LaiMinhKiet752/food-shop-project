@@ -45,13 +45,40 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
-                                    <td>{{ $item->discount_price }}</td>
-                                    <td>{{ $item->product_quantity }}</td>
-                                    <td>{{ $item->status }}</td>
+
                                     <td>
-                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
+                                        @if ($item->discount_price == null)
+                                            <span class="badge rounded-pill bg-info">No Discount</span>
+                                        @else
+                                            @php
+                                                $discount = ($item->discount_price * 100) / $item->selling_price;
+                                            @endphp
+                                            <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>
+                                        @endif
+                                    </td>
+
+                                    <td>{{ $item->product_quantity }}</td>
+                                    <td>
+                                        @if ($item->status == 1)
+                                            <span class="badge rounded-pill bg-success">Active</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-danger">InActive</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info"
+                                            title="Edit Data"><i class="fa fa-pencil"></i></a>
                                         <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
+                                            id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
+                                            title="Details Data"><i class="fa fa-eye"></i></a>
+                                        @if ($item->status == 1)
+                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                                title="InActive Data"><i class="fa-solid fa-thumbs-down"></i></a>
+                                        @else
+                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                                title="Active Data"><i class="fa-solid fa-thumbs-up"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
