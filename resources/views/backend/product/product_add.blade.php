@@ -19,188 +19,193 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <div class="form-body mt-4">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <div class="border border-3 p-4 rounded">
+                <form action="{{ route('store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-body mt-4">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="border border-3 p-4 rounded">
 
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Name *</label>
-                                    <input type="text" name="product_name" class="form-control">
-                                </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Name *</label>
+                                        <input type="text" name="product_name" class="form-control">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Tags *</label>
-                                    <input type="text" name="product_tags" class="form-control visually-hidden"
-                                        data-role="tagsinput" value="new product">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Tags *</label>
+                                        <input type="text" name="product_tags" class="form-control visually-hidden"
+                                            data-role="tagsinput" value="new product">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Size *</label>
-                                    <input type="text" name="product_size" class="form-control visually-hidden"
-                                        data-role="tagsinput" value="">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Size *</label>
+                                        <input type="text" name="product_size" class="form-control visually-hidden"
+                                            data-role="tagsinput" value="">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Product Color *</label>
-                                    <input type="text" name="product_color" class="form-control visually-hidden"
-                                        data-role="tagsinput" value="">
-                                </div>
+                                    <div class="mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Color *</label>
+                                        <input type="text" name="product_color" class="form-control visually-hidden"
+                                            data-role="tagsinput" value="">
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Short Description *</label>
-                                    <textarea name="short_description" class="form-control" rows="3"></textarea>
-                                </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inputProductDescription" class="form-label">Short Description *</label>
+                                        <textarea name="short_description" class="form-control" rows="3"></textarea>
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label for="inputProductDescription" class="form-label">Long Description *</label>
-                                    <textarea id="mytextarea" name="long_description"></textarea>
-                                </div>
-                                <br>
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Main Thumbnail *</label>
-                                    <input name="product_thumbnail" class="form-control" type="file"
-                                        onchange="mainThumbnailUrl(this)"><br>
-                                    <img src="" id="mainthumbnail" alt="">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="inputProductTitle" class="form-label">Multiple Image *</label>
-                                    <input class="form-control" name="multiple_image[]" type="file" id="multipleImage"
-                                        multiple="">
+                                    <div class="mb-3">
+                                        <label for="inputProductDescription" class="form-label">Long Description *</label>
+                                        <textarea id="mytextarea" name="long_description"></textarea>
+                                    </div>
                                     <br>
-                                    <div class="row" id="preview_image">
-
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="border border-3 p-4 rounded">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="inputPrice" class="form-label">Product Price *</label>
-                                        <input type="text" name="selling_price" class="form-control" id="inputPrice"
-                                            placeholder="00.00">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputCompareatprice" class="form-label">Discount Price *</label>
-                                        <input type="text" name="discount_price" class="form-control"
-                                            id="inputCompareatprice" placeholder="00.00">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputCostPerPrice" class="form-label">Product Code *</label>
-                                        <input type="text" name="product_code" class="form-control"
-                                            id="inputCostPerPrice" placeholder="00.00">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputStarPoints" class="form-label">Product Quantity *</label>
-                                        <input type="text" name="product_quantity" class="form-control"
-                                            id="inputStarPoints" placeholder="00.00">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputStarPoints" class="form-label">Manufacturing Date *</label>
-                                        <input type="date" name="manufacturing_date	" class="form-control">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="inputStarPoints" class="form-label">Expire Date *</label>
-                                        <input type="date" name="expire_date" class="form-control">
+                                    <div class="form-group mb-3">
+                                        <label for="inputProductTitle" class="form-label">Main Thumbnail *</label>
+                                        <input name="product_thumbnail" class="form-control" type="file"
+                                            onchange="mainThumbnailUrl(this)">
+                                        <img src="" id="mainthumbnail" alt="" style="margin-top: 10px;">
                                     </div>
 
-                                    <div class="col-12">
-                                        <label for="inputProductType" class="form-label">Product Brand *</label>
-                                        <select name="brand_id" class="form-select single-select">
-                                            <option></option>
-                                            @foreach ($brands as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="inputProductTitle" class="form-label">Multiple Image *</label>
+                                        <input class="form-control" name="multiple_image[]" type="file"
+                                            id="multipleImage" multiple="">
+                                        <br>
+                                        <div class="row" id="preview_image">
 
-                                    <div class="col-12">
-                                        <label for="inputVendor" class="form-label">Product Category *</label>
-                                        <select name="category_id" class="form-select single-select">
-                                            <option></option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="inputVendor" class="form-label">Product SubCategory *</label>
-                                        <select name="subcategory_id" class="form-select single-select">
-                                            <option></option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <label for="inputCollection" class="form-label">Select Vendor *</label>
-                                        <select name="vendor_id" class="form-select single-select">
-                                            <option></option>
-                                            @foreach ($activeVendor as $vendor)
-                                                <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="hot_deals" type="checkbox"
-                                                        value="1" />
-                                                    <label class="form-check-label" for="flexCheckDefault">
-                                                        Hot Deals</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="featured" type="checkbox"
-                                                        value="1" />
-                                                    <label class="form-check-label"
-                                                        for="flexCheckDefault">Featured</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="special_offer" type="checkbox"
-                                                        value="1" />
-                                                    <label class="form-check-label" for="flexCheckDefault">Special
-                                                        Offer</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" name="special_deals" type="checkbox"
-                                                        value="1" />
-                                                    <label class="form-check-label" for="flexCheckDefault">Special
-                                                        Deals</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- // end row  -->
-                                    </div>
-
-                                    <hr>
-                                    <div class="col-12">
-                                        <div class="d-grid">
-                                            <button type="button" class="btn btn-primary">Add Product</button>
                                         </div>
                                     </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="border border-3 p-4 rounded">
+                                    <div class="row g-3">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputPrice" class="form-label">Product Price *</label>
+                                            <input type="text" name="selling_price" class="form-control" id="inputPrice"
+                                                placeholder="00.00">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputCompareatprice" class="form-label">Discount Price *</label>
+                                            <input type="text" name="discount_price" class="form-control"
+                                                id="inputCompareatprice" placeholder="00.00">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputCostPerPrice" class="form-label">Product Code *</label>
+                                            <input type="text" name="product_code" class="form-control"
+                                                id="inputCostPerPrice" placeholder="00.00">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputStarPoints" class="form-label">Product Quantity *</label>
+                                            <input type="text" name="product_quantity" class="form-control"
+                                                id="inputStarPoints" placeholder="00.00">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputStarPoints" class="form-label">Manufacturing Date *</label>
+                                            <input type="date" name="manufacturing_date" class="form-control">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="inputStarPoints" class="form-label">Expire Date *</label>
+                                            <input type="date" name="expire_date" class="form-control">
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label for="inputProductType" class="form-label">Product Brand *</label>
+                                            <select name="brand_id" class="form-select single-select">
+                                                <option></option>
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label for="inputVendor" class="form-label">Product Category *</label>
+                                            <select name="category_id" class="form-select single-select">
+                                                <option></option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group col-12">
+                                            <label for="inputVendor" class="form-label">Product SubCategory *</label>
+                                            <select name="subcategory_id" class="form-select single-select">
+                                                <option></option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="inputCollection" class="form-label">Select Vendor *</label>
+                                            <select name="vendor_id" class="form-select single-select">
+                                                <option></option>
+                                                @foreach ($activeVendor as $vendor)
+                                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="hot_deals" type="checkbox"
+                                                            value="1" />
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            Hot Deals</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="featured" type="checkbox"
+                                                            value="1" />
+                                                        <label class="form-check-label"
+                                                            for="flexCheckDefault">Featured</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="special_offer"
+                                                            type="checkbox" value="1" />
+                                                        <label class="form-check-label" for="flexCheckDefault">Special
+                                                            Offer</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" name="special_deals"
+                                                            type="checkbox" value="1" />
+                                                        <label class="form-check-label" for="flexCheckDefault">Special
+                                                            Deals</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- // end row  -->
+                                        </div>
+
+                                        <hr>
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <!--end row-->
                     </div>
-                    <!--end row-->
-                </div>
+                </form>
             </div>
         </div>
 
@@ -228,7 +233,7 @@
                     var data = $(this)[0].files; //this file data
 
                     $.each(data, function(index, file) { //loop though each file
-                        if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
+                        if (/(\.|\/)(gif|jpe?g|png|jpg|webp)$/i.test(file
                                 .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
                             fRead.onload = (function(file) { //trigger function on successful read
@@ -274,6 +279,82 @@
                 } else {
                     alert('danger');
                 }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    product_name: {
+                        required: true,
+                    },
+                    short_description: {
+                        required: true,
+                    },
+                    product_thumbnail: {
+                        required: true,
+                    },
+                    selling_price: {
+                        required: true,
+                    },
+                    product_code: {
+                        required: true,
+                    },
+                    product_quantity: {
+                        required: true,
+                    },
+                    brand_id: {
+                        required: true,
+                    },
+                    category_id: {
+                        required: true,
+                    },
+                    subcategory_id: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    product_name: {
+                        required: 'Please enter product name.',
+                    },
+                    short_description: {
+                        required: 'Please enter short description.',
+                    },
+                    product_thumbnail: {
+                        required: 'Please select product thumbnail image.',
+                    },
+                    selling_price: {
+                        required: 'Please enter selling price.',
+                    },
+                    product_code: {
+                        required: 'Please enter product code.',
+                    },
+                    product_quantity: {
+                        required: 'Please enter product quantity.',
+                    },
+                    brand_id: {
+                        required: 'Please select a brand name.',
+                    },
+                    category_id: {
+                        required: 'Please select a category name.',
+                    },
+                    subcategory_id: {
+                        required: 'Please select a subcategory name.',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
             });
         });
     </script>

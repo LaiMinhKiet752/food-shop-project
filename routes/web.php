@@ -100,13 +100,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/subcategory/{id}', 'EditSubcategory')->name('edit.subcategory');
         Route::post('/update/subcategory', 'UpdateSubcategory')->name('update.subcategory');
         Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
-        Route::get('/subcategory/ajax/{category_id}' , 'GetSubCategory');
+        Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
     });
 
     //Product All Route
     Route::controller(ProductController::class)->group(function () {
         Route::get('/all/product', 'AllProduct')->name('all.product');
         Route::get('/add/product', 'AddProduct')->name('add.product');
+        Route::post('/store/product', 'StoreProduct')->name('store.product');
     });
 
     //Vendor Active And Inactive All Route

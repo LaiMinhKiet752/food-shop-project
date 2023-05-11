@@ -31,8 +31,8 @@
                                 <th>Image</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
-                                <th>Quantity</th>
                                 <th>Discount</th>
+                                <th>Quantity</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -45,8 +45,8 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
-                                    <td>{{ $item->product_quantity }}</td>
                                     <td>{{ $item->discount_price }}</td>
+                                    <td>{{ $item->product_quantity }}</td>
                                     <td>{{ $item->status }}</td>
                                     <td>
                                         <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
@@ -62,8 +62,8 @@
                                 <th>Image</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
-                                <th>Quantity</th>
                                 <th>Discount</th>
+                                <th>Quantity</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
