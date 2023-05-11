@@ -73,7 +73,7 @@ class ProductController extends Controller
         //Multiple Image Upload Form Here
         $images = $request->file('multiple_image');
         foreach ($images as $image) {
-            $make_name = hexdec(uniqid()) .'_product'. '.' . $image->getClientOriginalExtension();
+            $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
             Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
             $uploadPath = 'upload/products/multiple_images/' . $make_name;
 
@@ -88,5 +88,15 @@ class ProductController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->route('all.product')->with($notification);
+    } //End Method
+
+    public function EditProduct($id)
+    {
+        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategory = SubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+        return view('backend.product.product_edit', compact('activeVendor', 'brands', 'categories', 'subcategory', 'products'));
     } //End Method
 }
