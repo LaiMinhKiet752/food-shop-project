@@ -82,7 +82,7 @@
                     subcategory_name: {
                         required: true,
                     },
-                    category_name: {
+                    category_id: {
                         required: true,
                     },
                 },
@@ -90,7 +90,7 @@
                     subcategory_name: {
                         required: 'Please enter subcategory name.',
                     },
-                    category_name: {
+                    category_id: {
                         required: 'Please select a category name.',
                     },
                 },

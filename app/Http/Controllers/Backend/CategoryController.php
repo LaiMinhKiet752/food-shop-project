@@ -30,9 +30,7 @@ class CategoryController extends Controller
             'category_image' => 'mimes:jpeg,png,jpg'
         ]);
         $file = $request->file('category_image');
-        $ext = $request->file('category_image')->extension();
-        $date = date('YmdHi');
-        $filename = $date . '_category' . '.' . $ext;
+        $filename = hexdec(uniqid()) . '_category' . '.' . $file->getClientOriginalExtension();
         Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
         $save_url = 'upload/category/' . $filename;
 
@@ -41,12 +39,6 @@ class CategoryController extends Controller
         $category->category_slug = strtolower(str_replace(' ', '-', $request->category_name));
         $category->category_image = $save_url;
         $category->save();
-
-        // Category::insert([
-        //     'category_name' => $request->category_name,
-        //     'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
-        //     'category_image' => $save_url,
-        // ]);
 
         $notification = array(
             'message' => 'Category Inserted Successfully!',
@@ -74,9 +66,7 @@ class CategoryController extends Controller
                 'category_image' => 'required|mimes:jpeg,png,jpg'
             ]);
             $file = $request->file('category_image');
-            $ext = $request->file('category_image')->extension();
-            $date = date('YmdHi');
-            $filename = $date . '_category' . '.' . $ext;
+            $filename = hexdec(uniqid()) . '_category' . '.' . $file->getClientOriginalExtension();
             Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
             $save_url = 'upload/category/' . $filename;
 

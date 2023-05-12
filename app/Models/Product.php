@@ -9,4 +9,8 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'manufacturing_date' => 'datetime',
+        'expire_date' => 'datetime',
+    ];
 }
