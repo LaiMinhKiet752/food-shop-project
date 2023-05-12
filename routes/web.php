@@ -113,6 +113,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
         Route::post('/update/product/multipleimages', 'UpdateProductMultipleImages')->name('update.product.multipleimages');
         Route::get('/product/multipleimages/delete/{id}', 'MultipleImagesDelete')->name('product.multipleimages.delete');
+        Route::get('/product/inactive/{id}', 'ProductInActive')->name('product.inactive');
+        Route::get('/product/active/{id}', 'ProductActive')->name('product.active');
     });
 
     //Vendor Active And Inactive All Route

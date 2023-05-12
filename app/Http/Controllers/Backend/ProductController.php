@@ -192,11 +192,35 @@ class ProductController extends Controller
     {
         $old_image = MultiImage::findOrFail($id);
         unlink($old_image->photo_name);
-        
+
         MultiImage::findOrFail($id)->delete();
 
         $notification = array(
             'message' => 'Product Multiple Images Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function ProductInActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+        $notification = array(
+            'message' => 'Product InActive Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function ProductActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+        $notification = array(
+            'message' => 'Product Active Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

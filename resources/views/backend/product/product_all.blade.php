@@ -74,10 +74,10 @@
                                         <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
                                             title="Details Data"><i class="fa fa-eye"></i></a>
                                         @if ($item->status == 1)
-                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-primary"
                                                 title="InActive Data"><i class="fa-solid fa-thumbs-down"></i></a>
                                         @else
-                                            <a href="{{ route('edit.category', $item->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.active', $item->id) }}" class="btn btn-primary"
                                                 title="Active Data"><i class="fa-solid fa-thumbs-up"></i></a>
                                         @endif
                                     </td>
