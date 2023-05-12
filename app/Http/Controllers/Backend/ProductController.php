@@ -12,7 +12,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
-use PhpParser\Parser\Multiple;
 
 class ProductController extends Controller
 {
@@ -192,11 +191,52 @@ class ProductController extends Controller
     {
         $old_image = MultiImage::findOrFail($id);
         unlink($old_image->photo_name);
-        
+
         MultiImage::findOrFail($id)->delete();
 
         $notification = array(
             'message' => 'Product Multiple Images Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function ProductInActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 0,
+        ]);
+        $notification = array(
+            'message' => 'Product InActive Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function ProductActive($id)
+    {
+        Product::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+        $notification = array(
+            'message' => 'Product Active Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function DeleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+        $images = MultiImage::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            unlink($image->photo_name);
+            MultiImage::where('product_id', $id)->delete();
+        }
+        $notification = array(
+            'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
