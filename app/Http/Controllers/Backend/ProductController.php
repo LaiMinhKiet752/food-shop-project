@@ -12,7 +12,6 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
-use PhpParser\Parser\Multiple;
 
 class ProductController extends Controller
 {
@@ -221,6 +220,23 @@ class ProductController extends Controller
         ]);
         $notification = array(
             'message' => 'Product Active Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function DeleteProduct($id)
+    {
+        $product = Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrFail($id)->delete();
+        $images = MultiImage::where('product_id', $id)->get();
+        foreach ($images as $image) {
+            unlink($image->photo_name);
+            MultiImage::where('product_id', $id)->delete();
+        }
+        $notification = array(
+            'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

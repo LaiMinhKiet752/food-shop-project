@@ -115,6 +115,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/product/multipleimages/delete/{id}', 'MultipleImagesDelete')->name('product.multipleimages.delete');
         Route::get('/product/inactive/{id}', 'ProductInActive')->name('product.inactive');
         Route::get('/product/active/{id}', 'ProductActive')->name('product.active');
+        Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
     });
 
     //Vendor Active And Inactive All Route
