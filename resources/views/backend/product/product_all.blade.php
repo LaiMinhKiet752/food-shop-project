@@ -48,7 +48,7 @@
                                     <td>{{ $item->selling_price }}</td>
 
                                     <td>
-                                        @if ($item->discount_price == null)
+                                        @if ($item->discount_price == null || $item->discount_price == 0)
                                             <span class="badge rounded-pill bg-dark">No Discount</span>
                                         @else
                                             @php

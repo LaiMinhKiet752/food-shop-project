@@ -30,11 +30,9 @@ class UserController extends Controller
                 'photo' => 'required|mimes:jpeg,png,jpg'
             ]);
             $file = $request->file('photo');
-            $ext = $request->file('photo')->extension();
-            $date = date('YmdHi');
-            $filename = $date . '_user' . '.' . $ext;
+            $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();
             @unlink(public_path('upload/user_images/' . $data->photo));
-            $file->move(public_path('upload/user_images'), $filename);
+            $file->move(public_path('upload/user_images/'), $filename);
             $data['photo'] = $filename;
         }
 

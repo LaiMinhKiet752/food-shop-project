@@ -60,9 +60,7 @@ class AdminController extends Controller
                 'photo' => 'required|mimes:jpeg,png,jpg'
             ]);
             $file = $request->file('photo');
-            $ext = $request->file('photo')->extension();
-            $date = date('YmdHi');
-            $filename = $date . '_admin' . '.' . $ext;
+            $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();
             @unlink(public_path('upload/admin_images/' . $data->photo));
             $file->move(public_path('upload/admin_images'), $filename);
             $data['photo'] = $filename;

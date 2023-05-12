@@ -26,9 +26,7 @@ class BrandController extends Controller
             'brand_image' => 'mimes:jpeg,png,jpg'
         ]);
         $file = $request->file('brand_image');
-        $ext = $request->file('brand_image')->extension();
-        $date = date('YmdHi');
-        $filename = $date . '_brand' . '.' . $ext;
+        $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();
         Image::make($file)->resize(120, 120)->save('upload/brand/' . $filename);
         $save_url = 'upload/brand/' . $filename;
 
@@ -37,12 +35,6 @@ class BrandController extends Controller
         $brand->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
         $brand->brand_image = $save_url;
         $brand->save();
-
-        // Brand::insert([
-        //     'brand_name' => $request->brand_name,
-        //     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
-        //     'brand_image' => $save_url,
-        // ]);
 
         $notification = array(
             'message' => 'Brand Inserted Successfully!',
@@ -68,10 +60,8 @@ class BrandController extends Controller
                 'brand_image' => 'required|mimes:jpeg,png,jpg'
             ]);
             $file = $request->file('brand_image');
-            $ext = $request->file('brand_image')->extension();
-            $date = date('YmdHi');
-            $filename = $date . '_brand' . '.' . $ext;
-            Image::make($file)->resize(120,120)->save('upload/brand/' . $filename);
+            $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
             $save_url = 'upload/brand/' . $filename;
 
             if (file_exists($old_image)) {

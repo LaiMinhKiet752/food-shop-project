@@ -193,7 +193,7 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                                <input type="submit" class="btn btn-primary px-4" value="Add Product">
                                             </div>
                                         </div>
                                     </div>

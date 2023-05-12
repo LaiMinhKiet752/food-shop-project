@@ -1,6 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -19,8 +20,9 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <form action="{{ route('store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('update.product') }}" id="myForm" method="POST">
                     @csrf
+                    <input type="hidden" name="id" value="{{ $products->id }}">
                     <div class="form-body mt-4">
                         <div class="row">
                             <div class="col-lg-8">
@@ -195,7 +197,7 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <button type="submit" class="btn btn-primary">Add Product</button>
+                                                <input type="submit" class="btn btn-primary px-4" value="Save Changes">
                                             </div>
                                         </div>
                                     </div>
@@ -207,8 +209,74 @@
                 </form>
             </div>
         </div>
-
     </div>
+    {{-- Main Image Thumbnail Update --}}
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">Update Main Image Thumbnail</h6>
+        <hr>
+        <div class="card">
+            <form action="{{ route('update.product.thumbnail') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $products->id }}">
+                <input type="hidden" name="old_image" value="{{ $products->product_thumbnail }}">
+
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Main Thumbnail *</label>
+                        <input name="product_thumbnail" class="form-control" type="file" id="formFile">
+                    </div>
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label"></label><br>
+                        <img src="{{ asset($products->product_thumbnail) }}" alt=""
+                            style="width: 160px; height: 150px;">
+                    </div>
+                    <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- End Main Image Thumbnail Update --}}
+
+    {{-- Update Multiple Image --}}
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">Update Multiple Image</h6>
+        <hr>
+        <div class="card">
+            <div class="card-body">
+                <table class="table mb-0 table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">SL</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Change Image</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <form action="{{ route('update.product.multipleimages') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            @foreach ($multipleImages as $key => $image)
+                                <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    <td><img src="{{ asset($image->photo_name) }}" alt=""
+                                            style="width: 100px; height: 100px;"></td>
+                                    <td><input type="file" class="form-group"
+                                            name="multiple_image[{{ $image->id }}]"></td>
+                                    <td>
+                                        <input type="submit" class="btn btn-primary px-4" value="Update Image">
+                                        <a href="{{ route('product.multipleimages.delete', $image->id) }}"
+                                            class="btn btn-danger" id="delete">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </form>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {{-- End Update Multiple Image --}}
 
 
     <script type="text/javascript">
