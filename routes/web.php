@@ -71,13 +71,12 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
     Route::post('/vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
     Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
-    Route::post('/vendor/update/product/multipleimages', 'VendorUpdateProductMultipleimages')->name('vendor.update.product.multipleimages');
+    Route::post('/vendor/update/product/multipleimages', 'VendorUpdateProductMultipleImages')->name('vendor.update.product.multipleimages');
+    Route::post('/vendor/add/new/product/multipleimages', 'VendorAddNewProductMultipleImages')->name('vendor.add.new.product.multipleimages');
     Route::get('/vendor/product/multipleimages/delete/{id}', 'VendorMultipleimagesDelete')->name('vendor.product.multipleimages.delete');
-
     Route::get('/vendor/product/inactive/{id}', 'VendorProductInactive')->name('vendor.product.inactive');
     Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
     Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
-
     Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
 });
 
@@ -135,6 +134,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/product', 'UpdateProduct')->name('update.product');
         Route::post('/update/product/thumbnail', 'UpdateProductThumbnail')->name('update.product.thumbnail');
         Route::post('/update/product/multipleimages', 'UpdateProductMultipleImages')->name('update.product.multipleimages');
+        Route::post('/add/new/product/multipleimages', 'AddNewProductMultipleImages')->name('add.new.product.multipleimages');
         Route::get('/product/multipleimages/delete/{id}', 'MultipleImagesDelete')->name('product.multipleimages.delete');
         Route::get('/product/inactive/{id}', 'ProductInActive')->name('product.inactive');
         Route::get('/product/active/{id}', 'ProductActive')->name('product.active');

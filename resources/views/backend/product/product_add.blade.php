@@ -32,19 +32,19 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Tags *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Tags </label>
                                         <input type="text" name="product_tags" class="form-control visually-hidden"
                                             data-role="tagsinput" value="new product">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Size *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Size </label>
                                         <input type="text" name="product_size" class="form-control visually-hidden"
                                             data-role="tagsinput" value="">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Color *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Color </label>
                                         <input type="text" name="product_color" class="form-control visually-hidden"
                                             data-role="tagsinput" value="">
                                     </div>
@@ -55,7 +55,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Long Description *</label>
+                                        <label for="inputProductDescription" class="form-label">Long Description </label>
                                         <textarea id="mytextarea" name="long_description"></textarea>
                                     </div>
                                     <br>
@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Multiple Image *</label>
+                                        <label for="inputProductTitle" class="form-label">Multiple Images </label>
                                         <input class="form-control" name="multiple_image[]" type="file"
                                             id="multipleImage" multiple="">
                                         <br>
@@ -102,11 +102,11 @@
                                                 id="inputStarPoints" placeholder="00.00">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Manufacturing Date *</label>
+                                            <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
                                             <input type="date" name="manufacturing_date" class="form-control">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Expire Date *</label>
+                                            <label for="inputStarPoints" class="form-label">Expire Date </label>
                                             <input type="date" name="expire_date" class="form-control">
                                         </div>
 
@@ -140,7 +140,7 @@
                                         </div>
 
                                         <div class="col-12">
-                                            <label for="inputCollection" class="form-label">Select Vendor *</label>
+                                            <label for="inputCollection" class="form-label">Select Vendor </label>
                                             <select name="vendor_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($activeVendor as $vendor)
