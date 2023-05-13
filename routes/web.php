@@ -70,6 +70,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::post('/vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
     Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
     Route::post('/vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
+    Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
+    Route::post('/vendor/update/product/multipleimages', 'VendorUpdateProductMultipleimages')->name('vendor.update.product.multipleimages');
+    Route::get('/vendor/product/multipleimages/delete/{id}', 'VendorMultipleimagesDelete')->name('vendor.product.multipleimages.delete');
+
 
     Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
 });

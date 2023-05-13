@@ -126,7 +126,7 @@ class VendorProductController extends Controller
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-           
+
 
             'product_name' => $request->product_name,
             'product_code' => $request->product_code,
@@ -158,4 +158,73 @@ class VendorProductController extends Controller
         );
         return redirect()->route('vendor.all.product')->with($notification);
     } //End Method
+
+    public function VendorUpdateProductThumbnail(Request $request)
+    {
+        $product_id = $request->id;
+        $oldImage = $request->old_image;
+
+        $file = $request->file('product_thumbnail');
+        $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
+        Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
+        $save_url = 'upload/products/thumbnail/' . $filename;
+
+        if (file_exists($oldImage)) {
+            unlink($oldImage);
+        }
+
+        Product::findOrFail($product_id)->update([
+            'product_thumbnail' => $save_url,
+        ]);
+
+        $notification = array(
+            'message' => 'Vendor Product Image Thumbnail Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+
+
+    public function VendorUpdateProductMultipleimages(Request $request)
+    {
+        $images = $request->multiple_image;
+        foreach ($images as $id => $image) {
+            $imageDelete = MultiImage::findOrFail($id);
+            unlink($imageDelete->photo_name);
+            $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
+            $uploadPath = 'upload/products/multiple_images/' . $make_name;
+
+            MultiImage::where('id', $id)->update([
+                'photo_name' => $uploadPath,
+            ]);
+        }
+        $notification = array(
+            'message' => 'Vendor Product Multiple Images Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+
+    public function VendorMultipleimagesDelete($id)
+    {
+        $old_image = MultiImage::findOrFail($id);
+        unlink($old_image->photo_name);
+
+        MultiImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Vendor Product Multiple Images Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+
+
+
+
+    
 }

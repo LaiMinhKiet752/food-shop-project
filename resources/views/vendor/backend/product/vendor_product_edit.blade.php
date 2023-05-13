@@ -200,12 +200,14 @@
             </div>
         </div>
     </div>
+
+
     {{-- Main Image Thumbnail Update --}}
     <div class="page-content">
         <h6 class="mb-0 text-uppercase">Update Main Image Thumbnail</h6>
         <hr>
         <div class="card">
-            <form action="{{ route('update.product.thumbnail') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('vendor.update.product.thumbnail') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id" value="{{ $products->id }}">
                 <input type="hidden" name="old_image" value="{{ $products->product_thumbnail }}">
@@ -243,7 +245,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <form action="{{ route('update.product.multipleimages') }}" method="POST"
+                        <form action="{{ route('vendor.update.product.multipleimages') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             @foreach ($multipleImages as $key => $image)
@@ -255,7 +257,7 @@
                                             name="multiple_image[{{ $image->id }}]"></td>
                                     <td>
                                         <input type="submit" class="btn btn-primary px-4" value="Update Image">
-                                        <a href="{{ route('product.multipleimages.delete', $image->id) }}"
+                                        <a href="{{ route('vendor.product.multipleimages.delete', $image->id) }}"
                                             class="btn btn-danger" id="delete">Delete</a>
                                     </td>
                                 </tr>
