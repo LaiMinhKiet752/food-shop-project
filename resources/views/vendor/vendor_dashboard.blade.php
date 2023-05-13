@@ -28,6 +28,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <title>Vendor Dashboard</title>
 </head>
 
@@ -201,7 +204,7 @@
             }
         @endif
     </script>
-    <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>   
+    <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
 </body>
 
