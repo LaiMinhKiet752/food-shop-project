@@ -19,7 +19,7 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <form action="{{ route('store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('vendor.store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body mt-4">
                         <div class="row">
