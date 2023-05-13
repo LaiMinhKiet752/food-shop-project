@@ -102,4 +102,60 @@ class VendorProductController extends Controller
         );
         return redirect()->route('vendor.all.product')->with($notification);
     } //End Method
+
+
+
+    public function VendorEditProduct($id)
+    {
+
+        $brands = Brand::latest()->get();
+        $categories = Category::latest()->get();
+        $subcategory = SubCategory::latest()->get();
+        $products = Product::findOrFail($id);
+        $multipleImages = MultiImage::where('product_id', $id)->get();
+        return view('vendor.backend.product.vendor_product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multipleImages'));
+    } //End Method
+
+
+
+    public function VendorUpdateProduct(Request $request)
+    {
+        $product_id = $request->id;
+
+        Product::findOrFail($product_id)->update([
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+           
+
+            'product_name' => $request->product_name,
+            'product_code' => $request->product_code,
+            'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+            'product_quantity' => $request->product_quantity,
+            'product_tags' => $request->product_tags,
+            'product_size' => $request->product_size,
+            'product_color' => $request->product_color,
+
+            'short_description' => $request->short_description,
+            'long_description' => $request->long_description,
+
+            'selling_price' => $request->selling_price,
+            'discount_price' => $request->discount_price,
+            'manufacturing_date' => $request->manufacturing_date,
+            'expire_date' => $request->expire_date,
+
+            'hot_deals' => $request->hot_deals,
+            'featured' => $request->featured,
+            'special_offer' => $request->special_offer,
+            'special_deals' => $request->special_deals,
+
+            'status' => 1,
+        ]);
+
+        $notification = array(
+            'message' => ' Vendor Product Updated Without Image Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('vendor.all.product')->with($notification);
+    } //End Method
 }
