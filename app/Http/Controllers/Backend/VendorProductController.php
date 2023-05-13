@@ -17,17 +17,17 @@ use Illuminate\Support\Facades\Auth;
 
 class VendorProductController extends Controller
 {
-     public function VendorAllProduct(){
+    public function VendorAllProduct()
+    {
 
         $id = Auth::user()->id;
-        $products = Product::where('vendor_id',$id)->latest()->get();
-        return view('vendor.backend.product.vendor_product_all',compact('products'));
+        $products = Product::where('vendor_id', $id)->latest()->get();
+        return view('vendor.backend.product.vendor_product_all', compact('products'));
     } // End Method
 
 
     public function VendorAddProduct()
     {
-
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         return view('vendor.backend.product.vendor_product_add', compact('brands', 'categories'));
@@ -40,12 +40,8 @@ class VendorProductController extends Controller
         return json_encode($sub_category);
     } // End Method
 
-
-
-
     public function VendorStoreProduct(Request $request)
     {
-
         $file = $request->file('product_thumbnail');
         $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
         Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
@@ -55,7 +51,7 @@ class VendorProductController extends Controller
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'vendor_id' => $request->vendor_id,
+            'vendor_id' => Auth::user()->id,
 
             'product_name' => $request->product_name,
             'product_code' => $request->product_code,
@@ -103,20 +99,15 @@ class VendorProductController extends Controller
         return redirect()->route('vendor.all.product')->with($notification);
     } //End Method
 
-
-
     public function VendorEditProduct($id)
     {
-
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $subcategory = SubCategory::latest()->get();
         $products = Product::findOrFail($id);
-        $multipleImages = MultiImage::where('product_id', $id)->get();
+        $multipleImages = MultiImage::where('product_id', $id)->latest()->get();
         return view('vendor.backend.product.vendor_product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multipleImages'));
     } //End Method
-
-
 
     public function VendorUpdateProduct(Request $request)
     {
@@ -184,11 +175,52 @@ class VendorProductController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
+    public function VendorAddNewProductMultipleImages(Request $request)
+    {
+        $product_id = $request->id;
+        $images = $request->add_new_multiple_image;
+        if ($images == NULL) {
+            $notification = array(
+                'message' => "Upload Failed Because You Didn't Choose An Image!",
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            $request->validate([
+                'add_new_multiple_image.*' => 'image'
+            ], [
+                'add_new_multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            ]);
+            $images = $request->file('add_new_multiple_image');
+            foreach ($images as $image) {
+                $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(1000, 1000)->save('upload/products/multiple_images/' . $make_name);
+                $uploadPath = 'upload/products/multiple_images/' . $make_name;
 
+                MultiImage::insert([
+                    'product_id' => $product_id,
+                    'photo_name' => $uploadPath,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
+            $notification = array(
+                'message' => 'Product Multiple Images Added Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notification);
+        }
+    } //End Method
 
-    public function VendorUpdateProductMultipleimages(Request $request)
+    public function VendorUpdateProductMultipleImages(Request $request)
     {
         $images = $request->multiple_image;
+        if ($images == NULL) {
+            $notification = array(
+                'message' => "Upload Failed Because You Didn't Choose An Image!",
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
         foreach ($images as $id => $image) {
             $imageDelete = MultiImage::findOrFail($id);
             unlink($imageDelete->photo_name);
@@ -206,7 +238,6 @@ class VendorProductController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
-
 
     public function VendorMultipleimagesDelete($id)
     {
@@ -247,7 +278,6 @@ class VendorProductController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
-
 
     public function VendorProductDelete($id)
     {

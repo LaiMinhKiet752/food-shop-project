@@ -5,13 +5,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Edit Vendor Product</div>
+            <div class="breadcrumb-title pe-3">Edit Product</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Edit Vendor Product</li>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
                     </ol>
                 </nav>
             </div>
@@ -117,7 +117,7 @@
                                                 <option></option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
-                                                        {{ $category->id == $products->id ? 'selected' : '' }}>
+                                                        {{ $category->id == $products->category_id ? 'selected' : '' }}>
                                                         {{ $category->category_name }}
                                                     </option>
                                                 @endforeach
@@ -229,6 +229,40 @@
     </div>
     {{-- End Main Image Thumbnail Update --}}
 
+    {{-- Add New Multiple Image --}}
+    <div class="page-content">
+        <h6 class="mb-0 text-uppercase">Add New Multiple Images</h6>
+        <hr>
+        <div class="card">
+            <form action="{{ route('vendor.add.new.product.multipleimages') }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id" value="{{ $products->id }}">
+                <div class="card-body">
+                    <div class="form-group mb-3">
+                        <label for="inputProductTitle" class="form-label">Multiple Images </label>
+                        <input class="form-control" name="add_new_multiple_image[]" type="file"
+                            id="addNewMultipleImage" multiple="">
+                        <br>
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="text-danger">{{ $error }}</div>
+                            @endforeach
+                        @endif
+                        <div class="row" id="preview_new_image">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-group mb-3">
+                        <input type="submit" class="btn btn-primary px-4" value="Add">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- End Add New Multiple Image --}}
+
     {{-- Update Multiple Image --}}
     <div class="page-content">
         <h6 class="mb-0 text-uppercase">Update Multiple Image</h6>
@@ -241,7 +275,7 @@
                             <th scope="col">SL</th>
                             <th scope="col">Image</th>
                             <th scope="col">Change Image</th>
-                            <th scope="col">Delete</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -264,6 +298,14 @@
                             @endforeach
                         </form>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="col">SL</th>
+                            <th scope="col">Image</th>
+                            <th scope="col">Change Image</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>
@@ -301,6 +343,38 @@
                                             e.target.result).width(140)
                                         .height(140); //create image element
                                     $('#preview_image').append(
+                                        img); //append image to output element
+                                };
+                            })(file);
+                            fRead.readAsDataURL(file); //URL representing the file's data.
+                        }
+                    });
+
+                } else {
+                    alert("Your browser doesn't support File API!"); //if File API is absent
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#addNewMultipleImage').on('change', function() { //on file input change
+                if (window.File && window.FileReader && window.FileList && window
+                    .Blob) //check File API supported browser
+                {
+                    var data = $(this)[0].files; //this file data
+
+                    $.each(data, function(index, file) { //loop though each file
+                        if (/(\.|\/)(gif|jpe?g|png|jpg|webp)$/i.test(file
+                                .type)) { //check supported file type
+                            var fRead = new FileReader(); //new filereader
+                            fRead.onload = (function(file) { //trigger function on successful read
+                                return function(e) {
+                                    var img = $('<img/>').addClass('thumb').attr('src',
+                                            e.target.result).width(140)
+                                        .height(140); //create image element
+                                    $('#preview_new_image').append(
                                         img); //append image to output element
                                 };
                             })(file);
