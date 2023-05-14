@@ -35,19 +35,19 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Tags *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Tags </label>
                                         <input type="text" name="product_tags" class="form-control visually-hidden"
                                             data-role="tagsinput" value="{{ $products->product_tags }}">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Size *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Size </label>
                                         <input type="text" name="product_size" class="form-control visually-hidden"
                                             data-role="tagsinput" value="{{ $products->product_size }}">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Color *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Color </label>
                                         <input type="text" name="product_color" class="form-control visually-hidden"
                                             data-role="tagsinput" value="{{ $products->product_color }}">
                                     </div>
@@ -73,7 +73,7 @@
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 value="{{ $products->selling_price }}">
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="form-group col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Discount Price *</label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" value="{{ $products->discount_price }}">
@@ -89,14 +89,14 @@
                                                 id="inputStarPoints" value="{{ $products->product_quantity }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Manufacturing Date *</label>
+                                            <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
                                             <input type="date" name="manufacturing_date" class="form-control"
-                                                value="{{ $products->manufacturing_date->format('Y-m-d') }}">
+                                            value="{{ $products->manufacturing_date == NULL ? '' : $products->manufacturing_date->format('Y-m-d') }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Expire Date *</label>
+                                            <label for="inputStarPoints" class="form-label">Expire Date </label>
                                             <input type="date" name="expire_date" class="form-control"
-                                                value="{{ $products->expire_date->format('Y-m-d') }}">
+                                            value="{{ $products->expire_date == NULL ? '' : $products->expire_date->format('Y-m-d') }}">
                                         </div>
 
                                         <div class="form-group col-12">
@@ -216,6 +216,9 @@
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Main Thumbnail *</label>
                         <input name="product_thumbnail" class="form-control" type="file" id="formFile">
+                        @if ($errors->has('product_thumbnail'))
+                            <span class="text-danger">{{ $errors->first('product_thumbnail') }}</span>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label"></label><br>
@@ -243,13 +246,10 @@
                         <label for="inputProductTitle" class="form-label">Multiple Images </label>
                         <input class="form-control" name="add_new_multiple_image[]" type="file"
                             id="addNewMultipleImage" multiple="">
-                        <br>
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="text-danger">{{ $error }}</div>
-                            @endforeach
-                        @endif
-                        <div class="row" id="preview_new_image">
+                        @error('add_new_multiple_image.*')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                        <div class="row" id="preview_new_image" style="margin-top: 10px;">
 
                         </div>
                     </div>
@@ -269,6 +269,9 @@
         <hr>
         <div class="card">
             <div class="card-body">
+                @error('multiple_image.*')
+                    <div class="text-danger">{{ $message }}</div><br>
+                @enderror
                 <table class="table mb-0 table-striped">
                     <thead>
                         <tr>
@@ -432,6 +435,9 @@
                     selling_price: {
                         required: true,
                     },
+                    discount_price: {
+                        required: true,
+                    },
                     product_code: {
                         required: true,
                     },
@@ -460,6 +466,9 @@
                     },
                     selling_price: {
                         required: 'Please enter selling price.',
+                    },
+                    discount_price: {
+                        required: 'Please enter discount price.',
                     },
                     product_code: {
                         required: 'Please enter product code.',

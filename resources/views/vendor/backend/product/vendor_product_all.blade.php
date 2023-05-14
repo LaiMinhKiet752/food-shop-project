@@ -42,23 +42,24 @@
                         <tbody>
                             @foreach ($products as $key => $item)
                                 <tr>
-                                    <td> {{ $key + 1 }} </td>
-                                    <td> <img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height:40px;">
+                                    <td>{{ $key + 1 }}</td>
+                                    <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height: 40px;">
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
-                                    <td>{{ $item->product_quantity }}</td>
+
                                     <td>
-                                        @if ($item->discount_price == null)
-                                            <span class="badge rounded-pill bg-info">No Discount</span>
+                                        @if ($item->discount_price == null || $item->discount_price == 0)
+                                            <span class="badge rounded-pill bg-dark">No Discount</span>
                                         @else
                                             @php
-                                                $amount = $item->selling_price - $item->discount_price;
-                                                $discount = ($amount / $item->selling_price) * 100;
+                                                $discount = ($item->discount_price * 100) / $item->selling_price;
                                             @endphp
-                                            <span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
+                                            <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>
                                         @endif
                                     </td>
+
+                                    <td>{{ $item->product_quantity }}</td>
                                     <td>
                                         @if ($item->status == 1)
                                             <span class="badge rounded-pill bg-success">Active</span>
@@ -66,27 +67,22 @@
                                             <span class="badge rounded-pill bg-danger">InActive</span>
                                         @endif
                                     </td>
-
                                     <td>
                                         <a href="{{ route('vendor.edit.product', $item->id) }}" class="btn btn-info"
-                                            title="Edit Data"> <i class="fa fa-pencil"></i> </a>
-
+                                            title="Edit Data"><i class="fa fa-pencil"></i></a>
                                         <a href="{{ route('vendor.delete.product', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
-
                                         <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
-                                            title="Details Page"> <i class="fa fa-eye"></i> </a>
-
+                                            title="Details Data"><i class="fa fa-eye"></i></a>
                                         @if ($item->status == 1)
                                             <a href="{{ route('vendor.product.inactive', $item->id) }}"
-                                                class="btn btn-primary" title="Inactive"> <i
-                                                    class="fa-solid fa-thumbs-down"></i> </a>
+                                                class="btn btn-primary" title="InActive Data"><i
+                                                    class="fa-solid fa-thumbs-down"></i></a>
                                         @else
                                             <a href="{{ route('vendor.product.active', $item->id) }}"
-                                                class="btn btn-primary" title="Active"> <i
-                                                    class="fa-solid fa-thumbs-up"></i> </a>
+                                                class="btn btn-primary" title="Active Data"><i
+                                                    class="fa-solid fa-thumbs-up"></i></a>
                                         @endif
-
                                     </td>
                                 </tr>
                             @endforeach

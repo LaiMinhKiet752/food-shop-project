@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\MultiImg;
 use App\Models\Brand;
 use App\Models\MultiImage;
 use App\Models\Product;
@@ -42,6 +41,17 @@ class VendorProductController extends Controller
 
     public function VendorStoreProduct(Request $request)
     {
+        //Validate Main Thumbnail Image And Multiple Images
+        $request->validate([
+            'product_thumbnail' => 'image|max:2048',
+            'multiple_image.*' => 'image|max:2048',
+        ], [
+            'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'product_thumbnail.max' => 'Maximum image size is 2MB.',
+            'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'multiple_image.*.max' => 'Maximum image size is 2MB.',
+        ]);
+
         $file = $request->file('product_thumbnail');
         $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
         Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
@@ -93,7 +103,7 @@ class VendorProductController extends Controller
             ]);
         }
         $notification = array(
-            'message' => 'Vendor Product Inserted Successfully!',
+            'message' => 'Product Inserted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('vendor.all.product')->with($notification);
@@ -144,7 +154,7 @@ class VendorProductController extends Controller
         ]);
 
         $notification = array(
-            'message' => ' Vendor Product Updated Without Image Successfully!',
+            'message' => 'Product Updated Without Image Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('vendor.all.product')->with($notification);
@@ -154,25 +164,40 @@ class VendorProductController extends Controller
     {
         $product_id = $request->id;
         $oldImage = $request->old_image;
-
         $file = $request->file('product_thumbnail');
-        $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
-        Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
-        $save_url = 'upload/products/thumbnail/' . $filename;
+        $product_thumbnail = Product::where('product_thumbnail', $oldImage)->first();
 
-        if (file_exists($oldImage)) {
-            unlink($oldImage);
+        if ($oldImage != NULL && $product_thumbnail != NULL && $file == NULL) {
+            $notification = array(
+                'message' => "Upload Failed Because You Didn't Choose An Image!",
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            $request->validate([
+                'product_thumbnail' => 'image|max:2048',
+            ], [
+                'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'product_thumbnail.max' => 'Maximum image size is 2MB.',
+            ]);
+            $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
+            $save_url = 'upload/products/thumbnail/' . $filename;
+
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+
+            Product::findOrFail($product_id)->update([
+                'product_thumbnail' => $save_url,
+            ]);
+
+            $notification = array(
+                'message' => 'Product Image Thumbnail Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notification);
         }
-
-        Product::findOrFail($product_id)->update([
-            'product_thumbnail' => $save_url,
-        ]);
-
-        $notification = array(
-            'message' => 'Vendor Product Image Thumbnail Updated Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
     } //End Method
 
     public function VendorAddNewProductMultipleImages(Request $request)
@@ -187,9 +212,10 @@ class VendorProductController extends Controller
             return redirect()->back()->with($notification);
         } else {
             $request->validate([
-                'add_new_multiple_image.*' => 'image'
+                'add_new_multiple_image.*' => 'image|max:2048',
             ], [
                 'add_new_multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'add_new_multiple_image.*.max' => 'Maximum image size is 2MB.',
             ]);
             $images = $request->file('add_new_multiple_image');
             foreach ($images as $image) {
@@ -220,23 +246,30 @@ class VendorProductController extends Controller
                 'alert-type' => 'error',
             );
             return redirect()->back()->with($notification);
-        }
-        foreach ($images as $id => $image) {
-            $imageDelete = MultiImage::findOrFail($id);
-            unlink($imageDelete->photo_name);
-            $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
-            $uploadPath = 'upload/products/multiple_images/' . $make_name;
-
-            MultiImage::where('id', $id)->update([
-                'photo_name' => $uploadPath,
+        } else {
+            $request->validate([
+                'multiple_image.*' => 'image|max:2048',
+            ], [
+                'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'multiple_image.*.max' => 'Maximum image size is 2MB.',
             ]);
+            foreach ($images as $id => $image) {
+                $imageDelete = MultiImage::findOrFail($id);
+                unlink($imageDelete->photo_name);
+                $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
+                $uploadPath = 'upload/products/multiple_images/' . $make_name;
+
+                MultiImage::where('id', $id)->update([
+                    'photo_name' => $uploadPath,
+                ]);
+            }
+            $notification = array(
+                'message' => 'Product Multiple Images Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notification);
         }
-        $notification = array(
-            'message' => 'Vendor Product Multiple Images Updated Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
     } //End Method
 
     public function VendorMultipleimagesDelete($id)
@@ -247,7 +280,7 @@ class VendorProductController extends Controller
         MultiImage::findOrFail($id)->delete();
 
         $notification = array(
-            'message' => 'Vendor Product Multiple Images Deleted Successfully!',
+            'message' => 'Product Multiple Images Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
@@ -290,7 +323,7 @@ class VendorProductController extends Controller
             MultiImage::where('product_id', $id)->delete();
         }
         $notification = array(
-            'message' => 'Vendor Product Deleted Successfully!',
+            'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

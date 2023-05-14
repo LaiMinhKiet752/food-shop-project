@@ -30,12 +30,6 @@ class SubCategoryController extends Controller
         $subcategory->subcategory_slug = strtolower(str_replace(' ', '-', $request->subcategory_name));
         $subcategory->save();
 
-        // SubCategory::insert([
-        //     'category_id' => $request->category_id,
-        //     'subcategory_name' => $request->subcategory_name,
-        //     'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
-        // ]);
-
         $notification = array(
             'message' => 'SubCategory Inserted Successfully!',
             'alert-type' => 'success',

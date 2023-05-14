@@ -102,7 +102,7 @@ class VendorController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = User::insert([
+        User::insert([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
