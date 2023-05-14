@@ -31,7 +31,18 @@ class ProductController extends Controller
 
     public function StoreProduct(Request $request)
     {
+        //Validate Main Thumbnail Image And Multiple Images
+        $request->validate([
+            'product_thumbnail' => 'image|max:2048',
+            'multiple_image.*' => 'image|max:2048',
+        ], [
+            'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'product_thumbnail.max' => 'Maximum image size is 2MB.',
+            'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'multiple_image.*.max' => 'Maximum image size is 2MB.',
+        ]);
 
+        //Main Thumbnail
         $file = $request->file('product_thumbnail');
         $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
         Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
@@ -69,7 +80,7 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        //Multiple Image Upload Form Here
+        //Multiple Image Upload
         $images = $request->file('multiple_image');
         foreach ($images as $image) {
             $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
@@ -145,25 +156,41 @@ class ProductController extends Controller
     {
         $product_id = $request->id;
         $oldImage = $request->old_image;
-
         $file = $request->file('product_thumbnail');
-        $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
-        Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
-        $save_url = 'upload/products/thumbnail/' . $filename;
+        $product_thumbnail = Product::where('product_thumbnail', $oldImage)->first();
 
-        if (file_exists($oldImage)) {
-            unlink($oldImage);
+        if ($oldImage != NULL && $product_thumbnail != NULL && $file == NULL) {
+            $notification = array(
+                'message' => "Upload Failed Because You Didn't Choose An Image!",
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        } else {
+            $request->validate([
+                'product_thumbnail' => 'image|max:2048',
+            ], [
+                'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'product_thumbnail.max' => 'Maximum image size is 2MB.',
+            ]);
+
+            $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
+            Image::make($file)->resize(1000, 1000)->save('upload/products/thumbnail/' . $filename);
+            $save_url = 'upload/products/thumbnail/' . $filename;
+
+            if (file_exists($oldImage)) {
+                unlink($oldImage);
+            }
+
+            Product::findOrFail($product_id)->update([
+                'product_thumbnail' => $save_url,
+            ]);
+
+            $notification = array(
+                'message' => 'Product Image Thumbnail Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notification);
         }
-
-        Product::findOrFail($product_id)->update([
-            'product_thumbnail' => $save_url,
-        ]);
-
-        $notification = array(
-            'message' => 'Product Image Thumbnail Updated Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
     } //End Method
 
     public function AddNewProductMultipleImages(Request $request)
@@ -178,9 +205,10 @@ class ProductController extends Controller
             return redirect()->back()->with($notification);
         } else {
             $request->validate([
-                'add_new_multiple_image.*' => 'image'
+                'add_new_multiple_image.*' => 'image|max:2048',
             ], [
                 'add_new_multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'add_new_multiple_image.*.max' => 'Maximum image size is 2MB.',
             ]);
             $images = $request->file('add_new_multiple_image');
             foreach ($images as $image) {
@@ -211,23 +239,30 @@ class ProductController extends Controller
                 'alert-type' => 'error',
             );
             return redirect()->back()->with($notification);
-        }
-        foreach ($images as $id => $image) {
-            $imageDelete = MultiImage::findOrFail($id);
-            unlink($imageDelete->photo_name);
-            $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
-            $uploadPath = 'upload/products/multiple_images/' . $make_name;
-
-            MultiImage::where('id', $id)->update([
-                'photo_name' => $uploadPath,
+        } else {
+            $request->validate([
+                'multiple_image.*' => 'image|max:2048',
+            ], [
+                'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'multiple_image.*.max' => 'Maximum image size is 2MB.',
             ]);
+            foreach ($images as $id => $image) {
+                $imageDelete = MultiImage::findOrFail($id);
+                unlink($imageDelete->photo_name);
+                $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
+                Image::make($image)->resize(800, 800)->save('upload/products/multiple_images/' . $make_name);
+                $uploadPath = 'upload/products/multiple_images/' . $make_name;
+
+                MultiImage::where('id', $id)->update([
+                    'photo_name' => $uploadPath,
+                ]);
+            }
+            $notification = array(
+                'message' => 'Product Multiple Images Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->back()->with($notification);
         }
-        $notification = array(
-            'message' => 'Product Multiple Images Updated Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
     } //End Method
 
     public function MultipleImagesDelete($id)

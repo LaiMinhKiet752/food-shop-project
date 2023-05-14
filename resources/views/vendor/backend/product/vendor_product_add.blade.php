@@ -19,7 +19,8 @@
 
         <div class="card">
             <div class="card-body p-4">
-                <form action="{{ route('vendor.store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('vendor.store.product') }}" id="myForm" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     <div class="form-body mt-4">
                         <div class="row">
@@ -28,50 +29,55 @@
 
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Name *</label>
-                                        <input type="text" name="product_name" class="form-control">
+                                        <input type="text" name="product_name" class="form-control" value="{{ old('product_name') }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Tags </label>
                                         <input type="text" name="product_tags" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="new product">
+                                            data-role="tagsinput" value="new product" >
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Size </label>
                                         <input type="text" name="product_size" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="">
+                                            data-role="tagsinput" value="{{ old('product_size') }}">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Color </label>
                                         <input type="text" name="product_color" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="">
+                                            data-role="tagsinput" value="{{ old('product_color') }}">
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description *</label>
-                                        <textarea name="short_description" class="form-control" rows="3"></textarea>
+                                        <textarea name="short_description" class="form-control" rows="3">{{ old('short_description') }}</textarea>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Long Description </label>
-                                        <textarea id="mytextarea" name="long_description"></textarea>
+                                        <label for="inputProductDescription" class="form-label">Long Description *</label>
+                                        <textarea id="mytextarea" name="long_description">{{ old('long_description') }}</textarea>
                                     </div>
                                     <br>
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Main Thumbnail *</label>
                                         <input name="product_thumbnail" class="form-control" type="file"
                                             onchange="mainThumbnailUrl(this)">
+                                        @if ($errors->has('product_thumbnail'))
+                                            <span class="text-danger">{{ $errors->first('product_thumbnail') }}</span>
+                                        @endif
                                         <img src="" id="mainthumbnail" alt="" style="margin-top: 10px;">
                                     </div>
 
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Multiple Images </label>
                                         <input class="form-control" name="multiple_image[]" type="file"
-                                            id="multipleImage" multiple="">
-                                        <br>
-                                        <div class="row" id="preview_image">
+                                            id="multipleImage" multiple="" required>
+                                        @error('multiple_image.*')
+                                            <div class="text-danger">{{ $message }}</div>
+                                        @enderror
+                                        <div class="row" id="preview_image" style="margin-top: 10px;">
 
                                         </div>
                                     </div>
@@ -84,22 +90,22 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputPrice" class="form-label">Product Price *</label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
-                                                placeholder="00.00">
+                                                placeholder="00.00" value="{{ old('selling_price') }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Discount Price *</label>
                                             <input type="text" name="discount_price" class="form-control"
-                                                id="inputCompareatprice" placeholder="00.00">
+                                                id="inputCompareatprice" placeholder="00.00" value="{{ old('discount_price') }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCostPerPrice" class="form-label">Product Code *</label>
                                             <input type="text" name="product_code" class="form-control"
-                                                id="inputCostPerPrice" placeholder="00.00">
+                                                id="inputCostPerPrice" placeholder="00.00" value="{{ old('product_code') }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity *</label>
                                             <input type="text" name="product_quantity" class="form-control"
-                                                id="inputStarPoints" placeholder="00.00">
+                                                id="inputStarPoints" placeholder="00.00" value="{{ old('product_quantity') }}">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
