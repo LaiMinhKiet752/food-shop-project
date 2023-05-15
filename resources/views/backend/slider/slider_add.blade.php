@@ -23,11 +23,9 @@
         <div class="container">
             <div class="main-body">
                 <div class="row">
-
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-
                                 <form id="myForm" method="post" action="{{ route('store.slider') }}"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -50,16 +48,14 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Slider Image</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="file" name="slider_image" class="form-control"
-                                                id="image" />
-                                            @if ($errors->has('category_image'))
-                                                <span class="text-danger">{{ $errors->first('category_image') }}</span>
+                                            <input type="file" name="slider_image" class="form-control" id="image" />
+                                            @if ($errors->has('slider_image'))
+                                                <span class="text-danger">{{ $errors->first('slider_image') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -78,19 +74,14 @@
                                             <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                         </div>
                                     </div>
+                                </form>
                             </div>
-
-                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -102,13 +93,19 @@
                     short_title: {
                         required: true,
                     },
+                    slider_image: {
+                        required: true,
+                    },
                 },
                 messages: {
                     slider_title: {
-                        required: 'Please Enter Slider Title.',
+                        required: 'Please enter slider title.',
                     },
                     short_title: {
-                        required: 'Please Enter Short Title.',
+                        required: 'Please enter short title.',
+                    },
+                    slider_image: {
+                        required: 'Please select a slider image.',
                     },
                 },
                 errorElement: 'span',

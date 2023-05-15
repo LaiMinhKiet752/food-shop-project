@@ -28,7 +28,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Sl</th>
+                                <th>SL</th>
                                 <th>Banner Title </th>
                                 <th>Banner Url </th>
                                 <th>Banner Image </th>
@@ -57,7 +57,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Sl</th>
+                                <th>SL</th>
                                 <th>Banner Title </th>
                                 <th>Banner Url </th>
                                 <th>Banner Image </th>

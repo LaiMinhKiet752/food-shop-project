@@ -77,8 +77,6 @@
         </div>
     </div>
 
-
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {
@@ -101,7 +99,7 @@
                 },
                 messages: {
                     brand_name: {
-                        required: 'Please Enter Brand Name',
+                        required: 'Please enter brand name.',
                     },
                 },
                 errorElement: 'span',

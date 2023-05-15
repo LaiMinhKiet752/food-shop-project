@@ -23,11 +23,9 @@
         <div class="container">
             <div class="main-body">
                 <div class="row">
-
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-
                                 <form id="myForm" method="post" action="{{ route('store.category') }}"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -40,7 +38,6 @@
                                             <input type="text" name="category_name" class="form-control" />
                                         </div>
                                     </div>
-
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
@@ -69,19 +66,14 @@
                                             <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                         </div>
                                     </div>
+                                </form>
                             </div>
-
-                            </form>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -99,7 +91,7 @@
                         required: 'Please enter category name.',
                     },
                     category_image: {
-                        required: 'The category image is required.',
+                        required: 'Please select a category image.',
                     },
                 },
                 errorElement: 'span',

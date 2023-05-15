@@ -49,7 +49,10 @@ class VendorController extends Controller
 
         if ($request->file('photo')) {
             $request->validate([
-                'photo' => 'required|mimes:jpeg,png,jpg'
+                'photo' => 'image|max:2048'
+            ], [
+                'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'photo.max' => 'Maximum image size is 2MB.',
             ]);
             $file = $request->file('photo');
             $filename = hexdec(uniqid()) . '_vendor' . '.' . $file->getClientOriginalExtension();

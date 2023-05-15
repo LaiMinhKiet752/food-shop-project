@@ -74,8 +74,6 @@
         </div>
     </div>
 
-
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {
@@ -104,7 +102,7 @@
                         required: 'Please enter brand name.',
                     },
                     brand_image: {
-                        required: 'The brand image is required.',
+                        required: 'Please select a brand image.',
                     },
                 },
                 errorElement: 'span',

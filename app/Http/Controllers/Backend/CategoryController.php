@@ -22,12 +22,13 @@ class CategoryController extends Controller
         return view('backend.category.category_add');
     } //End Method
 
-
-
     public function StoreCategory(Request $request)
     {
         $request->validate([
-            'category_image' => 'mimes:jpeg,png,jpg'
+            'category_image' => 'image|max:2048'
+        ], [
+            'category_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'category_image.max' => 'Maximum image size is 2MB.',
         ]);
         $file = $request->file('category_image');
         $filename = hexdec(uniqid()) . '_category' . '.' . $file->getClientOriginalExtension();
@@ -47,23 +48,23 @@ class CategoryController extends Controller
         return redirect()->route('all.category')->with($notification);
     } //End Method
 
-
     public function EditCategory($id)
     {
         $category = Category::findOrFail($id);
         return view('backend.category.category_edit', compact('category'));
     } //End Method
 
-
     public function UpdateCategory(Request $request)
     {
         $cat_id = $request->id;
         $old_image = $request->old_image;
 
-
         if ($request->file('category_image')) {
             $request->validate([
-                'category_image' => 'required|mimes:jpeg,png,jpg'
+                'category_image' => 'image|max:2048'
+            ], [
+                'category_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'category_image.max' => 'Maximum image size is 2MB.',
             ]);
             $file = $request->file('category_image');
             $filename = hexdec(uniqid()) . '_category' . '.' . $file->getClientOriginalExtension();
@@ -98,7 +99,6 @@ class CategoryController extends Controller
         }
     } //End Method
 
-
     public function DeleteCategory($id)
     {
         $category = Category::findOrFail($id);
@@ -111,6 +111,4 @@ class CategoryController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
-
-
 }

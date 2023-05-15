@@ -65,7 +65,7 @@
                                         <input name="product_thumbnail" class="form-control" type="file"
                                             onchange="mainThumbnailUrl(this)">
                                         @if ($errors->has('product_thumbnail'))
-                                            <span class="text-danger">{{ $errors->first('product_thumbnail') }}</span>
+                                            <div class="text-danger">{{ $errors->first('product_thumbnail') }}</div>
                                         @endif
                                         <img src="" id="mainthumbnail" alt="" style="margin-top: 10px;">
                                     </div>
@@ -144,8 +144,6 @@
 
                                             </select>
                                         </div>
-
-
 
                                         <div class="col-12">
                                             <div class="row g-3">

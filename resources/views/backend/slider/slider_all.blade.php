@@ -38,12 +38,13 @@
                             @foreach ($sliders as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->slider_title	 }}</td>
-                                    <td>{{ $item->short_title	 }}</td>
+                                    <td>{{ $item->slider_title }}</td>
+                                    <td>{{ $item->short_title }}</td>
                                     <td><img src="{{ asset($item->slider_image) }}" style="width: 70px; height: 40px;"></td>
                                     <td>
                                         <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

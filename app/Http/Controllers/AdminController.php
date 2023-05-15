@@ -36,7 +36,6 @@ class AdminController extends Controller
 
     public function AdminProfile()
     {
-
         $id = Auth::user()->id;
         $adminData = User::find($id);
         return view('admin.admin_profile_view', compact('adminData'));
@@ -44,7 +43,6 @@ class AdminController extends Controller
 
     public function AdminProfileStore(Request $request)
     {
-
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
@@ -54,10 +52,12 @@ class AdminController extends Controller
         $data->vendor_join = $request->vendor_join;
         $data->vendor_short_info = $request->address;
 
-
         if ($request->file('photo')) {
             $request->validate([
-                'photo' => 'required|mimes:jpeg,png,jpg'
+                'photo' => 'image|max:2048'
+            ], [
+                'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'photo.max' => 'Maximum image size is 2MB.',
             ]);
             $file = $request->file('photo');
             $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();

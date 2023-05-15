@@ -26,7 +26,6 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-
                                 <form method="post" action="{{ route('update.category') }}" enctype="multipart/form-data"
                                     id="myForm">
                                     @csrf
@@ -47,7 +46,8 @@
                                             <h6 class="mb-0">Categogy Image</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <input type="file" name="category_image" class="form-control" id="image" />
+                                            <input type="file" name="category_image" class="form-control"
+                                                id="image" />
                                             @if ($errors->has('category_image'))
                                                 <span class="text-danger">{{ $errors->first('category_image') }}</span>
                                             @endif
@@ -62,16 +62,14 @@
                                                 style="width:100px; height: 100px;">
                                         </div>
                                     </div>
-
-
                                     <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                         </div>
                                     </div>
+                                </form>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -103,7 +101,7 @@
                 },
                 messages: {
                     category_name: {
-                        required: 'Please Enter Category Name',
+                        required: 'Please enter category name.',
                     },
                 },
                 errorElement: 'span',
