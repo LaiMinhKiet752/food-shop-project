@@ -12,7 +12,7 @@
     <!--navigation-->
     <ul class="metismenu" id="menu">
 
-            <li>
+        <li>
             <a href="{{ route('admin.dashboard') }}">
                 <div class="parent-icon"><i class='bx bx-cookie'></i>
                 </div>
@@ -159,7 +159,8 @@
                 </li>
                 <li> <a href="component-paginations.html"><i class="bx bx-right-arrow-alt"></i>Pagination</a>
                 </li>
-                <li> <a href="component-popovers-tooltips.html"><i class="bx bx-right-arrow-alt"></i>Popovers & Tooltips</a>
+                <li> <a href="component-popovers-tooltips.html"><i class="bx bx-right-arrow-alt"></i>Popovers &
+                        Tooltips</a>
                 </li>
                 <li> <a href="component-progress-bars.html"><i class="bx bx-right-arrow-alt"></i>Progress</a>
                 </li>
