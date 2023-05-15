@@ -97,7 +97,10 @@ class SliderController extends Controller
         return redirect()->route('all.slider')->with($notification);
         }
 
-    }// End Method
+    }// End Method   // End Method
+
+
+
 
     public function DeleteSlider($id)
     {
@@ -110,5 +113,9 @@ class SliderController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
+        
     } //End Method
+
+
+
 }
