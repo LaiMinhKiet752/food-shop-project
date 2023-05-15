@@ -23,7 +23,10 @@ class BrandController extends Controller
     public function StoreBrand(Request $request)
     {
         $request->validate([
-            'brand_image' => 'mimes:jpeg,png,jpg'
+            'brand_image' => 'image|max:2048'
+        ], [
+            'brand_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+            'brand_image.max' => 'Maximum image size is 2MB.',
         ]);
         $file = $request->file('brand_image');
         $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();
@@ -54,10 +57,12 @@ class BrandController extends Controller
         $brand_id = $request->id;
         $old_image = $request->old_image;
 
-
         if ($request->file('brand_image')) {
             $request->validate([
-                'brand_image' => 'required|mimes:jpeg,png,jpg'
+                'brand_image' => 'image|max:2048'
+            ], [
+                'brand_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'brand_image.max' => 'Maximum image size is 2MB.',
             ]);
             $file = $request->file('brand_image');
             $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();

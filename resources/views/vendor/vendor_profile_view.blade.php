@@ -112,7 +112,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Vendor Address</h6>
@@ -130,8 +129,7 @@
                                         <div class="col-sm-9 text-secondary">
                                             <select name="vendor_join" class="form-select mb-3"
                                                 aria-label="Default select example">
-                                                <option selected="">Open this select menu</option>
-
+                                                <option ></option>
                                                 <option value="2020"
                                                     {{ $vendorData->vendor_join == 2020 ? 'selected' : '' }}>2020</option>
                                                 <option
@@ -150,7 +148,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Vendor Info</h6>
@@ -160,8 +157,6 @@
                                                 rows="3">{{ $vendorData->vendor_short_info }}</textarea>
                                         </div>
                                     </div>
-
-
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
@@ -174,8 +169,6 @@
                                             @endif
                                         </div>
                                     </div>
-
-
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
@@ -202,8 +195,6 @@
             </div>
         </div>
     </div>
-
-
 
     <script type="text/javascript">
         $(document).ready(function() {

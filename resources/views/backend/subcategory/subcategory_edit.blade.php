@@ -23,11 +23,9 @@
         <div class="container">
             <div class="main-body">
                 <div class="row">
-
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-
                                 <form id="myForm" method="post" action="{{ route('update.subcategory') }}">
                                     @csrf
 
@@ -40,14 +38,12 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <select name="category_id" class="form-select mb-3"
                                                 aria-label="Default select example">
-                                                <option selected="">Open this select menu</option>
-
+                                                <option></option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}"
                                                         {{ $category->id == $subcategory->category_id ? 'selected' : '' }}>
                                                         {{ $category->category_name }}</option>
                                                 @endforeach
-
                                             </select>
                                         </div>
                                     </div>
@@ -66,18 +62,14 @@
                                             <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                         </div>
                                     </div>
+                                </form>
                             </div>
-
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -86,10 +78,16 @@
                     subcategory_name: {
                         required: true,
                     },
+                    category_id: {
+                        required: true,
+                    },
                 },
                 messages: {
                     subcategory_name: {
-                        required: 'Please Enter SubCategory Name',
+                        required: 'Please enter subcategory name.',
+                    },
+                    category_id: {
+                        required: 'Please select a category name.',
                     },
                 },
                 errorElement: 'span',

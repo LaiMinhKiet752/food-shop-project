@@ -65,7 +65,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
     Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
 
-
     //Vendor Add Product All Route
     Route::controller(VendorProductController::class)->group(function () {
         Route::get('/vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
@@ -141,7 +140,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
     });
 
-
     //Slider All Route
     Route::controller(SliderController::class)->group(function () {
         Route::get('/all/slider', 'AllSlider')->name('all.slider');
@@ -152,24 +150,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider');
     });
 
-  //Banner All Route
-  Route::controller(BannerController::class)->group(function () {
-    Route::get('/all/banner', 'AllBanner')->name('all.banner');
-    Route::get('/add/banner', 'AddBanner')->name('add.banner');
-    Route::post('/store/banner', 'StoreBanner')->name('store.banner');
-    Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
-    Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
-    Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
-});
-
-
-
-
-
-
-
-
-
+    //Banner All Route
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('/all/banner', 'AllBanner')->name('all.banner');
+        Route::get('/add/banner', 'AddBanner')->name('add.banner');
+        Route::post('/store/banner', 'StoreBanner')->name('store.banner');
+        Route::get('/edit/banner/{id}', 'EditBanner')->name('edit.banner');
+        Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
+        Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
+    });
 
     //Vendor Active And Inactive All Route
     Route::controller(AdminController::class)->group(function () {

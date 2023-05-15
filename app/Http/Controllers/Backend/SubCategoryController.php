@@ -23,7 +23,6 @@ class SubCategoryController extends Controller
 
     public function StoreSubCategory(Request $request)
     {
-
         $subcategory = new SubCategory();
         $subcategory->category_id = $request->category_id;
         $subcategory->subcategory_name = $request->subcategory_name;
