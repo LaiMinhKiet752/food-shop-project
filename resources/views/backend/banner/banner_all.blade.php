@@ -41,7 +41,7 @@
                                     <td> {{ $key + 1 }} </td>
                                     <td>{{ $item->banner_title }}</td>
                                     <td>{{ $item->banner_url }}</td>
-                                    <td> <img src="{{ asset($item->banner_image) }}" style="width: 70px; height:40px;">
+                                    <td> <img src="{{ asset($item->banner_image) }}" style="width: 100px; height:60px;">
                                     </td>
 
                                     <td>
