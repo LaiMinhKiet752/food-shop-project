@@ -445,9 +445,6 @@
                     selling_price: {
                         required: true,
                     },
-                    discount_price: {
-                        required: true,
-                    },
                     product_code: {
                         required: true,
                     },
@@ -476,9 +473,6 @@
                     },
                     selling_price: {
                         required: 'Please enter selling price.',
-                    },
-                    discount_price: {
-                        required: 'Please enter discount price.',
                     },
                     product_code: {
                         required: 'Please enter product code.',

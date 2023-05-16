@@ -40,7 +40,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->slider_title }}</td>
                                     <td>{{ $item->short_title }}</td>
-                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 70px; height: 40px;"></td>
+                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 100px; height: 60px;"></td>
                                     <td>
                                         <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
                                         <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"

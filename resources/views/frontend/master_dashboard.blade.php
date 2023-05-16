@@ -28,8 +28,6 @@
     <!-- End Header  -->
 
 
-
-
     <div class="mobile-header-active mobile-header-wrapper-style">
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
