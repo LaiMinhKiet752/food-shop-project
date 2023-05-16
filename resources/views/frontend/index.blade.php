@@ -11,25 +11,18 @@
     @include('frontend.home.home_features_product')
     <!--End Best Sales-->
 
-
-
     <!-- TV Category -->
     <section class="product-tabs section-padding position-relative">
         <div class="container">
             <div class="section-title style-2 wow animate__animated animate__fadeIn">
                 <h3>TV Category </h3>
-
             </div>
             <!--End nav-tabs-->
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
-
-
-
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
-                                data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="shop-product-right.html">
@@ -42,8 +35,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -83,11 +76,8 @@
                         </div>
                         <!--end product card-->
 
-
-
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
-                                data-wow-delay=".2s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".2s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="shop-product-right.html">
@@ -100,8 +90,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -156,8 +146,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -212,8 +202,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -267,8 +257,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -354,8 +344,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -412,8 +402,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -468,8 +458,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -524,8 +514,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -579,8 +569,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -667,8 +657,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -725,8 +715,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -781,8 +771,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -837,8 +827,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -892,8 +882,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                                class="fi-rs-heart"></i></a>
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
@@ -1259,6 +1249,6 @@
 
 
     <!--Vendor List -->
-        @include('frontend.home.home_vendor_list')
+    @include('frontend.home.home_vendor_list')
     <!--End Vendor List -->
 @endsection
