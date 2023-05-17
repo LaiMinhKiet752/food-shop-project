@@ -87,12 +87,12 @@
                             <div class="col-lg-4">
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputPrice" class="form-label">Product Price *</label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 placeholder="00.00" value="{{ old('selling_price') }}">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Discount Price *</label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" placeholder="00.00"
@@ -101,13 +101,12 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputCostPerPrice" class="form-label">Product Code *</label>
                                             <input type="text" name="product_code" class="form-control"
-                                                id="inputCostPerPrice" placeholder="00.00"
-                                                value="{{ old('product_code') }}">
+                                                id="inputCostPerPrice" value="{{ old('product_code') }}">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity *</label>
                                             <input type="text" name="product_quantity" class="form-control"
-                                                id="inputStarPoints" placeholder="00.00"
+                                                id="inputStarPoints" placeholder="0"
                                                 value="{{ old('product_quantity') }}">
                                         </div>
                                         <div class="col-md-6">
@@ -362,6 +361,19 @@
                     $(element).removeClass('is-invalid');
                 },
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(".numbers-only").keypress(function(e) {
+            if (e.which == 46) {
+                if ($(this).val().indexOf('.') != -1) {
+                    return false;
+                }
+            }
+            if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
         });
     </script>
 @endsection

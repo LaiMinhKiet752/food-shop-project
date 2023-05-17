@@ -11,7 +11,7 @@
                     <div class="banner-img wow animate__animated animate__fadeInUp" data-wow-delay="0">
                         <img src="{{ asset($item->banner_image) }}" alt="" />
                         <div class="banner-text">
-                            <h4>
+                            <h4 style="font-size: 20px;">
                                 {{ $item->banner_title }}
                             </h4>
                             <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
