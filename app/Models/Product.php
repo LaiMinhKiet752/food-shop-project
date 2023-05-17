@@ -19,4 +19,10 @@ class Product extends Model
     public function rCategory(){
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+    public function rSubCategory(){
+        return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
+    }
+    public function rBrand(){
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
 }
