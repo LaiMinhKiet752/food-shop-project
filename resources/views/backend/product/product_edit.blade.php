@@ -68,12 +68,12 @@
                             <div class="col-lg-4">
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputPrice" class="form-label">Product Price *</label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 value="{{ $products->selling_price }}">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Discount Price *</label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" value="{{ $products->discount_price }}">
@@ -83,7 +83,7 @@
                                             <input type="text" name="product_code" class="form-control"
                                                 id="inputCostPerPrice" value="{{ $products->product_code }}">
                                         </div>
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity *</label>
                                             <input type="text" name="product_quantity" class="form-control"
                                                 id="inputStarPoints" value="{{ $products->product_quantity }}">
@@ -91,12 +91,12 @@
                                         <div class="col-md-6">
                                             <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
                                             <input type="date" name="manufacturing_date" class="form-control"
-                                                value="{{ $products->manufacturing_date == NULL ? '' : $products->manufacturing_date->format('Y-m-d') }}">
+                                                value="{{ $products->manufacturing_date == null ? '' : $products->manufacturing_date->format('Y-m-d') }}">
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputStarPoints" class="form-label">Expire Date </label>
                                             <input type="date" name="expire_date" class="form-control"
-                                                value="{{ $products->expire_date == NULL ? '' : $products->expire_date->format('Y-m-d') }}">
+                                                value="{{ $products->expire_date == null ? '' : $products->expire_date->format('Y-m-d') }}">
                                         </div>
 
                                         <div class="form-group col-12">
@@ -502,6 +502,19 @@
                     $(element).removeClass('is-invalid');
                 },
             });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(".numbers-only").keypress(function(e) {
+            if (e.which == 46) {
+                if ($(this).val().indexOf('.') != -1) {
+                    return false;
+                }
+            }
+            if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
+                return false;
+            }
         });
     </script>
 @endsection

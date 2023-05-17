@@ -29,13 +29,13 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Sl</th>
-                                <th>Image </th>
-                                <th>Product Name </th>
-                                <th>Price </th>
-                                <th>QTY </th>
-                                <th>Discount </th>
-                                <th>Status </th>
+                                <th>SL</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -47,18 +47,17 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
-
                                     <td>
-                                        @if ($item->discount_price == null || $item->discount_price == 0)
+                                        @if ($item->discount_price == NULL || $item->discount_price == 0)
                                             <span class="badge rounded-pill bg-dark">No Discount</span>
                                         @else
                                             @php
-                                                $discount = ($item->discount_price * 100) / $item->selling_price;
+                                                $amount = $item->selling_price - $item->discount_price;
+                                                $discount = ($amount / $item->selling_price) * 100;
                                             @endphp
-                                            <span class="badge rounded-pill bg-danger">{{ round($discount) }}%</span>
+                                            <span class="badge rounded-pill bg-danger"> {{ round($discount) }}%</span>
                                         @endif
                                     </td>
-
                                     <td>{{ $item->product_quantity }}</td>
                                     <td>
                                         @if ($item->status == 1)
@@ -91,13 +90,13 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Sl</th>
-                                <th>Image </th>
-                                <th>Product Name </th>
-                                <th>Price </th>
-                                <th>QTY </th>
-                                <th>Discount </th>
-                                <th>Status </th>
+                                <th>SL</th>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Price</th>
+                                <th>Discount</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
