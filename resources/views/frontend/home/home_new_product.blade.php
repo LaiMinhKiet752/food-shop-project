@@ -33,7 +33,8 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="shop-product-right.html">
+                                        <a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
                                                 alt="" />
                                         </a>
@@ -64,7 +65,9 @@
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="shop-product-right.html"> {{ $product->product_name }} </a></h2>
+                                    <h2><a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                            {{ $product->product_name }} </a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
                                             <div class="product-rating" style="width: 90%"></div>
@@ -121,7 +124,8 @@
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
-                                            <a href="shop-product-right.html">
+                                            <a
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                                 <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
                                                     alt="" />
                                             </a>
@@ -138,7 +142,6 @@
                                         @php
                                             $amount = $product->selling_price - $product->discount_price;
                                             $discount = ($amount / $product->selling_price) * 100;
-
                                         @endphp
                                         <div class="product-badges product-badges-position product-badges-mrg">
                                             @if ($product->discount_price == null || $product->discount_price == 0)
@@ -153,7 +156,9 @@
                                             <a
                                                 href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
                                         </div>
-                                        <h2><a href="shop-product-right.html"> {{ $product->product_name }} </a></h2>
+                                        <h2><a
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                                {{ $product->product_name }} </a></h2>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>
@@ -170,7 +175,6 @@
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
-
                                             @if ($product->discount_price == null)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
