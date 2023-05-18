@@ -1,7 +1,5 @@
 @extends('frontend.master_dashboard')
 @section('main')
-
-
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -119,11 +117,11 @@
                                 </div>
                                 <div class="vendor-info mb-30">
                                     <ul class="contact-infor text-muted">
-                                        <li><img src="assets/imgs/theme/icons/icon-location.svg"
+                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                                 alt="" /><strong>Address: </strong>
                                             <span>{{ $vendor->address }}</span></li>
-                                        <li><img src="assets/imgs/theme/icons/icon-contact.svg"
-                                                alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span>
+                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
+                                                alt="" /><strong>Call Us: </strong><span>{{ $vendor->phone }}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -142,8 +140,8 @@
                         <li class="page-item">
                             <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item"><a class="page-link dot" href="#">...</a></li>
                         <li class="page-item"><a class="page-link" href="#">6</a></li>
@@ -155,5 +153,4 @@
             </div>
         </div>
     </div>
-
 @endsection

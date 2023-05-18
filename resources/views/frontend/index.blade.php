@@ -488,13 +488,6 @@
     <!--End 4 columns-->
 
 
-
-
-
-
-
-
-
     <!--Vendor List -->
     @include('frontend.home.home_vendor_list')
     <!--End Vendor List -->
