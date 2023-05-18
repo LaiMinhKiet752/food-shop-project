@@ -57,7 +57,7 @@
                                         @if ($product->discount_price == null || $product->discount_price == 0)
                                             <span class="new">New</span>
                                         @else
-                                            <span class="hot"> {{ round($discount) }} %</span>
+                                            <span class="hot"> - {{ round($discount) }} %</span>
                                         @endif
                                     </div>
                                 </div>
@@ -147,7 +147,7 @@
                                             @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <span class="new">New</span>
                                             @else
-                                                <span class="hot"> {{ round($discount) }} %</span>
+                                                <span class="hot"> - {{ round($discount) }} %</span>
                                             @endif
                                         </div>
                                     </div>
