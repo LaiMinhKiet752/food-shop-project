@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -70,7 +71,7 @@
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            <img class="default-img" src="{{ asset($product->product_thambnail) }}"
+                                            <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
                                                 alt="" />
 
                                         </a>
