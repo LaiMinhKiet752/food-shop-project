@@ -568,16 +568,33 @@
                                                 </div>
                                             </div>
                                             <div class="product-content-wrap">
-                                                <h2><a href="shop-product-right.html"
-                                                        tabindex="0">{{ $product->product_name }}</a>
-                                                </h2>
-                                                <div class="rating-result" title="90%">
-                                                    <span> </span>
+                                                <div class="product-category">
+                                                    <a
+                                                        href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
                                                 </div>
-                                                <div class="product-price">
+                                                <h2><a
+                                                        href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                                        {{ $product->product_name }} </a></h2>
+                                                <div class="product-rate-cover">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 90%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                                </div>
+                                                <div>
+                                                    @if ($product->vendor_id == null)
+                                                        <span class="font-small text-muted">By <a
+                                                                href="vendor-details-1.html">Owner</a></span>
+                                                    @else
+                                                        <span class="font-small text-muted">By <a
+                                                                href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
+                                                    @endif
+                                                </div>
+                                                <div class="product-card-bottom">
                                                     @if ($product->discount_price == null)
                                                         <div class="product-price">
                                                             <span>${{ $product->selling_price }}</span>
+
                                                         </div>
                                                     @else
                                                         <div class="product-price">
@@ -585,6 +602,10 @@
                                                             <span class="old-price">${{ $product->selling_price }}</span>
                                                         </div>
                                                     @endif
+                                                    <div class="add-cart">
+                                                        <a class="add" href="shop-cart.html"><i
+                                                                class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

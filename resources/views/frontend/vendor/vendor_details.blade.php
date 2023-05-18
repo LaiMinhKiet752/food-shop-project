@@ -1,6 +1,5 @@
 @extends('frontend.master_dashboard')
 @section('main')
-
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -12,7 +11,6 @@
     <div class="container mb-30">
         <div class="archive-header-2 text-center pt-80 pb-50">
             <h1 class="display-2 mb-50"> {{ $vendor->name }} </h1>
-
         </div>
         <div class="row flex-row-reverse">
             <div class="col-lg-4-5">
@@ -62,9 +60,6 @@
                     </div>
                 </div>
                 <div class="row product-grid">
-
-
-
                     @foreach ($vproduct as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
@@ -97,7 +92,7 @@
                                         @if ($product->discount_price == null)
                                             <span class="new">New</span>
                                         @else
-                                            <span class="hot"> {{ round($discount) }} %</span>
+                                            <span class="hot"> - {{ round($discount) }} %</span>
                                         @endif
 
 
@@ -123,9 +118,6 @@
                                             <span class="font-small text-muted">By <a
                                                     href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
                                         @endif
-
-
-
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -140,8 +132,6 @@
                                                 <span class="old-price">${{ $product->selling_price }}</span>
                                             </div>
                                         @endif
-
-
 
                                         <div class="add-cart">
                                             <a class="add" href="shop-cart.html"><i
@@ -162,8 +152,8 @@
                             <li class="page-item">
                                 <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link dot" href="#">...</a></li>
                             <li class="page-item"><a class="page-link" href="#">6</a></li>
@@ -228,11 +218,11 @@
                         </div>
                         <div class="vendor-info">
                             <ul class="font-sm mb-20">
-                                <li><img class="mr-5" src="assets/imgs/theme/icons/icon-location.svg"
+                                <li><img class="mr-5" src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                         alt="" /><strong>Address: </strong> <span>{{ $vendor->address }}</span>
                                 </li>
-                                <li><img class="mr-5" src="assets/imgs/theme/icons/icon-contact.svg"
-                                        alt="" /><strong>Call Us:</strong><span>{{ $vendor->phone }}</span></li>
+                                <li><img class="mr-5" src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
+                                        alt="" /><strong>Call Us: </strong><span>{{ $vendor->phone }}</span></li>
                             </ul>
                             <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i
                                     class="fi-rs-arrow-small-right"></i></a>
