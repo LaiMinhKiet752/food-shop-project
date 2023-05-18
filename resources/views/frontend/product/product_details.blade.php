@@ -64,7 +64,7 @@
                                         <div class="product-price primary-color float-left">
                                             <span class="current-price text-brand">${{ $product->discount_price }}</span>
                                             <span>
-                                                <span class="save-price font-md color3 ml-15">{{ round($discount) }}%
+                                                <span class="save-price font-md color3 ml-15"> - {{ round($discount) }}%
                                                     Off</span>
                                                 <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
                                             </span>
@@ -563,7 +563,7 @@
                                                     @if ($product->discount_price == null || $product->discount_price == 0)
                                                         <span class="new">New</span>
                                                     @else
-                                                        <span class="hot"> {{ round($discount) }} %</span>
+                                                        <span class="hot"> - {{ round($discount) }} %</span>
                                                     @endif
                                                 </div>
                                             </div>
