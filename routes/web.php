@@ -27,11 +27,14 @@ use App\Http\Controllers\Frontend\IndexController;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+// Route::get('/', function () {
+//     return view('frontend.index');
+// });
 
-Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
+//IndexController
+Route::get('/', [IndexController::class, 'Index']);
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
@@ -85,6 +88,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+
 
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
@@ -173,6 +177,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 //Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+
+//FrontendController
+Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
 
 //Edit Profile
