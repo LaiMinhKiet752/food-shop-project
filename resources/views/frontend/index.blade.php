@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
+                                            <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                         </div>
                                         <h2><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -74,7 +74,7 @@
                                                         href="vendor-details-1.html">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
+                                                        href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
+                                            <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                         </div>
                                         <h2><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -175,7 +175,7 @@
                                                         href="vendor-details-1.html">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
+                                                        href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -261,7 +261,7 @@
                                     <div class="product-content-wrap">
                                         <div class="product-category">
                                             <a
-                                                href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
+                                                href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                         </div>
                                         <h2><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -278,7 +278,7 @@
                                                         href="vendor-details-1.html">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
+                                                        href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">

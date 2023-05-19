@@ -4,8 +4,8 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> <a href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a> <span></span>
-                {{ $product['rSubCategory']['subcategory_name'] }}<span></span>{{ $product->product_name }}
+                <span></span> <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a> <span></span>
+                {{ $product['subcategory']['subcategory_name'] }}<span></span>{{ $product->product_name }}
             </div>
         </div>
     </div>
@@ -119,7 +119,7 @@
                                     <h6>Sold By <a href=""> <span class="text-danger">Owner</span></a></h6>
                                 @else
                                     <h6>Sold By <a href="#"> <span
-                                                class="text-danger">{{ $product['rVendor']['name'] }}</span></a></h6>
+                                                class="text-danger">{{ $product['vendor']['name'] }}</span></a></h6>
                                 @endif
                                 <hr>
                                 <div class="font-xs">
@@ -127,12 +127,12 @@
                                         <li class="mb-5">Product Code: <a href="#">{{ $product->product_code }}</a>
                                         </li>
                                         <li class="mb-5">Brand: <span
-                                                class="text-brand">{{ $product['rBrand']['brand_name'] }}</span></li>
+                                                class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
                                         <li class="mb-5">Category: <span
-                                                class="text-brand">{{ $product['rCategory']['category_name'] }}</span>
+                                                class="text-brand">{{ $product['category']['category_name'] }}</span>
                                         </li>
                                         <li class="mb-5">SubCategory: <span
-                                                class="text-brand">{{ $product['rSubCategory']['subcategory_name'] }}</span>
+                                                class="text-brand">{{ $product['subcategory']['subcategory_name'] }}</span>
                                         </li>
                                     </ul>
                                     <ul class="float-start">
@@ -281,7 +281,7 @@
 
                                 <div class="tab-pane fade" id="Vendor-info">
                                     <div class="vendor-logo d-flex mb-30">
-                                        <img src="{{ !empty($product->rVendor->photo) ? url('upload/vendor_images/' . $product->rVendor->photo) : url('upload/no_image.jpg') }}"
+                                        <img src="{{ !empty($product->vendor->photo) ? url('upload/vendor_images/' . $product->vendor->photo) : url('upload/no_image.jpg') }}"
                                             alt="" />
                                         <div class="vendor-name ml-15">
                                             @if ($product->vendor_id == null)
@@ -290,7 +290,7 @@
                                                 </h6>
                                             @else
                                                 <h6>
-                                                    <a href="vendor-details-2.html">{{ $product['rVendor']['name'] }}</a>
+                                                    <a href="vendor-details-2.html">{{ $product['vendor']['name'] }}</a>
                                                 </h6>
                                             @endif
 
@@ -316,17 +316,17 @@
                                         <ul class="contact-infor mb-50">
                                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                                     alt="" /><strong>Address: </strong>
-                                                <span>{{ $product['rVendor']['address'] }}</span>
+                                                <span>{{ $product['vendor']['address'] }}</span>
                                             </li>
                                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
                                                     alt="" /><strong>Contact
-                                                    Seller: </strong><span>{{ $product['rVendor']['phone'] }}</span></li>
+                                                    Seller: </strong><span>{{ $product['vendor']['phone'] }}</span></li>
                                         </ul>
                                     @endif
                                     @if ($product->vendor_id == null)
                                         <p>Owner Information</p>
                                     @else
-                                        <p>{{ $product['rVendor']['vendor_short_info'] }}</p>
+                                        <p>{{ $product['vendor']['vendor_short_info'] }}</p>
                                     @endif
                                 </div>
 
@@ -570,7 +570,7 @@
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
                                                     <a
-                                                        href="shop-grid-right.html">{{ $product['rCategory']['category_name'] }}</a>
+                                                        href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                                 </div>
                                                 <h2><a
                                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -587,7 +587,7 @@
                                                                 href="vendor-details-1.html">Owner</a></span>
                                                     @else
                                                         <span class="font-small text-muted">By <a
-                                                                href="vendor-details-1.html">{{ $product['rVendor']['name'] }}</a></span>
+                                                                href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
                                                     @endif
                                                 </div>
                                                 <div class="product-card-bottom">
