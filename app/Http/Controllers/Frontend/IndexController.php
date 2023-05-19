@@ -73,7 +73,7 @@ class IndexController extends Controller
        }// End Method
 
 
-       public function SubCatWiseProduct(Request $request,$id,$slug){
+       public function SubCategoryWiseProduct(Request $request,$id,$slug){
         $products = Product::where('status',1)->where('subcategory_id',$id)->orderBy('id','DESC')->get();
         $categories = Category::orderBy('category_name','ASC')->get();
         $breadsubcategory = SubCategory::where('id',$id)->first();

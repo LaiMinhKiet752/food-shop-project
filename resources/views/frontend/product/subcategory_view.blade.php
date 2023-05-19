@@ -8,7 +8,7 @@
                             <h1 class="mb-15">{{ $breadsubcategory->subcategory_name }}</h1>
                             <div class="breadcrumb">
                                 <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                                <span></span> {{ $breadsubcategory->subcategory_name }}
+                                <span></span>{{ $breadsubcategory->rcategory->category_name }} <span></span>  {{ $breadsubcategory->subcategory_name }}
                             </div>
                         </div>
 
