@@ -39,7 +39,8 @@
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
 
                                         @php
@@ -140,7 +141,8 @@
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
 
                                         @php
@@ -242,7 +244,8 @@
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
 
                                         @php
@@ -320,8 +323,6 @@
     <section class="section-padding mb-30">
         <div class="container">
             <div class="row">
-
-
                 <div class="col-xl-3 col-lg-4 col-md-6 mb-sm-5 mb-md-0 wow animate__animated animate__fadeInUp"
                     data-wow-delay="0">
                     <h4 class="section-title style-1 mb-30 animated animated"> Hot Deals </h4>
@@ -480,14 +481,10 @@
                         @endforeach
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
     <!--End 4 columns-->
-
-
     <!--Vendor List -->
     @include('frontend.home.home_vendor_list')
     <!--End Vendor List -->

@@ -37,7 +37,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
                                 @if ($product->product_quantity > 0)
-                                    <span class="stock-status in-stock"> In Stock </span>
+                                    <span class="stock-status in-stock"> Available </span>
                                 @else
                                     <span class="stock-status out-stock"> Out Of Stock </span>
                                 @endif
@@ -78,7 +78,7 @@
                                 @else
                                     <div class="attr-detail attr-size mb-30">
                                         <strong>Size </strong>
-                                        <strong class="mr-20">:</strong>
+                                        <strong class="mr-20"> : </strong>
                                         <select class="form-control unicase-from-control" id="size">
                                             <option selected="" disabled="">--- Choose Size ---</option>
                                             @foreach ($product_size as $size)
@@ -91,7 +91,7 @@
                                 @else
                                     <div class="attr-detail attr-size mb-30">
                                         <strong>Color </strong>
-                                        <strong class="mr-10">:</strong>
+                                        <strong class="mr-10"> : </strong>
                                         <select class="form-control unicase-from-control" id="color">
                                             <option selected="" disabled="">--- Choose Color ---</option>
                                             @foreach ($product_color as $color)

@@ -26,7 +26,6 @@
                             <div class="slider-arrow slider-arrow-2 carausel-4-columns-arrow"
                                 id="carausel-4-columns-arrows"></div>
                             <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
-
                                 @foreach ($featured as $product)
                                     <div class="product-cart-wrap">
                                         <div class="product-img-action-wrap">
@@ -39,7 +38,8 @@
                                             </div>
                                             <div class="product-action-1">
                                                 <a aria-label="Quick view" class="action-btn small hover-up"
-                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"> <i
+                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                    id="{{ $product->id }}" onclick="productView(this.id)"> <i
                                                         class="fi-rs-eye"></i></a>
                                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up"
                                                     href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
@@ -92,8 +92,6 @@
                                     </div>
                                     <!--End product Wrap-->
                                 @endforeach
-
-
                             </div>
                         </div>
                     </div>

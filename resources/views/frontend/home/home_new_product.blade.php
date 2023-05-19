@@ -34,7 +34,8 @@
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                        <a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
                                                 alt="" />
                                         </a>
@@ -45,7 +46,8 @@
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                            onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                     </div>
 
                                     @php
@@ -59,17 +61,16 @@
                                         @if ($product->discount_price == null)
                                             <span class="new">New</span>
                                         @else
-                                            <span class="hot"> {{ round($discount) }} %</span>
+                                            <span class="hot"> - {{ round($discount) }} %</span>
                                         @endif
-
-
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
                                         <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    <h2><a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
@@ -114,16 +115,16 @@
                 <!--End product-grid-4-->
             </div>
             <!--En tab one-->
+
+
             @foreach ($categories as $category)
                 <div class="tab-pane fade" id="category{{ $category->id }}" role="tabpanel" aria-labelledby="tab-two">
                     <div class="row product-grid-4">
-
                         @php
                             $catwiseProduct = App\Models\Product::where('category_id', $category->id)
                                 ->orderBy('id', 'DESC')
                                 ->get();
                         @endphp
-
                         @forelse($catwiseProduct as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                                 <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
@@ -132,8 +133,8 @@
                                         <div class="product-img product-img-zoom">
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                <img class="default-img"
-                                                    src="{{ asset($product->product_thambnail) }}" alt="" />
+                                                <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
+                                                    alt="" />
 
                                             </a>
                                         </div>
@@ -143,7 +144,8 @@
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                                data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                                data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                                onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                         </div>
 
                                         @php
@@ -158,7 +160,7 @@
                                             @if ($product->discount_price == null)
                                                 <span class="new">New</span>
                                             @else
-                                                <span class="hot"> {{ round($discount) }} %</span>
+                                                <span class="hot"> - {{ round($discount) }} %</span>
                                             @endif
 
 
@@ -213,17 +215,11 @@
 
                             <h5 class="text-danger"> No Product Found </h5>
                         @endforelse
-
-
-
-
                     </div>
                     <!--End product-grid-4-->
                 </div>
                 <!--En tab two-->
             @endforeach
-
-
         </div>
         <!--End tab-content-->
     </div>
