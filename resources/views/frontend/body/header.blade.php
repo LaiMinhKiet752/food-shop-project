@@ -321,7 +321,7 @@
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)
                                                 <li><a
-                                                        href="vendors-grid.html">{{ $subcategory->subcategory_name }}</a>
+                                                        href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
