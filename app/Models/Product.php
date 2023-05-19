@@ -13,16 +13,24 @@ class Product extends Model
         'manufacturing_date' => 'datetime',
         'expire_date' => 'datetime',
     ];
-    public function rVendor(){
+
+    public function vendor()
+    {
         return $this->belongsTo(User::class, 'vendor_id', 'id');
     }
-    public function rCategory(){
+
+    public function category()
+    {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
-    public function rSubCategory(){
+
+    public function subcategory()
+    {
         return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
     }
-    public function rBrand(){
+
+    public function brand()
+    {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
 }
