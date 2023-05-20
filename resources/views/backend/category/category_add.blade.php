@@ -81,6 +81,7 @@
                 rules: {
                     category_name: {
                         required: true,
+                        maxlength: 255,
                     },
                     category_image: {
                         required: true,
@@ -89,6 +90,7 @@
                 messages: {
                     category_name: {
                         required: 'Please enter category name.',
+                        maxlength: 'The category name must not be greater than 255 characters.',
                     },
                     category_image: {
                         required: 'Please select a category image.',

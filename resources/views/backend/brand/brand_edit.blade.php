@@ -95,11 +95,13 @@
                 rules: {
                     brand_name: {
                         required: true,
+                        maxlength: 255,
                     },
                 },
                 messages: {
                     brand_name: {
                         required: 'Please enter brand name.',
+                        maxlength: 'The brand name must not be greater than 255 characters.',
                     },
                 },
                 errorElement: 'span',

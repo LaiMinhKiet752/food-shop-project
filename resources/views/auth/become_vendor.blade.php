@@ -203,9 +203,11 @@
                 rules: {
                     name: {
                         required: true,
+                        maxlength: 255,
                     },
                     username: {
                         required: true,
+                        maxlength: 255,
                     },
                     email: {
                         required: true,
@@ -226,9 +228,11 @@
                 messages: {
                     name: {
                         required: 'Please enter your shop name.',
+                        maxlength: 'The shop name must not be greater than 255 characters.',
                     },
                     username: {
                         required: 'Please enter your user name.',
+                        maxlength: 'The username must not be greater than 255 characters.',
                     },
                     email: {
                         required: 'Please enter your email.',

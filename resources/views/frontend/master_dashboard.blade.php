@@ -108,11 +108,11 @@
 
                     //Start Stock Option
                     if (data.product.product_quantity > 0) {
-                        $('#available').text('');
+                        $('#instock').text('');
                         $('#outofstock').text('');
-                        $('#available').text('Available');
+                        $('#instock').text('In Stock');
                     } else {
-                        $('#available').text('');
+                        $('#instock').text('');
                         $('#outofstock').text('');
                         $('#outofstock').text('Out Of Stock');
                     }

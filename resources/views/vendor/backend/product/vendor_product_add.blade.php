@@ -285,6 +285,7 @@
                 rules: {
                     product_name: {
                         required: true,
+                        maxlength: 255,
                     },
                     short_description: {
                         required: true,
@@ -314,6 +315,7 @@
                 messages: {
                     product_name: {
                         required: 'Please enter product name.',
+                        maxlength: 'The product name must not be greater than 255 characters.',
                     },
                     short_description: {
                         required: 'Please enter short description.',

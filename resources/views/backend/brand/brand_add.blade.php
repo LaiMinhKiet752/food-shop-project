@@ -92,6 +92,7 @@
                 rules: {
                     brand_name: {
                         required: true,
+                        maxlength: 255,
                     },
                     brand_image: {
                         required: true,
@@ -100,6 +101,7 @@
                 messages: {
                     brand_name: {
                         required: 'Please enter brand name.',
+                        maxlength: 'The brand name must not be greater than 255 characters.',
                     },
                     brand_image: {
                         required: 'Please select a brand image.',

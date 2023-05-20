@@ -97,11 +97,13 @@
                 rules: {
                     category_name: {
                         required: true,
+                        maxlength: 255,
                     },
                 },
                 messages: {
                     category_name: {
                         required: 'Please enter category name.',
+                        maxlength: 'The category name must not be greater than 255 characters.',
                     },
                 },
                 errorElement: 'span',

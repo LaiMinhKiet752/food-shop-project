@@ -37,7 +37,7 @@
                         <div class="col-md-6 col-sm-12 col-xs-12">
                             <div class="detail-info pr-30 pl-30">
                                 @if ($product->product_quantity > 0)
-                                    <span class="stock-status in-stock"> Available </span>
+                                    <span class="stock-status in-stock"> In Stock </span>
                                 @else
                                     <span class="stock-status out-stock"> Out Of Stock </span>
                                 @endif

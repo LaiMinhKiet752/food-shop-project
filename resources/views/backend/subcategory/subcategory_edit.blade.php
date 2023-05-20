@@ -77,6 +77,7 @@
                 rules: {
                     subcategory_name: {
                         required: true,
+                        maxlength: 255,
                     },
                     category_id: {
                         required: true,
@@ -85,6 +86,7 @@
                 messages: {
                     subcategory_name: {
                         required: 'Please enter subcategory name.',
+                        maxlength: 'The subcategory name must not be greater than 255 characters.',
                     },
                     category_id: {
                         required: 'Please select a category name.',

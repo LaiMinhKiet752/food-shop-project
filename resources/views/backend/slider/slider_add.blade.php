@@ -89,9 +89,11 @@
                 rules: {
                     slider_title: {
                         required: true,
+                        maxlength: 255,
                     },
                     short_title: {
                         required: true,
+                        maxlength: 255,
                     },
                     slider_image: {
                         required: true,
@@ -100,9 +102,11 @@
                 messages: {
                     slider_title: {
                         required: 'Please enter slider title.',
+                        maxlength: 'The slider title must not be greater than 255 characters.',
                     },
                     short_title: {
                         required: 'Please enter short title.',
+                        maxlength: 'The short title must not be greater than 255 characters.',
                     },
                     slider_image: {
                         required: 'Please select a slider image.',

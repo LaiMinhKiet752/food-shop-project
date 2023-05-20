@@ -173,6 +173,7 @@
                 rules: {
                     name: {
                         required: true,
+                        maxlength: 255,
                     },
                     email: {
                         required: true,
@@ -189,7 +190,8 @@
                 },
                 messages: {
                     name: {
-                        required: 'Please enter your user name.',
+                        required: 'Please enter your full name.',
+                        maxlength: 'The full name must not be greater than 255 characters.',
                     },
                     email: {
                         required: 'Please enter your email.',
