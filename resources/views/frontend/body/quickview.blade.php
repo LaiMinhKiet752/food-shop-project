@@ -80,7 +80,7 @@
                                             <li class="mb-5">Product Code : <span class="text-brand" id="pcode">
                                                 </span></li>
                                             <li class="mb-5">Stock : <span class="badge badge-pill badge-success"
-                                                    id="available" style="background:green; color: white;"> </span>
+                                                    id="instock " style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"
                                                     style="background:red; color: white;"> </span>
                                             </li>

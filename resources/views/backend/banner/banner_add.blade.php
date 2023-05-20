@@ -91,6 +91,7 @@
                 rules: {
                     banner_title: {
                         required: true,
+                        maxlength: 255,
                     },
                     banner_url: {
                         required: true,
@@ -102,6 +103,7 @@
                 messages: {
                     banner_title: {
                         required: 'Please enter banner title.',
+                        maxlength: 'The banner title must not be greater than 255 characters.',
                     },
                     banner_url: {
                         required: 'Please enter the url for the banner.',

@@ -185,6 +185,8 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCate
 // Product View Modal With Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
+
+
 //FrontendController
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
