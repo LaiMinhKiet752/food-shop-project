@@ -109,12 +109,14 @@
                                                 id="inputStarPoints" placeholder="0"
                                                 value="{{ old('product_quantity') }}">
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
+                                            <label class="form-label">Manufacturing Date </label>
                                             <input type="date" name="manufacturing_date" class="form-control">
                                         </div>
+                                        
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Expire Date </label>
+                                            <label class="form-label">Expire Date </label>
                                             <input type="date" name="expire_date" class="form-control">
                                         </div>
 

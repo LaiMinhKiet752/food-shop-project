@@ -7,7 +7,7 @@
                     <div class="col-xl-3">
                         <h1 class="mb-15">{{ $breadsubcategory->subcategory_name }}</h1>
                         <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                             <span></span>{{ $breadsubcategory->category->category_name }} <span></span>
                             {{ $breadsubcategory->subcategory_name }}
                         </div>
@@ -199,7 +199,7 @@
                                 <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
                                     <img src=" {{ asset($category->category_image) }} "
                                         alt="" />{{ $category->category_name }}</a><span
-                                    class="count">{{ count($products) }}</span>
+                                    class="text-brand">{{ count($products) }}</span>
                             </li>
                         @endforeach
                     </ul>

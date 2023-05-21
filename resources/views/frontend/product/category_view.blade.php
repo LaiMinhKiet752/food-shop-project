@@ -7,7 +7,7 @@
                     <div class="col-xl-3">
                         <h1 class="mb-15">{{ $breadcategory->category_name }}</h1>
                         <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                             <span></span> {{ $breadcategory->category_name }}
                         </div>
                     </div>
@@ -65,8 +65,6 @@
                     </div>
                 </div>
                 <div class="row product-grid">
-
-
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
@@ -185,15 +183,13 @@
                     <ul>
                         @foreach ($categories as $category)
                             @php
-
                                 $products = App\Models\Product::where('category_id', $category->id)->get();
-
                             @endphp
                             <li>
-                                <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}"> <img
-                                        src=" {{ asset($category->category_image) }} "
+                                <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                    <img src=" {{ asset($category->category_image) }} "
                                         alt="" />{{ $category->category_name }}</a><span
-                                    class="count">{{ count($products) }}</span>
+                                    class="text-brand">{{ count($products) }}</span>
                             </li>
                         @endforeach
                     </ul>
