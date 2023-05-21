@@ -124,27 +124,11 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Join Date </h6>
+                                            <h6 class="mb-0">Year Of Joining</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <select name="vendor_join" class="form-select mb-3"
-                                                aria-label="Default select example">
-                                                <option ></option>
-                                                <option value="2020"
-                                                    {{ $vendorData->vendor_join == 2020 ? 'selected' : '' }}>2020</option>
-                                                <option
-                                                    value="2021"{{ $vendorData->vendor_join == 2021 ? 'selected' : '' }}>
-                                                    2021</option>
-                                                <option
-                                                    value="2022"{{ $vendorData->vendor_join == 2022 ? 'selected' : '' }}>
-                                                    2022</option>
-                                                <option
-                                                    value="2023"{{ $vendorData->vendor_join == 2023 ? 'selected' : '' }}>
-                                                    2023</option>
-                                                <option
-                                                    value="2024"{{ $vendorData->vendor_join == 2024 ? 'selected' : '' }}>
-                                                    2024</option>
-                                            </select>
+                                            <input type="text" name="vendor_join" class="form-control"
+                                                value="{{ $vendorData->vendor_join }}" />
                                         </div>
                                     </div>
 

@@ -27,7 +27,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Category Name</th>
                                 <th>SubCategory Name</th>
                                 <th>Action</th>
@@ -48,7 +48,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Category Name</th>
                                 <th>SubCategory Name</th>
                                 <th>Action</th>

@@ -8,6 +8,7 @@ use Illuminate\Validation\Rules;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class VendorController extends Controller
@@ -66,7 +67,7 @@ class VendorController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-    }//End Method
+    } //End Method
     public function VendorChangePassword()
     {
         return view('vendor.vendor_change_password');
@@ -91,17 +92,18 @@ class VendorController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
-    }//End Method
+    } //End Method
 
-    public function BecomeVendor(){
+    public function BecomeVendor()
+    {
         return view('auth.become_vendor');
-    }//End Method
+    } //End Method
 
     public function VendorRegister(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -114,6 +116,7 @@ class VendorController extends Controller
             'password' => Hash::make($request->password),
             'role' => 'vendor',
             'status' => 'inactive',
+            'created_at' => Carbon::now(),
         ]);
 
         $notification = array(
@@ -121,5 +124,5 @@ class VendorController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('vendor.login')->with($notification);
-    }//End Method
+    } //End Method
 }

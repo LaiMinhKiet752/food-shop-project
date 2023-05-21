@@ -26,7 +26,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
                                 <th>Join Date </th>
@@ -43,7 +43,7 @@
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->vendor_join }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td><span class="btn btn-secondary">{{ $item->status }}</span> </td>
+                                    <td><span class="btn btn-danger">{{ $item->status }}</span> </td>
                                     <td>
                                         <a href="{{ route('inactive.vendor.details', $item->id) }}" class="btn btn-info">Vendor Details</a>
                                     </td>
@@ -52,7 +52,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
                                 <th>Join Date </th>

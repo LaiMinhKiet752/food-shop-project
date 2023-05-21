@@ -9,7 +9,7 @@
                         <div class="detail-gallery">
 
                             <!-- MAIN SLIDES -->
-                            <img src=" " alt="product image" id="pimage" />
+                            <img src=" " alt="product image" id="pimage"/>
 
                         </div>
                         <!-- End Gallery -->
@@ -74,19 +74,17 @@
 
 
                                 <div class="col-md-6">
-
                                     <div class="font-xs">
                                         <ul>
                                             <li class="mb-5">Product Code : <span class="text-brand" id="pcode">
                                                 </span></li>
                                             <li class="mb-5">Stock : <span class="badge badge-pill badge-success"
-                                                    id="instock " style="background:green; color: white;"> </span>
+                                                    id="instock" style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"
                                                     style="background:red; color: white;"> </span>
                                             </li>
                                         </ul>
                                     </div>
-
                                 </div> <!-- // End col  -->
 
                             </div> <!-- // end row -->
