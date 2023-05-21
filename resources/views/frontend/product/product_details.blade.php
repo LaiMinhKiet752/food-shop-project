@@ -74,32 +74,7 @@
                                 <div class="short-desc mb-30">
                                     <p class="font-lg">{{ $product->short_description }}</p>
                                 </div>
-                                @if ($product->product_size == null)
-                                @else
-                                    <div class="attr-detail attr-size mb-30">
-                                        <strong>Size </strong>
-                                        <strong class="mr-20"> : </strong>
-                                        <select class="form-control unicase-from-control" id="size">
-                                            <option selected="" disabled="">--- Choose Size ---</option>
-                                            @foreach ($product_size as $size)
-                                                <option value="{{ $size }}">{{ ucwords($size) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
-                                @if ($product->product_color == null)
-                                @else
-                                    <div class="attr-detail attr-size mb-30">
-                                        <strong>Color </strong>
-                                        <strong class="mr-10"> : </strong>
-                                        <select class="form-control unicase-from-control" id="color">
-                                            <option selected="" disabled="">--- Choose Color ---</option>
-                                            @foreach ($product_color as $color)
-                                                <option value="{{ $color }}">{{ ucwords($color) }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                @endif
+                                
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>

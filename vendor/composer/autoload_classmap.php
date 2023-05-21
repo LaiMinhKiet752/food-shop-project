@@ -27,6 +27,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\VendorProductController' => $baseDir . '/app/Http/Controllers/Backend/VendorProductController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\FrontendController' => $baseDir . '/app/Http/Controllers/FrontendController.php',
+    'App\\Http\\Controllers\\Frontend\\CartController' => $baseDir . '/app/Http/Controllers/Frontend/CartController.php',
     'App\\Http\\Controllers\\Frontend\\IndexController' => $baseDir . '/app/Http/Controllers/Frontend/IndexController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',

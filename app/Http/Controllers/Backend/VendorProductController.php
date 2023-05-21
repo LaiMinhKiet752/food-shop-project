@@ -69,8 +69,6 @@ class VendorProductController extends Controller
             'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_quantity' => $request->product_quantity,
             'product_tags' => $request->product_tags,
-            'product_size' => $request->product_size,
-            'product_color' => $request->product_color,
 
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
@@ -134,8 +132,6 @@ class VendorProductController extends Controller
             'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_quantity' => $request->product_quantity,
             'product_tags' => $request->product_tags,
-            'product_size' => $request->product_size,
-            'product_color' => $request->product_color,
 
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,

@@ -556,6 +556,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Http\\Controllers\\Backend\\VendorProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/VendorProductController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FrontendController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontendController.php',
+        'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',
         'App\\Http\\Controllers\\Frontend\\IndexController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/IndexController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',

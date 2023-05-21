@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 
 /*
@@ -85,7 +86,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
-
 
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
@@ -181,10 +181,13 @@ Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->n
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CategoryWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
-
 // Product View Modal With Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
+
+
+//Add To Cart Data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 
 
 //FrontendController
