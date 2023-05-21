@@ -213,7 +213,7 @@
 
     {{-- Main Image Thumbnail Update --}}
     <div class="page-content">
-        <h6 class="mb-0 text-uppercase">Update Main Image Thumbnail</h6>
+        <h6 class="mb-0 text-uppercase">Update Main Thumbnail</h6>
         <hr>
         <div class="card">
             <form action="{{ route('update.product.thumbnail') }}" method="POST" enctype="multipart/form-data">
@@ -224,14 +224,14 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Main Thumbnail *</label>
-                        <input name="product_thumbnail" class="form-control" type="file" id="formFile">
+                        <input name="product_thumbnail" class="form-control" type="file" id="updatemainimage">
                         @if ($errors->has('product_thumbnail'))
                             <span class="text-danger">{{ $errors->first('product_thumbnail') }}</span>
                         @endif
                     </div>
                     <div class="mb-3">
                         <label for="formFile" class="form-label"></label><br>
-                        <img src="{{ asset($products->product_thumbnail) }}" alt=""
+                        <img id="showImage" src="{{ asset($products->product_thumbnail) }}" alt=""
                             style="width: 160px; height: 150px;">
                     </div>
                     <input type="submit" class="btn btn-primary px-4" value="Save Changes">
@@ -283,7 +283,7 @@
                 <table class="table mb-0 table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">SL</th>
+                            <th scope="col">No.</th>
                             <th scope="col">Image</th>
                             <th scope="col">Change Image</th>
                             <th scope="col">Action</th>
@@ -313,7 +313,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th scope="col">SL</th>
+                            <th scope="col">No.</th>
                             <th scope="col">Image</th>
                             <th scope="col">Change Image</th>
                             <th scope="col">Action</th>
@@ -336,6 +336,18 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#updatemainimage').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
     </script>
 
     <script>

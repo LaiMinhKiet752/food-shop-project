@@ -62,6 +62,12 @@
                                                 <input type="text" id="username" required="" name="username"
                                                     placeholder="User Name *" />
                                             </div>
+
+                                            <div class="form-group">
+                                                <input type="text" id="vendor_join" required="" name="vendor_join"
+                                                    placeholder="Year Of Joining *" />
+                                            </div>
+
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
                                                     placeholder="Email *" />
@@ -73,22 +79,10 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <select name="vendor_join" class="form-select mb-3"
-                                                    aria-label="Default select example">
-                                                    <option selected="">Open this select join date</option>
-                                                    <option value="2022">2022</option>
-                                                    <option value="2023">2023</option>
-                                                    <option value="2024">2024</option>
-                                                    <option value="2025">2025</option>
-                                                    <option value="2026">2026</option>
-                                                </select>
-                                            </div>
-
-
-                                            <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
                                                     placeholder="Password *" />
                                             </div>
+
                                             <div class="form-group">
                                                 <input required="" id="password_confirmation" type="password"
                                                     name="password_confirmation" placeholder="Confirm password *" />
@@ -98,10 +92,9 @@
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            name="checkbox" id="exampleCheckbox12" value="" />
-                                                        <label class="form-check-label"
-                                                            for="exampleCheckbox12"><span>I
+                                                        <input class="form-check-input" type="checkbox" name="checkbox"
+                                                            id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I
                                                                 agree to terms &amp; Policy.</span></label>
                                                     </div>
                                                 </div>
@@ -124,15 +117,18 @@
                             <div class="col-lg-6 pr-30 d-none d-lg-block">
                                 <div class="card-login mt-115">
                                     <a href="#" class="social-login facebook-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-facebook.svg') }}"
+                                            alt="" />
                                         <span>Continue with Facebook</span>
                                     </a>
                                     <a href="#" class="social-login google-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-google.svg') }}" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-google.svg') }}"
+                                            alt="" />
                                         <span>Continue with Google</span>
                                     </a>
                                     <a href="#" class="social-login apple-login">
-                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-apple.svg') }}" alt="" />
+                                        <img src="{{ asset('frontend/assets/imgs/theme/icons/logo-apple.svg') }}"
+                                            alt="" />
                                         <span>Continue with Apple</span>
                                     </a>
                                 </div>
@@ -205,6 +201,10 @@
                         required: true,
                         maxlength: 255,
                     },
+                    vendor_join: {
+                        required: true,
+                        checkYear: true,
+                    },
                     username: {
                         required: true,
                         maxlength: 255,
@@ -229,6 +229,9 @@
                     name: {
                         required: 'Please enter your shop name.',
                         maxlength: 'The shop name must not be greater than 255 characters.',
+                    },
+                    vendor_join: {
+                        required: 'Please enter the year your store was established.',
                     },
                     username: {
                         required: 'Please enter your user name.',
@@ -268,6 +271,10 @@
                 },
                 "Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character."
             );
+            $.validator.addMethod("checkYear", function(value, element) {
+                var year = $(element).val();
+                return (year > 1900) && (year <= (new Date()).getFullYear());
+            }, "The year you entered is not valid.");
         });
     </script>
 </body>

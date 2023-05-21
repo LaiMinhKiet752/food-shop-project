@@ -166,15 +166,13 @@
                                 </div>
                             </div>
 
-                            <div class="header-action-icon-2">
-                                <a href="page-account.html">
-                                    <img class="svgInject" alt="Nest"
-                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
-                                </a>
-
-
-                                @auth
-                                    <a href="page-account.html"><span class="lable ml-0">Account</span></a>
+                            @auth
+                                <div class="header-action-icon-2">
+                                    <a href="{{ route('dashboard') }}">
+                                        <img class="svgInject" alt="Nest"
+                                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
+                                    </a>
+                                    <a href="{{ route('dashboard') }}"><span class="lable ml-0">Account</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li>
@@ -203,27 +201,33 @@
                                             </li>
                                         </ul>
                                     </div>
-                                @else
+                                </div>
+                            @else
+                                <div class="header-action-icon-2">
+                                    <a href="{{ route('login') }}">
+                                        <img class="svgInject" alt="Nest"
+                                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
+                                    </a>
                                     <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a>
 
                                     <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
 
-
                                     <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a>
-
-                                @endauth
-
-                            </div>
+                                </div>
+                            @endauth
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 
 
     @php
-        $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(5)->get();
+        $categories = App\Models\Category::orderBy('category_name', 'ASC')
+            ->limit(5)
+            ->get();
     @endphp
 
     <div class="header-bottom header-bottom-bg-color sticky-bar">
@@ -298,7 +302,7 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="{{ url('/') }}">Home  </a>
+                                    <a class="active" href="{{ url('/') }}">Home </a>
 
                                 </li>
 
@@ -310,8 +314,9 @@
 
                                 @foreach ($categories as $category)
                                     <li>
-                                        <a href="{{ url('product/category/'.$category->id.'/'.$category->category_slug) }}">{{ $category->category_name }} <i
-                                                class="fi-rs-angle-down"></i></a>
+                                        <a
+                                            href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}
+                                            <i class="fi-rs-angle-down"></i></a>
                                         @php
                                             $subcategories = App\Models\SubCategory::where('category_id', $category->id)
                                                 ->orderBy('subcategory_name', 'ASC')
@@ -321,7 +326,7 @@
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)
                                                 <li><a
-                                                        href="{{ url('product/subcategory/'.$subcategory->id.'/'.$subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
+                                                        href="{{ url('product/subcategory/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>

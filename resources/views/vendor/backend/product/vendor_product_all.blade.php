@@ -29,11 +29,12 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Image</th>
                                 <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Discount</th>
+                                <th>Selling Price</th>
+                                <th>Discount Price</th>
+                                <th>Percent Discount</th>
                                 <th>Quantity</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -47,9 +48,14 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
+                                    @if ($item->discount_price == null || $item->discount_price == 0)
+                                        <td>0</td>
+                                    @else
+                                        <td>{{ $item->discount_price }}</td>
+                                    @endif
                                     <td>
-                                        @if ($item->discount_price == NULL || $item->discount_price == 0)
-                                            <span class="badge rounded-pill bg-dark">No Discount</span>
+                                        @if ($item->discount_price == null || $item->discount_price == 0)
+                                            <span class="badge rounded-pill bg-dark">0%</span>
                                         @else
                                             @php
                                                 $amount = $item->selling_price - $item->discount_price;
@@ -90,11 +96,12 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Image</th>
                                 <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Discount</th>
+                                <th>Selling Price</th>
+                                <th>Discount Price</th>
+                                <th>Percent Discount</th>
                                 <th>Quantity</th>
                                 <th>Status</th>
                                 <th>Action</th>

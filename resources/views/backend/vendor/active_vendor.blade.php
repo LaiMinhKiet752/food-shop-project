@@ -26,7 +26,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
                                 <th>Join Date </th>
@@ -52,7 +52,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
                                 <th>Join Date </th>

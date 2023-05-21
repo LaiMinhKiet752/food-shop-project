@@ -27,7 +27,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Slider Title</th>
                                 <th>Short Title</th>
                                 <th>Slider Image</th>
@@ -51,7 +51,7 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>SL</th>
+                                <th>No.</th>
                                 <th>Slider Title</th>
                                 <th>Short Title</th>
                                 <th>Slider Image</th>
