@@ -22,7 +22,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added On Your Cart!']);
+            return response()->json(['success' => 'Product Successfully Added To Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -32,7 +32,19 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added On Your Cart!']);
+            return response()->json(['success' => 'Product Successfully Added To Cart!']);
         }
     } //End Method
+
+    public function AddMiniCart(){
+
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+        ));
+    }// End Method
 }
