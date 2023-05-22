@@ -53,4 +53,30 @@ class CartController extends Controller
         Cart::remove($rowId);
         return response()->json(['success' => 'Successfully Removed Product From Cart!']);
     } // End Method
+
+    public function AddToCartDetails(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        if ($product->discount_price == NULL || $product->discount_price == 0) {
+            Cart::add([
+                'id' => $id,
+                'name' => $request->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->selling_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        } else {
+            Cart::add([
+                'id' => $id,
+                'name' => $request->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        }
+    } // End Method
 }

@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="detail-info pr-30 pl-30">
-                            <h5 class="title-detail"><a href=" " class="text-heading" id="pname"> </a></h5>
+                            <h3 class="title-detail"><a href=" " class="text-heading" id="pname"> </a></h3>
                             <br>
 
                             <div class="clearfix product-price-cover">
