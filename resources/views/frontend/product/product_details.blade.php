@@ -82,6 +82,7 @@
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
+                                        
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
                                         <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i
                                                 class="fi-rs-shopping-cart"></i>Add to cart</button>

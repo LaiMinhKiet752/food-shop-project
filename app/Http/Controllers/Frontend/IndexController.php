@@ -22,13 +22,7 @@ class IndexController extends Controller
         $category_id = $product->category_id;
         $relatedProduct = Product::where('category_id', $category_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
-
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
-
-        return view('frontend.product.product_details', compact('product', 'product_size', 'product_color', 'multipleImage', 'relatedProduct'));
+        return view('frontend.product.product_details', compact('product','multipleImage', 'relatedProduct'));
     } //End Method
 
     public function Index()
@@ -42,12 +36,18 @@ class IndexController extends Controller
         $skip_category_2 = Category::skip(2)->first();
         $skip_product_2 = Product::where('status', 1)->where('category_id', $skip_category_2->id)->orderby('id', 'DESC')->limit(5)->get();
 
+        $skip_category_3 = Category::skip(3)->first();
+        $skip_product_3 = Product::where('status', 1)->where('category_id', $skip_category_3->id)->orderby('id', 'DESC')->limit(5)->get();
+
+        $skip_category_4 = Category::skip(4)->first();
+        $skip_product_4 = Product::where('status', 1)->where('category_id', $skip_category_4->id)->orderby('id', 'DESC')->limit(5)->get();
+
         $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->where('discount_price', '!=', 0)->orderBy('id', 'DESC')->limit(3)->get();
         $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $new = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
-        return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'hot_deals', 'special_offer', 'new', 'special_deals'));
+        return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_category_3', 'skip_product_3', 'skip_category_4', 'skip_product_4', 'hot_deals', 'special_offer', 'new', 'special_deals'));
     } //End Method
 
     public function VendorDetails($id)
@@ -86,17 +86,8 @@ class IndexController extends Controller
     public function ProductViewAjax($id)
     {
         $product = Product::with('category', 'brand')->findOrFail($id);
-        $color = $product->product_color;
-        $product_color = explode(',', $color);
-
-        $size = $product->product_size;
-        $product_size = explode(',', $size);
-
         return response()->json(array(
             'product' => $product,
-            'color' => $product_color,
-            'size' => $product_size,
-
         ));
     } // End Method
 }

@@ -65,7 +65,8 @@
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                        <a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
                                                 alt="" />
 
@@ -77,7 +78,8 @@
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                            onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                     </div>
 
                                     @php
@@ -98,11 +100,16 @@
 
                                     </div>
                                 </div>
+                                @php
+                                    $category = App\Models\Category::where('id', $product->category_id)->first();
+                                @endphp
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a
+                                            href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
+                                    <h2><a
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
                                     <div class="product-rate-cover">
                                         <div class="product-rate d-inline-block">
@@ -218,10 +225,12 @@
                         </div>
                         <div class="vendor-info">
                             <ul class="font-sm mb-20">
-                                <li><img class="mr-5" src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
+                                <li><img class="mr-5"
+                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                         alt="" /><strong>Address: </strong> <span>{{ $vendor->address }}</span>
                                 </li>
-                                <li><img class="mr-5" src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
+                                <li><img class="mr-5"
+                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
                                         alt="" /><strong>Call Us: </strong><span>{{ $vendor->phone }}</span></li>
                             </ul>
                             <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i
