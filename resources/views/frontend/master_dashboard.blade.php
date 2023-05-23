@@ -73,9 +73,8 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -212,48 +211,8 @@
             })
         }
         // End Details Page Add To Cart Product
-
-        // // Start Home New Product Page Add To Cart Product
-        // function addToCartHomeNewProduct() {
-        //     var id = $('#homnewproductid').val();
-        //     var product_name = $('#homenewpname').text();
-        //     var quantity = 1;
-        //     $.ajax({
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         data: {
-        //             quantity: quantity,
-        //             product_name: product_name,
-        //         },
-        //         url: "/home/new/product/cart/store/" + id,
-        //         success: function(data) {
-        //             miniCart();
-        //             //Start Message
-        //             const Toast = Swal.mixin({
-        //                 toast: true,
-        //                 position: 'top-end',
-        //                 icon: 'success',
-        //                 showConfirmButton: false,
-        //                 timer: 3000
-        //             })
-        //             if ($.isEmptyObject(data.error)) {
-        //                 Toast.fire({
-        //                     type: 'success',
-        //                     title: data.success,
-        //                 })
-        //             } else {
-        //                 Toast.fire({
-        //                     type: 'error',
-        //                     title: data.error,
-        //                 })
-        //             }
-        //             //End Message
-        //         }
-        //     })
-        // }
-        // // Start Home New Product Page Add To Cart Product
-
     </script>
+
 
     <script type="text/javascript">
         //Start Mini Cart

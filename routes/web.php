@@ -200,6 +200,12 @@ Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails'
 //Home New Product Page Add To Cart
 Route::post('/home/new/product/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProduct']);
 
+//Home New Product Category Page Add To Cart
+Route::post('/home/new/product/category/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProductCategory']);
+
+//Featured Product Page Add To Cart
+Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToCartFeaturedProduct']);
+
 
 
 //FrontendController

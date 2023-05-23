@@ -4,6 +4,9 @@
         ->limit(6)
         ->get();
 @endphp
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <section class="section-padding pb-5">
     <div class="container">
         <div class="section-title wow animate__animated animate__fadeIn">
@@ -27,7 +30,7 @@
                                 id="carausel-4-columns-arrows"></div>
                             <div class="carausel-4-columns carausel-arrow-center" id="carausel-4-columns">
                                 @foreach ($featured as $product)
-                                    <div class="product-cart-wrap">
+                                    <div class="product-cart-wrap featured_product_data">
                                         <div class="product-img-action-wrap">
                                             <div class="product-img product-img-zoom">
                                                 <a
@@ -91,8 +94,9 @@
                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
-                                            <a href="shop-cart.html" class="btn w-100 hover-up"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                            <input type="hidden" value="{{ $product->id }}" class="featured_prod_id">
+                                            <a class="btn w-100 hover-up featuredProductAddToCart" type="submit"><i
+                                                    class="fi-rs-shopping-cart mr-5"></i>Add To Cart </a>
                                         </div>
                                     </div>
                                     <!--End product Wrap-->
@@ -107,4 +111,49 @@
             <!--End Col-lg-9-->
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Start Home New Product Page Add To Cart Product
+        $(document).ready(function() {
+            $('.featuredProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.featured_product_data').find('.featured_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/featured/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start Home New Product Page Add To Cart Product
+    </script>
+
+
 </section>
