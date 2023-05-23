@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 
 /*
@@ -85,7 +86,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
-
 
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
@@ -181,9 +181,39 @@ Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->n
 Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
 Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CategoryWiseProduct']);
 Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
-
 // Product View Modal With Ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+
+//Add To Cart Store Data
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+
+//Get Data From Mini Cart
+Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
+
+//Remove Data From Mini Cart
+Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+//Product Details Page Add To Cart
+Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
+
+//Home New Product Page Add To Cart
+Route::post('/home/new/product/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProduct']);
+
+//Home New Product Category Page Add To Cart
+Route::post('/home/new/product/category/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProductCategory']);
+
+//Featured Product Page Add To Cart
+Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToCartFeaturedProduct']);
+
+//Featured Product Page Add To Cart
+Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryProduct']);
+
+//Featured Product Page Add To Cart
+Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'AddToCartSubCategoryProduct']);
+
+//Vendor Details Page Add To Cart
+Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
 
 
 

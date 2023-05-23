@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header mt-30 mb-50">
         <div class="container">
             <div class="archive-header">
@@ -7,7 +8,7 @@
                     <div class="col-xl-3">
                         <h1 class="mb-15">{{ $breadcategory->category_name }}</h1>
                         <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                             <span></span> {{ $breadcategory->category_name }}
                         </div>
                     </div>
@@ -65,11 +66,9 @@
                     </div>
                 </div>
                 <div class="row product-grid">
-
-
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a
@@ -85,7 +84,8 @@
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
-                                            data-bs-target="#quickViewModal"><i class="fi-rs-eye"></i></a>
+                                            data-bs-target="#quickViewModal" id="{{ $product->id }}"
+                                            onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
                                     </div>
 
                                     @php
@@ -145,7 +145,8 @@
                                         @endif
 
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
+                                            <input type="hidden" value="{{ $product->id }}" class="cat_prod_id">
+                                            <a class="add CategoryProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
                                     </div>
@@ -176,24 +177,21 @@
                 </div>
 
                 <!--End Deals-->
-
-
             </div>
+
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                 <div class="sidebar-widget widget-category-2 mb-30">
                     <h5 class="section-title style-1 mb-30">Category</h5>
                     <ul>
                         @foreach ($categories as $category)
                             @php
-
                                 $products = App\Models\Product::where('category_id', $category->id)->get();
-
                             @endphp
                             <li>
-                                <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}"> <img
-                                        src=" {{ asset($category->category_image) }} "
+                                <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                    <img src=" {{ asset($category->category_image) }} "
                                         alt="" />{{ $category->category_name }}</a><span
-                                    class="count">{{ count($products) }}</span>
+                                    class="text-brand">{{ count($products) }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -228,6 +226,51 @@
                     @endforeach
                 </div>
             </div>
+
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Start Category Page Add To Cart Product
+        $(document).ready(function() {
+            $('.CategoryProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/category/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start Category Page Add To Cart Product
+    </script>
+
 @endsection

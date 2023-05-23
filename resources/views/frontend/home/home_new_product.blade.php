@@ -1,10 +1,13 @@
 @php
-    $products = App\Models\Product::where('status', 1)
-        ->orderBy('id', 'ASC')
+    $products = \App\Models\Product::where('status', 1)
+        ->where('product_quantity', '>', '0')
+        ->orderBy('id', 'DESC')
         ->limit(10)
         ->get();
-    $categories = App\Models\Category::orderBy('category_name', 'ASC')->get();
+    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->get();
 @endphp
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <section class="product-tabs section-padding position-relative">
     <div class="container">
@@ -30,7 +33,7 @@
                 <div class="row product-grid-4">
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn product_data"
                                 data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
@@ -65,9 +68,13 @@
                                         @endif
                                     </div>
                                 </div>
+                                @php
+                                    $category = \App\Models\Category::where('id', $product->category_id)->first();
+                                @endphp
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a
+                                            href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -88,7 +95,6 @@
                                         @endif
                                     </div>
                                     <div class="product-card-bottom">
-
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
                                                 <span>${{ $product->selling_price }}</span>
@@ -100,9 +106,9 @@
                                                 <span class="old-price">${{ $product->selling_price }}</span>
                                             </div>
                                         @endif
-
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
+                                            <input type="hidden" value="{{ $product->id }}" class="prod_id">
+                                            <a class="add homeNewProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
                                     </div>
@@ -116,7 +122,6 @@
             </div>
             <!--En tab one-->
 
-
             @foreach ($categories as $category)
                 <div class="tab-pane fade" id="category{{ $category->id }}" role="tabpanel" aria-labelledby="tab-two">
                     <div class="row product-grid-4">
@@ -127,7 +132,7 @@
                         @endphp
                         @forelse($catwiseProduct as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -141,8 +146,10 @@
                                         <div class="product-action-1">
                                             <a aria-label="Add To Wishlist" class="action-btn"
                                                 href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -163,13 +170,12 @@
                                                 <span class="hot"> - {{ round($discount) }} %</span>
                                             @endif
 
-
                                         </div>
                                     </div>
                                     <div class="product-content-wrap">
                                         <div class="product-category">
                                             <a
-                                                href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                         </div>
                                         <h2><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -202,7 +208,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat_prod_id">
+                                                <a class="add homeNewProductCategoryAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -212,7 +219,6 @@
                             <!--end product card-->
 
                         @empty
-
                             <h5 class="text-danger"> No Product Found </h5>
                         @endforelse
                     </div>
@@ -223,4 +229,94 @@
         </div>
         <!--End tab-content-->
     </div>
+
+
+    <script type="text/javascript">
+        // Start Home New Product Page Add To Cart Product
+        $(document).ready(function() {
+            $('.homeNewProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.product_data').find('.prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/home/new/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start Home New Product Page Add To Cart Product
+    </script>
+
+    <script type="text/javascript">
+        // Start Home New Product Category Page Add To Cart Product
+        $(document).ready(function() {
+            $('.homeNewProductCategoryAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/home/new/product/category/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start Home New Product Category Page Add To Cart Product
+    </script>
+
+
+
 </section>

@@ -40,18 +40,6 @@
                                             data-role="tagsinput" value="{{ $products->product_tags }}">
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Size </label>
-                                        <input type="text" name="product_size" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ $products->product_size }}">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Color </label>
-                                        <input type="text" name="product_color" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ $products->product_color }}">
-                                    </div>
-
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description *</label>
                                         <textarea name="short_description" class="form-control" rows="3">{{ $products->short_description }}</textarea>

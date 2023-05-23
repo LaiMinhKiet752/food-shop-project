@@ -38,18 +38,6 @@
                                             data-role="tagsinput" value="new product">
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Size </label>
-                                        <input type="text" name="product_size" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ old('product_size') }}">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Color </label>
-                                        <input type="text" name="product_color" class="form-control visually-hidden"
-                                            data-role="tagsinput" value="{{ old('product_color') }}">
-                                    </div>
-
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description *</label>
                                         <textarea name="short_description" class="form-control" rows="3">{{ old('short_description') }}</textarea>
@@ -109,12 +97,14 @@
                                                 id="inputStarPoints" placeholder="0"
                                                 value="{{ old('product_quantity') }}">
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
+                                            <label class="form-label">Manufacturing Date </label>
                                             <input type="date" name="manufacturing_date" class="form-control">
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Expire Date </label>
+                                            <label class="form-label">Expire Date </label>
                                             <input type="date" name="expire_date" class="form-control">
                                         </div>
 

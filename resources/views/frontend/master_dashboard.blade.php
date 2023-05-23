@@ -49,6 +49,7 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -73,13 +74,16 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         })
-        /// Start product view with Modal
+        // Start Product View With Modal
         function productView(id) {
             // alert(id)
             $.ajax({
@@ -94,6 +98,9 @@
                     $('#pcategory').text(data.product.category.category_name);
                     $('#pbrand').text(data.product.brand.brand_name);
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
 
                     // Product Price
                     if (data.product.discount_price == null) {
@@ -117,38 +124,171 @@
                         $('#outofstock').text('Out Of Stock');
                     }
                     //End Stock Option
-
-
-                    //Size
-                    $('select[name="size"]').empty();
-                    $.each(data.size, function(key, value) {
-                        $('select[name="size"]').append('<option value="' + value + ' ">' + value +
-                            '  </option')
-                        if (data.size == "") {
-                            $('#sizeArea').hide();
-                        } else {
-                            $('#sizeArea').show();
-                        }
-                    })
-                    //End Size
-
-                    //Color
-                    $('select[name="color"]').empty();
-                    $.each(data.color, function(key, value) {
-                        $('select[name="color"]').append('<option value="' + value + ' ">' + value +
-                            '  </option')
-                        if (data.color == "") {
-                            $('#colorArea').hide();
-                        } else {
-                            $('#colorArea').show();
-                        }
-                    })
-                    //End Color
                 }
             })
         }
+        // End Product View With Modal
+
+        // Start Add To Cart Product
+        function addToCart() {
+            var product_name = $('#pname').text();
+            var id = $('#product_id').val();
+            var quantity = $('#qty').val();
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    miniCart();
+                    $('#closeModal').click();
+                    // console.log(data)
+
+                    //Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+                    //End Message
+                }
+            })
+        }
+        // End Add To Cart Product
+
+        // Start Details Page Add To Cart Product
+        function addToCartDetails() {
+            var product_name = $('#dpname').text();
+            var id = $('#dproduct_id').val();
+            var quantity = $('#dqty').val();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/dcart/data/store/" + id,
+                success: function(data) {
+                    miniCart();
+                    //Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+                    //End Message
+                }
+            })
+        }
+        // End Details Page Add To Cart Product
     </script>
 
-</body>
 
+    <script type="text/javascript">
+        //Start Mini Cart
+        function miniCart() {
+            $.ajax({
+                type: 'GET',
+                url: '/product/mini/cart',
+                dataType: 'json',
+                success: function(response) {
+                    // console.log(response)
+                    $('#cartQty').text(response.cartQty);
+                    $('span[id="cartSubTotal"]').text('$' + response.cartTotal);
+
+                    var miniCart = "";
+                    $.each(response.carts, function(key, value) {
+                        miniCart += ` <ul>
+                                    <li>
+                                        <div class="shopping-cart-img">
+                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image} " style="width: 60px;height: 60px;" /></a>
+                                        </div>
+                                        <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
+                                            <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
+                                            <h4><span>${value.qty} × </span>$${value.price}</h4>
+                                        </div>
+                                        <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
+                                            <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fi-rs-cross-small"></i></a>
+                                        </div>
+                                    </li>
+                                    </ul>
+                                    <hr><br>
+                                        `
+                    });
+
+                    $('#miniCart').html(miniCart);
+                }
+            })
+        }
+        miniCart();
+        //End Mini Cart
+
+        //Start Mini Cart Remove
+        function miniCartRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/minicart/product/remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    miniCart();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success,
+                        })
+                    } else {
+
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+        //End Mini Cart Remove
+
+    </script>
+</body>
 </html>
