@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header mt-30 mb-50">
         <div class="container">
             <div class="archive-header">
@@ -66,11 +67,9 @@
                     </div>
                 </div>
                 <div class="row product-grid">
-
-
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn subcat_product_data" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a
@@ -145,10 +144,9 @@
                                             </div>
                                         @endif
 
-
-
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
+                                            <input type="hidden" value="{{ $product->id }}" class="subcat_prod_id">
+                                            <a class="add SubCategoryProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
                                     </div>
@@ -179,10 +177,7 @@
                         </ul>
                     </nav>
                 </div>
-
                 <!--End Deals-->
-
-
             </div>
             <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
                 <div class="sidebar-widget widget-category-2 mb-30">
@@ -234,12 +229,51 @@
                         </div>
                     @endforeach
 
-
-
                 </div>
-
-
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Start SubCategory Page Add To Cart Product
+        $(document).ready(function() {
+            $('.SubCategoryProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.subcat_product_data').find('.subcat_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/subcategory/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start SubCategory Page Add To Cart Product
+    </script>
 @endsection

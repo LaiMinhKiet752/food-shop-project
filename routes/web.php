@@ -206,6 +206,15 @@ Route::post('/home/new/product/category/cart/store/{id}', [CartController::class
 //Featured Product Page Add To Cart
 Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToCartFeaturedProduct']);
 
+//Featured Product Page Add To Cart
+Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryProduct']);
+
+//Featured Product Page Add To Cart
+Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'AddToCartSubCategoryProduct']);
+
+//Vendor Details Page Add To Cart
+Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
+
 
 
 //FrontendController

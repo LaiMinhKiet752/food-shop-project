@@ -152,6 +152,84 @@ class CartController extends Controller
         }
     } // End Method
 
+    public function AddToCartCategoryProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        if ($product->discount_price == NULL || $product->discount_price == 0) {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->selling_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        } else {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        }
+    } // End Method
+
+    public function AddToCartSubCategoryProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        if ($product->discount_price == NULL || $product->discount_price == 0) {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->selling_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        } else {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        }
+    } // End Method
+
+    public function AddToCartVendorDetailsProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        if ($product->discount_price == NULL || $product->discount_price == 0) {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->selling_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        } else {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+        }
+    } // End Method
+
     public function RemoveMiniCart($rowId)
     {
         Cart::remove($rowId);

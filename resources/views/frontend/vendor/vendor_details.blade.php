@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -62,7 +63,7 @@
                 <div class="row product-grid">
                     @foreach ($vproduct as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn vendor_product_data" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a
@@ -141,7 +142,8 @@
                                         @endif
 
                                         <div class="add-cart">
-                                            <a class="add" href="shop-cart.html"><i
+                                            <input type="hidden" value="{{ $product->id }}" class="vendor_prod_id">
+                                            <a class="add VendorDetailsProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
                                     </div>
@@ -244,4 +246,47 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        // Start Vendor Details Page Add To Cart Product
+        $(document).ready(function() {
+            $('.VendorDetailsProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.vendor_product_data').find('.vendor_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/vendor/details/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+        // Start Vendor Details Page Add To Cart Product
+    </script>
 @endsection
