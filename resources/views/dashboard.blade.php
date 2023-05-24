@@ -21,7 +21,6 @@
 
 <body>
 
-
      <!-- Header  -->
      @include('frontend.body.header')
      <!-- End Header  -->

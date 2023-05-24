@@ -92,7 +92,7 @@
 
                                     <div class="product-badges product-badges-position product-badges-mrg">
 
-                                        @if ($product->discount_price == null)
+                                        @if ($product->discount_price == null || $product->discount_price == 0)
                                             <span class="new">New</span>
                                         @else
                                             <span class="hot"> - {{ round($discount) }} %</span>
@@ -129,7 +129,7 @@
                                     </div>
                                     <div class="product-card-bottom">
 
-                                        @if ($product->discount_price == null)
+                                        @if ($product->discount_price == null || $product->discount_price == 0)
                                             <div class="product-price">
                                                 <span>${{ $product->selling_price }}</span>
 
