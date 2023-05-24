@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function UserDashboard(){
+    public function UserDashboard()
+    {
         $id = Auth::user()->id;
         $userData = User::find($id);
-        return view('index',compact('userData'));
-    }//End Method
+        return view('index', compact('userData'));
+    } //End Method
     public function UserProfileStore(Request $request)
     {
-
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
@@ -27,7 +27,10 @@ class UserController extends Controller
 
         if ($request->file('photo')) {
             $request->validate([
-                'photo' => 'required|mimes:jpeg,png,jpg'
+                'photo' => 'image|max:2048'
+            ], [
+                'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                'photo.max' => 'Maximum image size is 2MB.',
             ]);
             $file = $request->file('photo');
             $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();
@@ -80,5 +83,5 @@ class UserController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
-    }//End Method
+    } //End Method
 }

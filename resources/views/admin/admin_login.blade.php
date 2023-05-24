@@ -50,18 +50,17 @@
                                         <form class="row g-3" method="POST" action="{{ route('login') }}"
                                             id="myForm">
                                             @csrf
-
                                             <div class="form-group col-12">
-                                                <label for="inputEmailAddress" class="form-label">Email Address</label>
-                                                <input type="email" name="email" class="form-control" id="email"
-                                                    placeholder="Email Address">
+                                                <label for="login" class="form-label">Username or Email *</label>
+                                                <input type="text" name="login" class="form-control" id="login"
+                                                    placeholder="">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="inputChoosePassword" class="form-label">Enter
-                                                    Password</label>
+                                                <label for="password" class="form-label">Enter
+                                                    password</label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" name="password" class="form-control"
-                                                        id="password" placeholder="Enter Password"> <a
+                                                        id="password" placeholder=""> <a
                                                         href="javascript:;" class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
@@ -130,7 +129,7 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    email: {
+                    login: {
                         required: true,
                     },
                     password: {
@@ -138,8 +137,8 @@
                     },
                 },
                 messages: {
-                    email: {
-                        required: 'Please enter your email.',
+                    login: {
+                        required: 'Please enter your username or email.',
                     },
                     password: {
                         required: 'Please enter your password.',

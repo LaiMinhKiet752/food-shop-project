@@ -33,6 +33,9 @@ use App\Http\Controllers\Frontend\IndexController;
 // });
 
 
+//FrontendController
+Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
@@ -215,10 +218,6 @@ Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'Add
 //Vendor Details Page Add To Cart
 Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
 
-
-
-//FrontendController
-Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
 
 //Edit Profile

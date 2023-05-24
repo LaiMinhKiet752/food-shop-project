@@ -63,11 +63,11 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="name" required="" name="name"
-                                                    placeholder="Full Name *" />
+                                                    placeholder="User Name *" value="{{ old('name') }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
-                                                    placeholder="Email *" />
+                                                    placeholder="Email *" value="{{ old('email') }}"/>
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
@@ -190,8 +190,8 @@
                 },
                 messages: {
                     name: {
-                        required: 'Please enter your full name.',
-                        maxlength: 'The full name must not be greater than 255 characters.',
+                        required: 'Please enter your username.',
+                        maxlength: 'The username must not be greater than 255 characters.',
                     },
                     email: {
                         required: 'Please enter your email.',
