@@ -1,6 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div class="page-content">
         <!--breadcrumb-->
@@ -39,7 +39,7 @@
                                         <input type="text" name="product_tags" class="form-control visually-hidden"
                                             data-role="tagsinput" value="{{ $products->product_tags }}">
                                     </div>
-                                    
+
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description *</label>
                                         <textarea name="short_description" class="form-control" rows="3">{{ $products->short_description }}</textarea>
@@ -439,6 +439,7 @@
                     },
                     short_description: {
                         required: true,
+                        maxlength: 255,
                     },
                     product_thumbnail: {
                         required: true,
@@ -469,6 +470,7 @@
                     },
                     short_description: {
                         required: 'Please enter short description.',
+                        maxlength: 'The short description must not be greater than 255 characters.',
                     },
                     product_thumbnail: {
                         required: 'Please select product thumbnail image.',

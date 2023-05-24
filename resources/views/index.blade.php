@@ -204,7 +204,7 @@
                                                     <div class="form-group col-md-6">
                                                         <label>User Name <span class="required">*</span></label>
                                                         <input required="" class="form-control" name="username"
-                                                            value="{{ $userData->username }}" type="text" />
+                                                            value="{{ $userData->username }}" type="text" readonly/>
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Full Name <span class="required">*</span></label>
@@ -315,10 +315,6 @@
         $(document).ready(function() {
             $('#myFormDetails').validate({
                 rules: {
-                    username: {
-                        required: true,
-                        maxlength: 255,
-                    },
                     name: {
                         required: true,
                         maxlength: 255,
@@ -335,10 +331,6 @@
                     },
                 },
                 messages: {
-                    username: {
-                        required: 'Please enter your username.',
-                        maxlength: 'The username must not be greater than 255 characters.',
-                    },
                     name: {
                         required: 'Please enter your full name.',
                         maxlength: 'The full name must not be greater than 255 characters.',

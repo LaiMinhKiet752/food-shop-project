@@ -1,6 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header mt-30 mb-50">
         <div class="container">
             <div class="archive-header">
@@ -68,7 +68,8 @@
                 <div class="row product-grid">
                     @foreach ($products as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data" data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data"
+                                data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a
@@ -106,9 +107,13 @@
 
                                     </div>
                                 </div>
+                                @php
+                                    $category = \App\Models\Category::where('id', $product->category_id)->first();
+                                @endphp
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                        <a
+                                            href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -272,5 +277,4 @@
         });
         // Start Category Page Add To Cart Product
     </script>
-
 @endsection

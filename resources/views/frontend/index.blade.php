@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @include('frontend.home.home_slider')
     <!--End hero slider-->
     @include('frontend.home.home_features_category')
@@ -24,7 +25,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_0 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat1_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -96,7 +97,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat1_prod_id">
+                                                <a class="add CategoryOneProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -129,7 +131,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_1 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat2_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -201,7 +203,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat2_prod_id">
+                                                <a class="add CategoryTwoProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -234,7 +237,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_2 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat3_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -306,7 +309,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat3_prod_id">
+                                                <a class="add CategoryThreeProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -339,7 +343,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_3 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat4_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -411,7 +415,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat4_prod_id">
+                                                <a class="add CategoryFourProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -444,7 +449,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_4 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat5_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -482,7 +487,8 @@
                                     @endphp
                                     <div class="product-content-wrap">
                                         <div class="product-category">
-                                            <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
+                                            <a
+                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                         </div>
                                         <h2><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -515,7 +521,8 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <a class="add" href="shop-cart.html"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat5_prod_id">
+                                                <a class="add CategoryFiveProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -704,8 +711,225 @@
             </div>
         </div>
     </section>
-    <!--End 4 columns-->
+
+
     <!--Vendor List -->
     @include('frontend.home.home_vendor_list')
     <!--End Vendor List -->
+
+
+    {{-- Start Category One Page Add To Cart Product --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.CategoryOneProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat1_product_data').find('.cat1_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/categoryone/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Category One Page Add To Cart Product --}}
+
+    {{-- Start Category Two Page Add To Cart Product --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.CategoryTwoProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat2_product_data').find('.cat2_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/categorytwo/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Category Two Page Add To Cart Product --}}
+
+    {{-- Start Category Three Page Add To Cart Product --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.CategoryThreeProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat3_product_data').find('.cat3_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/categorythree/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Category Three Page Add To Cart Product --}}
+
+    {{-- Start Category Four Page Add To Cart Product --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.CategoryFourProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat4_product_data').find('.cat4_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/categoryfour/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Category Four Page Add To Cart Product --}}
+
+    {{-- Start Category Five Page Add To Cart Product --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.CategoryFiveProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.cat5_product_data').find('.cat5_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/categoryfive/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Category Five Page Add To Cart Product --}}
 @endsection

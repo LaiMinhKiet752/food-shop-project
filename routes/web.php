@@ -218,6 +218,20 @@ Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'Add
 //Vendor Details Page Add To Cart
 Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
 
+//Category One Page Add To Cart
+Route::post('/categoryone/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryOneProduct']);
+
+//Category Two Page Add To Cart
+Route::post('/categorytwo/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryTwoProduct']);
+
+//Category Three Page Add To Cart
+Route::post('/categorythree/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryThreeProduct']);
+
+//Category Four Page Add To Cart
+Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFourProduct']);
+
+//Category Five Page Add To Cart
+Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
 
 //Edit Profile

@@ -60,7 +60,7 @@
 
                                             <div class="form-group">
                                                 <input type="text" id="username" required="" name="username"
-                                                    placeholder="User Name *" />
+                                                    placeholder="Username *" />
                                             </div>
 
                                             <div class="form-group">
@@ -201,13 +201,13 @@
                         required: true,
                         maxlength: 255,
                     },
-                    vendor_join: {
-                        required: true,
-                        checkYear: true,
-                    },
                     username: {
                         required: true,
                         maxlength: 255,
+                    },
+                    vendor_join: {
+                        required: true,
+                        checkYear: true,
                     },
                     email: {
                         required: true,
@@ -273,8 +273,8 @@
             );
             $.validator.addMethod("checkYear", function(value, element) {
                 var year = $(element).val();
-                return (year > 1900) && (year <= (new Date()).getFullYear());
-            }, "The year you entered is not valid.");
+                return (year >= 1900) && (year <= (new Date()).getFullYear());
+            }, "The year you entered is not valid (The year must be after 1900 and before 2024).");
         });
     </script>
 </body>

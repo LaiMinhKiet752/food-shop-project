@@ -1,6 +1,6 @@
 @extends('vendor.vendor_dashboard')
 @section('vendor')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div class="page-content">
         <!--breadcrumb-->
@@ -429,6 +429,7 @@
                     },
                     short_description: {
                         required: true,
+                        maxlength: 255,
                     },
                     product_thumbnail: {
                         required: true,
@@ -459,6 +460,7 @@
                     },
                     short_description: {
                         required: 'Please enter short description.',
+                        maxlength: 'The short description must not be greater than 255 characters.',
                     },
                     product_thumbnail: {
                         required: 'Please select product thumbnail image.',

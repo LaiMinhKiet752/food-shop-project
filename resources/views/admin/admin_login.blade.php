@@ -57,7 +57,7 @@
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="password" class="form-label">Enter
-                                                    password</label>
+                                                    password *</label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" name="password" class="form-control"
                                                         id="password" placeholder=""> <a
