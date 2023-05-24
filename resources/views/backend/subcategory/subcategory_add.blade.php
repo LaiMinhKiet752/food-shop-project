@@ -1,6 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <div class="page-content">
         <!--breadcrumb-->
@@ -30,7 +30,7 @@
                                     @csrf
                                     <div class="row mb-3 ">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Name</h6>
+                                            <h6 class="mb-0">Category Name *</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-dark">
                                             <select name="category_id" class="form-select mb-3 single-select"
@@ -47,7 +47,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">SubCategory Name</h6>
+                                            <h6 class="mb-0">SubCategory Name *</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="subcategory_name" class="form-control" />
