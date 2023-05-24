@@ -1,6 +1,6 @@
 @extends('dashboard')
 @section('user')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="card-body">
                                             <form method="post" action="{{ route('user.profile.store') }}"
-                                                enctype="multipart/form-data">
+                                                enctype="multipart/form-data" id="myFormDetails">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
@@ -227,7 +227,7 @@
                                                             type="text" value="{{ $userData->address }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>User Photo <span class="required">*</span></label>
+                                                        <label>User Photo</label>
                                                         <input class="form-control" name="photo" type="file"
                                                             id="image" />
                                                         @if ($errors->has('photo'))
@@ -307,6 +307,64 @@
                     $('#showImage').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myFormDetails').validate({
+                rules: {
+                    username: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                    name: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                    email: {
+                        required: true,
+                    },
+                    phone: {
+                        required: true,
+                    },
+                    address: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                },
+                messages: {
+                    username: {
+                        required: 'Please enter your username.',
+                        maxlength: 'The username must not be greater than 255 characters.',
+                    },
+                    name: {
+                        required: 'Please enter your full name.',
+                        maxlength: 'The full name must not be greater than 255 characters.',
+                    },
+                    email: {
+                        required: 'Please enter your email.',
+                    },
+                    phone: {
+                        required: 'Please enter your phone number.',
+                    },
+                    address: {
+                        required: 'Please enter your address.',
+                        maxlength: 'The address must not be greater than 255 characters.',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
             });
         });
     </script>

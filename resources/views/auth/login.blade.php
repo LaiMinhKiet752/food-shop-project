@@ -63,14 +63,15 @@
                                         <br>
                                         <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
-
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
-                                                    placeholder="Your email *" />
+                                                <label for="login" class="form-label">Username or Email *</label>
+                                                <input class="form-control" type="text" id="login" name="login"
+                                                    placeholder="" value="{{ old('login') }}" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password"
-                                                    placeholder="Your password *" />
+                                                <label for="password" class="form-label">Password *</label>
+                                                <input class="form-control" required="" id="password"
+                                                    type="password" name="password" placeholder="" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
@@ -85,8 +86,8 @@
                                                     password?</a>
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-heading btn-block hover-up"
-                                                    name="login">Log in</button>
+                                                <button type="submit" class="btn btn-heading btn-block hover-up">Log
+                                                    in</button>
                                             </div>
                                         </form>
                                     </div>
@@ -168,7 +169,7 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    email: {
+                    login: {
                         required: true,
                     },
                     password: {
@@ -176,8 +177,8 @@
                     },
                 },
                 messages: {
-                    email: {
-                        required: 'Please enter your email.',
+                    login: {
+                        required: 'Please enter your username or email.',
                     },
                     password: {
                         required: 'Please enter your password.',

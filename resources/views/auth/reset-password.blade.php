@@ -48,6 +48,7 @@
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Reset Password</h1>
                                         </div>
+                                        <br>
                                         @if ($errors->any())
                                             <ul class="text-danger" style="font-weight: bold;">
                                                 @foreach ($errors->all() as $error)
@@ -61,11 +62,11 @@
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
-                                                    placeholder="Your email *" />
+                                                    placeholder="Your email *" value="{{ old('email', $request->email) }}" readonly/>
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
-                                                    placeholder="Your password *" />
+                                                    placeholder="Your new password *" />
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password_confirmation" type="password"
@@ -130,9 +131,6 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    email: {
-                        required: true,
-                    },
                     password: {
                         required: true,
                         validatePassword: true,
@@ -144,9 +142,6 @@
                     },
                 },
                 messages: {
-                    email: {
-                        required: 'Please enter your email.',
-                    },
                     password: {
                         required: 'Please enter your password.',
                         minlength: ''

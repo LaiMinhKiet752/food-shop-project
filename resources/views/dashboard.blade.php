@@ -68,6 +68,8 @@
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
 
     <script>
         @if (Session::has('message'))
@@ -91,8 +93,7 @@
             }
         @endif
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
 
 </body>
 
