@@ -78,7 +78,7 @@
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price mt-10">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>

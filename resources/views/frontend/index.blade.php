@@ -86,7 +86,7 @@
                                         </div>
                                         <div class="product-card-bottom">
 
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
@@ -192,7 +192,7 @@
                                         </div>
                                         <div class="product-card-bottom">
 
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
@@ -298,7 +298,7 @@
                                         </div>
                                         <div class="product-card-bottom">
 
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
@@ -404,7 +404,7 @@
                                         </div>
                                         <div class="product-card-bottom">
 
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
@@ -510,7 +510,7 @@
                                         </div>
                                         <div class="product-card-bottom">
 
-                                            @if ($product->discount_price == null)
+                                            @if ($product->discount_price == null || $product->discount_price == 0)
                                                 <div class="product-price">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
