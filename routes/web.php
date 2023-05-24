@@ -234,11 +234,18 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
 
-//Edit Profile
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+
+
+
+
+
+
+
+// //Edit Profile
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__ . '/auth.php';

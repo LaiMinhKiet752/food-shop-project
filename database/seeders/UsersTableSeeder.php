@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,16 +27,18 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('Tinhoc@123'),
                 'role' => 'admin',
                 'status' => 'active',
+                'created_at'=>Carbon::now(),
             ],
 
             //Vendor
             [
-                'name' => 'Kiet Vendor',
+                'name' => 'Vendor',
                 'username' => 'vendor',
                 'email' => 'vendor@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),
                 'role' => 'vendor',
                 'status' => 'active',
+                'created_at'=>Carbon::now(),
             ],
 
             //User Or Customer
@@ -46,6 +49,7 @@ class UsersTableSeeder extends Seeder
                 'password' => Hash::make('Tinhoc@123'),
                 'role' => 'user',
                 'status' => 'active',
+                'created_at'=>Carbon::now(),
             ],
         ]);
     }
