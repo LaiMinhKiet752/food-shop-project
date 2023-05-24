@@ -37,6 +37,7 @@ return new class extends Migration
             $table->integer('special_deals')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

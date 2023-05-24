@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+    public function AddMiniCart()
+    {
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal
+        ));
+    } // End Method
+    
     public function AddToCart(Request $request, $id)
     {
         $product = Product::findOrFail($id);
@@ -35,18 +47,6 @@ class CartController extends Controller
             return response()->json(['success' => 'Successfully Added Product To Cart!']);
         }
     } //End Method
-
-    public function AddMiniCart()
-    {
-        $carts = Cart::content();
-        $cartQty = Cart::count();
-        $cartTotal = Cart::total();
-        return response()->json(array(
-            'carts' => $carts,
-            'cartQty' => $cartQty,
-            'cartTotal' => $cartTotal
-        ));
-    } // End Method
 
     public function AddToCartDetails(Request $request, $id)
     {

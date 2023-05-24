@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('short_title');
             $table->string('slider_image');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
