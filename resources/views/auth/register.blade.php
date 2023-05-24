@@ -62,19 +62,19 @@
                                         <form method="POST" action="{{ route('register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="text" id="name" required="" name="name"
-                                                    placeholder="User Name *" value="{{ old('name') }}"/>
+                                                <input type="text" id="username" name="username"
+                                                    placeholder="Username *" value="{{ old('username') }}"/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
+                                                <input type="email" id="email" name="email"
                                                     placeholder="Email *" value="{{ old('email') }}"/>
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password"
+                                                <input id="password" type="password" name="password"
                                                     placeholder="Password *" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password"
+                                                <input id="password_confirmation" type="password"
                                                     name="password_confirmation" placeholder="Confirm password *" />
                                             </div>
                                             <div class="login_footer form-group mb-50">
@@ -171,7 +171,7 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    name: {
+                    username: {
                         required: true,
                         maxlength: 255,
                     },
@@ -189,7 +189,7 @@
                     },
                 },
                 messages: {
-                    name: {
+                    username: {
                         required: 'Please enter your username.',
                         maxlength: 'The username must not be greater than 255 characters.',
                     },
