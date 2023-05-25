@@ -1,5 +1,5 @@
 @php
-    $categories = \App\Models\Category::orderby('category_name', 'ASC')->get();
+    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->get();
 @endphp
 <section class="popular-categories section-padding">
     <div class="container wow animate__animated animate__fadeIn">
