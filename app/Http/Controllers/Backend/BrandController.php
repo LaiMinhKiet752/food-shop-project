@@ -72,7 +72,6 @@ class BrandController extends Controller
             $save_url = 'upload/brand/' . $filename;
 
             $current_brand_name = Brand::findOrFail($brand_id)->brand_name;
-            
             //Text has changed
             if ($current_brand_name == $request->brand_name) {
                 if (file_exists($old_image)) {
