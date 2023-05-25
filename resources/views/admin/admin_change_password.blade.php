@@ -32,7 +32,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Old Password</h6>
+                                            <h6 class="mb-0">Old Password <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="password" name="old_password" class="form-control"
@@ -42,7 +42,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">New Password</h6>
+                                            <h6 class="mb-0">New Password <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="password" name="new_password" class="form-control"
@@ -52,7 +52,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Confirm New Password</h6>
+                                            <h6 class="mb-0">Confirm New Password <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="password" name="new_password_confirmation" class="form-control"

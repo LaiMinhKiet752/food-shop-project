@@ -29,7 +29,7 @@
                                 <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
-                                <th>Join Date </th>
+                                <th>Year Of Joining</th>
                                 <th>Vendor Email </th>
                                 <th>Status </th>
                                 <th>Action</th>
@@ -55,7 +55,7 @@
                                 <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
-                                <th>Join Date </th>
+                                <th>Year Of Joining</th>
                                 <th>Vendor Email </th>
                                 <th>Status </th>
                                 <th>Action</th>

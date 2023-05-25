@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Banner </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Banner</li>
                     </ol>
                 </nav>
             </div>
@@ -33,7 +33,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Title</h6>
+                                            <h6 class="mb-0">Banner Title <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="banner_title" class="form-control" />
@@ -42,7 +42,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Url</h6>
+                                            <h6 class="mb-0">Banner Url <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="banner_url" class="form-control" />
@@ -51,7 +51,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Image </h6>
+                                            <h6 class="mb-0">Banner Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="banner_image" class="form-control" id="image" />

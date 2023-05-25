@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Slider </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Slider</li>
                     </ol>
                 </nav>
             </div>
@@ -32,7 +32,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Slider Title *</h6>
+                                            <h6 class="mb-0">Slider Title <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="slider_title" class="form-control" />
@@ -41,7 +41,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Short Title *</h6>
+                                            <h6 class="mb-0">Short Title <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="short_title" class="form-control" />
@@ -50,7 +50,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Slider Image *</h6>
+                                            <h6 class="mb-0">Slider Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="slider_image" class="form-control" id="image" />

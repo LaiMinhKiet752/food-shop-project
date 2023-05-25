@@ -35,7 +35,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Title</h6>
+                                            <h6 class="mb-0">Banner Title <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="banner_title" class="form-control"
@@ -45,7 +45,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Url</h6>
+                                            <h6 class="mb-0">Banner Url <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="banner_url" class="form-control"
@@ -55,7 +55,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Image </h6>
+                                            <h6 class="mb-0">Banner Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="banner_image" class="form-control" id="image" />

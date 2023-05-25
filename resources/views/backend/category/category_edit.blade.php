@@ -34,7 +34,7 @@
                                     <input type="hidden" name="old_image" value="{{ $category->category_image }}">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Name *</h6>
+                                            <h6 class="mb-0">Category Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="category_name" class="form-control"
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Categogy Image *</h6>
+                                            <h6 class="mb-0">Categogy Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="file" name="category_image" class="form-control"

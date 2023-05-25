@@ -3,13 +3,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Inactive Vendor</div>
+            <div class="breadcrumb-title pe-3">All InActive Vendor</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Inactive Vendor</li>
+                        <li class="breadcrumb-item active" aria-current="page">InActive Vendor</li>
                     </ol>
                 </nav>
             </div>
@@ -29,7 +29,7 @@
                                 <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
-                                <th>Join Date </th>
+                                <th>Year Of Joining</th>
                                 <th>Vendor Email </th>
                                 <th>Status </th>
                                 <th>Action</th>
@@ -55,7 +55,7 @@
                                 <th>No.</th>
                                 <th>Shop Name </th>
                                 <th>Vendor UserName </th>
-                                <th>Join Date </th>
+                                <th>Year Of Joining</th>
                                 <th>Vendor Email </th>
                                 <th>Status </th>
                                 <th>Action</th>
