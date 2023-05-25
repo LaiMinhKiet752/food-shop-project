@@ -37,6 +37,9 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_name" class="form-control" />
+                                            @if ($errors->has('brand_name'))
+                                                <span class="text-danger">{{ $errors->first('brand_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">

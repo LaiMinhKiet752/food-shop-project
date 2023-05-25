@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('subcategory_id');
             $table->string('vendor_id')->nullable();
             $table->string('product_name');
-            $table->string('product_code');
+            $table->string('product_code')->unique();
             $table->string('product_thumbnail');
             $table->string('product_slug');
             $table->string('product_quantity');
