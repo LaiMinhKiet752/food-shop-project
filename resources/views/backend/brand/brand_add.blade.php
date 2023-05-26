@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Brand</li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Brand</li>
                     </ol>
                 </nav>
             </div>
@@ -33,7 +33,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Brand Name *</h6>
+                                            <h6 class="mb-0">Brand Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_name" class="form-control" />
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Brand Image *</h6>
+                                            <h6 class="mb-0">Brand Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="brand_image" class="form-control" id="image" />

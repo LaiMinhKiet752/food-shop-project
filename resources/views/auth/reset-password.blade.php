@@ -66,11 +66,11 @@
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password" type="password" name="password"
-                                                    placeholder="Your new password *" />
+                                                    placeholder="New password *" />
                                             </div>
                                             <div class="form-group">
                                                 <input required="" id="password_confirmation" type="password"
-                                                    name="password_confirmation" placeholder="Confirm password *" />
+                                                    name="password_confirmation" placeholder="Confirm new password *" />
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up"

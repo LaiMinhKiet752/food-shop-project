@@ -21,6 +21,7 @@
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    
 
     <title>Vendor Login </title>
 </head>
@@ -55,17 +56,18 @@
                                             id="myForm">
                                             @csrf
                                             <div class="form-group col-12">
-                                                <label for="login" class="form-label">Username or Email *</label>
+                                                <label for="login" class="form-label">Username or Email <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" name="login" class="form-control" id="login"
                                                     placeholder="">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="password" class="form-label">Enter
-                                                    password *</label>
+                                                <label for="password" class="form-label">Password <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" name="password" class="form-control"
-                                                        id="password" placeholder=""> <a
-                                                        href="javascript:;" class="input-group-text bg-transparent"><i
+                                                        id="password" placeholder=""> <a href="javascript:;"
+                                                        class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>

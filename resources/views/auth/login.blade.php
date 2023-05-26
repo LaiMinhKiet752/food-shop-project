@@ -64,12 +64,12 @@
                                         <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <label for="login" class="form-label">Username or Email *</label>
+                                                <label for="login" class="form-label">Username or Email <span class="text-danger">*</span></label>
                                                 <input class="form-control" type="text" id="login" name="login"
                                                     placeholder="" value="{{ old('login') }}" />
                                             </div>
                                             <div class="form-group">
-                                                <label for="password" class="form-label">Password *</label>
+                                                <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
                                                 <input class="form-control" required="" id="password"
                                                     type="password" name="password" placeholder="" />
                                             </div>

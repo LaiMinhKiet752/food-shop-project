@@ -29,7 +29,7 @@
                                 <div class="border border-3 p-4 rounded">
 
                                     <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Name *</label>
+                                        <label for="inputProductTitle" class="form-label">Product Name <span class="text-danger">*</span></label>
                                         <input type="text" name="product_name" class="form-control"
                                             value="{{ $products->product_name }}">
                                     </div>
@@ -41,12 +41,12 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="inputProductDescription" class="form-label">Short Description *</label>
+                                        <label for="inputProductDescription" class="form-label">Short Description <span class="text-danger">*</span></label>
                                         <textarea name="short_description" class="form-control" rows="3">{{ $products->short_description }}</textarea>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="inputProductDescription" class="form-label">Long Description *</label>
+                                        <label for="inputProductDescription" class="form-label">Long Description</label>
                                         <textarea id="mytextarea" name="long_description">{!! $products->long_description !!}</textarea>
                                     </div>
                                     <br>
@@ -57,22 +57,22 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price *</label>
+                                            <label for="inputPrice" class="form-label">Product Price($) <span class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 value="{{ $products->selling_price }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Discount Price *</label>
+                                            <label for="inputCompareatprice" class="form-label">Discount Price($) <span class="text-danger">*</span></label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" value="{{ $products->discount_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Product Code *</label>
+                                            <label for="inputCostPerPrice" class="form-label">Product Code <span class="text-danger">*</span></label>
                                             <input type="text" name="product_code" class="form-control"
                                                 id="inputCostPerPrice" value="{{ $products->product_code }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Product Quantity *</label>
+                                            <label for="inputStarPoints" class="form-label">Product Quantity <span class="text-danger">*</span></label>
                                             <input type="text" name="product_quantity" class="form-control"
                                                 id="inputStarPoints" value="{{ $products->product_quantity }}">
                                         </div>
@@ -88,7 +88,7 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputProductType" class="form-label">Product Brand *</label>
+                                            <label for="inputProductType" class="form-label">Product Brand <span class="text-danger">*</span></label>
                                             <select name="brand_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($brands as $brand)
@@ -100,7 +100,7 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputVendor" class="form-label">Product Category *</label>
+                                            <label for="inputVendor" class="form-label">Product Category <span class="text-danger">*</span></label>
                                             <select name="category_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($categories as $category)
@@ -113,7 +113,7 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputVendor" class="form-label">Product SubCategory *</label>
+                                            <label for="inputVendor" class="form-label">Product SubCategory <span class="text-danger">*</span></label>
                                             <select name="subcategory_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($subcategory as $subcat)
@@ -202,7 +202,7 @@
 
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Main Thumbnail *</label>
+                        <label for="formFile" class="form-label">Main Thumbnail</label>
                         <input name="product_thumbnail" class="form-control" type="file" id="updatemainimage">
                         @if ($errors->has('product_thumbnail'))
                             <span class="text-danger">{{ $errors->first('product_thumbnail') }}</span>

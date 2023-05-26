@@ -29,7 +29,12 @@ class VendorController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/vendor/login');
+        $notification = array(
+            'message' => 'Logout Successfully!',
+            'alert-type' => 'success',
+        );
+
+        return redirect('/vendor/login')->with($notification);
     } // End Mehtod
     public function VendorProfile()
     {

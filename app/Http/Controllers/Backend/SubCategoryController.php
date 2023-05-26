@@ -23,6 +23,11 @@ class SubCategoryController extends Controller
 
     public function StoreSubCategory(Request $request)
     {
+        $request->validate([
+            'subcategory_name' => 'unique:sub_categories'
+        ], [
+            'subcategory_name.unique' => 'The subcategory name already exists. Please enter another subcategory name.',
+        ]);
         $subcategory = new SubCategory();
         $subcategory->category_id = $request->category_id;
         $subcategory->subcategory_name = $request->subcategory_name;
@@ -46,17 +51,37 @@ class SubCategoryController extends Controller
     public function UpdateSubcategory(Request $request)
     {
         $subcat_id = $request->id;
-        SubCategory::findOrFail($subcat_id)->update([
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
-        ]);
+        $current_subcategory_name = SubCategory::findOrFail($subcat_id)->subcategory_name;
+        if ($current_subcategory_name == $request->subcategory_name) {
+            SubCategory::findOrFail($subcat_id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
+            ]);
 
-        $notification = array(
-            'message' => 'SubCategory Updated Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('all.subcategory')->with($notification);
+            $notification = array(
+                'message' => 'SubCategory Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.subcategory')->with($notification);
+        } else {
+            $request->validate([
+                'subcategory_name' => 'unique:sub_categories'
+            ], [
+                'subcategory_name.unique' => 'The subcategory name already exists. Please enter another subcategory name.',
+            ]);
+            SubCategory::findOrFail($subcat_id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
+            ]);
+
+            $notification = array(
+                'message' => 'SubCategory Updated Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.subcategory')->with($notification);
+        }
     } //End Method
 
     public function DeleteSubcategory($id)

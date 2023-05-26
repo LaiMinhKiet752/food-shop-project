@@ -19,6 +19,9 @@
     <link href="{{ asset('adminbackend/assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('adminbackend/assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
     <title>Admin Login </title>
 </head>
 
@@ -40,28 +43,29 @@
                                         <h3 class="">Admin Sign In</h3>
                                     </div>
                                     @if ($errors->any())
-                                            <ul class="text-danger" style="font-weight: bold;">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
+                                        <ul class="text-danger" style="font-weight: bold;">
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                     <div class="form-body">
                                         <form class="row g-3" method="POST" action="{{ route('login') }}"
                                             id="myForm">
                                             @csrf
                                             <div class="form-group col-12">
-                                                <label for="login" class="form-label">Username or Email *</label>
+                                                <label for="login" class="form-label">Username or Email <span
+                                                        class="text-danger">*</span></label>
                                                 <input type="text" name="login" class="form-control" id="login"
                                                     placeholder="">
                                             </div>
                                             <div class="form-group col-12">
-                                                <label for="password" class="form-label">Enter
-                                                    password *</label>
+                                                <label for="password" class="form-label">Password <span
+                                                        class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
                                                     <input type="password" name="password" class="form-control"
-                                                        id="password" placeholder=""> <a
-                                                        href="javascript:;" class="input-group-text bg-transparent"><i
+                                                        id="password" placeholder=""> <a href="javascript:;"
+                                                        class="input-group-text bg-transparent"><i
                                                             class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
@@ -157,6 +161,31 @@
                 },
             });
         });
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        @endif
     </script>
 </body>
 

@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.brand') }}" class="btn btn-primary">Add Brand</a>
+                    <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Brand</i></a>
                 </div>
             </div>
         </div>

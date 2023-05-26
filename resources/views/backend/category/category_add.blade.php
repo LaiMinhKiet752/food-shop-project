@@ -11,7 +11,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Category </li>
+                        <li class="breadcrumb-item active" aria-current="page">Add New Category</li>
                     </ol>
                 </nav>
             </div>
@@ -32,16 +32,19 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Name *</h6>
+                                            <h6 class="mb-0">Category Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="category_name" class="form-control" />
+                                            @if ($errors->has('category_name'))
+                                                <span class="text-danger">{{ $errors->first('category_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Category Image *</h6>
+                                            <h6 class="mb-0">Category Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="category_image" class="form-control"
