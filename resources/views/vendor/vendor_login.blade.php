@@ -21,6 +21,7 @@
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+    
 
     <title>Vendor Login </title>
 </head>

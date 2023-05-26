@@ -54,6 +54,9 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="subcategory_name" class="form-control"
                                                 value="{{ $subcategory->subcategory_name }}" />
+                                            @if ($errors->has('subcategory_name'))
+                                                <span class="text-danger">{{ $errors->first('subcategory_name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="row">
