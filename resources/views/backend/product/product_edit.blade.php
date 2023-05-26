@@ -132,7 +132,7 @@
                                                 @foreach ($activeVendor as $vendor)
                                                     <option value="{{ $vendor->id }}"
                                                         {{ $vendor->id == $products->vendor_id ? 'selected' : '' }}>
-                                                        {{ $vendor->name }}</option>
+                                                        {{ $vendor->shop_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

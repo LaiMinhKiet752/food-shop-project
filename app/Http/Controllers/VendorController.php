@@ -47,6 +47,7 @@ class VendorController extends Controller
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
+        $data->shop_name = $request->shop_name;
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
@@ -108,13 +109,17 @@ class VendorController extends Controller
     {
         $request->validate([
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'phone' => ['required', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ],[
+            'phone.unique'=>'The phone number already exists. Please create another phone number.'
         ]);
 
         User::insert([
             'name' => $request->name,
             'username' => $request->username,
+            'shop_name' => $request->shop_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'vendor_join' => $request->vendor_join,

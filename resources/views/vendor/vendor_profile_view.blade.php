@@ -31,7 +31,7 @@
                                         alt="Vendor" class="rounded-circle p-1 bg-primary"
                                         style="width: 100px; height: 100px;">
                                     <div class="mt-3">
-                                        <h4>{{ $vendorData->name }}</h4>
+                                        <h4>{{ $vendorData->shop_name }}</h4>
                                         <p class="text-secondary mb-1">{{ $vendorData->email }}</p>
                                         <p class="text-muted font-size-sm">{{ $vendorData->address }}</p>
 
@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0"> Shop Name</h6>
+                                            <h6 class="mb-0"> Full Name</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="name" class="form-control"
@@ -95,7 +95,16 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Email</h6>
+                                            <h6 class="mb-0"> Shop Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" name="shop_name" class="form-control"
+                                                value="{{ $vendorData->shop_name }}" />
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="email" name="email" class="form-control"
@@ -104,7 +113,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Phone </h6>
+                                            <h6 class="mb-0">Phone</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="phone" class="form-control"
@@ -114,7 +123,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Address</h6>
+                                            <h6 class="mb-0">Address</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="address" class="form-control"
@@ -124,7 +133,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Year Of Joining</h6>
+                                            <h6 class="mb-0">Founded Year</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="vendor_join" class="form-control"
@@ -134,7 +143,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Info</h6>
+                                            <h6 class="mb-0">Short Info</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info "

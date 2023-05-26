@@ -38,7 +38,7 @@
                                     <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                                 </div>
                                 <h4 class="mb-5"><a
-                                        href="{{ route('vendor.details', $vendor->id) }}">{{ $vendor->name }}</a></h4>
+                                        href="{{ route('vendor.details', $vendor->id) }}">{{ $vendor->shop_name }}</a></h4>
                                 <div class="product-rate-cover">
                                     @php
                                         $products = App\Models\Product::where('vendor_id', $vendor->id)->get();

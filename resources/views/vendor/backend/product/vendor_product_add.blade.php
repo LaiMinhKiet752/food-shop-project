@@ -90,7 +90,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputCostPerPrice" class="form-label">Product Code <span class="text-danger">*</span></label>
                                             <input type="text" name="product_code" class="form-control"
-                                                id="inputCostPerPrice" value="{{ old('product_code') }}">
+                                                id="inputCostPerPrice" placeholder="1q2w3e" value="{{ old('product_code') }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity <span class="text-danger">*</span></label>
@@ -192,7 +192,6 @@
                 </form>
             </div>
         </div>
-
     </div>
 
 

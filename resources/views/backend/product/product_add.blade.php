@@ -153,7 +153,7 @@
                                             <select name="vendor_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($activeVendor as $vendor)
-                                                    <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
+                                                    <option value="{{ $vendor->id }}">{{ $vendor->shop_name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

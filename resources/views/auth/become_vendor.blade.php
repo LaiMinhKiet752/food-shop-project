@@ -55,27 +55,32 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input type="text" id="name" required="" name="name"
-                                                    placeholder="Shop Name *" />
+                                                    placeholder="Full Name *" value="{{ old('name') }}"/>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" id="shop_name" required="" name="shop_name"
+                                                    placeholder="Shop Name *" value="{{ old('shop_name') }}"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <input type="text" id="username" required="" name="username"
-                                                    placeholder="Username *" />
+                                                    placeholder="Username *" value="{{ old('username') }}"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <input type="text" id="vendor_join" required="" name="vendor_join"
-                                                    placeholder="Year Of Joining *" />
+                                                    placeholder="Founded Year *" value="{{ old('vendor_join') }}"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <input type="email" id="email" required="" name="email"
-                                                    placeholder="Email *" />
+                                                    placeholder="Email *" value="{{ old('email') }}"/>
                                             </div>
 
                                             <div class="form-group">
                                                 <input type="text" id="phone" required="" name="phone"
-                                                    placeholder="Phone *" />
+                                                    placeholder="Phone *" value="{{ old('phone') }}"/>
                                             </div>
 
                                             <div class="form-group">
@@ -205,6 +210,10 @@
                         required: true,
                         maxlength: 255,
                     },
+                    shop_name: {
+                        required: true,
+                        maxlength: 255,
+                    },
                     vendor_join: {
                         required: true,
                         checkYear: true,
@@ -227,15 +236,19 @@
                 },
                 messages: {
                     name: {
+                        required: 'Please enter your full name.',
+                        maxlength: 'The full name must not be greater than 255 characters.',
+                    },
+                    username: {
+                        required: 'Please enter your username.',
+                        maxlength: 'The username must not be greater than 255 characters.',
+                    },
+                    shop_name: {
                         required: 'Please enter your shop name.',
                         maxlength: 'The shop name must not be greater than 255 characters.',
                     },
                     vendor_join: {
                         required: 'Please enter the year your store was established.',
-                    },
-                    username: {
-                        required: 'Please enter your user name.',
-                        maxlength: 'The username must not be greater than 255 characters.',
                     },
                     email: {
                         required: 'Please enter your email.',

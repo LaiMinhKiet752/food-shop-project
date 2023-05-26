@@ -98,7 +98,7 @@
                                             <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                                         </div>
                                         <h4 class="mb-5"><a
-                                                href="{{ route('vendor.details', $vendor->id) }}">{{ $vendor->name }}</a>
+                                                href="{{ route('vendor.details', $vendor->id) }}">{{ $vendor->shop_name }}</a>
                                         </h4>
                                         <div class="product-rate-cover">
                                             <div class="product-rate d-inline-block">

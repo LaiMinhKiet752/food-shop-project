@@ -27,11 +27,12 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Shop Name </th>
-                                <th>Vendor UserName </th>
-                                <th>Year Of Joining</th>
-                                <th>Vendor Email </th>
-                                <th>Status </th>
+                                <th>Full Name</th>
+                                <th>Shop Name</th>
+                                <th>User Name</th>
+                                <th>Founded Year</th>
+                                <th>Email</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,6 +41,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->name }}</td>
+                                    <td>{{ $item->shop_name }}</td>
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->vendor_join }}</td>
                                     <td>{{ $item->email }}</td>
@@ -53,11 +55,12 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Shop Name </th>
-                                <th>Vendor UserName </th>
-                                <th>Year Of Joining</th>
-                                <th>Vendor Email </th>
-                                <th>Status </th>
+                                <th>Full Name</th>
+                                <th>Shop Name</th>
+                                <th>User Name</th>
+                                <th>Founded Year</th>
+                                <th>Email</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

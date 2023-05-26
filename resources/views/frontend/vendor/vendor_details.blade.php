@@ -11,7 +11,7 @@
     </div>
     <div class="container mb-30">
         <div class="archive-header-2 text-center pt-80 pb-50">
-            <h1 class="display-2 mb-50"> {{ $vendor->name }} </h1>
+            <h1 class="display-2 mb-50"> {{ $vendor->shop_name }} </h1>
         </div>
         <div class="row flex-row-reverse">
             <div class="col-lg-4-5">
@@ -124,7 +124,7 @@
                                                     href="vendor-details-1.html">Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                                                    href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
                                         @endif
                                     </div>
                                     <div class="product-card-bottom">
@@ -185,7 +185,7 @@
                         <div class="product-category">
                             <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                         </div>
-                        <h4 class="mb-5"><a href="vendor-details-1.html" class="text-heading">{{ $vendor->name }}</a>
+                        <h4 class="mb-5"><a href="vendor-details-1.html" class="text-heading">{{ $vendor->shop_name }}</a>
                         </h4>
                         <div class="product-rate-cover mb-15">
                             <div class="product-rate d-inline-block">
