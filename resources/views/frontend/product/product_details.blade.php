@@ -97,7 +97,7 @@
                                     <h6>Sold By <a href=""> <span class="text-danger">Owner</span></a></h6>
                                 @else
                                     <h6>Sold By <a href="#"> <span
-                                                class="text-danger">{{ $product['vendor']['name'] }}</span></a></h6>
+                                                class="text-danger">{{ $product['vendor']['shop_name'] }}</span></a></h6>
                                 @endif
                                 <hr>
                                 <div class="font-xs">
@@ -268,7 +268,7 @@
                                                 </h6>
                                             @else
                                                 <h6>
-                                                    <a href="vendor-details-2.html">{{ $product['vendor']['name'] }}</a>
+                                                    <a href="vendor-details-2.html">{{ $product['vendor']['shop_name'] }}</a>
                                                 </h6>
                                             @endif
 
@@ -565,7 +565,7 @@
                                                                 href="vendor-details-1.html">Owner</a></span>
                                                     @else
                                                         <span class="font-small text-muted">By <a
-                                                                href="vendor-details-1.html">{{ $product['vendor']['name'] }}</a></span>
+                                                                href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
                                                     @endif
                                                 </div>
                                                 <div class="product-card-bottom">

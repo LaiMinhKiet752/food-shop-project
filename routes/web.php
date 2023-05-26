@@ -33,6 +33,18 @@ use App\Http\Controllers\Frontend\IndexController;
 // });
 
 
+//Index All Route
+Route::get('/', [IndexController::class, 'Index']);
+//Frontend Product Details All Route
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
+Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
+Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CategoryWiseProduct']);
+Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
+// Product View Modal With Ajax
+Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
+
+
 //FrontendController
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
@@ -176,17 +188,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 }); //End Group Middleware Admin
 
 
-//Index All Route
-Route::get('/', [IndexController::class, 'Index']);
-//Frontend Product Details All Route
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
-Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CategoryWiseProduct']);
-Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
-// Product View Modal With Ajax
-Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-
 
 //Add To Cart Store Data
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
@@ -232,10 +233,6 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 
 //Category Five Page Add To Cart
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
-
-
-
-
 
 
 

@@ -54,8 +54,6 @@ class AdminController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->address = $request->address;
-        $data->vendor_join = $request->vendor_join;
-        $data->vendor_short_info = $request->address;
 
         if ($request->file('photo')) {
             $request->validate([
@@ -129,7 +127,7 @@ class AdminController extends Controller
     public function ActiveVendorApprove(Request $request)
     {
         $vendor_id = $request->id;
-        $user = User::findOrFail($vendor_id)->update([
+        User::findOrFail($vendor_id)->update([
             'status' => 'active',
         ]);
         $notification = array(
@@ -148,7 +146,7 @@ class AdminController extends Controller
     public function InActiveVendorApprove(Request $request)
     {
         $vendor_id = $request->id;
-        $user = User::findOrFail($vendor_id)->update([
+        User::findOrFail($vendor_id)->update([
             'status' => 'inactive',
         ]);
         $notification = array(

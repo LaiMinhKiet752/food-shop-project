@@ -34,22 +34,34 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">User Name</h6>
+                                            <h6 class="mb-0">Vendor Full Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ $activeVendorDetails->name }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Shop Name</h6>
+                                        </div>
+                                        <div class="col-sm-9 text-secondary">
+                                            <input type="text" name="shop_name" class="form-control"
+                                                value="{{ $activeVendorDetails->shop_name }}" />
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Vendor UserName</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" name="username"
                                                 value="{{ $activeVendorDetails->username }}" />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Shop Name</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            <input type="text" name="name" class="form-control"
-                                                value="{{ $activeVendorDetails->name }}" />
-                                        </div>
-                                    </div>
+
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Vendor Email</h6>
@@ -69,7 +81,6 @@
                                         </div>
                                     </div>
 
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Vendor Address</h6>
@@ -82,7 +93,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Vendor Join</h6>
+                                            <h6 class="mb-0">Founded Year</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" name="address" class="form-control"
@@ -99,7 +110,6 @@
                                             <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info " rows="3">{{ $activeVendorDetails->vendor_short_info }}</textarea>
                                         </div>
                                     </div>
-
 
 
                                     <div class="row mb-3">

@@ -207,7 +207,7 @@
 
 
     @php
-        $categories = App\Models\Category::orderBy('category_name', 'ASC')
+        $categories = \App\Models\Category::orderBy('id', 'DESC')
             ->limit(5)
             ->get();
     @endphp
@@ -230,7 +230,7 @@
                                 <ul>
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="shop-grid-right.html"> <img
+                                            <a href="#"> <img
                                                     src="{{ asset($item->category_image) }}" alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
@@ -239,7 +239,7 @@
                                 <ul class="end">
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="shop-grid-right.html"> <img
+                                            <a href="#"> <img
                                                     src="{{ asset($item->category_image) }}" alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
@@ -289,7 +289,7 @@
                                 </li>
 
                                 @php
-                                    $categories = App\Models\Category::orderBy('category_name', 'ASC')
+                                    $categories = App\Models\Category::orderBy('id', 'DESC')
                                         ->limit(5)
                                         ->get();
                                 @endphp
@@ -301,7 +301,7 @@
                                             <i class="fi-rs-angle-down"></i></a>
                                         @php
                                             $subcategories = App\Models\SubCategory::where('category_id', $category->id)
-                                                ->orderBy('subcategory_name', 'ASC')
+                                                ->orderBy('id', 'DESC')
                                                 ->get();
                                         @endphp
 
