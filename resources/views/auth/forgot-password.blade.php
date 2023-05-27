@@ -66,8 +66,8 @@
                                         <form method="POST" action="{{ route('password.email') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
-                                                    placeholder="Email *" />
+                                                <input class="form-control" type="email" id="email" required=""
+                                                    name="email" placeholder="Email *" />
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up"

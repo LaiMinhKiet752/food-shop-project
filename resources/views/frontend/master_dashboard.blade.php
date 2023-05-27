@@ -32,7 +32,6 @@
 
     <main class="main">
         @yield('main')
-
     </main>
 
 
@@ -217,7 +216,6 @@
         // End Details Page Add To Cart Product
     </script>
 
-
     <script type="text/javascript">
         //Start Mini Cart
         function miniCart() {
@@ -296,7 +294,7 @@
 
     <!--  /// Start Wishlist Add -->
     <script type="text/javascript">
-        function addToWishList(product_id) {
+        function addToWishlist(product_id) {
             $.ajax({
                 type: 'POST',
                 dataType: 'json',

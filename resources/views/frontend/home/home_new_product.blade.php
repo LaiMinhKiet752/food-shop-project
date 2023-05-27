@@ -46,7 +46,7 @@
                                     <div class="product-action-1">
 
                                         <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
-                                            onclick="addToWishList(this.id)"><i class="fi-rs-heart"></i></a>
+                                            onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
