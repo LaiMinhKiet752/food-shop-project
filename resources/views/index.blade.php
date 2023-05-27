@@ -202,27 +202,27 @@
                                                 @csrf
                                                 <div class="row">
                                                     <div class="form-group col-md-6">
-                                                        <label>User Name <span class="required">*</span></label>
+                                                        <label>User Name <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="username"
                                                             value="{{ $userData->username }}" type="text" readonly/>
                                                     </div>
                                                     <div class="form-group col-md-6">
-                                                        <label>Full Name <span class="required">*</span></label>
+                                                        <label>Full Name <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="name"
                                                             value="{{ $userData->name }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Email <span class="required">*</span></label>
+                                                        <label>Email <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="email"
                                                             type="email" value="{{ $userData->email }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Phone <span class="required">*</span></label>
+                                                        <label>Phone <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="phone"
                                                             type="text" value="{{ $userData->phone }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Address <span class="required">*</span></label>
+                                                        <label>Address <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="address"
                                                             type="text" value="{{ $userData->address }}" />
                                                     </div>
@@ -235,7 +235,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label> <span class="required">*</span></label>
+                                                        <label> <span class="text-danger">*</span></label>
                                                         <img id="showImage"
                                                             src="{{ !empty($userData->photo) ? url('upload/user_images/' . $userData->photo) : url('upload/no_image.jpg') }}"
                                                             alt="User" class="rounded-circle p-1 bg-primary"
@@ -265,17 +265,17 @@
                                                 @csrf
                                                 <div class="row">
                                                     <div class="form-group col-md-12">
-                                                        <label>Old Password <span class="required">*</span></label>
+                                                        <label>Old Password <span class="text-danger">*</span></label>
                                                         <input class="form-control" id="current_password"
                                                             name="old_password" type="password" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>New Password <span class="required">*</span></label>
+                                                        <label>New Password <span class="text-danger">*</span></label>
                                                         <input class="form-control" id="new_password" name="new_password"
                                                             type="password" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Confirm New Password <span class="required">*</span></label>
+                                                        <label>Confirm New Password <span class="text-danger">*</span></label>
                                                         <input class="form-control" id="new_password_confirmation"
                                                             name="new_password_confirmation" type="password" />
                                                     </div>

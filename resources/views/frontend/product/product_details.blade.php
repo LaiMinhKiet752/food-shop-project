@@ -319,7 +319,7 @@
                                                     <div class="single-comment justify-content-between d-flex mb-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-2.png" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-2.png') }}" alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Sienna</a>
                                                             </div>
@@ -350,7 +350,7 @@
                                                     <div class="single-comment justify-content-between d-flex mb-30 ml-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-3.png" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-3.png') }}" alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Brenna</a>
                                                             </div>
@@ -381,7 +381,7 @@
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="assets/imgs/blog/author-4.png" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-4.png') }}" alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Gemma</a>
                                                             </div>
@@ -592,8 +592,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

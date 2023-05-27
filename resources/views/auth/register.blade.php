@@ -62,19 +62,19 @@
                                         <form method="POST" action="{{ route('register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="text" id="username" name="username"
+                                                <input class="form-control" type="text" id="username" name="username"
                                                     placeholder="Username *" value="{{ old('username') }}"/>
                                             </div>
                                             <div class="form-group">
-                                                <input type="email" id="email" name="email"
+                                                <input class="form-control" type="email" id="email" name="email"
                                                     placeholder="Email *" value="{{ old('email') }}"/>
                                             </div>
                                             <div class="form-group">
-                                                <input id="password" type="password" name="password"
+                                                <input class="form-control" id="password" type="password" name="password"
                                                     placeholder="Password *" />
                                             </div>
                                             <div class="form-group">
-                                                <input id="password_confirmation" type="password"
+                                                <input class="form-control" id="password_confirmation" type="password"
                                                     name="password_confirmation" placeholder="Confirm password *" />
                                             </div>
                                             <div class="login_footer form-group mb-50">

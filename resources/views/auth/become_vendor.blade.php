@@ -54,52 +54,58 @@
                                         <form method="POST" action="{{ route('vendor.register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <input type="text" id="name" required="" name="name"
-                                                    placeholder="Full Name *" value="{{ old('name') }}"/>
+                                                <input class="form-control" type="text" id="name" required=""
+                                                    name="name" placeholder="Full Name *"
+                                                    value="{{ old('name') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" id="shop_name" required="" name="shop_name"
-                                                    placeholder="Shop Name *" value="{{ old('shop_name') }}"/>
+                                                <input class="form-control" type="text" id="shop_name" required=""
+                                                    name="shop_name" placeholder="Shop Name *"
+                                                    value="{{ old('shop_name') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" id="username" required="" name="username"
-                                                    placeholder="Username *" value="{{ old('username') }}"/>
+                                                <input class="form-control" type="text" id="username" required=""
+                                                    name="username" placeholder="Username *"
+                                                    value="{{ old('username') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" id="vendor_join" required="" name="vendor_join"
-                                                    placeholder="Founded Year *" value="{{ old('vendor_join') }}"/>
+                                                <input class="form-control" type="text" id="vendor_join"
+                                                    required="" name="vendor_join" placeholder="Founded Year *"
+                                                    value="{{ old('vendor_join') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
-                                                    placeholder="Email *" value="{{ old('email') }}"/>
+                                                <input class="form-control" type="email" id="email" required=""
+                                                    name="email" placeholder="Email *" value="{{ old('email') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input type="text" id="phone" required="" name="phone"
-                                                    placeholder="Phone *" value="{{ old('phone') }}"/>
+                                                <input class="form-control" type="text" id="phone" required=""
+                                                    name="phone" placeholder="Phone *" value="{{ old('phone') }}" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password"
-                                                    placeholder="Password *" />
+                                                <input class="form-control" required="" id="password"
+                                                    type="password" name="password" placeholder="Password *" />
                                             </div>
 
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password"
-                                                    name="password_confirmation" placeholder="Confirm password *" />
+                                                <input class="form-control" required="" id="password_confirmation"
+                                                    type="password" name="password_confirmation"
+                                                    placeholder="Confirm password *" />
                                             </div>
 
 
                                             <div class="login_footer form-group mb-50">
                                                 <div class="chek-form">
                                                     <div class="custome-checkbox">
-                                                        <input class="form-check-input" type="checkbox" name="checkbox"
-                                                            id="exampleCheckbox12" value="" />
-                                                        <label class="form-check-label" for="exampleCheckbox12"><span>I
+                                                        <input class="form-check-input" type="checkbox"
+                                                            name="checkbox" id="exampleCheckbox12" value="" />
+                                                        <label class="form-check-label"
+                                                            for="exampleCheckbox12"><span>I
                                                                 agree to terms &amp; Policy.</span></label>
                                                     </div>
                                                 </div>

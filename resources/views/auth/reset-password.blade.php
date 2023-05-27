@@ -61,16 +61,18 @@
                                             @csrf
                                             <input type="hidden" name="token" value="{{ $request->route('token') }}">
                                             <div class="form-group">
-                                                <input type="email" id="email" required="" name="email"
-                                                    placeholder="Your email *" value="{{ old('email', $request->email) }}" readonly/>
+                                                <input class="form-control" type="email" id="email" required=""
+                                                    name="email" placeholder="Your email *"
+                                                    value="{{ old('email', $request->email) }}" readonly />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password" type="password" name="password"
-                                                    placeholder="New password *" />
+                                                <input class="form-control" required="" id="password"
+                                                    type="password" name="password" placeholder="New password *" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" id="password_confirmation" type="password"
-                                                    name="password_confirmation" placeholder="Confirm new password *" />
+                                                <input class="form-control" required="" id="password_confirmation"
+                                                    type="password" name="password_confirmation"
+                                                    placeholder="Confirm new password *" />
                                             </div>
                                             <div class="form-group">
                                                 <button type="submit" class="btn btn-heading btn-block hover-up"
