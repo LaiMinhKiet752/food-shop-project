@@ -242,6 +242,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(WishlistController::class)->group(function(){
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishListProduct');
+        Route::get('/wishlist-remove/{id}', 'WishListRemove');
     });
 
 });

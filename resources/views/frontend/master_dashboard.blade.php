@@ -300,6 +300,7 @@
                 dataType: 'json',
                 url: "/add-to-wishlist/" + product_id,
                 success: function(data) {
+                    wishlist();
                     // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
@@ -335,7 +336,9 @@
                 dataType: 'json',
                 url: "/get-wishlist-product",
                 success: function(response) {
-                    var rows = ""
+                    $('#wishlistQty').text(response.wishlistQuantity);
+                    $('#countproduct').text( 'There are ' + response.wishlistQuantity +' products in your wishlist');
+                    var rows = "";
                     $.each(response.wishlist, function(key, value) {
                         rows += `<tr class="pt-30">
                         <td class="custome-checkbox pl-30">
@@ -364,7 +367,7 @@
 
                         </td>
                         <td class="action text-center" data-title="Remove">
-                            <a href="#" class="text-body"><i class="fi-rs-trash"></i></a>
+                            <a type="submit" class="text-body" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fi-rs-trash"></i></a>
                         </td>
                     </tr> `
                     });
@@ -374,6 +377,39 @@
         }
 
         wishlist();
+
+
+        function wishlistRemove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/wishlist-remove/" + id,
+                dataType: "json",
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
     </script>
 
     <!--  /// End Load Wishlist Data -->
