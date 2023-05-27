@@ -6,9 +6,7 @@
     <title>Nest - Food Shop </title>
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="description" content="" />
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -19,6 +17,8 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 </head>
 
 <body>
@@ -74,7 +74,8 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
@@ -152,18 +153,19 @@
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                             type: 'success',
+                            icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
                             type: 'error',
+                            icon: 'error',
                             title: data.error,
                         })
                     }
@@ -192,18 +194,19 @@
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                             type: 'success',
+                            icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
                             type: 'error',
+                            icon: 'error',
                             title: data.error,
                         })
                     }
@@ -266,7 +269,6 @@
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        icon: 'success',
                         showConfirmButton: false,
                         timer: 3000
                     })
@@ -274,12 +276,14 @@
 
                         Toast.fire({
                             type: 'success',
+                            icon: 'success',
                             title: data.success,
                         })
                     } else {
 
                         Toast.fire({
                             type: 'error',
+                            icon: 'error',
                             title: data.error,
                         })
                     }
@@ -288,7 +292,42 @@
             })
         }
         //End Mini Cart Remove
-
     </script>
+
+    <!--  /// Start Wishlist Add -->
+    <script type="text/javascript">
+        function addToWishList(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/" + product_id,
+                success: function(data) {
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    <!--  /// End Wishlist Add -->
 </body>
+
 </html>

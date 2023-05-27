@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,11 +56,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
 }); //End Group Middleware 'Auth'
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 //Admin Dashborad
@@ -210,7 +206,7 @@ Route::post('/home/new/product/category/cart/store/{id}', [CartController::class
 //Featured Product Page Add To Cart
 Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToCartFeaturedProduct']);
 
-//Featured Product Page Add To Cart
+//Category Product Page Add To Cart
 Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryProduct']);
 
 //Featured Product Page Add To Cart
@@ -233,6 +229,11 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 
 //Category Five Page Add To Cart
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
+
+
+
+//Add To Wishlist
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
 
 
