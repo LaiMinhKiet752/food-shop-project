@@ -23,10 +23,10 @@ class WishlistController extends Controller
                     'created_at' => Carbon::now(),
                 ]);
                 return response()->json(['success' => 'Successfully Added On Your Wishlist!']);
-            }else{
+            } else {
                 return response()->json(['error' => 'This Product Is Already In Your Wishlist!']);
             }
-        }else{
+        } else {
             return response()->json(['error' => 'At First Login Your Account!']);
         }
     } //End Method
@@ -34,5 +34,15 @@ class WishlistController extends Controller
     public function AllWishList()
     {
         return view('frontend.wishlist.view_wishlist');
+    } //End Method
+
+    public function GetWishListProduct()
+    {
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        $wishlistQuantity = wishlist::count();
+        return response()->json([
+            'wishlist' => $wishlist,
+            'wishlistQuantity' => $wishlistQuantity
+        ]);
     } //End Method
 }

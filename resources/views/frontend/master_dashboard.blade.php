@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 </head>
 
 <body>
@@ -326,6 +326,21 @@
         }
     </script>
     <!--  /// End Wishlist Add -->
+
+    <!--  /// Start Load Wishlist Data -->
+    <script type="text/javascript">
+        function wishlist() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "/get-wishlist-product/",
+                success: function(response) {
+                    
+                }
+            })
+        }
+    </script>
+    <!--  /// End Load Wishlist Data -->
 </body>
 
 </html>
