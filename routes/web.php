@@ -212,6 +212,9 @@ Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToC
 //Featured Product Page Add To Cart
 Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'AddToCartSubCategoryProduct']);
 
+//Related Product Page Add To Cart
+Route::post('/related/product/cart/store/{id}', [CartController::class, 'AddToCartRelatedProduct']);
+
 //Vendor Details Page Add To Cart
 Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
 
@@ -235,9 +238,14 @@ Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'Ad
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
+//Add To Wishlist New Product Category
+Route::post('/add-to-wishlist/new-product-category/{product_id}', [WishlistController::class, 'addToWishListNewProductCategory']);
+
+//Add To Wishlist Featured Product
+Route::post('/add-to-wishlist/featured-product/{product_id}', [WishlistController::class, 'addToWishListFeaturedProduct']);
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
-
     //Wishlist All Route
     Route::controller(WishlistController::class)->group(function(){
         Route::get('/wishlist', 'AllWishList')->name('wishlist');

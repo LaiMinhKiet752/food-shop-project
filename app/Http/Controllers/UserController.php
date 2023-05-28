@@ -64,7 +64,6 @@ class UserController extends Controller
     } // End Mehtod
     public function UserUpdatePassword(Request $request)
     {
-
         //Match the old password
         if (!Hash::check($request->old_password, auth::user()->password)) {
             $notification = array(

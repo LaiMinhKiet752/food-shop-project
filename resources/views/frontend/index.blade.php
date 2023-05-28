@@ -9,7 +9,7 @@
     <!--End banners-->
     @include('frontend.home.home_new_product')
     <!--Products Tabs-->
-    @include('frontend.home.home_features_product')
+    @include('frontend.home.home_featured_product')
     <!--End Best Sales-->
 
 
