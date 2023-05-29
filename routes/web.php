@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -283,6 +284,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/wishlist-remove/{id}', 'WishListRemove');
     });
 });
+
+
+//Add To Compare Home New Product
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
 
 
