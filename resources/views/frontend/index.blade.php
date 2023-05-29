@@ -3,13 +3,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     @include('frontend.home.home_slider')
     <!--End hero slider-->
-    @include('frontend.home.home_features_category')
+    @include('frontend.home.home_featured_category')
     <!--End category slider-->
     @include('frontend.home.home_banner')
     <!--End banners-->
     @include('frontend.home.home_new_product')
     <!--Products Tabs-->
-    @include('frontend.home.home_features_product')
+    @include('frontend.home.home_featured_product')
     <!--End Best Sales-->
 
 
@@ -36,10 +36,13 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlistCategoryOne(this.id)"><i
                                                     class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -113,8 +116,6 @@
             </div>
             <!--End tab-content-->
         </div>
-
-
     </section>
     <!-- End Category 1 -->
 
@@ -142,10 +143,13 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlistCategoryTwo(this.id)"><i
                                                     class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -219,8 +223,6 @@
             </div>
             <!--End tab-content-->
         </div>
-
-
     </section>
     <!-- End Category 2 -->
 
@@ -248,10 +250,13 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                                href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlistCategoryThree(this.id)"><i
+                                                    class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -325,8 +330,6 @@
             </div>
             <!--End tab-content-->
         </div>
-
-
     </section>
     <!-- End Category 3 -->
 
@@ -354,10 +357,13 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                                href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlistCategoryFour(this.id)"><i
+                                                    class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -431,8 +437,6 @@
             </div>
             <!--End tab-content-->
         </div>
-
-
     </section>
     <!-- End Category 4 -->
 
@@ -460,10 +464,13 @@
                                             </a>
                                         </div>
                                         <div class="product-action-1">
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                                href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlistCategoryFive(this.id)"><i
+                                                    class="fi-rs-heart"></i></a>
+
                                             <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                     class="fi-rs-shuffle"></i></a>
+
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                                 onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -537,8 +544,6 @@
             </div>
             <!--End tab-content-->
         </div>
-
-
     </section>
     <!-- End Category 5 -->
 
@@ -718,7 +723,7 @@
     <!--End Vendor List -->
 
 
-    {{-- Start Category One Page Add To Cart Product --}}
+    {{-- Start Category One Add To Cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.CategoryOneProductAddToCart').click(function(e) {
@@ -760,9 +765,9 @@
             });
         });
     </script>
-    {{-- End Category One Page Add To Cart Product --}}
+    {{-- End Category One Add To Cart --}}
 
-    {{-- Start Category Two Page Add To Cart Product --}}
+    {{-- Start Category Two Add To Cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.CategoryTwoProductAddToCart').click(function(e) {
@@ -804,9 +809,9 @@
             });
         });
     </script>
-    {{-- End Category Two Page Add To Cart Product --}}
+    {{-- End Category Two Add To Cart --}}
 
-    {{-- Start Category Three Page Add To Cart Product --}}
+    {{-- Start Category Three Add To Cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.CategoryThreeProductAddToCart').click(function(e) {
@@ -848,9 +853,9 @@
             });
         });
     </script>
-    {{-- End Category Three Page Add To Cart Product --}}
+    {{-- End Category Three Add To Cart --}}
 
-    {{-- Start Category Four Page Add To Cart Product --}}
+    {{-- Start Category Four Add To Cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.CategoryFourProductAddToCart').click(function(e) {
@@ -892,9 +897,9 @@
             });
         });
     </script>
-    {{-- End Category Four Page Add To Cart Product --}}
+    {{-- End Category Four Add To Cart --}}
 
-    {{-- Start Category Five Page Add To Cart Product --}}
+    {{-- Start Category Five Add To Cart --}}
     <script type="text/javascript">
         $(document).ready(function() {
             $('.CategoryFiveProductAddToCart').click(function(e) {
@@ -936,5 +941,189 @@
             });
         });
     </script>
-    {{-- End Category Five Page Add To Cart Product --}}
+    {{-- End Category Five Add To Cart --}}
+
+
+
+    {{-- Start Category One Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistCategoryOne(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/category-one/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Category One Add To Wishlist --}}
+
+    {{-- Start Category Two Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistCategoryTwo(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/category-two/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Category Two Add To Wishlist --}}
+
+    {{-- Start Category Three Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistCategoryThree(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/category-three/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Category Three Add To Wishlist --}}
+
+    {{-- Start Category Four Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistCategoryFour(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/category-four/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Category Four Add To Wishlist --}}
+
+    {{-- Start Category Five Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistCategoryFive(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/category-five/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Category Five Add To Wishlist --}}
+
+
 @endsection

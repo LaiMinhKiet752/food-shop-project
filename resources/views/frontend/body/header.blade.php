@@ -113,7 +113,12 @@
                                 <a href="{{ route('wishlist') }}">
                                     <img class="svgInject" alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                                    <span class="pro-count blue" id="wishlistQty"></span>
+                                    @auth
+                                        <span class="pro-count blue" id="wishlistQty"></span>
+                                    @else
+                                        <span class="pro-count blue">0</span>
+                                    @endauth
+
                                 </a>
                                 <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                             </div>
@@ -230,8 +235,8 @@
                                 <ul>
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="#"> <img
-                                                    src="{{ asset($item->category_image) }}" alt="" />
+                                            <a href="#"> <img src="{{ asset($item->category_image) }}"
+                                                    alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
                                     @endforeach
@@ -239,8 +244,8 @@
                                 <ul class="end">
                                     @foreach ($categories as $item)
                                         <li>
-                                            <a href="#"> <img
-                                                    src="{{ asset($item->category_image) }}" alt="" />
+                                            <a href="#"> <img src="{{ asset($item->category_image) }}"
+                                                    alt="" />
                                                 {{ $item->category_name }} </a>
                                         </li>
                                     @endforeach

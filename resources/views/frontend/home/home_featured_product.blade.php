@@ -46,7 +46,8 @@
                                                         class="fi-rs-eye"></i></a>
 
                                                 <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                    href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                                    id="{{ $product->id }}" onclick="addToWishlistFeaturedProduct(this.id)"><i
+                                                        class="fi-rs-heart"></i></a>
 
                                                 <a aria-label="Compare" class="action-btn small hover-up"
                                                     href="shop-compare.html"><i class="fi-rs-shuffle"></i></a>
@@ -154,6 +155,40 @@
             });
         });
         // Start Home New Product Page Add To Cart Product
+    </script>
+
+    <script type="text/javascript">
+        function addToWishlistFeaturedProduct(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/featured-product/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
     </script>
 
 

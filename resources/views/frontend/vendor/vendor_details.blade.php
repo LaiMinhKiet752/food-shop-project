@@ -63,7 +63,8 @@
                 <div class="row product-grid">
                     @foreach ($vproduct as $product)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn vendor_product_data" data-wow-delay=".1s">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn vendor_product_data"
+                                data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
                                         <a
@@ -74,10 +75,13 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                            onclick="addToWishlistVendorDetailsPage(this.id)"><i
                                                 class="fi-rs-heart"></i></a>
+
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
+
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -185,7 +189,8 @@
                         <div class="product-category">
                             <span class="text-muted">Since {{ $vendor->vendor_join }}</span>
                         </div>
-                        <h4 class="mb-5"><a href="vendor-details-1.html" class="text-heading">{{ $vendor->shop_name }}</a>
+                        <h4 class="mb-5"><a href="vendor-details-1.html"
+                                class="text-heading">{{ $vendor->shop_name }}</a>
                         </h4>
                         <div class="product-rate-cover mb-15">
                             <div class="product-rate d-inline-block">
@@ -247,8 +252,8 @@
         </div>
     </div>
 
+    {{-- Start Vendor Details Page Add To Cart --}}
     <script type="text/javascript">
-        // Start Vendor Details Page Add To Cart Product
         $(document).ready(function() {
             $('.VendorDetailsProductAddToCart').click(function(e) {
                 e.preventDefault();
@@ -288,6 +293,43 @@
                 });
             });
         });
-        // Start Vendor Details Page Add To Cart Product
     </script>
+    {{-- End Vendor Details Page Add To Cart --}}
+
+
+    {{-- Start Vendor Details Page Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistVendorDetailsPage(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/vendor-details-page/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Vendor Details Page Add To Wishlist --}}
 @endsection

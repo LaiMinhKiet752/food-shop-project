@@ -48,6 +48,7 @@
             </div>
         </div>
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
@@ -72,6 +73,7 @@
     <!-- Template  JS -->
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -337,7 +339,8 @@
                 url: "/get-wishlist-product",
                 success: function(response) {
                     $('#wishlistQty').text(response.wishlistQuantity);
-                    $('#countproduct').text( 'There are ' + response.wishlistQuantity +' products in your wishlist');
+                    $('#countproduct').text('There are ' + response.wishlistQuantity +
+                    ' products in this list');
                     var rows = "";
                     $.each(response.wishlist, function(key, value) {
                         rows += `<tr class="pt-30">

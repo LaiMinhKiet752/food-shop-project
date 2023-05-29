@@ -81,10 +81,13 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn" href="shop-wishlist.html"><i
+                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                            onclick="addToWishlistSubCategoryProduct(this.id)"><i
                                                 class="fi-rs-heart"></i></a>
+
                                         <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
+
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
@@ -240,8 +243,8 @@
         </div>
     </div>
 
+    {{-- Start SubCategory Product Add To Wishlist --}}
     <script type="text/javascript">
-        // Start SubCategory Page Add To Cart Product
         $(document).ready(function() {
             $('.SubCategoryProductAddToCart').click(function(e) {
                 e.preventDefault();
@@ -281,6 +284,43 @@
                 });
             });
         });
-        // Start SubCategory Page Add To Cart Product
     </script>
+    {{-- End SubCategory Product Add To Wishlist --}}
+
+
+    {{-- Start SubCategory Product Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistSubCategoryProduct(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/subcategory-product/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End SubCategory Product Add To Wishlist --}}
 @endsection

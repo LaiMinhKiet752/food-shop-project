@@ -11,16 +11,13 @@ class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-
         return view('admin.index');
     } // End Mehtod
-
 
     public function AdminLogin()
     {
         return view('admin.admin_login');
     } // End Mehtod
-
 
     public function AdminDestroy(Request $request)
     {
@@ -37,7 +34,6 @@ class AdminController extends Controller
 
         return redirect('/admin/login')->with($notification);
     } // End Mehtod
-
 
     public function AdminProfile()
     {
@@ -86,7 +82,6 @@ class AdminController extends Controller
 
     public function AdminUpdatePassword(Request $request)
     {
-
         //Match the old password
         if (!Hash::check($request->old_password, auth::user()->password)) {
             $notification = array(

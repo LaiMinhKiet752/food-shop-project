@@ -77,12 +77,12 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price($) <span class="text-danger">*</span></label>
+                                            <label for="inputPrice" class="form-label">Product Price(USD) <span class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 placeholder="00.00" value="{{ old('selling_price') }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Discount Price($) <span class="text-danger">*</span></label>
+                                            <label for="inputCompareatprice" class="form-label">Discount Price(USD) <span class="text-danger">*</span></label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" placeholder="00.00"
                                                 value="{{ old('discount_price') }}">

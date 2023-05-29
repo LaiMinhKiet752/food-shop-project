@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -78,17 +79,20 @@
                                 <div class="detail-extralink mb-50">
                                     <div class="detail-qty border radius">
                                         <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                        <input type="text" id="dqty" name="quantity" class="qty-val" value="1" min="1">
+                                        <input type="text" id="dqty" name="quantity" class="qty-val" value="1"
+                                            min="1">
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
-                                        <button type="submit" class="button button-add-to-cart" onclick="addToCartDetails()"><i
-                                                class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                        <button type="submit" class="button button-add-to-cart"
+                                            onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
+                                            cart</button>
 
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            id="{{ $product->id }}" onclick="addToWishlistProductDetails(this.id)"><i
+                                                class="fi-rs-heart"></i></a>
+
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                     </div>
@@ -128,8 +132,8 @@
                                                     class="text-brand">{{ date('d-m-Y', strtotime($product->expire_date)) }}</span>
                                             </li>
                                         @endif
-                                        <li>Stock:<span
-                                                class="in-stock text-brand ml-5">({{ $product->product_quantity }}) Items
+                                        <li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_quantity }})
+                                                Items
                                                 In Stock</span></li>
                                     </ul>
                                 </div>
@@ -268,7 +272,8 @@
                                                 </h6>
                                             @else
                                                 <h6>
-                                                    <a href="vendor-details-2.html">{{ $product['vendor']['shop_name'] }}</a>
+                                                    <a
+                                                        href="vendor-details-2.html">{{ $product['vendor']['shop_name'] }}</a>
                                                 </h6>
                                             @endif
 
@@ -319,7 +324,8 @@
                                                     <div class="single-comment justify-content-between d-flex mb-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-2.png') }}" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-2.png') }}"
+                                                                    alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Sienna</a>
                                                             </div>
@@ -350,7 +356,8 @@
                                                     <div class="single-comment justify-content-between d-flex mb-30 ml-30">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-3.png') }}" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-3.png') }}"
+                                                                    alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Brenna</a>
                                                             </div>
@@ -381,7 +388,8 @@
                                                     <div class="single-comment justify-content-between d-flex">
                                                         <div class="user justify-content-between d-flex">
                                                             <div class="thumb text-center">
-                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-4.png') }}" alt="" />
+                                                                <img src="{{ asset('frontend/assets/imgs/blog/author-4.png') }}"
+                                                                    alt="" />
                                                                 <a href="#"
                                                                     class="font-heading text-brand">Gemma</a>
                                                             </div>
@@ -497,8 +505,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -511,7 +517,7 @@
                         <div class="col-12">
                             <div class="row related-products">
                                 @foreach ($relatedProduct as $product)
-                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6">
+                                    <div class="col-lg-3 col-md-4 col-12 col-sm-6 related_product_data">
                                         <div class="product-cart-wrap hover-up">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
@@ -524,11 +530,15 @@
                                                 </div>
                                                 <div class="product-action-1">
                                                     <a aria-label="Quick view" class="action-btn small hover-up"
-                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"><i
-                                                            class="fi-rs-search"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="shop-wishlist.html" tabindex="0"><i
+                                                        data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                        id="{{ $product->id }}" onclick="productView(this.id)"><i
+                                                            class="fi-rs-eye"></i></a>
+
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                        id="{{ $product->id }}"
+                                                        onclick="addToWishlistRelatedProduct(this.id)" tabindex="0"><i
                                                             class="fi-rs-heart"></i></a>
+
                                                     <a aria-label="Compare" class="action-btn small hover-up"
                                                         href="shop-compare.html" tabindex="0"><i
                                                             class="fi-rs-shuffle"></i></a>
@@ -545,10 +555,13 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            @php
+                                                $category = App\Models\Category::where('id', $product->category_id)->first();
+                                            @endphp
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
                                                     <a
-                                                        href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a>
+                                                        href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                                 </div>
                                                 <h2><a
                                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
@@ -581,7 +594,9 @@
                                                         </div>
                                                     @endif
                                                     <div class="add-cart">
-                                                        <a class="add" href="shop-cart.html"><i
+                                                        <input type="hidden" value="{{ $product->id }}"
+                                                            class="related_prod_id">
+                                                        <a class="add RelatedProductAddToCart" type="submit"><i
                                                                 class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                     </div>
                                                 </div>
@@ -596,4 +611,120 @@
             </div>
         </div>
     </div>
+
+    {{-- Start Related Product Add To Cart --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.RelatedProductAddToCart').click(function(e) {
+                e.preventDefault();
+                var id = $(this).closest('.related_product_data').find('.related_prod_id').val();
+                var quantity = 1;
+                $.ajax({
+                    type: "POST",
+                    url: "/related/product/cart/store/" + id,
+                    data: {
+                        quantity: quantity
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        miniCart();
+                        //Start Message
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        //End Message
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- End Related Product Add To Cart --}}
+
+    {{-- Start Product Details Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistProductDetails(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/product-details/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Product Details Add To Wishlist --}}
+
+    {{-- Start Related Product Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistRelatedProduct(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/related-product/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Related Product Add To Wishlist --}}
 @endsection
