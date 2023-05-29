@@ -259,6 +259,12 @@ Route::post('/add-to-wishlist/category-four/{product_id}', [WishlistController::
 //Add To Wishlist Category Five
 Route::post('/add-to-wishlist/category-five/{product_id}', [WishlistController::class, 'addToWishListCategoryFive']);
 
+//Add To Wishlist Product Details
+Route::post('/add-to-wishlist/product-details/{product_id}', [WishlistController::class, 'addToWishListProductDetails']);
+
+//Add To Wishlist Related Product
+Route::post('/add-to-wishlist/related-product/{product_id}', [WishlistController::class, 'addToWishListRelatedProduct']);
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route

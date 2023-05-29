@@ -84,14 +84,15 @@
                                         <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                     </div>
                                     <div class="product-extra-link2">
-
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
                                         <button type="submit" class="button button-add-to-cart"
                                             onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
                                             cart</button>
 
                                         <a aria-label="Add To Wishlist" class="action-btn hover-up"
-                                            href="shop-wishlist.html"><i class="fi-rs-heart"></i></a>
+                                            id="{{ $product->id }}" onclick="addToWishlistProductDetails(this.id)"><i
+                                                class="fi-rs-heart"></i></a>
+
                                         <a aria-label="Compare" class="action-btn hover-up" href="shop-compare.html"><i
                                                 class="fi-rs-shuffle"></i></a>
                                     </div>
@@ -532,9 +533,12 @@
                                                         data-bs-toggle="modal" data-bs-target="#quickViewModal"
                                                         id="{{ $product->id }}" onclick="productView(this.id)"><i
                                                             class="fi-rs-eye"></i></a>
-                                                    <a aria-label="Add To Wishlist" class="action-btn small hover-up"
-                                                        href="shop-wishlist.html" tabindex="0"><i
+
+                                                    <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                        id="{{ $product->id }}"
+                                                        onclick="addToWishlistRelatedProduct(this.id)" tabindex="0"><i
                                                             class="fi-rs-heart"></i></a>
+
                                                     <a aria-label="Compare" class="action-btn small hover-up"
                                                         href="shop-compare.html" tabindex="0"><i
                                                             class="fi-rs-shuffle"></i></a>
@@ -608,6 +612,7 @@
         </div>
     </div>
 
+    {{-- Start Related Product Add To Cart --}}
     <script type="text/javascript">
         // Start Category Page Add To Cart Product
         $(document).ready(function() {
@@ -651,4 +656,77 @@
         });
         // Start Category Page Add To Cart Product
     </script>
+    {{-- End Related Product Add To Cart --}}
+
+    {{-- Start Product Details Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistProductDetails(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/product-details/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Product Details Add To Wishlist --}}
+
+    {{-- Start Related Product Add To Wishlist --}}
+    <script type="text/javascript">
+        function addToWishlistRelatedProduct(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/related-product/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    {{-- End Related Product Add To Wishlist --}}
 @endsection
