@@ -30,4 +30,19 @@ class CompareController extends Controller
             return response()->json(['error' => 'Please Login Before Adding Products To Compare!']);
         }
     } //End Method
+
+    public function AllCompare()
+    {
+        return view('frontend.compare.view_compare');
+    } //End Method
+
+    public function GetCompareProduct()
+    {
+        $compare = Compare::with('product')->where('user_id', Auth::id())->latest()->get();
+        $compareQuantity = Compare::count();
+        return response()->json([
+            'compare' => $compare,
+            'compareQuantity' => $compareQuantity
+        ]);
+    } //End Method
 }

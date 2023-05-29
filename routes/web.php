@@ -275,6 +275,11 @@ Route::post('/add-to-wishlist/subcategory-product/{product_id}', [WishlistContro
 //Add To Wishlist Vendor Details Page
 Route::post('/add-to-wishlist/vendor-details-page/{product_id}', [WishlistController::class, 'addToWishListVedorDetailsPage']);
 
+
+
+//Add To Compare Home New Product
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route
@@ -283,11 +288,16 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/get-wishlist-product', 'GetWishListProduct');
         Route::get('/wishlist-remove/{id}', 'WishListRemove');
     });
+    //Compare All Route
+    Route::controller(CompareController::class)->group(function () {
+        Route::get('/compare', 'AllCompare')->name('compare');
+        Route::get('/get-compare-product', 'GetCompareProduct');
+    });
 });
 
 
-//Add To Compare Home New Product
-Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
+
+
 
 
 

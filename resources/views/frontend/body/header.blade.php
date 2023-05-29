@@ -110,6 +110,19 @@
                             </div>
 
                             <div class="header-action-icon-2">
+                                <a href="{{ route('compare') }}">
+                                    <img class="svgInject" alt="Nest"
+                                        src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
+                                    @auth
+                                        <span class="pro-count blue" id="compareQty"></span>
+                                    @else
+                                        <span class="pro-count blue">0</span>
+                                    @endauth
+                                </a>
+                                <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
+                            </div>
+
+                            <div class="header-action-icon-2">
                                 <a href="{{ route('wishlist') }}">
                                     <img class="svgInject" alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />

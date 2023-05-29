@@ -339,8 +339,7 @@
                 url: "/get-wishlist-product",
                 success: function(response) {
                     $('#wishlistQty').text(response.wishlistQuantity);
-                    $('#countproduct').text('There are ' + response.wishlistQuantity +
-                    ' products in this list');
+                    $('#countproduct').text(response.wishlistQuantity);
                     var rows = "";
                     $.each(response.wishlist, function(key, value) {
                         rows += `<tr class="pt-30">
@@ -416,9 +415,8 @@
     </script>
     <!--  /// End Load Wishlist Data -->
 
-
-     <!--  /// Start Add To Compare -->
-     <script type="text/javascript">
+    <!--  /// Start Add To Compare -->
+    <script type="text/javascript">
         function addToCompare(product_id) {
             $.ajax({
                 type: 'POST',
@@ -451,6 +449,73 @@
         }
     </script>
     <!--  /// End Add To Compare -->
+
+
+    <!--  /// Start Load Data To Compare -->
+    <script type="text/javascript">
+        function compare() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "/get-compare-product",
+                success: function(response) {
+                    $('#compareQty').text(response.compareQuantity);
+                    $('#countproduct').text(response.compareQuantity);
+                    var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>`;
+                    var title = `<td class="text-muted font-sm fw-600 font-heading">Name</td>`;
+                    var price = `<td class="text-muted font-sm fw-600 font-heading">Price</td>`;
+                    var rating = ``;
+                    var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
+                    var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
+                    var weight = ``;
+                    var dimensions = ``;
+                    var add_to_card = `<td class="text-muted font-sm fw-600 font-heading">Buy now</td>`;
+                    var remove = `<td class="text-muted font-md fw-600"></td>`;
+
+                    $.each(response.compare, function(key, value) {
+                        images +=
+                            `<td class="row_img"><img src="/${value.product.product_thumbnail}"alt="compare-img" /></td>`;
+                        title += `<td class="product_name">
+                                    <h6><a href="#" class="text-heading">${value.product.product_name}</a></h6>
+                                </td>`;
+                        price += `<td class="product_price">
+                                    <h4 class="price text-brand">${(value.product.discount_price == null || value.product.discount_price == 0)
+                        ? `$${value.product.selling_price}`
+                        :`$${value.product.discount_price}`
+                        }</h4>
+                                    </td>`;
+
+                        description += `<td class="row_text font-xs">
+                                    <p class="font-sm text-muted">${value.product.short_description}</p>
+                                </td>`;
+
+                        stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
+                            </td>`;
+
+                        add_to_card += `<td class="row_btn">
+                                        ${value.product.product_quantity > 0 ? `<button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>`}
+                                    </td>`;
+                        remove += `<td class="row_remove">
+                                    <a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
+                                    </a>
+                                </td>`;
+                    });
+                    $('#images').html(images);
+                    $('#title').html(title);
+                    $('#price').html(price);
+                    $('#rating').html(rating);
+                    $('#product_description').html(description);
+                    $('#stock').html(stock);
+                    $('#weight').html(weight);
+                    $('#dimensions').html(dimensions);
+                    $('#addtocard').html(add_to_card);
+                    $('#remove').html(remove);
+                }
+            })
+        }
+        compare();
+    </script>
+    <!--  /// End Load Data To Compare -->
 
 </body>
 
