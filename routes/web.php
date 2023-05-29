@@ -265,6 +265,15 @@ Route::post('/add-to-wishlist/product-details/{product_id}', [WishlistController
 //Add To Wishlist Related Product
 Route::post('/add-to-wishlist/related-product/{product_id}', [WishlistController::class, 'addToWishListRelatedProduct']);
 
+//Add To Wishlist Category Product
+Route::post('/add-to-wishlist/category-product/{product_id}', [WishlistController::class, 'addToWishListCategoryProduct']);
+
+//Add To Wishlist SubCategory Product
+Route::post('/add-to-wishlist/subcategory-product/{product_id}', [WishlistController::class, 'addToWishListSubCategoryProduct']);
+
+//Add To Wishlist Vendor Details Page
+Route::post('/add-to-wishlist/vendor-details-page/{product_id}', [WishlistController::class, 'addToWishListVedorDetailsPage']);
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route

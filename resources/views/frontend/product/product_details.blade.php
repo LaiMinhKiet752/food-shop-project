@@ -614,7 +614,6 @@
 
     {{-- Start Related Product Add To Cart --}}
     <script type="text/javascript">
-        // Start Category Page Add To Cart Product
         $(document).ready(function() {
             $('.RelatedProductAddToCart').click(function(e) {
                 e.preventDefault();
@@ -654,7 +653,6 @@
                 });
             });
         });
-        // Start Category Page Add To Cart Product
     </script>
     {{-- End Related Product Add To Cart --}}
 
