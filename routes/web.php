@@ -235,24 +235,38 @@ Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'Ad
 
 
 
-//Add To Wishlist
+//Add To Wishlist Home New Product
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
-//Add To Wishlist New Product Category
+//Add To Wishlist Home New Product Category
 Route::post('/add-to-wishlist/new-product-category/{product_id}', [WishlistController::class, 'addToWishListNewProductCategory']);
 
 //Add To Wishlist Featured Product
 Route::post('/add-to-wishlist/featured-product/{product_id}', [WishlistController::class, 'addToWishListFeaturedProduct']);
 
+//Add To Wishlist Category One
+Route::post('/add-to-wishlist/category-one/{product_id}', [WishlistController::class, 'addToWishListCategoryOne']);
+
+//Add To Wishlist Category Two
+Route::post('/add-to-wishlist/category-two/{product_id}', [WishlistController::class, 'addToWishListCategoryTwo']);
+
+//Add To Wishlist Category Three
+Route::post('/add-to-wishlist/category-three/{product_id}', [WishlistController::class, 'addToWishListCategoryThree']);
+
+//Add To Wishlist Category Four
+Route::post('/add-to-wishlist/category-four/{product_id}', [WishlistController::class, 'addToWishListCategoryFour']);
+
+//Add To Wishlist Category Five
+Route::post('/add-to-wishlist/category-five/{product_id}', [WishlistController::class, 'addToWishListCategoryFive']);
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route
-    Route::controller(WishlistController::class)->group(function(){
+    Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishListProduct');
         Route::get('/wishlist-remove/{id}', 'WishListRemove');
     });
-
 });
 
 
