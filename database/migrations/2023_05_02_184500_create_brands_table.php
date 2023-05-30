@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('brand_name')->unique();
             $table->string('brand_slug');
             $table->string('brand_image');
+            $table->string('brand_email')->unique();
+            $table->string('brand_phone')->unique();
+            $table->text('brand_address')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

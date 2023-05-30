@@ -378,7 +378,6 @@
     </script>
     <!--  /// End Load Wishlist Data -->
 
-
     <!--  /// Start Add To Wishlist -->
     <script type="text/javascript">
         function addToWishlist(product_id) {
@@ -416,7 +415,7 @@
     <!--  /// End Add To Wishlist -->
 
 
-    
+
     <!--  /// Start Load Data To Compare -->
     <script type="text/javascript">
         function compare() {

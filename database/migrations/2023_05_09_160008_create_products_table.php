@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('product_slug');
             $table->string('product_quantity');
             $table->string('product_tags')->nullable();
+            $table->string('product_weight')->nullable();
             $table->timestamp('manufacturing_date')->nullable();
             $table->timestamp('expire_date')->nullable();
             $table->string('selling_price');

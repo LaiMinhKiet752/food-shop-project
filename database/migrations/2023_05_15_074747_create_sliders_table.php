@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slider_title');
             $table->string('short_title');
             $table->string('slider_image');
+            $table->enum('status',['show','hide'])->default('show');
             $table->timestamps();
             $table->softDeletes();
         });

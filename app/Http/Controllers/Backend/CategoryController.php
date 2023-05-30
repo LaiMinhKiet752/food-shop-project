@@ -75,7 +75,7 @@ class CategoryController extends Controller
             $save_url = 'upload/category/' . $filename;
 
             $current_category_name = Category::findOrFail($cat_id)->category_name;
-            //Text has changed
+            //Text is unchanged
             if ($current_category_name == $request->category_name) {
                 if (file_exists($old_image)) {
                     unlink($old_image);
@@ -92,7 +92,7 @@ class CategoryController extends Controller
                 );
                 return redirect()->route('all.category')->with($notification);
             }
-            //Text is unchanged
+            //Text has changed
             else {
                 $request->validate([
                     'category_name' => 'unique:categories'
