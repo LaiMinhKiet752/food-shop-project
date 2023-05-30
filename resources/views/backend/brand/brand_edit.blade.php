@@ -35,7 +35,7 @@
                                     <input type="hidden" name="old_image" value="{{ $brand->brand_image }}">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Brand Name *</h6>
+                                            <h6 class="mb-0">Brand Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_name" class="form-control"
@@ -45,9 +45,49 @@
                                             @endif
                                         </div>
                                     </div>
+
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Brand Image *</h6>
+                                            <h6 class="mb-0">Brand Email <span class="text-danger">*</span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <input type="text" name="brand_email" class="form-control"
+                                                value="{{ $brand->brand_email }}" />
+                                            @if ($errors->has('brand_email'))
+                                                <span class="text-danger">{{ $errors->first('brand_email') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Brand Phone <span class="text-danger">*</span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <input type="text" name="brand_phone" class="form-control"
+                                                value="{{ $brand->brand_phone }}" />
+                                            @if ($errors->has('brand_phone'))
+                                                <span class="text-danger">{{ $errors->first('brand_phone') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Brand Address <span class="text-danger">*</span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <input type="text" name="brand_address" class="form-control"
+                                                value="{{ $brand->brand_address }}" />
+                                            @if ($errors->has('brand_address'))
+                                                <span class="text-danger">{{ $errors->first('brand_address') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Brand Image</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="file" name="brand_image" class="form-control" id="image" />
@@ -100,11 +140,35 @@
                         required: true,
                         maxlength: 255,
                     },
+                    brand_email: {
+                        required: true,
+                        maxlength: 255,
+                        email: true,
+                    },
+                    brand_phone: {
+                        required: true,
+                    },
+                    brand_address: {
+                        required: true,
+                        maxlength: 255,
+                    },
                 },
                 messages: {
                     brand_name: {
                         required: 'Please enter brand name.',
                         maxlength: 'The brand name must not be greater than 255 characters.',
+                    },
+                    brand_email: {
+                        required: 'Please enter brand email.',
+                        maxlength: 'The brand email must not be greater than 255 characters.',
+                        email: 'The brand email must be a valid email address.',
+                    },
+                    brand_phone: {
+                        required: 'Please enter brand phone.',
+                    },
+                    brand_address: {
+                        required: 'Please enter brand address.',
+                        maxlength: 'The brand address must not be greater than 255 characters.',
                     },
                 },
                 errorElement: 'span',

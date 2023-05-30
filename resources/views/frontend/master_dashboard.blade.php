@@ -50,6 +50,9 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -74,10 +77,6 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -155,7 +154,7 @@
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -196,7 +195,7 @@
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -270,7 +269,7 @@
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
                     if ($.isEmptyObject(data.error)) {
 
@@ -294,42 +293,6 @@
         //End Mini Cart Remove
     </script>
 
-    <!--  /// Start Add To Wishlist -->
-    <script type="text/javascript">
-        function addToWishlist(product_id) {
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: "/add-to-wishlist/" + product_id,
-                success: function(data) {
-                    wishlist();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            icon: 'success',
-                            title: data.success,
-                        })
-                    } else {
-                        Toast.fire({
-                            type: 'error',
-                            icon: 'error',
-                            title: data.error,
-                        })
-                    }
-                    // End Message
-                }
-            })
-        }
-    </script>
-    <!--  /// End Add To Wishlist -->
-
     <!--  /// Start Load Wishlist Data -->
     <script type="text/javascript">
         function wishlist() {
@@ -339,7 +302,7 @@
                 url: "/get-wishlist-product",
                 success: function(response) {
                     $('#wishlistQty').text(response.wishlistQuantity);
-                    $('#countproduct').text(response.wishlistQuantity);
+                    $('#countproductwishlist').text(response.wishlistQuantity);
                     var rows = "";
                     $.each(response.wishlist, function(key, value) {
                         rows += `<tr class="pt-30">
@@ -347,7 +310,7 @@
                         </td>
                         <td class="image product-thumbnail pt-40"><img src="/${value.product.product_thumbnail}" alt="#" /></td>
                         <td class="product-des product-name">
-                            <h6><a class="product-name mb-10" href="shop-product-right.html">${value.product.product_name} </a></h6>
+                            <h6><a class="product-name mb-10" href="${`product/details/${value.product.id}/${value.product.product_slug}`}">${value.product.product_name}</a></h6>
                             <div class="product-rate-cover">
                                 <div class="product-rate d-inline-block">
                                     <div class="product-rating" style="width: 90%"></div>
@@ -393,7 +356,7 @@
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -415,6 +378,143 @@
     </script>
     <!--  /// End Load Wishlist Data -->
 
+    <!--  /// Start Add To Wishlist -->
+    <script type="text/javascript">
+        function addToWishlist(product_id) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: "/add-to-wishlist/" + product_id,
+                success: function(data) {
+                    wishlist();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            })
+        }
+    </script>
+    <!--  /// End Add To Wishlist -->
+
+
+
+    <!--  /// Start Load Data To Compare -->
+    <script type="text/javascript">
+        function compare() {
+            $.ajax({
+                type: 'GET',
+                dataType: 'json',
+                url: "/get-compare-product",
+                success: function(response) {
+                    $('#compareQty').text(response.compareQuantity);
+                    $('#countproductcompare').text(response.compareQuantity);
+                    var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>`;
+                    var title = `<td class="text-muted font-sm fw-600 font-heading">Name</td>`;
+                    var price = `<td class="text-muted font-sm fw-600 font-heading">Price</td>`;
+                    var rating = ``;
+                    var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
+                    var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
+                    var weight = ``;
+                    var dimensions = ``;
+                    var details = `<td class="text-muted font-sm fw-600 font-heading">Watch now</td>`;
+                    var remove = `<td class="text-muted font-md fw-600"></td>`;
+
+                    $.each(response.compare, function(key, value) {
+                        images +=
+                            `<td class="row_img"><img src="/${value.product.product_thumbnail}"alt="compare-img" /></td>`;
+                        title += `<td class="product_name">
+                                    <h6 class="text-heading">${value.product.product_name}</h6>
+                                </td>`;
+                        price += `<td class="product_price">
+                                    <h4 class="price text-brand">${(value.product.discount_price == null || value.product.discount_price == 0)
+                        ? `$${value.product.selling_price}`
+                        :`$${value.product.discount_price}`
+                        }</h4>
+                                    </td>`;
+
+                        description += `<td class="row_text font-xs">
+                                    <p class="font-sm text-muted">${value.product.short_description}</p>
+                                        </td>`;
+
+                        stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
+                            </td>`;
+
+                        details += `<td class="row_btn">
+                                        ${value.product.product_quantity > 0 ?
+                                            `<a href="${`product/details/${value.product.id}/${value.product.product_slug}`}" class="btn btn-sm" type="submit"><i class="fi-rs-shopping-cart mr-5"></i>Details</a>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>`}
+                                    </td>`;
+                        remove += `<td class="row_remove">
+                                    <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
+                                    </a>
+                                    </td>`;
+                    });
+                    $('#images').html(images);
+                    $('#title').html(title);
+                    $('#price').html(price);
+                    $('#rating').html(rating);
+                    $('#product_description').html(description);
+                    $('#stock').html(stock);
+                    $('#weight').html(weight);
+                    $('#dimensions').html(dimensions);
+                    $('#details').html(details);
+                    $('#remove').html(remove);
+                }
+            });
+        }
+        compare();
+
+        function compareRemove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/compare-remove/" + id,
+                dataType: "json",
+                success: function(data) {
+                    compare();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
+    </script>
+    <!--  /// End Load Data To Compare -->
+
     <!--  /// Start Add To Compare -->
     <script type="text/javascript">
         function addToCompare(product_id) {
@@ -423,12 +523,13 @@
                 dataType: 'json',
                 url: "/add-to-compare/" + product_id,
                 success: function(data) {
+                    compare();
                     // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -450,72 +551,6 @@
     </script>
     <!--  /// End Add To Compare -->
 
-
-    <!--  /// Start Load Data To Compare -->
-    <script type="text/javascript">
-        function compare() {
-            $.ajax({
-                type: 'GET',
-                dataType: 'json',
-                url: "/get-compare-product",
-                success: function(response) {
-                    $('#compareQty').text(response.compareQuantity);
-                    $('#countproduct').text(response.compareQuantity);
-                    var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>`;
-                    var title = `<td class="text-muted font-sm fw-600 font-heading">Name</td>`;
-                    var price = `<td class="text-muted font-sm fw-600 font-heading">Price</td>`;
-                    var rating = ``;
-                    var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
-                    var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
-                    var weight = ``;
-                    var dimensions = ``;
-                    var add_to_card = `<td class="text-muted font-sm fw-600 font-heading">Buy now</td>`;
-                    var remove = `<td class="text-muted font-md fw-600"></td>`;
-
-                    $.each(response.compare, function(key, value) {
-                        images +=
-                            `<td class="row_img"><img src="/${value.product.product_thumbnail}"alt="compare-img" /></td>`;
-                        title += `<td class="product_name">
-                                    <h6><a href="#" class="text-heading">${value.product.product_name}</a></h6>
-                                </td>`;
-                        price += `<td class="product_price">
-                                    <h4 class="price text-brand">${(value.product.discount_price == null || value.product.discount_price == 0)
-                        ? `$${value.product.selling_price}`
-                        :`$${value.product.discount_price}`
-                        }</h4>
-                                    </td>`;
-
-                        description += `<td class="row_text font-xs">
-                                    <p class="font-sm text-muted">${value.product.short_description}</p>
-                                </td>`;
-
-                        stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
-                            </td>`;
-
-                        add_to_card += `<td class="row_btn">
-                                        ${value.product.product_quantity > 0 ? `<button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>`}
-                                    </td>`;
-                        remove += `<td class="row_remove">
-                                    <a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
-                                    </a>
-                                </td>`;
-                    });
-                    $('#images').html(images);
-                    $('#title').html(title);
-                    $('#price').html(price);
-                    $('#rating').html(rating);
-                    $('#product_description').html(description);
-                    $('#stock').html(stock);
-                    $('#weight').html(weight);
-                    $('#dimensions').html(dimensions);
-                    $('#addtocard').html(add_to_card);
-                    $('#remove').html(remove);
-                }
-            })
-        }
-        compare();
-    </script>
-    <!--  /// End Load Data To Compare -->
 
 </body>
 

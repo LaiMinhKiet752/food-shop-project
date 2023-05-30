@@ -34,7 +34,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -44,7 +44,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } //End Method
 
@@ -60,7 +60,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -70,7 +70,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -86,7 +86,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -96,7 +96,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -112,7 +112,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -122,7 +122,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -138,7 +138,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -148,7 +148,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -164,7 +164,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -174,7 +174,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -190,7 +190,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -200,7 +200,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -216,7 +216,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -226,7 +226,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -242,7 +242,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -252,7 +252,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -268,7 +268,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -278,7 +278,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -294,7 +294,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -304,7 +304,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -320,7 +320,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -330,7 +330,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -346,7 +346,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -356,7 +356,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
@@ -372,7 +372,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -382,13 +382,13 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Cart!']);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
     } // End Method
 
     public function RemoveMiniCart($rowId)
     {
         Cart::remove($rowId);
-        return response()->json(['success' => 'Successfully Removed Product From Cart!']);
+        return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
     } // End Method
 }

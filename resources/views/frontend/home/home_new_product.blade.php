@@ -149,13 +149,11 @@
                                         </div>
                                         <div class="product-action-1">
 
-                                            <a aria-label="Add To Wishlist" class="action-btn"
-                                                id="{{ $product->id }}"
-                                                onclick="addToWishlistNewProductCategory(this.id)"><i
-                                                    class="fi-rs-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
-                                            <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                    class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
+                                                onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
                                             <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
@@ -240,7 +238,7 @@
 
 
     <script type="text/javascript">
-        // Start Home New Product Page Add To Cart Product
+        // Start Home New Product Page Add To Cart
         $(document).ready(function() {
             $('.homeNewProductAddToCart').click(function(e) {
                 e.preventDefault();
@@ -260,7 +258,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -280,11 +278,11 @@
                 });
             });
         });
-        // Start Home New Product Page Add To Cart Product
+        // End Home New Product Page Add To Cart
     </script>
 
     <script type="text/javascript">
-        // Start Home New Product Category Page Add To Cart Product
+        // Start Home New Product Category Page Add To Cart
         $(document).ready(function() {
             $('.homeNewProductCategoryAddToCart').click(function(e) {
                 e.preventDefault();
@@ -304,7 +302,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -324,41 +322,8 @@
                 });
             });
         });
-        // Start Home New Product Category Page Add To Cart Product
+        // End Home New Product Category Page Add To Cart
     </script>
 
-    <script type="text/javascript">
-        function addToWishlistNewProductCategory(product_id) {
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: "/add-to-wishlist/new-product-category/" + product_id,
-                success: function(data) {
-                    wishlist();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            icon: 'success',
-                            title: data.success,
-                        })
-                    } else {
-                        Toast.fire({
-                            type: 'error',
-                            icon: 'error',
-                            title: data.error,
-                        })
-                    }
-                    // End Message
-                }
-            })
-        }
-    </script>
 
 </section>

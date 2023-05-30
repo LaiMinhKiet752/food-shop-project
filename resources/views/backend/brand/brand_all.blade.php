@@ -30,6 +30,9 @@
                                 <th>No.</th>
                                 <th>Brand Name</th>
                                 <th>Brand Image</th>
+                                <th>Brand Email</th>
+                                <th>Brand Phone</th>
+                                <th>Brand Address</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -39,6 +42,9 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->brand_name }}</td>
                                     <td><img src="{{ asset($item->brand_image) }}" style="width: 70px; height: 40px;"></td>
+                                    <td>{{ $item->brand_email }}</td>
+                                    <td>{{ $item->brand_phone }}</td>
+                                    <td>{{ $item->brand_address }}</td>
                                     <td>
                                         <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
                                         <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
@@ -51,6 +57,9 @@
                                 <th>No.</th>
                                 <th>Brand Name</th>
                                 <th>Brand Image</th>
+                                <th>Brand Email</th>
+                                <th>Brand Phone</th>
+                                <th>Brand Address</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

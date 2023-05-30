@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             //Admin
             [
                 'name' => 'Admin',
+                'shop_name' => '',
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),
@@ -33,6 +34,7 @@ class UsersTableSeeder extends Seeder
             //Vendor
             [
                 'name' => 'Vendor',
+                'shop_name' => 'Nature Food',
                 'username' => 'vendor',
                 'email' => 'vendor@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),
@@ -44,6 +46,7 @@ class UsersTableSeeder extends Seeder
             //User Or Customer
             [
                 'name' => 'User',
+                'shop_name' => '',
                 'username' => 'user',
                 'email' => 'user@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),

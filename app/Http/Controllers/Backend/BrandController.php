@@ -24,11 +24,15 @@ class BrandController extends Controller
     {
         $request->validate([
             'brand_image' => 'image|max:2048',
-            'brand_name' => 'unique:brands'
+            'brand_name' => 'unique:brands',
+            'brand_email' => 'unique:brands',
+            'brand_phone' => 'unique:brands',
         ], [
             'brand_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
             'brand_image.max' => 'Maximum image size is 2MB.',
             'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+            'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+            'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
         ]);
         $file = $request->file('brand_image');
         $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();
@@ -37,6 +41,9 @@ class BrandController extends Controller
 
         $brand = new Brand();
         $brand->brand_name = $request->brand_name;
+        $brand->brand_email = $request->brand_email;
+        $brand->brand_phone = $request->brand_phone;
+        $brand->brand_address = $request->brand_address;
         $brand->brand_slug = strtolower(str_replace(' ', '-', $request->brand_name));
         $brand->brand_image = $save_url;
         $brand->save();
@@ -72,8 +79,31 @@ class BrandController extends Controller
             $save_url = 'upload/brand/' . $filename;
 
             $current_brand_name = Brand::findOrFail($brand_id)->brand_name;
+            $current_brand_email = Brand::findOrFail($brand_id)->brand_email;
+            $current_brand_phone = Brand::findOrFail($brand_id)->brand_phone;
+            $current_brand_address = Brand::findOrFail($brand_id)->brand_address;
+            //Text is unchanged
+            if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            }
             //Text has changed
-            if ($current_brand_name == $request->brand_name) {
+            else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands'
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                ]);
                 if (file_exists($old_image)) {
                     unlink($old_image);
                 }
@@ -88,11 +118,106 @@ class BrandController extends Controller
                     'alert-type' => 'success',
                 );
                 return redirect()->route('all.brand')->with($notification);
-            }
-            //Text is unchanged
-             else {
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
                 $request->validate([
-                    'brand_name' => 'unique:brands'
+                    'brand_email' => 'unique:brands'
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_phone' => 'unique:brands'
+                ], [
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_phone' => $request->brand_phone,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_address' => $request->brand_address,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
                 ], [
                     'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
                 ]);
@@ -102,6 +227,187 @@ class BrandController extends Controller
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_phone' => $request->brand_phone,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_image' => $save_url,
+                ]);
+                $notification = array(
+                    'message' => 'Brand Updated With Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                if (file_exists($old_image)) {
+                    unlink($old_image);
+                }
+                Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
                 ]);
@@ -116,7 +422,22 @@ class BrandController extends Controller
         //Without Image
         else {
             $current_brand_name = Brand::findOrFail($brand_id)->brand_name;
-            if ($current_brand_name == $request->brand_name) {
+            $current_brand_email = Brand::findOrFail($brand_id)->brand_email;
+            $current_brand_phone = Brand::findOrFail($brand_id)->brand_phone;
+            $current_brand_address = Brand::findOrFail($brand_id)->brand_address;
+            //Text is unchanged
+            if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands'
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                ]);
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -127,7 +448,85 @@ class BrandController extends Controller
                     'alert-type' => 'success',
                 );
                 return redirect()->route('all.brand')->with($notification);
-            } else {
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands'
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_phone' => $request->brand_phone,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                Brand::findOrFail($brand_id)->update([
+                    'brand_address' => $request->brand_address,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands'
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.'
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_phone' => 'unique:brands'
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
                 $request->validate([
                     'brand_name' => 'unique:brands'
                 ], [
@@ -135,6 +534,161 @@ class BrandController extends Controller
                 ]);
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
+                    'brand_address' => $request->brand_address,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands'
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_address' => $request->brand_address,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_phone' => 'unique:brands'
+                ], [
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address == $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone == $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_address' => $request->brand_address,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email == $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
+                    'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name == $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
+                ]);
+
+                $notification = array(
+                    'message' => 'Brand Updated Without Image Successfully!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->route('all.brand')->with($notification);
+            } else if ($current_brand_name != $request->brand_name && $current_brand_email != $request->brand_email && $current_brand_phone != $request->brand_phone && $current_brand_address != $request->brand_address) {
+                $request->validate([
+                    'brand_name' => 'unique:brands',
+                    'brand_email' => 'unique:brands',
+                    'brand_phone' => 'unique:brands',
+                ], [
+                    'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
+                    'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
+                    'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                ]);
+                Brand::findOrFail($brand_id)->update([
+                    'brand_name' => $request->brand_name,
+                    'brand_email' => $request->brand_email,
+                    'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                 ]);
 
