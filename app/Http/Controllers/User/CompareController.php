@@ -45,4 +45,12 @@ class CompareController extends Controller
             'compareQuantity' => $compareQuantity
         ]);
     } //End Method
+
+    public function CompareRemove($id)
+    {
+        Compare::where('user_id', Auth::id())->where('id', $id)->delete();
+        return response()->json([
+            'success' => 'Successfully Removed Product From Your Compare!'
+        ]);
+    } //End Method
 }

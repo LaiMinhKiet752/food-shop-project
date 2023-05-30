@@ -496,7 +496,7 @@
                                         ${value.product.product_quantity > 0 ? `<button class="btn btn-sm"><i class="fi-rs-shopping-bag mr-5"></i>Add to cart</button>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>`}
                                     </td>`;
                         remove += `<td class="row_remove">
-                                    <a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
+                                    <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
                                     </a>
                                 </td>`;
                     });
@@ -514,6 +514,38 @@
             })
         }
         compare();
+
+        function compareRemove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/compare-remove/" + id,
+                dataType: "json",
+                success: function(data) {
+                    compare();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
     </script>
     <!--  /// End Load Data To Compare -->
 
