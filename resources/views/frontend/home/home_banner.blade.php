@@ -1,5 +1,6 @@
 @php
-    $banners = \App\Models\Banner::orderBy('banner_title', 'ASC')
+    $banners = \App\Models\Banner::where('status', 'show')
+        ->orderBy('id', 'DESC')
         ->limit(3)
         ->get();
 @endphp
