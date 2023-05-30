@@ -75,16 +75,17 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
-                                            onclick="addToWishlistVendorDetailsPage(this.id)"><i
-                                                class="fi-rs-heart"></i></a>
 
-                                        <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i
-                                                class="fi-rs-shuffle"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                            onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
+
+                                        <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
+                                            onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
+                                        
                                     </div>
 
                                     @php
@@ -296,40 +297,4 @@
     </script>
     {{-- End Vendor Details Page Add To Cart --}}
 
-
-    {{-- Start Vendor Details Page Add To Wishlist --}}
-    <script type="text/javascript">
-        function addToWishlistVendorDetailsPage(product_id) {
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                url: "/add-to-wishlist/vendor-details-page/" + product_id,
-                success: function(data) {
-                    wishlist();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            icon: 'success',
-                            title: data.success,
-                        })
-                    } else {
-                        Toast.fire({
-                            type: 'error',
-                            icon: 'error',
-                            title: data.error,
-                        })
-                    }
-                    // End Message
-                }
-            })
-        }
-    </script>
-    {{-- End Vendor Details Page Add To Wishlist --}}
 @endsection

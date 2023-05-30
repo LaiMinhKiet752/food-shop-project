@@ -50,6 +50,9 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -74,10 +77,6 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -339,7 +338,7 @@
                 url: "/get-wishlist-product",
                 success: function(response) {
                     $('#wishlistQty').text(response.wishlistQuantity);
-                    $('#countproduct').text(response.wishlistQuantity);
+                    $('#countproductwishlist').text(response.wishlistQuantity);
                     var rows = "";
                     $.each(response.wishlist, function(key, value) {
                         rows += `<tr class="pt-30">
@@ -424,6 +423,7 @@
                 url: "/add-to-compare/" + product_id,
                 success: function(data) {
                     // Start Message
+                    compare();
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -450,7 +450,6 @@
     </script>
     <!--  /// End Add To Compare -->
 
-
     <!--  /// Start Load Data To Compare -->
     <script type="text/javascript">
         function compare() {
@@ -460,7 +459,7 @@
                 url: "/get-compare-product",
                 success: function(response) {
                     $('#compareQty').text(response.compareQuantity);
-                    $('#countproduct').text(response.compareQuantity);
+                    $('#countproductcompare').text(response.compareQuantity);
                     var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>`;
                     var title = `<td class="text-muted font-sm fw-600 font-heading">Name</td>`;
                     var price = `<td class="text-muted font-sm fw-600 font-heading">Price</td>`;

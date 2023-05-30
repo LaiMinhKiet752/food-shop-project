@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-xl-10 col-lg-12 m-auto">
                 <h1 class="heading-2 mb-10">Products Compare</h1>
-                <h6 class="text-body mb-40">There are <span class="text-brand" id="countproduct"></span> products to compare</h6>
+                <h6 class="text-body mb-40">There are <span class="text-brand" id="countproductcompare"></span> products to compare</h6>
                 <div class="table-responsive">
                     <table class="table text-center table-compare">
                         <tbody>
