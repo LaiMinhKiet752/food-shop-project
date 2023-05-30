@@ -238,7 +238,7 @@
 
 
     <script type="text/javascript">
-        // Start Home New Product Page Add To Cart Product
+        // Start Home New Product Page Add To Cart
         $(document).ready(function() {
             $('.homeNewProductAddToCart').click(function(e) {
                 e.preventDefault();
@@ -258,7 +258,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -278,11 +278,11 @@
                 });
             });
         });
-        // Start Home New Product Page Add To Cart Product
+        // End Home New Product Page Add To Cart
     </script>
 
     <script type="text/javascript">
-        // Start Home New Product Category Page Add To Cart Product
+        // Start Home New Product Category Page Add To Cart
         $(document).ready(function() {
             $('.homeNewProductCategoryAddToCart').click(function(e) {
                 e.preventDefault();
@@ -302,7 +302,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -322,7 +322,7 @@
                 });
             });
         });
-        // Start Home New Product Category Page Add To Cart Product
+        // End Home New Product Category Page Add To Cart
     </script>
 
 

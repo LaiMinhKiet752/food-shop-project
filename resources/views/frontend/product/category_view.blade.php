@@ -259,7 +259,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -281,5 +281,5 @@
         });
     </script>
     {{-- Start Category Product Add To Cart --}}
-    
+
 @endsection

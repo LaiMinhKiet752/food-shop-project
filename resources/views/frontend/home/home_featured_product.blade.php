@@ -1,12 +1,10 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @php
     $featured = \App\Models\Product::where('featured', 1)
         ->orderBy('id', 'DESC')
         ->limit(6)
         ->get();
 @endphp
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <section class="section-padding pb-5">
     <div class="container">
         <div class="section-title wow animate__animated animate__fadeIn">
@@ -40,16 +38,18 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
+                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up"
+                                                    id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
+                                                        class="fi-rs-heart"></i></a>
 
-                                                <a aria-label="Add To Wishlist" class="action-btn small hover-up" id="{{ $product->id }}"
-                                                    onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
+                                                <a aria-label="Compare" class="action-btn small hover-up"
+                                                    id="{{ $product->id }}" onclick="addToCompare(this.id)"><i
+                                                        class="fi-rs-shuffle"></i></a>
 
-                                                <a aria-label="Compare" class="action-btn small hover-up" id="{{ $product->id }}"
-                                                    onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
-
-                                                <a aria-label="Quick view" class="action-btn small hover-up" data-bs-toggle="modal"
-                                                    data-bs-target="#quickViewModal" id="{{ $product->id }}"
-                                                    onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
+                                                <a aria-label="Quick view" class="action-btn small hover-up"
+                                                    data-bs-toggle="modal" data-bs-target="#quickViewModal"
+                                                    id="{{ $product->id }}" onclick="productView(this.id)"><i
+                                                        class="fi-rs-eye"></i></a>
                                             </div>
                                             @php
                                                 $amount = $product->selling_price - $product->discount_price;
@@ -133,7 +133,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({

@@ -1,5 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -43,7 +44,7 @@
                                 <td class="text-muted font-sm fw-600 font-heading">Dimensions</td>
 
                             </tr>
-                            <tr class="pr_add_to_cart" id="addtocard">
+                            <tr class="pr_add_to_cart" id="details">
 
                             </tr>
                             <tr class="pr_remove text-muted" id="remove">

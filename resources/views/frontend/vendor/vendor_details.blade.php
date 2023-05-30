@@ -85,7 +85,7 @@
                                         <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
-                                        
+
                                     </div>
 
                                     @php
@@ -274,7 +274,7 @@
                             toast: true,
                             position: 'top-end',
                             showConfirmButton: false,
-                            timer: 3000
+                            timer: 2000
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
