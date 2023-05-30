@@ -55,6 +55,20 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
+                                            <h6 class="mb-0">Status <span class="text-danger">*</span></h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <select name="status" class="form-select">
+                                                <option value="show" @if ($banner->status == 'show') selected @endif>
+                                                    Show</option>
+                                                <option value="hide" @if ($banner->status == 'hide') selected @endif>
+                                                    Hide</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
                                             <h6 class="mb-0">Banner Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">

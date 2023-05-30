@@ -15,7 +15,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.banner') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Banner</i></a>
+                    <a href="{{ route('add.banner') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
+                            Banner</i></a>
                 </div>
             </div>
         </div>
@@ -29,9 +30,10 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Banner Title </th>
-                                <th>Banner Url </th>
-                                <th>Banner Image </th>
+                                <th>Banner Title</th>
+                                <th>Banner Url</th>
+                                <th>Banner Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -42,25 +44,29 @@
                                     <td>{{ $item->banner_title }}</td>
                                     <td>{{ $item->banner_url }}</td>
                                     <td> <img src="{{ asset($item->banner_image) }}" style="width: 100px; height:60px;">
-                                    </td>
-
                                     <td>
-                                        <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.banner', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
+                                        @if ($item->status == 'hide')
+                                            <span class="badge rounded-pill bg-dark" style="font-size: 12px;">Hide</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-success" style="font-size: 12px;">Show</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                    <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('delete.banner', $item->id) }}" class="btn btn-danger"
+                                        id="delete">Delete</a>
 
                                     </td>
                                 </tr>
                             @endforeach
-
-
                         </tbody>
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Banner Title </th>
-                                <th>Banner Url </th>
-                                <th>Banner Image </th>
+                                <th>Banner Title</th>
+                                <th>Banner Url</th>
+                                <th>Banner Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
@@ -68,8 +74,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 @endsection

@@ -38,6 +38,7 @@ class SliderController extends Controller
             'slider_title' => $request->slider_title,
             'short_title' => $request->short_title,
             'slider_image' => $save_url,
+            'status' => 'show',
             'created_at' => Carbon::now(),
         ]);
 
@@ -80,6 +81,7 @@ class SliderController extends Controller
                 'slider_title' => $request->slider_title,
                 'short_title' => $request->short_title,
                 'slider_image' => $save_url,
+                'status' => $request->status,
             ]);
             $notification = array(
                 'message' => 'Slider Updated With Image Successfully!',
@@ -90,6 +92,7 @@ class SliderController extends Controller
             Slider::findOrFail($slider_id)->update([
                 'slider_title' => $request->slider_title,
                 'short_title' => $request->short_title,
+                'status' => $request->status,
             ]);
             $notification = array(
                 'message' => 'Slider Updated Without Image Successfully!',
