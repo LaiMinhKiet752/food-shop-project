@@ -15,7 +15,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.slider') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Slider</i></a>
+                    <a href="{{ route('add.slider') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
+                            Slider</i></a>
                 </div>
             </div>
         </div>
@@ -31,6 +32,7 @@
                                 <th>Slider Title</th>
                                 <th>Short Title</th>
                                 <th>Slider Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,7 +42,15 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->slider_title }}</td>
                                     <td>{{ $item->short_title }}</td>
-                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 100px; height: 60px;"></td>
+                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 100px; height: 60px;">
+                                        <td>
+                                            @if ($item->status == 'hide')
+                                                <span class="badge rounded-pill bg-dark" style="font-size: 12px;">Hide</span>
+                                            @else
+                                                <span class="badge rounded-pill bg-success" style="font-size: 12px;">Show</span>
+                                            @endif
+                                        </td>
+                                    </td>
                                     <td>
                                         <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
                                         <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"
@@ -55,6 +65,7 @@
                                 <th>Slider Title</th>
                                 <th>Short Title</th>
                                 <th>Slider Image</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

@@ -38,6 +38,7 @@ class BannerController extends Controller
             'banner_title' => $request->banner_title,
             'banner_url' => $request->banner_url,
             'banner_image' => $save_url,
+            'status' => 'show',
             'created_at' => Carbon::now(),
         ]);
 
@@ -80,6 +81,7 @@ class BannerController extends Controller
                 'banner_title' => $request->banner_title,
                 'banner_url' => $request->banner_url,
                 'banner_image' => $save_url,
+                'status' => $request->status,
             ]);
 
             $notification = array(
@@ -92,6 +94,7 @@ class BannerController extends Controller
             Banner::findOrFail($banner_id)->update([
                 'banner_title' => $request->banner_title,
                 'banner_url' => $request->banner_url,
+                'status' => $request->status,
             ]);
             $notification = array(
                 'message' => 'Banner Updated Without Image Successfully!',
@@ -100,7 +103,6 @@ class BannerController extends Controller
 
             return redirect()->route('all.banner')->with($notification);
         }
-
     } // End Method
 
     public function DeleteBanner($id)

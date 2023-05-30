@@ -40,6 +40,8 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
+    <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
 
     <title>Admin Dashboard</title>
 </head>
@@ -58,7 +60,6 @@
             @yield('admin')
         </div>
         <!--end page wrapper -->
-
 
         <!--start overlay-->
         <div class="overlay toggle-icon"></div>
@@ -227,16 +228,15 @@
     </script>
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
-    <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
     <script>
         tinymce.init({
             selector: "#mytextarea",
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });
     </script>
 

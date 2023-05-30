@@ -1,5 +1,8 @@
 @php
-    $sliders = \App\Models\Slider::orderBy('slider_title', 'ASC')->get();
+    $sliders = \App\Models\Slider::where('status', 'show')
+        ->orderBy('id', 'DESC')
+        ->limit(5)
+        ->get();
 @endphp
 <section class="home-slider position-relative mb-30">
     <div class="container">
