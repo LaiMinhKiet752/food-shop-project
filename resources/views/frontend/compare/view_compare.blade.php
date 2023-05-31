@@ -36,12 +36,10 @@
                             <tr class="pr_stock" id="stock">
 
                             </tr>
-                            <tr class="pr_weight">
-                                <td class="text-muted font-sm fw-600 font-heading">Weight</td>
+                            <tr class="pr_weight" id="weight">
 
                             </tr>
-                            <tr class="pr_dimensions">
-                                <td class="text-muted font-sm fw-600 font-heading">Dimensions</td>
+                            <tr class="pr_dimensions" id="dimensions">
 
                             </tr>
                             <tr class="pr_add_to_cart" id="details">

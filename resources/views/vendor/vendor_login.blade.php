@@ -21,7 +21,7 @@
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    
+
 
     <title>Vendor Login </title>
 </head>
@@ -100,6 +100,8 @@
         </div>
     </div>
     <!--end wrapper-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
@@ -126,8 +128,6 @@
     </script>
     <!--app JS-->
     <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 

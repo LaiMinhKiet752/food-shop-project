@@ -157,7 +157,7 @@
                         email: 'The brand email must be a valid email address.',
                     },
                     brand_phone: {
-                        required: 'Please enter brand phone.',
+                        required: 'Please enter brand number phone.',
                     },
                     brand_address: {
                         required: 'Please enter brand address.',

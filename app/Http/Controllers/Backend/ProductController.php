@@ -60,6 +60,8 @@ class ProductController extends Controller
             'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_quantity' => $request->product_quantity,
             'product_tags' => $request->product_tags,
+            'product_weight' => $request->product_weight,
+            'product_dimensions' => $request->product_dimensions,
 
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
@@ -124,6 +126,8 @@ class ProductController extends Controller
             'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
             'product_quantity' => $request->product_quantity,
             'product_tags' => $request->product_tags,
+            'product_weight' => $request->product_weight,
+            'product_dimensions' => $request->product_dimensions,
 
             'short_description' => $request->short_description,
             'long_description' => $request->long_description,
