@@ -40,6 +40,18 @@
                                     </div>
 
                                     <div class="form-group mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Weight (gram, kg)</label>
+                                        <input type="text" name="product_weight" class="form-control"
+                                            value="{{ old('product_weight') }}">
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="inputProductTitle" class="form-label">Product Dimensions</label>
+                                        <input type="text" name="product_dimensions" class="form-control"
+                                            value="{{ old('product_dimensions') }}">
+                                    </div>
+
+                                    <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description <span
                                                 class="text-danger">*</span></label>
                                         <textarea name="short_description" class="form-control" rows="3">{{ old('short_description') }}</textarea>
@@ -80,13 +92,13 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price(USD) <span
+                                            <label for="inputPrice" class="form-label">Product Price (USD) <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 placeholder="00.00" value="{{ old('selling_price') }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Discount Price(USD) <span
+                                            <label for="inputCompareatprice" class="form-label">Discount Price (USD) <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" placeholder="00.00"

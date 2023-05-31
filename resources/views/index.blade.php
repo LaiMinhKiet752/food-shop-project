@@ -40,7 +40,7 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
                                             href="#account-detail" role="tab" aria-controls="account-detail"
-                                            aria-selected="true"><i class="fi-rs-user mr-10"></i>Account details</a>
+                                            aria-selected="true"><i class="fi-rs-user mr-10"></i>Account Details</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" id="change-password-tab" data-bs-toggle="tab"
@@ -204,7 +204,7 @@
                                                     <div class="form-group col-md-6">
                                                         <label>User Name <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="username"
-                                                            value="{{ $userData->username }}" type="text" readonly/>
+                                                            value="{{ $userData->username }}" type="text" readonly />
                                                     </div>
                                                     <div class="form-group col-md-6">
                                                         <label>Full Name <span class="text-danger">*</span></label>
@@ -215,11 +215,17 @@
                                                         <label>Email <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="email"
                                                             type="email" value="{{ $userData->email }}" />
+                                                        @if ($errors->has('email'))
+                                                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Phone <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="phone"
                                                             type="text" value="{{ $userData->phone }}" />
+                                                        @if ($errors->has('phone'))
+                                                            <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Address <span class="text-danger">*</span></label>
@@ -235,7 +241,7 @@
                                                         @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label> <span class="text-danger">*</span></label>
+                                                        <label></label>
                                                         <img id="showImage"
                                                             src="{{ !empty($userData->photo) ? url('upload/user_images/' . $userData->photo) : url('upload/no_image.jpg') }}"
                                                             alt="User" class="rounded-circle p-1 bg-primary"
@@ -275,7 +281,8 @@
                                                             type="password" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Confirm New Password <span class="text-danger">*</span></label>
+                                                        <label>Confirm New Password <span
+                                                                class="text-danger">*</span></label>
                                                         <input class="form-control" id="new_password_confirmation"
                                                             name="new_password_confirmation" type="password" />
                                                     </div>
@@ -321,9 +328,14 @@
                     },
                     email: {
                         required: true,
+                        maxlength: 255,
+                        email: true,
                     },
                     phone: {
                         required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true,
                     },
                     address: {
                         required: true,
@@ -337,9 +349,14 @@
                     },
                     email: {
                         required: 'Please enter your email.',
+                        maxlength: 'The email must not be greater than 255 characters.',
+                        email: 'The email must be a valid email address.',
                     },
                     phone: {
-                        required: 'Please enter your phone number.',
+                        required: 'Please enter your phone number',
+                        minlength: 'Please enter 10 numeric characters correctly.',
+                        maxlength: 'Please enter 10 numeric characters correctly.',
+                        digits: 'Please enter 10 numeric characters correctly.',
                     },
                     address: {
                         required: 'Please enter your address.',

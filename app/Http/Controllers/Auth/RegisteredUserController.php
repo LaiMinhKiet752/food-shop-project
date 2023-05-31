@@ -34,6 +34,10 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'username.unique' => 'The user name already exists. Please enter another user name.',
+            'email.unique' => 'The email already exists. Please enter another email.',
+            'phone.unique' => 'The phone number already exists. Please enter another phone number.'
         ]);
 
         $user = User::create([

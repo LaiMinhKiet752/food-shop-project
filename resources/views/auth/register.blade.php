@@ -191,8 +191,8 @@
                 },
                 messages: {
                     username: {
-                        required: 'Please enter your username.',
-                        maxlength: 'The username must not be greater than 255 characters.',
+                        required: 'Please enter your user name.',
+                        maxlength: 'The user name must not be greater than 255 characters.',
                     },
                     email: {
                         required: 'Please enter your email.',
