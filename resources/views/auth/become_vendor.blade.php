@@ -176,7 +176,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
@@ -226,9 +226,14 @@
                     },
                     email: {
                         required: true,
+                        maxlength: 255,
+                        email: true,
                     },
                     phone: {
                         required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true,
                     },
                     password: {
                         required: true,
@@ -247,7 +252,7 @@
                     },
                     username: {
                         required: 'Please enter your username.',
-                        maxlength: 'The username must not be greater than 255 characters.',
+                        maxlength: 'The user name must not be greater than 255 characters.',
                     },
                     shop_name: {
                         required: 'Please enter your shop name.',
@@ -258,9 +263,14 @@
                     },
                     email: {
                         required: 'Please enter your email.',
+                        maxlength: 'The email must not be greater than 255 characters.',
+                        email: 'The email must be a valid email address.',
                     },
                     phone: {
-                        required: 'Please enter your phone number.',
+                        required: 'Please enter your phone number',
+                        minlength: 'Please enter 10 numeric characters correctly.',
+                        maxlength: 'Please enter 10 numeric characters correctly.',
+                        digits: 'Please enter 10 numeric characters correctly.',
                     },
                     password: {
                         required: 'Please enter your password.',
@@ -292,8 +302,8 @@
             );
             $.validator.addMethod("checkYear", function(value, element) {
                 var year = $(element).val();
-                return (year >= 1900) && (year <= (new Date()).getFullYear());
-            }, "The year you entered is not valid (The year must be after 1900 and before 2024).");
+                return (year >= 1800) && (year <= (new Date()).getFullYear());
+            }, "The year you entered is not valid (The year must be from 1800 to 2023).");
         });
     </script>
 </body>

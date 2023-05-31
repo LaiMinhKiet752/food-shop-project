@@ -72,7 +72,7 @@
                             <div class="card-body">
 
                                 <form method="post" action="{{ route('admin.profile.store') }}"
-                                    enctype="multipart/form-data">
+                                    enctype="multipart/form-data" id="myForm">
                                     @csrf
 
                                     <div class="row mb-3">
@@ -88,7 +88,7 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Full Name</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="name" class="form-control"
                                                 value="{{ $adminData->name }}" />
                                         </div>
@@ -97,18 +97,24 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Email</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ $adminData->email }}" />
+                                                @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Phone </h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="phone" class="form-control"
                                                 value="{{ $adminData->phone }}" />
+                                            @error('phone')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -117,7 +123,7 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Address</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="address" class="form-control"
                                                 value="{{ $adminData->address }}" />
                                         </div>
@@ -128,7 +134,7 @@
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Photo</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="photo" class="form-control" id="image" />
                                             @if ($errors->has('photo'))
                                                 <span class="text-danger">{{ $errors->first('photo') }}</span>
@@ -169,6 +175,66 @@
                     $('#showImage').attr('src', e.target.result);
                 }
                 reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    name: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                    email: {
+                        required: true,
+                        maxlength: 255,
+                        email: true,
+                    },
+                    phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true,
+                    },
+                    address: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                },
+                messages: {
+                    name: {
+                        required: 'Please enter your full name.',
+                        maxlength: 'The full name must not be greater than 255 characters.',
+                    },
+                    email: {
+                        required: 'Please enter your email.',
+                        maxlength: 'The email must not be greater than 255 characters.',
+                        email: 'The email must be a valid email address.',
+                    },
+                    phone: {
+                        required: 'Please enter your phone number',
+                        minlength: 'Please enter 10 numeric characters correctly.',
+                        maxlength: 'Please enter 10 numeric characters correctly.',
+                        digits: 'Please enter 10 numeric characters correctly.',
+                    },
+                    address: {
+                        required: 'Please enter your address.',
+                        maxlength: 'The address must not be greater than 255 characters.',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
             });
         });
     </script>
