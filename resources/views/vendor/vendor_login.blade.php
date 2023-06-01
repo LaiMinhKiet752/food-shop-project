@@ -45,11 +45,14 @@
 
                                     </div>
                                     @if ($errors->any())
-                                        <ul class="text-danger" style="font-weight: bold;">
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
+                                        @foreach ($errors->all() as $error)
+                                            <div
+                                                class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                                <div class="text-white">{{ $error }}</div>
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                        @endforeach
                                     @endif
                                     <div class="form-body">
                                         <form class="row g-3" method="POST" action="{{ route('login') }}"

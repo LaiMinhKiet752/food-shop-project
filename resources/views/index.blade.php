@@ -197,6 +197,16 @@
                                             <h3>Account Details</h3>
                                         </div>
                                         <div class="card-body">
+                                            @if ($errors->any())
+                                                @foreach ($errors->all() as $error)
+                                                    <div class="alert alert-danger alert-dismissible fade show"
+                                                        role="alert">
+                                                        <strong>{{ $error }}</strong>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                @endforeach
+                                            @endif
                                             <form method="post" action="{{ route('user.profile.store') }}"
                                                 enctype="multipart/form-data" id="myFormDetails">
                                                 @csrf
@@ -215,17 +225,11 @@
                                                         <label>Email <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="email"
                                                             type="email" value="{{ $userData->email }}" />
-                                                        @if ($errors->has('email'))
-                                                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Phone <span class="text-danger">*</span></label>
                                                         <input required="" class="form-control" name="phone"
                                                             type="text" value="{{ $userData->phone }}" />
-                                                        @if ($errors->has('phone'))
-                                                            <span class="text-danger">{{ $errors->first('phone') }}</span>
-                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label>Address <span class="text-danger">*</span></label>
@@ -236,9 +240,6 @@
                                                         <label>User Photo</label>
                                                         <input class="form-control" name="photo" type="file"
                                                             id="image" />
-                                                        @if ($errors->has('photo'))
-                                                            <span class="text-danger">{{ $errors->first('photo') }}</span>
-                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label></label>
@@ -250,7 +251,7 @@
                                                     <div class="col-md-12">
                                                         <button type="submit"
                                                             class="btn btn-fill-out submit font-weight-bold"
-                                                            name="submit" value="Submit">Save Change</button>
+                                                            name="submit" value="Submit">Save Changes</button>
                                                     </div>
                                                 </div>
                                             </form>

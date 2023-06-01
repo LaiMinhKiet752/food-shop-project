@@ -26,7 +26,27 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-
+                                @error('brand_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('brand_email')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('brand_phone')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form method="post" action="{{ route('store.brand') }}" enctype="multipart/form-data"
                                     id="myForm">
                                     @csrf
@@ -37,9 +57,6 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_name" class="form-control" value="{{ old('brand_name') }}"/>
-                                            @if ($errors->has('brand_name'))
-                                                <span class="text-danger">{{ $errors->first('brand_name') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -48,9 +65,6 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_email" class="form-control" value="{{ old('brand_email') }}"/>
-                                            @if ($errors->has('brand_email'))
-                                                <span class="text-danger">{{ $errors->first('brand_email') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -59,9 +73,6 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_phone" class="form-control" value="{{ old('brand_phone') }}"/>
-                                            @if ($errors->has('brand_phone'))
-                                                <span class="text-danger">{{ $errors->first('brand_phone') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -70,9 +81,6 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="brand_address" class="form-control" value="{{ old('brand_address') }}"/>
-                                            @if ($errors->has('brand_address'))
-                                                <span class="text-danger">{{ $errors->first('brand_address') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">

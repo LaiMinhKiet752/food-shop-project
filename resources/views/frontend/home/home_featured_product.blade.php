@@ -1,6 +1,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 @php
     $featured = \App\Models\Product::where('featured', 1)
+        ->where('status', 1)
         ->orderBy('id', 'DESC')
         ->limit(6)
         ->get();

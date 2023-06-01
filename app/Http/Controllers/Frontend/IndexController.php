@@ -22,7 +22,7 @@ class IndexController extends Controller
         $category_id = $product->category_id;
         $relatedProduct = Product::where('category_id', $category_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->limit(4)->get();
 
-        return view('frontend.product.product_details', compact('product','multipleImage', 'relatedProduct'));
+        return view('frontend.product.product_details', compact('product', 'multipleImage', 'relatedProduct'));
     } //End Method
 
     public function Index()
@@ -42,10 +42,10 @@ class IndexController extends Controller
         $skip_category_4 = Category::skip(4)->first();
         $skip_product_4 = Product::where('status', 1)->where('category_id', $skip_category_4->id)->orderby('id', 'DESC')->limit(5)->get();
 
-        $hot_deals = Product::where('hot_deals', 1)->where('discount_price', '!=', NULL)->where('discount_price', '!=', 0)->orderBy('id', 'DESC')->limit(3)->get();
-        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $hot_deals = Product::where('status', 1)->where('hot_deals', 1)->where('discount_price', '!=', NULL)->where('discount_price', '!=', 0)->orderBy('id', 'DESC')->limit(3)->get();
+        $special_offer = Product::where('status', 1)->where('special_offer', 1)->orderBy('id', 'DESC')->limit(3)->get();
         $new = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        $special_deals = Product::where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $special_deals = Product::where('status', 1)->where('special_deals', 1)->orderBy('id', 'DESC')->limit(3)->get();
 
         return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_category_3', 'skip_product_3', 'skip_category_4', 'skip_product_4', 'hot_deals', 'special_offer', 'new', 'special_deals'));
     } //End Method
@@ -53,7 +53,7 @@ class IndexController extends Controller
     public function VendorDetails($id)
     {
         $vendor = User::findOrFail($id);
-        $vproduct = Product::where('vendor_id', $id)->get();
+        $vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
         return view('frontend.vendor.vendor_details', compact('vendor', 'vproduct'));
     } // End Method
 
@@ -69,7 +69,7 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadcategory = Category::where('id', $id)->first();
-        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+        $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct'));
     } // End Method
 
@@ -79,7 +79,7 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadsubcategory = SubCategory::where('id', $id)->first();
-        $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
+        $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcategory', 'newProduct'));
     } // End Method
 

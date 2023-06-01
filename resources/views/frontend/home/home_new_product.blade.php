@@ -130,7 +130,8 @@
                 <div class="tab-pane fade" id="category{{ $category->id }}" role="tabpanel" aria-labelledby="tab-two">
                     <div class="row product-grid-4">
                         @php
-                            $catwiseProduct = App\Models\Product::where('category_id', $category->id)
+                            $catwiseProduct = \App\Models\Product::where('category_id', $category->id)
+                                ->where('status', 1)
                                 ->orderBy('id', 'DESC')
                                 ->get();
                         @endphp
@@ -149,8 +150,9 @@
                                         </div>
                                         <div class="product-action-1">
 
-                                            <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
-                                                onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
+                                            <a aria-label="Add To Wishlist" class="action-btn"
+                                                id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
+                                                    class="fi-rs-heart"></i></a>
 
                                             <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
                                                 onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>

@@ -70,7 +70,20 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
-
+                                @error('email')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('phone')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form method="post" action="{{ route('admin.profile.store') }}"
                                     enctype="multipart/form-data" id="myForm">
                                     @csrf
@@ -100,9 +113,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ $adminData->email }}" />
-                                                @error('email')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -112,9 +122,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="phone" class="form-control"
                                                 value="{{ $adminData->phone }}" />
-                                            @error('phone')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                     </div>
 

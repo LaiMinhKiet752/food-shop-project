@@ -11,6 +11,9 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
@@ -46,32 +49,30 @@
                                             <p class="mb-30">Already have an account? <a
                                                     href="{{ route('login') }}">Login</a></p>
                                         </div>
-                                        @if (session('status'))
-                                            <div class="alert alert-success" role="alert">{{ session('status') }}
-                                            </div>
-                                        @elseif (session('error'))
-                                            <div class="alert alert-danger" role="alert">{{ session('error') }}</div>
-                                        @endif
                                         @if ($errors->any())
-                                            <ul class="text-danger" style="font-weight: bold;">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li><br>
-                                                @endforeach
-                                            </ul>
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>{{ $error }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @endforeach
                                         @endif
                                         <form method="POST" action="{{ route('register') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
-                                                <input class="form-control" type="text" id="username" name="username"
-                                                    placeholder="Username *" value="{{ old('username') }}"/>
+                                                <input class="form-control" type="text" id="username"
+                                                    name="username" placeholder="Username *"
+                                                    value="{{ old('username') }}" />
                                             </div>
                                             <div class="form-group">
                                                 <input class="form-control" type="email" id="email" name="email"
-                                                    placeholder="Email *" value="{{ old('email') }}"/>
+                                                    placeholder="Email *" value="{{ old('email') }}" />
                                             </div>
                                             <div class="form-group">
-                                                <input class="form-control" id="password" type="password" name="password"
-                                                    placeholder="Password *" />
+                                                <input class="form-control" id="password" type="password"
+                                                    name="password" placeholder="Password *" />
                                             </div>
                                             <div class="form-group">
                                                 <input class="form-control" id="password_confirmation" type="password"
@@ -140,6 +141,11 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>

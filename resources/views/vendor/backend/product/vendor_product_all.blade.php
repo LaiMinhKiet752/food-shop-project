@@ -16,7 +16,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('vendor.add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Product</i></a>
+                    <a href="{{ route('vendor.add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
+                            Product</i></a>
                 </div>
             </div>
         </div>
@@ -69,7 +70,7 @@
                                         @if ($item->status == 1)
                                             <span class="badge rounded-pill bg-success">Active</span>
                                         @else
-                                            <span class="badge rounded-pill bg-danger">InActive</span>
+                                            <span class="badge rounded-pill bg-primary">InActive</span>
                                         @endif
                                     </td>
                                     <td>
@@ -81,12 +82,12 @@
                                             title="Details Data"><i class="fa fa-eye"></i></a>
                                         @if ($item->status == 1)
                                             <a href="{{ route('vendor.product.inactive', $item->id) }}"
-                                                class="btn btn-primary" title="InActive Data"><i
-                                                    class="fa-solid fa-thumbs-down"></i></a>
+                                                class="btn btn-success" title="InActive Data"><i
+                                                    class="fa-solid fa-thumbs-up"></i></a>
                                         @else
                                             <a href="{{ route('vendor.product.active', $item->id) }}"
                                                 class="btn btn-primary" title="Active Data"><i
-                                                    class="fa-solid fa-thumbs-up"></i></a>
+                                                    class="fa-solid fa-thumbs-down"></i></a>
                                         @endif
                                     </td>
                                 </tr>

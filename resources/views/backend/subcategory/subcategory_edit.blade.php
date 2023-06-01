@@ -26,11 +26,16 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
+                                @error('subcategory_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form id="myForm" method="post" action="{{ route('update.subcategory') }}">
                                     @csrf
-
                                     <input type="hidden" name="id" value="{{ $subcategory->id }}">
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Category Name <span class="text-danger">*</span></h6>
@@ -54,9 +59,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="subcategory_name" class="form-control"
                                                 value="{{ $subcategory->subcategory_name }}" />
-                                            @if ($errors->has('subcategory_name'))
-                                                <span class="text-danger">{{ $errors->first('subcategory_name') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row">
