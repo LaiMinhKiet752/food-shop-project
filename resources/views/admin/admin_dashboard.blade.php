@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
-    referrerpolicy="origin"></script>
+        referrerpolicy="origin"></script>
 
     <title>Admin Dashboard</title>
 </head>
@@ -168,6 +168,7 @@
         </div>
     </div>
     <!--end switcher-->
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('adminbackend/assets/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
@@ -232,9 +233,11 @@
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
+
     <script>
         tinymce.init({
-            selector: "#mytextarea",
+            selector: '#mytextarea',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
         });

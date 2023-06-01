@@ -13,7 +13,7 @@ class Product extends Model
     protected $guarded = [];
     protected $casts = [
         'manufacturing_date' => 'datetime',
-        'expire_date' => 'datetime',
+        'expiry_date' => 'datetime',
     ];
 
     public function vendor()

@@ -29,7 +29,8 @@
                                 <div class="border border-3 p-4 rounded">
 
                                     <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Name <span class="text-danger">*</span></label>
+                                        <label for="inputProductTitle" class="form-label">Product Name <span
+                                                class="text-danger">*</span></label>
                                         <input type="text" name="product_name" class="form-control"
                                             value="{{ $products->product_name }}">
                                     </div>
@@ -53,8 +54,9 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="inputProductDescription" class="form-label">Short Description <span class="text-danger">*</span></label>
-                                        <textarea name="short_description" class="form-control" rows="3">{{ $products->short_description }}</textarea>
+                                        <label for="inputProductDescription" class="form-label">Short Description <span
+                                                class="text-danger">*</span></label>
+                                        <textarea name="short_description" class="form-control" rows="5">{{ $products->short_description }}</textarea>
                                     </div>
 
                                     <div class="mb-3">
@@ -69,38 +71,46 @@
                                 <div class="border border-3 p-4 rounded">
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price (USD) <span class="text-danger">*</span></label>
+                                            <label for="inputPrice" class="form-label">Product Price (USD) <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control" id="inputPrice"
                                                 value="{{ $products->selling_price }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Discount Price (USD) <span class="text-danger">*</span></label>
+                                            <label for="inputCompareatprice" class="form-label">Discount Price (USD) <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="inputCompareatprice" value="{{ $products->discount_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputCostPerPrice" class="form-label">Product Code <span class="text-danger">*</span></label>
+                                            <label for="inputCostPerPrice" class="form-label">Product Code <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text" name="product_code" class="form-control"
                                                 id="inputCostPerPrice" value="{{ $products->product_code }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Product Quantity <span class="text-danger">*</span></label>
+                                            <label for="inputStarPoints" class="form-label">Product Quantity <span
+                                                    class="text-danger">*</span></label>
                                             <input type="text" name="product_quantity" class="form-control"
                                                 id="inputStarPoints" value="{{ $products->product_quantity }}">
                                         </div>
+
                                         <div class="col-md-6">
                                             <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
-                                            <input type="date" name="manufacturing_date" class="form-control"
+                                            <input type="date" id="mfg_product" name="manufacturing_date"
+                                                class="form-control"
                                                 value="{{ $products->manufacturing_date == null ? '' : $products->manufacturing_date->format('Y-m-d') }}">
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputStarPoints" class="form-label">Expire Date </label>
-                                            <input type="date" name="expire_date" class="form-control"
-                                                value="{{ $products->expire_date == null ? '' : $products->expire_date->format('Y-m-d') }}">
+                                            <label for="inputStarPoints" class="form-label">Expiry Date </label>
+                                            <input type="date" id="exp_product" name="expiry_date"
+                                                class="form-control"
+                                                value="{{ $products->expiry_date == null ? '' : $products->expiry_date->format('Y-m-d') }}">
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputProductType" class="form-label">Product Brand <span class="text-danger">*</span></label>
+                                            <label for="inputProductType" class="form-label">Product Brand <span
+                                                    class="text-danger">*</span></label>
                                             <select name="brand_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($brands as $brand)
@@ -112,7 +122,8 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputVendor" class="form-label">Product Category <span class="text-danger">*</span></label>
+                                            <label for="inputVendor" class="form-label">Product Category <span
+                                                    class="text-danger">*</span></label>
                                             <select name="category_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($categories as $category)
@@ -125,7 +136,8 @@
                                         </div>
 
                                         <div class="form-group col-12">
-                                            <label for="inputVendor" class="form-label">Product SubCategory <span class="text-danger">*</span></label>
+                                            <label for="inputVendor" class="form-label">Product SubCategory <span
+                                                    class="text-danger">*</span></label>
                                             <select name="subcategory_id" class="form-select single-select">
                                                 <option></option>
                                                 @foreach ($subcategory as $subcat)
@@ -197,7 +209,7 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                                                <input type="submit" class="btn btn-primary px-4 updateProduct" value="Save Changes">
                                             </div>
                                         </div>
                                     </div>
@@ -452,6 +464,8 @@
                     },
                     product_quantity: {
                         required: true,
+                        digits: true,
+                        min: 1,
                     },
                     brand_id: {
                         required: true,
@@ -483,6 +497,8 @@
                     },
                     product_quantity: {
                         required: 'Please enter product quantity.',
+                        digits: 'Please enter numbers only.',
+                        min: 'The number of products must be greater than 0.',
                     },
                     brand_id: {
                         required: 'Please select a brand name.',
@@ -519,6 +535,53 @@
             if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
                 return false;
             }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", ".updateProduct", function() {
+
+                var manufacturing_date = $('#mfg_product').val().split("-");
+                var expiry_date = $('#exp_product').val().split("-");
+
+                manufacturing_day = manufacturing_date[2];
+                manufacturing_month = manufacturing_date[1];
+                manufacturing_year = manufacturing_date[0];
+
+                expiry_day = expiry_date[2];
+                expiry_month = expiry_date[1];
+                expiry_year = expiry_date[0];
+
+
+                if (manufacturing_year > expiry_year) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month > expiry_month) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
+                    manufacturing_day > expiry_day) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
+                    manufacturing_day == expiry_day) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                }
+            });
         });
     </script>
 @endsection

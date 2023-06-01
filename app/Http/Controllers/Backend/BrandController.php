@@ -227,6 +227,7 @@ class BrandController extends Controller
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
+                    'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
                 ]);
@@ -269,6 +270,7 @@ class BrandController extends Controller
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
                     'brand_email' => $request->brand_email,
+                    'brand_address' => $request->brand_address,
                     'brand_image' => $save_url,
                 ]);
                 $notification = array(
@@ -288,6 +290,7 @@ class BrandController extends Controller
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
                     'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
                     'brand_image' => $save_url,
                 ]);
                 $notification = array(
@@ -336,6 +339,7 @@ class BrandController extends Controller
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
                     'brand_email' => $request->brand_email,
+                    'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
                 ]);
@@ -382,6 +386,7 @@ class BrandController extends Controller
                 Brand::findOrFail($brand_id)->update([
                     'brand_email' => $request->brand_email,
                     'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
                     'brand_image' => $save_url,
                 ]);
                 $notification = array(

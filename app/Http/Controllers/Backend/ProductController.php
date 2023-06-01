@@ -69,7 +69,7 @@ class ProductController extends Controller
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'manufacturing_date' => $request->manufacturing_date,
-            'expire_date' => $request->expire_date,
+            'expiry_date' => $request->expiry_date,
 
             'hot_deals' => $request->hot_deals,
             'featured' => $request->featured,
@@ -135,7 +135,7 @@ class ProductController extends Controller
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'manufacturing_date' => $request->manufacturing_date,
-            'expire_date' => $request->expire_date,
+            'expiry_date' => $request->expiry_date,
 
             'hot_deals' => $request->hot_deals,
             'featured' => $request->featured,

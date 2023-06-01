@@ -137,6 +137,9 @@
                     },
                     brand_phone: {
                         required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true,
                     },
                     brand_address: {
                         required: true,
@@ -157,7 +160,10 @@
                         email: 'The brand email must be a valid email address.',
                     },
                     brand_phone: {
-                        required: 'Please enter brand number phone.',
+                        required: 'Please enter your phone number',
+                        minlength: 'Please enter 10 numeric characters correctly.',
+                        maxlength: 'Please enter 10 numeric characters correctly.',
+                        digits: 'Please enter 10 numeric characters correctly.',
                     },
                     brand_address: {
                         required: 'Please enter brand address.',

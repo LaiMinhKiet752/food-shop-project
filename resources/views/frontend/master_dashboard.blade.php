@@ -457,7 +457,7 @@
                         stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
                             </td>`;
 
-                        weight += `<td class="row_weight">${value.product.product_weight}</td>`;
+                        weight += `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight}`}</td>`;
 
                         dimensions += `<td class="row_dimensions">${(value.product.product_dimensions == null)?`N/A`:`${value.product.product_dimensions}`}</td>`;
 
