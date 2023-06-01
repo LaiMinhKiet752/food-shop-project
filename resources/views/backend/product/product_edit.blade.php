@@ -73,20 +73,23 @@
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputPrice" class="form-label">Product Price (USD) <span
                                                     class="text-danger">*</span></label>
-                                            <input type="text" name="selling_price" class="form-control" id="inputPrice"
-                                                value="{{ $products->selling_price }}">
+                                            <input type="text" name="selling_price" class="form-control"
+                                                id="product_selling_price" value="{{ $products->selling_price }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputCompareatprice" class="form-label">Discount Price (USD) <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="discount_price" class="form-control"
-                                                id="inputCompareatprice" value="{{ $products->discount_price }}">
+                                                id="product_discount_price" value="{{ $products->discount_price }}">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputCostPerPrice" class="form-label">Product Code <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="product_code" class="form-control"
                                                 id="inputCostPerPrice" value="{{ $products->product_code }}">
+                                            @error('product_code')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity <span
@@ -209,7 +212,8 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <input type="submit" class="btn btn-primary px-4 updateProduct" value="Save Changes">
+                                                <input type="submit" class="btn btn-primary px-4 updateProduct"
+                                                    value="Save Changes">
                                             </div>
                                         </div>
                                     </div>
@@ -544,42 +548,59 @@
 
                 var manufacturing_date = $('#mfg_product').val().split("-");
                 var expiry_date = $('#exp_product').val().split("-");
-
-                manufacturing_day = manufacturing_date[2];
-                manufacturing_month = manufacturing_date[1];
-                manufacturing_year = manufacturing_date[0];
-
-                expiry_day = expiry_date[2];
-                expiry_month = expiry_date[1];
-                expiry_year = expiry_date[0];
+                var p_selling_price = $('#product_selling_price').val();
+                var p_discount_price = $('#product_discount_price').val();
 
 
-                if (manufacturing_year > expiry_year) {
-                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                if ((p_selling_price <= p_discount_price) && p_discount_price != '') {
+                    $.notify("There is an error in the selling price and discount!", {
                         globalPosition: 'top right',
                         className: 'error'
                     });
                     return false;
-                } else if (manufacturing_year == expiry_year && manufacturing_month > expiry_month) {
-                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
-                        globalPosition: 'top right',
-                        className: 'error'
-                    });
-                    return false;
-                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
-                    manufacturing_day > expiry_day) {
-                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
-                        globalPosition: 'top right',
-                        className: 'error'
-                    });
-                    return false;
-                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
-                    manufacturing_day == expiry_day) {
-                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
-                        globalPosition: 'top right',
-                        className: 'error'
-                    });
-                    return false;
+                } else if ((p_selling_price > p_discount_price) && p_discount_price != '') {
+                    if (manufacturing_date == '' || expiry_date == '') {
+                        return true;
+                    } else {
+                        manufacturing_day = manufacturing_date[2];
+                        manufacturing_month = manufacturing_date[1];
+                        manufacturing_year = manufacturing_date[0];
+
+                        expiry_day = expiry_date[2];
+                        expiry_month = expiry_date[1];
+                        expiry_year = expiry_date[0];
+
+                        if (manufacturing_year > expiry_year) {
+                            $.notify("You have selected invalid production and expiry date!", {
+                                globalPosition: 'top right',
+                                className: 'error'
+                            });
+                            return false;
+                        } else if (manufacturing_year == expiry_year && manufacturing_month >
+                            expiry_month) {
+                            $.notify("You have selected invalid production and expiry date!", {
+                                globalPosition: 'top right',
+                                className: 'error'
+                            });
+                            return false;
+                        } else if (manufacturing_year == expiry_year && manufacturing_month ==
+                            expiry_month &&
+                            manufacturing_day > expiry_day) {
+                            $.notify("You have selected invalid production and expiry date!", {
+                                globalPosition: 'top right',
+                                className: 'error'
+                            });
+                            return false;
+                        } else if (manufacturing_year == expiry_year && manufacturing_month ==
+                            expiry_month &&
+                            manufacturing_day == expiry_day) {
+                            $.notify("You have selected invalid production and expiry date!", {
+                                globalPosition: 'top right',
+                                className: 'error'
+                            });
+                            return false;
+                        }
+                    }
                 }
             });
         });

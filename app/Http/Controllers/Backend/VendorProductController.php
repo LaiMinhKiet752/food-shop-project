@@ -40,11 +40,12 @@ class VendorProductController extends Controller
 
     public function VendorStoreProduct(Request $request)
     {
-        //Validate Main Thumbnail Image And Multiple Images
         $request->validate([
+            'product_code' => 'unique:products',
             'product_thumbnail' => 'image|max:2048',
             'multiple_image.*' => 'image|max:2048',
         ], [
+            'product_code.unique' => 'Product code already exists.',
             'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
             'product_thumbnail.max' => 'Maximum image size is 2MB.',
             'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
@@ -88,7 +89,7 @@ class VendorProductController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        //Multiple Image Upload Form Here
+        //Multiple Images Upload
         $images = $request->file('multiple_image');
         foreach ($images as $image) {
             $make_name = hexdec(uniqid()) . '_product' . '.' . $image->getClientOriginalExtension();
@@ -121,42 +122,86 @@ class VendorProductController extends Controller
     public function VendorUpdateProduct(Request $request)
     {
         $product_id = $request->id;
+        $current_product_code = Product::findOrFail($product_id)->product_code;
 
-        Product::findOrFail($product_id)->update([
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_id' => $request->subcategory_id,
-            'vendor_id' => Auth::user()->id,
+        if ($current_product_code != $request->product_code) {
+            $request->validate([
+                'product_code' => 'unique:products',
+            ], [
+                'product_code.unique' => 'Product code already exists.',
+            ]);
+            Product::findOrFail($product_id)->update([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'vendor_id' => Auth::user()->id,
 
-            'product_name' => $request->product_name,
-            'product_code' => $request->product_code,
-            'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
-            'product_quantity' => $request->product_quantity,
-            'product_tags' => $request->product_tags,
-            'product_weight' => $request->product_weight,
-            'product_dimensions' => $request->product_dimensions,
+                'product_name' => $request->product_name,
+                'product_code' => $request->product_code,
+                'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+                'product_quantity' => $request->product_quantity,
+                'product_tags' => $request->product_tags,
+                'product_weight' => $request->product_weight,
+                'product_dimensions' => $request->product_dimensions,
 
-            'short_description' => $request->short_description,
-            'long_description' => $request->long_description,
+                'short_description' => $request->short_description,
+                'long_description' => $request->long_description,
 
-            'selling_price' => $request->selling_price,
-            'discount_price' => $request->discount_price,
-            'manufacturing_date' => $request->manufacturing_date,
-            'expiry_date' => $request->expiry_date,
+                'selling_price' => $request->selling_price,
+                'discount_price' => $request->discount_price,
+                'manufacturing_date' => $request->manufacturing_date,
+                'expiry_date' => $request->expiry_date,
 
-            'hot_deals' => $request->hot_deals,
-            'featured' => $request->featured,
-            'special_offer' => $request->special_offer,
-            'special_deals' => $request->special_deals,
+                'hot_deals' => $request->hot_deals,
+                'featured' => $request->featured,
+                'special_offer' => $request->special_offer,
+                'special_deals' => $request->special_deals,
 
-            'status' => 1,
-        ]);
+                'status' => 1,
+            ]);
 
-        $notification = array(
-            'message' => 'Product Updated Without Image Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->route('vendor.all.product')->with($notification);
+            $notification = array(
+                'message' => 'Product Updated Without Image Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('vendor.all.product')->with($notification);
+        } else {
+            Product::findOrFail($product_id)->update([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_id' => $request->subcategory_id,
+                'vendor_id' => Auth::user()->id,
+
+                'product_name' => $request->product_name,
+                'product_code' => $request->product_code,
+                'product_slug' => strtolower(str_replace(' ', '-', $request->product_name)),
+                'product_quantity' => $request->product_quantity,
+                'product_tags' => $request->product_tags,
+                'product_weight' => $request->product_weight,
+                'product_dimensions' => $request->product_dimensions,
+
+                'short_description' => $request->short_description,
+                'long_description' => $request->long_description,
+
+                'selling_price' => $request->selling_price,
+                'discount_price' => $request->discount_price,
+                'manufacturing_date' => $request->manufacturing_date,
+                'expiry_date' => $request->expiry_date,
+
+                'hot_deals' => $request->hot_deals,
+                'featured' => $request->featured,
+                'special_offer' => $request->special_offer,
+                'special_deals' => $request->special_deals,
+
+                'status' => 1,
+            ]);
+
+            $notification = array(
+                'message' => 'Product Updated Without Image Successfully!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('vendor.all.product')->with($notification);
+        }
     } //End Method
 
     public function VendorUpdateProductThumbnail(Request $request)
