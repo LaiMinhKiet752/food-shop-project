@@ -26,6 +26,13 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
+                                @error('subcategory_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form method="post" action="{{ route('store.subcategory') }}" id="myForm">
                                     @csrf
                                     <div class="row mb-3 ">
@@ -50,10 +57,7 @@
                                             <h6 class="mb-0">SubCategory Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="subcategory_name" class="form-control" />
-                                            @if ($errors->has('subcategory_name'))
-                                                <span class="text-danger">{{ $errors->first('subcategory_name') }}</span>
-                                            @endif
+                                            <input type="text" name="subcategory_name" class="form-control" value="{{ old('subcategory_name') }}"/>
                                         </div>
                                     </div>
 

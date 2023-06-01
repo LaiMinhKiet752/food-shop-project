@@ -82,8 +82,6 @@ class CategoryController extends Controller
                 }
                 Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
                 Category::findOrFail($cat_id)->update([
-                    'category_name' => $request->category_name,
-                    'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
                     'category_image' => $save_url,
                 ]);
                 $notification = array(
@@ -119,11 +117,6 @@ class CategoryController extends Controller
         else {
             $current_category_name = Category::findOrFail($cat_id)->category_name;
             if ($current_category_name == $request->category_name) {
-                Category::findOrFail($cat_id)->update([
-                    'category_name' => $request->category_name,
-                    'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
-                ]);
-
                 $notification = array(
                     'message' => 'Category Updated Without Image Successfully!',
                     'alert-type' => 'success',

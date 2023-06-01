@@ -70,6 +70,20 @@
                     <div class="col-lg-8">
                         <div class="card">
                             <div class="card-body">
+                                @error('email')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('phone')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
 
                                 <form method="post" action="{{ route('vendor.profile.store') }}"
                                     enctype="multipart/form-data" id="myForm">
@@ -109,9 +123,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="email" name="email" class="form-control"
                                                 value="{{ $vendorData->email }}" />
-                                            @if ($errors->has('email'))
-                                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -121,9 +132,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="phone" class="form-control"
                                                 value="{{ $vendorData->phone }}" />
-                                            @if ($errors->has('phone'))
-                                                <span class="text-danger">{{ $errors->first('phone') }}</span>
-                                            @endif
                                         </div>
                                     </div>
 
@@ -153,7 +161,7 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info "
-                                                rows="3">{{ $vendorData->vendor_short_info }}</textarea>
+                                                rows="5">{{ $vendorData->vendor_short_info }}</textarea>
                                         </div>
                                     </div>
 

@@ -26,10 +26,16 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
+                                @error('category_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form method="post" action="{{ route('update.category') }}" enctype="multipart/form-data"
                                     id="myForm">
                                     @csrf
-
                                     <input type="hidden" name="id" value="{{ $category->id }}">
                                     <input type="hidden" name="old_image" value="{{ $category->category_image }}">
                                     <div class="row mb-3">
@@ -39,9 +45,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="category_name" class="form-control"
                                                 value="{{ $category->category_name }}" />
-                                                @if ($errors->has('category_name'))
-                                                <span class="text-danger">{{ $errors->first('category_name') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">

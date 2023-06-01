@@ -19,6 +19,12 @@
 
         <div class="card">
             <div class="card-body p-4">
+                @error('product_code')
+                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                        <div class="text-white">{{ $message }}</div>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @enderror
                 <form action="{{ route('store.product') }}" id="myForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-body mt-4">
@@ -111,9 +117,6 @@
                                             <input type="text" name="product_code" class="form-control"
                                                 id="inputCostPerPrice" placeholder="1q2w3e"
                                                 value="{{ old('product_code') }}">
-                                            @error('product_code')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity <span

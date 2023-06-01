@@ -193,7 +193,7 @@
                     <ul>
                         @foreach ($categories as $category)
                             @php
-                                $products = App\Models\Product::where('category_id', $category->id)->get();
+                                $products = \App\Models\Product::where('category_id', $category->id)->get();
                             @endphp
                             <li>
                                 <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">

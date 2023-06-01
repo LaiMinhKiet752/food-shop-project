@@ -26,6 +26,13 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
+                                @error('category_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form id="myForm" method="post" action="{{ route('store.category') }}"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -35,10 +42,8 @@
                                             <h6 class="mb-0">Category Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="category_name" class="form-control" />
-                                            @if ($errors->has('category_name'))
-                                                <span class="text-danger">{{ $errors->first('category_name') }}</span>
-                                            @endif
+                                            <input type="text" name="category_name" class="form-control"
+                                                value="{{ old('category_name') }}" />
                                         </div>
                                     </div>
 

@@ -11,6 +11,9 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
@@ -34,7 +37,7 @@
         <div class="page-content pt-150 pb-150">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-8 col-lg-10 col-md-12 m-auto">
+                    <div class="col-xl-10 col-lg-10 col-md-12 m-auto">
                         <div class="row">
                             <div class="col-lg-6 col-md-8">
                                 <div class="login_wrap widget-taber-content background-white">
@@ -45,11 +48,14 @@
                                                     href="{{ route('vendor.login') }}">Vendor Login</a></p>
                                         </div>
                                         @if ($errors->any())
-                                            <ul class="text-danger" style="font-weight: bold;">
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li><br>
-                                                @endforeach
-                                            </ul>
+                                            @foreach ($errors->all() as $error)
+                                                <div class="alert alert-danger alert-dismissible fade show"
+                                                    role="alert">
+                                                    <strong>{{ $error }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @endforeach
                                         @endif
                                         <form method="POST" action="{{ route('vendor.register') }}" id="myForm">
                                             @csrf
@@ -178,6 +184,11 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
