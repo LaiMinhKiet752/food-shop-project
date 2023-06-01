@@ -128,10 +128,10 @@
                                                     class="text-brand">{{ date('d-m-Y', strtotime($product->manufacturing_date)) }}</span>
                                             </li>
                                         @endif
-                                        @if ($product->expire_date == null)
+                                        @if ($product->expiry_date == null)
                                         @else
                                             <li>EXP: <span
-                                                    class="text-brand">{{ date('d-m-Y', strtotime($product->expire_date)) }}</span>
+                                                    class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                             </li>
                                         @endif
                                         <li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_quantity }})

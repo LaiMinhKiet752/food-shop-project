@@ -210,7 +210,7 @@ Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToC
 //Category Product Page Add To Cart
 Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryProduct']);
 
-//Featured Product Page Add To Cart
+//SubCategory Product Page Add To Cart
 Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'AddToCartSubCategoryProduct']);
 
 //Related Product Page Add To Cart

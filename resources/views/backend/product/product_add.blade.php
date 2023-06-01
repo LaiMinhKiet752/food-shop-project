@@ -54,7 +54,7 @@
                                     <div class="form-group mb-3">
                                         <label for="inputProductDescription" class="form-label">Short Description <span
                                                 class="text-danger">*</span></label>
-                                        <textarea name="short_description" class="form-control" rows="3">{{ old('short_description') }}</textarea>
+                                        <textarea name="short_description" class="form-control" rows="5">{{ old('short_description') }}</textarea>
                                     </div>
 
                                     <div class="mb-3">
@@ -108,7 +108,8 @@
                                             <label for="inputCostPerPrice" class="form-label">Product Code <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="product_code" class="form-control"
-                                                id="inputCostPerPrice" placeholder="1q2w3e" value="{{ old('product_code') }}">
+                                                id="inputCostPerPrice" placeholder="1q2w3e"
+                                                value="{{ old('product_code') }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity <span
@@ -120,12 +121,14 @@
 
                                         <div class="col-md-6">
                                             <label class="form-label">Manufacturing Date </label>
-                                            <input type="date" name="manufacturing_date" class="form-control">
+                                            <input type="date" name="manufacturing_date" class="form-control"
+                                                id="mfg_product">
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label class="form-label">Expire Date </label>
-                                            <input type="date" name="expire_date" class="form-control">
+                                            <label class="form-label">Expiry Date </label>
+                                            <input type="date" name="expiry_date" class="form-control"
+                                                id="exp_product">
                                         </div>
 
                                         <div class="form-group col-12">
@@ -214,7 +217,8 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <input type="submit" class="btn btn-primary px-4" value="Add Product">
+                                                <input type="submit" class="btn btn-primary px-4 addNewProduct"
+                                                    value="Add Product">
                                             </div>
                                         </div>
                                     </div>
@@ -323,6 +327,8 @@
                     },
                     product_quantity: {
                         required: true,
+                        digits: true,
+                        min: 1,
                     },
                     brand_id: {
                         required: true,
@@ -354,6 +360,8 @@
                     },
                     product_quantity: {
                         required: 'Please enter product quantity.',
+                        digits: 'Please enter numbers only.',
+                        min: 'The number of products must be greater than 0.',
                     },
                     brand_id: {
                         required: 'Please select a brand name.',
@@ -390,6 +398,53 @@
             if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57)) {
                 return false;
             }
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", ".addNewProduct", function() {
+
+                var manufacturing_date = $('#mfg_product').val().split("-");
+                var expiry_date = $('#exp_product').val().split("-");
+
+                manufacturing_day = manufacturing_date[2];
+                manufacturing_month = manufacturing_date[1];
+                manufacturing_year = manufacturing_date[0];
+
+                expiry_day = expiry_date[2];
+                expiry_month = expiry_date[1];
+                expiry_year = expiry_date[0];
+
+
+                if (manufacturing_year > expiry_year) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month > expiry_month) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
+                    manufacturing_day > expiry_day) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                } else if (manufacturing_year == expiry_year && manufacturing_month == expiry_month &&
+                    manufacturing_day == expiry_day) {
+                    $.notify("You Have Selected Invalid Production and Expiry Date!", {
+                        globalPosition: 'top right',
+                        className: 'error'
+                    });
+                    return false;
+                }
+            });
         });
     </script>
 @endsection

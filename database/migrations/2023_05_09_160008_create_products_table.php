@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('product_weight')->nullable();
             $table->string('product_dimensions')->nullable();
             $table->timestamp('manufacturing_date')->nullable();
-            $table->timestamp('expire_date')->nullable();
+            $table->timestamp('expiry_date')->nullable();
             $table->string('selling_price');
             $table->string('discount_price')->nullable();
             $table->text('short_description');
