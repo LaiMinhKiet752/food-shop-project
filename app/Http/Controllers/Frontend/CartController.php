@@ -25,7 +25,7 @@ class CartController extends Controller
     public function AddToCart(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -51,7 +51,7 @@ class CartController extends Controller
     public function AddToCartDetails(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $request->product_name,
@@ -77,7 +77,7 @@ class CartController extends Controller
     public function AddToCartHomeNewProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -103,7 +103,7 @@ class CartController extends Controller
     public function AddToCartHomeNewProductCategory(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -129,7 +129,7 @@ class CartController extends Controller
     public function AddToCartFeaturedProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -155,7 +155,7 @@ class CartController extends Controller
     public function AddToCartRelatedProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -181,7 +181,7 @@ class CartController extends Controller
     public function AddToCartCategoryProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -207,7 +207,7 @@ class CartController extends Controller
     public function AddToCartSubCategoryProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -233,7 +233,7 @@ class CartController extends Controller
     public function AddToCartVendorDetailsProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -259,7 +259,7 @@ class CartController extends Controller
     public function AddToCartCategoryOneProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -285,7 +285,7 @@ class CartController extends Controller
     public function AddToCartCategoryTwoProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -311,7 +311,7 @@ class CartController extends Controller
     public function AddToCartCategoryThreeProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -337,7 +337,7 @@ class CartController extends Controller
     public function AddToCartCategoryFourProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,
@@ -363,7 +363,7 @@ class CartController extends Controller
     public function AddToCartCategoryFiveProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        if ($product->discount_price == NULL || $product->discount_price == 0) {
+        if ($product->discount_price == NULL) {
             Cart::add([
                 'id' => $id,
                 'name' => $product->product_name,

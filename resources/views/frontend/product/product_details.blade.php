@@ -57,7 +57,7 @@
                                         $amount = $product->selling_price - $product->discount_price;
                                         $discount = ($amount / $product->selling_price) * 100;
                                     @endphp
-                                    @if ($product->discount_price == null || $product->discount_price == 0)
+                                    @if ($product->discount_price == null)
                                         <div class="product-price primary-color float-left">
                                             <span class="current-price text-brand">${{ $product->selling_price }}</span>
                                         </div>
@@ -548,7 +548,7 @@
                                                         $amount = $product->selling_price - $product->discount_price;
                                                         $discount = ($amount / $product->selling_price) * 100;
                                                     @endphp
-                                                    @if ($product->discount_price == null || $product->discount_price == 0)
+                                                    @if ($product->discount_price == null)
                                                         <span class="new">New</span>
                                                     @else
                                                         <span class="hot"> - {{ round($discount) }} %</span>
@@ -582,7 +582,7 @@
                                                     @endif
                                                 </div>
                                                 <div class="product-card-bottom">
-                                                    @if ($product->discount_price == null || $product->discount_price == 0)
+                                                    @if ($product->discount_price == null)
                                                         <div class="product-price">
                                                             <span>${{ $product->selling_price }}</span>
 

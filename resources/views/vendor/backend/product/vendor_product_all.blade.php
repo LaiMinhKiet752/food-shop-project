@@ -3,7 +3,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Product</div>
+            <div class="breadcrumb-title pe-3">Product</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -49,13 +49,13 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
-                                    @if ($item->discount_price == null || $item->discount_price == 0)
-                                        <td>0</td>
+                                    @if ($item->discount_price == null)
+                                        <td>No discount</td>
                                     @else
                                         <td>{{ $item->discount_price }}</td>
                                     @endif
                                     <td>
-                                        @if ($item->discount_price == null || $item->discount_price == 0)
+                                        @if ($item->discount_price == null)
                                             <span class="badge rounded-pill bg-dark">0%</span>
                                         @else
                                             @php
