@@ -600,7 +600,7 @@
                                 <td class="price" data-title="Price">
                                     <h4 class="text-brand">$${value.subtotal} </h4>
                                 </td>
-                                <td class="action text-center" data-title="Remove"><a href="#" class="text-body"><i
+                                <td class="action text-center" data-title="Remove"><a type="submit" id="${value.rowId}" onclick = "cartRemove(this.id)" class="text-body"><i
                                             class="fi-rs-trash"></i></a></td>
                             </tr>`;
                     });
@@ -609,6 +609,41 @@
             });
         }
         cart();
+
+        //Start Cart Remove
+        function cartRemove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/cart-remove/" + id,
+                dataType: "json",
+                success: function(data) {
+                    cart();
+                    miniCart();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
+        //End Cart Remove
     </script>
     <!--  /// End Load Data My Cart -->
 
