@@ -5,7 +5,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Edit Product</div>
+            <div class="breadcrumb-title pe-3">Product</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -464,6 +464,9 @@
                         required: true,
                         min: 1,
                     },
+                    discount_price: {
+                        min: 1,
+                    },
                     product_code: {
                         required: true,
                     },
@@ -496,7 +499,10 @@
                     },
                     selling_price: {
                         required: 'Please enter selling price.',
-                        min: 'Selling price cannot be equal to 0!',
+                        min: 'The selling price must be greater than 0.',
+                    },
+                    discount_price: {
+                        min: 'The discount price must be greater than 0.',
                     },
                     product_code: {
                         required: 'Please enter product code.',
@@ -552,7 +558,10 @@
                 var p_discount_price = $('#product_discount_price').val();
                 var check = p_selling_price - p_discount_price;
 
-                if (check < 1) {
+                if (p_selling_price == '' && p_discount_price == '') {
+                    return true;
+                }
+                if (check < 0.01) {
                     $.notify("There is an error in the selling price and discount!", {
                         globalPosition: 'top right',
                         className: 'error',

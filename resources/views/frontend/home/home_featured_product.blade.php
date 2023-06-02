@@ -58,7 +58,7 @@
 
                                             @endphp
                                             <div class="product-badges product-badges-position product-badges-mrg">
-                                                @if ($product->discount_price == null || $product->discount_price == 0)
+                                                @if ($product->discount_price == null)
                                                     <span class="new">New</span>
                                                 @else
                                                     <span class="hot"> - {{ round($discount) }} %</span>
@@ -79,7 +79,7 @@
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
-                                            @if ($product->discount_price == null || $product->discount_price == 0)
+                                            @if ($product->discount_price == null)
                                                 <div class="product-price mt-10">
                                                     <span>${{ $product->selling_price }}</span>
                                                 </div>
