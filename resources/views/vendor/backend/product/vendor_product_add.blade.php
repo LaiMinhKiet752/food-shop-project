@@ -99,7 +99,7 @@
                                     @enderror
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price (USD) <span
+                                            <label for="inputPrice" class="form-label">Selling Price (USD) <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control"
                                                 id="product_selling_price" placeholder="00.00"

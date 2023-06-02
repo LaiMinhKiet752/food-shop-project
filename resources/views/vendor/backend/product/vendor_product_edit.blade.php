@@ -20,12 +20,6 @@
 
         <div class="card">
             <div class="card-body p-4">
-                @error('product_code')
-                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
-                        <div class="text-white">{{ $message }}</div>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @enderror
                 <form action="{{ route('vendor.update.product') }}" id="myForm" method="POST">
                     @csrf
                     <input type="hidden" name="id" value="{{ $products->id }}">
@@ -84,7 +78,7 @@
                                     @enderror
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputPrice" class="form-label">Product Price (USD) <span
+                                            <label for="inputPrice" class="form-label">Selling Price (USD) <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="selling_price" class="form-control"
                                                 id="product_selling_price" value="{{ $products->selling_price }}">
