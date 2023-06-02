@@ -329,6 +329,7 @@
                     },
                     selling_price: {
                         required: true,
+                        min: 1,
                     },
                     product_code: {
                         required: true,
@@ -362,6 +363,7 @@
                     },
                     selling_price: {
                         required: 'Please enter selling price.',
+                        min: 'Selling price cannot be equal to 0!',
                     },
                     product_code: {
                         required: 'Please enter product code.',
@@ -369,7 +371,7 @@
                     product_quantity: {
                         required: 'Please enter product quantity.',
                         digits: 'Please enter numbers only.',
-                        min: 'The number of products must be greater than 0.',
+                        min: 'Product quantity must be greater than 0.',
                     },
                     brand_id: {
                         required: 'Please select a brand name.',
@@ -415,18 +417,18 @@
 
                 var p_selling_price = $('#product_selling_price').val();
                 var p_discount_price = $('#product_discount_price').val();
+                var check = p_selling_price - p_discount_price;
 
-                if ((p_selling_price <= p_discount_price) && p_discount_price != '') {
+                if (check < 1) {
                     $.notify("There is an error in the selling price and discount!", {
                         globalPosition: 'top right',
-                        className: 'error'
+                        className: 'error',
                     });
                     return false;
-                } else if ((p_selling_price > p_discount_price) && p_discount_price != '') {
-                    return true;
-                } else if (p_selling_price != '' && p_discount_price == '') {
+                } else {
                     return true;
                 }
+
             });
         });
     </script>
