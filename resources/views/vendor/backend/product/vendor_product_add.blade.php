@@ -439,6 +439,12 @@
                 var manufacturing_date = $('#mfg_product').val().split("-");
                 var expiry_date = $('#exp_product').val().split("-");
 
+                var today = new Date();
+                var today_day = String(today.getDate()).padStart(2, '0');
+                var today_month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var today_year = today.getFullYear();
+
+
                 if (manufacturing_date != '' && expiry_date != '') {
                     manufacturing_day = manufacturing_date[2];
                     manufacturing_month = manufacturing_date[1];
@@ -476,9 +482,67 @@
                         });
                         return false;
                     }
-                } else if (manufacturing_date == '' || expiry_date == '') {
+
+                } else if (manufacturing_date == '' && expiry_date == '') {
+                    return true;
+                } else if (manufacturing_date != '') {
+                    manufacturing_day = manufacturing_date[2];
+                    manufacturing_month = manufacturing_date[1];
+                    manufacturing_year = manufacturing_date[0];
+
+                    if (manufacturing_year > today_year) {
+                        $.notify("Invalid production date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (manufacturing_year == today_year && manufacturing_month >
+                        today_month) {
+                        $.notify("Invalid production date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (manufacturing_year == today_year && manufacturing_month ==
+                        today_month && manufacturing_day > today_day) {
+                        $.notify("Invalid production date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    }
+                    return true;
+
+                } else if (expiry_date != '') {
+                    expiry_day = expiry_date[2];
+                    expiry_month = expiry_date[1];
+                    expiry_year = expiry_date[0];
+
+                    if (expiry_year < today_year) {
+                        $.notify("Invalid expiration date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (expiry_year == today_year && expiry_month <
+                        today_month) {
+                        $.notify("Invalid expiration date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (expiry_year == today_year && expiry_month ==
+                        today_month && expiry_day <= today_day) {
+                        $.notify("Invalid expiration date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    }
                     return true;
                 }
+
+
             });
         });
     </script>
