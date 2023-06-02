@@ -75,6 +75,13 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="border border-3 p-4 rounded">
+                                    @error('product_code')
+                                        <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                            <div class="text-white">{{ $message }}</div>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    @enderror
                                     <div class="row g-3">
                                         <div class="form-group numbers-only col-md-6">
                                             <label for="inputPrice" class="form-label">Product Price (USD) <span
@@ -205,7 +212,7 @@
                                         <hr>
                                         <div class="col-12">
                                             <div class="d-grid">
-                                                <input type="submit" class="btn btn-primary px-4 vendorUpdateProduct"
+                                                <input type="submit" class="btn btn-primary px-4 checkPrice checkDate"
                                                     value="Save Changes">
                                             </div>
                                         </div>
@@ -537,13 +544,10 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $(document).on("click", ".vendorUpdateProduct", function() {
+            $(document).on("click", ".checkPrice", function() {
 
-                var manufacturing_date = $('#mfg_product').val().split("-");
-                var expiry_date = $('#exp_product').val().split("-");
                 var p_selling_price = $('#product_selling_price').val();
                 var p_discount_price = $('#product_discount_price').val();
-
 
                 if ((p_selling_price <= p_discount_price) && p_discount_price != '') {
                     $.notify("There is an error in the selling price and discount!", {
@@ -552,48 +556,60 @@
                     });
                     return false;
                 } else if ((p_selling_price > p_discount_price) && p_discount_price != '') {
-                    if (manufacturing_date == '' || expiry_date == '') {
-                        return true;
-                    } else {
-                        manufacturing_day = manufacturing_date[2];
-                        manufacturing_month = manufacturing_date[1];
-                        manufacturing_year = manufacturing_date[0];
+                    return true;
+                } else if (p_selling_price != '' && p_discount_price == '') {
+                    return true;
+                }
+            });
+        });
+    </script>
 
-                        expiry_day = expiry_date[2];
-                        expiry_month = expiry_date[1];
-                        expiry_year = expiry_date[0];
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(document).on("click", ".checkDate", function() {
 
-                        if (manufacturing_year > expiry_year) {
-                            $.notify("You have selected invalid production and expiry date!", {
-                                globalPosition: 'top right',
-                                className: 'error'
-                            });
-                            return false;
-                        } else if (manufacturing_year == expiry_year && manufacturing_month >
-                            expiry_month) {
-                            $.notify("You have selected invalid production and expiry date!", {
-                                globalPosition: 'top right',
-                                className: 'error'
-                            });
-                            return false;
-                        } else if (manufacturing_year == expiry_year && manufacturing_month ==
-                            expiry_month &&
-                            manufacturing_day > expiry_day) {
-                            $.notify("You have selected invalid production and expiry date!", {
-                                globalPosition: 'top right',
-                                className: 'error'
-                            });
-                            return false;
-                        } else if (manufacturing_year == expiry_year && manufacturing_month ==
-                            expiry_month &&
-                            manufacturing_day == expiry_day) {
-                            $.notify("You have selected invalid production and expiry date!", {
-                                globalPosition: 'top right',
-                                className: 'error'
-                            });
-                            return false;
-                        }
+                var manufacturing_date = $('#mfg_product').val().split("-");
+                var expiry_date = $('#exp_product').val().split("-");
+
+                if (manufacturing_date != '' && expiry_date != '') {
+                    manufacturing_day = manufacturing_date[2];
+                    manufacturing_month = manufacturing_date[1];
+                    manufacturing_year = manufacturing_date[0];
+
+                    expiry_day = expiry_date[2];
+                    expiry_month = expiry_date[1];
+                    expiry_year = expiry_date[0];
+
+                    if (manufacturing_year > expiry_year) {
+                        $.notify("You have selected invalid production and expiry date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (manufacturing_year == expiry_year && manufacturing_month >
+                        expiry_month) {
+                        $.notify("You have selected invalid production and expiry date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (manufacturing_year == expiry_year && manufacturing_month ==
+                        expiry_month && manufacturing_day > expiry_day) {
+                        $.notify("You have selected invalid production and expiry date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
+                    } else if (manufacturing_year == expiry_year && manufacturing_month ==
+                        expiry_month && manufacturing_day == expiry_day) {
+                        $.notify("You have selected invalid production and expiry date!", {
+                            globalPosition: 'top right',
+                            className: 'error'
+                        });
+                        return false;
                     }
+                } else if (manufacturing_date == '' || expiry_date == '') {
+                    return true;
                 }
             });
         });
