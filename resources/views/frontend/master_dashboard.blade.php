@@ -567,6 +567,7 @@
                 dataType: "json",
                 success: function(response) {
                     var rows = "";
+                    $('#mycartQty').text(response.cartQty);
                     $.each(response.carts, function(key, value) {
                         rows += `<tr class="pt-30">
                                 <td class="custome-checkbox pl-30">
@@ -596,7 +597,7 @@
                                             <input type="text" name="quantity" class="qty-val" value="${value.qty}"
                                                 min="1">
 
-                                            <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+                                            <a type="submit" id="${value.rowId}" onclick = "cartIncrement(this.id)" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
 
                                         </div>
                                     </div>
@@ -662,6 +663,20 @@
             });
         }
         //End Cart Decrement
+
+        //Start Cart Increment
+        function cartIncrement(rowId){
+            $.ajax({
+                type: "GET",
+                url: "/cart-increment/" + rowId,
+                dataType: "json",
+                success: function (data) {
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        //End Cart Increment
     </script>
     <!--  /// End Load Data My Cart -->
 
