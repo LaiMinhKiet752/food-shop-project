@@ -33,6 +33,13 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
+                                @error('category_image')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form id="myForm" method="post" action="{{ route('store.category') }}"
                                     enctype="multipart/form-data">
                                     @csrf
@@ -54,9 +61,6 @@
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="category_image" class="form-control"
                                                 id="image" />
-                                            @if ($errors->has('category_image'))
-                                                <span class="text-danger">{{ $errors->first('category_image') }}</span>
-                                            @endif
                                         </div>
                                     </div>
                                     <div class="row mb-3">

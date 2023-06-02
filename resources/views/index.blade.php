@@ -197,16 +197,21 @@
                                             <h3>Account Details</h3>
                                         </div>
                                         <div class="card-body">
-                                            @if ($errors->any())
-                                                @foreach ($errors->all() as $error)
-                                                    <div class="alert alert-danger alert-dismissible fade show"
-                                                        role="alert">
-                                                        <strong>{{ $error }}</strong>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                @endforeach
-                                            @endif
+                                            @error('email')
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @enderror
+                                            @error('phone')
+                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                            @enderror
+
                                             <form method="post" action="{{ route('user.profile.store') }}"
                                                 enctype="multipart/form-data" id="myFormDetails">
                                                 @csrf
@@ -240,6 +245,9 @@
                                                         <label>User Photo</label>
                                                         <input class="form-control" name="photo" type="file"
                                                             id="image" />
+                                                        @if ($errors->has('photo'))
+                                                            <span class="text-danger">{{ $errors->first('photo') }}</span>
+                                                        @endif
                                                     </div>
                                                     <div class="form-group col-md-12">
                                                         <label></label>

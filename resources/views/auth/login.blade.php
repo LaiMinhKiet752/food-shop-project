@@ -66,7 +66,6 @@
                                                 </div>
                                             @endforeach
                                         @endif
-
                                         <form method="POST" action="{{ route('login') }}" id="myForm">
                                             @csrf
                                             <div class="form-group">
