@@ -260,6 +260,7 @@ Route::middleware(['auth'])->group(function () {
     //Cart All Route
     Route::controller(CartController::class)->group(function () {
         Route::get('/mycart', 'MyCart')->name('mycart');
+        Route::get('/get-cart-product', 'GetCartProduct');
     });
 });
 
