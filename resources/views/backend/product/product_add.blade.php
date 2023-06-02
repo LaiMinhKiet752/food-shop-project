@@ -295,7 +295,7 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            $('select[name="subcategory_id"]').html('');
+                            $('select[name="subcategory_id"]').html();
                             var d = $('select[name="subcategory_id"]').empty();
                             $.each(data, function(key, value) {
                                 $('select[name="subcategory_id"]').append(
@@ -453,7 +453,7 @@
 
                 var today = new Date();
                 var today_day = String(today.getDate()).padStart(2, '0');
-                var today_month = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var today_month = String(today.getMonth() + 1).padStart(2, '0');
                 var today_year = today.getFullYear();
 
 
@@ -530,7 +530,7 @@
                     expiry_month = expiry_date[1];
                     expiry_year = expiry_date[0];
 
-                     if (expiry_year < today_year) {
+                    if (expiry_year < today_year) {
                         $.notify("Invalid expiration date!", {
                             globalPosition: 'top right',
                             className: 'error'

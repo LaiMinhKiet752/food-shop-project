@@ -457,9 +457,11 @@
                         stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
                             </td>`;
 
-                        weight += `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight}`}</td>`;
+                        weight +=
+                            `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight}`}</td>`;
 
-                        dimensions += `<td class="row_dimensions">${(value.product.product_dimensions == null)?`N/A`:`${value.product.product_dimensions}`}</td>`;
+                        dimensions +=
+                            `<td class="row_dimensions">${(value.product.product_dimensions == null)?`N/A`:`${value.product.product_dimensions}`}</td>`;
 
                         details += `<td class="row_btn">
                                         ${value.product.product_quantity > 0 ?
@@ -554,6 +556,129 @@
         }
     </script>
     <!--  /// End Add To Compare -->
+
+
+    <!--  /// Start Load Data My Cart -->
+    <script type="text/javascript">
+        function cart() {
+            $.ajax({
+                type: "GET",
+                url: "/get-cart-product",
+                dataType: "json",
+                success: function(response) {
+                    var rows = "";
+                    $('#mycartQty').text(response.cartQty);
+                    $.each(response.carts, function(key, value) {
+                        rows += `<tr class="pt-30">
+                                <td class="custome-checkbox pl-30">
+                                </td>
+                                <td class="image product-thumbnail pt-40"><img src="/${value.options.image}"
+                                        alt="#"></td>
+                                <td class="product-des product-name">
+                                    <h6 class="mb-5"><a class="product-name mb-10 text-heading"
+                                            href="shop-product-right.html">${value.name}</a></h6>
+                                    <div class="product-rate-cover">
+                                        <div class="product-rate d-inline-block">
+                                            <div class="product-rating" style="width:90%">
+                                            </div>
+                                        </div>
+                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                    </div>
+                                </td>
+                                <td class="price" data-title="Price">
+                                    <h4 class="text-body">$${value.price} </h4>
+                                </td>
+                                <td class="text-center detail-info" data-title="Stock">
+                                    <div class="detail-extralink mr-15">
+                                        <div class="detail-qty border radius">
+
+                                            <a type="submit" id="${value.rowId}" onclick = "cartDecrement(this.id)" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+
+                                            <input type="text" name="quantity" class="qty-val" value="${value.qty}"
+                                                min="1">
+
+                                            <a type="submit" id="${value.rowId}" onclick = "cartIncrement(this.id)" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="price" data-title="Price">
+                                    <h4 class="text-brand">$${value.subtotal} </h4>
+                                </td>
+                                <td class="action text-center" data-title="Remove"><a type="submit" id="${value.rowId}" onclick = "cartRemove(this.id)" class="text-body"><i
+                                            class="fi-rs-trash"></i></a></td>
+                            </tr>`;
+                    });
+                    $("#cartPage").html(rows);
+                }
+            });
+        }
+        cart();
+
+        //Start Cart Remove
+        function cartRemove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/cart-remove/" + id,
+                dataType: "json",
+                success: function(data) {
+                    cart();
+                    miniCart();
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
+        //End Cart Remove
+
+        //Start Cart Decrement
+        function cartDecrement(rowId){
+            $.ajax({
+                type: "GET",
+                url: "/cart-decrement/" + rowId,
+                dataType: "json",
+                success: function (data) {
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        //End Cart Decrement
+
+        //Start Cart Increment
+        function cartIncrement(rowId){
+            $.ajax({
+                type: "GET",
+                url: "/cart-increment/" + rowId,
+                dataType: "json",
+                success: function (data) {
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        //End Cart Increment
+    </script>
+    <!--  /// End Load Data My Cart -->
 
 
 </body>
