@@ -37,6 +37,7 @@ use App\Http\Controllers\User\WishlistController;
 
 //Index All Route
 Route::get('/', [IndexController::class, 'Index']);
+
 //Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
@@ -52,25 +53,24 @@ Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->nam
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    //Vendor Dashborad
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-}); //End Group Middleware 'Auth'
+}); //End Group Middleware 'Auth' And 'Email Verified'
 
 
-//Admin Dashborad
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout', [AdminController::class, 'AdminDestroy'])->name('admin.logout');
-    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
-    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
-    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
-    Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
-});
 
-//Vendor Dashborad
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
+
+
 Route::middleware(['auth', 'role:vendor'])->group(function () {
+    //Vendor Dashborad
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
     Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
     Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
@@ -97,14 +97,15 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 }); //End Group Middlware Vendor
 
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
-
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
-Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
-
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+    //Admin Dashborad
+    Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
+    Route::get('/admin/logout', [AdminController::class, 'AdminDestroy'])->name('admin.logout');
+    Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+    Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'])->name('admin.profile.store');
+    Route::get('/admin/change/password', [AdminController::class, 'AdminChangePassword'])->name('admin.change.password');
+    Route::post('/admin/update/password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
     //Brand All Route
     Route::controller(BrandController::class)->group(function () {
@@ -243,7 +244,7 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
 //User All Route
-Route::middleware(['auth', 'role:user'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     //Wishlist All Route
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
