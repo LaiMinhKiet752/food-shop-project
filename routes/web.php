@@ -257,6 +257,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get-compare-product', 'GetCompareProduct');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
+    //Cart All Route
+    Route::controller(CartController::class)->group(function () {
+        Route::get('/mycart', 'MyCart')->name('mycart');
+    });
 });
 
 
