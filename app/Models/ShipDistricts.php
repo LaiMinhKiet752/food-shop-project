@@ -11,4 +11,8 @@ class ShipDistricts extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded = [];
+    public function division()
+    {
+        return $this->belongsTo(ShipDivision::class, 'division_id', 'id');
+    }
 }

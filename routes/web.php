@@ -197,6 +197,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/division/{id}', 'DeleteDivision')->name('delete.division');
     });
 
+    //Shipping District All Route
+    Route::controller(ShippingAreaController::class)->group(function () {
+        Route::get('/all/district', 'AllDistrict')->name('all.district');
+        Route::get('/add/district', 'AddDistrict')->name('add.district');
+        Route::post('/store/district', 'StoreDistrict')->name('store.district');
+        Route::get('/edit/district/{id}', 'EditDistrict')->name('edit.district');
+        Route::post('/update/district', 'UpdateDistrict')->name('update.district');
+        Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
+    });
+
 
     //Vendor Active And Inactive All Route
     Route::controller(AdminController::class)->group(function () {
