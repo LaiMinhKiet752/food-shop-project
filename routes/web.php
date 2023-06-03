@@ -176,15 +176,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
 
- //Coupon All Route
- Route::controller(CouponController::class)->group(function(){
-    Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
-    Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
-    Route::post('/store/coupon' , 'StoreCoupon')->name('store.coupon');
-    Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
-    Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
-    Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
-});
+    //Coupon All Route
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('/all/coupon', 'AllCoupon')->name('all.coupon');
+        Route::get('/add/coupon', 'AddCoupon')->name('add.coupon');
+        Route::post('/store/coupon', 'StoreCoupon')->name('store.coupon');
+        Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
+        Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
+        Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
+    });
 
 
     //Vendor Active And Inactive All Route

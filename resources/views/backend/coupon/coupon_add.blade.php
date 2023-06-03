@@ -5,7 +5,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Add Coupon</div>
+            <div class="breadcrumb-title pe-3">Coupon</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -26,26 +26,31 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-body">
-                                
+                                @error('coupon_name')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
                                 <form method="post" action="{{ route('store.coupon') }}" id="myForm">
                                     @csrf
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Coupon Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="coupon_name" class="form-control" value="{{ old('subcategory_name') }}"/>
+                                            <input type="text" name="coupon_name" class="form-control"
+                                                value="{{ old('coupon_name') }}" />
                                         </div>
                                     </div>
-
-
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Coupon Discount(%) <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="coupon_discount" class="form-control" value="{{ old('subcategory_name') }}"/>
+                                            <input type="text" name="coupon_discount" class="form-control"
+                                                value="{{ old('coupon_discount') }}" />
                                         </div>
                                     </div>
 
@@ -54,7 +59,9 @@
                                             <h6 class="mb-0">Coupon Validity Date <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="date" name="coupon_validity" class="form-control"  value="{{ old('subcategory_name') }}"  min= "{{Carbon\Carbon::now()->format('Y-m-d')}}"/>
+                                            <input type="date" name="coupon_validity" class="form-control"
+                                                value="{{ old('coupon_validity') }}"
+                                                min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" />
                                         </div>
                                     </div>
 
@@ -84,15 +91,25 @@
                     },
                     coupon_discount: {
                         required: true,
+                        min: 1,
+                        max: 100,
+                    },
+                    coupon_validity: {
+                        required: true,
                     },
                 },
                 messages: {
                     coupon_name: {
-                        required: 'Please Enter Coupon Name.',
-                        maxlength: 'The subcategory name must not be greater than 255 characters.',
+                        required: 'Please enter coupon name.',
+                        maxlength: 'The coupon name must not be greater than 255 characters.',
                     },
                     coupon_discount: {
-                        required: 'Please Enter Coupon Discount.',
+                        required: 'Please enter coupon discount.',
+                        min: 'Coupon discount must be greater than 0.',
+                        max: 'Coupon discount must be less than or equal 100.',
+                    },
+                    coupon_validity: {
+                        required: 'Please select coupon validity.',
                     },
                 },
                 errorElement: 'span',
