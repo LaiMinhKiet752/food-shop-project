@@ -6,24 +6,32 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
 use Carbon\Carbon;
+
 class CouponController extends Controller
 {
-    public function AllCoupon(){
+    public function AllCoupon()
+    {
         $coupon = Coupon::latest()->get();
-        return view('backend.coupon.coupon_all',compact('coupon'));
+        return view('backend.coupon.coupon_all', compact('coupon'));
     } // End Method
 
-    public function AddCoupon(){
-        return view ('backend.coupon.coupon_add');
-    }// End Method
+    public function AddCoupon()
+    {
+        return view('backend.coupon.coupon_add');
+    } // End Method
 
     public function StoreCoupon(Request $request)
     {
+        $request->validate([
+            'coupon_name' => 'unique:coupons',
+        ], [
+            'coupon_name.unique' => 'Coupon name already exists.',
+        ]);
         Coupon::insert([
-             'coupon_name'=> $request->coupon_name,
-             'coupon_discount'=> $request->coupon_discount,
-             'coupon_validity'=> $request->coupon_validity,
-             'created_at'=> Carbon::now(),
+            'coupon_name' => strtoupper($request->coupon_name),
+            'coupon_discount' => $request->coupon_discount,
+            'coupon_validity' => $request->coupon_validity,
+            'created_at' => Carbon::now(),
         ]);
 
         $notification = array(
@@ -33,43 +41,55 @@ class CouponController extends Controller
         return redirect()->route('all.coupon')->with($notification);
     } //End Method
 
-    public function EditCoupon($id){
-
+    public function EditCoupon($id)
+    {
         $coupon = Coupon::findOrFail($id);
-        return view('backend.coupon.coupon_edit',compact('coupon'));
+        return view('backend.coupon.coupon_edit', compact('coupon'));
+    } // End Method
 
-    }// End Method
-
-    public function UpdateCoupon(Request $request){
-
+    public function UpdateCoupon(Request $request)
+    {
         $coupon_id = $request->id;
+        $current_coupon_name = Coupon::findOrFail($coupon_id)->coupon_name;
 
-         Coupon::findOrFail($coupon_id)->update([
-            'coupon_name' => strtoupper($request->coupon_name),
-            'coupon_discount' => $request->coupon_discount,
-            'coupon_validity' => $request->coupon_validity,
-            'created_at' => Carbon::now(),
-        ]);
+        if ($current_coupon_name == $request->coupon_name) {
+            Coupon::findOrFail($coupon_id)->update([
+                'coupon_discount' => $request->coupon_discount,
+                'coupon_validity' => $request->coupon_validity,
+            ]);
 
-       $notification = array(
-            'message' => 'Coupon Updated Successfully',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('all.coupon')->with($notification);
+            $notification = array(
+                'message' => 'Coupon Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.coupon')->with($notification);
+        } else {
+            $request->validate([
+                'coupon_name' => 'unique:coupons',
+            ], [
+                'coupon_name.unique' => 'Coupon name already exists.',
+            ]);
+            Coupon::findOrFail($coupon_id)->update([
+                'coupon_name' => strtoupper($request->coupon_name),
+                'coupon_discount' => $request->coupon_discount,
+                'coupon_validity' => $request->coupon_validity,
+            ]);
 
-    }// End Method
+            $notification = array(
+                'message' => 'Coupon Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.coupon')->with($notification);
+        }
+    } // End Method
 
-    public function DeleteCoupon($id){
-
+    public function DeleteCoupon($id)
+    {
         Coupon::findOrFail($id)->delete();
-
-         $notification = array(
-            'message' => 'Coupon Deleted Successfully',
+        $notification = array(
+            'message' => 'Coupon Deleted Successfully!',
             'alert-type' => 'success'
         );
-
         return redirect()->back()->with($notification);
-
-
-    }// End Method 
+    } // End Method
 }

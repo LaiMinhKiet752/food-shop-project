@@ -3,7 +3,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Coupon </div>
+            <div class="breadcrumb-title pe-3">Coupon</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.coupon') }}" class="btn btn-primary">Add Coupon</a>
+                    <a href="{{ route('add.coupon') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Coupon</i></a>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Sl</th>
+                                <th>No.</th>
                                 <th>Coupon Name </th>
                                 <th>Coupon Discount </th>
                                 <th>Coupon Validity </th>
@@ -41,16 +41,14 @@
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
                                     <td> {{ $item->coupon_name }}</td>
-
-                                    <td> <span class="badge rounded-pill bg-danger">- {{$item->coupon_discount}}%</span></td>
+                                    <td> <span class="badge rounded-pill bg-danger">- {{ $item->coupon_discount }}%</span>
+                                    </td>
                                     <td> {{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }} </td>
-
-
                                     <td>
                                         @if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
                                             <span class="badge rounded-pill bg-success">Valid</span>
                                         @else
-                                            <span class="badge rounded-pill bg-primary">Invalid</span>
+                                            <span class="badge rounded-pill bg-secondary">Invalid</span>
                                         @endif
 
                                     </td>
@@ -63,12 +61,10 @@
                                     </td>
                                 </tr>
                             @endforeach
-
-
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Sl</th>
+                                <th>No.</th>
                                 <th>Coupon Name </th>
                                 <th>Coupon Discount </th>
                                 <th>Coupon Validity </th>
@@ -80,8 +76,5 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 @endsection
