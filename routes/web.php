@@ -8,6 +8,8 @@ use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CouponController;
+
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Backend\VendorProductController;
@@ -173,6 +175,17 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/banner', 'UpdateBanner')->name('update.banner');
         Route::get('/delete/banner/{id}', 'DeleteBanner')->name('delete.banner');
     });
+
+ //Coupon All Route
+ Route::controller(CouponController::class)->group(function(){
+    Route::get('/all/coupon' , 'AllCoupon')->name('all.coupon');
+    Route::get('/add/coupon' , 'AddCoupon')->name('add.coupon');
+    Route::post('/store/coupon' , 'StoreCoupon')->name('store.coupon');
+    Route::get('/edit/coupon/{id}' , 'EditCoupon')->name('edit.coupon');
+    Route::post('/update/coupon' , 'UpdateCoupon')->name('update.coupon');
+    Route::get('/delete/coupon/{id}' , 'DeleteCoupon')->name('delete.coupon');
+});
+
 
     //Vendor Active And Inactive All Route
     Route::controller(AdminController::class)->group(function () {
