@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('coupon_validity');
             $table->integer('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
