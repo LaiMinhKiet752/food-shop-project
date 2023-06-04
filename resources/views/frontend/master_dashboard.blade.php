@@ -683,49 +683,57 @@
     <!--  ///////////////    Start Apply Coupon        /////////////-->
 
     <script type="text/javascript">
-
-        function applyCoupon(id) {
+        function applyCoupon() {
             var coupon_code = $('#coupon_code').val();
             $.ajax({
                 type: "POST",
-                url: "/cart-remove/" + id,
-                dataType: "json",
+                dataType: 'json',
                 data: {
                     coupon_code: coupon_code
                 },
 
                 url: "/coupon-apply",
 
-                success:function(data){
+                success: function(data) {
+
                     if (data.validity == true) {
                         $('#couponField').hide();
                     }
+
                     cart();
                     miniCart();
 
                     // Start Message
+
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
+
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 3000
                     })
                     if ($.isEmptyObject(data.error)) {
+
                         Toast.fire({
                             type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
+
                     } else {
+
                         Toast.fire({
                             type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
                     }
+
                     // End Message
+
+
                 }
-            });
+            })
         }
     </script>
     <!--  ///////////////    End Apply Coupon        /////////////-->
