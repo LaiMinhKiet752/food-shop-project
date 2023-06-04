@@ -651,12 +651,12 @@
         //End Cart Remove
 
         //Start Cart Decrement
-        function cartDecrement(rowId){
+        function cartDecrement(rowId) {
             $.ajax({
                 type: "GET",
                 url: "/cart-decrement/" + rowId,
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     cart();
                     miniCart();
                 }
@@ -665,12 +665,12 @@
         //End Cart Decrement
 
         //Start Cart Increment
-        function cartIncrement(rowId){
+        function cartIncrement(rowId) {
             $.ajax({
                 type: "GET",
                 url: "/cart-increment/" + rowId,
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     cart();
                     miniCart();
                 }
@@ -681,45 +681,52 @@
     <!--  /// End Load Data My Cart -->
 
     <!--  ///////////////    Start Apply Coupon        /////////////-->
+
     <script type="text/javascript">
-    function applyCoupon(id) {
-        var coupon_name=$('#coupon_name').val();
-        $.ajax({
-            type: "POST",
-            url: "/cart-remove/" + id,
-            dataType: "json",
-            data: {coupon_name:coupon_name},
 
-            url: "/coupon-apply",
+        function applyCoupon(id) {
+            var coupon_code = $('#coupon_code').val();
+            $.ajax({
+                type: "POST",
+                url: "/cart-remove/" + id,
+                dataType: "json",
+                data: {
+                    coupon_code: coupon_code
+                },
 
-            success: function(data) {
-                cart();
-                miniCart();
-                
-                // Start Message
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000
-                })
-                if ($.isEmptyObject(data.error)) {
-                    Toast.fire({
-                        type: 'success',
-                        icon: 'success',
-                        title: data.success,
+                url: "/coupon-apply",
+
+                success:function(data){
+                    if (data.validity == true) {
+                        $('#couponField').hide();
+                    }
+                    cart();
+                    miniCart();
+
+                    // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000
                     })
-                } else {
-                    Toast.fire({
-                        type: 'error',
-                        icon: 'error',
-                        title: data.error,
-                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success,
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error,
+                        })
+                    }
+                    // End Message
                 }
-                // End Message
-            }
-        });
-    }
+            });
+        }
     </script>
     <!--  ///////////////    End Apply Coupon        /////////////-->
 
