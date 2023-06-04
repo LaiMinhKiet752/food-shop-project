@@ -48,8 +48,6 @@
                 <div class="row mt-50">
                     <div class="col-lg-5">
                         @if (Session::has('coupon'))
-
-
                         @else
                             <div class="p-40" id="couponField">
                                 <h4 class="mb-10">Apply Coupon</h4>
@@ -63,7 +61,6 @@
                                     </div>
                                 </form>
                             </div>
-
                         @endif
                     </div>
 
@@ -75,50 +72,11 @@
                         <div class="border p-md-4 cart-totals ml-30">
                             <div class="table-responsive">
                                 <table class="table no-border">
-                                    <tbody>
-                                        <tr>
-                                            <td class="cart_total_label">
-                                                <h6 class="text-muted">Subtotal</h6>
-                                            </td>
-                                            <td class="cart_total_amount">
-                                                <h4 class="text-brand text-end">$12.31</h4>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="col" colspan="2">
-                                                <div class="divider-2 mt-10 mb-10"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart_total_label">
-                                                <h6 class="text-muted">Shipping</h6>
-                                            </td>
-                                            <td class="cart_total_amount">
-                                                <h5 class="text-heading text-end">Free</h5>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart_total_label">
-                                                <h6 class="text-muted">Estimate for</h6>
-                                            </td>
-                                            <td class="cart_total_amount">
-                                                <h5 class="text-heading text-end">United Kingdom</h5>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="col" colspan="2">
-                                                <div class="divider-2 mt-10 mb-10"></div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart_total_label">
-                                                <h6 class="text-muted">Total</h6>
-                                            </td>
-                                            <td class="cart_total_amount">
-                                                <h4 class="text-brand text-end">$12.31</h4>
-                                            </td>
-                                        </tr>
+                                    <tbody id="couponCalField">
+
+
                                     </tbody>
+
                                 </table>
                             </div>
                             <a href="#" class="btn mb-20 w-100">Proceed To CheckOut<i
