@@ -622,8 +622,10 @@
                 url: "/cart-remove/" + id,
                 dataType: "json",
                 success: function(data) {
+
                     cart();
                     miniCart();
+                    couponCalculation();
                     // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
@@ -657,6 +659,7 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: "json",
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
                 }
@@ -671,6 +674,7 @@
                 url: "/cart-increment/" + rowId,
                 dataType: "json",
                 success: function(data) {
+                    couponCalculation();
                     cart();
                     miniCart();
                 }
@@ -695,7 +699,7 @@
                 url: "/coupon-apply",
 
                 success: function(data) {
-                    couponCalculation()
+                    couponCalculation();
 
                     if (data.validity == true) {
                         $('#couponField').hide();
@@ -782,7 +786,7 @@
                         <h6 class="text-muted">Coupon </h6>
                     </td>
                     <td class="cart_total_amount">
-  <h6 class="text-brand text-end">${data.coupon_code} <a><i class="fi-rs-trash"></i> </a> </h6>
+  <h6 class="text-brand text-end">${data.coupon_code} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i> </a> </h6>
                     </td>
                 </tr>
                 <tr>
@@ -815,8 +819,49 @@
     </script>
     <!--  ///////////////    End Apply Coupon        /////////////-->
 
+    <script type="text/javascript">
+    //Coupon Remove START
+    function couponRemove() {
+        $.ajax({
+            type: "GET",
+            url: "/coupon-remove",
+            dataType: "json",
+            success: function(data) {
+                couponCalculation();
+                $('#couponCalField').show();
 
 
+
+
+
+
+
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success,
+                    })
+                } else {
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error,
+                    })
+                }
+                // End Message
+            }
+        });
+    }
+    //Coupon Remove END
+</script>
 </body>
 
 </html>
