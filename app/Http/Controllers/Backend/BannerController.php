@@ -36,7 +36,6 @@ class BannerController extends Controller
 
         Banner::insert([
             'banner_title' => $request->banner_title,
-            'banner_url' => $request->banner_url,
             'banner_image' => $save_url,
             'status' => 'show',
             'created_at' => Carbon::now(),
@@ -79,7 +78,6 @@ class BannerController extends Controller
 
             Banner::findOrFail($banner_id)->update([
                 'banner_title' => $request->banner_title,
-                'banner_url' => $request->banner_url,
                 'banner_image' => $save_url,
                 'status' => $request->status,
             ]);
@@ -93,7 +91,6 @@ class BannerController extends Controller
         } else {
             Banner::findOrFail($banner_id)->update([
                 'banner_title' => $request->banner_title,
-                'banner_url' => $request->banner_url,
                 'status' => $request->status,
             ]);
             $notification = array(

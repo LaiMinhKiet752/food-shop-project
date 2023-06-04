@@ -48,7 +48,7 @@
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
                                     @if ($item->discount_price == null)
-                                        <td>No discount</td>
+                                        <td><span class="badge rounded-pill bg-secondary">No Discount</span></td>
                                     @else
                                         <td>{{ $item->discount_price }}</td>
                                     @endif

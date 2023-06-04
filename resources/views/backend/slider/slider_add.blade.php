@@ -5,7 +5,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Add Slider </div>
+            <div class="breadcrumb-title pe-3">Slider </div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -16,14 +16,16 @@
                 </nav>
             </div>
             <div class="ms-auto">
-
+                <div class="btn-group">
+                    <a href="{{ route('all.slider') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
             </div>
         </div>
         <!--end breadcrumb-->
         <div class="container">
             <div class="main-body">
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <form id="myForm" method="post" action="{{ route('store.slider') }}"
