@@ -428,4 +428,9 @@ class CartController extends Controller
         Cart::update($rowId, $row->qty + 1);
         return response()->json('Increment');
     } //End Method
+
+
+    public function CouponApply(){
+
+    }//End Method
 }
