@@ -416,12 +416,27 @@ class CartController extends Controller
         return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
     } //End Method
 
-    public function CartDecrement($rowId)
-    {
+    public function CartDecrement($rowId){
+
         $row = Cart::get($rowId);
-        Cart::update($rowId, $row->qty - 1);
+        Cart::update($rowId, $row->qty -1);
+
+        if(Session::has('coupon')){
+            $coupon_code = Session::get('coupon')['coupon_code'];
+            $coupon = Coupon::where('coupon_code',$coupon_code)->first();
+
+           Session::put('coupon',[
+                'coupon_code' => $coupon->coupon_code,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100 )
+            ]);
+        }
+
+
         return response()->json('Decrement');
-    } //End Method
+
+    }// End Method
 
     public function CartIncrement($rowId)
     {
