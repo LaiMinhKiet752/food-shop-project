@@ -3,7 +3,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Banner</div>
+            <div class="breadcrumb-title pe-3">Banner</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -31,7 +31,6 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Banner Title</th>
-                                <th>Banner Url</th>
                                 <th>Banner Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -42,7 +41,6 @@
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
                                     <td>{{ $item->banner_title }}</td>
-                                    <td>{{ $item->banner_url }}</td>
                                     <td> <img src="{{ asset($item->banner_image) }}" style="width: 100px; height:60px;">
                                     <td>
                                         @if ($item->status == 'hide')
@@ -64,7 +62,6 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Banner Title</th>
-                                <th>Banner Url</th>
                                 <th>Banner Image</th>
                                 <th>Status</th>
                                 <th>Action</th>

@@ -14,6 +14,11 @@
                     </ol>
                 </nav>
             </div>
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('vendor.all.product') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
+            </div>
         </div>
         <!--end breadcrumb-->
 
@@ -106,8 +111,7 @@
                                                 value="{{ old('selling_price') }}">
                                         </div>
                                         <div class="form-group numbers-only col-md-6">
-                                            <label for="inputCompareatprice" class="form-label">Discount Price (USD) <span
-                                                    class="text-danger">*</span></label>
+                                            <label for="inputCompareatprice" class="form-label">Discount Price (USD)</label>
                                             <input type="text" name="discount_price" class="form-control"
                                                 id="product_discount_price" placeholder="00.00"
                                                 value="{{ old('discount_price') }}">

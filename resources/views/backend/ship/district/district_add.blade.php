@@ -16,14 +16,16 @@
                 </nav>
             </div>
             <div class="ms-auto">
-
+                <div class="btn-group">
+                    <a href="{{ route('all.district') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
             </div>
         </div>
         <!--end breadcrumb-->
         <div class="container">
             <div class="main-body">
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 @error('district_name')

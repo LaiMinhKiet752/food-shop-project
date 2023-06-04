@@ -23,12 +23,12 @@ class CouponController extends Controller
     public function StoreCoupon(Request $request)
     {
         $request->validate([
-            'coupon_name' => 'unique:coupons',
+            'coupon_code' => 'unique:coupons',
         ], [
-            'coupon_name.unique' => 'Coupon name already exists.',
+            'coupon_code.unique' => 'Coupon name already exists.',
         ]);
         Coupon::insert([
-            'coupon_name' => strtoupper($request->coupon_name),
+            'coupon_code' => strtoupper($request->coupon_code),
             'coupon_discount' => $request->coupon_discount,
             'coupon_validity' => $request->coupon_validity,
             'created_at' => Carbon::now(),
@@ -50,9 +50,9 @@ class CouponController extends Controller
     public function UpdateCoupon(Request $request)
     {
         $coupon_id = $request->id;
-        $current_coupon_name = Coupon::findOrFail($coupon_id)->coupon_name;
+        $current_coupon_code = Coupon::findOrFail($coupon_id)->coupon_code;
 
-        if ($current_coupon_name == $request->coupon_name) {
+        if ($current_coupon_code == $request->coupon_code) {
             Coupon::findOrFail($coupon_id)->update([
                 'coupon_discount' => $request->coupon_discount,
                 'coupon_validity' => $request->coupon_validity,
@@ -65,12 +65,12 @@ class CouponController extends Controller
             return redirect()->route('all.coupon')->with($notification);
         } else {
             $request->validate([
-                'coupon_name' => 'unique:coupons',
+                'coupon_code' => 'unique:coupons',
             ], [
-                'coupon_name.unique' => 'Coupon name already exists.',
+                'coupon_code.unique' => 'Coupon name already exists.',
             ]);
             Coupon::findOrFail($coupon_id)->update([
-                'coupon_name' => strtoupper($request->coupon_name),
+                'coupon_code' => strtoupper($request->coupon_code),
                 'coupon_discount' => $request->coupon_discount,
                 'coupon_validity' => $request->coupon_validity,
             ]);

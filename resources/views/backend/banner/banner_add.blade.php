@@ -5,7 +5,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Add Banner </div>
+            <div class="breadcrumb-title pe-3">Banner </div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -16,15 +16,16 @@
                 </nav>
             </div>
             <div class="ms-auto">
-
+                <div class="btn-group">
+                    <a href="{{ route('all.banner') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
             </div>
         </div>
         <!--end breadcrumb-->
         <div class="container">
             <div class="main-body">
                 <div class="row">
-
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <form id="myForm" method="post" action="{{ route('store.banner') }}"
@@ -37,15 +38,6 @@
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="text" name="banner_title" class="form-control" />
-                                        </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Banner Url <span class="text-danger">*</span></h6>
-                                        </div>
-                                        <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="banner_url" class="form-control" />
                                         </div>
                                     </div>
 
@@ -93,9 +85,6 @@
                         required: true,
                         maxlength: 255,
                     },
-                    banner_url: {
-                        required: true,
-                    },
                     banner_image: {
                         required: true,
                     },
@@ -104,9 +93,6 @@
                     banner_title: {
                         required: 'Please enter banner title.',
                         maxlength: 'The banner title must not be greater than 255 characters.',
-                    },
-                    banner_url: {
-                        required: 'Please enter the url for the banner.',
                     },
                     banner_image: {
                         required: 'Please select a banner image.',

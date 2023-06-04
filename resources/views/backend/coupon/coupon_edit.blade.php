@@ -16,17 +16,19 @@
                 </nav>
             </div>
             <div class="ms-auto">
-
+                <div class="btn-group">
+                    <a href="{{ route('all.coupon') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
             </div>
         </div>
         <!--end breadcrumb-->
         <div class="container">
             <div class="main-body">
                 <div class="row">
-                    <div class="col-lg-10">
+                    <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                @error('coupon_name')
+                                @error('coupon_code')
                                     <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
                                         <div class="text-white">{{ $message }}</div>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
@@ -39,11 +41,11 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Coupon Name <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Coupon Code <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="coupon_name" class="form-control"
-                                                value="{{ $coupon->coupon_name }}" />
+                                            <input type="text" name="coupon_code" class="form-control"
+                                                value="{{ $coupon->coupon_code }}" />
                                         </div>
                                     </div>
 
@@ -87,7 +89,7 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    coupon_name: {
+                    coupon_code: {
                         required: true,
                         maxlength: 255,
                     },
@@ -98,7 +100,7 @@
                     },
                 },
                 messages: {
-                    coupon_name: {
+                    coupon_code: {
                         required: 'Please enter coupon name.',
                         maxlength: 'The coupon name must not be greater than 255 characters.',
                     },
