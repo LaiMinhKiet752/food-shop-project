@@ -129,27 +129,25 @@
                     dataType: "json",
                     success: function(data) {
                         miniCart();
-                        //Start Message
+                        // Start Message
                         const Toast = Swal.mixin({
-                            toast: true,
                             position: 'top-end',
+                            toast: true,
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
-                                type: 'success',
                                 icon: 'success',
                                 title: data.success,
                             })
                         } else {
                             Toast.fire({
-                                type: 'error',
                                 icon: 'error',
                                 title: data.error,
                             })
                         }
-                        //End Message
+                        // End Message
                     }
                 });
             });

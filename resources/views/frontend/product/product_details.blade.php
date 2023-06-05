@@ -535,10 +535,11 @@
                                                         id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
                                                             class="fi-rs-heart"></i></a>
 
-                                                    <a aria-label="Compare" class="action-btn small hover-up" id="{{ $product->id }}"
-                                                        onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+                                                    <a aria-label="Compare" class="action-btn small hover-up"
+                                                        id="{{ $product->id }}" onclick="addToCompare(this.id)"><i
+                                                            class="fi-rs-shuffle"></i></a>
 
-                                                        <a aria-label="Quick view" class="action-btn small hover-up"
+                                                    <a aria-label="Quick view" class="action-btn small hover-up"
                                                         data-bs-toggle="modal" data-bs-target="#quickViewModal"
                                                         id="{{ $product->id }}" onclick="productView(this.id)"><i
                                                             class="fi-rs-eye"></i></a>
@@ -628,27 +629,25 @@
                     dataType: "json",
                     success: function(data) {
                         miniCart();
-                        //Start Message
+                        // Start Message
                         const Toast = Swal.mixin({
-                            toast: true,
                             position: 'top-end',
+                            toast: true,
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
-                                type: 'success',
                                 icon: 'success',
                                 title: data.success,
                             })
                         } else {
                             Toast.fire({
-                                type: 'error',
                                 icon: 'error',
                                 title: data.error,
                             })
                         }
-                        //End Message
+                        // End Message
                     }
                 });
             });
