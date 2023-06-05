@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\WishlistController;
 
@@ -277,20 +278,28 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 //Category Five Page Add To Cart
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
+//Frontend Coupon Option
+Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
+//Checkout Page Route
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
+//Cart All Route
+Route::controller(CartController::class)->group(function () {
+    Route::get('/my-cart', 'MyCart')->name('mycart');
+    Route::get('/get-cart-product', 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}', 'CartRemove');
+    Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+    Route::get('/cart-increment/{rowId}', 'CartIncrement');
+});
 
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
 //Add To Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
-
-/// Frontend Coupon Option
-Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
-Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
-
-
 
 //User All Route
 Route::middleware(['auth'])->group(function () {
@@ -306,13 +315,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get-compare-product', 'GetCompareProduct');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
-    //Cart All Route
-    Route::controller(CartController::class)->group(function () {
-        Route::get('/my-cart', 'MyCart')->name('mycart');
-        Route::get('/get-cart-product', 'GetCartProduct');
-        Route::get('/cart-remove/{rowId}', 'CartRemove');
-        Route::get('/cart-decrement/{rowId}', 'CartDecrement');
-        Route::get('/cart-increment/{rowId}', 'CartIncrement');
+    //Checkout All Route
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
+        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
     });
 });
 

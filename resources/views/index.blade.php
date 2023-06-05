@@ -237,8 +237,8 @@
                                                             type="text" value="{{ $userData->phone }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
-                                                        <label>Address <span class="text-danger">*</span></label>
-                                                        <input required="" class="form-control" name="address"
+                                                        <label>Address </label>
+                                                        <input class="form-control" name="address"
                                                             type="text" value="{{ $userData->address }}" />
                                                     </div>
                                                     <div class="form-group col-md-12">
@@ -347,7 +347,6 @@
                         digits: true,
                     },
                     address: {
-                        required: true,
                         maxlength: 255,
                     },
                 },
@@ -368,7 +367,6 @@
                         digits: 'Please enter 10 numeric characters correctly.',
                     },
                     address: {
-                        required: 'Please enter your address.',
                         maxlength: 'The address must not be greater than 255 characters.',
                     },
                 },

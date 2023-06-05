@@ -4,7 +4,7 @@
         ->orderBy('id', 'DESC')
         ->limit(10)
         ->get();
-    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->get();
+    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->limit(10)->get();
 @endphp
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -254,7 +254,6 @@
                     },
                     dataType: "json",
                     success: function(data) {
-                        cart();
                         miniCart();
                         // Start Message
                         const Toast = Swal.mixin({
@@ -297,7 +296,6 @@
                     },
                     dataType: "json",
                     success: function(data) {
-                        cart();
                         miniCart();
                         // Start Message
                         const Toast = Swal.mixin({

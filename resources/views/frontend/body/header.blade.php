@@ -109,11 +109,7 @@
                                 <a href="{{ route('compare') }}">
                                     <img class="svgInject" alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
-                                    @auth
-                                        <span class="pro-count blue" id="compareQty"></span>
-                                    @else
-                                        <span class="pro-count blue">0</span>
-                                    @endauth
+                                    <span class="pro-count blue" id="compareQty">0</span>
                                 </a>
                                 <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
                             </div>
@@ -122,12 +118,7 @@
                                 <a href="{{ route('wishlist') }}">
                                     <img class="svgInject" alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
-                                    @auth
-                                        <span class="pro-count blue" id="wishlistQty"></span>
-                                    @else
-                                        <span class="pro-count blue">0</span>
-                                    @endauth
-
+                                    <span class="pro-count blue" id="wishlistQty">0</span>
                                 </a>
                                 <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                             </div>
@@ -136,7 +127,7 @@
                                 <a class="mini-cart-icon" href="{{ route('mycart') }}">
                                     <img alt="Nest"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
-                                    <span class="pro-count blue" id="cartQty"></span>
+                                    <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
                                 <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">

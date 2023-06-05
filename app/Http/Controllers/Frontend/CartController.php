@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
+use App\Models\ShipDivision;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -26,6 +28,9 @@ class CartController extends Controller
 
     public function AddToCart(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -52,6 +57,9 @@ class CartController extends Controller
 
     public function AddToCartDetails(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -78,6 +86,9 @@ class CartController extends Controller
 
     public function AddToCartHomeNewProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -104,6 +115,9 @@ class CartController extends Controller
 
     public function AddToCartHomeNewProductCategory(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -130,6 +144,9 @@ class CartController extends Controller
 
     public function AddToCartFeaturedProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -156,6 +173,9 @@ class CartController extends Controller
 
     public function AddToCartRelatedProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -182,6 +202,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -208,6 +231,9 @@ class CartController extends Controller
 
     public function AddToCartSubCategoryProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -234,6 +260,9 @@ class CartController extends Controller
 
     public function AddToCartVendorDetailsProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -260,6 +289,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryOneProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -286,6 +318,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryTwoProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -312,6 +347,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryThreeProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -338,6 +376,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryFourProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -364,6 +405,9 @@ class CartController extends Controller
 
     public function AddToCartCategoryFiveProduct(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -391,6 +435,17 @@ class CartController extends Controller
     public function RemoveMiniCart($rowId)
     {
         Cart::remove($rowId);
+        if (Session::has('coupon')) {
+            $coupon_code = Session::get('coupon')['coupon_code'];
+            $coupon = Coupon::where('coupon_code', $coupon_code)->first();
+
+            Session::put('coupon', [
+                'coupon_code' => $coupon->coupon_code,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
+            ]);
+        }
         return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
     } // End Method
 
@@ -414,6 +469,17 @@ class CartController extends Controller
     public function CartRemove($rowId)
     {
         Cart::remove($rowId);
+        if (Session::has('coupon')) {
+            $coupon_code = Session::get('coupon')['coupon_code'];
+            $coupon = Coupon::where('coupon_code', $coupon_code)->first();
+
+            Session::put('coupon', [
+                'coupon_code' => $coupon->coupon_code,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
+                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
+            ]);
+        }
         return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
     } //End Method
 
@@ -458,7 +524,6 @@ class CartController extends Controller
     public function CouponApply(Request $request)
     {
         $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
-
         if ($coupon) {
             Session::put('coupon', [
                 'coupon_code' => $coupon->coupon_code,
@@ -466,7 +531,6 @@ class CartController extends Controller
                 'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100),
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
             ]);
-
             return response()->json(array(
                 'validity' => true,
                 'success' => 'Coupon Applied Successfully!'
@@ -496,6 +560,33 @@ class CartController extends Controller
     public function CouponRemove()
     {
         Session::forget('coupon');
-        return response()->json(['success' => 'Coupon Removed Successfully!']);
+        return response()->json(array(
+            'success' => 'Coupon Removed Successfully!'
+        ));
+    } // End Method
+
+    public function CheckoutCreate()
+    {
+        if (Auth::check()) {
+            if (Cart::total() > 0) {
+                $carts = Cart::content();
+                $cartQty = Cart::content()->count();
+                $cartTotal = Cart::total();
+                $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','divisions'));
+            } else {
+                $notification = array(
+                    'message' => 'Please Choose A Product To Buy!',
+                    'alert-type' => 'error',
+                );
+                return redirect()->to('/')->with($notification);
+            }
+        } else {
+            $notification = array(
+                'message' => 'First You Need To Login To The Website!',
+                'alert-type' => 'error',
+            );
+            return redirect()->route('login')->with($notification);
+        }
     } // End Method
 }

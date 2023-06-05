@@ -43,11 +43,10 @@
                     </table>
                 </div>
 
-
-
                 <div class="row mt-50">
                     <div class="col-lg-5">
                         @if (Session::has('coupon'))
+
                         @else
                             <div class="p-40" id="couponField">
                                 <h4 class="mb-10">Apply Coupon</h4>
@@ -64,9 +63,6 @@
                         @endif
                     </div>
 
-
-
-
                     <div class="col-lg-7">
                         <div class="divider-2 mb-30"></div>
                         <div class="border p-md-4 cart-totals ml-30">
@@ -74,12 +70,10 @@
                                 <table class="table no-border">
                                     <tbody id="couponCalField">
 
-
                                     </tbody>
-
                                 </table>
                             </div>
-                            <a href="#" class="btn mb-20 w-100">Proceed To CheckOut<i
+                            <a href="{{ route('checkout') }}" class="btn mb-20 w-100">Proceed To Checkout<i
                                     class="fi-rs-sign-out ml-15"></i></a>
                         </div>
                     </div>
