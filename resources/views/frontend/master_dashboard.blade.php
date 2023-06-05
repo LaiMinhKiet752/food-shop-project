@@ -149,27 +149,25 @@
                     $('#closeModal').click();
                     // console.log(data)
 
-                    //Start Message
+                    // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
                     }
-                    //End Message
+                    // End Message
                 }
             })
         }
@@ -190,27 +188,25 @@
                 url: "/dcart/data/store/" + id,
                 success: function(data) {
                     miniCart();
-                    //Start Message
+                    // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
                     }
-                    //End Message
+                    // End Message
                 }
             })
         }
@@ -263,25 +259,23 @@
                 url: '/minicart/product/remove/' + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    cart();
                     miniCart();
+                    couponCalculation();
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
-
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
-
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -340,9 +334,7 @@
                 }
             })
         }
-
         wishlist();
-
 
         function wishlistRemove(id) {
             $.ajax({
@@ -353,20 +345,18 @@
                     wishlist();
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -389,20 +379,18 @@
                     wishlist();
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -413,7 +401,6 @@
         }
     </script>
     <!--  /// End Add To Wishlist -->
-
 
 
     <!--  /// Start Load Data To Compare -->
@@ -496,20 +483,18 @@
                     compare();
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -520,6 +505,7 @@
         }
     </script>
     <!--  /// End Load Data To Compare -->
+
 
     <!--  /// Start Add To Compare -->
     <script type="text/javascript">
@@ -532,20 +518,18 @@
                     compare();
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -556,6 +540,7 @@
         }
     </script>
     <!--  /// End Add To Compare -->
+
 
 
     <!--  /// Start Load Data My Cart -->
@@ -624,23 +609,22 @@
                 success: function(data) {
                     cart();
                     miniCart();
+                    couponCalculation();
 
                     // Start Message
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
                     } else {
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
@@ -683,66 +667,48 @@
     </script>
     <!--  /// End Load Data My Cart -->
 
-    <!--  ///////////////    Start Apply Coupon        /////////////-->
 
+
+    <!--  ///////////////    Start Apply Coupon        /////////////-->
     <script type="text/javascript">
         function applyCoupon() {
             var coupon_code = $('#coupon_code').val();
             $.ajax({
                 type: "POST",
+                url: "/coupon-apply",
                 dataType: 'json',
                 data: {
                     coupon_code: coupon_code
                 },
-
-                url: "/coupon-apply",
-
                 success: function(data) {
                     couponCalculation();
-
                     if (data.validity == true) {
                         $('#couponField').hide();
                     }
-
-                    cart();
-                    miniCart();
-
                     // Start Message
-
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
-
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
-
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
-
                     } else {
-
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
                     }
-
                     // End Message
-
-
                 }
-            })
+            });
         }
 
-
         // Start CouponCalulation Method
-
         function couponCalculation() {
             $.ajax({
                 type: 'GET',
@@ -753,75 +719,86 @@
                     miniCart();
                     if (data.total) {
                         $('#couponCalField').html(
-                            ` <tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Subtotal</h6>
-                    </td>
-                    <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
-                    </td>
-                </tr>
+                                                ` <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Subtotal</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">$${data.total}</h4>
+                                        </td>
+                                            </tr>
 
-                <tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Grand Total</h6>
-                    </td>
-                    <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.total}</h4>
-                    </td>
-                </tr>
-                `)
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Shipping</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-heading text-end">Free</h4>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Grand Total</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">$${data.total}</h4>
+                                        </td>
+                                    </tr>`)
                     } else {
                         $('#couponCalField').html(
-                            `<tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Subtotal</h6>
-                    </td>
-                    <td class="cart_total_amount">
-                        <h4 class="text-brand text-end">$${data.subtotal}</h4>
-                    </td>
-                </tr>
+                                            `<tr>
+                                            <td class="cart_total_label">
+                                                <h6 class="text-muted">Subtotal</h6>
+                                            </td>
+                                            <td class="cart_total_amount">
+                                                <h4 class="text-brand text-end">$${data.subtotal}</h4>
+                                            </td>
+                                        </tr>
 
-                <tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Coupon </h6>
-                    </td>
-                    <td class="cart_total_amount">
-                        <h6 class="text-brand text-end">${data.coupon_code} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i> </a> </h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Discount Amount  </h6>
-                    </td>
-                    <td class="cart_total_amount">
-    <h4 class="text-brand text-end">$${data.discount_amount}</h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="cart_total_label">
-                        <h6 class="text-muted">Grand Total </h6>
-                    </td>
-                    <td class="cart_total_amount">
-          <h4 class="text-brand text-end">$${data.total_amount}</h4>
-                    </td>
-                </tr> `
+                                        <tr>
+                                            <td class="cart_total_label">
+                                                <h6 class="text-muted">Shipping</h6>
+                                            </td>
+                                            <td class="cart_total_amount">
+                                                <h4 class="text-heading text-end">Free</h4>
+                                            </td>
+                                        </tr>
 
-                        )
+                                        <tr>
+                                            <td class="cart_total_label">
+                                                <h6 class="text-muted">Coupon </h6>
+                                            </td>
+                                            <td class="cart_total_amount">
+                                                <h4 class="text-brand text-end">${data.coupon_code} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i> </a> </h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cart_total_label">
+                                                <h6 class="text-muted">Discount Amount  </h6>
+                                            </td>
+                                            <td class="cart_total_amount">
+                            <h4 class="text-brand text-end">$${data.discount_amount}</h4>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="cart_total_label">
+                                                <h6 class="text-muted">Grand Total </h6>
+                                            </td>
+                                            <td class="cart_total_amount">
+                                <h4 class="text-brand text-end">$${data.total_amount}</h4>
+                                            </td>
+                                        </tr> `)
                     }
-
                 }
-            })
+            });
         }
-
-
-        couponCalculation()
-        // start CouponCalulation Method
+        couponCalculation();
+        // End CouponCalulation Method
     </script>
-
-
-
     <!--  ///////////////    End Apply Coupon        /////////////-->
+
+
     <script type="text/javascript">
         // Coupon Remove Start
         function couponRemove() {
@@ -829,43 +806,30 @@
                 type: "GET",
                 dataType: 'json',
                 url: "/coupon-remove",
-
                 success: function(data) {
                     couponCalculation();
-                    cart();
-                    miniCart();
                     $('#couponField').show();
                     // Start Message
-
                     const Toast = Swal.mixin({
-                        toast: true,
                         position: 'top-end',
-
+                        toast: true,
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 1500
                     })
                     if ($.isEmptyObject(data.error)) {
-
                         Toast.fire({
-                            type: 'success',
                             icon: 'success',
                             title: data.success,
                         })
-
                     } else {
-
                         Toast.fire({
-                            type: 'error',
                             icon: 'error',
                             title: data.error,
                         })
                     }
-
                     // End Message
-
-
                 }
-            })
+            });
         }
         // Coupon Remove End
     </script>

@@ -2,14 +2,12 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BrandController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
-
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Backend\VendorProductController;
@@ -294,8 +292,6 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
 
 
-
-
 //User All Route
 Route::middleware(['auth'])->group(function () {
     //Wishlist All Route
@@ -312,7 +308,7 @@ Route::middleware(['auth'])->group(function () {
     });
     //Cart All Route
     Route::controller(CartController::class)->group(function () {
-        Route::get('/mycart', 'MyCart')->name('mycart');
+        Route::get('/my-cart', 'MyCart')->name('mycart');
         Route::get('/get-cart-product', 'GetCartProduct');
         Route::get('/cart-remove/{rowId}', 'CartRemove');
         Route::get('/cart-decrement/{rowId}', 'CartDecrement');
@@ -320,18 +316,5 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
-
-
-
-
-
-
-
-// //Edit Profile
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 require __DIR__ . '/auth.php';

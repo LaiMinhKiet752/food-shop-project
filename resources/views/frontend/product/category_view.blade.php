@@ -80,9 +80,8 @@
                                         </a>
                                     </div>
                                     <div class="product-action-1">
-                                        <a aria-label="Add To Wishlist" class="action-btn"
-                                            id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
-                                                class="fi-rs-heart"></i></a>
+                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                            onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
                                         <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
                                             onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
@@ -253,33 +252,32 @@
                     },
                     dataType: "json",
                     success: function(data) {
+                        cart();
                         miniCart();
-                        //Start Message
+                        couponCalculation();
+                        // Start Message
                         const Toast = Swal.mixin({
-                            toast: true,
                             position: 'top-end',
+                            toast: true,
                             showConfirmButton: false,
-                            timer: 2000
+                            timer: 1500
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
-                                type: 'success',
                                 icon: 'success',
                                 title: data.success,
                             })
                         } else {
                             Toast.fire({
-                                type: 'error',
                                 icon: 'error',
                                 title: data.error,
                             })
                         }
-                        //End Message
+                        // End Message
                     }
                 });
             });
         });
     </script>
     {{-- Start Category Product Add To Cart --}}
-
 @endsection

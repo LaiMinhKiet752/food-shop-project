@@ -67,28 +67,24 @@
                     <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
                             alt="logo" /></a>
                 </div>
+                @php
+                    $all_categories = \App\Models\Category::orderBy('id', 'DESC')->get();
+                @endphp
                 <div class="header-right">
                     <div class="search-style-2">
                         <form action="#">
                             <select class="select-active">
                                 <option>All Categories</option>
-                                <option>Milks and Dairies</option>
-                                <option>Wines & Alcohol</option>
-                                <option>Clothing & Beauty</option>
-                                <option>Pet Foods & Toy</option>
-                                <option>Fast food</option>
-                                <option>Baking material</option>
-                                <option>Vegetables</option>
-                                <option>Fresh Seafood</option>
-                                <option>Noodles & Rice</option>
-                                <option>Ice cream</option>
+                                @foreach ($all_categories as $category)
+                                    <option>{{ $category->category_name }}</option>
+                                @endforeach
                             </select>
                             <input type="text" placeholder="Search for items..." />
                         </form>
                     </div>
                     <div class="header-action-right">
                         <div class="header-action-2">
-                            <div class="search-location">
+                            {{-- <div class="search-location">
                                 <form action="#">
                                     <select class="select-active">
                                         <option>Your Location</option>
@@ -107,7 +103,7 @@
                                         <option>New York</option>
                                     </select>
                                 </form>
-                            </div>
+                            </div> --}}
 
                             <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">
@@ -136,7 +132,6 @@
                                 <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
                             </div>
 
-
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{ route('mycart') }}">
                                     <img alt="Nest"
@@ -164,7 +159,6 @@
 
                                 </div>
                             </div>
-
 
                             @auth
                                 <div class="header-action-icon-2">
@@ -225,8 +219,21 @@
 
 
     @php
-        $categories = \App\Models\Category::orderBy('id', 'DESC')
-            ->limit(10)
+        $five_categories_first = \App\Models\Category::orderBy('id', 'DESC')
+            ->skip(0)
+            ->limit(5)
+            ->get();
+        $five_categories_second = \App\Models\Category::orderBy('id', 'DESC')
+            ->skip(5)
+            ->limit(5)
+            ->get();
+        $show_more_categories_first = \App\Models\Category::orderBy('id', 'DESC')
+            ->skip(10)
+            ->limit(3)
+            ->get();
+        $show_more_categories_second = \App\Models\Category::orderBy('id', 'DESC')
+            ->skip(13)
+            ->limit(3)
             ->get();
     @endphp
 
@@ -246,20 +253,22 @@
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
                             <div class="d-flex categori-dropdown-inner">
                                 <ul>
-                                    @foreach ($categories as $item)
+                                    @foreach ($five_categories_first as $category)
                                         <li>
-                                            <a href="#"> <img src="{{ asset($item->category_image) }}"
-                                                    alt="" />
-                                                {{ $item->category_name }} </a>
+                                            <a
+                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                                <img src="{{ asset($category->category_image) }}" alt="" />
+                                                {{ $category->category_name }} </a>
                                         </li>
                                     @endforeach
                                 </ul>
                                 <ul class="end">
-                                    @foreach ($categories as $item)
+                                    @foreach ($five_categories_second as $category)
                                         <li>
-                                            <a href="#"> <img src="{{ asset($item->category_image) }}"
-                                                    alt="" />
-                                                {{ $item->category_name }} </a>
+                                            <a
+                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                                <img src="{{ asset($category->category_image) }}" alt="" />
+                                                {{ $category->category_name }} </a>
                                         </li>
                                     @endforeach
 
@@ -268,28 +277,26 @@
                             <div class="more_slide_open" style="display: none">
                                 <div class="d-flex categori-dropdown-inner">
                                     <ul>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="{{ asset('frontend/assets/imgs/theme/icons/icon-1.svg') }}"
-                                                    alt="" />Milks and Dairies</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="{{ asset('frontend/assets/imgs/theme/icons/icon-2.svg') }}"
-                                                    alt="" />Clothing & beauty</a>
-                                        </li>
+                                        @foreach ($show_more_categories_first as $category)
+                                            <li>
+                                                <a
+                                                    href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                                    <img src="{{ asset($category->category_image) }}"
+                                                        alt="" />
+                                                    {{ $category->category_name }} </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                     <ul class="end">
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="{{ asset('frontend/assets/imgs/theme/icons/icon-3.svg') }}"
-                                                    alt="" />Wines & Drinks</a>
-                                        </li>
-                                        <li>
-                                            <a href="shop-grid-right.html"> <img
-                                                    src="{{ asset('frontend/assets/imgs/theme/icons/icon-4.svg') }}"
-                                                    alt="" />Fresh Seafood</a>
-                                        </li>
+                                        @foreach ($show_more_categories_second as $category)
+                                            <li>
+                                                <a
+                                                    href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
+                                                    <img src="{{ asset($category->category_image) }}"
+                                                        alt="" />
+                                                    {{ $category->category_name }} </a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -308,7 +315,7 @@
 
                                 @php
                                     $categories = App\Models\Category::orderBy('id', 'DESC')
-                                        ->limit(5)
+                                        ->limit(8)
                                         ->get();
                                 @endphp
 
@@ -318,7 +325,7 @@
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}
                                             <i class="fi-rs-angle-down"></i></a>
                                         @php
-                                            $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                            $subcategories = \App\Models\SubCategory::where('category_id', $category->id)
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
                                         @endphp
