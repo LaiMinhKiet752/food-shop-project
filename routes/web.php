@@ -319,6 +319,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(CheckoutController::class)->group(function () {
         Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
         Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
 });
 
