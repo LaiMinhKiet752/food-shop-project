@@ -532,7 +532,6 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100)
             ]);
             return response()->json(array(
-                'validity' => true,
                 'success' => 'Coupon Applied Successfully!'
             ));
         } else {
@@ -572,8 +571,8 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::content()->count();
                 $cartTotal = Cart::total();
-                $citys = ShipCity::orderBy('city_name','ASC')->get();
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','citys'));
+                $cities = ShipCity::orderBy('city_name','ASC')->get();
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','cities'));
             } else {
                 $notification = array(
                     'message' => 'Please Choose A Product To Buy!',

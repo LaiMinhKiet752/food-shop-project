@@ -41,10 +41,11 @@
                             <div class="row shipping_calculator">
                                 <div class="form-group col-lg-6">
                                     <div class="custom_select">
-                                        <label class="form-label">Select City, Province <span class="text-danger">*</span></label>
+                                        <label class="form-label">Select City, Province <span
+                                                class="text-danger">*</span></label>
                                         <select required="" name="city_id" class="form-control select-active">
                                             <option value="">Select City, Province</option>
-                                            @foreach ($citys as $item)
+                                            @foreach ($cities as $item)
                                                 <option value="{{ $item->id }}">{{ $item->city_name }}</option>
                                             @endforeach
                                         </select>
@@ -108,16 +109,23 @@
                                         value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
-                            <div class="row shipping_calculator">
+                            <div class="row">
                                 <div class="form-group col-lg-6">
-                                    <label class="form-label">Address <span class="text-danger">*</span></label>
-                                    <input class="form-control" required="" type="text" name="shipping_address"
-                                        placeholder="Your address... " value="{{ Auth::user()->address }}">
+                                    <label class="form-label">Postal Code <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="post_code"
+                                        placeholder="Postal code...">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="form-label">Phone Number <span class="text-danger">*</span></label>
                                     <input class="form-control" required="" type="text" name="shipping_phone"
                                         value="{{ Auth::user()->phone }}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <label class="form-label">Address <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="shipping_address"
+                                        placeholder="Your address... " value="{{ Auth::user()->address }}">
                                 </div>
                             </div>
                             <div class="form-group mb-30">

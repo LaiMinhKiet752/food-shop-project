@@ -706,9 +706,6 @@
                 },
                 success: function(data) {
                     couponCalculation();
-                    if (data.validity == true) {
-                        $('#couponField').hide();
-                    }
                     // Start Message
                     const Toast = Swal.mixin({
                         position: 'top-end',
@@ -830,7 +827,6 @@
                 url: "/coupon-remove",
                 success: function(data) {
                     couponCalculation();
-                    $('#couponField').show();
                     // Start Message
                     const Toast = Swal.mixin({
                         position: 'top-end',
