@@ -591,6 +591,8 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Models\\Compare' => __DIR__ . '/../..' . '/app/Models/Compare.php',
         'App\\Models\\Coupon' => __DIR__ . '/../..' . '/app/Models/Coupon.php',
         'App\\Models\\MultiImage' => __DIR__ . '/../..' . '/app/Models/MultiImage.php',
+        'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OrderItem' => __DIR__ . '/../..' . '/app/Models/OrderItem.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
         'App\\Models\\ShipCity' => __DIR__ . '/../..' . '/app/Models/ShipCity.php',
         'App\\Models\\ShipCommune' => __DIR__ . '/../..' . '/app/Models/ShipCommune.php',

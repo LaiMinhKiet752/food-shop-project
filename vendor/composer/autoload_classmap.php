@@ -57,6 +57,8 @@ return array(
     'App\\Models\\Compare' => $baseDir . '/app/Models/Compare.php',
     'App\\Models\\Coupon' => $baseDir . '/app/Models/Coupon.php',
     'App\\Models\\MultiImage' => $baseDir . '/app/Models/MultiImage.php',
+    'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
+    'App\\Models\\OrderItem' => $baseDir . '/app/Models/OrderItem.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',
     'App\\Models\\ShipCity' => $baseDir . '/app/Models/ShipCity.php',
     'App\\Models\\ShipCommune' => $baseDir . '/app/Models/ShipCommune.php',
