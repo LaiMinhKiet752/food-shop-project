@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ShipDistricts extends Model
+class ShipCommune extends Model
 {
     use HasFactory;
     use SoftDeletes;
@@ -14,5 +14,9 @@ class ShipDistricts extends Model
     public function city()
     {
         return $this->belongsTo(ShipCity::class, 'city_id', 'id');
+    }
+    public function district()
+    {
+        return $this->belongsTo(ShipDistricts::class, 'district_id', 'id');
     }
 }

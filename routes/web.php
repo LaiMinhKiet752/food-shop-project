@@ -186,14 +186,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
     });
 
-    //Shipping Division All Route
+    //Shipping City All Route
     Route::controller(ShippingAreaController::class)->group(function () {
-        Route::get('/all/division', 'AllDivision')->name('all.division');
-        Route::get('/add/division', 'AddDivision')->name('add.division');
-        Route::post('/store/division', 'StoreDivision')->name('store.division');
-        Route::get('/edit/division/{id}', 'EditDivision')->name('edit.division');
-        Route::post('/update/division', 'UpdateDivision')->name('update.division');
-        Route::get('/delete/division/{id}', 'DeleteDivision')->name('delete.division');
+        Route::get('/all/city', 'AllCity')->name('all.city');
+        Route::get('/add/city', 'AddCity')->name('add.city');
+        Route::post('/store/city', 'StoreCity')->name('store.city');
+        Route::get('/edit/city/{id}', 'EditCity')->name('edit.city');
+        Route::post('/update/city', 'UpdateCity')->name('update.city');
+        Route::get('/delete/city/{id}', 'DeleteCity')->name('delete.city');
     });
 
     //Shipping District All Route
@@ -206,15 +206,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
     });
 
-    //Shipping State All Route
+    //Shipping Commune All Route
     Route::controller(ShippingAreaController::class)->group(function () {
-        Route::get('/all/state', 'AllState')->name('all.state');
-        Route::get('/add/state', 'AddState')->name('add.state');
-        Route::post('/store/state', 'StoreState')->name('store.state');
-        Route::get('/edit/state/{id}', 'EditState')->name('edit.state');
-        Route::post('/update/state', 'UpdateState')->name('update.state');
-        Route::get('/delete/state/{id}', 'DeleteState')->name('delete.state');
-        Route::get('/district/ajax/{division_id}', 'GetDistrict');
+        Route::get('/all/commune', 'AllCommune')->name('all.commune');
+        Route::get('/add/commune', 'AddCommune')->name('add.commune');
+        Route::post('/store/commune', 'StoreCommune')->name('store.commune');
+        Route::get('/edit/commune/{id}', 'EditCommune')->name('edit.commune');
+        Route::post('/update/commune', 'UpdateCommune')->name('update.commune');
+        Route::get('/delete/commune/{id}', 'DeleteCommune')->name('delete.commune');
+        Route::get('/district/ajax/{city_id}', 'GetDistrict');
     });
 
     //Vendor Active And Inactive All Route
@@ -317,8 +317,8 @@ Route::middleware(['auth'])->group(function () {
     });
     //Checkout All Route
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/district-get/ajax/{division_id}', 'DistrictGetAjax');
-        Route::get('/state-get/ajax/{district_id}', 'StateGetAjax');
+        Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
+        Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
 });

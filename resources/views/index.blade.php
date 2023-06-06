@@ -361,7 +361,7 @@
                         email: 'The email must be a valid email address.',
                     },
                     phone: {
-                        required: 'Please enter your phone number',
+                        required: 'Please enter your phone number.',
                         minlength: 'Please enter 10 numeric characters correctly.',
                         maxlength: 'Please enter 10 numeric characters correctly.',
                         digits: 'Please enter 10 numeric characters correctly.',

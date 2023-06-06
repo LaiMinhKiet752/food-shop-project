@@ -4,11 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Coupon;
+use App\Models\ShipCommune;
 use App\Models\ShipDistricts;
-use App\Models\ShipDivision;
-use App\Models\ShipState;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -16,15 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    public function DistrictGetAjax($division_id)
+    public function DistrictGetAjax($city_id)
     {
-        $ship = ShipDistricts::where('division_id', $division_id)->orderBy('district_name', 'ASC')->get();
+        $ship = ShipDistricts::where('city_id', $city_id)->orderBy('district_name', 'ASC')->get();
         return json_encode($ship);
     } //End Method
 
-    public function StateGetAjax($district_id)
+    public function CommuneGetAjax($district_id)
     {
-        $ship = ShipState::where('district_id', $district_id)->orderBy('state_name', 'ASC')->get();
+        $ship = ShipCommune::where('district_id', $district_id)->orderBy('commune_name', 'ASC')->get();
         return json_encode($ship);
     } //End Method
 
@@ -38,9 +35,9 @@ class CheckoutController extends Controller
         $data['post_code'] = $request->post_code;
         $data['notes'] = $request->notes;
 
-        $data['division_id'] = $request->division_id;
+        $data['city_id'] = $request->city_id;
         $data['district_id'] = $request->district_id;
-        $data['state_id'] = $request->state_id;
+        $data['commune_id'] = $request->commune_id;
 
         $cartTotal = Cart::total();
 

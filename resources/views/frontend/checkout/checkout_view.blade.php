@@ -22,75 +22,111 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-7">
-                    <div class="row">
-                        <h4 class="mb-30">Billing Details</h4>
+                @if (Auth::user()->address == null)
+                    <div class="col-lg-7">
                         <div class="row">
-                            <div class="form-group col-lg-6">
-                                <label class="form-label">Full Name <span class="text-danger">*</span></label>
-                                <input class="form-control" type="text" required="" name="shipping_name"
-                                    value="{{ Auth::user()->name }}">
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label class="form-label">Email <span class="text-danger">*</span></label>
-                                <input class="form-control" type="email" required="" name="shipping_email"
-                                    value="{{ Auth::user()->email }}">
-                            </div>
-                        </div>
-                        <div class="row shipping_calculator">
-                            <div class="form-group col-lg-6">
-                                <div class="custom_select">
-                                    <label class="form-label">Select Division <span class="text-danger">*</span></label>
-                                    <select name="division_id" class="form-control select-active">
-                                        <option value="">Select Division</option>
-                                        @foreach ($divisions as $item)
-                                            <option value="{{ $item->id }}">{{ $item->division_name }}</option>
-                                        @endforeach
-                                    </select>
+                            <h4 class="mb-30">Billing Details</h4>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required="" name="shipping_name"
+                                        value="{{ Auth::user()->name }}">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" required="" name="shipping_email"
+                                        value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label class="form-label">Phone Number <span class="text-danger">*</span></label>
-                                <input class="form-control" required="" type="text" name="shipping_phone"
-                                    value="{{ Auth::user()->phone }}">
-                            </div>
-                        </div>
-                        <div class="row shipping_calculator">
-                            <div class="form-group col-lg-6">
-                                <div class="custom_select">
-                                    <label class="form-label">Select District <span class="text-danger">*</span></label>
-                                    <select name="district_id" class="form-control select-active">
-
-                                    </select>
+                            <div class="row shipping_calculator">
+                                <div class="form-group col-lg-6">
+                                    <div class="custom_select">
+                                        <label class="form-label">Select City, Province <span class="text-danger">*</span></label>
+                                        <select required="" name="city_id" class="form-control select-active">
+                                            <option value="">Select City, Province</option>
+                                            @foreach ($citys as $item)
+                                                <option value="{{ $item->id }}">{{ $item->city_name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="shipping_phone"
+                                        value="{{ Auth::user()->phone }}">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label class="form-label">Postal Code <span class="text-danger">*</span></label>
-                                <input class="form-control" required="" type="text" name="post_code"
-                                    placeholder="Postal code...">
-                            </div>
-                        </div>
-                        <div class="row shipping_calculator">
-                            <div class="form-group col-lg-6">
-                                <div class="custom_select">
-                                    <label class="form-label">Select State <span class="text-danger">*</span></label>
-                                    <select name="state_id" class="form-control select-active">
+                            <div class="row shipping_calculator">
+                                <div class="form-group col-lg-6">
+                                    <div class="custom_select">
+                                        <label class="form-label">Select District <span class="text-danger">*</span></label>
+                                        <select required="" name="district_id" class="form-control select-active">
 
-                                    </select>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Postal Code <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="post_code"
+                                        placeholder="Postal code...">
                                 </div>
                             </div>
-                            <div class="form-group col-lg-6">
-                                <label class="form-label">Address <span class="text-danger">*</span></label>
-                                <input class="form-control" required="" type="text" name="shipping_address"
-                                    placeholder="Your address... " value="{{ Auth::user()->address }}">
-                            </div>
-                        </div>
-                        <div class="form-group mb-30">
-                            <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
-                        </div>
+                            <div class="row shipping_calculator">
+                                <div class="form-group col-lg-6">
+                                    <div class="custom_select">
+                                        <label class="form-label">Select Commune <span class="text-danger">*</span></label>
+                                        <select required="" name="commune_id" class="form-control select-active">
 
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Address <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="shipping_address"
+                                        placeholder="Street, No." value="{{ Auth::user()->address }}">
+                                </div>
+                            </div>
+                            <div class="form-group mb-30">
+                                <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+                @else
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <h4 class="mb-30">Billing Details</h4>
+                            <div class="row">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" required="" name="shipping_name"
+                                        value="{{ Auth::user()->name }}">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Email <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" required="" name="shipping_email"
+                                        value="{{ Auth::user()->email }}">
+                                </div>
+                            </div>
+                            <div class="row shipping_calculator">
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Address <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="shipping_address"
+                                        placeholder="Your address... " value="{{ Auth::user()->address }}">
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="form-label">Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control" required="" type="text" name="shipping_phone"
+                                        value="{{ Auth::user()->phone }}">
+                                </div>
+                            </div>
+                            <div class="form-group mb-30">
+                                <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+                @endif
                 <div class="col-lg-5">
                     <div class="border p-40 cart-totals ml-30 mb-50">
                         <div class="d-flex align-items-end justify-content-between mb-30">
@@ -221,12 +257,12 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('select[name="division_id"]').on('change', function() {
-                var division_id = $(this).val();
+            $('select[name="city_id"]').on('change', function() {
+                var city_id = $(this).val();
                 var rows = '';
-                if (division_id) {
+                if (city_id) {
                     $.ajax({
-                        url: "{{ url('/district-get/ajax') }}/" + division_id,
+                        url: "{{ url('/district-get/ajax') }}/" + city_id,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
@@ -252,16 +288,16 @@
                 var rows = '';
                 if (district_id) {
                     $.ajax({
-                        url: "{{ url('/state-get/ajax') }}/" + district_id,
+                        url: "{{ url('/commune-get/ajax') }}/" + district_id,
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            rows = `<option value="">Select Division</option>`
-                            $('select[name="state_id"]').html(rows);
+                            rows = `<option value="">Select Commune</option>`
+                            $('select[name="commune_id"]').html(rows);
                             $.each(data, function(key, value) {
-                                $('select[name="state_id"]').append(
+                                $('select[name="commune_id"]').append(
                                     '<option value="' + value.id + '">' + value
-                                    .state_name + '</option>');
+                                    .commune_name + '</option>');
                             });
                         },
 
