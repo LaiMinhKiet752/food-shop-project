@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
-use App\Models\ShipDivision;
+use App\Models\ShipCity;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -572,8 +572,8 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::content()->count();
                 $cartTotal = Cart::total();
-                $divisions = ShipDivision::orderBy('division_name','ASC')->get();
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','divisions'));
+                $citys = ShipCity::orderBy('city_name','ASC')->get();
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','citys'));
             } else {
                 $notification = array(
                     'message' => 'Please Choose A Product To Buy!',

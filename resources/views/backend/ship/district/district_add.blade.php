@@ -39,14 +39,14 @@
                                     @csrf
                                     <div class="row mb-3 ">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Division Name <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">City, Province Name <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-dark">
-                                            <select name="division_id" class="form-select mb-3 single-select"
+                                            <select name="city_id" class="form-select mb-3 single-select"
                                                 aria-label="Default select example">
                                                 <option></option>
-                                                @foreach ($division as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->division_name }}
+                                                @foreach ($city as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->city_name }}
                                                     </option>
                                                 @endforeach
 
@@ -87,7 +87,7 @@
                         required: true,
                         maxlength: 255,
                     },
-                    division_id: {
+                    city_id: {
                         required: true,
                     },
                 },
@@ -96,8 +96,8 @@
                         required: 'Please enter district name.',
                         maxlength: 'The district name must not be greater than 255 characters.',
                     },
-                    division_id: {
-                        required: 'Please select a division name.',
+                    city_id: {
+                        required: 'Please select a city, province name.',
                     },
                 },
                 errorElement: 'span',
