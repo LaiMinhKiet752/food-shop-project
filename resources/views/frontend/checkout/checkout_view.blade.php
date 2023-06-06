@@ -276,6 +276,7 @@
                         success: function(data) {
                             rows = `<option value="">Select District</option>`;
                             $('select[name="district_id"]').html(rows);
+                            $('select[name="commune_id"]').html('');
                             $.each(data, function(key, value) {
                                 $('select[name="district_id"]').append(
                                     '<option value="' + value.id + '">' + value
@@ -300,7 +301,7 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            rows = `<option value="">Select Commune</option>`
+                            rows = `<option value="">Select Commune</option>`;
                             $('select[name="commune_id"]').html(rows);
                             $.each(data, function(key, value) {
                                 $('select[name="commune_id"]').append(

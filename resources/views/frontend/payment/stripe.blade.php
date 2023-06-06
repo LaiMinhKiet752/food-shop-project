@@ -141,7 +141,7 @@
 
     <script type="text/javascript">
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_zuURZYgtzc5QCrAq3ITN7h2M007nb4GJy9');
+        var stripe = Stripe('pk_test_51NFyfzAJXTVnrBbytE1txgPRNthWccZEusHCfvNNwSqBhbEmLFo0vQFvhrICs56Nzno29KOuRJnF4nH4UIuo5urO00ftePiuHH');
         // Create an instance of Elements.
         var elements = stripe.elements();
         // Custom styling can be passed to options when creating an Element.

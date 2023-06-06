@@ -35,6 +35,7 @@ return array(
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Controllers\\User\\CheckoutController' => $baseDir . '/app/Http/Controllers/User/CheckoutController.php',
     'App\\Http\\Controllers\\User\\CompareController' => $baseDir . '/app/Http/Controllers/User/CompareController.php',
+    'App\\Http\\Controllers\\User\\StripeController' => $baseDir . '/app/Http/Controllers/User/StripeController.php',
     'App\\Http\\Controllers\\User\\WishlistController' => $baseDir . '/app/Http/Controllers/User/WishlistController.php',
     'App\\Http\\Controllers\\VendorController' => $baseDir . '/app/Http/Controllers/VendorController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',

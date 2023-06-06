@@ -569,6 +569,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\User\\CheckoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/CheckoutController.php',
         'App\\Http\\Controllers\\User\\CompareController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/CompareController.php',
+        'App\\Http\\Controllers\\User\\StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/StripeController.php',
         'App\\Http\\Controllers\\User\\WishlistController' => __DIR__ . '/../..' . '/app/Http/Controllers/User/WishlistController.php',
         'App\\Http\\Controllers\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/VendorController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
