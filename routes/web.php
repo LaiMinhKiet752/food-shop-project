@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -320,6 +321,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
         Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+    });
+    //Stripe All Route
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
     });
 });
 
