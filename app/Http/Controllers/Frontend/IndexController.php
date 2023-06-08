@@ -87,7 +87,7 @@ class IndexController extends Controller
     {
         $product = Product::with('category', 'brand')->findOrFail($id);
         return response()->json(array(
-            'product' => $product,
+            'product' => $product
         ));
     } // End Method
 }

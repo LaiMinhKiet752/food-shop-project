@@ -39,7 +39,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -49,7 +49,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -68,7 +68,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -78,7 +78,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -97,7 +97,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -107,7 +107,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -126,7 +126,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -136,7 +136,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -155,7 +155,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -165,7 +165,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -184,7 +184,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -194,7 +194,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -213,7 +213,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -223,7 +223,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -242,7 +242,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -252,7 +252,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -271,7 +271,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -281,7 +281,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -300,7 +300,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -310,7 +310,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -329,7 +329,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -339,7 +339,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -358,7 +358,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -368,7 +368,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -387,7 +387,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -397,7 +397,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -416,7 +416,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         } else {
@@ -426,7 +426,7 @@ class CartController extends Controller
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
                 'weight' => 1,
-                'options' => ['image' => $product->product_thumbnail],
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
             ]);
             return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
         }
@@ -571,8 +571,8 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::content()->count();
                 $cartTotal = Cart::total();
-                $cities = ShipCity::orderBy('city_name','ASC')->get();
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal','cities'));
+                $cities = ShipCity::orderBy('city_name', 'ASC')->get();
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'cities'));
             } else {
                 $notification = array(
                     'message' => 'Please Choose A Product To Buy!',

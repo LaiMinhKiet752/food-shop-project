@@ -245,6 +245,7 @@
             $('.homeNewProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.product_data').find('.prod_id').val();
+                var vendor_id = $(this).closest('.product_data').find('.prod_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",

@@ -26,6 +26,8 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('vendor_join')->nullable();
             $table->text('vendor_short_info')->nullable();
+            $table->string('youtube_link')->nullable();
+            $table->string('facebook_link')->nullable();
             $table->enum('role',['admin','vendor','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');
             $table->rememberToken();

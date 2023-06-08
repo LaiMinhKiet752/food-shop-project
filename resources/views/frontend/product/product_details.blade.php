@@ -86,6 +86,8 @@
                                     <div class="product-extra-link2">
 
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                                        <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
+
                                         <button type="submit" class="button button-add-to-cart"
                                             onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
                                             cart</button>
@@ -110,8 +112,13 @@
                                     <ul class="mr-50 float-start">
                                         <li class="mb-5">Product Code: <a href="#">{{ $product->product_code }}</a>
                                         </li>
-                                        <li class="mb-5">Brand: <span
-                                                class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+                                        @if ($product->vendor_id == null)
+                                            <li class="mb-5">Brand: <span
+                                                    class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+                                        @else
+                                            <li class="mb-5">Vendor: <span
+                                                    class="text-brand">{{ $product['vendor']['shop_name'] }}</span></li>
+                                        @endif
                                         <li class="mb-5">Category: <span
                                                 class="text-brand">{{ $product['category']['category_name'] }}</span>
                                         </li>
@@ -134,7 +141,8 @@
                                                     class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                             </li>
                                         @endif
-                                        <li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_quantity }})
+                                        <li>Stock:<span
+                                                class="in-stock text-brand ml-5">({{ $product->product_quantity }})
                                                 Items
                                                 In Stock</span></li>
                                     </ul>

@@ -26,6 +26,7 @@
                     <div class="col-lg-7">
                         <div class="row">
                             <h4 class="mb-30">Billing Details</h4>
+
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label class="form-label">Full Name <span class="text-danger">*</span></label>
@@ -38,13 +39,15 @@
                                         value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
+
                             <div class="row shipping_calculator">
                                 <div class="form-group col-lg-6">
                                     <div class="custom_select">
                                         <label class="form-label">Select City, Province <span
                                                 class="text-danger">*</span></label>
                                         <select required="" name="city_id" class="form-control select-active">
-                                            <option value="">Select City, Province</option>
+                                            <option selected="" disabled="" value="">Select City, Province
+                                            </option>
                                             @foreach ($cities as $item)
                                                 <option value="{{ $item->id }}">{{ $item->city_name }}</option>
                                             @endforeach
@@ -57,6 +60,7 @@
                                         value="{{ Auth::user()->phone }}">
                                 </div>
                             </div>
+
                             <div class="row shipping_calculator">
                                 <div class="form-group col-lg-6">
                                     <div class="custom_select">
@@ -72,6 +76,7 @@
                                         placeholder="Postal code...">
                                 </div>
                             </div>
+
                             <div class="row shipping_calculator">
                                 <div class="form-group col-lg-6">
                                     <div class="custom_select">
@@ -87,6 +92,7 @@
                                         placeholder="Street, No." value="{{ Auth::user()->address }}">
                                 </div>
                             </div>
+
                             <div class="form-group mb-30">
                                 <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
                             </div>
@@ -97,6 +103,7 @@
                     <div class="col-lg-7">
                         <div class="row">
                             <h4 class="mb-30">Billing Details</h4>
+
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label class="form-label">Full Name <span class="text-danger">*</span></label>
@@ -109,6 +116,7 @@
                                         value="{{ Auth::user()->email }}">
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group col-lg-6">
                                     <label class="form-label">Postal Code <span class="text-danger">*</span></label>
@@ -121,6 +129,7 @@
                                         value="{{ Auth::user()->phone }}">
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label class="form-label">Address <span class="text-danger">*</span></label>
@@ -128,6 +137,7 @@
                                         placeholder="Your address... " value="{{ Auth::user()->address }}">
                                 </div>
                             </div>
+
                             <div class="form-group mb-30">
                                 <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
                             </div>
@@ -274,7 +284,8 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            rows = `<option value="">Select District</option>`;
+                            rows =
+                                `<option selected="" disabled="" value="">Select District</option>`;
                             $('select[name="district_id"]').html(rows);
                             $('select[name="commune_id"]').html('');
                             $.each(data, function(key, value) {
@@ -301,7 +312,8 @@
                         type: "GET",
                         dataType: "json",
                         success: function(data) {
-                            rows = `<option value="">Select Commune</option>`;
+                            rows =
+                                `<option selected="" disabled="" value="">Select Commune</option>`;
                             $('select[name="commune_id"]').html(rows);
                             $.each(data, function(key, value) {
                                 $('select[name="commune_id"]').append(

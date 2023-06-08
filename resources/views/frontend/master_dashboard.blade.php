@@ -20,7 +20,10 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
     <script src="https://js.stripe.com/v3/"></script>
+
 </head>
 
 <body>
@@ -111,7 +114,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        })
+        });
         // Start Product View With Modal
         function productView(id) {
             // alert(id)
@@ -121,12 +124,23 @@
                 dataType: 'json',
                 success: function(data) {
                     // console.log(data)
+
+                    if (data.product.manufacturing_date == null) {
+                        var mfg_date_format = '';
+                    } else {
+                        var mfg_date_format = moment(data.product.manufacturing_date).add(1, 'days').utc()
+                            .format(
+                                'DD-MM-YYYY');
+                    }
                     $('#pname').text(data.product.product_name);
                     $('#pprice').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
-                    $('#pbrand').text(data.product.brand.brand_name);
+                    $('#pmfg').text(mfg_date_format);
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+
+                    $('#brand_id').val(data.product.brand_id);
+                    $('#vendor_id').val(data.product.vendor_id);
 
                     $('#product_id').val(id);
                     $('#qty').val(1);
@@ -154,7 +168,7 @@
                     }
                     //End Stock Option
                 }
-            })
+            });
         }
         // End Product View With Modal
 
@@ -162,6 +176,8 @@
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
+            var vendor_id = $('#vendor_id').val();
+            var brand_id = $('#brand_id').val();
             var quantity = $('#qty').val();
 
             $.ajax({
@@ -169,7 +185,9 @@
                 dataType: 'json',
                 data: {
                     quantity: quantity,
-                    product_name: product_name
+                    product_name: product_name,
+                    vendor_id: vendor_id,
+                    brand_id: brand_id,
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
@@ -205,13 +223,15 @@
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
+            var vendor_id = $('#vproduct_id').val();
             var quantity = $('#dqty').val();
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     quantity: quantity,
-                    product_name: product_name
+                    product_name: product_name,
+                    vendor_id: vendor_id
                 },
                 url: "/dcart/data/store/" + id,
                 success: function(data) {

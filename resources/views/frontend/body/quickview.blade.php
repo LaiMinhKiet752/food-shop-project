@@ -9,7 +9,7 @@
                         <div class="detail-gallery">
 
                             <!-- MAIN SLIDES -->
-                            <img src=" " alt="product image" id="pimage"/>
+                            <img src="" alt="product image" id="pimage" />
 
                         </div>
                         <!-- End Gallery -->
@@ -36,6 +36,8 @@
                                 </div>
                                 <div class="product-extra-link2">
                                     <input type="hidden" id="product_id">
+                                    <input type="hidden" id="brand_id" value="">
+                                    <input type="hidden" id="vendor_id" value="">
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i
                                             class="fi-rs-shopping-cart"></i>Add to cart</button>
                                 </div>
@@ -43,17 +45,16 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">Brand : <span class="text-brand" id="pbrand"> </span>
+                                            <li class="mb-5">Category : <span class="text-brand"
+                                                    id="pcategory"> </span>
                                             </li>
-                                            <li class="mb-5">Category : <span class="text-brand" id="pcategory">
-                                                </span>
-                                            </li>
+                                            <li class="mb-5">MFG : <span class="text-brand"
+                                                id="pmfg"> </span>
+                                        </li>
                                         </ul>
                                     </div>
-
                                 </div> <!-- // End col  -->
 
 

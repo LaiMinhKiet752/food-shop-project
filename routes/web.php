@@ -287,7 +287,7 @@ Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 //Checkout Page Route
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
-//Cart All Route
+//My Cart Route
 Route::controller(CartController::class)->group(function () {
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
@@ -303,7 +303,7 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
 //User All Route
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
