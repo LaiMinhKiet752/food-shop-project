@@ -474,234 +474,87 @@
                     expiry_year = expiry_date[0];
 
 
-
-
-
-                    //2024 > 2023
-                    if (manufacturing_year > expiry_year) {
-                        $.notify("You have selected invalid production and expiry date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //2024 > 2023
-                    else if (manufacturing_year > today_year) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //2022 < 2023
-                    else if (expiry_year < today_year) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    if (manufacturing_year < today_year && expiry_year > today_year) {
+                        return true;
                     }
 
 
 
 
 
-                    //2022 == 2022 || 2022 < 2023 || 2022 < 2023
-                    else if (manufacturing_year == expiry_year && manufacturing_year < today_year &&
-                        expiry_year < today_year) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //2024 == 2024 || 2024 > 2023 || 2024 > 2023
-                    else if (manufacturing_year == expiry_year && manufacturing_year > today_year &&
-                        expiry_year > today_year) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-
-
-
-
-
-                    //(( 2022 <= 2023 || 6 <= 6 || 7 <= 7) || 2024 > 2023)
-                    else if ((manufacturing_year <= today_year && manufacturing_month <= today_month &&
+                    //
+                    else if ((manufacturing_year == today_year && manufacturing_month == today_month &&
                             manufacturing_day <= today_day) && expiry_year > today_year) {
                         return true;
                     }
-                    //(( 2022 <= 2023 || 6 <= 6 || 7 <= 7) || 2022 < 2023)
-                    else if ((manufacturing_year <= today_year && manufacturing_month <= today_month &&
-                            manufacturing_day <= today_day) && expiry_year < today_year) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2022 <= 2023 || 6 <= 6 || 7 <= 7) || (2023 >= 2023 || 5 < 6))
-                    else if ((manufacturing_year <= today_year && manufacturing_month <= today_month &&
-                            manufacturing_day <= today_day) && (expiry_year >= today_year && expiry_month <
-                            today_month)) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2022 <= 2023 || 6 <= 6 || 7 <= 7) || (2023 >= 2023 || 7 >= 6 || 5 < 6))
-                    else if ((manufacturing_year <= today_year && manufacturing_month <= today_month &&
-                            manufacturing_day <= today_day) && (expiry_year >= today_year && expiry_month >=
-                            today_month && expiry_day < today_day)) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-
-
-
-                    //(( 2022 <= 2023 || 7 >= 6 || 8 >= 7) || 2022 < 2023)
-                    else if ((manufacturing_year <= today_year && manufacturing_month >= today_month &&
-                            manufacturing_day >= today_day) && expiry_year < today_year) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2022 <= 2023 || 6 <= 6 || 7 <= 7) || (2023 >= 2023 || 5 < 6))
-                    else if ((manufacturing_year <= today_year && manufacturing_month >= today_month &&
-                            manufacturing_day >= today_day) && (expiry_year >= today_year && expiry_month <
-                            today_month)) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2022 <= 2023 || 6 >= 6 || 7 >= 7) || (2023 >= 2023 || 7 >= 6 || 5 < 6))
-                    else if ((manufacturing_year <= today_year && manufacturing_month >= today_month &&
-                            manufacturing_day >= today_day) && (expiry_year >= today_year && expiry_month >=
-                            today_month && expiry_day < today_day)) {
-                        $.notify("Invalid expiration date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-
-
-
-
-
-                    //(( 2023 >= 2023 || 6 >= 6 || 7 > 6) || 2022 < 2023)
-                    else if ((expiry_year >= today_year && expiry_month >= today_month &&
-                            expiry_day > today_day) && manufacturing_year < today_year) {
+                    //
+                    else if ((manufacturing_year == today_year && manufacturing_month < today_month) &&
+                        expiry_year > today_year) {
                         return true;
                     }
-                    //(( 2023 >= 2023 || 6 >= 6 || 7 > 6) || 2024 > 2023)
-                    else if ((expiry_year >= today_year && expiry_month >= today_month &&
-                            expiry_day > today_day) && manufacturing_year > today_year) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    else if ((manufacturing_year == today_year && manufacturing_month < today_month) &&
+                        (expiry_year == today_year && expiry_month > today_month)) {
+                        return true;
                     }
-                    //(( 2023 >= 2023 || 6 >= 6 || 7 > 6) || (2023 <= 2023 || 7 > 6))
-                    else if ((expiry_year >= today_year && expiry_month >= today_month &&
-                            expiry_day > today_day) && (manufacturing_year <= today_year &&
-                            manufacturing_month > today_month)) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2023 >= 2023 || 6 >= 6 || 7 > 6) || (2023 <= 2023 || 5 <= 6 || 7 > 6))
-                    else if ((expiry_year >= today_year && expiry_month >= today_month &&
-                            expiry_day > today_day) && (manufacturing_year <= today_year &&
-                            manufacturing_month <= today_month && manufacturing_day > today_day)) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-
-
-
-                    //(( 2023 >= 2023 || 6 <= 6 || 7 > 6) || 2024 > 2023)
-                    else if ((expiry_year >= today_year && expiry_month <= today_month &&
-                            expiry_day > today_day) && manufacturing_year > today_year) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2023 >= 2023 || 6 <= 6 || 7 > 6) || (2023 <= 2023 || 7 > 6))
-                    else if ((expiry_year >= today_year && expiry_month <= today_month &&
-                            expiry_day > today_day) && (manufacturing_year <= today_year &&
-                            manufacturing_month > today_month)) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
-                    }
-                    //(( 2023 >= 2023 || 6 <= 6 || 7 > 6) || (2023 <= 2023 || 7 > 6))
-                    else if ((expiry_year >= today_year && expiry_month <= today_month &&
-                            expiry_day > today_day) && (manufacturing_year <= today_year &&
-                            manufacturing_month <= today_month && manufacturing_day > today_day)) {
-                        $.notify("Invalid production date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    else if ((manufacturing_year == today_year && manufacturing_month < today_month) &&
+                        (expiry_year == today_year && expiry_month == today_month && expiry_day > today_day)
+                    ) {
+                        return true;
                     }
 
 
 
 
 
-                    //( 2023 == 2023 || 7 > 6 || 6 == 6)
-                    else if (manufacturing_year == expiry_year && manufacturing_month >
-                        expiry_month && manufacturing_day == expiry_day) {
-                        $.notify("You have selected invalid production and expiry date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    else if ((expiry_year == today_year && expiry_month ==
+                            today_month && expiry_day > today_day) && manufacturing_year < today_year) {
+                        return true;
                     }
-                    //( 2023 == 2023 || 6 == 6 || 7 > 6)
-                    else if (manufacturing_year == expiry_year && manufacturing_month ==
-                        expiry_month && manufacturing_day > expiry_day) {
-                        $.notify("You have selected invalid production and expiry date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    else if ((expiry_year == today_year && expiry_month > today_month) &&
+                        manufacturing_year < today_year) {
+                        return true;
                     }
-                    //( 2023 == 2023 || 6 == 6 || 7 == 7)
-                    else if (manufacturing_year == expiry_year && manufacturing_month ==
-                        expiry_month && manufacturing_day == expiry_day) {
-                        $.notify("You have selected invalid production and expiry date!", {
-                            globalPosition: 'top right',
-                            className: 'error'
-                        });
-                        return false;
+                    //
+                    else if ((expiry_year == today_year && expiry_month > today_month) &&
+                        (manufacturing_year == today_year && manufacturing_month < today_month)) {
+                        return true;
+                    }
+                    //
+                    else if ((expiry_year == today_year && expiry_month > today_month) &&
+                        (manufacturing_year == today_year && manufacturing_month == today_month &&
+                            manufacturing_day <= today_day)) {
+                        return true;
                     }
 
 
 
-                    return true;
+
+
+                    //
+                    else if ((manufacturing_year == today_year && manufacturing_month <= today_month &&
+                            manufacturing_day <= today_day) && (expiry_year == today_year &&
+                            expiry_month >= today_month && expiry_day > today_day)) {
+                        return true;
+                    }
+
+
+
+
+
+                    //
+                    else {
+                        $.notify(
+                            "You have selected an invalid product's manufacture or expiration date!", {
+                                globalPosition: 'top right',
+                                className: 'error'
+                            });
+                        return false;
+                    }
 
 
 
@@ -711,11 +564,6 @@
                 } else if (manufacturing_date == '' && expiry_date == '') {
                     return true;
                 }
-
-
-
-
-
                 //
                 else if (manufacturing_date != '') {
                     manufacturing_day = manufacturing_date[2];
@@ -746,11 +594,6 @@
                     return true;
 
                 }
-
-
-
-
-
                 //
                 else if (expiry_date != '') {
                     expiry_day = expiry_date[2];
@@ -783,4 +626,5 @@
             });
         });
     </script>
+    
 @endsection
