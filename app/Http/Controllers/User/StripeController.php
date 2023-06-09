@@ -33,11 +33,13 @@ class StripeController extends Controller
             'source' => $token,
             'metadata' => ['order_id' => hexdec(uniqid())],
         ]);
+
         // dd($charge);
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'city_id' => $request->city_id,
-            'district_id' => $request->division_id,
+            'district_id' => $request->district_id,
             'commune_id' => $request->commune_id,
 
             'name' => $request->name,
@@ -48,18 +50,44 @@ class StripeController extends Controller
             'notes' => $request->notes,
 
             'payment_type' => $charge->payment_method,
-            'payment_method ' => 'Stripe',
+            'payment_method' => 'Stripe',
             'transaction_id' => $charge->balance_transaction,
             'currency' => $charge->currency,
             'amount' => $total_amount,
             'order_number' => $charge->metadata->order_id,
 
-            'invoice_number' => 'NFS'.mt_rand(10000000,99999999),
+            'invoice_number' => 'NFS' . mt_rand(10000000, 99999999),
             'order_date' => Carbon::now()->format('d F Y'),
+            'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
             'status' => 'pending',
             'created_at' => Carbon::now(),
         ]);
+
+        $carts = Cart::content();
+        foreach ($carts as $cart) {
+            OrderItem::insert([
+                'order_id' => $order_id,
+                'product_id' => $cart->id,
+                'brand_id' => $cart->options->brand_id,
+                'vendor_id' => $cart->options->vendor_id,
+                'quantity' => $cart->qty,
+                'price' => $cart->price,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+        if (Session::has('coupon')) {
+           Session::forget('coupon');
+        }
+
+        Cart::destroy();
+
+        $notification = array(
+            'message' => 'You Have Ordered And Paid Successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('dashboard')->with($notification);
     } //End Method
 }

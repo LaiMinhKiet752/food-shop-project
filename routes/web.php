@@ -56,7 +56,7 @@ Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->nam
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    //Vendor Dashborad
+    //User Dashborad
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');

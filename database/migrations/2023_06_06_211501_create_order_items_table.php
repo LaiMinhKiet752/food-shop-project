@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('brand_id')->nullable();
             $table->string('vendor_id')->nullable();
-            $table->string('quantity');
             $table->float('price', 8, 2);
+            $table->string('quantity');
             $table->timestamps();
             $table->softDeletes();
         });
