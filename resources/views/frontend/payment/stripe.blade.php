@@ -2,9 +2,9 @@
 @section('main')
     <style>
         /**
-             * The CSS shown here will not be introduced in the Quickstart guide, but shows
-             * how you can use CSS to style your Element's container.
-             */
+                     * The CSS shown here will not be introduced in the Quickstart guide, but shows
+                     * how you can use CSS to style your Element's container.
+                     */
         .StripeElement {
             box-sizing: border-box;
             height: 40px;
@@ -123,6 +123,15 @@
                                 <label for="card-element">
                                     Credit or debit card
                                 </label>
+                                <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
+                                <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">
+                                <input type="hidden" name="phone" value="{{ $data['shipping_phone'] }}">
+                                <input type="hidden" name="address" value="{{ $data['shipping_address'] }}">
+                                <input type="hidden" name="post_code" value="{{ $data['post_code'] }}">
+                                <input type="hidden" name="notes" value="{{ $data['notes'] }}">
+                                <input type="hidden" name="city_id" value="{{ $data['city_id'] }}">
+                                <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
+                                <input type="hidden" name="commune_id" value="{{ $data['commune_id'] }}">
 
                                 <div id="card-element">
                                     <!-- A Stripe Element will be inserted here. -->
@@ -141,7 +150,9 @@
 
     <script type="text/javascript">
         // Create a Stripe client.
-        var stripe = Stripe('pk_test_51NFyfzAJXTVnrBbytE1txgPRNthWccZEusHCfvNNwSqBhbEmLFo0vQFvhrICs56Nzno29KOuRJnF4nH4UIuo5urO00ftePiuHH');
+        var stripe = Stripe(
+            'pk_test_51NFyfzAJXTVnrBbytE1txgPRNthWccZEusHCfvNNwSqBhbEmLFo0vQFvhrICs56Nzno29KOuRJnF4nH4UIuo5urO00ftePiuHH'
+        );
         // Create an instance of Elements.
         var elements = stripe.elements();
         // Custom styling can be passed to options when creating an Element.

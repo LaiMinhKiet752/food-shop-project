@@ -232,7 +232,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 //Add To Cart Store Data
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartQuickView']);
 
 //Get Data From Mini Cart
 Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);

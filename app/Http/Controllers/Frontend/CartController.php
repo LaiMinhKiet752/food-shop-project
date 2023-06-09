@@ -26,7 +26,7 @@ class CartController extends Controller
         ));
     } // End Method
 
-    public function AddToCart(Request $request, $id)
+    public function AddToCartQuickView(Request $request, $id)
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
