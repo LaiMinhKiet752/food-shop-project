@@ -45,11 +45,24 @@
                                             data-role="tagsinput" value="new product">
                                     </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="inputProductTitle" class="form-label">Product Weight (gram, kg)</label>
-                                        <input type="text" name="product_weight" class="form-control"
-                                            value="{{ old('product_weight') }}">
+                                    <div class="row g-3">
+                                        <div class="form-group numbers-only col-md-6">
+                                            <label for="inputProductTitle" class="form-label">Product Weight</label>
+                                            <input type="text" name="product_weight" class="form-control"
+                                                value="{{ old('product_weight') }}">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputProductTitle" class="form-label">Select Weight/Volume</label>
+                                            <select name="product_measure" class="form-control form-select single-select">
+                                                <option></option>
+                                                <option value="kilogam">Kilogam</option>
+                                                <option value="gram">Gram</option>
+                                                <option value="liter">Liter</option>
+                                                <option value="mililiter">Mililiter</option>
+                                            </select>
+                                        </div>
                                     </div>
+                                    <br>
 
                                     <div class="form-group mb-3">
                                         <label for="inputProductTitle" class="form-label">Product Dimensions</label>
@@ -125,7 +138,7 @@
                                                 id="inputCostPerPrice" placeholder="1q2w3e"
                                                 value="{{ old('product_code') }}">
                                         </div>
-                                        <div class="form-group numbers-only col-md-6">
+                                        <div class="form-group col-md-6">
                                             <label for="inputStarPoints" class="form-label">Product Quantity <span
                                                     class="text-danger">*</span></label>
                                             <input type="text" name="product_quantity" class="form-control"
@@ -148,7 +161,7 @@
                                         <div class="form-group col-12">
                                             <label for="inputProductType" class="form-label">Product Brand <span
                                                     class="text-danger">*</span></label>
-                                            <select name="brand_id" class="form-select single-select">
+                                            <select name="brand_id" class="form-control form-select single-select">
                                                 <option></option>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
@@ -159,7 +172,7 @@
                                         <div class="form-group col-12">
                                             <label for="inputVendor" class="form-label">Product Category <span
                                                     class="text-danger">*</span></label>
-                                            <select name="category_id" class="form-select single-select">
+                                            <select name="category_id" class="form-control form-select single-select">
                                                 <option></option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->category_name }}
@@ -171,15 +184,15 @@
                                         <div class="form-group col-12">
                                             <label for="inputVendor" class="form-label">Product SubCategory <span
                                                     class="text-danger">*</span></label>
-                                            <select name="subcategory_id" class="form-select single-select">
+                                            <select name="subcategory_id" class="form-control form-select single-select">
                                                 <option></option>
 
                                             </select>
                                         </div>
 
-                                        <div class="col-12">
+                                        <div class="form-group col-12">
                                             <label for="inputCollection" class="form-label">Select Vendor </label>
-                                            <select name="vendor_id" class="form-select single-select">
+                                            <select name="vendor_id" class="form-control form-select single-select">
                                                 <option></option>
                                                 @foreach ($activeVendor as $vendor)
                                                     <option value="{{ $vendor->id }}">{{ $vendor->shop_name }}</option>
@@ -324,6 +337,10 @@
                         required: true,
                         maxlength: 255,
                     },
+                    product_weight: {
+                        digits: true,
+                        min: 1,
+                    },
                     short_description: {
                         required: true,
                         maxlength: 255,
@@ -361,6 +378,10 @@
                         required: 'Please enter product name.',
                         maxlength: 'The product name must not be greater than 255 characters.',
                     },
+                    product_weight: {
+                        digits: 'Please enter only positive integers.',
+                        min: 'The product weight must be greater than 0.',
+                    },
                     short_description: {
                         required: 'Please enter short description.',
                         maxlength: 'The short description must not be greater than 255 characters.',
@@ -383,7 +404,7 @@
                     },
                     product_quantity: {
                         required: 'Please enter product quantity.',
-                        digits: 'Please enter numbers only.',
+                        digits: 'Please enter only positive integers.',
                         min: 'Product quantity must be greater than 0.',
                     },
                     brand_id: {
@@ -626,5 +647,4 @@
             });
         });
     </script>
-    
 @endsection

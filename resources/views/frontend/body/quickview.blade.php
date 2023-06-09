@@ -7,10 +7,13 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12 col-xs-12 mb-md-0 mb-sm-5">
                         <div class="detail-gallery">
-
+                            <span class="zoom-icon"><i class="fi-rs-search"></i></span>
                             <!-- MAIN SLIDES -->
-                            <img src="" alt="product image" id="pimage" />
-
+                            <div class="product-image-slider">
+                                <figure class="border-radius-10">
+                                    <img src="" alt="product image" id="pimage" />
+                                </figure>
+                            </div>
                         </div>
                         <!-- End Gallery -->
                     </div>
@@ -47,12 +50,11 @@
                                 <div class="col-md-6">
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">Category : <span class="text-brand"
-                                                    id="pcategory"> </span>
+                                            <li class="mb-5">Category : <span class="text-brand" id="pcategory">
+                                                </span>
                                             </li>
-                                            <li class="mb-5">MFG : <span class="text-brand"
-                                                id="pmfg"> </span>
-                                        </li>
+                                            <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div> <!-- // End col  -->

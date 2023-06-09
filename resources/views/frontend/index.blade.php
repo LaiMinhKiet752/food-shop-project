@@ -25,7 +25,7 @@
                     <div class="row product-grid-4">
                         @foreach ($skip_product_0 as $product)
                             <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat2_product_data"
+                                <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat1_product_data"
                                     data-wow-delay=".1s">
                                     <div class="product-img-action-wrap">
                                         <div class="product-img product-img-zoom">
@@ -99,8 +99,15 @@
                                                 </div>
                                             @endif
                                             <div class="add-cart">
-                                                <input type="hidden" value="{{ $product->id }}" class="cat2_prod_id">
-                                                <a class="add CategoryTwoProductAddToCart" type="submit"><i
+                                                <input type="hidden" value="{{ $product->id }}" class="cat1_prod_id">
+
+                                                <input type="hidden" class="cat1_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="cat1_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="cat1_brand_id"
+                                                    value="{{ $product->brand_id }}">
+                                                <a class="add CategoryOneProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
                                         </div>
@@ -206,6 +213,13 @@
                                             @endif
                                             <div class="add-cart">
                                                 <input type="hidden" value="{{ $product->id }}" class="cat2_prod_id">
+
+                                                <input type="hidden" class="cat2_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="cat2_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="cat2_brand_id"
+                                                    value="{{ $product->brand_id }}">
                                                 <a class="add CategoryTwoProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
@@ -312,6 +326,13 @@
                                             @endif
                                             <div class="add-cart">
                                                 <input type="hidden" value="{{ $product->id }}" class="cat3_prod_id">
+
+                                                <input type="hidden" class="cat3_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="cat3_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="cat3_brand_id"
+                                                    value="{{ $product->brand_id }}">
                                                 <a class="add CategoryThreeProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
@@ -418,6 +439,13 @@
                                             @endif
                                             <div class="add-cart">
                                                 <input type="hidden" value="{{ $product->id }}" class="cat4_prod_id">
+
+                                                <input type="hidden" class="cat4_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="cat4_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="cat4_brand_id"
+                                                    value="{{ $product->brand_id }}">
                                                 <a class="add CategoryFourProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
@@ -524,6 +552,13 @@
                                             @endif
                                             <div class="add-cart">
                                                 <input type="hidden" value="{{ $product->id }}" class="cat5_prod_id">
+
+                                                <input type="hidden" class="cat5_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="cat5_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="cat5_brand_id"
+                                                    value="{{ $product->brand_id }}">
                                                 <a class="add CategoryFiveProductAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
@@ -723,12 +758,21 @@
             $('.CategoryOneProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat1_product_data').find('.cat1_prod_id').val();
+                var product_name = $(this).closest('.cat1_product_data').find(
+                    '.cat1_pname').val();
+                var vendor_id = $(this).closest('.cat1_product_data').find(
+                    '.cat1_vendor_id').val();
+                var brand_id = $(this).closest('.cat1_product_data').find(
+                    '.cat1_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/categoryone/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -765,12 +809,22 @@
             $('.CategoryTwoProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat2_product_data').find('.cat2_prod_id').val();
+                var id = $(this).closest('.cat2_product_data').find('.cat2_prod_id').val();
+                var product_name = $(this).closest('.cat2_product_data').find(
+                    '.cat2_pname').val();
+                var vendor_id = $(this).closest('.cat2_product_data').find(
+                    '.cat2_vendor_id').val();
+                var brand_id = $(this).closest('.cat2_product_data').find(
+                    '.cat2_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/categorytwo/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -807,12 +861,22 @@
             $('.CategoryThreeProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat3_product_data').find('.cat3_prod_id').val();
+                var id = $(this).closest('.cat3_product_data').find('.cat3_prod_id').val();
+                var product_name = $(this).closest('.cat3_product_data').find(
+                    '.cat3_pname').val();
+                var vendor_id = $(this).closest('.cat3_product_data').find(
+                    '.cat3_vendor_id').val();
+                var brand_id = $(this).closest('.cat3_product_data').find(
+                    '.cat3_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/categorythree/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -849,12 +913,22 @@
             $('.CategoryFourProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat4_product_data').find('.cat4_prod_id').val();
+                var id = $(this).closest('.cat4_product_data').find('.cat4_prod_id').val();
+                var product_name = $(this).closest('.cat4_product_data').find(
+                    '.cat4_pname').val();
+                var vendor_id = $(this).closest('.cat4_product_data').find(
+                    '.cat4_vendor_id').val();
+                var brand_id = $(this).closest('.cat4_product_data').find(
+                    '.cat4_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/categoryfour/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -891,12 +965,22 @@
             $('.CategoryFiveProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat5_product_data').find('.cat5_prod_id').val();
+                var id = $(this).closest('.cat5_product_data').find('.cat5_prod_id').val();
+                var product_name = $(this).closest('.cat5_product_data').find(
+                    '.cat5_pname').val();
+                var vendor_id = $(this).closest('.cat5_product_data').find(
+                    '.cat5_vendor_id').val();
+                var brand_id = $(this).closest('.cat5_product_data').find(
+                    '.cat5_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/categoryfive/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

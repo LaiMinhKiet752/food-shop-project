@@ -223,7 +223,8 @@
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
-            var vendor_id = $('#vproduct_id').val();
+            var vendor_id = $('#pvendor_id').val();
+            var brand_id = $('#pbrand_id').val();
             var quantity = $('#dqty').val();
             $.ajax({
                 type: 'POST',
@@ -231,7 +232,8 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id
+                    vendor_id: vendor_id,
+                    brand_id: brand_id,
                 },
                 url: "/dcart/data/store/" + id,
                 success: function(data) {

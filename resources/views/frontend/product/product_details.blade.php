@@ -86,7 +86,8 @@
                                     <div class="product-extra-link2">
 
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
-                                        <input type="hidden" id="vproduct_id" value="{{ $product->vendor_id }}">
+                                        <input type="hidden" id="pvendor_id" value="{{ $product->vendor_id }}">
+                                        <input type="hidden" id="pbrand_id" value="{{ $product->brand_id }}">
 
                                         <button type="submit" class="button button-add-to-cart"
                                             onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
@@ -605,6 +606,13 @@
                                                     <div class="add-cart">
                                                         <input type="hidden" value="{{ $product->id }}"
                                                             class="related_prod_id">
+
+                                                        <input type="hidden" class="related_pname"
+                                                            value="{{ $product->product_name }}">
+                                                        <input type="hidden" class="related_vendor_id"
+                                                            value="{{ $product->vendor_id }}">
+                                                        <input type="hidden" class="related_brand_id"
+                                                            value="{{ $product->brand_id }}">
                                                         <a class="add RelatedProductAddToCart" type="submit"><i
                                                                 class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                     </div>
@@ -627,12 +635,21 @@
             $('.RelatedProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.related_product_data').find('.related_prod_id').val();
+                var product_name = $(this).closest('.related_product_data').find(
+                    '.related_pname').val();
+                var vendor_id = $(this).closest('.related_product_data').find(
+                    '.related_vendor_id').val();
+                var brand_id = $(this).closest('.related_product_data').find(
+                    '.related_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/related/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

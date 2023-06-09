@@ -89,7 +89,7 @@
                 rules: {
                     coupon_code: {
                         required: true,
-                        maxlength: 255,
+                        maxlength: 10,
                     },
                     coupon_discount: {
                         required: true,
@@ -103,7 +103,7 @@
                 messages: {
                     coupon_code: {
                         required: 'Please enter coupon name.',
-                        maxlength: 'The coupon name must not be greater than 255 characters.',
+                        maxlength: 'The coupon name must not be greater than 10 characters.',
                     },
                     coupon_discount: {
                         required: 'Please enter coupon discount.',

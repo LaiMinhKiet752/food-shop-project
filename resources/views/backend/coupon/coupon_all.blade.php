@@ -29,10 +29,10 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Coupon Code </th>
-                                <th>Coupon Discount </th>
-                                <th>Coupon Validity </th>
-                                <th>Coupon Status </th>
+                                <th>Coupon Code</th>
+                                <th>Coupon Discount</th>
+                                <th>Coupon Validity</th>
+                                <th>Coupon Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -48,9 +48,8 @@
                                         @if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
                                             <span class="badge rounded-pill bg-success">Valid</span>
                                         @else
-                                            <span class="badge rounded-pill bg-secondary">Invalid</span>
+                                            <span class="badge rounded-pill bg-dark">Invalid</span>
                                         @endif
-
                                     </td>
 
                                     <td>
@@ -65,10 +64,10 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Coupon Code </th>
-                                <th>Coupon Discount </th>
-                                <th>Coupon Validity </th>
-                                <th>Coupon Status </th>
+                                <th>Coupon Code</th>
+                                <th>Coupon Discount</th>
+                                <th>Coupon Validity</th>
+                                <th>Coupon Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

@@ -148,6 +148,13 @@
 
                                         <div class="add-cart">
                                             <input type="hidden" value="{{ $product->id }}" class="vendor_prod_id">
+
+                                            <input type="hidden" class="vendor_details_pname"
+                                                value="{{ $product->product_name }}">
+                                            <input type="hidden" class="vendor_details_vendor_id"
+                                                value="{{ $product->vendor_id }}">
+                                            <input type="hidden" class="vendor_details_brand_id"
+                                                value="{{ $product->brand_id }}">
                                             <a class="add VendorDetailsProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
@@ -259,12 +266,21 @@
             $('.VendorDetailsProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.vendor_product_data').find('.vendor_prod_id').val();
+                var product_name = $(this).closest('.vendor_product_data').find(
+                    '.vendor_details_pname').val();
+                var vendor_id = $(this).closest('.vendor_product_data').find(
+                    '.vendor_details_vendor_id').val();
+                var brand_id = $(this).closest('.vendor_product_data').find(
+                    '.vendor_details_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/vendor/details/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

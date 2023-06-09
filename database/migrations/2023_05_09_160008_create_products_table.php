@@ -19,13 +19,14 @@ return new class extends Migration
             $table->string('vendor_id')->nullable();
             $table->integer('category_id');
             $table->integer('subcategory_id');
-            $table->string('product_name');
             $table->string('product_code')->unique();
-            $table->string('product_thumbnail');
+            $table->string('product_name');
             $table->string('product_slug');
+            $table->string('product_thumbnail');
             $table->string('product_quantity');
             $table->string('product_tags')->nullable();
             $table->string('product_weight')->nullable();
+            $table->string('product_measure')->nullable();
             $table->string('product_dimensions')->nullable();
             $table->timestamp('manufacturing_date')->nullable();
             $table->timestamp('expiry_date')->nullable();
