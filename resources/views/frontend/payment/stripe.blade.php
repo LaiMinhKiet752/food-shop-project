@@ -121,7 +121,7 @@
                             @csrf
                             <div class="form-row">
                                 <label for="card-element">
-                                    Credit or debit card
+                                    Credit or Debit card
                                 </label>
                                 <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
                                 <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">

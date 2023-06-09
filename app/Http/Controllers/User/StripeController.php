@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\OrderDetails;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -57,7 +57,7 @@ class StripeController extends Controller
             'order_number' => $charge->metadata->order_id,
 
             'invoice_number' => 'NFS' . mt_rand(10000000, 99999999),
-            'order_date' => Carbon::now()->format('d F Y'),
+            'order_date' => Carbon::now()->format('d F Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
@@ -67,7 +67,7 @@ class StripeController extends Controller
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
-            OrderItem::insert([
+            OrderDetails::insert([
                 'order_id' => $order_id,
                 'product_id' => $cart->id,
                 'brand_id' => $cart->options->brand_id,
@@ -85,9 +85,9 @@ class StripeController extends Controller
         Cart::destroy();
 
         $notification = array(
-            'message' => 'You Have Ordered And Paid Successfully!',
-            'alert-type' => 'success'
+            'order_status' => 'success',
         );
+
         return redirect()->route('dashboard')->with($notification);
     } //End Method
 }

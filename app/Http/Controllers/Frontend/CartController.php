@@ -575,7 +575,7 @@ class CartController extends Controller
                 return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'cities'));
             } else {
                 $notification = array(
-                    'message' => 'Please Choose A Product To Buy!',
+                    'message' => 'Cart Is Empty. Please Select A Product To Buy!',
                     'alert-type' => 'error',
                 );
                 return redirect()->to('/')->with($notification);

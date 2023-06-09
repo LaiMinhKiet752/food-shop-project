@@ -182,7 +182,7 @@
                                             </li>
                                             <li>
                                                 <a href="{{ route('user.logout') }}"><i
-                                                        class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
+                                                        class="fi fi-rs-sign-out mr-10"></i>Log out</a>
                                             </li>
                                         </ul>
                                     </div>

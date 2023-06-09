@@ -469,7 +469,7 @@
                     var rating = ``;
                     var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
                     var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
-                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Weight</td>`;
+                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Weight/Volume</td>`;
                     var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Dimensions</td>`;
                     var details = `<td class="text-muted font-sm fw-600 font-heading">Watch now</td>`;
                     var remove = `<td class="text-muted font-md fw-600"></td>`;
@@ -495,7 +495,7 @@
                             </td>`;
 
                         weight +=
-                            `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight}`}</td>`;
+                            `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight} ${value.product.product_measure}`}</td>`;
 
                         dimensions +=
                             `<td class="row_dimensions">${(value.product.product_dimensions == null)?`N/A`:`${value.product.product_dimensions}`}</td>`;

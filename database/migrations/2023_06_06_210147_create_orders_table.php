@@ -28,8 +28,8 @@ return new class extends Migration
             $table->string('payment_type')->nullable();
             $table->string('payment_method')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->string('currency');
             $table->float('amount', 8, 2);
+            $table->string('currency');
             $table->string('order_number')->nullable();
             $table->string('invoice_number');
             $table->string('order_date');
