@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -52,8 +53,13 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCate
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
 
-//FrontendController
+//Frontend All Route
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
+
+//RegisteredUserController All Route
+Route::get('/reload-captcha',[RegisteredUserController::class, 'ReloadCaptcha']);
+
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

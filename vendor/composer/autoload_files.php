@@ -33,4 +33,5 @@ return array(
     '801c31d8ed748cfa537fa45402288c95' => $vendorDir . '/psy/psysh/src/functions.php',
     'b6b991a57620e2fb6b2f66f03fe9ddc2' => $vendorDir . '/symfony/string/Resources/functions.php',
     '320163ac6b93aebe3dc25b60a0533d56' => $vendorDir . '/spatie/laravel-ignition/src/helpers.php',
+    '5e8fe2a5ffaded85af682684fe3bbf5a' => $vendorDir . '/mews/captcha/src/helpers.php',
 );

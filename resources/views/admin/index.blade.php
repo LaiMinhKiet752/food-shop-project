@@ -1,6 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <div class="page-content">
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">

@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '567c8a55f97136066913bf51af809e3bd8aa7c63',
+        'reference' => 'e14aba815fae5f1189b145b8cd3cc64b924339eb',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -415,7 +415,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '567c8a55f97136066913bf51af809e3bd8aa7c63',
+            'reference' => 'e14aba815fae5f1189b145b8cd3cc64b924339eb',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -497,6 +497,15 @@
             'install_path' => __DIR__ . '/../league/mime-type-detection',
             'aliases' => array(),
             'reference' => 'ff6248ea87a9f116e78edd6002e39e5128a0d4dd',
+            'dev_requirement' => false,
+        ),
+        'mews/captcha' => array(
+            'pretty_version' => '3.3.0',
+            'version' => '3.3.0.0',
+            'type' => 'package',
+            'install_path' => __DIR__ . '/../mews/captcha',
+            'aliases' => array(),
+            'reference' => '8c439263d0ba42e6c05e4d1f3bee0a2b97e675d5',
             'dev_requirement' => false,
         ),
         'mockery/mockery' => array(

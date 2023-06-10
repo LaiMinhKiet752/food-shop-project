@@ -34,6 +34,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
+        '5e8fe2a5ffaded85af682684fe3bbf5a' => __DIR__ . '/..' . '/mews/captcha/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -113,6 +114,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'M' => 
         array (
             'Monolog\\' => 8,
+            'Mews\\Captcha\\' => 13,
         ),
         'L' => 
         array (
@@ -390,6 +392,10 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Mews\\Captcha\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mews/captcha/src',
         ),
         'League\\MimeTypeDetection\\' => 
         array (
@@ -3305,6 +3311,11 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+        'Mews\\Captcha\\Captcha' => __DIR__ . '/..' . '/mews/captcha/src/Captcha.php',
+        'Mews\\Captcha\\CaptchaController' => __DIR__ . '/..' . '/mews/captcha/src/CaptchaController.php',
+        'Mews\\Captcha\\CaptchaServiceProvider' => __DIR__ . '/..' . '/mews/captcha/src/CaptchaServiceProvider.php',
+        'Mews\\Captcha\\Facades\\Captcha' => __DIR__ . '/..' . '/mews/captcha/src/Facades/Captcha.php',
+        'Mews\\Captcha\\LumenCaptchaController' => __DIR__ . '/..' . '/mews/captcha/src/LumenCaptchaController.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditions' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditions.php',

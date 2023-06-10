@@ -1,6 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -48,6 +48,19 @@
                                         <div class="form-group">
                                             <input class="form-control" id="password_confirmation" type="password"
                                                 name="password_confirmation" placeholder="Confirm password *" />
+                                        </div>
+                                        <div class="login_footer form-group">
+                                            <div class="form-group chek-form">
+                                                <input type="text" required="" name="captcha_code"
+                                                    placeholder="Captcha Code *" class="form-control" />
+                                            </div>
+                                            <div class="form-group captcha">
+                                                {!! captcha_img('flat') !!}
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" class="btn btn-danger reload"
+                                                    id="reload">&#x21bb;</button>
+                                            </div>
                                         </div>
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">
@@ -117,6 +130,9 @@
                         required: true,
                         equalTo: "#password",
                     },
+                    captcha_code: {
+                        required: true,
+                    },
                 },
                 messages: {
                     username: {
@@ -133,6 +149,9 @@
                     password_confirmation: {
                         required: 'Please enter your confirmation password.',
                         equalTo: "The two passwords must be the same.",
+                    },
+                    captcha_code: {
+                        required: 'Please enter captcha code.',
                     },
                 },
                 errorElement: 'span',
@@ -156,4 +175,16 @@
             );
         });
     </script>
+    <script type="text/javascript">
+        $('#reload').click(function() {
+            $.ajax({
+                type: "GET",
+                url: "/reload-captcha",
+                success: function(data) {
+                    $(".captcha").html(data.captcha);
+                }
+            });
+        });
+    </script>
+
 @endsection

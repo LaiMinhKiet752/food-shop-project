@@ -9,7 +9,7 @@
         ->get();
 @endphp
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <section class="product-tabs section-padding position-relative">
     <div class="container">

@@ -120,7 +120,7 @@
                     </div>
 
                     <div style="text-align: center;">
-                        <img src="{{ asset('upload/paypal.png') }}" alt="" style="width: 300px; height: 150px;">
+                        <img src="{{ asset('upload/paypal.png') }}" alt="" style="width: 300px; height: 120px;">
                     </div>
                     <br>
                     <button class="btn btn-primary" type="submit">Submit Payment</button>

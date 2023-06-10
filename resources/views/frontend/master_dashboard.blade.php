@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
@@ -100,7 +100,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'You Have Ordered And Paid Successfully!',
+                title: 'Thank you!',
+                text: 'You Have Ordered And Paid Successfully!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
@@ -113,7 +114,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'You Canceled The Payment!',
+                title: 'Unfortunately!',
+                text: 'You Have Canceled Your Order Payment!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000

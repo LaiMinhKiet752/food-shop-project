@@ -34,6 +34,7 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'captcha_code'=>'captcha'
         ], [
             'username.unique' => 'The user name already exists. Please enter another user name.',
             'email.unique' => 'The email already exists. Please enter another email.',
@@ -51,5 +52,9 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function ReloadCaptcha(){
+        return response()->json(['captcha' => captcha_img('flat')]);
     }
 }
