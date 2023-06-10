@@ -12,12 +12,18 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
@@ -54,7 +60,11 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -79,9 +89,37 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if (Session::has('order_success'))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'You Have Ordered And Paid Successfully!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
+
+    <script>
+        @if (Session::has('order_cancel'))
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'You Canceled The Payment!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -773,10 +811,10 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping</h6>
+                                        <h6 class="text-muted">Shipping Fee</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-heading text-end">Free</h4>
+                                        <h4 class="text-heading text-end">$0</h4>
                                     </td>
                                 </tr>
 
@@ -801,10 +839,10 @@
 
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Shipping</h6>
+                                            <h6 class="text-muted">Shipping Fee</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-heading text-end">Free</h4>
+                                            <h4 class="text-heading text-end">$0</h4>
                                         </td>
                                     </tr>
 

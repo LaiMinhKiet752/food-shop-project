@@ -1,6 +1,5 @@
 @extends('frontend.master_dashboard')
 @section('main')
-
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -59,6 +58,15 @@
 
                                     <tr>
                                         <td class="cart_total_label">
+                                            <h6 class="text-muted">Shipping Fee</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">$0</h4>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="cart_total_label">
                                             <h6 class="text-muted">Grand Total</h6>
                                         </td>
                                         <td class="cart_total_amount">
@@ -67,6 +75,14 @@
                                         </td>
                                     </tr>
                                 @else
+                                    <tr>
+                                        <td class="cart_total_label">
+                                            <h6 class="text-muted">Shipping Fee</h6>
+                                        </td>
+                                        <td class="cart_total_amount">
+                                            <h4 class="text-brand text-end">$0</h4>
+                                        </td>
+                                    </tr>
                                     <tr>
                                         <td class="cart_total_label">
                                             <h6 class="text-muted">Grand Total</h6>
@@ -103,7 +119,8 @@
 
                             </div>
                             <div style="text-align: center;">
-                                <img src="{{ asset('upload/stripe.png') }}" alt="" style="width: 300px; height: 200px;">
+                                <img src="{{ asset('upload/stripe.png') }}" alt=""
+                                    style="width: 300px; height: 200px;">
                             </div>
                             <br>
                             <button class="btn btn-primary">Submit Payment</button>
