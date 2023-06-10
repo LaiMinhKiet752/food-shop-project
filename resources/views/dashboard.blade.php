@@ -79,11 +79,24 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        @if (Session::has('order_status'))
+        @if (Session::has('order_success'))
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'You Have Ordered And Paid Successfully!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
+
+    <script>
+        @if (Session::has('order_cancel'))
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'You Canceled The Payment!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000

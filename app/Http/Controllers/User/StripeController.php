@@ -15,26 +15,33 @@ class StripeController extends Controller
 {
     public function StripeOrder(Request $request)
     {
+        \Stripe\Stripe::setApiKey('sk_test_51NFyfzAJXTVnrBbylAMd43EhMSyIqK8pkHER6ozicNfsxisCUJo10nOhRTTsefPQFxwcq1MP57ay1mkFEqhqSYZ400zve8G2pJ');
+
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
         } else {
             $total_amount = round(Cart::total());
         }
-        \Stripe\Stripe::setApiKey('sk_test_51NFyfzAJXTVnrBbylAMd43EhMSyIqK8pkHER6ozicNfsxisCUJo10nOhRTTsefPQFxwcq1MP57ay1mkFEqhqSYZ400zve8G2pJ');
 
-        // Token is created using Checkout or Elements!
-        // Get the payment token ID submitted by the form:
-        $token = $_POST['stripeToken'];
-
-        $charge = \Stripe\Charge::create([
-            'amount' => $total_amount * 100,
-            'currency' => 'usd',
-            'description' => 'Nest Food Shop',
-            'source' => $token,
+        $response = \Stripe\Checkout\Session::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'product',
+                        ],
+                        'unit_amount' => $total_amount * 100,
+                    ],
+                    'quantity' => 1,
+                ],
+            ],
+            'mode' => 'payment',
             'metadata' => ['order_id' => hexdec(uniqid())],
+            'success_url' => route('stripe.success'),
+            'cancel_url' => route('stripe.cancel'),
         ]);
-
-        // dd($charge);
+        // dd($response);
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
@@ -49,14 +56,14 @@ class StripeController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => $charge->payment_method,
-            'payment_method' => 'Stripe',
-            'transaction_id' => $charge->balance_transaction,
-            'currency' => $charge->currency,
+            'payment_type' => 'Credit Card',
+            'payment_method' => 'Stripe Payment',
+            'transaction_id' => $response->id,
+            'currency' => $response->currency,
             'amount' => $total_amount,
-            'order_number' => $charge->metadata->order_id,
+            'order_number' => $response->metadata->order_id,
 
-            'invoice_number' => 'NFS' . mt_rand(10000000, 99999999),
+            'invoice_number' => 'NFS' . mt_rand(1, 1000000000),
             'order_date' => Carbon::now()->format('d F Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('F'),
@@ -77,17 +84,30 @@ class StripeController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
-
-        if (Session::has('coupon')) {
-           Session::forget('coupon');
-        }
-
-        Cart::destroy();
-
-        $notification = array(
-            'order_status' => 'success',
-        );
-
-        return redirect()->route('dashboard')->with($notification);
+        return redirect()->away($response->url);
     } //End Method
+
+    public function StripeSuccess()
+    {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        Cart::destroy();
+        $notification = array(
+            'order_success' => 'success',
+        );
+        return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function StripeCancel()
+    {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        Cart::destroy();
+        $notification = array(
+            'order_cancel' => 'cancel',
+        );
+        return redirect()->route('dashboard')->with($notification);
+    }
 }

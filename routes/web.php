@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 
@@ -325,6 +326,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     //Stripe All Route
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+        Route::get('/stripe/success', 'StripeSuccess')->name('stripe.success');
+        Route::get('/stripe/cancel', 'StripeCancel')->name('stripe.cancel');
+    });
+    //Paypal All Route
+    Route::controller(PaypalController::class)->group(function () {
+        Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
+        Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
+        Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
     });
 });
 

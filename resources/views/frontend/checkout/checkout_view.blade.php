@@ -241,7 +241,13 @@
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
                                     value="stripe" id="exampleRadios3" checked="">
                                 <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
-                                    data-target="#bankTranfer" aria-controls="bankTranfer">Stripe</label>
+                                    data-target="#bankTranfer" aria-controls="bankTranfer">Stripe Payment</label>
+                            </div>
+                            <div class="custome-radio">
+                                <input class="form-check-input" required="" type="radio" name="payment_option"
+                                    value="paypal" id="exampleRadios5">
+                                <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse"
+                                    data-target="#paypal" aria-controls="paypal">Paypal Payment</label>
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
@@ -249,12 +255,7 @@
                                 <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
                                     data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                             </div>
-                            <div class="custome-radio">
-                                <input class="form-check-input" required="" type="radio" name="payment_option"
-                                    value="card" id="exampleRadios5">
-                                <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse"
-                                    data-target="#paypal" aria-controls="paypal">Online Gateway</label>
-                            </div>
+
                         </div>
                         <div class="payment-logo d-flex">
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-paypal.svg') }}"
