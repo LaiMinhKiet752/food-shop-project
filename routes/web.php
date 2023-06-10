@@ -238,14 +238,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-//Add To Cart Store Data
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartQuickView']);
-
 //Get Data From Mini Cart
 Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 
 //Remove Data From Mini Cart
 Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+//Quick View Add To Cart
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartQuickView']);
 
 //Product Details Page Add To Cart
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
@@ -286,13 +286,11 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 //Category Five Page Add To Cart
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
+
 //Frontend Coupon Option
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
-
-//Checkout Page Route
-Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
 //My Cart Route
 Route::controller(CartController::class)->group(function () {
@@ -302,6 +300,9 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
+
+//Checkout Page Route
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
