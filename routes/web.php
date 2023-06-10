@@ -20,6 +20,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\User\MollieController;
 use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
@@ -341,6 +342,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
         Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
         Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
+    });
+    //Mollie All Route
+    Route::controller(MollieController::class)->group(function () {
+        Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
+        Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
+        Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
     });
 });
 

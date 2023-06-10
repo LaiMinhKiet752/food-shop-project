@@ -13,6 +13,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "mews/captcha": "^3.3",
+        "mollie/laravel-mollie": "^2.23",
         "srmklive/paypal": "~3.0",
         "stripe/stripe-php": "^10.15"
     },

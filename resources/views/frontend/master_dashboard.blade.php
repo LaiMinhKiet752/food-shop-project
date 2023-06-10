@@ -115,7 +115,7 @@
                 position: 'center',
                 icon: 'error',
                 title: 'Unfortunately!',
-                text: 'You Have Canceled Your Order Payment!',
+                text: 'You Canceled Payment!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
