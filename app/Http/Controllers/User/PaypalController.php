@@ -25,7 +25,7 @@ class PaypalController extends Controller
 
         $provider = new PayPalClient;
         $provider->setApiCredentials(config('paypal'));
-        $provider->getAccessToken();
+        $paypalToken = $provider->getAccessToken();
 
         $response = $provider->createOrder([
             "intent" => "CAPTURE",
@@ -36,11 +36,11 @@ class PaypalController extends Controller
             "purchase_units" => [
                 [
                     "amount" => [
-                        "currency_code" => "usd",
+                        "currency_code" => "USD",
                         "value" => $total_amount
                     ]
                 ]
-            ]
+            ],
         ]);
         // dd($response);
 
@@ -62,7 +62,7 @@ class PaypalController extends Controller
             'transaction_id' => $response['id'],
             'currency' => 'usd',
             'amount' => $total_amount,
-            'order_number' => '',
+            'order_number' => hexdec(uniqid()),
 
             'invoice_number' => 'NFS' . mt_rand(1, 1000000000),
             'order_date' => Carbon::now()->format('d F Y H:i:s'),
@@ -97,16 +97,26 @@ class PaypalController extends Controller
         }
     } //End Method
 
-    public function PaypalSuccess()
+    public function PaypalSuccess(Request $request)
     {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
+        $provider = new PayPalClient;
+        $provider->setApiCredentials(config('paypal'));
+        $paypalToken = $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request->token);
+        // dd($response);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            if (Session::has('coupon')) {
+                Session::forget('coupon');
+            }
+            Cart::destroy();
+            $notification = array(
+                'order_success' => 'success',
+            );
+            return redirect()->route('dashboard')->with($notification);
+        }else{
+            return redirect()->route('paypal.cancel');
         }
-        Cart::destroy();
-        $notification = array(
-            'order_success' => 'success',
-        );
-        return redirect()->route('dashboard')->with($notification);
     } //End Method
 
     public function PaypalCancel()

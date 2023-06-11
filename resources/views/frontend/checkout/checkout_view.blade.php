@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <form method="post" action="{{ route('checkout.store') }}">
+    <form method="post" action="{{ route('checkout.store') }}" id="myForm">
         @csrf
         <div class="container mb-80 mt-50">
             <div class="row">
@@ -269,8 +269,11 @@
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-visa.svg') }}"
                                 alt="">
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-master.svg') }}"
-                                alt="">
-                            <img src="{{ asset('frontend/assets/imgs/theme/icons/payment-zapper.svg') }}" alt="">
+                                alt="" style="width: 80px; height: 40px; margin-top: 10px;">
+                            <img class="mr-15" src="{{ asset('upload/mollie.png') }}" alt=""
+                                style="width: 80px; height: 35px; margin-top: 10px;">
+                            <img src="{{ asset('upload/stripe.png') }}" alt=""
+                                style="width: 90px; height: 50px; margin-bottom: 5px;">
                         </div>
                         <button type="submit" class="btn btn-fill-out btn-block mt-30">Place an Order<i
                                 class="fi-rs-sign-out ml-15"></i></button>
@@ -331,6 +334,92 @@
 
                     });
                 }
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myForm').validate({
+                rules: {
+                    shipping_name: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                    shipping_email: {
+                        required: true,
+                        maxlength: 255,
+                        email: true,
+                    },
+                    city_id: {
+                        required: true,
+                    },
+                    shipping_phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        digits: true,
+                    },
+                    district_id: {
+                        required: true,
+                    },
+                    post_code: {
+                        required: true,
+                        digits: true,
+                    },
+                    commune_id: {
+                        required: true,
+                    },
+                    shipping_address: {
+                        required: true,
+                        maxlength: 255,
+                    },
+                },
+                messages: {
+                    shipping_name: {
+                        required: 'Please enter your full name.',
+                        maxlength: 'The full name must not be greater than 255 characters.',
+                    },
+                    shipping_email: {
+                        required: 'Please enter your email.',
+                        maxlength: 'The email must not be greater than 255 characters.',
+                        email: 'The email must be a valid email address.',
+                    },
+                    city_id: {
+                        required: 'Please select a city or province name.',
+                    },
+                    shipping_phone: {
+                        required: 'Please enter your phone number.',
+                        minlength: 'Please enter 10 numeric characters correctly.',
+                        maxlength: 'Please enter 10 numeric characters correctly.',
+                        digits: 'Please enter 10 numeric characters correctly.',
+                    },
+                    district_id: {
+                        required: 'Please select a district name.',
+                    },
+                    post_code: {
+                        required: 'Please enter your postal code.',
+                        digits: 'Please enter numeric characters correctly.',
+                    },
+                    commune_id: {
+                        required: 'Please select a commune name.',
+                    },
+                    shipping_address: {
+                        required: 'Please enter your address.',
+                        maxlength: 'The address must not be greater than 255 characters.',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
             });
         });
     </script>
