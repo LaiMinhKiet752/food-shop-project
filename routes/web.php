@@ -25,7 +25,7 @@ use App\Http\Controllers\User\MollieController;
 use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
-
+use App\Http\Controllers\Backend\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -236,6 +236,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
+
+
+
+        // Admin Order All Route
+Route::controller(OrderController::class)->group(function(){
+    Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
+
+
+});
 }); //End Group Middleware Admin
 
 
