@@ -25,7 +25,8 @@ use App\Http\Controllers\User\MollieController;
 use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
-
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\VendorOrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -106,6 +107,21 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
     });
+
+
+// Brand All Route
+Route::controller(VendorOrderController::class)->group(function(){
+    Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
+
+});
+
+
+
+
+
+
+
+
 }); //End Group Middlware Vendor
 
 
@@ -236,6 +252,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
+
+
+
+        // Admin Order All Route
+Route::controller(OrderController::class)->group(function(){
+    Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
+
+
+});
 }); //End Group Middleware Admin
 
 
