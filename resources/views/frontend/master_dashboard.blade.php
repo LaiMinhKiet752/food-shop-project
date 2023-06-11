@@ -123,6 +123,20 @@
         @endif
     </script>
 
+    <script>
+        @if (Session::has('cash_order_success'))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Thank you!',
+                text: 'You Have Placed Your Order Successfully. Please Pay On Delivery!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>

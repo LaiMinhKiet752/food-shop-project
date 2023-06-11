@@ -18,6 +18,7 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
 use App\Http\Controllers\User\MollieController;
@@ -348,6 +349,10 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
         Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
         Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
+    });
+    //Cash All Route
+    Route::controller(CashController::class)->group(function () {
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
 });
 

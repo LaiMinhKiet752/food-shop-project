@@ -11,37 +11,15 @@ use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
-class StripeController extends Controller
+class CashController extends Controller
 {
-    public function StripeOrder(Request $request)
+    public function CashOrder(Request $request)
     {
-        \Stripe\Stripe::setApiKey(config('stripe.stripe_sk'));
-
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
         } else {
             $total_amount = round(Cart::total());
         }
-
-        $response = \Stripe\Checkout\Session::create([
-            'line_items' => [
-                [
-                    'price_data' => [
-                        'currency' => 'usd',
-                        'product_data' => [
-                            'name' => 'product',
-                        ],
-                        'unit_amount' => $total_amount * 100,
-                    ],
-                    'quantity' => 1,
-                ],
-            ],
-            'mode' => 'payment',
-            'metadata' => ['order_id' => hexdec(uniqid())],
-            'success_url' => route('stripe.success'),
-            'cancel_url' => route('stripe.cancel'),
-        ]);
-        // dd($response);
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
@@ -56,12 +34,11 @@ class StripeController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => 'Credit Card',
-            'payment_method' => 'Stripe Payment',
-            'transaction_id' => $response->id,
+            'payment_type' => 'Cash On Delivery',
+            'payment_method' => 'Cash On Delivery',
             'currency' => 'usd',
             'amount' => $total_amount,
-            'order_number' => $response->metadata->order_id,
+            'order_number' => hexdec(uniqid()),
 
             'invoice_number' => 'NFS' . mt_rand(1, 1000000000),
             'order_date' => Carbon::now()->format('d F Y H:i:s'),
@@ -84,30 +61,13 @@ class StripeController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
-        return redirect()->away($response->url);
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        Cart::destroy();
+        $notification = array(
+            'cash_order_success' => 'success',
+        );
+        return redirect()->route('dashboard')->with($notification);
     } //End Method
-
-    public function StripeSuccess()
-    {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
-        }
-        Cart::destroy();
-        $notification = array(
-            'order_success' => 'success',
-        );
-        return redirect()->route('dashboard')->with($notification);
-    }
-
-    public function StripeCancel()
-    {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
-        }
-        Cart::destroy();
-        $notification = array(
-            'order_cancel' => 'cancel',
-        );
-        return redirect()->route('dashboard')->with($notification);
-    }
 }

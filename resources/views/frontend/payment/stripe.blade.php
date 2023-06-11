@@ -122,6 +122,7 @@
                                 <img src="{{ asset('upload/stripe.png') }}" alt=""
                                     style="width: 300px; height: 200px;">
                             </div>
+                            <br>
                             <button class="btn btn-primary">Submit Payment</button>
                         </form>
                     </div>

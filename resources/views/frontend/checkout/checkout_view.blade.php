@@ -239,8 +239,8 @@
                         <div class="payment_option">
                             <div class="custome-radio">
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
-                                    value="paypal" id="exampleRadios3" checked="">
-                                <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
+                                    value="paypal" id="exampleRadios1" checked="">
+                                <label class="form-check-label" for="exampleRadios1" data-bs-toggle="collapse"
                                     data-target="#paypal" aria-controls="paypal">Paypal Payment</label>
                             </div>
                             <div class="custome-radio">
@@ -251,14 +251,14 @@
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
-                                    value="mollie" id="exampleRadios4">
-                                <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
+                                    value="mollie" id="exampleRadios3">
+                                <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
                                     data-target="#paypal1" aria-controls="paypal1">Mollie Payment</label>
                             </div>
                             <div class="custome-radio">
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
-                                    value="cash" id="exampleRadios5">
-                                <label class="form-check-label" for="exampleRadios5" data-bs-toggle="collapse"
+                                    value="cash" id="exampleRadios4">
+                                <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
                                     data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
                             </div>
 

@@ -118,10 +118,10 @@
                                 <input type="hidden" name="commune_id" value="{{ $data['commune_id'] }}">
                             </div>
                     </div>
-
                     <div style="text-align: center;">
-                        <img src="{{ asset('upload/mollie.png') }}" alt="" style="width: 400px; height: 200px;">
+                        <img src="{{ asset('upload/mollie.png') }}" alt="" style="width: 300px; height: 100px;">
                     </div>
+                    <br>
                     <button class="btn btn-primary" type="submit">Submit Payment</button>
                     </form>
                 </div>
