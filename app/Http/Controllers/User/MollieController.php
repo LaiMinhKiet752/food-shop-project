@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -10,6 +11,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 
 class MollieController extends Controller
@@ -65,6 +67,17 @@ class MollieController extends Controller
             'status' => 'pending',
             'created_at' => Carbon::now(),
         ]);
+
+        //Send Mail
+        $invoice = Order::findOrFail($order_id);
+        $data = [
+            'invoice_number' => $invoice->invoice_number,
+            'amount' => $total_amount,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+        ];
+        $subject = 'Nest Food Shop';
+        Mail::to($request->email)->send(new OrderMail($data, $subject));
 
         $carts = Cart::content();
         foreach ($carts as $cart) {
