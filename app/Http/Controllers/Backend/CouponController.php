@@ -25,7 +25,7 @@ class CouponController extends Controller
         $request->validate([
             'coupon_code' => 'unique:coupons',
         ], [
-            'coupon_code.unique' => 'Coupon name already exists.',
+            'coupon_code.unique' => 'Coupon code already exists.',
         ]);
         Coupon::insert([
             'coupon_code' => strtoupper($request->coupon_code),
@@ -67,7 +67,7 @@ class CouponController extends Controller
             $request->validate([
                 'coupon_code' => 'unique:coupons',
             ], [
-                'coupon_code.unique' => 'Coupon name already exists.',
+                'coupon_code.unique' => 'Coupon code already exists.',
             ]);
             Coupon::findOrFail($coupon_id)->update([
                 'coupon_code' => strtoupper($request->coupon_code),

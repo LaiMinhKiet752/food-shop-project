@@ -16,7 +16,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Product</i></a>
+                    <a href="{{ route('add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
+                            Product</i></a>
                 </div>
             </div>
         </div>
@@ -30,6 +31,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Image</th>
+                                <th>Product Code</th>
                                 <th>Product Name</th>
                                 <th>Selling Price</th>
                                 <th>Discount Price</th>
@@ -45,12 +47,14 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height: 40px;">
                                     </td>
+                                    <td>{{ $item->product_code }}</td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->selling_price }}</td>
                                     @if ($item->discount_price == null)
-                                        <td><span class="badge rounded-pill bg-secondary">No Discount</span></td>
+                                        <td></td>
                                     @else
-                                        <td>{{ $item->discount_price }}</td>
+                                        <td>{{ $item->discount_price }}</span>
+                                        </td>
                                     @endif
                                     <td>
                                         @if ($item->discount_price == null)
@@ -76,8 +80,8 @@
                                             title="Edit Data"><i class="fa fa-pencil"></i></a>
                                         <a href="{{ route('delete.product', $item->id) }}" class="btn btn-danger"
                                             id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>
-                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
-                                            title="Details Data"><i class="fa fa-eye"></i></a>
+                                        {{-- <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning"
+                                            title="Details Data"><i class="fa fa-eye"></i></a> --}}
                                         @if ($item->status == 1)
                                             <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-success"
                                                 title="InActive Data"><i class="fa-solid fa-thumbs-up"></i></a>
@@ -93,6 +97,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Image</th>
+                                <th>Product Code</th>
                                 <th>Product Name</th>
                                 <th>Selling Price</th>
                                 <th>Discount Price</th>

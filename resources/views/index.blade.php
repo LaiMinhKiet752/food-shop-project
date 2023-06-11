@@ -1,6 +1,6 @@
-@extends('dashboard')
-@section('user')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+@extends('frontend.master_dashboard')
+@section('main')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -306,7 +306,6 @@
                                     </div>
                                 </div>
                                 {{-- End Change Password --}}
-
                             </div>
                         </div>
                     </div>

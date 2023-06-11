@@ -1,6 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="page-header mt-30 mb-50">
         <div class="container">
             <div class="archive-header">
@@ -153,6 +153,13 @@
 
                                         <div class="add-cart">
                                             <input type="hidden" value="{{ $product->id }}" class="cat_prod_id">
+
+                                            <input type="hidden" class="category_view_pname"
+                                                value="{{ $product->product_name }}">
+                                            <input type="hidden" class="category_view_vendor_id"
+                                                value="{{ $product->vendor_id }}">
+                                            <input type="hidden" class="category_view_brand_id"
+                                                value="{{ $product->brand_id }}">
                                             <a class="add CategoryProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
@@ -243,12 +250,21 @@
             $('.CategoryProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
+                var product_name = $(this).closest('.cat_product_data').find(
+                    '.category_view_pname').val();
+                var vendor_id = $(this).closest('.cat_product_data').find(
+                    '.category_view_vendor_id').val();
+                var brand_id = $(this).closest('.cat_product_data').find(
+                    '.category_view_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/category/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

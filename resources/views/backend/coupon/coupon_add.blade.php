@@ -1,6 +1,6 @@
 @extends('admin.admin_dashboard')
 @section('admin')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <div class="page-content">
         <!--breadcrumb-->
@@ -89,7 +89,7 @@
                 rules: {
                     coupon_code: {
                         required: true,
-                        maxlength: 255,
+                        maxlength: 10,
                     },
                     coupon_discount: {
                         required: true,
@@ -103,7 +103,7 @@
                 messages: {
                     coupon_code: {
                         required: 'Please enter coupon name.',
-                        maxlength: 'The coupon name must not be greater than 255 characters.',
+                        maxlength: 'The coupon name must not be greater than 10 characters.',
                     },
                     coupon_discount: {
                         required: 'Please enter coupon discount.',

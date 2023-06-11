@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -17,8 +18,12 @@ use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\CompareController;
+use App\Http\Controllers\User\MollieController;
+use App\Http\Controllers\User\PaypalController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 
 /*
@@ -50,12 +55,17 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCate
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
 
-//FrontendController
+//Frontend All Route
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
 
+//RegisteredUserController All Route
+Route::get('/reload-captcha',[RegisteredUserController::class, 'ReloadCaptcha']);
+
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
-    //Vendor Dashborad
+    //User Dashborad
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
@@ -230,14 +240,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 
 
-//Add To Cart Store Data
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
-
 //Get Data From Mini Cart
 Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
 
 //Remove Data From Mini Cart
 Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+
+//Quick View Add To Cart
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartQuickView']);
 
 //Product Details Page Add To Cart
 Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
@@ -278,15 +288,13 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 //Category Five Page Add To Cart
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
+
 //Frontend Coupon Option
 Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
-//Checkout Page Route
-Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
-
-//Cart All Route
+//My Cart Route
 Route::controller(CartController::class)->group(function () {
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
@@ -295,6 +303,9 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
 
+//Checkout Page Route
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
@@ -302,7 +313,7 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
 //User All Route
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'role:user'])->group(function () {
     //Wishlist All Route
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
@@ -320,6 +331,28 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
         Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+    });
+    //Stripe All Route
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+        Route::get('/stripe/success', 'StripeSuccess')->name('stripe.success');
+        Route::get('/stripe/cancel', 'StripeCancel')->name('stripe.cancel');
+    });
+    //Paypal All Route
+    Route::controller(PaypalController::class)->group(function () {
+        Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
+        Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
+        Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
+    });
+    //Mollie All Route
+    Route::controller(MollieController::class)->group(function () {
+        Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
+        Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
+        Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
+    });
+    //Cash All Route
+    Route::controller(CashController::class)->group(function () {
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
 });
 

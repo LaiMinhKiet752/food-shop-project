@@ -12,13 +12,24 @@
     <meta property="og:type" content="" />
     <meta property="og:url" content="" />
     <meta property="og:image" content="" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+
+    <script src="https://js.stripe.com/v3/"></script>
+
 </head>
 
 <body>
@@ -49,7 +60,11 @@
         </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
     <!-- Vendor JS-->
     <script src="{{ asset('frontend/assets/js/vendor/modernizr-3.6.0.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
@@ -74,9 +89,53 @@
     <script src="{{ asset('frontend/assets/js/main.js?v=5.3') }}"></script>
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
+    <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        @if (Session::has('order_success'))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Thank you!',
+                text: 'You Have Ordered And Paid Successfully!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
+
+    <script>
+        @if (Session::has('order_cancel'))
+            Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Unfortunately!',
+                text: 'You Canceled Payment!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
+
+    <script>
+        @if (Session::has('cash_order_success'))
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Thank you!',
+                text: 'You Have Placed Your Order Successfully. Please Pay On Delivery!',
+                timerProgressBar: true,
+                showConfirmButton: false,
+                timer: 5000
+            })
+        @endif
+    </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
@@ -109,7 +168,7 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        })
+        });
         // Start Product View With Modal
         function productView(id) {
             // alert(id)
@@ -119,12 +178,23 @@
                 dataType: 'json',
                 success: function(data) {
                     // console.log(data)
+
+                    if (data.product.manufacturing_date == null) {
+                        var mfg_date_format = '';
+                    } else {
+                        var mfg_date_format = moment(data.product.manufacturing_date).add(1, 'days').utc()
+                            .format(
+                                'DD-MM-YYYY');
+                    }
                     $('#pname').text(data.product.product_name);
                     $('#pprice').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
-                    $('#pbrand').text(data.product.brand.brand_name);
+                    $('#pmfg').text(mfg_date_format);
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+
+                    $('#brand_id').val(data.product.brand_id);
+                    $('#vendor_id').val(data.product.vendor_id);
 
                     $('#product_id').val(id);
                     $('#qty').val(1);
@@ -152,7 +222,7 @@
                     }
                     //End Stock Option
                 }
-            })
+            });
         }
         // End Product View With Modal
 
@@ -160,6 +230,8 @@
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
+            var vendor_id = $('#vendor_id').val();
+            var brand_id = $('#brand_id').val();
             var quantity = $('#qty').val();
 
             $.ajax({
@@ -167,7 +239,9 @@
                 dataType: 'json',
                 data: {
                     quantity: quantity,
-                    product_name: product_name
+                    product_name: product_name,
+                    vendor_id: vendor_id,
+                    brand_id: brand_id,
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
@@ -203,13 +277,17 @@
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
+            var vendor_id = $('#pvendor_id').val();
+            var brand_id = $('#pbrand_id').val();
             var quantity = $('#dqty').val();
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 data: {
                     quantity: quantity,
-                    product_name: product_name
+                    product_name: product_name,
+                    vendor_id: vendor_id,
+                    brand_id: brand_id,
                 },
                 url: "/dcart/data/store/" + id,
                 success: function(data) {
@@ -445,7 +523,7 @@
                     var rating = ``;
                     var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
                     var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
-                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Weight</td>`;
+                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Weight/Volume</td>`;
                     var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Dimensions</td>`;
                     var details = `<td class="text-muted font-sm fw-600 font-heading">Watch now</td>`;
                     var remove = `<td class="text-muted font-md fw-600"></td>`;
@@ -471,7 +549,7 @@
                             </td>`;
 
                         weight +=
-                            `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight}`}</td>`;
+                            `<td class="row_weight">${(value.product.product_weight == null)?`N/A`:`${value.product.product_weight} ${value.product.product_measure}`}</td>`;
 
                         dimensions +=
                             `<td class="row_dimensions">${(value.product.product_dimensions == null)?`N/A`:`${value.product.product_dimensions}`}</td>`;
@@ -706,9 +784,6 @@
                 },
                 success: function(data) {
                     couponCalculation();
-                    if (data.validity == true) {
-                        $('#couponField').hide();
-                    }
                     // Start Message
                     const Toast = Swal.mixin({
                         position: 'top-end',
@@ -752,10 +827,10 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping</h6>
+                                        <h6 class="text-muted">Shipping Fee</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-heading text-end">Free</h4>
+                                        <h4 class="text-heading text-end">$0</h4>
                                     </td>
                                 </tr>
 
@@ -780,10 +855,10 @@
 
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Shipping</h6>
+                                            <h6 class="text-muted">Shipping Fee</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-heading text-end">Free</h4>
+                                            <h4 class="text-heading text-end">$0</h4>
                                         </td>
                                     </tr>
 
@@ -830,7 +905,6 @@
                 url: "/coupon-remove",
                 success: function(data) {
                     couponCalculation();
-                    $('#couponField').show();
                     // Start Message
                     const Toast = Swal.mixin({
                         position: 'top-end',

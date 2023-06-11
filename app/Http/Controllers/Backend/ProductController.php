@@ -62,6 +62,7 @@ class ProductController extends Controller
             'product_quantity' => $request->product_quantity,
             'product_tags' => $request->product_tags,
             'product_weight' => $request->product_weight,
+            'product_measure' => $request->product_measure,
             'product_dimensions' => $request->product_dimensions,
 
             'short_description' => $request->short_description,
@@ -134,6 +135,7 @@ class ProductController extends Controller
                 'product_quantity' => $request->product_quantity,
                 'product_tags' => $request->product_tags,
                 'product_weight' => $request->product_weight,
+                'product_measure' => $request->product_measure,
                 'product_dimensions' => $request->product_dimensions,
 
                 'short_description' => $request->short_description,
@@ -170,6 +172,7 @@ class ProductController extends Controller
                 'product_quantity' => $request->product_quantity,
                 'product_tags' => $request->product_tags,
                 'product_weight' => $request->product_weight,
+                'product_measure' => $request->product_measure,
                 'product_dimensions' => $request->product_dimensions,
 
                 'short_description' => $request->short_description,

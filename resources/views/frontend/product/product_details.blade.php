@@ -1,6 +1,6 @@
 @extends('frontend.master_dashboard')
 @section('main')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -86,6 +86,9 @@
                                     <div class="product-extra-link2">
 
                                         <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
+                                        <input type="hidden" id="pvendor_id" value="{{ $product->vendor_id }}">
+                                        <input type="hidden" id="pbrand_id" value="{{ $product->brand_id }}">
+
                                         <button type="submit" class="button button-add-to-cart"
                                             onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
                                             cart</button>
@@ -110,8 +113,13 @@
                                     <ul class="mr-50 float-start">
                                         <li class="mb-5">Product Code: <a href="#">{{ $product->product_code }}</a>
                                         </li>
-                                        <li class="mb-5">Brand: <span
-                                                class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+                                        @if ($product->vendor_id == null)
+                                            <li class="mb-5">Brand: <span
+                                                    class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
+                                        @else
+                                            <li class="mb-5">Vendor: <span
+                                                    class="text-brand">{{ $product['vendor']['shop_name'] }}</span></li>
+                                        @endif
                                         <li class="mb-5">Category: <span
                                                 class="text-brand">{{ $product['category']['category_name'] }}</span>
                                         </li>
@@ -134,7 +142,8 @@
                                                     class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                             </li>
                                         @endif
-                                        <li>Stock:<span class="in-stock text-brand ml-5">({{ $product->product_quantity }})
+                                        <li>Stock:<span
+                                                class="in-stock text-brand ml-5">({{ $product->product_quantity }})
                                                 Items
                                                 In Stock</span></li>
                                     </ul>
@@ -597,6 +606,13 @@
                                                     <div class="add-cart">
                                                         <input type="hidden" value="{{ $product->id }}"
                                                             class="related_prod_id">
+
+                                                        <input type="hidden" class="related_pname"
+                                                            value="{{ $product->product_name }}">
+                                                        <input type="hidden" class="related_vendor_id"
+                                                            value="{{ $product->vendor_id }}">
+                                                        <input type="hidden" class="related_brand_id"
+                                                            value="{{ $product->brand_id }}">
                                                         <a class="add RelatedProductAddToCart" type="submit"><i
                                                                 class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                                     </div>
@@ -619,12 +635,21 @@
             $('.RelatedProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.related_product_data').find('.related_prod_id').val();
+                var product_name = $(this).closest('.related_product_data').find(
+                    '.related_pname').val();
+                var vendor_id = $(this).closest('.related_product_data').find(
+                    '.related_vendor_id').val();
+                var brand_id = $(this).closest('.related_product_data').find(
+                    '.related_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/related/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

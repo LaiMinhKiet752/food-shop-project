@@ -1,6 +1,6 @@
 @extends('vendor.vendor_dashboard')
 @section('vendor')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     @php
         $id = Auth::user()->id;
         $vendorId = \App\Models\User::find($id);
@@ -97,13 +97,6 @@
             </div>
         </div>
         <!--end row-->
-
-
-
-
-
-
-
         <div class="card radius-10">
             <div class="card-body">
                 <div class="d-flex align-items-center">

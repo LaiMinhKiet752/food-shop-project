@@ -1,4 +1,4 @@
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @php
     $featured = \App\Models\Product::where('featured', 1)
         ->where('status', 1)
@@ -96,6 +96,13 @@
                                                 </div>
                                             </div>
                                             <input type="hidden" value="{{ $product->id }}" class="featured_prod_id">
+
+                                            <input type="hidden" class="home_featured_category_pname"
+                                                value="{{ $product->product_name }}">
+                                            <input type="hidden" class="home_featured_category_vendor_id"
+                                                value="{{ $product->vendor_id }}">
+                                            <input type="hidden" class="home_featured_category_brand_id"
+                                                value="{{ $product->brand_id }}">
                                             <a class="btn w-100 hover-up featuredProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add To Cart </a>
                                         </div>
@@ -119,12 +126,22 @@
             $('.featuredProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.featured_product_data').find('.featured_prod_id').val();
+                var product_name = $(this).closest('.featured_product_data').find(
+                        '.home_featured_category_pname')
+                    .val();
+                var vendor_id = $(this).closest('.featured_product_data').find(
+                    '.home_featured_category_vendor_id').val();
+                var brand_id = $(this).closest('.featured_product_data').find(
+                    '.home_featured_category_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/featured/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

@@ -4,10 +4,12 @@
         ->orderBy('id', 'DESC')
         ->limit(10)
         ->get();
-    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->limit(10)->get();
+    $categories = \App\Models\Category::orderBy('category_name', 'ASC')
+        ->limit(10)
+        ->get();
 @endphp
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <section class="product-tabs section-padding position-relative">
     <div class="container">
@@ -112,6 +114,14 @@
                                         @endif
                                         <div class="add-cart">
                                             <input type="hidden" value="{{ $product->id }}" class="prod_id">
+
+                                            <input type="hidden" class="homnew_pname"
+                                                value="{{ $product->product_name }}">
+                                            <input type="hidden" class="homnew_vendor_id"
+                                                value="{{ $product->vendor_id }}">
+                                            <input type="hidden" class="homnew_brand_id"
+                                                value="{{ $product->brand_id }}">
+
                                             <a class="add homeNewProductAddToCart" type="submit"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                         </div>
@@ -143,8 +153,8 @@
                                         <div class="product-img product-img-zoom">
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                <img class="default-img" src="{{ asset($product->product_thumbnail) }}"
-                                                    alt="" />
+                                                <img class="default-img"
+                                                    src="{{ asset($product->product_thumbnail) }}" alt="" />
 
                                             </a>
                                         </div>
@@ -217,6 +227,13 @@
                                             <div class="add-cart">
                                                 <input type="hidden" value="{{ $product->id }}"
                                                     class="cat_prod_id">
+
+                                                <input type="hidden" class="home_new_category_pname"
+                                                    value="{{ $product->product_name }}">
+                                                <input type="hidden" class="home_new_category_vendor_id"
+                                                    value="{{ $product->vendor_id }}">
+                                                <input type="hidden" class="home_new_category_brand_id"
+                                                    value="{{ $product->brand_id }}">
                                                 <a class="add homeNewProductCategoryAddToCart" type="submit"><i
                                                         class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                             </div>
@@ -245,12 +262,18 @@
             $('.homeNewProductAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.product_data').find('.prod_id').val();
+                var product_name = $(this).closest('.product_data').find('.homnew_pname').val();
+                var vendor_id = $(this).closest('.product_data').find('.homnew_vendor_id').val();
+                var brand_id = $(this).closest('.product_data').find('.homnew_brand_id').val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/home/new/product/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -287,12 +310,21 @@
             $('.homeNewProductCategoryAddToCart').click(function(e) {
                 e.preventDefault();
                 var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
+                var product_name = $(this).closest('.cat_product_data').find('.home_new_category_pname')
+                    .val();
+                var vendor_id = $(this).closest('.cat_product_data').find('.home_new_category_vendor_id')
+                    .val();
+                var brand_id = $(this).closest('.cat_product_data').find('.home_new_category_brand_id')
+                .val();
                 var quantity = 1;
                 $.ajax({
                     type: "POST",
                     url: "/home/new/product/category/cart/store/" + id,
                     data: {
-                        quantity: quantity
+                        quantity: quantity,
+                        product_name: product_name,
+                        vendor_id: vendor_id,
+                        brand_id: brand_id,
                     },
                     dataType: "json",
                     success: function(data) {

@@ -43,8 +43,10 @@ class CheckoutController extends Controller
 
         if ($request->payment_option == 'stripe') {
             return view('frontend.payment.stripe', compact('data', 'cartTotal'));
-        } else if ($request->payment_option == 'card') {
-            return 'Cart Page';
+        } else if ($request->payment_option == 'paypal') {
+            return view('frontend.payment.paypal', compact('data', 'cartTotal'));
+        } else if ($request->payment_option == 'mollie') {
+            return view('frontend.payment.mollie', compact('data', 'cartTotal'));
         } else {
             return view('frontend.payment.cash', compact('data', 'cartTotal'));
         }
