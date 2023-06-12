@@ -3,13 +3,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Pending Order</div>
+            <div class="breadcrumb-title pe-3">Order</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Pending Order</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Pending Order</li>
                     </ol>
                 </nav>
             </div>
@@ -29,7 +29,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Date </th>
-                                <th>Invoice </th>
+                                <th>Invoice Number </th>
                                 <th>Amount </th>
                                 <th>Payment </th>
                                 <th>State </th>
@@ -42,13 +42,17 @@
                                     <td> {{ $key + 1 }} </td>
                                     <td>{{ $item->order_date }}</td>
                                     <td>{{ $item->invoice_number }}</td>
-                                    <td>${{ $item->amount }}</td>
+                                    @if ($item->currency == 'usd')
+                                        <td>${{ $item->amount }}</td>
+                                    @else
+                                        <td>€{{ $item->amount }}</td>
+                                    @endif
+
                                     <td>{{ $item->payment_method }}</td>
                                     <td> <span class="badge rounded-pill bg-success"> {{ $item->status }}</span></td>
-
                                     <td>
-                                        <a href=" " class="btn btn-info" title="Details"><i class="fa fa-eye"></i> </a>
-
+                                        <a href=" " class="btn btn-info" title="Details"><i class="fa fa-eye"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -57,7 +61,7 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Date </th>
-                                <th>Invoice </th>
+                                <th>Invoice Number </th>
                                 <th>Amount </th>
                                 <th>Payment </th>
                                 <th>State </th>

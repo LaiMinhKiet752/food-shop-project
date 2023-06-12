@@ -58,6 +58,11 @@ class CashController extends Controller
             'amount' => $total_amount,
             'name' => $invoice->name,
             'email' => $invoice->email,
+            'phone' => $invoice->phone,
+            'address' => $invoice->address,
+            'notes' => $invoice->notes,
+            'order_date'=> $invoice->order_date,
+            'payment_method'=> $invoice->payment_method,
         ];
         $subject = 'Nest Food Shop';
         Mail::to($request->email)->send(new OrderMail($data, $subject));
