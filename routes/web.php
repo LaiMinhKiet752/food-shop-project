@@ -371,6 +371,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
+        Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
     });
 
 });
