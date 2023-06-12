@@ -42,7 +42,7 @@ class CashController extends Controller
             'amount' => $total_amount,
             'order_number' => hexdec(uniqid()),
 
-            'invoice_number' => 'NFS' . mt_rand(1, 1000000000),
+            'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),
             'order_date' => Carbon::now()->format('d F Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('F'),

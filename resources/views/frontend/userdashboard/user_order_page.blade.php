@@ -1,6 +1,10 @@
 @extends('frontend.master_dashboard')
 @section('main')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
@@ -27,38 +31,57 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
-                                                <table class="table">
+                                                <table class="table" style="background: #ddd; font-weight: 600;">
                                                     <thead>
                                                         <tr>
-                                                            <th>Order</th>
+                                                            <th>No.</th>
+                                                            <th>Invoice Number</th>
                                                             <th>Date</th>
+                                                            <th>Total Amount</th>
+                                                            <th>Payment Method</th>
                                                             <th>Status</th>
-                                                            <th>Total</th>
                                                             <th>Actions</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>#1357</td>
-                                                            <td>March 45, 2020</td>
-                                                            <td>Processing</td>
-                                                            <td>$125.00 for 2 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2468</td>
-                                                            <td>June 29, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$364.00 for 5 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>#2366</td>
-                                                            <td>August 02, 2020</td>
-                                                            <td>Completed</td>
-                                                            <td>$280.00 for 3 item</td>
-                                                            <td><a href="#" class="btn-small d-block">View</a></td>
-                                                        </tr>
+                                                        @foreach ($orders as $key => $order)
+                                                            <tr>
+                                                                <td>{{ $key + 1 }}</td>
+                                                                <td>{{ $order->invoice_number }}</td>
+                                                                <td>{{ $order->order_date }}</td>
+                                                                <td>${{ $order->amount }}</td>
+                                                                <td>{{ $order->payment_method }}</td>
+                                                                <td>
+                                                                    @if ($order->status == 'pending')
+                                                                        <span class="badge rounded-pill bg-warning"
+                                                                            style="font-size: 13px;">
+                                                                            Pending
+                                                                        </span>
+                                                                    @elseif($order->status == 'confirmed')
+                                                                        <span class="badge rounded-pill bg-info"
+                                                                            style="font-size: 13px;">
+                                                                            Confirmed
+                                                                        </span>
+                                                                    @elseif($order->status == 'processing')
+                                                                        <span class="badge rounded-pill bg-danger"
+                                                                            style="font-size: 13px;">
+                                                                            Processing
+                                                                        </span>
+                                                                    @elseif($order->status == 'delivered')
+                                                                        <span class="badge rounded-pill bg-success"
+                                                                            style="font-size: 13px;">
+                                                                            Delivered
+                                                                        </span>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <a href="#" class="btn-sm btn-success"><i
+                                                                            class="fa fa-eye"> View</i></a>
+                                                                    <a href="#" class="btn-sm btn-danger"><i
+                                                                            class="fa fa-download"> Invoice</i></a>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

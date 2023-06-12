@@ -42,11 +42,7 @@
                                     <td> {{ $key + 1 }} </td>
                                     <td>{{ $item['order']['order_date'] }}</td>
                                     <td>{{ $item['order']['invoice_number'] }}</td>
-                                    @if ($item['order']['currency'] == 'usd')
-                                        <td>${{ $item['order']['amount'] }}</td>
-                                    @else
-                                        <td>€{{ $item['order']['amount'] }}</td>
-                                    @endif
+                                    <td>${{ $item['order']['amount'] }}</td>
                                     <td>{{ $item['order']['payment_method'] }}</td>
                                     <td> <span class="badge rounded-pill bg-success"> {{ $item['order']['status'] }}</span>
                                     </td>
