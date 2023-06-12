@@ -71,29 +71,62 @@
                                             <tr>
                                                 <td align="center"
                                                     style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                                                        role="presentation"
-                                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                                        <tr>
-                                                            <td align="center"
-                                                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                                    role="presentation"
-                                                                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                                                    <tr>
-                                                                        <td
-                                                                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                                                        </td>
-                                                                        <td> Invoice Number : {{ $order['invoice_number'] }}
-                                                                        </td>
-                                                                        <td> Amount : {{ $order['amount'] }}</td>
-                                                                        <td> Name : {{ $order['name'] }}</td>
-                                                                        <td> Email : {{ $order['email'] }}</td>
-                                                                    </tr>
-                                                                </table>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"
+                    role="presentation"
+                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                    <tr>
+                        <td align="center"
+                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                            <table border="0" cellpadding="0" cellspacing="0"
+                                role="presentation"
+                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                <tr>
+                                    <td
+                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                    </td>
+                                    <td> Invoice Number :
+                                        {{ $order['invoice_number'] }}
+                                    </td>
+                                    <td> Amount : ${{ $order['amount'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                    </td>
+                                    <td> Name : {{ $order['name'] }}</td>
+                                    <td> Email : {{ $order['email'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                    </td>
+                                    <td> Phone : {{ $order['phone'] }}</td>
+                                    <td> Address : {{ $order['address'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                    </td>
+                                    @php
+                                        $ts = strtotime($order['order_date']);
+                                        $updated_date = date('d F, Y', $ts);
+                                    @endphp
+                                    <td> Order Date :
+                                        {{ $updated_date }}
+                                    </td>
+                                    <td> Payment Method :
+                                        {{ $order['payment_method'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+                                    </td>
+                                    <td> Notes : {{ $order['notes'] }}
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
                                                 </td>
                                             </tr>
                                         </table>
@@ -124,5 +157,4 @@
         </tr>
     </table>
 </body>
-
 </html>

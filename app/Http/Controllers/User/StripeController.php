@@ -65,7 +65,7 @@ class StripeController extends Controller
             'amount' => $total_amount,
             'order_number' => $response->metadata->order_id,
 
-            'invoice_number' => 'NFS' . mt_rand(1, 1000000000),
+            'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),
             'order_date' => Carbon::now()->format('d F Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('F'),
@@ -81,6 +81,11 @@ class StripeController extends Controller
             'amount' => $total_amount,
             'name' => $invoice->name,
             'email' => $invoice->email,
+            'phone' => $invoice->phone,
+            'address' => $invoice->address,
+            'notes' => $invoice->notes,
+            'order_date'=> $invoice->order_date,
+            'payment_method'=> $invoice->payment_method,
         ];
         $subject = 'Nest Food Shop';
         Mail::to($request->email)->send(new OrderMail($data, $subject));

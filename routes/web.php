@@ -27,6 +27,8 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\VendorOrderController;
+use App\Http\Controllers\User\AllUserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +63,7 @@ Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->nam
 
 
 //RegisteredUserController All Route
-Route::get('/reload-captcha',[RegisteredUserController::class, 'ReloadCaptcha']);
+Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
 
 
 
@@ -107,21 +109,10 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
     });
-
-
-// Brand All Route
-Route::controller(VendorOrderController::class)->group(function(){
-    Route::get('/vendor/order' , 'VendorOrder')->name('vendor.order');
-
-});
-
-
-
-
-
-
-
-
+    //Vendor Order All Route
+    Route::controller(VendorOrderController::class)->group(function () {
+        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
+    });
 }); //End Group Middlware Vendor
 
 
@@ -252,15 +243,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
-
-
-
-        // Admin Order All Route
-Route::controller(OrderController::class)->group(function(){
-    Route::get('/pending/order' , 'PendingOrder')->name('pending.order');
-
-
-});
+    //Admin Order All Route
+    Route::controller(OrderController::class)->group(function () {
+        Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+    });
 }); //End Group Middleware Admin
 
 
@@ -379,6 +365,14 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::controller(CashController::class)->group(function () {
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
+    //User Dashboard All Route
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
+    });
+
 });
 
 
