@@ -75,8 +75,9 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#" class="btn-sm btn-success"><i
-                                                                            class="fa fa-eye"> View</i></a>
+                                                                    <a href="{{ url('user/order/details/' . $order->id) }}"
+                                                                        class="btn-sm btn-success"><i class="fa fa-eye">
+                                                                            View</i></a>
                                                                     <a href="#" class="btn-sm btn-danger"><i
                                                                             class="fa fa-download"> Invoice</i></a>
                                                                 </td>
