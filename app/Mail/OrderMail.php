@@ -12,15 +12,17 @@ use Illuminate\Queue\SerializesModels;
 class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data, $subject;
+    public $order, $orderItem, $discount_amount, $subject;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data, $subject)
+    public function __construct($order, $orderItem, $discount_amount, $subject)
     {
-        $this->data = $data;
+        $this->order = $order;
+        $this->orderItem = $orderItem;
+        $this->discount_amount = $discount_amount;
         $this->subject = $subject;
     }
 
@@ -43,10 +45,12 @@ class OrderMail extends Mailable
      */
     public function content()
     {
-        $order = $this->data;
+        $order = $this->order;
+        $orderItem = $this->orderItem;
+        $discount_amount = $this->discount_amount;
         return new Content(
             view: 'mail.order_mail',
-            with: compact('order'),
+            with: compact('order', 'orderItem','discount_amount'),
         );
     }
 

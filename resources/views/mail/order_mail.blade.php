@@ -1,160 +1,162 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="color-scheme" content="light">
-    <meta name="supported-color-schemes" content="light">
-</head>
-
-<body
-    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; background-color: #ffffff; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important;">
-    <style>
-        @media only screen and (max-width: 600px) {
-            .inner-body {
-                width: 100% !important;
-            }
-
-            .footer {
-                width: 100% !important;
-            }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Invoice</title>
+    <style type="text/css">
+        * {
+            font-family: Verdana, Arial, sans-serif;
         }
 
-        @media only screen and (max-width: 500px) {
-            .button {
-                width: 100% !important;
-            }
+        table {
+            font-size: x-small;
+        }
+
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
+
+        .gray {
+            background-color: lightgray
+        }
+
+        .font {
+            font-size: 15px;
+        }
+
+        .authority {
+            /*text-align: center;*/
+            float: right
+        }
+
+        .authority h5 {
+            margin-top: -10px;
+            color: green;
+            /*text-align: center;*/
+            margin-left: 35px;
+        }
+
+        .thanks p {
+            color: green;
+            ;
+            font-size: 16px;
+            font-weight: normal;
+            font-family: serif;
+            margin-top: 20px;
         }
     </style>
+</head>
 
-    <table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation"
-        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; margin: 0; padding: 0; width: 100%;">
+<body>
+    <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
-            <td align="center"
-                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation"
-                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 0; padding: 0; width: 100%;">
-                    <tr>
-                        <td class="header"
-                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
-                            <a href="http://127.0.0.1:8000"
-                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
-                                <img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}" class="logo"
-                                    alt="Laravel Logo"
-                                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 200px; width: 200px;">
-                            </a>
-                        </td>
-                    </tr>
-
-                    <!-- Email Body -->
-                    <tr>
-                        <td class="body" width="100%" cellpadding="0" cellspacing="0"
-                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; border-bottom: 1px solid #edf2f7; border-top: 1px solid #edf2f7; margin: 0; padding: 0; width: 100%;">
-                            <table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0"
-                                role="presentation"
-                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; background-color: #ffffff; border-color: #e8e5ef; border-radius: 2px; border-width: 1px; box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015); margin: 0 auto; padding: 0; width: 570px;">
-                                <!-- Body content -->
-                                <tr>
-                                    <td class="content-cell"
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
-                                        <h1
-                                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">
-                                            Hello! Thank you for buying at Nest .</h1>
-                                        <p
-                                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">
-                                            You are receiving this email from Nest Food Shop .</p>
-                                        <table class="action" align="center" width="100%" cellpadding="0"
-                                            cellspacing="0" role="presentation"
-                                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
-                                            <tr>
-                                                <td align="center"
-                                                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                <table width="100%" border="0" cellpadding="0" cellspacing="0"
-                    role="presentation"
-                    style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                    <tr>
-                        <td align="center"
-                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                            <table border="0" cellpadding="0" cellspacing="0"
-                                role="presentation"
-                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                <tr>
-                                    <td
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                    </td>
-                                    <td> Invoice Number :
-                                        {{ $order['invoice_number'] }}
-                                    </td>
-                                    <td> Amount : ${{ $order['amount'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                    </td>
-                                    <td> Name : {{ $order['name'] }}</td>
-                                    <td> Email : {{ $order['email'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                    </td>
-                                    <td> Phone : {{ $order['phone'] }}</td>
-                                    <td> Address : {{ $order['address'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                    </td>
-                                    @php
-                                        $ts = strtotime($order['order_date']);
-                                        $updated_date = date('d F, Y', $ts);
-                                    @endphp
-                                    <td> Order Date :
-                                        {{ $updated_date }}
-                                    </td>
-                                    <td> Payment Method :
-                                        {{ $order['payment_method'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                                    </td>
-                                    <td> Notes : {{ $order['notes'] }}
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td
-                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
-                            <table class="footer" align="center" width="570" cellpadding="0" cellspacing="0"
-                                role="presentation"
-                                style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; margin: 0 auto; padding: 0; text-align: center; width: 570px;">
-                                <tr>
-                                    <td class="content-cell" align="center"
-                                        style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
-                                        <p
-                                            style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; font-size: 12px; text-align: center;">
-                                            © 2023 Nest Food Shop. All rights reserved.</p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+            <td valign="top">
+                <img src="{{ asset('upload/logo.png') }}" alt="" style="width: 180px; height: 80px;" />
+                <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
+            </td>
+            <td align="right">
+                <pre class="font">
+               Nest Food Shop Head Office
+               Email: support@nestfoodshop.com
+               Address: Ho Chi Minh city, Viet Nam
+               Hotline: 1900 888
+            </pre>
             </td>
         </tr>
     </table>
+    <table width="100%" style="background:white; padding:2px;"></table>
+
+    <table width="100%" style="background: #F7F7F7; padding:0 5 0 5px;" class="font">
+        <tr>
+            <td>
+                <p class="font" style="margin-left: 20px;">
+                    <strong>Full Name: </strong> {{ $order->name }}<br>
+                    <strong>Email: </strong> {{ $order->email }}<br>
+                    <strong>Phone Number: </strong> {{ $order->phone }} <br>
+                    <strong>Address: </strong> {{ $order->address }} <br>
+                    <strong>City/Province: </strong> {{ $order->city->city_name }} <br>
+                    <strong>District: </strong> {{ $order->district->district_name }} <br>
+                    <strong>Commune: </strong> {{ $order->commune->commune_name }} <br>
+                    <strong>Post Code: </strong> {{ $order->post_code }}
+                </p>
+            </td>
+            <td>
+                <p class="font">
+                <h3><span style="color: green;">Invoice Number :</span> #{{ $order->invoice_number }}</h3>
+                <strong>Order Date: </strong> {{ $order->order_date }}<br>
+                <strong>Delivery Date: </strong> {{ $order->delivered_date }}<br>
+                <strong>Payment Type: </strong> {{ $order->payment_type }}<br>
+                <strong>Payment Method: </strong> {{ $order->payment_method }}<br>
+                <strong>Notes: </strong> {{ $order->notes }}
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <h3>Products</h3>
+    <table width="100%">
+        <thead style="background-color: green; color:#FFFFFF;">
+            <tr class="font">
+                <th>Image</th>
+                <th>Product Code</th>
+                <th>Product Name</th>
+                <th>Vendor</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php
+                $subtotal = 0;
+            @endphp
+            @foreach ($orderItem as $item)
+                @php
+                    $subtotal = $subtotal + $item->price * $item->quantity;
+                @endphp
+                <tr class="font">
+                    <td align="center">
+                        <img src="{{ asset($item->product->product_thumbnail) }}" height="60px;" width="60px;"
+                            alt="">
+                    </td>
+                    <td align="center">{{ $item->product->product_code }}</td>
+                    <td align="center">{{ $item->product->product_name }}</td>
+                    @if ($item->vendor_id == null)
+                        <td align="center">Owner</td>
+                    @else
+                        <td align="center">{{ $item->product->vendor->shop_name }}</td>
+                    @endif
+                    <td align="center">${{ $item->price }}</td>
+                    <td align="center">{{ $item->quantity }}</td>
+                    <td align="center">${{ $item->price * $item->quantity }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    <br>
+    <table width="100%" style=" padding:0 10px 0 10px;">
+        <tr>
+            <td align="right">
+                <h2><span style="color: green;">Subtotal: </span>${{ $subtotal }}</h2>
+                @if ($discount_amount == 0)
+                    <h2><span style="color: green;">Discount: </span>$0</h2>
+                @else
+                    <h2><span style="color: green;">Discount: </span>${{ $discount_amount }}</h2>
+                @endif
+                <h2><span style="color: green;">Total: </span>${{ $order->amount }}</h2>
+            </td>
+        </tr>
+    </table>
+    <div class="thanks mt-3">
+        <p>Thanks For Buying Products!</p>
+    </div>
+    <div class="authority float-right mt-5">
+        <p>-----------------------------------</p>
+        <h5>Authority Signature:</h5>
+    </div>
 </body>
+
 </html>

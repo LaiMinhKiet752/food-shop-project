@@ -55,7 +55,7 @@
         <tr>
             <td valign="top">
                 <img src="{{ public_path('upload/logo.png') }}" alt=""
-                    style="width: 150px; height: 75px;" />
+                    style="width: 180px; height: 80px;" />
                 <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
             </td>
             <td align="right">
@@ -137,7 +137,6 @@
             <td align="right">
                 <h2><span style="color: green;">Subtotal: </span>${{ $order->amount }}</h2>
                 <h2><span style="color: green;">Total: </span>${{ $order->amount }}</h2>
-                {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
             </td>
         </tr>
     </table>
