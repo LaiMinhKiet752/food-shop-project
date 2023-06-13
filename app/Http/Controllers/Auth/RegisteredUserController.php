@@ -34,11 +34,13 @@ class RegisteredUserController extends Controller
             'username' => ['required', 'string', 'max:255', 'unique:' . User::class],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'captcha_code'=>'captcha'
+            'captcha_code' => 'captcha',
+            'checkbox' => 'accepted'
         ], [
             'username.unique' => 'The user name already exists. Please enter another user name.',
             'email.unique' => 'The email already exists. Please enter another email.',
-            'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+            'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            'checkbox.accepted' => 'Please agree to our policies to proceed with account registration.'
         ]);
 
         $user = User::create([
@@ -54,7 +56,8 @@ class RegisteredUserController extends Controller
         return redirect(RouteServiceProvider::HOME);
     }
 
-    public function ReloadCaptcha(){
+    public function ReloadCaptcha()
+    {
         return response()->json(['captcha' => captcha_img('flat')]);
     }
 }

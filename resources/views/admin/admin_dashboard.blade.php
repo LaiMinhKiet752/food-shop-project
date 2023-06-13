@@ -40,8 +40,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-    <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
 
     <title>Admin Dashboard</title>
 </head>
