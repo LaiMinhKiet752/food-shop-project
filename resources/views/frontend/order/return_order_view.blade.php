@@ -9,7 +9,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Your Orders
+                <span></span> Return Orders
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                                     aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="mb-0">Your Orders</h3>
+                                            <h3 class="mb-0">Your Return Orders</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -39,6 +39,7 @@
                                                             <th>Order Date</th>
                                                             <th>Total Amount</th>
                                                             <th>Payment Method</th>
+                                                            <th>Return Reason</th>
                                                             <th>Status</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -51,32 +52,22 @@
                                                                 <td>{{ $order->order_date }}</td>
                                                                 <td>${{ $order->amount }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
+                                                                <td>{{ $order->return_reason }}</td>
                                                                 <td>
-                                                                    @if ($order->status == 'pending')
+                                                                    @if ($order->return_order_status == 0)
+                                                                        <span class="badge rounded-pill bg-info"
+                                                                            style="font-size: 13px;">
+                                                                            No Return Request
+                                                                        </span>
+                                                                    @elseif($order->return_order_status == 1)
                                                                         <span class="badge rounded-pill bg-warning"
                                                                             style="font-size: 13px;">
                                                                             Pending
                                                                         </span>
-                                                                    @elseif($order->status == 'confirmed')
-                                                                        <span class="badge rounded-pill bg-info"
-                                                                            style="font-size: 13px;">
-                                                                            Confirmed
-                                                                        </span>
-                                                                    @elseif($order->status == 'processing')
-                                                                        <span class="badge rounded-pill bg-danger"
-                                                                            style="font-size: 13px;">
-                                                                            Processing
-                                                                        </span>
-                                                                    @elseif($order->status == 'delivered')
+                                                                    @elseif($order->return_order_status == 2)
                                                                         <span class="badge rounded-pill bg-success"
                                                                             style="font-size: 13px;">
-                                                                            Delivered
-                                                                        </span>
-                                                                    @endif
-                                                                    @if ($order->return_order_status == 1)
-                                                                        <span class="badge rounded-pill bg-dark"
-                                                                            style="font-size: 13px;">
-                                                                            Return
+                                                                            Return Successful
                                                                         </span>
                                                                     @endif
                                                                 </td>

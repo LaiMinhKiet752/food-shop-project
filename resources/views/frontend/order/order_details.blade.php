@@ -14,10 +14,10 @@
             <div class="row">
                 <div class="col-lg-12 m-auto">
                     <div class="row">
-                        {{-- Start col-md-3 --}}
+                        {{-- Start col-md-2 --}}
                         @include('frontend.body.dashboard_sidebar_menu')
-                        {{-- End col-md-3 --}}
-                        <div class="col-md-9">
+                        {{-- End col-md-2 --}}
+                        <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card">
@@ -128,7 +128,7 @@
                                                                 Delivered
                                                             </span>
                                                         @endif
-                                                    </th>
+                                                    </th>   
                                                 </tr>
                                             </table>
                                         </div>
@@ -222,12 +222,28 @@
             </div>
             @if ($order->status !== 'delivered')
             @else
-                <div class="from-group" style="font-weight: 600;font-size: initial; color: #000000;">
-                    <label>Order Return Reason</label>
-                    <textarea name="return_reason" class="form-control"></textarea>
-                </div>
-                <button type="submit" class="btn-sm"
-                    style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order Return</button>
+                @php
+                    $order_check = \App\Models\Order::where('id', $order->id)
+                        ->where('return_reason', '=', null)
+                        ->first();
+                @endphp
+                @if ($order_check)
+                    <form action="{{ route('return.order', $order->id) }}" method="POST">
+                        @csrf
+                        <div class="from-group"
+                            style="font-weight: 600;font-size: initial; color: #000000; margin-top: 20px;">
+                            <label>Order Return Reason</label>
+                            <textarea name="return_reason" class="form-control" placeholder="Enter the reason for the return..."
+                                style="height: 200px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-sm"
+                            style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order
+                            Return</button>
+                    </form>
+                @else
+                    <h5><span style="color: red;">You Have Send Return Request For This Invoice!</span>
+                    </h5><br><br>
+                @endif
             @endif
         </div>
     </div>

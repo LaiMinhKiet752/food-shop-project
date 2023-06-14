@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 
 class AllUserController extends Controller
@@ -47,5 +48,25 @@ class AllUserController extends Controller
 
         $pdf = Pdf::loadView('frontend.order.order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOption(['tempDir' => public_path(), 'chroot' => public_path()]);
         return $pdf->download('invoice.pdf');
+    } //End Method
+
+    public function ReturnOrder(Request $request, $order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'return_date' => Carbon::now()->format('d F Y H:i:s'),
+            'return_reason' => $request->return_reason,
+            'return_order_status' => 1,
+        ]);
+        $notification = array(
+            'message' => 'Return Request Successful!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user.order.page')->with($notification);
+    } //End Method
+
+    public function ReturnOrderPage()
+    {
+        $orders = Order::where('user_id', Auth::id())->where('return_order_status', '=', 1)->orderBy('id', 'DESC')->get();
+        return view('frontend.order.return_order_view', compact('orders'));
     } //End Method
 }

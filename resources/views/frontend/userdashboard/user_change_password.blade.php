@@ -14,10 +14,10 @@
             <div class="row">
                 <div class="col-lg-12 m-auto">
                     <div class="row">
-                        {{-- Start col-md-3 --}}
+                        {{-- Start col-md-2 --}}
                         @include('frontend.body.dashboard_sidebar_menu')
-                        {{-- End col-md-3 --}}
-                        <div class="col-md-9">
+                        {{-- End col-md-2 --}}
+                        <div class="col-md-10">
                             <div class="tab-content account dashboard-content pl-50">
                                 <div class="tab-pane fade active show" id="dashboard" role="tabpanel"
                                     aria-labelledby="dashboard-tab">

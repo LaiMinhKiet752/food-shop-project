@@ -30,6 +30,8 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
+
 </head>
 
 <body>
@@ -165,6 +167,14 @@
                     break;
             }
         @endif
+    </script>
+
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
     </script>
 
     <script type="text/javascript">
