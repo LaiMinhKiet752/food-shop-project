@@ -107,56 +107,19 @@
                                                 <tr>
                                                     <th>Order Status :</th>
                                                     <th>
-                                                        @if ($order->status == 'pending' && $order->cancel_order_status == 0)
+                                                        @if ($order->cancel_order_status == 1)
                                                             <span class="badge rounded-pill bg-warning"
                                                                 style="font-size: 13px;">
                                                                 Pending
                                                             </span>
-                                                        @elseif ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
-                                                            <span class="badge rounded-pill bg-secondary"
-                                                                style="font-size: 13px;">
-                                                                Cancel
-                                                            </span>
-                                                        @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
-                                                            <span class="badge rounded-pill bg-info"
-                                                                style="font-size: 13px;">
-                                                                Confirmed
-                                                            </span>
-                                                        @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
-                                                            <span class="badge rounded-pill bg-secondary"
-                                                                style="font-size: 13px;">
-                                                                Cancel
-                                                            </span>
-                                                        @elseif ($order->status == 'processing')
-                                                            <span class="badge rounded-pill bg-danger"
-                                                                style="font-size: 13px;">
-                                                                Processing
-                                                            </span>
-                                                        @elseif($order->status == 'delivered')
+                                                        @elseif($order->cancel_order_status == 2)
                                                             <span class="badge rounded-pill bg-success"
                                                                 style="font-size: 13px;">
-                                                                Delivered
+                                                                Cancel Successful
                                                             </span>
                                                         @endif
                                                     </th>
                                                 </tr>
-                                                @if (
-                                                    ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)) ||
-                                                        ($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)))
-                                                @elseif(($order->status == 'pending' || $order->status == 'confirmed') && $order->cancel_order_status == 0)
-                                                    <form action="{{ route('cancel.order.submit') }}" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="order_id" value="{{ $order->id }}">
-                                                        <tr>
-                                                            <th></th>
-                                                            <th>
-                                                                <button type="submit"
-                                                                    class="btn btn-heading btn-block hover-up">Cancel
-                                                                    Order</button>
-                                                            </th>
-                                                        </tr>
-                                                    </form>
-                                                @endif
                                             </table>
                                         </div>
                                     </div>
@@ -248,59 +211,6 @@
                     </table>
                 </div>
             </div>
-            @if ($order->status !== 'delivered')
-            @else
-                @php
-                    $order_check = \App\Models\Order::where('id', $order->id)
-                        ->where('return_reason', '=', null)
-                        ->first();
-                @endphp
-                @if ($order_check)
-                    <form action="{{ route('return.order', $order->id) }}" method="POST" id="myFormOrderReturn">
-                        @csrf
-                        <div class="from-group"
-                            style="font-weight: 600;font-size: initial; color: #000000; margin-top: 20px;">
-                            <label>Order Return Reason<span class="text-danger"> * </span></label>
-                            <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for the return of the order..."
-                                style="height: 200px;"></textarea>
-                        </div>
-                        <button type="submit" class="btn-sm"
-                            style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order
-                            Return</button>
-                    </form>
-                @else
-                    <h5><span style="color: red;">You Have Send Return Request For This Invoice!</span>
-                    </h5><br><br>
-                @endif
-            @endif
         </div>
     </div>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myFormOrderReturn').validate({
-                rules: {
-                    return_reason: {
-                        required: true,
-                    },
-                },
-                messages: {
-                    return_reason: {
-                        required: 'Please enter order return reason.',
-                    },
-                },
-                errorElement: 'span',
-                errorPlacement: function(error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                },
-                highlight: function(element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                },
-                unhighlight: function(element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                },
-            });
-        });
-    </script>
 @endsection

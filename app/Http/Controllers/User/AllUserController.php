@@ -66,7 +66,34 @@ class AllUserController extends Controller
 
     public function ReturnOrderPage()
     {
-        $orders = Order::where('user_id', Auth::id())->where('return_order_status', '=', 1)->orderBy('id', 'DESC')->get();
+        $orders = Order::where('user_id', Auth::id())->where('return_date', '!=', NULL)->orderBy('return_date', 'DESC')->get();
         return view('frontend.order.return_order_view', compact('orders'));
+    } //End Method
+
+    public function CancelOrderPage()
+    {
+        $orders = Order::where('user_id', Auth::id())->where('cancel_date', '!=', NULL)->orderBy('cancel_date', 'DESC')->get();
+        return view('frontend.order.cancel_order_view', compact('orders'));
+    } //End Method
+
+    public function CancelOrderSubmit(Request $request)
+    {
+        $order_id = $request->order_id;
+        Order::findOrFail($order_id)->update([
+            'cancel_date' => Carbon::now()->format('d F Y H:i:s'),
+            'cancel_order_status' => 1,
+        ]);
+        $notification = array(
+            'message' => 'Cancel Request Successful!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user.order.page')->with($notification);
+    } //End Method
+
+    public function CancelOrderDetails($order_id)
+    {
+        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
+        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+        return view('frontend.order.cancel_order_details', compact('order', 'orderItem'));
     } //End Method
 }

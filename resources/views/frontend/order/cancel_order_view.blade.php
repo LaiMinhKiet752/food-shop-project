@@ -9,7 +9,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Return Orders
+                <span></span> Cancel Orders
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                                     aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="mb-0">Orders You Returned</h3>
+                                            <h3 class="mb-0">Orders You Canceled</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -37,10 +37,9 @@
                                                             <th>No.</th>
                                                             <th>Invoice Number</th>
                                                             <th>Order Date</th>
+                                                            <th>Cancel Date</th>
                                                             <th>Total Amount</th>
                                                             <th>Payment Method</th>
-                                                            <th>Return Date</th>
-                                                            <th>Return Reason</th>
                                                             <th>Status</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -51,31 +50,25 @@
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $order->invoice_number }}</td>
                                                                 <td>{{ $order->order_date }}</td>
+                                                                <td>{{ $order->cancel_date }}</td>
                                                                 <td>${{ $order->amount }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
-                                                                <td>{{ $order->return_date }}</td>
-                                                                <td>{{ $order->return_reason }}</td>
                                                                 <td>
-                                                                    @if ($order->return_order_status == 1)
+                                                                    @if($order->cancel_order_status == 1)
                                                                         <span class="badge rounded-pill bg-warning"
                                                                             style="font-size: 13px;">
                                                                             Pending
                                                                         </span>
-                                                                    @elseif($order->return_order_status == 2)
+                                                                    @elseif($order->cancel_order_status == 2)
                                                                         <span class="badge rounded-pill bg-success"
                                                                             style="font-size: 13px;">
-                                                                            Return Successful
+                                                                            Cancel Successful
                                                                         </span>
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('user/order/details/' . $order->id) }}"
-                                                                        class="btn-sm btn-success" title="View Details"><i
-                                                                            class="fa fa-eye"></i></a>
-                                                                    <a href="{{ url('user/invoice/download/' . $order->id) }}"
-                                                                        class="btn-sm btn-danger"
-                                                                        title="Download Invoice PDF"><i
-                                                                            class="fa fa-download"></i></a>
+                                                                    <a href="{{ url('cancel/order/details/' . $order->id) }}"
+                                                                        class="btn-sm btn-success" title="View Details"><i class="fa fa-eye"></i></a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach

@@ -9,7 +9,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Your Orders
+                <span></span>Orders
             </div>
         </div>
     </div>
@@ -27,7 +27,7 @@
                                     aria-labelledby="dashboard-tab">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="mb-0">Your Orders</h3>
+                                            <h3 class="mb-0">All Your Orders</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="table-responsive">
@@ -52,17 +52,27 @@
                                                                 <td>${{ $order->amount }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
                                                                 <td>
-                                                                    @if ($order->status == 'pending')
+                                                                    @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                                                                         <span class="badge rounded-pill bg-warning"
                                                                             style="font-size: 13px;">
                                                                             Pending
                                                                         </span>
-                                                                    @elseif($order->status == 'confirmed')
+                                                                    @elseif ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                                        <span class="badge rounded-pill bg-secondary"
+                                                                            style="font-size: 13px;">
+                                                                            Cancel
+                                                                        </span>
+                                                                    @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                                                         <span class="badge rounded-pill bg-info"
                                                                             style="font-size: 13px;">
                                                                             Confirmed
                                                                         </span>
-                                                                    @elseif($order->status == 'processing')
+                                                                    @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                                        <span class="badge rounded-pill bg-secondary"
+                                                                            style="font-size: 13px;">
+                                                                            Cancel
+                                                                        </span>
+                                                                    @elseif ($order->status == 'processing')
                                                                         <span class="badge rounded-pill bg-danger"
                                                                             style="font-size: 13px;">
                                                                             Processing
@@ -82,11 +92,11 @@
                                                                 </td>
                                                                 <td>
                                                                     <a href="{{ url('user/order/details/' . $order->id) }}"
-                                                                        class="btn-sm btn-success"><i class="fa fa-eye">
-                                                                            View</i></a>
+                                                                        class="btn-sm btn-success" title="View Details"><i
+                                                                            class="fa fa-eye"></i></a>
                                                                     <a href="{{ url('user/invoice/download/' . $order->id) }}"
-                                                                        class="btn-sm btn-danger"><i class="fa fa-download">
-                                                                            Invoice</i></a>
+                                                                        class="btn-sm btn-danger" title="Download Invoice PDF"><i
+                                                                            class="fa fa-download"></i></a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach

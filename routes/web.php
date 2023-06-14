@@ -392,6 +392,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
         Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
         Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
+        Route::get('/cancel/order/page', 'CancelOrderPage')->name('cancel.order.page');
+        Route::post('/cancel/order/submit', 'CancelOrderSubmit')->name('cancel.order.submit');
+        Route::get('/cancel/order/details/{order_id}', 'CancelOrderDetails');
     });
 });
 
