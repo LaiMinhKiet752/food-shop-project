@@ -70,9 +70,9 @@
                                     <td>{{ $item->product_quantity }}</td>
                                     <td>
                                         @if ($item->status == 1)
-                                            <span class="badge rounded-pill bg-success">Active</span>
+                                            <span class="badge rounded-pill bg-success" style="font-size: 12px;">Active</span>
                                         @else
-                                            <span class="badge rounded-pill bg-primary">InActive</span>
+                                            <span class="badge rounded-pill bg-primary" style="font-size: 12px;">InActive</span>
                                         @endif
                                     </td>
                                     <td>

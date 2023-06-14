@@ -65,6 +65,7 @@ class StripeController extends Controller
             'transaction_id' => $response->id,
             'currency' => 'usd',
             'amount' => $total_amount,
+            'discount' => $discount_amount,
             'order_number' => $response->metadata->order_id,
 
             'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),
@@ -92,7 +93,7 @@ class StripeController extends Controller
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         $subject = 'Nest Food Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
-        
+
         return redirect()->away($response->url);
     } //End Method
 

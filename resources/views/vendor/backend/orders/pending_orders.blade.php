@@ -28,11 +28,11 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Date </th>
+                                <th>Order Date</th>
                                 <th>Invoice Number</th>
-                                <th>Amount </th>
-                                <th>Payment </th>
-                                <th>State </th>
+                                <th>Total Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -56,11 +56,11 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Date </th>
+                                <th>Order Date</th>
                                 <th>Invoice Number</th>
-                                <th>Amount </th>
-                                <th>Payment </th>
-                                <th>State </th>
+                                <th>Total Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

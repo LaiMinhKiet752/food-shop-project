@@ -42,6 +42,7 @@ class CashController extends Controller
             'payment_method' => 'Cash On Delivery',
             'currency' => 'usd',
             'amount' => $total_amount,
+            'discount' => $discount_amount,
             'order_number' => hexdec(uniqid()),
 
             'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),

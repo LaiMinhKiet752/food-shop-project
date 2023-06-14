@@ -101,7 +101,7 @@
                 position: 'center',
                 icon: 'success',
                 title: 'Thank you!',
-                text: 'You Have Ordered And Paid Successfully!',
+                text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
@@ -129,7 +129,7 @@
                 position: 'center',
                 icon: 'success',
                 title: 'Thank you!',
-                text: 'You Have Placed Your Order Successfully. Please Pay On Delivery!',
+                text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
@@ -141,6 +141,11 @@
 
     <script>
         @if (Session::has('message'))
+            toastr.options = {
+                'progressBar': true,
+                'closeButton': true,
+                'timeOut': 3000,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
@@ -161,7 +166,6 @@
             }
         @endif
     </script>
-
 
     <script type="text/javascript">
         $.ajaxSetup({

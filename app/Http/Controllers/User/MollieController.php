@@ -59,6 +59,7 @@ class MollieController extends Controller
             'transaction_id' => $payment->id,
             'currency' => 'usd',
             'amount' => $total_amount,
+            'discount' => $discount_amount,
             'order_number' => $payment->metadata->order_id,
 
             'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),
@@ -81,7 +82,7 @@ class MollieController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
-        
+
         //Send Mail
         $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();

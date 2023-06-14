@@ -54,7 +54,7 @@
     <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
             <td valign="top">
-                <img src="{{ asset('upload/logo.png') }}" alt="" style="width: 180px; height: 80px;" />
+                <img src="{{ asset('upload/logo.png') }}" alt="" style="width: 200px; height: 70px;" />
                 <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
             </td>
             <td align="right">
@@ -80,7 +80,7 @@
                     <strong>City/Province: </strong> {{ $order->city->city_name }} <br>
                     <strong>District: </strong> {{ $order->district->district_name }} <br>
                     <strong>Commune: </strong> {{ $order->commune->commune_name }} <br>
-                    <strong>Post Code: </strong> {{ $order->post_code }}
+                    <strong>Postal Code: </strong> {{ $order->post_code }}
                 </p>
             </td>
             <td>

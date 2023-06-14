@@ -54,8 +54,7 @@
     <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
             <td valign="top">
-                <img src="{{ public_path('upload/logo.png') }}" alt=""
-                    style="width: 180px; height: 80px;" />
+                <img src="{{ public_path('upload/logo.png') }}" alt="" style="width: 200px; height: 70px;" />
                 <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
             </td>
             <td align="right">
@@ -81,7 +80,7 @@
                     <strong>City/Province: </strong> {{ $order->city->city_name }} <br>
                     <strong>District: </strong> {{ $order->district->district_name }} <br>
                     <strong>Commune: </strong> {{ $order->commune->commune_name }} <br>
-                    <strong>Post Code: </strong> {{ $order->post_code }}
+                    <strong>Postal Code: </strong> {{ $order->post_code }}
                 </p>
             </td>
             <td>
@@ -111,7 +110,13 @@
             </tr>
         </thead>
         <tbody>
+            @php
+                $subtotal = 0;
+            @endphp
             @foreach ($orderItem as $item)
+                @php
+                    $subtotal = $subtotal + $item->price * $item->quantity;
+                @endphp
                 <tr class="font">
                     <td align="center">
                         <img src="{{ public_path($item->product->product_thumbnail) }}" height="60px;" width="60px;"
@@ -135,8 +140,13 @@
     <table width="100%" style=" padding:0 10px 0 10px;">
         <tr>
             <td align="right">
-                <h2><span style="color: green;">Subtotal: </span>${{ $order->amount }}</h2>
-                <h2><span style="color: green;">Total: </span>${{ $order->amount }}</h2>
+                <h2><span style="color: green;">Subtotal: </span>${{ $subtotal }}</h2>
+                @if ($order->discount == 0)
+                    <h2><span style="color: green;">Discount: </span>$0</h2>
+                @else
+                    <h2><span style="color: green;">Discount: </span>${{ $order->discount }}</h2>
+                @endif
+                <h2><span style="color: green;">Total Amount: </span>${{ $order->amount }}</h2>
             </td>
         </tr>
     </table>

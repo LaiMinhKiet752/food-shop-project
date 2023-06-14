@@ -9,7 +9,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Pending Order</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Delivered Order</li>
                     </ol>
                 </nav>
             </div>
@@ -44,7 +44,7 @@
                                     <td>{{ $item->invoice_number }}</td>
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
-                                    <td> <span class="badge rounded-pill bg-warning" style="font-size: 12px;">
+                                    <td> <span class="badge rounded-pill bg-success" style="font-size: 12px;">
                                             {{ $item->status }}</span></td>
                                     <td>
                                         <a href="{{ route('admin.order.details', $item->id) }}" class="btn btn-info"

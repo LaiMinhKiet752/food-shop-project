@@ -170,6 +170,11 @@
 
     <script>
         @if (Session::has('message'))
+        toastr.options = {
+                'progressBar': true,
+                'closeButton': true,
+                'timeOut': 3000,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':

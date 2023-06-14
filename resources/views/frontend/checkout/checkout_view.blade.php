@@ -259,21 +259,28 @@
                                 <input class="form-check-input" required="" type="radio" name="payment_option"
                                     value="cash" id="exampleRadios4">
                                 <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
-                                    data-target="#checkPayment" aria-controls="checkPayment">Cash on delivery</label>
+                                    data-target="#checkPayment" aria-controls="checkPayment">Cash On Delivery</label>
                             </div>
 
                         </div>
                         <div class="payment-logo d-flex">
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-paypal.svg') }}"
-                                alt="">
+                                alt="" style="width: 110px; height: 50px; margin-top: 5px;">
+
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-visa.svg') }}"
                                 alt="">
+
                             <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-master.svg') }}"
                                 alt="" style="width: 80px; height: 40px; margin-top: 10px;">
+
                             <img class="mr-15" src="{{ asset('upload/mollie.png') }}" alt=""
-                                style="width: 80px; height: 35px; margin-top: 10px;">
+                                style="width: 80px; height: 35px; margin-top: 13px;">
+
                             <img src="{{ asset('upload/stripe.png') }}" alt=""
-                                style="width: 90px; height: 50px; margin-bottom: 5px;">
+                                style="width: 90px; height: 50px; margin-top: 5px;">
+
+                            <img src="{{ asset('upload/cash_on_delivery.png') }}" alt=""
+                                style="width: 100px; height: 60px;">
                         </div>
                         <button type="submit" class="btn btn-fill-out btn-block mt-30">Place an Order<i
                                 class="fi-rs-sign-out ml-15"></i></button>

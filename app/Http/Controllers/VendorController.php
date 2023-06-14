@@ -30,7 +30,7 @@ class VendorController extends Controller
         $request->session()->regenerateToken();
 
         $notification = array(
-            'message' => 'Logout Successfully!',
+            'message' => 'Log Out Successfully!',
             'alert-type' => 'success',
         );
 

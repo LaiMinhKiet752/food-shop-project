@@ -59,10 +59,6 @@
                                                     <th>Postal Code :</th>
                                                     <th>{{ $order->post_code }}</th>
                                                 </tr>
-                                                <tr>
-                                                    <th>Order Date :</th>
-                                                    <th>{{ $order->order_date }}</th>
-                                                </tr>
                                             </table>
                                         </div>
                                     </div>
@@ -85,19 +81,19 @@
                                         <div class="card-body">
                                             <table class="table" style="background: #F4F6FA; font-weight: 600;">
                                                 <tr>
-                                                    <th>Full Name :</th>
-                                                    <th>{{ $order->user->name }}</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Phone Number:</th>
-                                                    <th>{{ $order->user->phone }}</th>
-                                                </tr>
-                                                <tr>
                                                     <th>Order Number :</th>
                                                     <th>{{ $order->order_number }}</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Order Amonut :</th>
+                                                    <th>Order Date :</th>
+                                                    <th>{{ $order->order_date }}</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Discount :</th>
+                                                    <th>${{ $order->discount }}</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Total Amount :</th>
                                                     <th>${{ $order->amount }}</th>
                                                 </tr>
                                                 <tr>
@@ -172,7 +168,13 @@
                                     <label>Price </label>
                                 </td>
                             </tr>
+                            @php
+                                $subtotal = 0;
+                            @endphp
                             @foreach ($orderItem as $item)
+                                @php
+                                    $subtotal = $subtotal + $item->price * $item->quantity;
+                                @endphp
                                 <tr>
                                     <td class="col-md-1">
                                         <label><img src="{{ asset($item->product->product_thumbnail) }}" alt=""
@@ -205,9 +207,28 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="col-md-1" colspan="5" style="text-align: center;">
+                                    <label>Subtotal </label>
+                                </td>
+                                <td class="col-md-1">
+                                    <label> = ${{ $subtotal }}</label>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
+            @if ($order->status !== 'delivered')
+            @else
+                <div class="from-group" style="font-weight: 600;font-size: initial; color: #000000;">
+                    <label>Order Return Reason</label>
+                    <textarea name="return_reason" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn-sm"
+                    style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order Return</button>
+            @endif
         </div>
     </div>
 @endsection

@@ -123,7 +123,7 @@
                                     style="width: 350px; height: 230px;">
                             </div>
                             <br>
-                            <button class="btn btn-primary">Submit Payment</button>
+                            <button class="btn">Submit Payment</button>
                         </form>
                     </div>
                 </div>

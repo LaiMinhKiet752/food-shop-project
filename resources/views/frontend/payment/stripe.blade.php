@@ -120,10 +120,10 @@
                             </div>
                             <div style="text-align: center;">
                                 <img src="{{ asset('upload/stripe.png') }}" alt=""
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 270px; height: 150px;">
                             </div>
                             <br>
-                            <button class="btn btn-primary">Submit Payment</button>
+                            <button class="btn">Submit Payment</button>
                         </form>
                     </div>
                 </div>

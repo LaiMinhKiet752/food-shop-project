@@ -206,6 +206,11 @@
 
     <script>
         @if (Session::has('message'))
+            toastr.options = {
+                'progressBar': true,
+                'closeButton': true,
+                'timeOut': 3000,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
@@ -226,6 +231,7 @@
             }
         @endif
     </script>
+    
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

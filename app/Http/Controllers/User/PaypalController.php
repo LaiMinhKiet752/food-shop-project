@@ -45,7 +45,7 @@ class PaypalController extends Controller
                 ]
             ],
         ]);
-        
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'city_id' => $request->city_id,
@@ -64,6 +64,7 @@ class PaypalController extends Controller
             'transaction_id' => $response['id'],
             'currency' => 'usd',
             'amount' => $total_amount,
+            'discount' => $discount_amount,
             'order_number' => hexdec(uniqid()),
 
             'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),

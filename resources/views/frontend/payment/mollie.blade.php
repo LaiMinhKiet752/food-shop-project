@@ -122,7 +122,7 @@
                         <img src="{{ asset('upload/mollie.png') }}" alt="" style="width: 300px; height: 100px;">
                     </div>
                     <br>
-                    <button class="btn btn-primary" type="submit">Submit Payment</button>
+                    <button class="btn" type="submit">Submit Payment</button>
                     </form>
                 </div>
             </div>
