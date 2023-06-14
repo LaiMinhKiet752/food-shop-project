@@ -110,19 +110,19 @@
                                 <th>Order Status :</th>
                                 <th>
                                     @if ($order->status == 'pending')
-                                        <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
+                                        <span class="badge bg-warning" style="font-size: 13px;">
                                             Pending
                                         </span>
                                     @elseif($order->status == 'confirmed')
-                                        <span class="badge rounded-pill bg-info" style="font-size: 13px;">
+                                        <span class="badge bg-info" style="font-size: 13px;">
                                             Confirmed
                                         </span>
                                     @elseif($order->status == 'processing')
-                                        <span class="badge rounded-pill bg-danger" style="font-size: 13px;">
+                                        <span class="badge bg-danger" style="font-size: 13px;">
                                             Processing
                                         </span>
                                     @elseif($order->status == 'delivered')
-                                        <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                        <span class="badge bg-success" style="font-size: 13px;">
                                             Delivered
                                         </span>
                                     @endif
@@ -130,8 +130,23 @@
                             </tr>
                             <tr>
                                 <th></th>
-                                <th><a href="#" class="btn btn-block btn-primary" style="font-weight: bold;">Confirm
-                                        Order</a></th>
+                                <th>
+                                    @if ($order->status == 'pending')
+                                        <a href="{{ route('pending-confirm', $order->id) }}"
+                                            class="btn btn-block btn-success" style="font-weight: bold;"
+                                            id="confirm">Confirm Order</a>
+                                    @elseif($order->status == 'confirmed')
+                                        <a href="{{ route('confirm-processing', $order->id) }}"
+                                            class="btn btn-block btn-success" style="font-weight: bold;"
+                                            id="processing">Processing
+                                            Order</a>
+                                    @elseif($order->status == 'processing')
+                                        <a href="{{ route('processing-delivered', $order->id) }}"
+                                            class="btn btn-block btn-success" style="font-weight: bold;"
+                                            id="delivered">Delivered
+                                            Order</a>
+                                    @endif
+                                </th>
                             </tr>
                         </table>
                     </div>

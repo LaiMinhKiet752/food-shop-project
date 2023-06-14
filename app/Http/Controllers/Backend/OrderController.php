@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderMail;
 use App\Models\OrderDetails;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -45,5 +46,50 @@ class OrderController extends Controller
     {
         $orders = Order::where('status', 'delivered')->orderBy('id', 'DESC')->get();
         return view('backend.orders.delivered_orders', compact('orders'));
+    } // End Method
+
+    public function PendingToConfirm($order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'status' => 'confirmed'
+        ]);
+        $notification = array(
+            'message' => 'Order Confirmed Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.confirmed.order')->with($notification);
+    } // End Method
+
+    public function ConfirmToProcessing($order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'status' => 'processing'
+        ]);
+        $notification = array(
+            'message' => 'Order Processing Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.processing.order')->with($notification);
+    } // End Method
+
+    public function ProcessingToDelivered($order_id)
+    {
+        Order::findOrFail($order_id)->update([
+            'status' => 'delivered'
+        ]);
+        $notification = array(
+            'message' => 'Order Delivered Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.delivered.order')->with($notification);
+    } // End Method
+
+    public function AdminInvoiceDownload($order_id)
+    {
+        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
+        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+
+        $pdf = Pdf::loadView('backend.orders.admin_order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOption(['tempDir' => public_path(), 'chroot' => public_path()]);
+        return $pdf->download('invoice.pdf');
     } // End Method
 }

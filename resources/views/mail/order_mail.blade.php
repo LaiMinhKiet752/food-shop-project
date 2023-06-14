@@ -151,7 +151,7 @@
         </tr>
     </table>
     <div class="thanks mt-3">
-        <p>Thanks For Buying Products!</p>
+        <p>Thanks For Buying Products . . . !!!</p>
     </div>
     <div class="authority float-right mt-5">
         <p>-----------------------------------</p>
