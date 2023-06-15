@@ -14,7 +14,7 @@ $(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
-                Swal.fire("Deleted!", "Your file has been deleted.", "success");
+                Swal.fire("Deleted!", "Your File Has Been Deleted!", "success");
             }
         });
     });
@@ -27,7 +27,7 @@ $(function () {
         var link = $(this).attr("href");
         Swal.fire({
             title: "Are you sure?",
-            text: "Once 'Confirm', You will not be able to 'Pending' again!",
+            text: "Once 'Confirm', You ill not be able to 'Pending' again!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -36,7 +36,7 @@ $(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
-                Swal.fire("Confirmed!", "Confirm Order Successfully!.", "success");
+                Swal.fire("Confirmed!", "Confirm Order Successfully!", "success");
             }
         });
     });
@@ -58,7 +58,7 @@ $(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
-                Swal.fire("Processing!", "Processing Order Successfully!.", "success");
+                Swal.fire("Processing!", "Processing Order Successfully!", "success");
             }
         });
     });
@@ -80,7 +80,29 @@ $(function () {
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
-                Swal.fire("Delivered!", "Delivered Order Successfully!.", "success");
+                Swal.fire("Delivered!", "Delivered Order Successfully!", "success");
+            }
+        });
+    });
+});
+
+//Approved Return Order
+$(function () {
+    $(document).on("click", "#approved", function (e) {
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Approve Return Order!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Approved it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+                Swal.fire("Approved!", "Approved Return Order Successfully!", "success");
             }
         });
     });

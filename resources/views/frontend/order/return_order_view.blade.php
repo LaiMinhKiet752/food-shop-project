@@ -40,7 +40,7 @@
                                                             <th>Total Amount</th>
                                                             <th>Payment Method</th>
                                                             <th>Return Date</th>
-                                                            <th>Return Reason</th>
+                                                            <th>Reason</th>
                                                             <th>Status</th>
                                                             <th>Actions</th>
                                                         </tr>
@@ -64,7 +64,7 @@
                                                                     @elseif($order->return_order_status == 2)
                                                                         <span class="badge rounded-pill bg-success"
                                                                             style="font-size: 13px;">
-                                                                            Return Successful
+                                                                            Success
                                                                         </span>
                                                                     @endif
                                                                 </td>

@@ -62,7 +62,7 @@
                                                                     @elseif($order->cancel_order_status == 2)
                                                                         <span class="badge rounded-pill bg-success"
                                                                             style="font-size: 13px;">
-                                                                            Cancel Successful
+                                                                            Success
                                                                         </span>
                                                                     @endif
                                                                 </td>

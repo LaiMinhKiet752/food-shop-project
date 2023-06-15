@@ -26,6 +26,7 @@ use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 
@@ -246,7 +247,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
 
-    //Admin Order All Route
+    //Order All Route
     Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
         Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
@@ -257,6 +258,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/confirm/processing/{order_id}', 'ConfirmToProcessing')->name('confirm-processing');
         Route::get('/processing/delivered/{order_id}', 'ProcessingToDelivered')->name('processing-delivered');
         Route::get('/amin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+    });
+
+    //Return Order All Route
+    Route::controller(ReturnController::class)->group(function () {
+        Route::get('/return/request', 'ReturnRequest')->name('return.request');
+        Route::get('/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
+        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
     });
 }); //End Group Middleware Admin
 
