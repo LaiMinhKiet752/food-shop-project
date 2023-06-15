@@ -28,8 +28,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Order Date</th>
                                 <th>Invoice Number</th>
+                                <th>Order Date</th>
+                                <th>Return Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Method</th>
                                 <th>Reason</th>
@@ -41,8 +42,9 @@
                             @foreach ($orders as $key => $item)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
-                                    <td>{{ $item->order_date }}</td>
                                     <td>{{ $item->invoice_number }}</td>
+                                    <td>{{ $item->order_date }}</td>
+                                    <td>{{ $item->return_date }}</td>
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td>{{ $item->return_reason }}</td>
@@ -56,7 +58,7 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.order.details', $item->id) }}" class="btn btn-info"
+                                        <a href="{{ route('admin.return.order.details', $item->id) }}" class="btn btn-info"
                                             title="Details"><i class="fa fa-eye"></i>
                                         </a>
                                     </td>
@@ -66,8 +68,9 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Order Date</th>
                                 <th>Invoice Number</th>
+                                <th>Order Date</th>
+                                <th>Return Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Method</th>
                                 <th>Reason</th>

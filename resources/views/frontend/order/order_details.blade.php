@@ -144,7 +144,7 @@
                                                     ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)) ||
                                                         ($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)))
                                                 @elseif(($order->status == 'pending' || $order->status == 'confirmed') && $order->cancel_order_status == 0)
-                                                    <form action="{{ route('cancel.order.submit') }}" method="post">
+                                                    <form action="{{ route('user.cancel.order.submit') }}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
                                                         <tr>
@@ -256,7 +256,7 @@
                         ->first();
                 @endphp
                 @if ($order_check)
-                    <form action="{{ route('return.order', $order->id) }}" method="POST" id="myFormOrderReturn">
+                    <form action="{{ route('user.return.order', $order->id) }}" method="POST" id="myFormOrderReturn">
                         @csrf
                         <div class="from-group"
                             style="font-weight: 600;font-size: initial; color: #000000; margin-top: 20px;">

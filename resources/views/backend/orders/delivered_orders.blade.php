@@ -45,7 +45,7 @@
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td> <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                            {{ $item->status }}</span></td>
+                                            Delivered</span></td>
                                     <td>
                                         <a href="{{ route('admin.order.details', $item->id) }}" class="btn btn-info"
                                             title="Details"><i class="fa fa-eye"></i>

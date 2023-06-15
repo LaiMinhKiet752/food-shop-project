@@ -54,7 +54,7 @@
                                                                 <td>${{ $order->amount }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
                                                                 <td>
-                                                                    @if($order->cancel_order_status == 1)
+                                                                    @if ($order->cancel_order_status == 1)
                                                                         <span class="badge rounded-pill bg-warning"
                                                                             style="font-size: 13px;">
                                                                             Pending
@@ -67,8 +67,9 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('cancel/order/details/' . $order->id) }}"
-                                                                        class="btn-sm btn-success" title="View Details"><i class="fa fa-eye"></i></a>
+                                                                    <a href="{{ route('user.cancel.order.details', $order->id) }}"
+                                                                        class="btn-sm btn-success" title="View Details"><i
+                                                                            class="fa fa-eye"></i></a>
                                                                 </td>
                                                             </tr>
                                                         @endforeach

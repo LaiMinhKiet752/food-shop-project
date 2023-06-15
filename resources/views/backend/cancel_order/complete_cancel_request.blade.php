@@ -3,13 +3,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Order</div>
+            <div class="breadcrumb-title pe-3">Cancel Order</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Confirmed Order</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Complete Cancel Orders</li>
                     </ol>
                 </nav>
             </div>
@@ -28,8 +28,9 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Order Date</th>
                                 <th>Invoice Number</th>
+                                <th>Order Date</th>
+                                <th>Cancel Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Method</th>
                                 <th>Status</th>
@@ -40,18 +41,23 @@
                             @foreach ($orders as $key => $item)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
-                                    <td>{{ $item->order_date }}</td>
                                     <td>{{ $item->invoice_number }}</td>
+                                    <td>{{ $item->order_date }}</td>
+                                    <td>{{ $item->cancel_date }}</td>
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
-                                    <td> <span class="badge rounded-pill bg-info" style="font-size: 13px;">
-                                        Confirmed</span></td>
                                     <td>
-                                        <a href="{{ route('admin.order.details', $item->id) }}" class="btn btn-info"
+                                        @if ($item->cancel_order_status == 1)
+                                            <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
+                                                Pending</span>
+                                        @elseif ($item->cancel_order_status == 2)
+                                            <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                                Success</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.cancel.order.details', $item->id) }}" class="btn btn-info"
                                             title="Details"><i class="fa fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('admin.invoice.download', $item->id) }}" class="btn btn-danger"
-                                            title="Invoice Download PDF"><i class="fa fa-download"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -59,9 +65,10 @@
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th>Invoice Number</th>
                                 <th>No.</th>
                                 <th>Order Date</th>
-                                <th>Invoice Number</th>
+                                <th>Cancel Date</th>
                                 <th>Total Amount</th>
                                 <th>Payment Method</th>
                                 <th>Status</th>

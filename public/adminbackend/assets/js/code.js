@@ -108,6 +108,28 @@ $(function () {
     });
 });
 
+//Approved Cancel Order
+$(function () {
+    $(document).on("click", "#approved_cancel", function (e) {
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Approve Cancel Order!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Approved it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+                Swal.fire("Approved!", "Approved Cancel Order Successfully!", "success");
+            }
+        });
+    });
+});
+
 
 
 

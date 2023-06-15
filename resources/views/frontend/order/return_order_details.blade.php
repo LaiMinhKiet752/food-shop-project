@@ -89,8 +89,8 @@
                                                     <th>{{ $order->order_date }}</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Cancel Date :</th>
-                                                    <th>{{ $order->cancel_date }}</th>
+                                                    <th>Return Date :</th>
+                                                    <th>{{ $order->return_date }}</th>
                                                 </tr>
                                                 <tr>
                                                     <th>Discount :</th>
@@ -109,14 +109,14 @@
                                                     <th>{{ $order->payment_type }}</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Order Cancel Status :</th>
+                                                    <th>Order Return Status :</th>
                                                     <th>
-                                                        @if ($order->cancel_order_status == 1)
+                                                        @if ($order->return_order_status == 1)
                                                             <span class="badge rounded-pill bg-warning"
                                                                 style="font-size: 13px;">
                                                                 Pending
                                                             </span>
-                                                        @elseif($order->cancel_order_status == 2)
+                                                        @elseif($order->return_order_status == 2)
                                                             <span class="badge rounded-pill bg-success"
                                                                 style="font-size: 13px;">
                                                                 Success

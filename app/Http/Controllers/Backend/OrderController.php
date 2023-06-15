@@ -19,7 +19,7 @@ class OrderController extends Controller
 {
     public function PendingOrder()
     {
-        $orders = Order::where('status', 'pending')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('status', 'pending')->where('cancel_order_status', 0)->orderBy('id', 'DESC')->get();
         return view('backend.orders.pending_orders', compact('orders'));
     } // End Method
 
@@ -32,7 +32,7 @@ class OrderController extends Controller
 
     public function AdminConfirmedOrder()
     {
-        $orders = Order::where('status', 'confirmed')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('status', 'confirmed')->where('cancel_order_status', 0)->orderBy('id', 'DESC')->get();
         return view('backend.orders.confirmed_orders', compact('orders'));
     } // End Method
 
@@ -44,7 +44,7 @@ class OrderController extends Controller
 
     public function AdminDeliveredOrder()
     {
-        $orders = Order::where('status', 'delivered')->orderBy('id', 'DESC')->get();
+        $orders = Order::where('status', 'delivered')->where('return_order_status', 0)->orderBy('id', 'DESC')->get();
         return view('backend.orders.delivered_orders', compact('orders'));
     } // End Method
 

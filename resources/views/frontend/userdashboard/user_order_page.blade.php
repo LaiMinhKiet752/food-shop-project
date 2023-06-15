@@ -83,7 +83,7 @@
                                                                             Delivered
                                                                         </span>
                                                                     @endif
-                                                                    @if ($order->return_order_status == 1)
+                                                                    @if ($order->return_order_status == 1 || $order->return_order_status == 2)
                                                                         <span class="badge rounded-pill bg-dark"
                                                                             style="font-size: 13px;">
                                                                             Return

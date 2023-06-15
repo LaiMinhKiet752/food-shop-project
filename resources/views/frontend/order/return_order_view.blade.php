@@ -37,9 +37,9 @@
                                                             <th>No.</th>
                                                             <th>Invoice Number</th>
                                                             <th>Order Date</th>
+                                                            <th>Return Date</th>
                                                             <th>Total Amount</th>
                                                             <th>Payment Method</th>
-                                                            <th>Return Date</th>
                                                             <th>Reason</th>
                                                             <th>Status</th>
                                                             <th>Actions</th>
@@ -51,9 +51,9 @@
                                                                 <td>{{ $key + 1 }}</td>
                                                                 <td>{{ $order->invoice_number }}</td>
                                                                 <td>{{ $order->order_date }}</td>
+                                                                <td>{{ $order->return_date }}</td>
                                                                 <td>${{ $order->amount }}</td>
                                                                 <td>{{ $order->payment_method }}</td>
-                                                                <td>{{ $order->return_date }}</td>
                                                                 <td>{{ $order->return_reason }}</td>
                                                                 <td>
                                                                     @if ($order->return_order_status == 1)
@@ -69,7 +69,7 @@
                                                                     @endif
                                                                 </td>
                                                                 <td>
-                                                                    <a href="{{ url('user/order/details/' . $order->id) }}"
+                                                                    <a href="{{ route('user.return.order.details', $order->id) }}"
                                                                         class="btn-sm btn-success" title="View Details"><i
                                                                             class="fa fa-eye"></i></a>
                                                                     <a href="{{ url('user/invoice/download/' . $order->id) }}"

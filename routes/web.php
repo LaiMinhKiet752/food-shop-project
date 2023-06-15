@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\CancelController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -262,9 +263,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //Return Order All Route
     Route::controller(ReturnController::class)->group(function () {
-        Route::get('/return/request', 'ReturnRequest')->name('return.request');
-        Route::get('/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('return.request.approved');
-        Route::get('/complete/return/request', 'CompleteReturnRequest')->name('complete.return.request');
+        Route::get('/admin/return/request', 'ReturnRequest')->name('admin.return.request');
+        Route::get('/admin/return/order/details/{order_id}', 'ReturnOrderDetails')->name('admin.return.order.details');
+        Route::get('/admin/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('admin.return.request.approved');
+        Route::get('/admin/complete/return/request', 'CompleteReturnRequest')->name('admin.complete.return.request');
+    });
+
+    //Cancel Order All Route
+    Route::controller(CancelController::class)->group(function () {
+        Route::get('/admin/cancel/request', 'CancelRequest')->name('admin.cancel.request');
+        Route::get('/admin/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('admin.cancel.order.details');
+        Route::get('/admin/cancel/request/approved/{order_id}', 'CancelRequestApproved')->name('admin.cancel.request.approved');
+        Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
     });
 }); //End Group Middleware Admin
 
@@ -398,11 +408,12 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
         Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
-        Route::post('/return/order/{order_id}', 'ReturnOrder')->name('return.order');
-        Route::get('/return/order/page', 'ReturnOrderPage')->name('return.order.page');
-        Route::get('/cancel/order/page', 'CancelOrderPage')->name('cancel.order.page');
-        Route::post('/cancel/order/submit', 'CancelOrderSubmit')->name('cancel.order.submit');
-        Route::get('/cancel/order/details/{order_id}', 'CancelOrderDetails');
+        Route::post('/user/return/order/{order_id}', 'ReturnOrder')->name('user.return.order');
+        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
+        Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
+        Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
+        Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
+        Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
     });
 });
 
