@@ -4,7 +4,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Your Orders
             </div>
         </div>
@@ -14,10 +14,10 @@
             <div class="row">
                 <div class="col-lg-12 m-auto">
                     <div class="row">
-                        {{-- Start col-md-3 --}}
+                        {{-- Start col-md-2 --}}
                         @include('frontend.body.dashboard_sidebar_menu')
-                        {{-- End col-md-3 --}}
-                        <div class="col-md-9">
+                        {{-- End col-md-2 --}}
+                        <div class="col-md-10">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="card">
@@ -59,10 +59,6 @@
                                                     <th>Postal Code :</th>
                                                     <th>{{ $order->post_code }}</th>
                                                 </tr>
-                                                <tr>
-                                                    <th>Order Date :</th>
-                                                    <th>{{ $order->order_date }}</th>
-                                                </tr>
                                             </table>
                                         </div>
                                     </div>
@@ -85,19 +81,19 @@
                                         <div class="card-body">
                                             <table class="table" style="background: #F4F6FA; font-weight: 600;">
                                                 <tr>
-                                                    <th>Full Name :</th>
-                                                    <th>{{ $order->user->name }}</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>Phone Number:</th>
-                                                    <th>{{ $order->user->phone }}</th>
-                                                </tr>
-                                                <tr>
                                                     <th>Order Number :</th>
                                                     <th>{{ $order->order_number }}</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Order Amonut :</th>
+                                                    <th>Order Date :</th>
+                                                    <th>{{ $order->order_date }}</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Discount :</th>
+                                                    <th>${{ $order->discount }}</th>
+                                                </tr>
+                                                <tr>
+                                                    <th>Total Amount :</th>
                                                     <th>${{ $order->amount }}</th>
                                                 </tr>
                                                 <tr>
@@ -111,17 +107,27 @@
                                                 <tr>
                                                     <th>Order Status :</th>
                                                     <th>
-                                                        @if ($order->status == 'pending')
+                                                        @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                                                             <span class="badge rounded-pill bg-warning"
                                                                 style="font-size: 13px;">
                                                                 Pending
                                                             </span>
-                                                        @elseif($order->status == 'confirmed')
+                                                        @elseif ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                            <span class="badge rounded-pill bg-secondary"
+                                                                style="font-size: 13px;">
+                                                                Cancel
+                                                            </span>
+                                                        @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                                             <span class="badge rounded-pill bg-info"
                                                                 style="font-size: 13px;">
                                                                 Confirmed
                                                             </span>
-                                                        @elseif($order->status == 'processing')
+                                                        @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                            <span class="badge rounded-pill bg-secondary"
+                                                                style="font-size: 13px;">
+                                                                Cancel
+                                                            </span>
+                                                        @elseif ($order->status == 'processing')
                                                             <span class="badge rounded-pill bg-danger"
                                                                 style="font-size: 13px;">
                                                                 Processing
@@ -134,12 +140,30 @@
                                                         @endif
                                                     </th>
                                                 </tr>
+                                                @if (
+                                                    ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)) ||
+                                                        ($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)))
+                                                @elseif(($order->status == 'pending' || $order->status == 'confirmed') && $order->cancel_order_status == 0)
+                                                    <form action="{{ route('user.cancel.order.submit') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>
+                                                                <button type="submit"
+                                                                    class="btn btn-heading btn-block hover-up">Cancel
+                                                                    Order</button>
+                                                            </th>
+                                                        </tr>
+                                                    </form>
+                                                @endif
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -172,7 +196,13 @@
                                     <label>Price </label>
                                 </td>
                             </tr>
+                            @php
+                                $subtotal = 0;
+                            @endphp
                             @foreach ($orderItem as $item)
+                                @php
+                                    $subtotal = $subtotal + $item->price * $item->quantity;
+                                @endphp
                                 <tr>
                                     <td class="col-md-1">
                                         <label><img src="{{ asset($item->product->product_thumbnail) }}" alt=""
@@ -205,9 +235,72 @@
                                 </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td class="col-md-1" colspan="5" style="text-align: center;">
+                                    <label>Subtotal </label>
+                                </td>
+                                <td class="col-md-1">
+                                    <label> = ${{ $subtotal }}</label>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
+            @if ($order->status !== 'delivered')
+            @else
+                @php
+                    $order_check = \App\Models\Order::where('id', $order->id)
+                        ->where('return_reason', '=', null)
+                        ->first();
+                @endphp
+                @if ($order_check)
+                    <form action="{{ route('user.return.order', $order->id) }}" method="POST" id="myFormOrderReturn">
+                        @csrf
+                        <div class="from-group"
+                            style="font-weight: 600;font-size: initial; color: #000000; margin-top: 20px;">
+                            <label>Order Return Reason<span class="text-danger"> * </span></label>
+                            <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for the return of the order..."
+                                style="height: 200px;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-sm"
+                            style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order
+                            Return</button>
+                    </form>
+                @else
+                    <h5><span style="color: red;">You Have Send Return Request For This Invoice!</span>
+                    </h5><br><br>
+                @endif
+            @endif
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myFormOrderReturn').validate({
+                rules: {
+                    return_reason: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    return_reason: {
+                        required: 'Please enter order return reason.',
+                    },
+                },
+                errorElement: 'span',
+                errorPlacement: function(error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function(element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function(element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                },
+            });
+        });
+    </script>
 @endsection

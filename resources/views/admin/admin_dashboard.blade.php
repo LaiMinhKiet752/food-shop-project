@@ -40,8 +40,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-    <script src="https://cdn.tiny.cloud/1/b5jkj1eozb9187fdskq3gtokktnseii5qzsqx8o3ycl56n8y/tinymce/6/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
 
     <title>Admin Dashboard</title>
 </head>
@@ -207,6 +206,11 @@
 
     <script>
         @if (Session::has('message'))
+            toastr.options = {
+                'progressBar': true,
+                'closeButton': true,
+                'timeOut': 3000,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
@@ -227,6 +231,7 @@
             }
         @endif
     </script>
+    
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

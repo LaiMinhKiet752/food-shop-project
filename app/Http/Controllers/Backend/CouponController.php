@@ -35,7 +35,7 @@ class CouponController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Coupon Inserted Successfully!',
+            'message' => 'Coupon Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.coupon')->with($notification);

@@ -4,7 +4,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Become Vendor
             </div>
         </div>
@@ -74,13 +74,24 @@
                                                 type="password" name="password_confirmation"
                                                 placeholder="Confirm password *" />
                                         </div>
-
-
+                                        <div class="login_footer form-group">
+                                            <div class="form-group chek-form">
+                                                <input type="text" required="" name="captcha_code"
+                                                    placeholder="Captcha Code *" class="form-control" />
+                                            </div>
+                                            <div class="form-group captcha">
+                                                {!! captcha_img('flat') !!}
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="button" class="btn reload"
+                                                    id="reload">&#x21bb;</button>
+                                            </div>
+                                        </div>
                                         <div class="login_footer form-group mb-50">
                                             <div class="chek-form">
                                                 <div class="custome-checkbox">
                                                     <input class="form-check-input" type="checkbox" name="checkbox"
-                                                        id="exampleCheckbox12" value="" />
+                                                        id="exampleCheckbox12"/>
                                                     <label class="form-check-label" for="exampleCheckbox12"><span>I
                                                             agree to terms &amp; Policy.</span></label>
                                                 </div>
@@ -176,6 +187,9 @@
                         required: true,
                         equalTo: "#password",
                     },
+                    captcha_code: {
+                        required: true,
+                    },
                 },
                 messages: {
                     name: {
@@ -210,7 +224,10 @@
                     },
                     password_confirmation: {
                         required: 'Please enter your confirmation password.',
-                        equalTo: "The two passwords must be the same.",
+                        equalTo: 'Confirm password must be same as password.',
+                    },
+                    captcha_code: {
+                        required: 'Please enter captcha code.',
                     },
                 },
                 errorElement: 'span',
@@ -236,6 +253,17 @@
                 var year = $(element).val();
                 return (year >= 1800) && (year <= (new Date()).getFullYear());
             }, "The year you entered is not valid (The year must be from 1800 to 2023).");
+        });
+    </script>
+    <script type="text/javascript">
+        $('#reload').click(function() {
+            $.ajax({
+                type: "GET",
+                url: "/vendor/register/reload-captcha",
+                success: function(data) {
+                    $(".captcha").html(data.captcha);
+                }
+            });
         });
     </script>
 @endsection

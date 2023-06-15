@@ -28,11 +28,11 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Date </th>
-                                <th>Invoice Number </th>
-                                <th>Amount </th>
-                                <th>Payment </th>
-                                <th>State </th>
+                                <th>Order Date</th>
+                                <th>Invoice Number</th>
+                                <th>Total Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -44,9 +44,11 @@
                                     <td>{{ $item->invoice_number }}</td>
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
-                                    <td> <span class="badge rounded-pill bg-success"> {{ $item->status }}</span></td>
+                                    <td> <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
+                                            Pending</span></td>
                                     <td>
-                                        <a href=" " class="btn btn-info" title="Details"><i class="fa fa-eye"></i>
+                                        <a href="{{ route('admin.order.details', $item->id) }}" class="btn btn-info"
+                                            title="Details"><i class="fa fa-eye"></i>
                                         </a>
                                     </td>
                                 </tr>
@@ -55,11 +57,11 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Date </th>
-                                <th>Invoice Number </th>
-                                <th>Amount </th>
-                                <th>Payment </th>
-                                <th>State </th>
+                                <th>Order Date</th>
+                                <th>Invoice Number</th>
+                                <th>Total Amount</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

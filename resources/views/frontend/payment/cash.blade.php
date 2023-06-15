@@ -3,7 +3,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Cash On Delivery Payment
             </div>
         </div>
@@ -123,7 +123,7 @@
                                     style="width: 350px; height: 230px;">
                             </div>
                             <br>
-                            <button class="btn btn-primary">Submit Payment</button>
+                            <button class="btn">Submit Payment</button>
                         </form>
                     </div>
                 </div>

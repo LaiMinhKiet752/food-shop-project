@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->save();
 
         $notification = array(
-            'message' => 'Category Inserted Successfully!',
+            'message' => 'Category Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.category')->with($notification);

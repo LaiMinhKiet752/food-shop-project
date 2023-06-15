@@ -9,9 +9,9 @@
     <div class="page-content">
 
         @if ($status === 'active')
-            <h4>Vendor Account is<span class="text-success"> Active</span></h4>
+            <h4>Vendor Account is<span class="text-success"> ACTIVE</span></h4>
         @else
-            <h4>Vendor Account is<span class="text-danger"> InActive</span></h4>
+            <h4>Vendor Account is<span class="text-danger"> INACTIVE</span></h4>
             <p class="text-danger"><b>Please Wait Admin Will Check And Approve Your Account!</b> </p>
         @endif
         <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">

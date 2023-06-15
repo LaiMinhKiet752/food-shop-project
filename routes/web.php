@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
+use App\Http\Controllers\Backend\CancelController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 
@@ -48,6 +50,22 @@ use App\Http\Controllers\User\AllUserController;
 //Index All Route
 Route::get('/', [IndexController::class, 'Index']);
 
+//Frontend All Route
+Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
+//RegisteredUserController All Route
+Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
+
+//Admin Login Route
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+
+//Vendor Login Route
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
+Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
+
+
 //Frontend Product Details All Route
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
@@ -58,33 +76,18 @@ Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCate
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
 
 
-//Frontend All Route
-Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
-
-
-//RegisteredUserController All Route
-Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
-
-
-
 Route::middleware(['auth', 'verified'])->group(function () {
+
     //User Dashborad
     Route::get('/dashboard', [UserController::class, 'UserDashboard'])->name('dashboard');
     Route::post('/user/profile/store', [UserController::class, 'UserProfileStore'])->name('user.profile.store');
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
-}); //End Group Middleware 'Auth' And 'Email Verified'
+}); //End Group Middleware User
 
 
+Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
 
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
-
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
-Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
-
-
-Route::middleware(['auth', 'role:vendor'])->group(function () {
     //Vendor Dashborad
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
     Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
@@ -109,6 +112,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
     });
+
     //Vendor Order All Route
     Route::controller(VendorOrderController::class)->group(function () {
         Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
@@ -116,8 +120,8 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
 }); //End Group Middlware Vendor
 
 
-
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
     //Admin Dashborad
     Route::get('/admin/dashboard', [AdminController::class, 'AdminDashboard'])->name('admin.dashboard');
     Route::get('/admin/logout', [AdminController::class, 'AdminDestroy'])->name('admin.logout');
@@ -243,12 +247,36 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
         Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
     });
-    //Admin Order All Route
+
+    //Order All Route
     Route::controller(OrderController::class)->group(function () {
         Route::get('/pending/order', 'PendingOrder')->name('pending.order');
+        Route::get('/admin/order/details/{order_id}', 'AdminOrderDetails')->name('admin.order.details');
+        Route::get('/admin/confirmed/order', 'AdminConfirmedOrder')->name('admin.confirmed.order');
+        Route::get('/admin/processing/order', 'AdminProcessingOrder')->name('admin.processing.order');
+        Route::get('/admin/delivered/order', 'AdminDeliveredOrder')->name('admin.delivered.order');
+        Route::get('/pending/confirm/{order_id}', 'PendingToConfirm')->name('pending-confirm');
+        Route::get('/confirm/processing/{order_id}', 'ConfirmToProcessing')->name('confirm-processing');
+        Route::get('/processing/delivered/{order_id}', 'ProcessingToDelivered')->name('processing-delivered');
+        Route::get('/amin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+    });
+
+    //Return Order All Route
+    Route::controller(ReturnController::class)->group(function () {
+        Route::get('/admin/return/request', 'ReturnRequest')->name('admin.return.request');
+        Route::get('/admin/return/order/details/{order_id}', 'ReturnOrderDetails')->name('admin.return.order.details');
+        Route::get('/admin/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('admin.return.request.approved');
+        Route::get('/admin/complete/return/request', 'CompleteReturnRequest')->name('admin.complete.return.request');
+    });
+
+    //Cancel Order All Route
+    Route::controller(CancelController::class)->group(function () {
+        Route::get('/admin/cancel/request', 'CancelRequest')->name('admin.cancel.request');
+        Route::get('/admin/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('admin.cancel.order.details');
+        Route::get('/admin/cancel/request/approved/{order_id}', 'CancelRequestApproved')->name('admin.cancel.request.approved');
+        Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
     });
 }); //End Group Middleware Admin
-
 
 
 //Get Data From Mini Cart
@@ -305,6 +333,9 @@ Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
 Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
 
+//Checkout Page Route
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+
 //My Cart Route
 Route::controller(CartController::class)->group(function () {
     Route::get('/my-cart', 'MyCart')->name('mycart');
@@ -314,9 +345,6 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
 
-//Checkout Page Route
-Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
-
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
@@ -325,55 +353,68 @@ Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCom
 
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
+
     //Wishlist All Route
     Route::controller(WishlistController::class)->group(function () {
         Route::get('/wishlist', 'AllWishList')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishListProduct');
         Route::get('/wishlist-remove/{id}', 'WishListRemove');
     });
+
     //Compare All Route
     Route::controller(CompareController::class)->group(function () {
         Route::get('/compare', 'AllCompare')->name('compare');
         Route::get('/get-compare-product', 'GetCompareProduct');
         Route::get('/compare-remove/{id}', 'CompareRemove');
     });
+
     //Checkout All Route
     Route::controller(CheckoutController::class)->group(function () {
         Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
         Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
+
     //Stripe All Route
     Route::controller(StripeController::class)->group(function () {
         Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
         Route::get('/stripe/success', 'StripeSuccess')->name('stripe.success');
         Route::get('/stripe/cancel', 'StripeCancel')->name('stripe.cancel');
     });
+
     //Paypal All Route
     Route::controller(PaypalController::class)->group(function () {
         Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
         Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
         Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
     });
+
     //Mollie All Route
     Route::controller(MollieController::class)->group(function () {
         Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
         Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
         Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
     });
+
     //Cash All Route
     Route::controller(CashController::class)->group(function () {
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
     });
+
     //User Dashboard All Route
     Route::controller(AllUserController::class)->group(function () {
         Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
+        Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
+        Route::post('/user/return/order/{order_id}', 'ReturnOrder')->name('user.return.order');
+        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
+        Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
+        Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
+        Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
+        Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
     });
-
 });
-
 
 require __DIR__ . '/auth.php';

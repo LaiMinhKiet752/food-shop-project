@@ -96,7 +96,7 @@ class ProductController extends Controller
             ]);
         }
         $notification = array(
-            'message' => 'Product Inserted Successfully!',
+            'message' => 'Product Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.product')->with($notification);
@@ -233,7 +233,7 @@ class ProductController extends Controller
             ]);
 
             $notification = array(
-                'message' => 'Product Image Thumbnail Updated Successfully!',
+                'message' => 'Product Thumbnail Updated Successfully!',
                 'alert-type' => 'success',
             );
             return redirect()->back()->with($notification);
@@ -332,7 +332,7 @@ class ProductController extends Controller
             'status' => 0,
         ]);
         $notification = array(
-            'message' => 'Product InActive Successfully!',
+            'message' => 'Product Inactivated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
@@ -344,7 +344,7 @@ class ProductController extends Controller
             'status' => 1,
         ]);
         $notification = array(
-            'message' => 'Product Active Successfully!',
+            'message' => 'Product Activated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

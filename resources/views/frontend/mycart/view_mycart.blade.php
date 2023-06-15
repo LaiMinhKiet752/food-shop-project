@@ -17,7 +17,8 @@
                 <div class="d-flex justify-content-between">
                     <h6 class="text-body">There are <span class="text-brand" id="mycartQty"></span> products in your cart
                     </h6>
-                    <h6 class="text-body"><a href="#" class="text-muted"><i class="fi-rs-trash mr-5"></i>Clear
+                    <h6 class="text-body"><a href="#" class="text-muted"><i
+                                class="fi-rs-trash mr-5"></i>Clear
                             Cart</a></h6>
                 </div>
             </div>

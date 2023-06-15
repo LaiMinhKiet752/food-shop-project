@@ -4,8 +4,8 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> My Account
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <span></span> Create New Account
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
                                                 {!! captcha_img('flat') !!}
                                             </div>
                                             <div class="form-group">
-                                                <button type="button" class="btn btn-danger reload"
+                                                <button type="button" class="btn reload"
                                                     id="reload">&#x21bb;</button>
                                             </div>
                                         </div>
@@ -66,7 +66,7 @@
                                             <div class="chek-form">
                                                 <div class="custome-checkbox">
                                                     <input class="form-check-input" type="checkbox" name="checkbox"
-                                                        id="exampleCheckbox12" value="" />
+                                                        id="exampleCheckbox12"/>
                                                     <label class="form-check-label" for="exampleCheckbox12"><span>I
                                                             agree to Terms &amp;
                                                             Policy.</span></label>
@@ -148,7 +148,7 @@
                     },
                     password_confirmation: {
                         required: 'Please enter your confirmation password.',
-                        equalTo: "The two passwords must be the same.",
+                        equalTo: 'Confirm password must be same as password',
                     },
                     captcha_code: {
                         required: 'Please enter captcha code.',

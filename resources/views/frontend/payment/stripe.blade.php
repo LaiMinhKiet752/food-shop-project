@@ -3,7 +3,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Stripe Payment
             </div>
         </div>
@@ -120,10 +120,10 @@
                             </div>
                             <div style="text-align: center;">
                                 <img src="{{ asset('upload/stripe.png') }}" alt=""
-                                    style="width: 300px; height: 200px;">
+                                    style="width: 270px; height: 150px;">
                             </div>
                             <br>
-                            <button class="btn btn-primary">Submit Payment</button>
+                            <button class="btn">Submit Payment</button>
                         </form>
                     </div>
                 </div>

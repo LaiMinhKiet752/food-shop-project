@@ -3,7 +3,7 @@
     <div class="page-header breadcrumb-wrap">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
                 <span></span> Paypal Payment
             </div>
         </div>
@@ -123,7 +123,7 @@
                         <img src="{{ asset('upload/paypal.png') }}" alt="" style="width: 300px; height: 120px;">
                     </div>
                     <br>
-                    <button class="btn btn-primary" type="submit">Submit Payment</button>
+                    <button class="btn" type="submit">Submit Payment</button>
                     </form>
                 </div>
             </div>

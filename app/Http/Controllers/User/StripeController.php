@@ -21,8 +21,10 @@ class StripeController extends Controller
 
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
+            $discount_amount = Session::get('coupon')['discount_amount'];
         } else {
             $total_amount = round(Cart::total());
+            $discount_amount = 0;
         }
 
         $response = \Stripe\Checkout\Session::create([
@@ -63,6 +65,7 @@ class StripeController extends Controller
             'transaction_id' => $response->id,
             'currency' => 'usd',
             'amount' => $total_amount,
+            'discount' => $discount_amount,
             'order_number' => $response->metadata->order_id,
 
             'invoice_number' => 'NFS' . mt_rand(1000000000, 10000000000),
@@ -73,23 +76,6 @@ class StripeController extends Controller
             'status' => 'pending',
             'created_at' => Carbon::now(),
         ]);
-
-        //Send Mail
-        $invoice = Order::findOrFail($order_id);
-        $data = [
-            'invoice_number' => $invoice->invoice_number,
-            'amount' => $total_amount,
-            'name' => $invoice->name,
-            'email' => $invoice->email,
-            'phone' => $invoice->phone,
-            'address' => $invoice->address,
-            'notes' => $invoice->notes,
-            'order_date'=> $invoice->order_date,
-            'payment_method'=> $invoice->payment_method,
-        ];
-        $subject = 'Nest Food Shop';
-        Mail::to($request->email)->send(new OrderMail($data, $subject));
-
         $carts = Cart::content();
         foreach ($carts as $cart) {
             OrderDetails::insert([
@@ -102,6 +88,12 @@ class StripeController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
+        //Send Mail
+        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
+        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+        $subject = 'Nest Food Shop';
+        Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
+
         return redirect()->away($response->url);
     } //End Method
 

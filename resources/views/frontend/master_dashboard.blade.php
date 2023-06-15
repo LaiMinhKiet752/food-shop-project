@@ -30,6 +30,8 @@
 
     <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
+
 </head>
 
 <body>
@@ -101,7 +103,7 @@
                 position: 'center',
                 icon: 'success',
                 title: 'Thank you!',
-                text: 'You Have Ordered And Paid Successfully!',
+                text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
@@ -129,7 +131,7 @@
                 position: 'center',
                 icon: 'success',
                 title: 'Thank you!',
-                text: 'You Have Placed Your Order Successfully. Please Pay On Delivery!',
+                text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
                 timerProgressBar: true,
                 showConfirmButton: false,
                 timer: 5000
@@ -141,6 +143,11 @@
 
     <script>
         @if (Session::has('message'))
+            toastr.options = {
+                'progressBar': true,
+                'closeButton': true,
+                'timeOut': 3000,
+            }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
@@ -162,6 +169,13 @@
         @endif
     </script>
 
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
 
     <script type="text/javascript">
         $.ajaxSetup({
@@ -643,7 +657,6 @@
         }
     </script>
     <!--  /// End Add To Compare -->
-
 
 
     <!--  /// Start Load Data My Cart -->

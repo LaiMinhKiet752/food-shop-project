@@ -171,7 +171,40 @@
             <ul>
                 <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
                 </li>
+                <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirmed Order</a>
+                </li>
+                <li> <a href="{{ route('admin.processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+                </li>
+                <li> <a href="{{ route('admin.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
+                </li>
+            </ul>
+        </li>
 
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Return Order</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
+                </li>
+                <li> <a href="{{ route('admin.complete.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Cancel Order</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Cancel Request</a>
+                </li>
+                <li> <a href="{{ route('admin.complete.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Complete Request</a>
             </ul>
         </li>
 

@@ -15,7 +15,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.coupon') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Coupon</i></a>
+                    <a href="{{ route('add.coupon') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
+                            Coupon</i></a>
                 </div>
             </div>
         </div>
@@ -46,9 +47,10 @@
                                     <td> {{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }} </td>
                                     <td>
                                         @if ($item->coupon_validity >= Carbon\Carbon::now()->format('Y-m-d'))
-                                            <span class="badge rounded-pill bg-success">Valid</span>
+                                            <span class="badge rounded-pill bg-success"
+                                                style="font-size: 13px;">Valid</span>
                                         @else
-                                            <span class="badge rounded-pill bg-dark">Invalid</span>
+                                            <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Invalid</span>
                                         @endif
                                     </td>
 

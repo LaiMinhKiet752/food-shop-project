@@ -394,7 +394,7 @@
                         <div class="dropdown-divider mb-0"></div>
                     </li>
                     <li><a class="dropdown-item" href="{{ route('vendor.logout') }}"><i
-                                class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                                class='bx bx-log-out-circle'></i><span>Log out</span></a>
                     </li>
                 </ul>
             </div>

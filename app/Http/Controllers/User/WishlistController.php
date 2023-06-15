@@ -22,9 +22,9 @@ class WishlistController extends Controller
                     'product_id' => $product_id,
                     'created_at' => Carbon::now(),
                 ]);
-                return response()->json(['success' => 'Successfully Added On Your Wishlist!']);
+                return response()->json(['success' => 'Successfully Added The Product To Your Wishlist List!']);
             } else {
-                return response()->json(['error' => 'This Product Is Already In Your Wishlist!']);
+                return response()->json(['error' => 'This Product Is Already On Your Wishlist List!']);
             }
         } else {
             return response()->json(['error' => 'Please Login Before Adding Products To Wishlist!']);
@@ -50,7 +50,7 @@ class WishlistController extends Controller
     {
         Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
         return response()->json([
-            'success' => 'Successfully Removed Product From Your Wishlist!'
+            'success' => 'Product Successfully Removed From Wishlist List!'
         ]);
     } //End Method
 }

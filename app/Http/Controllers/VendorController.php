@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
 
 class VendorController extends Controller
 {
@@ -30,7 +30,7 @@ class VendorController extends Controller
         $request->session()->regenerateToken();
 
         $notification = array(
-            'message' => 'Logout Successfully!',
+            'message' => 'Logged Out Successfully!',
             'alert-type' => 'success',
         );
 
@@ -195,10 +195,13 @@ class VendorController extends Controller
             'phone' => ['unique:' . User::class],
             'email' => ['unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'captcha_code' => 'captcha',
+            'checkbox' => 'accepted'
         ], [
             'username.unique' => 'The user name already exists. Please create another user name.',
             'phone.unique' => 'The phone number already exists. Please create another phone number.',
-            'email.unique' => 'The email already exists. Please create another email.'
+            'email.unique' => 'The email already exists. Please create another email.',
+            'checkbox.accepted' => 'Please agree to our policies to proceed with account registration.'
         ]);
 
         User::insert([
@@ -213,11 +216,15 @@ class VendorController extends Controller
             'status' => 'inactive',
             'created_at' => Carbon::now(),
         ]);
-
         $notification = array(
-            'message' => 'Vendor Register Successfully!',
+            'message' => 'Vendor Registration Successful!',
             'alert-type' => 'success'
         );
         return redirect()->route('vendor.login')->with($notification);
     } //End Method
+
+    public function ReloadCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img('flat')]);
+    }
 }

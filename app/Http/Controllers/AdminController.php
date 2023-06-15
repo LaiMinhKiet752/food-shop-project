@@ -28,7 +28,7 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         $notification = array(
-            'message' => 'Logout Successfully!',
+            'message' => 'Logged Out Successfully!',
             'alert-type' => 'success',
         );
 
@@ -206,7 +206,7 @@ class AdminController extends Controller
             'status' => 'active',
         ]);
         $notification = array(
-            'message' => 'Vendor Active Successfully!',
+            'message' => 'Vendor Activated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('active.vendor')->with($notification);
@@ -225,7 +225,7 @@ class AdminController extends Controller
             'status' => 'inactive',
         ]);
         $notification = array(
-            'message' => 'Vendor InActive Successfully!',
+            'message' => 'Vendor Inactivated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('inactive.vendor')->with($notification);
