@@ -49,7 +49,7 @@ class BrandController extends Controller
         $brand->save();
 
         $notification = array(
-            'message' => 'Brand Inserted Successfully!',
+            'message' => 'Brand Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.brand')->with($notification);
@@ -363,6 +363,7 @@ class BrandController extends Controller
                 Brand::findOrFail($brand_id)->update([
                     'brand_name' => $request->brand_name,
                     'brand_phone' => $request->brand_phone,
+                    'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
                 ]);

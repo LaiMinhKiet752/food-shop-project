@@ -20,9 +20,9 @@ class CompareController extends Controller
                     'product_id' => $product_id,
                     'created_at' => Carbon::now(),
                 ]);
-                return response()->json(['success' => 'Successfully Added On Your List Compare!']);
+                return response()->json(['success' => 'Successfully Add The Product To Your Comparison List!']);
             } else {
-                return response()->json(['error' => 'This Product Is Already In Your List Compare!']);
+                return response()->json(['error' => 'This Product Is Already On Your Comparison List!']);
             }
         } else {
             return response()->json(['error' => 'Please Login Before Adding Products To List Compare!']);
@@ -48,7 +48,7 @@ class CompareController extends Controller
     {
         Compare::where('user_id', Auth::id())->where('id', $id)->delete();
         return response()->json([
-            'success' => 'Successfully Removed Product From Your List Compare!'
+            'success' => 'Product Successfully Removed From Comparison List!'
         ]);
     } //End Method
 }

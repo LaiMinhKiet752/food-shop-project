@@ -35,7 +35,7 @@ class SubCategoryController extends Controller
         $subcategory->save();
 
         $notification = array(
-            'message' => 'SubCategory Inserted Successfully!',
+            'message' => 'SubCategory Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.subcategory')->with($notification);
@@ -53,6 +53,11 @@ class SubCategoryController extends Controller
         $subcat_id = $request->id;
         $current_subcategory_name = SubCategory::findOrFail($subcat_id)->subcategory_name;
         if ($current_subcategory_name == $request->subcategory_name) {
+            SubCategory::findOrFail($subcat_id)->update([
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
+            ]);
             $notification = array(
                 'message' => 'SubCategory Updated Successfully!',
                 'alert-type' => 'success',

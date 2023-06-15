@@ -30,7 +30,7 @@ class VendorController extends Controller
         $request->session()->regenerateToken();
 
         $notification = array(
-            'message' => 'Log Out Successfully!',
+            'message' => 'Logged Out Successfully!',
             'alert-type' => 'success',
         );
 
@@ -217,7 +217,7 @@ class VendorController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Vendor Register Successfully!',
+            'message' => 'Vendor Registration Successful!',
             'alert-type' => 'success'
         );
         return redirect()->route('vendor.login')->with($notification);

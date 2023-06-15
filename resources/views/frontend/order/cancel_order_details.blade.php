@@ -105,7 +105,7 @@
                                                     <th>{{ $order->payment_type }}</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Order Status :</th>
+                                                    <th>Cancel Status :</th>
                                                     <th>
                                                         @if ($order->cancel_order_status == 1)
                                                             <span class="badge rounded-pill bg-warning"

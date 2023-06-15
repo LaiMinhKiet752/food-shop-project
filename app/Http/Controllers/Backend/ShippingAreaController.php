@@ -30,7 +30,7 @@ class ShippingAreaController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Ship City Inserted Successfully!',
+            'message' => 'City, Province Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.city')->with($notification);
@@ -50,7 +50,7 @@ class ShippingAreaController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Ship City Updated Successfully!',
+            'message' => 'City, Province Updated Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->route('all.city')->with($notification);
@@ -60,7 +60,7 @@ class ShippingAreaController extends Controller
     {
         ShipCity::findOrFail($id)->delete();
         $notification = array(
-            'message' => 'Ship City Deleted Successfully!',
+            'message' => 'City, Province Deleted Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -89,7 +89,7 @@ class ShippingAreaController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Ship District Inserted Successfully!',
+            'message' => 'District Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.district')->with($notification);
@@ -111,7 +111,7 @@ class ShippingAreaController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Ship District Updated Successfully!',
+            'message' => 'District Updated Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->route('all.district')->with($notification);
@@ -121,7 +121,7 @@ class ShippingAreaController extends Controller
     {
         ShipDistricts::findOrFail($id)->delete();
         $notification = array(
-            'message' => 'Ship District Deleted Successfully!',
+            'message' => 'District Deleted Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -158,7 +158,7 @@ class ShippingAreaController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Ship Commune Inserted Successfully!',
+            'message' => 'Commune Added Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('all.commune')->with($notification);
@@ -182,7 +182,7 @@ class ShippingAreaController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Ship Commune Updated Successfully!',
+            'message' => 'Commune Updated Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->route('all.commune')->with($notification);
@@ -192,7 +192,7 @@ class ShippingAreaController extends Controller
     {
         ShipCommune::findOrFail($id)->delete();
         $notification = array(
-            'message' => 'Ship Commune Deleted Successfully!',
+            'message' => 'Commune Deleted Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);

@@ -51,7 +51,8 @@ class OrderController extends Controller
     public function PendingToConfirm($order_id)
     {
         Order::findOrFail($order_id)->update([
-            'status' => 'confirmed'
+            'status' => 'confirmed',
+            'confirmed_date' => Carbon::now()->format('d F Y H:i:s'),
         ]);
         $notification = array(
             'message' => 'Order Confirmed Successfully!',
@@ -63,7 +64,8 @@ class OrderController extends Controller
     public function ConfirmToProcessing($order_id)
     {
         Order::findOrFail($order_id)->update([
-            'status' => 'processing'
+            'status' => 'processing',
+            'processing_date' => Carbon::now()->format('d F Y H:i:s'),
         ]);
         $notification = array(
             'message' => 'Order Processing Successfully!',
@@ -75,7 +77,8 @@ class OrderController extends Controller
     public function ProcessingToDelivered($order_id)
     {
         Order::findOrFail($order_id)->update([
-            'status' => 'delivered'
+            'status' => 'delivered',
+            'delivered_date' => Carbon::now()->format('d F Y H:i:s'),
         ]);
         $notification = array(
             'message' => 'Order Delivered Successfully!',

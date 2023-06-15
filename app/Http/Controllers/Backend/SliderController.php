@@ -43,7 +43,7 @@ class SliderController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Slider Inserted Successfully!',
+            'message' => 'Slider Added Successfully!',
             'alert-type' => 'success'
         );
 

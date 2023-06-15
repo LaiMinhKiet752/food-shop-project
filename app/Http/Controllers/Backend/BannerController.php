@@ -42,7 +42,7 @@ class BannerController extends Controller
         ]);
 
         $notification = array(
-            'message' => 'Banner Inserted Successfully!',
+            'message' => 'Banner Added Successfully!',
             'alert-type' => 'success'
         );
 
