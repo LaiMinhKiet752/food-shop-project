@@ -144,14 +144,16 @@
                                                     ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)) ||
                                                         ($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)))
                                                 @elseif(($order->status == 'pending' || $order->status == 'confirmed') && $order->cancel_order_status == 0)
-                                                    <form action="{{ route('user.cancel.order.submit') }}" method="post">
+                                                    <form action="{{ route('user.cancel.order.submit') }}" method="post"
+                                                        id="SubmitFormCancelOrder">
                                                         @csrf
                                                         <input type="hidden" name="order_id" value="{{ $order->id }}">
                                                         <tr>
                                                             <th></th>
                                                             <th>
                                                                 <button type="submit"
-                                                                    class="btn btn-heading btn-block hover-up">Cancel
+                                                                    class="btn btn-heading btn-block hover-up"
+                                                                    onclick="submitCancelOrder(event)">Cancel
                                                                     Order</button>
                                                             </th>
                                                         </tr>
@@ -303,4 +305,31 @@
             });
         });
     </script>
+
+    <script>
+        function submitCancelOrder(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                timer: 5000,
+                timerProgressBar: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, cancel it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Success!',
+                        'You have successfully submitted an order cancellation request.',
+                        'success',
+                    )
+                    document.getElementById("SubmitFormCancelOrder").submit();
+                }
+            })
+        }
+    </script>
+
 @endsection

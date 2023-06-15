@@ -90,7 +90,7 @@
                     },
                     new_password_confirmation: {
                         required: 'Please enter your confirmation password.',
-                        equalTo: 'The two passwords must be the same.',
+                        equalTo: 'The confirmation password must be the same as the new password.',
                     },
                 },
                 errorElement: 'span',

@@ -4,13 +4,13 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Delete This Data?",
-            icon: "warning",
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Delete it!",
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -27,7 +27,7 @@ $(function () {
         var link = $(this).attr("href");
         Swal.fire({
             title: "Are you sure?",
-            text: "Once 'Confirm', You ill not be able to 'Pending' again!",
+            text: "Once 'Confirm', You will not be able to 'Pending' again!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -88,7 +88,7 @@ $(function () {
 
 //Approved Return Order
 $(function () {
-    $(document).on("click", "#approved", function (e) {
+    $(document).on("click", "#approved_return", function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({

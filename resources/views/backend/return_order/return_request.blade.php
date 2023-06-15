@@ -62,7 +62,7 @@
                                             title="Details"><i class="fa fa-eye"></i>
                                         </a>
                                         <a href="{{ route('admin.return.request.approved', $item->id) }}" class="btn btn-danger"
-                                            title="Approved" id="approved"><i class="fa-solid fa-check"></i>
+                                            title="Approved" id="approved_return"><i class="fa-solid fa-check"></i>
                                         </a>
                                     </td>
                                 </tr>

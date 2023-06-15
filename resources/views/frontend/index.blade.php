@@ -782,7 +782,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -834,7 +834,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -886,7 +886,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -938,7 +938,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -990,7 +990,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({

@@ -224,7 +224,7 @@
                     },
                     password_confirmation: {
                         required: 'Please enter your confirmation password.',
-                        equalTo: 'Confirm password must be same as password.',
+                        equalTo: 'The confirmation password must be the same as the password..',
                     },
                     captcha_code: {
                         required: 'Please enter captcha code.',

@@ -231,10 +231,10 @@
             }
         @endif
     </script>
-    
+
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.all.js"></script>
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 
