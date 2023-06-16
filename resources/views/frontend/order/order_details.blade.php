@@ -321,11 +321,13 @@
                 confirmButtonText: 'Yes, cancel it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        'Success!',
-                        'You have successfully submitted an order cancellation request.',
-                        'success',
-                    )
+                    // Swal.fire(
+                    //     'Success!',
+                    //     'You have successfully submitted an order cancellation request.',
+                    //     'success',
+                    //     3000,
+                    //     false,
+                    // )
                     document.getElementById("SubmitFormCancelOrder").submit();
                 }
             })

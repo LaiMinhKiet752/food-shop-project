@@ -49,20 +49,16 @@
                                     <td>{{ $item->payment_method }}</td>
                                     <td>{{ $item->return_reason }}</td>
                                     <td>
-                                        @if ($item->return_order_status == 1)
-                                            <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
-                                                Pending</span>
-                                        @elseif ($item->return_order_status == 2)
-                                            <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                                Success</span>
-                                        @endif
+                                        <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
+                                            Pending</span>
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.return.order.details', $item->id) }}" class="btn btn-info"
                                             title="Details"><i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.return.request.approved', $item->id) }}" class="btn btn-danger"
-                                            title="Approved" id="approved_return"><i class="fa-solid fa-check"></i>
+                                        <a href="{{ route('admin.return.request.approved', $item->id) }}"
+                                            class="btn btn-danger" title="Approved" id="approved_return"><i
+                                                class="fa-solid fa-check"></i>
                                         </a>
                                     </td>
                                 </tr>

@@ -64,7 +64,7 @@ class AllUserController extends Controller
             'return_order_status' => 1,
         ]);
         $notification = array(
-            'message' => 'Return Request Successful!',
+            'message' => 'Order Return Request Successful!',
             'alert-type' => 'success'
         );
         return redirect()->route('user.order.page')->with($notification);
@@ -90,7 +90,11 @@ class AllUserController extends Controller
             'cancel_date' => Carbon::now()->format('d F Y H:i:s'),
             'cancel_order_status' => 1,
         ]);
-        return redirect()->route('user.order.page');
+        $notification = array(
+            'message' => 'Order Cancellation Request Successful!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('user.order.page')->with($notification);
     } //End Method
 
     public function CancelOrderDetails($order_id)

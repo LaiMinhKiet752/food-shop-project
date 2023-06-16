@@ -15,7 +15,30 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-
+                    @if ($order->status == 'pending')
+                        <div class="btn-group">
+                            <a href="{{ route('pending.order') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
+                                    Back</i></a>
+                        </div>
+                    @elseif($order->status == 'confirmed')
+                        <div class="btn-group">
+                            <a href="{{ route('admin.confirmed.order') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go
+                                    Back</i></a>
+                        </div>
+                    @elseif($order->status == 'processing')
+                        <div class="btn-group">
+                            <a href="{{ route('admin.processing.order') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go
+                                    Back</i></a>
+                        </div>
+                    @elseif($order->status == 'delivered')
+                        <div class="btn-group">
+                            <a href="{{ route('admin.delivered.order') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go
+                                    Back</i></a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -89,6 +112,18 @@
                             <tr>
                                 <th>Order Date :</th>
                                 <th>{{ $order->order_date }}</th>
+                            </tr>
+                            <tr>
+                                @if ($order->status == 'confirmed')
+                                    <th>Confirmed Date :</th>
+                                    <th>{{ $order->confirmed_date }}</th>
+                                @elseif($order->status == 'processing')
+                                    <th>Processing Date :</th>
+                                    <th>{{ $order->processing_date }}</th>
+                                @elseif($order->status == 'delivered')
+                                    <th>Delivered Date :</th>
+                                    <th>{{ $order->delivered_date }}</th>
+                                @endif
                             </tr>
                             <tr>
                                 <th>Discount :</th>

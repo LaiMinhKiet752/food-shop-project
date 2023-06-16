@@ -47,20 +47,16 @@
                                     <td>${{ $item->amount }}</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td>
-                                        @if ($item->cancel_order_status == 1)
-                                            <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
-                                                Pending</span>
-                                        @elseif ($item->cancel_order_status == 2)
-                                            <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                                Success</span>
-                                        @endif
+                                        <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
+                                            Pending</span>
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.cancel.order.details', $item->id) }}" class="btn btn-info"
                                             title="Details"><i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('admin.cancel.request.approved', $item->id) }}" class="btn btn-danger"
-                                            title="Approved" id="approved_cancel"><i class="fa-solid fa-check"></i>
+                                        <a href="{{ route('admin.cancel.request.approved', $item->id) }}"
+                                            class="btn btn-danger" title="Approved" id="approved_cancel"><i
+                                                class="fa-solid fa-check"></i>
                                         </a>
                                     </td>
                                 </tr>

@@ -115,9 +115,13 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
 
     //Vendor Order All Route
     Route::controller(VendorOrderController::class)->group(function () {
-        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
+        Route::get('/vendor/all/order', 'VendorOrder')->name('vendor.all.order');
+        Route::get('/vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
+        Route::get('/vendor/return/order/details/{order_id}', 'VendorReturnOrderDetails')->name('vendor.return.order.details');
+        Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
+        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
     });
-}); //End Group Middlware Vendor
+}); //End Group Middleware Vendor
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -328,21 +332,20 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
 
-//Frontend Coupon Option
-Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
-Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
-
-//Checkout Page Route
-Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
-
-//My Cart Route
+//Cart All Route
 Route::controller(CartController::class)->group(function () {
+    //My Cart Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
+    //Frontend Coupon Option
+    Route::post('/coupon-apply', 'CouponApply');
+    Route::get('/coupon-calculation', 'CouponCalculation');
+    Route::get('/coupon-remove', 'CouponRemove');
+    //Checkout Page Route
+    Route::get('/checkout', 'CheckoutCreate')->name('checkout');
 });
 
 //Add To Wishlist

@@ -1,21 +1,24 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Cancel Order</div>
+            <div class="breadcrumb-title pe-3">Order</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Cancel Orders Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">Order Details</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('admin.cancel.request') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                    <div class="btn-group">
+                        <a href="{{ route('vendor.all.order') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
+                                Back</i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,8 +94,22 @@
                                 <th>{{ $order->order_date }}</th>
                             </tr>
                             <tr>
-                                <th>Cancel Date :</th>
-                                <th>{{ $order->cancel_date }}</th>
+                                @if ($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                    <th>Confirmed Date :</th>
+                                    <th>{{ $order->confirmed_date }}</th>
+                                @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                    <th>Cancel Date :</th>
+                                    <th>{{ $order->cancel_date }}</th>
+                                @elseif($order->status == 'processing')
+                                    <th>Processing Date :</th>
+                                    <th>{{ $order->processing_date }}</th>
+                                @elseif($order->status == 'delivered' && $order->return_order_status == 0)
+                                    <th>Delivered Date :</th>
+                                    <th>{{ $order->delivered_date }}</th>
+                                @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
+                                    <th>Return Date :</th>
+                                    <th>{{ $order->return_date }}</th>
+                                @endif
                             </tr>
                             <tr>
                                 <th>Discount :</th>
@@ -111,14 +128,36 @@
                                 <th>{{ $order->payment_type }}</th>
                             </tr>
                             <tr>
-                                <th>Order Cancel Status :</th>
+                                <th>Order Status :</th>
                                 <th>
-                                    @if ($order->cancel_order_status == 1)
-                                        <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
-                                            Pending</span>
-                                    @elseif ($order->cancel_order_status == 2)
-                                        <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                            Success</span>
+                                    @if ($order->status == 'pending' && $order->cancel_order_status == 0)
+                                        <span class="badge bg-warning" style="font-size: 13px;">
+                                            Pending
+                                        </span>
+                                    @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                        <span class="badge bg-secondary" style="font-size: 13px;">
+                                            Cancel
+                                        </span>
+                                    @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                        <span class="badge bg-info" style="font-size: 13px;">
+                                            Confirmed
+                                        </span>
+                                    @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                        <span class="badge bg-secondary" style="font-size: 13px;">
+                                            Cancel
+                                        </span>
+                                    @elseif($order->status == 'processing')
+                                        <span class="badge bg-danger" style="font-size: 13px;">
+                                            Processing
+                                        </span>
+                                    @elseif($order->status == 'delivered' && $order->return_order_status == 0)
+                                        <span class="badge bg-success" style="font-size: 13px;">
+                                            Delivered
+                                        </span>
+                                    @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
+                                        <span class="badge bg-dark" style="font-size: 13px;">
+                                            Return
+                                        </span>
                                     @endif
                                 </th>
                             </tr>
