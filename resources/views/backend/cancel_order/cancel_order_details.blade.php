@@ -15,7 +15,17 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('admin.cancel.request') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                    @if ($order->cancel_order_status == 1)
+                        <div class="btn-group">
+                            <a href="{{ route('admin.cancel.request') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go Back</i></a>
+                        </div>
+                    @elseif ($order->cancel_order_status == 2)
+                        <div class="btn-group">
+                            <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go Back</i></a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

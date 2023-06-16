@@ -89,6 +89,24 @@
                                                     <th>{{ $order->order_date }}</th>
                                                 </tr>
                                                 <tr>
+                                                    @if ($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                                        <th>Confirmed Date :</th>
+                                                        <th>{{ $order->confirmed_date }}</th>
+                                                    @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                        <th>Cancel Date :</th>
+                                                        <th>{{ $order->cancel_date }}</th>
+                                                    @elseif($order->status == 'processing')
+                                                        <th>Processing Date :</th>
+                                                        <th>{{ $order->processing_date }}</th>
+                                                    @elseif($order->status == 'delivered' && $order->return_order_status == 0)
+                                                        <th>Delivered Date :</th>
+                                                        <th>{{ $order->delivered_date }}</th>
+                                                    @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
+                                                        <th>Return Date :</th>
+                                                        <th>{{ $order->return_date }}</th>
+                                                    @endif
+                                                </tr>
+                                                <tr>
                                                     <th>Discount :</th>
                                                     <th>${{ $order->discount }}</th>
                                                 </tr>
@@ -108,34 +126,32 @@
                                                     <th>Order Status :</th>
                                                     <th>
                                                         @if ($order->status == 'pending' && $order->cancel_order_status == 0)
-                                                            <span class="badge rounded-pill bg-warning"
-                                                                style="font-size: 13px;">
+                                                            <span class="badge bg-warning" style="font-size: 13px;">
                                                                 Pending
                                                             </span>
-                                                        @elseif ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
-                                                            <span class="badge rounded-pill bg-secondary"
-                                                                style="font-size: 13px;">
+                                                        @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                            <span class="badge bg-secondary" style="font-size: 13px;">
                                                                 Cancel
                                                             </span>
-                                                        @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
-                                                            <span class="badge rounded-pill bg-info"
-                                                                style="font-size: 13px;">
+                                                        @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                                            <span class="badge bg-info" style="font-size: 13px;">
                                                                 Confirmed
                                                             </span>
                                                         @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
-                                                            <span class="badge rounded-pill bg-secondary"
-                                                                style="font-size: 13px;">
+                                                            <span class="badge bg-secondary" style="font-size: 13px;">
                                                                 Cancel
                                                             </span>
-                                                        @elseif ($order->status == 'processing')
-                                                            <span class="badge rounded-pill bg-danger"
-                                                                style="font-size: 13px;">
+                                                        @elseif($order->status == 'processing')
+                                                            <span class="badge bg-danger" style="font-size: 13px;">
                                                                 Processing
                                                             </span>
-                                                        @elseif($order->status == 'delivered')
-                                                            <span class="badge rounded-pill bg-success"
-                                                                style="font-size: 13px;">
+                                                        @elseif($order->status == 'delivered' && $order->return_order_status == 0)
+                                                            <span class="badge bg-success" style="font-size: 13px;">
                                                                 Delivered
+                                                            </span>
+                                                        @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
+                                                            <span class="badge bg-dark" style="font-size: 13px;">
+                                                                Return
                                                             </span>
                                                         @endif
                                                     </th>

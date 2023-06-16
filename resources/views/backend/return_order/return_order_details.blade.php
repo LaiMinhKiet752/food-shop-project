@@ -15,9 +15,17 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <div class="btn-group">
-                        <a href="{{ route('admin.return.request') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
-                    </div>
+                    @if ($order->return_order_status == 1)
+                        <div class="btn-group">
+                            <a href="{{ route('admin.return.request') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go Back</i></a>
+                        </div>
+                    @elseif ($order->return_order_status == 2)
+                        <div class="btn-group">
+                            <a href="{{ route('admin.complete.return.request') }}" class="btn btn-primary"><i
+                                    class="lni lni-arrow-left"> Go Back</i></a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
