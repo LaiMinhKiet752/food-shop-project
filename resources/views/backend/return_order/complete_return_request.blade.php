@@ -9,7 +9,7 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Complete Return Orders</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Approved Return Orders</li>
                     </ol>
                 </nav>
             </div>
@@ -49,13 +49,8 @@
                                     <td>{{ $item->payment_method }}</td>
                                     <td>{{ $item->return_reason }}</td>
                                     <td>
-                                        @if ($item->return_order_status == 1)
-                                            <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
-                                                Pending</span>
-                                        @elseif ($item->return_order_status == 2)
-                                            <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                                Success</span>
-                                        @endif
+                                        <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                            Success</span>
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.return.order.details', $item->id) }}" class="btn btn-info"

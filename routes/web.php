@@ -115,9 +115,16 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
 
     //Vendor Order All Route
     Route::controller(VendorOrderController::class)->group(function () {
-        Route::get('/vendor/order', 'VendorOrder')->name('vendor.order');
+        Route::get('/vendor/all/order', 'VendorOrder')->name('vendor.all.order');
+        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
+        Route::get('/vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
+        Route::get('/vendor/return/order/details/{order_id}', 'VendorReturnOrderDetails')->name('vendor.return.order.details');
+        Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
+        Route::get('/vendor/cancel/order', 'VendorCancelOrder')->name('vendor.cancel.order');
+        Route::get('/vendor/cancel/order/details/{order_id}', 'VendorCancelOrderDetails')->name('vendor.cancel.order.details');
+        Route::get('/vendor/complete/cancel/order', 'VendorCompleteCancelOrder')->name('vendor.complete.cancel.order');
     });
-}); //End Group Middlware Vendor
+}); //End Group Middleware Vendor
 
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -328,21 +335,20 @@ Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'Ad
 Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
 
-//Frontend Coupon Option
-Route::post('/coupon-apply', [CartController::class, 'CouponApply']);
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
-Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);
-
-//Checkout Page Route
-Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
-
-//My Cart Route
+//Cart All Route
 Route::controller(CartController::class)->group(function () {
+    //My Cart Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
+    //Frontend Coupon Option
+    Route::post('/coupon-apply', 'CouponApply');
+    Route::get('/coupon-calculation', 'CouponCalculation');
+    Route::get('/coupon-remove', 'CouponRemove');
+    //Checkout Page Route
+    Route::get('/checkout', 'CheckoutCreate')->name('checkout');
 });
 
 //Add To Wishlist
@@ -408,9 +414,9 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
         Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
-        Route::post('/user/return/order/{order_id}', 'ReturnOrder')->name('user.return.order');
-        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
         Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
+        Route::post('/user/return/order/{order_id}', 'ReturnOrderSubmit')->name('user.return.order');
+        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
         Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
         Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
         Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');

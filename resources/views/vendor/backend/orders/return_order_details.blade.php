@@ -1,5 +1,5 @@
-@extends('admin.admin_dashboard')
-@section('admin')
+@extends('vendor.vendor_dashboard')
+@section('vendor')
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -17,12 +17,12 @@
                 <div class="btn-group">
                     @if ($order->return_order_status == 1)
                         <div class="btn-group">
-                            <a href="{{ route('admin.return.request') }}" class="btn btn-primary"><i
+                            <a href="{{ route('vendor.return.order') }}" class="btn btn-primary"><i
                                     class="lni lni-arrow-left"> Go Back</i></a>
                         </div>
                     @elseif ($order->return_order_status == 2)
                         <div class="btn-group">
-                            <a href="{{ route('admin.complete.return.request') }}" class="btn btn-primary"><i
+                            <a href="{{ route('vendor.complete.return.order') }}" class="btn btn-primary"><i
                                     class="lni lni-arrow-left"> Go Back</i></a>
                         </div>
                     @endif

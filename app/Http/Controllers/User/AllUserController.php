@@ -50,7 +50,13 @@ class AllUserController extends Controller
         return $pdf->download('invoice.pdf');
     } //End Method
 
-    public function ReturnOrder(Request $request, $order_id)
+    public function ReturnOrderPage()
+    {
+        $orders = Order::where('user_id', Auth::id())->where('return_date', '!=', NULL)->orderBy('return_date', 'DESC')->get();
+        return view('frontend.order.return_order_view', compact('orders'));
+    } //End Method
+
+    public function ReturnOrderSubmit(Request $request, $order_id)
     {
         Order::findOrFail($order_id)->update([
             'return_date' => Carbon::now()->format('d F Y H:i:s'),
@@ -58,16 +64,10 @@ class AllUserController extends Controller
             'return_order_status' => 1,
         ]);
         $notification = array(
-            'message' => 'Return Request Successful!',
+            'message' => 'Order Return Request Successful!',
             'alert-type' => 'success'
         );
         return redirect()->route('user.order.page')->with($notification);
-    } //End Method
-
-    public function ReturnOrderPage()
-    {
-        $orders = Order::where('user_id', Auth::id())->where('return_date', '!=', NULL)->orderBy('return_date', 'DESC')->get();
-        return view('frontend.order.return_order_view', compact('orders'));
     } //End Method
 
     public function ReturnOrderDetails($order_id)
@@ -91,7 +91,7 @@ class AllUserController extends Controller
             'cancel_order_status' => 1,
         ]);
         $notification = array(
-            'message' => 'Cancel Request Successful!',
+            'message' => 'Order Cancellation Request Successful!',
             'alert-type' => 'success'
         );
         return redirect()->route('user.order.page')->with($notification);

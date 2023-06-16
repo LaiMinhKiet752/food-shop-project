@@ -16,7 +16,7 @@
                 <div class="banner-img style-2">
                     <div class="banner-text">
                         <h2 class="mb-100">Bring nature into your home</h2>
-                        <a href="shop-grid-right.html" class="btn btn-xs">Shop Now <i
+                        <a href="{{ url('/') }}" class="btn btn-xs">Shop Now <i
                                 class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>
@@ -151,7 +151,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 1500
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
