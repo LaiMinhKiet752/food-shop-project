@@ -116,10 +116,13 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
     //Vendor Order All Route
     Route::controller(VendorOrderController::class)->group(function () {
         Route::get('/vendor/all/order', 'VendorOrder')->name('vendor.all.order');
+        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
         Route::get('/vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
         Route::get('/vendor/return/order/details/{order_id}', 'VendorReturnOrderDetails')->name('vendor.return.order.details');
         Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
-        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
+        Route::get('/vendor/cancel/order', 'VendorCancelOrder')->name('vendor.cancel.order');
+        Route::get('/vendor/cancel/order/details/{order_id}', 'VendorCancelOrderDetails')->name('vendor.cancel.order.details');
+        Route::get('/vendor/complete/cancel/order', 'VendorCompleteCancelOrder')->name('vendor.complete.cancel.order');
     });
 }); //End Group Middleware Vendor
 

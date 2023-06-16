@@ -52,8 +52,16 @@
                     <li> <a href="{{ route('vendor.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Return
                             Order</a>
                     </li>
-                    <li> <a href="{{ route('vendor.complete.return.order') }}"><i class="bx bx-right-arrow-alt"></i>Complete
+                    <li> <a href="{{ route('vendor.complete.return.order') }}"><i
+                                class="bx bx-right-arrow-alt"></i>Complete
                             Return Order</a>
+                    </li>
+                    <li> <a href="{{ route('vendor.cancel.order') }}"><i class="bx bx-right-arrow-alt"></i>Cancel
+                            Order</a>
+                    </li>
+                    <li> <a href="{{ route('vendor.complete.cancel.order') }}"><i
+                                class="bx bx-right-arrow-alt"></i>Complete
+                            Cancel Order</a>
                     </li>
                 </ul>
             </li>

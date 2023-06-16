@@ -20,6 +20,13 @@ class VendorOrderController extends Controller
         return view('vendor.backend.orders.all_orders', compact('orderdetails'));
     } // End Method
 
+    public function VendorOrderDetails($order_id)
+    {
+        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
+        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+        return view('vendor.backend.orders.vendor_order_details', compact('order', 'orderItem'));
+    } // End Method
+
     public function VendorReturnOrder()
     {
         $id = Auth::user()->id;
@@ -41,10 +48,24 @@ class VendorOrderController extends Controller
         return view('vendor.backend.orders.complete_return_orders', compact('orderdetails'));
     } // End Method
 
-    public function VendorOrderDetails($order_id)
+    public function VendorCancelOrder()
+    {
+        $id = Auth::user()->id;
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        return view('vendor.backend.orders.cancel_orders', compact('orderdetails'));
+    } // End Method
+
+    public function VendorCancelOrderDetails($order_id)
     {
         $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-        return view('vendor.backend.orders.vendor_order_details', compact('order', 'orderItem'));
+        return view('vendor.backend.orders.cancel_order_details', compact('order', 'orderItem'));
+    } // End Method
+
+    public function VendorCompleteCancelOrder()
+    {
+        $id = Auth::user()->id;
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        return view('vendor.backend.orders.complete_cancel_orders', compact('orderdetails'));
     } // End Method
 }

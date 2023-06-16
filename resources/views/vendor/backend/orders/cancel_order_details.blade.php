@@ -3,26 +3,26 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Return Order</div>
+            <div class="breadcrumb-title pe-3">Cancel Order</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Return Orders Details</li>
+                        <li class="breadcrumb-item active" aria-current="page">Cancel Orders Details</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    @if ($order->return_order_status == 1)
+                    @if ($order->cancel_order_status == 1)
                         <div class="btn-group">
-                            <a href="{{ route('vendor.return.order') }}" class="btn btn-primary"><i
+                            <a href="{{ route('vendor.cancel.order') }}" class="btn btn-primary"><i
                                     class="lni lni-arrow-left"> Go Back</i></a>
                         </div>
-                    @elseif ($order->return_order_status == 2)
+                    @elseif ($order->cancel_order_status == 2)
                         <div class="btn-group">
-                            <a href="{{ route('vendor.complete.return.order') }}" class="btn btn-primary"><i
+                            <a href="{{ route('vendor.complete.cancel.order') }}" class="btn btn-primary"><i
                                     class="lni lni-arrow-left"> Go Back</i></a>
                         </div>
                     @endif
@@ -101,8 +101,8 @@
                                 <th>{{ $order->order_date }}</th>
                             </tr>
                             <tr>
-                                <th>Return Date :</th>
-                                <th>{{ $order->return_date }}</th>
+                                <th>Cancel Date :</th>
+                                <th>{{ $order->cancel_date }}</th>
                             </tr>
                             <tr>
                                 <th>Discount :</th>
@@ -121,12 +121,12 @@
                                 <th>{{ $order->payment_type }}</th>
                             </tr>
                             <tr>
-                                <th>Order Return Status :</th>
+                                <th>Order Cancel Status :</th>
                                 <th>
-                                    @if ($order->return_order_status == 1)
+                                    @if ($order->cancel_order_status == 1)
                                         <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
                                             Pending</span>
-                                    @elseif ($order->return_order_status == 2)
+                                    @elseif ($order->cancel_order_status == 2)
                                         <span class="badge rounded-pill bg-success" style="font-size: 13px;">
                                             Success</span>
                                     @endif
