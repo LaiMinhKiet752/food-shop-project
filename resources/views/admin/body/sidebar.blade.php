@@ -32,8 +32,12 @@
                 </li>
                 <li> <a href="{{ route('add.brand') }}"><i class="bx bx-right-arrow-alt"></i>Add Brand</a>
                 </li>
+                <li> <a href="{{ route('restore.brand') }}"><i class="bx bx-right-arrow-alt"></i>Restore Brand</a>
+                </li>
             </ul>
         </li>
+
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
@@ -45,7 +49,8 @@
                 </li>
                 <li> <a href="{{ route('add.category') }}"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
                 </li>
-
+                <li> <a href="{{ route('restore.category') }}"><i class="bx bx-right-arrow-alt"></i>Restore Category</a>
+                </li>
             </ul>
         </li>
 
@@ -61,7 +66,8 @@
                 </li>
                 <li> <a href="{{ route('add.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Add SubCategory</a>
                 </li>
-
+                <li> <a href="{{ route('restore.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Restore SubCategory</a>
+                </li>
             </ul>
         </li>
 
@@ -76,7 +82,8 @@
                 </li>
                 <li> <a href="{{ route('add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add Product</a>
                 </li>
-
+                <li> <a href="{{ route('restore.product') }}"><i class="bx bx-right-arrow-alt"></i>Restore Product</a>
+                </li>
             </ul>
         </li>
 
@@ -92,7 +99,6 @@
                 </li>
                 <li> <a href="{{ route('add.slider') }}"><i class="bx bx-right-arrow-alt"></i>Add Slider</a>
                 </li>
-
             </ul>
         </li>
 
@@ -108,7 +114,6 @@
                 </li>
                 <li> <a href="{{ route('add.banner') }}"><i class="bx bx-right-arrow-alt"></i>Add Banner</a>
                 </li>
-
             </ul>
         </li>
 
@@ -124,7 +129,8 @@
                 </li>
                 <li> <a href="{{ route('add.coupon') }}"><i class="bx bx-right-arrow-alt"></i>Add Coupon</a>
                 </li>
-
+                <li> <a href="{{ route('restore.coupon') }}"><i class="bx bx-right-arrow-alt"></i>Restore Coupon</a>
+                </li>
             </ul>
         </li>
 
@@ -171,11 +177,14 @@
             <ul>
                 <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending Order</a>
                 </li>
-                <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirmed Order</a>
+                <li> <a href="{{ route('admin.confirmed.order') }}"><i class="bx bx-right-arrow-alt"></i>Confirmed
+                        Order</a>
                 </li>
-                <li> <a href="{{ route('admin.processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing Order</a>
+                <li> <a href="{{ route('admin.processing.order') }}"><i class="bx bx-right-arrow-alt"></i>Processing
+                        Order</a>
                 </li>
-                <li> <a href="{{ route('admin.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered Order</a>
+                <li> <a href="{{ route('admin.delivered.order') }}"><i class="bx bx-right-arrow-alt"></i>Delivered
+                        Order</a>
                 </li>
             </ul>
         </li>
@@ -188,9 +197,11 @@
                 <div class="menu-title">Return Order</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return Request</a>
+                <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return
+                        Request</a>
                 </li>
-                <li> <a href="{{ route('admin.complete.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Approved Return Request</a>
+                <li> <a href="{{ route('admin.complete.return.request') }}"><i
+                            class="bx bx-right-arrow-alt"></i>Approved Return Request</a>
             </ul>
         </li>
 
@@ -202,9 +213,11 @@
                 <div class="menu-title">Cancel Order</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Cancel Request</a>
+                <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Cancel
+                        Request</a>
                 </li>
-                <li> <a href="{{ route('admin.complete.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Approved Cancel Request</a>
+                <li> <a href="{{ route('admin.complete.cancel.request') }}"><i
+                            class="bx bx-right-arrow-alt"></i>Approved Cancel Request</a>
             </ul>
         </li>
 

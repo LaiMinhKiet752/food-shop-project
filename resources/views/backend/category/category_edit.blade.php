@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <img id="showImage" src="{{ asset($category->category_image) }}" alt="Category"
-                                                style="width:100px; height: 100px;">
+                                                style="width: 120px; height: 90px;">
                                         </div>
                                     </div>
                                     <div class="row">

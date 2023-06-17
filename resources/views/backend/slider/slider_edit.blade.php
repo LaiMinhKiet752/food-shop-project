@@ -87,7 +87,7 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <img id="showImage" src="{{ asset($sliders->slider_image) }}" alt="Admin"
-                                                style="width:200px; height: 150px;">
+                                                style="width: 250px; height: 120px;">
                                         </div>
                                     </div>
 

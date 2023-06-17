@@ -45,7 +45,7 @@
                             @foreach ($products as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
-                                    <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height: 40px;">
+                                    <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
                                     </td>
                                     <td>{{ $item->product_code }}</td>
                                     <td>{{ $item->product_name }}</td>
@@ -72,7 +72,7 @@
                                         @if ($item->status == 1)
                                             <span class="badge rounded-pill bg-success" style="font-size: 12px;">Active</span>
                                         @else
-                                            <span class="badge rounded-pill bg-primary" style="font-size: 12px;">InActive</span>
+                                            <span class="badge rounded-pill bg-secondary" style="font-size: 12px;">InActive</span>
                                         @endif
                                     </td>
                                     <td>
@@ -86,7 +86,7 @@
                                             <a href="{{ route('product.inactive', $item->id) }}" class="btn btn-success"
                                                 title="InActive Data"><i class="fa-solid fa-thumbs-up"></i></a>
                                         @else
-                                            <a href="{{ route('product.active', $item->id) }}" class="btn btn-primary"
+                                            <a href="{{ route('product.active', $item->id) }}" class="btn btn-secondary"
                                                 title="Active Data"><i class="fa-solid fa-thumbs-down"></i></a>
                                         @endif
                                     </td>

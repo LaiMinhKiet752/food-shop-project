@@ -49,7 +49,6 @@ return new class extends Migration
             $table->string('return_order_status')->default(0)->nullable();
             $table->string('status');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -151,7 +151,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 2000,
+                            timer: 3000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
