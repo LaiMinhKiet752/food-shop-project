@@ -20,7 +20,7 @@
     <link href="{{ asset('adminbackend/assets/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('adminbackend/assets/css/icons.css') }}" rel="stylesheet">
 
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <title>Admin Login </title>
 </head>
@@ -170,27 +170,28 @@
 
     <script>
         @if (Session::has('message'))
-        toastr.options = {
+            toastr.options = {
                 'progressBar': true,
                 'closeButton': true,
                 'timeOut': 3000,
+                'extendedTimeOut': 3000,
             }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
+                    toastr.info(" {{ Session::get('message') }} ", "Noitce!");
                     break;
 
                 case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
+                    toastr.success(" {{ Session::get('message') }} ", "Success!");
                     break;
 
                 case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
+                    toastr.warning(" {{ Session::get('message') }} ", "Warning!");
                     break;
 
                 case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
+                    toastr.error(" {{ Session::get('message') }} ", "Error!");
                     break;
             }
         @endif

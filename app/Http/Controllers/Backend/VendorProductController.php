@@ -23,14 +23,12 @@ class VendorProductController extends Controller
         return view('vendor.backend.product.vendor_product_all', compact('products'));
     } // End Method
 
-
     public function VendorAddProduct()
     {
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         return view('vendor.backend.product.vendor_product_add', compact('brands', 'categories'));
     } //End Method
-
 
     public function VendorGetSubCategory($category_id)
     {
@@ -40,6 +38,17 @@ class VendorProductController extends Controller
 
     public function VendorStoreProduct(Request $request)
     {
+        $id = Auth::user()->id;
+        $product_check = Product::where('vendor_id', $id)->onlyTrashed()->get();
+        foreach ($product_check as $product) {
+            if ($product['product_name'] == $request->product_name) {
+                $notification = array(
+                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $request->validate([
             'product_code' => 'unique:products',
             'product_thumbnail' => 'image|max:2048',
@@ -122,6 +131,17 @@ class VendorProductController extends Controller
 
     public function VendorUpdateProduct(Request $request)
     {
+        $id = Auth::user()->id;
+        $product_check = Product::where('vendor_id', $id)->onlyTrashed()->get();
+        foreach ($product_check as $product) {
+            if ($product['product_name'] == $request->product_name) {
+                $notification = array(
+                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $product_id = $request->id;
         $current_product_code = Product::findOrFail($product_id)->product_code;
 
@@ -333,7 +353,6 @@ class VendorProductController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
-
     public function VendorProductInactive($id)
     {
         Product::findOrFail($id)->update([
@@ -345,7 +364,6 @@ class VendorProductController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
-
 
     public function VendorProductActive($id)
     {
@@ -376,4 +394,31 @@ class VendorProductController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
+    public function VendorRestoreProduct()
+    {
+        $id = Auth::user()->id;
+        $products = Product::where('vendor_id', $id)->onlyTrashed()->get();
+        return view('vendor.backend.product.vendor_product_restore', compact('products'));
+    } //End Method
+
+    public function VendorRestoreProductSubmit($id)
+    {
+        Product::whereId($id)->restore();
+        $notification = array(
+            'message' => 'Product Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function VendorRestoreAllProductSubmit()
+    {
+        $id = Auth::user()->id;
+        Product::where('vendor_id', $id)->onlyTrashed()->restore();
+        $notification = array(
+            'message' => 'All Product Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
 }

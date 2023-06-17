@@ -108,8 +108,10 @@
                 title: 'Thank you!',
                 text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
                 timerProgressBar: true,
-                showConfirmButton: false,
-                timer: 5000
+                showConfirmButton: true,
+                timer: 5000,
+                confirmButtonText: "OK",
+                confirmButtonColor: '#3BB77E',
             })
         @endif
     </script>
@@ -122,8 +124,10 @@
                 title: 'Unfortunately!',
                 text: 'You Canceled Payment!',
                 timerProgressBar: true,
-                showConfirmButton: false,
-                timer: 5000
+                showConfirmButton: true,
+                timer: 5000,
+                confirmButtonText: "OK",
+                confirmButtonColor: '#FF0000',
             })
         @endif
     </script>
@@ -136,8 +140,10 @@
                 title: 'Thank you!',
                 text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
                 timerProgressBar: true,
-                showConfirmButton: false,
-                timer: 5000
+                showConfirmButton: true,
+                timer: 5000,
+                confirmButtonText: "OK",
+                confirmButtonColor: '#3BB77E',
             })
         @endif
     </script>
@@ -150,23 +156,24 @@
                 'progressBar': true,
                 'closeButton': true,
                 'timeOut': 3000,
+                'extendedTimeOut': 3000,
             }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
+                    toastr.info(" {{ Session::get('message') }} ", "Noitce!");
                     break;
 
                 case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
+                    toastr.success(" {{ Session::get('message') }} ", "Success!");
                     break;
 
                 case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
+                    toastr.warning(" {{ Session::get('message') }} ", "Warning!");
                     break;
 
                 case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
+                    toastr.error(" {{ Session::get('message') }} ", "Error!");
                     break;
             }
         @endif
@@ -271,7 +278,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -314,7 +321,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -388,7 +395,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -469,7 +476,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -503,7 +510,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -607,7 +614,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -641,7 +648,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -735,7 +742,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -805,7 +812,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -926,7 +933,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 2000,
+                        timer: 3000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({

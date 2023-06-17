@@ -3,23 +3,28 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Brand</div>
+            <div class="breadcrumb-title pe-3">Coupon</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Brand</li>
+                        <li class="breadcrumb-item active" aria-current="page">Restore Coupon</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
+                @if (!$coupon->isEmpty())
                 <div class="btn-group">
-                    <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Brand</i></a>
+                    <a href="{{ route('restore.all.coupon.submit') }}" class="btn btn-danger" id="restore_all_coupon"><i
+                            class="lni lni-angle-double-up"> Restore All Coupon</i></a>
                 </div>
+            @else
+            @endif
             </div>
         </div>
         <!--end breadcrumb-->
+
         <hr />
         <div class="card">
             <div class="card-body">
@@ -28,26 +33,21 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
-                                <th>Brand Email</th>
-                                <th>Brand Phone</th>
-                                <th>Brand Address</th>
+                                <th>Coupon Code</th>
+                                <th>Coupon Discount</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($brands as $key => $item)
+                            @foreach ($coupon as $key => $item)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->brand_name }}</td>
-                                    <td><img src="{{ asset($item->brand_image) }}" style="width: 100px; height: 70px;"></td>
-                                    <td>{{ $item->brand_email }}</td>
-                                    <td>{{ $item->brand_phone }}</td>
-                                    <td>{{ $item->brand_address }}</td>
+                                    <td> {{ $key + 1 }} </td>
+                                    <td> {{ $item->coupon_code }}</td>
+                                    <td> <span class="badge rounded-pill bg-danger">- {{ $item->coupon_discount }}%</span>
+                                    </td>
                                     <td>
-                                        <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('restore.coupon.submit', $item->id) }}" class="btn btn-warning"
+                                            id="restore_coupon">Restore</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -55,11 +55,8 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
-                                <th>Brand Name</th>
-                                <th>Brand Image</th>
-                                <th>Brand Email</th>
-                                <th>Brand Phone</th>
-                                <th>Brand Address</th>
+                                <th>Coupon Code</th>
+                                <th>Coupon Discount</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>

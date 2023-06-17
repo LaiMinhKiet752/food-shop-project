@@ -31,6 +31,16 @@ class ProductController extends Controller
 
     public function StoreProduct(Request $request)
     {
+        $product_check = Product::onlyTrashed()->get();
+        foreach ($product_check as $product) {
+            if ($product['product_name'] == $request->product_name) {
+                $notification = array(
+                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $request->validate([
             'product_code' => 'unique:products',
             'product_thumbnail' => 'image|max:2048',
@@ -115,6 +125,16 @@ class ProductController extends Controller
 
     public function UpdateProduct(Request $request)
     {
+        $product_check = Product::onlyTrashed()->get();
+        foreach ($product_check as $product) {
+            if ($product['product_name'] == $request->product_name) {
+                $notification = array(
+                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $product_id = $request->id;
         $current_product_code = Product::findOrFail($product_id)->product_code;
         if ($current_product_code != $request->product_code) {
@@ -362,6 +382,32 @@ class ProductController extends Controller
         }
         $notification = array(
             'message' => 'Product Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function RestoreProduct()
+    {
+        $products = Product::onlyTrashed()->get();
+        return view('backend.product.product_restore', compact('products'));
+    } //End Method
+
+    public function RestoreProductSubmit($id)
+    {
+        Product::whereId($id)->restore();
+        $notification = array(
+            'message' => 'Product Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function RestoreAllProductSubmit()
+    {
+        Product::onlyTrashed()->restore();
+        $notification = array(
+            'message' => 'All Product Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

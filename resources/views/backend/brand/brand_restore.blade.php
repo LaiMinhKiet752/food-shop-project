@@ -9,14 +9,19 @@
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">All Brand</li>
+                        <li class="breadcrumb-item active" aria-current="page">Restore Brand</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Brand</i></a>
-                </div>
+                @if (!$brands->isEmpty())
+                    <div class="btn-group">
+                        <a href="{{ route('restore.all.brand.submit') }}" class="btn btn-danger" id="restore_all_brand"><i
+                                class="lni lni-angle-double-up"> Restore All
+                                Brand</i></a>
+                    </div>
+                @else
+                @endif
             </div>
         </div>
         <!--end breadcrumb-->
@@ -41,13 +46,13 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->brand_name }}</td>
-                                    <td><img src="{{ asset($item->brand_image) }}" style="width: 100px; height: 70px;"></td>
+                                    <td><img src="{{ asset($item->brand_image) }}" style="width: 70px; height: 40px;"></td>
                                     <td>{{ $item->brand_email }}</td>
                                     <td>{{ $item->brand_phone }}</td>
                                     <td>{{ $item->brand_address }}</td>
                                     <td>
-                                        <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('restore.brand.submit', $item->id) }}" class="btn btn-warning"
+                                            id="restore_brand">Restore</a>
                                     </td>
                                 </tr>
                             @endforeach

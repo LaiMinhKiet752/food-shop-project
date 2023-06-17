@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('slider_image');
             $table->enum('status',['show','hide'])->default('show');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

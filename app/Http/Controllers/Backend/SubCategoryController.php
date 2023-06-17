@@ -23,6 +23,16 @@ class SubCategoryController extends Controller
 
     public function StoreSubCategory(Request $request)
     {
+        $subcategory_check = Subcategory::onlyTrashed()->get();
+        foreach ($subcategory_check as $subcategory) {
+            if ($subcategory['subcategory_name'] == $request->subcategory_name) {
+                $notification = array(
+                    'message' => "This Subcategory Name Has Been Temporarily Removed. Please Check Again In 'Restore Subcategory'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $request->validate([
             'subcategory_name' => 'unique:sub_categories'
         ], [
@@ -50,6 +60,16 @@ class SubCategoryController extends Controller
 
     public function UpdateSubcategory(Request $request)
     {
+        $subcategory_check = Subcategory::onlyTrashed()->get();
+        foreach ($subcategory_check as $subcategory) {
+            if ($subcategory['subcategory_name'] == $request->subcategory_name) {
+                $notification = array(
+                    'message' => "This Subcategory Name Has Been Temporarily Removed. Please Check Again In 'Restore Subcategory'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $subcat_id = $request->id;
         $current_subcategory_name = SubCategory::findOrFail($subcat_id)->subcategory_name;
         if ($current_subcategory_name == $request->subcategory_name) {
@@ -88,6 +108,32 @@ class SubCategoryController extends Controller
         SubCategory::findOrFail($id)->delete();
         $notification = array(
             'message' => 'SubCategory Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function RestoreSubcategory()
+    {
+        $subcategories = Subcategory::onlyTrashed()->get();
+        return view('backend.subcategory.subcategory_restore', compact('subcategories'));
+    } //End Method
+
+    public function RestoreSubcategorySubmit($id)
+    {
+        Subcategory::whereId($id)->restore();
+        $notification = array(
+            'message' => 'Subcategory Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function RestoreAllSubcategorySubmit()
+    {
+        Subcategory::onlyTrashed()->restore();
+        $notification = array(
+            'message' => 'All Subcategory Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

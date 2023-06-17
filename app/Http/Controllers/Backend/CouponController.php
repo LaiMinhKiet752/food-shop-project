@@ -22,6 +22,16 @@ class CouponController extends Controller
 
     public function StoreCoupon(Request $request)
     {
+        $coupon_check = Coupon::onlyTrashed()->get();
+        foreach ($coupon_check as $coupon) {
+            if ($coupon['coupon_code'] == $request->coupon_code) {
+                $notification = array(
+                    'message' => "This Coupon Code Has Been Temporarily Removed. Please Check Again In 'Restore Coupon'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $request->validate([
             'coupon_code' => 'unique:coupons',
         ], [
@@ -49,6 +59,16 @@ class CouponController extends Controller
 
     public function UpdateCoupon(Request $request)
     {
+        $coupon_check = Coupon::onlyTrashed()->get();
+        foreach ($coupon_check as $coupon) {
+            if ($coupon['coupon_code'] == $request->coupon_code) {
+                $notification = array(
+                    'message' => "This Coupon Code Has Been Temporarily Removed. Please Check Again In 'Restore Coupon'",
+                    'alert-type' => 'warning',
+                );
+                return redirect()->back()->with($notification);
+            }
+        }
         $coupon_id = $request->id;
         $current_coupon_code = Coupon::findOrFail($coupon_id)->coupon_code;
 
@@ -92,4 +112,30 @@ class CouponController extends Controller
         );
         return redirect()->back()->with($notification);
     } // End Method
+
+    public function RestoreCoupon()
+    {
+        $coupon = Coupon::onlyTrashed()->get();
+        return view('backend.coupon.coupon_restore', compact('coupon'));
+    } //End Method
+
+    public function RestoreCouponSubmit($id)
+    {
+        Coupon::whereId($id)->restore();
+        $notification = array(
+            'message' => 'Coupon Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function RestoreAllCouponSubmit()
+    {
+        Coupon::onlyTrashed()->restore();
+        $notification = array(
+            'message' => 'All Coupon Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
 }

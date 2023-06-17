@@ -42,7 +42,7 @@
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->slider_title }}</td>
                                     <td>{{ $item->short_title }}</td>
-                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 100px; height: 60px;">
+                                    <td><img src="{{ asset($item->slider_image) }}" style="width: 150px; height: 80px;">
                                         <td>
                                             @if ($item->status == 'hide')
                                                 <span class="badge rounded-pill bg-dark" style="font-size: 12px;">Hide</span>

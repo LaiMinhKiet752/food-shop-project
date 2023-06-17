@@ -38,7 +38,7 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
 
@@ -210,23 +210,24 @@
                 'progressBar': true,
                 'closeButton': true,
                 'timeOut': 3000,
+                'extendedTimeOut': 3000,
             }
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
-                    toastr.info(" {{ Session::get('message') }} ");
+                    toastr.info(" {{ Session::get('message') }} ", "Noitce!");
                     break;
 
                 case 'success':
-                    toastr.success(" {{ Session::get('message') }} ");
+                    toastr.success(" {{ Session::get('message') }} ", "Success!");
                     break;
 
                 case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ");
+                    toastr.warning(" {{ Session::get('message') }} ", "Warning!");
                     break;
 
                 case 'error':
-                    toastr.error(" {{ Session::get('message') }} ");
+                    toastr.error(" {{ Session::get('message') }} ", "Error!");
                     break;
             }
         @endif

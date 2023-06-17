@@ -72,7 +72,7 @@
                                         @if ($item->status == 1)
                                             <span class="badge rounded-pill bg-success" style="font-size: 12px;">Active</span>
                                         @else
-                                            <span class="badge rounded-pill bg-primary" style="font-size: 12px;">InActive</span>
+                                            <span class="badge rounded-pill bg-secondary" style="font-size: 12px;">InActive</span>
                                         @endif
                                     </td>
                                     <td>
@@ -88,7 +88,7 @@
                                                     class="fa-solid fa-thumbs-up"></i></a>
                                         @else
                                             <a href="{{ route('vendor.product.active', $item->id) }}"
-                                                class="btn btn-primary" title="Active Data"><i
+                                                class="btn btn-secondary" title="Active Data"><i
                                                     class="fa-solid fa-thumbs-down"></i></a>
                                         @endif
                                     </td>

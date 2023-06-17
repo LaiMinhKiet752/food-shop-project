@@ -59,7 +59,7 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <img id="showImage" src="{{ url('upload/no_image.jpg') }}" alt="Admin"
-                                                style="width:200px; height: 150px;">
+                                                style="width: 250px; height: 120px;">
                                         </div>
                                     </div>
                                     <div class="row">

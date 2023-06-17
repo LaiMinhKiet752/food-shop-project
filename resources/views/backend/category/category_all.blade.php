@@ -38,7 +38,7 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->category_name	 }}</td>
-                                    <td><img src="{{ asset($item->category_image) }}" style="width: 70px; height: 40px;"></td>
+                                    <td><img src="{{ asset($item->category_image) }}" style="width: 100px; height: 70px;"></td>
                                     <td>
                                         <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
                                         <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
