@@ -274,7 +274,7 @@ $(function () {
     });
 });
 
-//Restore Product
+//Admin Restore Product
 $(function () {
     $(document).on("click", "#restore_product", function (e) {
         e.preventDefault();
@@ -297,9 +297,55 @@ $(function () {
     });
 });
 
-//Restore All Product
+//Admin Restore All Product
 $(function () {
     $(document).on("click", "#restore_all_product", function (e) {
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Restore all product!",
+            icon: "warning",
+            showCancelButton: true,
+            timerProgressBar: true,
+            timer: 5000,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Restore all !",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+            }
+        });
+    });
+});
+
+//Vendor Restore Product
+$(function () {
+    $(document).on("click", "#vendor_restore_product", function (e) {
+        e.preventDefault();
+        var link = $(this).attr("href");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Restore this product!",
+            icon: "warning",
+            showCancelButton: true,
+            timerProgressBar: true,
+            timer: 5000,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Restore it !",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link;
+            }
+        });
+    });
+});
+
+//Vendor Restore All Product
+$(function () {
+    $(document).on("click", "#vendor_restore_all_product", function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({

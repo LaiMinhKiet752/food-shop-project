@@ -111,6 +111,9 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
         Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
         Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
+        Route::get('/vendor/restore/product', 'VendorRestoreProduct')->name('vendor.restore.product');
+        Route::get('/vendor/restore/product/submit/{id}', 'VendorRestoreProductSubmit')->name('vendor.restore.product.submit');
+        Route::get('/vendor/restore/all/product/submit', 'VendorRestoreAllProductSubmit')->name('vendor.restore.all.product.submit');
     });
 
     //Vendor Order All Route

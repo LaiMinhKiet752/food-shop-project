@@ -37,7 +37,9 @@
                     <li> <a href="{{ route('vendor.add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add
                             Product</a>
                     </li>
-
+                    <li> <a href="{{ route('vendor.restore.product') }}"><i class="bx bx-right-arrow-alt"></i>Restore
+                            Product</a>
+                    </li>
                 </ul>
             </li>
             <li>
