@@ -72,4 +72,29 @@ class BlogController extends Controller
 
             return redirect()->back()->with($notification);
         }// End Method
+
+
+
+
+public function AllBlogPost(){
+
+    $blogpost = BlogPost::latest()->get();
+    return view('backend.blog.postt.blogpost_all',compact('blogpost'));
+
+} // End Method
+
+
+public function AddBlogPost(){
+    $blogcategory = BlogCategogy::latest()->get();
+    return view('backend.blog.postt.blogpost_add',compact('blogcategory'));
+} // End Method
+
+
+
+
+
+
 }
+
+
+
