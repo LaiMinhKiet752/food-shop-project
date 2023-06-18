@@ -9,6 +9,9 @@ class Order extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $casts = [
+        'order_date' => 'datetime',
+    ];
 
     public function city()
     {

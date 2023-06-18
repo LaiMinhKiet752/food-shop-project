@@ -77,7 +77,7 @@
                                 <h4>Order Details</h4>
                             </div>
                             <div class="col-md-6">
-                                <span class="text-danger" style="font-weight: bold; font-size: 15px;">Invoice Number :
+                                <span class="text-danger" style="font-weight: bold; font-size: 18px;">Invoice Number :
                                     {{ $order->invoice_number }}</span>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             </tr>
                             <tr>
                                 <th>Order Date :</th>
-                                <th>{{ $order->order_date }}</th>
+                                <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
                             </tr>
                             <tr>
                                 @if ($order->status == 'confirmed' && $order->cancel_order_status == 0)

@@ -3,19 +3,18 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Vendor</div>
+            <div class="breadcrumb-title pe-3">Customer</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Active Vendor</li>
+                        <li class="breadcrumb-item active" aria-current="page">All Customer</li>
                     </ol>
                 </nav>
             </div>
             <div class="ms-auto">
-                <div class="btn-group">
-                </div>
+
             </div>
         </div>
         <!--end breadcrumb-->
@@ -27,27 +26,30 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Image</th>
                                 <th>Full Name</th>
-                                <th>Shop Name</th>
-                                <th>User Name</th>
-                                <th>Founded Year</th>
                                 <th>Email</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Phone</th>
+                                <th>Online Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($activeVendor as $key => $item)
+                            @foreach ($users as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
+                                    <td><img src="{{ !empty($item->photo) ? url('upload/user_images/' . $item->photo) : url('upload/no_image.jpg') }}"
+                                            style="width: 100px; height: 100px;"></td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->shop_name }}</td>
-                                    <td>{{ $item->username }}</td>
-                                    <td>{{ $item->vendor_join }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td><span class="btn btn-success" style="font-size: 13px;">ACTIVE</span> </td>
+                                    <td>{{ $item->phone }}</td>
                                     <td>
-                                        <a href="{{ route('active.vendor.details', $item->id) }}" class="btn btn-info">Vendor Details</a>
+                                        @if ($item->UserOnline())
+                                            <span class="badge rounded-pill bg-success" style="font-size: 13px;">Active
+                                                Now</span>
+                                        @else
+                                            <span class="badge rounded-pill bg-danger"
+                                                style="font-size: 13px;">{{ Carbon\Carbon::parse($item->last_seen)->diffForHumans() }}</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -55,13 +57,11 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Image</th>
                                 <th>Full Name</th>
-                                <th>Shop Name</th>
-                                <th>User Name</th>
-                                <th>Founded Year</th>
                                 <th>Email</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Phone</th>
+                                <th>Online Status</th>
                             </tr>
                         </tfoot>
                     </table>

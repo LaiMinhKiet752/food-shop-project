@@ -45,9 +45,9 @@
                                     <td><img src="{{ asset($item->slider_image) }}" style="width: 150px; height: 80px;">
                                         <td>
                                             @if ($item->status == 'hide')
-                                                <span class="badge rounded-pill bg-dark" style="font-size: 12px;">Hide</span>
+                                                <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Hide</span>
                                             @else
-                                                <span class="badge rounded-pill bg-success" style="font-size: 12px;">Show</span>
+                                                <span class="badge rounded-pill bg-success" style="font-size: 13px;">Show</span>
                                             @endif
                                         </td>
                                     </td>
