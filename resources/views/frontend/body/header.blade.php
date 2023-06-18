@@ -298,7 +298,7 @@
                                             $subcategories = \App\Models\SubCategory::where('category_id', $category->id)
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
-                                        @endphp
+                                        @endphp        
 
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)
@@ -311,7 +311,7 @@
                                 @endforeach
 
                                 <li>
-                                    <a href="page-contact.html">Contact</a>
+                                    <a href="{{ route('home.blog') }}">Blog</a>
                                 </li>
                             </ul>
                         </nav>

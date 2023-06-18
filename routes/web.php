@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Backend\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -319,6 +320,30 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/user', 'AllUser')->name('all.user');
         Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
     });
+
+    // Blog All Category Route
+    Route::controller(BlogController::class)->group(function(){
+    Route::get('/admin/blog/category' , 'AllBlogCateogry')->name('admin.blog.category');
+    Route::get('/admin/add/blog/category' , 'AddBlogCateogry')->name('add.blog.categroy');
+    Route::post('/admin/store/blog/category' , 'StoreBlogCateogry')->name('store.blog.category');
+    Route::get('/admin/edit/blog/category/{id}' , 'EditBlogCateogry')->name('edit.blog.category');
+    Route::post('/admin/update/blog/category' , 'UpdateBlogCateogry')->name('update.blog.category');
+    Route::get('/admin/delete/blog/category/{id}' , 'DeleteBlogCateogry')->name('delete.blog.category');
+    });
+
+
+    // Blog Post All Route
+    Route::controller(BlogController::class)->group(function(){
+      Route::get('/admin/blog/postt' , 'AllBlogPost')->name('admin.blog.postt');
+      Route::get('/admin/add/blog/postt' , 'AddBlogPost')->name('add.blog.postt');
+      Route::post('/admin/store/blog/postt' , 'StoreBlogPost')->name('store.blog.postt');
+      Route::get('/admin/edit/blog/postt/{id}' , 'EditBlogPost')->name('edit.blog.postt');
+      Route::post('/admin/update/blog/postt' , 'UpdateBlogPost')->name('update.blog.postt');
+      Route::get('/admin/delete/blog/postt/{id}' , 'DeleteBlogPost')->name('delete.blog.postt');
+   });
+
+
+
 }); //End Group Middleware Admin
 
 
@@ -392,6 +417,19 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 
 //Add To Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
+
+
+
+// Frontend Blog Post All Route
+Route::controller(BlogController::class)->group(function(){
+
+    Route::get('/blog' , 'AllBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}' , 'BlogDetails');
+    Route::get('/post/category/{id}/{slug}' , 'BlogPostCategory');
+
+   });
+
+
 
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
