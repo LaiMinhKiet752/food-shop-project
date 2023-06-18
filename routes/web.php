@@ -418,6 +418,23 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 //Add To Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
+
+
+// Frontend Blog Post All Route
+Route::controller(BlogController::class)->group(function(){
+    Route::get('/blog' , 'AllBlog')->name('home.blog');
+
+
+
+
+
+
+
+
+
+
+ });
+
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
 

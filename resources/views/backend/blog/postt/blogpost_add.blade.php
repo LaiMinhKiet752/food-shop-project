@@ -73,7 +73,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Short Description <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Short Description <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <textarea name="post_short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
@@ -84,7 +84,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Long Description <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Long Description <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <textarea id="mytextarea" name="post_long_description"> </textarea>
@@ -94,7 +94,7 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Image <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Post Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="post_image" class="form-control"

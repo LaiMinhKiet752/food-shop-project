@@ -75,7 +75,9 @@ class BlogController extends Controller
 
 
 
-////////////////////////////////////////---//////////////////////////////---////----
+
+
+////////////////////////////////////////---blog post//////////////////////////////---////----///////////////////////////////
 public function AllBlogPost(){
 
     $blogpost = BlogPost::latest()->get();
@@ -196,6 +198,22 @@ public function StoreBlogPost(Request $request){
         return redirect()->back()->with($notification);
 
     }// End Method
+
+/////////////////////////////////////////////////-frontend blog post------------///////////////////////////////////////
+
+public function AllBlog(){
+    $blogcategoryies = BlogCategory::latest()->get();
+    $blogpost = BlogPost::latest()->get();
+    return view('frontend.blog.home_blog',compact('blogcategoryies','blogpost'));
+}// End Method
+
+
+
+
+
+
+
+
 
 
 }
