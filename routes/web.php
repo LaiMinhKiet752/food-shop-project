@@ -27,6 +27,7 @@ use App\Http\Controllers\User\PaypalController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
@@ -300,6 +301,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('admin.cancel.order.details');
         Route::get('/admin/cancel/request/approved/{order_id}', 'CancelRequestApproved')->name('admin.cancel.request.approved');
         Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
+    });
+
+    //Report All Route
+    Route::controller(ReportController::class)->group(function () {
+        Route::get('/report/view', 'ReportView')->name('report.view');
+        Route::post('/search/by/date', 'SearchByDate')->name('search-by-date');
+        Route::post('/search/by/month', 'SearchByMonth')->name('search-by-month');
+        Route::post('/search/by/year', 'SearchByYear')->name('search-by-year');
+        Route::get('/report/by/customer', 'ReportByCustomer')->name('report.by.customer');
+        Route::post('/search/by/customer', 'SearchByCustomer')->name('search-by-customer');
     });
 }); //End Group Middleware Admin
 

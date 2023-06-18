@@ -71,8 +71,8 @@
                                                     <h4>Order Details</h4>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <span class="text-danger"
-                                                        style="font-weight: bold; font-size: 15px;">Invoice Number :
+                                                    <span style="font-weight: bold; font-size: 18px; color: red;">Invoice
+                                                        Number :
                                                         {{ $order->invoice_number }}</span>
                                                 </div>
                                             </div>
@@ -86,10 +86,13 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Order Date :</th>
-                                                    <th>{{ $order->order_date }}</th>
+                                                    <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
                                                 </tr>
                                                 <tr>
-                                                    @if ($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                                    @if ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                        <th>Cancel Date :</th>
+                                                        <th>{{ $order->cancel_date }}</th>
+                                                    @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                                         <th>Confirmed Date :</th>
                                                         <th>{{ $order->confirmed_date }}</th>
                                                     @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
@@ -337,13 +340,6 @@
                 confirmButtonText: 'Yes, cancel it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Swal.fire(
-                    //     'Success!',
-                    //     'You have successfully submitted an order cancellation request.',
-                    //     'success',
-                    //     3000,
-                    //     false,
-                    // )
                     document.getElementById("SubmitFormCancelOrder").submit();
                 }
             })

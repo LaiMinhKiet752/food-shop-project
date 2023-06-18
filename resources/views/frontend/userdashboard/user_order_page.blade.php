@@ -83,7 +83,7 @@
                                                                             Delivered
                                                                         </span>
                                                                     @endif
-                                                                    @if ($order->return_order_status == 1 || $order->return_order_status == 2)
+                                                                    @if ($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
                                                                         <span class="badge rounded-pill bg-dark"
                                                                             style="font-size: 13px;">
                                                                             Return
@@ -95,7 +95,8 @@
                                                                         class="btn-sm btn-success" title="View Details"><i
                                                                             class="fa fa-eye"></i></a>
                                                                     <a href="{{ url('user/invoice/download/' . $order->id) }}"
-                                                                        class="btn-sm btn-danger" title="Download Invoice PDF"><i
+                                                                        class="btn-sm btn-danger"
+                                                                        title="Download Invoice PDF"><i
                                                                             class="fa fa-download"></i></a>
                                                                 </td>
                                                             </tr>

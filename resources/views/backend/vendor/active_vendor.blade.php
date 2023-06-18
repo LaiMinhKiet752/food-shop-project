@@ -45,7 +45,7 @@
                                     <td>{{ $item->username }}</td>
                                     <td>{{ $item->vendor_join }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td><span class="btn btn-success">{{ $item->status }}</span> </td>
+                                    <td><span class="btn btn-success" style="font-size: 13px;">ACTIVE</span> </td>
                                     <td>
                                         <a href="{{ route('active.vendor.details', $item->id) }}" class="btn btn-info">Vendor Details</a>
                                     </td>
