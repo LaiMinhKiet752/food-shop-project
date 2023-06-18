@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -311,6 +312,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/search/by/year', 'SearchByYear')->name('search-by-year');
         Route::get('/report/by/customer', 'ReportByCustomer')->name('report.by.customer');
         Route::post('/search/by/customer', 'SearchByCustomer')->name('search-by-customer');
+    });
+
+    //Active Customer And Vendor All Route
+    Route::controller(ActiveUserController::class)->group(function () {
+        Route::get('/all/user', 'AllUser')->name('all.user');
+        Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
     });
 }); //End Group Middleware Admin
 
