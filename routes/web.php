@@ -423,7 +423,7 @@ Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCom
 // Frontend Blog Post All Route
 Route::controller(BlogController::class)->group(function(){
     Route::get('/blog' , 'AllBlog')->name('home.blog');
-
+    Route::get('/post/details/{id}/{slug}' , 'BlogDetails');  
 
 
 
