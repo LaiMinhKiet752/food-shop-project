@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\Backend\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -319,6 +320,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/user', 'AllUser')->name('all.user');
         Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
     });
+
+    // Active user and vendor All Route
+    Route::controller(BlogController::class)->group(function() {
+    Route::get('/admin/blog/category' , 'AllUser')->name('admin.blog.category');
+    });
+
+
+
 }); //End Group Middleware Admin
 
 
