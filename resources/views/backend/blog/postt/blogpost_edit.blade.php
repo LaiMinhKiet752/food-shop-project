@@ -5,13 +5,13 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">Add Blog Post </div>
+            <div class="breadcrumb-title pe-3">Edit Blog Post </div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Blog Post </div>
+                        <li class="breadcrumb-item active" aria-current="page">Edit Blog Post </div>
                             <div class="ps-3"></li>
                     </ol>
                 </nav>
@@ -43,10 +43,12 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
-                                <form id="myForm" method="post" action="{{ route('store.blog.postt') }}"
+                                <form id="myForm" method="post" action="{{ route('update.blog.postt') }}"
                                     enctype="multipart/form-data">
                                     @csrf
 
+                                    <input type="hidden" name="id" value="{{ $blogpost->id }}">
+                                    <input type="hidden" name="old_image" value="{{ $blogpost->post_image }}">
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <h6 class="mb-0">Blog Category <span class="text-danger">*</span></h6>
@@ -55,7 +57,7 @@
                                             <select name="category_id" class="form-select" id="inputVendor">
                                                 <option></option>
                                                 @foreach($blogcategory as $category)
-                                                <option value="{{ $category->id }}">{{ $category->blog_category_name }}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $blogpost->category_id ? 'selected' : '' }}>{{ $category->blog_category_name }}</option>
                                                  @endforeach
                                               </select>
                                         </div>
@@ -63,38 +65,40 @@
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Blog Post <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Post</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <input type="text" name="post_title" class="form-control"
-                                                value="{{ old('category_name') }}" />
+                                            <input type="text" name="post_title" class="form-control"  value="{{ $blogpost->post_title }}" />
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Short Description <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Short Decs</h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
-                                            <textarea name="post_short_description" class="form-control" id="inputProductDescription" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0">Long Description <span class="text-danger">*</span></h6>
-                                        </div>
-                                        <div class="form-group col-sm-9 text-secondary">
-                                            <textarea id="mytextarea" name="post_long_description"> </textarea>
+                                            <textarea name="post_short_description" class="form-control" id="inputProductDescription" rows="3">
+                                            {{ $blogpost->post_short_description }}
+                                            </textarea>
                                         </div>
                                     </div>
 
 
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Image <span class="text-danger">*</span></h6>
+                                            <h6 class="mb-0">Blog Long Decs</h6>
+                                        </div>
+                                        <div class="form-group col-sm-9 text-secondary">
+                                            <textarea id="mytextarea" name="post_long_description">
+                                         {!! $blogpost->post_short_description !!}
+                                             </textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row mb-3">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Blog Post Image <span class="text-danger">*</span></h6>
                                         </div>
                                         <div class="form-group col-sm-9 text-secondary">
                                             <input type="file" name="post_image" class="form-control"
@@ -106,8 +110,7 @@
                                             <h6 class="mb-0"> </h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
-                                            <img id="showImage" src="{{ url('upload/no_image.jpg') }}" alt="Category"
-                                                style="width: 120px; height: 90px;">
+                                             <img id="showImage" src="{{ asset($blogpost->post_image) }}" alt="Admin" style="width:100px; height: 100px;"  >
                                         </div>
                                     </div>
                                     <div class="row">

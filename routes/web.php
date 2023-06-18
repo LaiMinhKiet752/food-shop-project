@@ -336,6 +336,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(BlogController::class)->group(function(){
       Route::get('/admin/blog/postt' , 'AllBlogPost')->name('admin.blog.postt');
       Route::get('/admin/add/blog/postt' , 'AddBlogPost')->name('add.blog.postt');
+      Route::post('/admin/store/blog/postt' , 'StoreBlogPost')->name('store.blog.postt');
+      Route::get('/admin/edit/blog/postt/{id}' , 'EditBlogPost')->name('edit.blog.postt');
+      Route::post('/admin/update/blog/postt' , 'UpdateBlogPost')->name('update.blog.postt');
+      Route::get('/admin/delete/blog/postt/{id}' , 'DeleteBlogPost')->name('delete.blog.postt');
    });
 
 

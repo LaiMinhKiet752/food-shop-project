@@ -64,7 +64,7 @@ return array(
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
     'App\\Mail\\OrderMail' => $baseDir . '/app/Mail/OrderMail.php',
     'App\\Models\\Banner' => $baseDir . '/app/Models/Banner.php',
-    'App\\Models\\BlogCategogy' => $baseDir . '/app/Models/BlogCategogy.php',
+    'App\\Models\\BlogCategory' => $baseDir . '/app/Models/BlogCategory.php',
     'App\\Models\\BlogPost' => $baseDir . '/app/Models/BlogPost.php',
     'App\\Models\\Brand' => $baseDir . '/app/Models/Brand.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
