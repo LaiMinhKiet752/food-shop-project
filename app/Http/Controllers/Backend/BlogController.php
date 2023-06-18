@@ -213,14 +213,17 @@ public function BlogDetails($id,$slug){
     $breadcat = BlogCategory::where('id',$id)->get();
     return view('frontend.blog.blog_details',compact('blogcategoryies','blogdetails','breadcat'));
 
-}// End Method 
+}// End Method
 
 
+public function BlogPostCategory($id,$slug){
 
+    $blogcategoryies = BlogCategory::latest()->get();
+    $blogpost = BlogPost::where('category_id',$id)->get();
+    $breadcat = BlogCategory::where('id',$id)->get();
+    return view('frontend.blog.category_post',compact('blogcategoryies','blogpost','breadcat'));
 
-
-
-
+}// End Method
 
 }
 

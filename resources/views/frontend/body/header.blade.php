@@ -298,7 +298,7 @@
                                             $subcategories = \App\Models\SubCategory::where('category_id', $category->id)
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
-                                        @endphp
+                                        @endphp        
 
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)

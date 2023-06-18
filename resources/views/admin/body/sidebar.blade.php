@@ -10,7 +10,7 @@
         </div>
     </div>
     <!--navigation-->
-    <ul class="metismenu" id="menu">
+    <ul class="metismenu" id="menu">post
 
         <li>
             <a href="{{ route('admin.dashboard') }}">
