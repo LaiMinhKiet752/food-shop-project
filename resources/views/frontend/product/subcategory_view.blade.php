@@ -23,7 +23,7 @@
             <div class="col-lg-4-5">
                 <div class="shop-product-fillter">
                     <div class="totall-product">
-                        <p>We found <strong class="text-brand">{{ count($products) }}</strong> items for you!</p>
+                        <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($products) }}</strong> items for you!</p>
                     </div>
                     <div class="sort-by-product-area">
                         <div class="sort-by-cover mr-10">
@@ -212,7 +212,7 @@
                                 <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
                                     <img src=" {{ asset($category->category_image) }} "
                                         alt="" />{{ $category->category_name }}</a><span
-                                    class="text-brand">{{ count($products) }}</span>
+                                    class="text-brand" style="font-weight: bold;">{{ count($products) }}</span>
                             </li>
                         @endforeach
                     </ul>

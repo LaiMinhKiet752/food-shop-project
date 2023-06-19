@@ -39,7 +39,7 @@ class BrandController extends Controller
             'brand_phone' => 'unique:brands',
         ], [
             'brand_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'brand_image.max' => 'Maximum image size is 2MB.',
+            'brand_image.max' => 'The maximum upload image size is 2MB.',
             'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
             'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
             'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
@@ -92,7 +92,7 @@ class BrandController extends Controller
                 'brand_image' => 'image|max:2048'
             ], [
                 'brand_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'brand_image.max' => 'Maximum image size is 2MB.',
+                'brand_image.max' => 'The maximum upload image size is 2MB.',
             ]);
             $file = $request->file('brand_image');
             $filename = hexdec(uniqid()) . '_brand' . '.' . $file->getClientOriginalExtension();

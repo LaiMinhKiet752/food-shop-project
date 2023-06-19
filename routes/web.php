@@ -51,7 +51,19 @@ use App\Http\Controllers\Backend\BlogController;
 
 
 //Index All Route
-Route::get('/', [IndexController::class, 'Index']);
+Route::controller(IndexController::class)->group(function () {
+
+    //Home Page
+    Route::get('/', 'Index');
+    //Frontend Product Details All Route
+    Route::get('/product/details/{id}/{slug}', 'ProductDetails');
+    Route::get('/vendor/details/{id}', 'VendorDetails')->name('vendor.details');
+    Route::get('/vendor/all', 'VendorAll')->name('vendor.all');
+    Route::get('/product/category/{id}/{slug}', 'CategoryWiseProduct');
+    Route::get('/product/subcategory/{id}/{slug}', 'SubCategoryWiseProduct');
+    // Product View Modal With Ajax
+    Route::get('/product/view/modal/{id}', 'ProductViewAjax');
+});
 
 //Frontend All Route
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
@@ -67,17 +79,6 @@ Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('ven
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
-
-
-//Frontend Product Details All Route
-Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-Route::get('/vendor/details/{id}', [IndexController::class, 'VendorDetails'])->name('vendor.details');
-Route::get('/vendor/all', [IndexController::class, 'VendorAll'])->name('vendor.all');
-Route::get('/product/category/{id}/{slug}', [IndexController::class, 'CategoryWiseProduct']);
-Route::get('/product/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
-// Product View Modal With Ajax
-Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewAjax']);
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -322,93 +323,57 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 
     // Blog All Category Route
-    Route::controller(BlogController::class)->group(function(){
-    Route::get('/admin/blog/category' , 'AllBlogCateogry')->name('admin.blog.category');
-    Route::get('/admin/add/blog/category' , 'AddBlogCateogry')->name('add.blog.categroy');
-    Route::post('/admin/store/blog/category' , 'StoreBlogCateogry')->name('store.blog.category');
-    Route::get('/admin/edit/blog/category/{id}' , 'EditBlogCateogry')->name('edit.blog.category');
-    Route::post('/admin/update/blog/category' , 'UpdateBlogCateogry')->name('update.blog.category');
-    Route::get('/admin/delete/blog/category/{id}' , 'DeleteBlogCateogry')->name('delete.blog.category');
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/admin/blog/category', 'AllBlogCateogry')->name('admin.blog.category');
+        Route::get('/admin/add/blog/category', 'AddBlogCateogry')->name('add.blog.categroy');
+        Route::post('/admin/store/blog/category', 'StoreBlogCateogry')->name('store.blog.category');
+        Route::get('/admin/edit/blog/category/{id}', 'EditBlogCateogry')->name('edit.blog.category');
+        Route::post('/admin/update/blog/category', 'UpdateBlogCateogry')->name('update.blog.category');
+        Route::get('/admin/delete/blog/category/{id}', 'DeleteBlogCateogry')->name('delete.blog.category');
     });
 
-
     // Blog Post All Route
-    Route::controller(BlogController::class)->group(function(){
-      Route::get('/admin/blog/postt' , 'AllBlogPost')->name('admin.blog.postt');
-      Route::get('/admin/add/blog/postt' , 'AddBlogPost')->name('add.blog.postt');
-      Route::post('/admin/store/blog/postt' , 'StoreBlogPost')->name('store.blog.postt');
-      Route::get('/admin/edit/blog/postt/{id}' , 'EditBlogPost')->name('edit.blog.postt');
-      Route::post('/admin/update/blog/postt' , 'UpdateBlogPost')->name('update.blog.postt');
-      Route::get('/admin/delete/blog/postt/{id}' , 'DeleteBlogPost')->name('delete.blog.postt');
-   });
-
-
-
+    Route::controller(BlogController::class)->group(function () {
+        Route::get('/admin/blog/post', 'AllBlogPost')->name('admin.blog.post');
+        Route::get('/admin/add/blog/post', 'AddBlogPost')->name('add.blog.post');
+        Route::post('/admin/store/blog/post', 'StoreBlogPost')->name('store.blog.post');
+        Route::get('/admin/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
+        Route::post('/admin/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
+        Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
+    });
 }); //End Group Middleware Admin
-
-
-//Get Data From Mini Cart
-Route::get('/product/mini/cart', [CartController::class, 'AddMiniCart']);
-
-//Remove Data From Mini Cart
-Route::get('/minicart/product/remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
-
-//Quick View Add To Cart
-Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCartQuickView']);
-
-//Product Details Page Add To Cart
-Route::post('/dcart/data/store/{id}', [CartController::class, 'AddToCartDetails']);
-
-//Home New Product Page Add To Cart
-Route::post('/home/new/product/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProduct']);
-
-//Home New Product Category Page Add To Cart
-Route::post('/home/new/product/category/cart/store/{id}', [CartController::class, 'AddToCartHomeNewProductCategory']);
-
-//Featured Product Page Add To Cart
-Route::post('/featured/product/cart/store/{id}', [CartController::class, 'AddToCartFeaturedProduct']);
-
-//Category Product Page Add To Cart
-Route::post('/category/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryProduct']);
-
-//SubCategory Product Page Add To Cart
-Route::post('/subcategory/product/cart/store/{id}', [CartController::class, 'AddToCartSubCategoryProduct']);
-
-//Related Product Page Add To Cart
-Route::post('/related/product/cart/store/{id}', [CartController::class, 'AddToCartRelatedProduct']);
-
-//Vendor Details Page Add To Cart
-Route::post('/vendor/details/product/cart/store/{id}', [CartController::class, 'AddToCartVendorDetailsProduct']);
-
-//Category One Page Add To Cart
-Route::post('/categoryone/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryOneProduct']);
-
-//Category Two Page Add To Cart
-Route::post('/categorytwo/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryTwoProduct']);
-
-//Category Three Page Add To Cart
-Route::post('/categorythree/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryThreeProduct']);
-
-//Category Four Page Add To Cart
-Route::post('/categoryfour/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFourProduct']);
-
-//Category Five Page Add To Cart
-Route::post('/categoryfive/product/cart/store/{id}', [CartController::class, 'AddToCartCategoryFiveProduct']);
 
 
 //Cart All Route
 Route::controller(CartController::class)->group(function () {
-    //My Cart Route
+    //Add To Cart All Route
+    Route::get('/product/mini/cart', 'AddMiniCart');
+    Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
+    Route::post('/cart/data/store/{id}', 'AddToCartQuickView');
+    Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
+    Route::post('/home/new/product/cart/store/{id}', 'AddToCartHomeNewProduct');
+    Route::post('/home/new/product/category/cart/store/{id}', 'AddToCartHomeNewProductCategory');
+    Route::post('/featured/product/cart/store/{id}', 'AddToCartFeaturedProduct');
+    Route::post('/category/product/cart/store/{id}', 'AddToCartCategoryProduct');
+    Route::post('/subcategory/product/cart/store/{id}', 'AddToCartSubCategoryProduct');
+    Route::post('/related/product/cart/store/{id}', 'AddToCartRelatedProduct');
+    Route::post('/vendor/details/product/cart/store/{id}', 'AddToCartVendorDetailsProduct');
+    Route::post('/categoryone/product/cart/store/{id}', 'AddToCartCategoryOneProduct');
+    Route::post('/categorytwo/product/cart/store/{id}', 'AddToCartCategoryTwoProduct');
+    Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
+    Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
+    Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
+    //My Cart All Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
-    //Frontend Coupon Option
+    //Frontend Coupon Option All Route
     Route::post('/coupon-apply', 'CouponApply');
     Route::get('/coupon-calculation', 'CouponCalculation');
     Route::get('/coupon-remove', 'CouponRemove');
-    //Checkout Page Route
+    //Checkout Page All Route
     Route::get('/checkout', 'CheckoutCreate')->name('checkout');
 });
 
@@ -418,18 +383,19 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 //Add To Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
-
-
 // Frontend Blog Post All Route
-Route::controller(BlogController::class)->group(function(){
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog', 'AllBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}', 'BlogDetails');
+    Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+});
 
-    Route::get('/blog' , 'AllBlog')->name('home.blog');
-    Route::get('/post/details/{id}/{slug}' , 'BlogDetails');
-    Route::get('/post/category/{id}/{slug}' , 'BlogPostCategory');
-
-   });
-
-
+//Auth All Route
+Route::middleware(['auth'])->group(function () {
+    Route::controller(BlogController::class)->group(function () {
+        Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
+    });
+});
 
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {
@@ -496,5 +462,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
     });
 });
+
 
 require __DIR__ . '/auth.php';

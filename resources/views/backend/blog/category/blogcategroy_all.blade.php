@@ -3,7 +3,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Blog Category</div>
+            <div class="breadcrumb-title pe-3">Blog Category</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -15,7 +15,7 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.blog.categroy') }}" class="btn btn-primary"><i class="lni lni-plus"> Add Blog
+                    <a href="{{ route('add.blog.categroy') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Blog
                             Category</i></a>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($blogcategoryies as $key => $item)
+                            @foreach ($blogcategories as $key => $item)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
                                     <td>{{ $item->blog_category_name }}</td>
@@ -43,8 +43,6 @@
                                         <a href="{{ route('edit.blog.category', $item->id) }}" class="btn btn-info">Edit</a>
                                         <a href="{{ route('delete.blog.category', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
-
-
                                     </td>
                                 </tr>
                             @endforeach

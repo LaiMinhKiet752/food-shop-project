@@ -27,7 +27,7 @@ class BannerController extends Controller
             'banner_image' => 'image|max:2048'
         ], [
             'banner_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'banner_image.max' => 'Maximum image size is 2MB.',
+            'banner_image.max' => 'The maximum upload image size is 2MB.',
         ]);
         $image = $request->file('banner_image');
         $name_gen = hexdec(uniqid()) . '_banner' . '.' . $image->getClientOriginalExtension();
@@ -65,7 +65,7 @@ class BannerController extends Controller
                 'banner_image' => 'image|max:2048'
             ], [
                 'banner_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'banner_image.max' => 'Maximum image size is 2MB.',
+                'banner_image.max' => 'The maximum upload image size is 2MB.',
             ]);
             $image = $request->file('banner_image');
             $name_gen = hexdec(uniqid()) . '_banner' . '.' . $image->getClientOriginalExtension();

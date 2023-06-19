@@ -10,7 +10,7 @@
         </div>
     </div>
     <!--navigation-->
-    <ul class="metismenu" id="menu">post
+    <ul class="metismenu" id="menu">
 
         <li>
             <a href="{{ route('admin.dashboard') }}">
@@ -264,7 +264,7 @@
 						<li> <a href="{{ route('admin.blog.category') }}"><i class="bx bx-right-arrow-alt"></i>All Blog Categroy</a>
 						</li>
 
-							<li> <a href="{{ route('admin.blog.postt') }}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a>
+							<li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>All Blog Post</a>
 						</li>
 
 
