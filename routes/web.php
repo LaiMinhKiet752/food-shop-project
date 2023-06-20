@@ -340,6 +340,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
         Route::post('/admin/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
         Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
+        Route::get('/admin/blog/comment', 'AdminBlogComment')->name('admin.blog.comment');
+        Route::get('/admin/blog/comment/reply/{id}', 'AdminCommentReply')->name('admin.comment.reply');
+        Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
     });
 }); //End Group Middleware Admin
 

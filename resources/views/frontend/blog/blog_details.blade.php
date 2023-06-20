@@ -113,11 +113,17 @@
                                                             </div>
                                                         </form>
 
-
+                                                        @php
+                                                            $comment = \App\Models\BlogComment::where('blog_post_id', $blogdetails->id)
+                                                                ->where('parent_id', null)
+                                                                ->limit(5)
+                                                                ->latest()
+                                                                ->get();
+                                                        @endphp
                                                         <div class="comments-area">
                                                             <h3 class="mb-30">Comments</h3>
                                                             <div class="comment-list">
-                                                                @foreach ($user_info_comment as $item)
+                                                                @foreach ($comment as $item)
                                                                     <div
                                                                         class="single-comment justify-content-between d-flex mb-30">
                                                                         <div class="user justify-content-between d-flex">
@@ -132,7 +138,7 @@
                                                                                     class="d-flex justify-content-between mb-10">
                                                                                     <div class="d-flex align-items-center">
                                                                                         <span
-                                                                                            class="font-xs text-muted">{{ $item->created_at }}</span>
+                                                                                            class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <p class="mb-10">
@@ -140,14 +146,43 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
+
+                                                                    @php
+                                                                        $reply = \App\Models\BlogComment::where('parent_id', $item->id)->get();
+                                                                    @endphp
+
+                                                                    @foreach ($reply as $item)
+                                                                        <div
+                                                                            class="single-comment justify-content-between d-flex mb-30 ml-30">
+                                                                            <div
+                                                                                class="user justify-content-between d-flex">
+                                                                                <div class="thumb text-center">
+                                                                                    <img src="{{ url('upload/admin.jpg') }}"
+                                                                                        alt="" />
+                                                                                    <a href="#"
+                                                                                        class="font-heading text-brand">{{ $item['user']['name'] }}</a>
+                                                                                </div>
+                                                                                <div class="desc">
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between mb-10">
+                                                                                        <div
+                                                                                            class="d-flex align-items-cer">
+                                                                                            <span
+                                                                                            class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <p class="mb-10">{{ $item->comment }}</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endforeach
                                                                 @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-                                            
                                         </div>
                                     </div>
                                 </div>

@@ -267,6 +267,8 @@
                 </li>
                 <li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>Blog Post</a>
                 </li>
+                <li> <a href="{{ route('admin.blog.comment') }}"><i class="bx bx-right-arrow-alt"></i>Blog Comment</a>
+                </li>
             </ul>
         </li>
 

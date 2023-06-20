@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('blog_post_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('comment');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
