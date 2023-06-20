@@ -12,6 +12,7 @@ use App\Models\User;
 use Intervention\Image\ImageManagerStatic as Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -244,11 +245,7 @@ class BlogController extends Controller
                 return redirect()->back()->with($notification);
             }
         } else {
-            $notification = array(
-                'message' => 'First You Need To Login To The Website!',
-                'alert-type' => 'error',
-            );
-            return redirect()->route('login')->with($notification);
+            return redirect()->to('/login');
         }
     } // End Method
 

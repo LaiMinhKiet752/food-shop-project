@@ -215,19 +215,19 @@
             var type = "{{ Session::get('alert-type', 'info') }}"
             switch (type) {
                 case 'info':
-                    toastr.info(" {{ Session::get('message') }} ", "Noitce!");
+                    toastr.info(" {{ Session::get('message') }} ", "Noitce");
                     break;
 
                 case 'success':
-                    toastr.success(" {{ Session::get('message') }} ", "Success!");
+                    toastr.success(" {{ Session::get('message') }} ", "Success");
                     break;
 
                 case 'warning':
-                    toastr.warning(" {{ Session::get('message') }} ", "Warning!");
+                    toastr.warning(" {{ Session::get('message') }} ", "Warning");
                     break;
 
                 case 'error':
-                    toastr.error(" {{ Session::get('message') }} ", "Error!");
+                    toastr.error(" {{ Session::get('message') }} ", "Error");
                     break;
             }
         @endif
@@ -235,7 +235,7 @@
 
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.all.min.js"></script>
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>
 

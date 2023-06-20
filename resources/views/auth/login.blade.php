@@ -5,7 +5,7 @@
         <div class="container">
             <div class="breadcrumb">
                 <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                <span></span> Login
+                <span></span> Log in
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
                             <div class="login_wrap widget-taber-content background-white">
                                 <div class="padding_eight_all bg-white">
                                     <div class="heading_s1">
-                                        <h1 class="mb-5">Login</h1>
+                                        <h1 class="mb-5">Log in</h1>
                                         <p class="mb-30">Don't have an account? <a href="{{ route('register') }}">Create
                                                 here</a></p>
                                     </div>

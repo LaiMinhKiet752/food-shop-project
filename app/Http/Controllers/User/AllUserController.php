@@ -64,7 +64,7 @@ class AllUserController extends Controller
             'return_order_status' => 1,
         ]);
         $notification = array(
-            'message' => 'Order Return Request Successful!',
+            'message' => 'Submit Order Return Request Successfully!',
             'alert-type' => 'success'
         );
         return redirect()->route('user.order.page')->with($notification);

@@ -61,7 +61,6 @@
                                             <p class="single-excerpt"> {!! $blogdetails->post_long_description !!} </p>
 
 
-                                            
                                             <!--Entry bottom-->
                                             <div class="entry-bottom mt-10 mb-10">
                                                 <div class="social-icons single-share">
@@ -147,6 +146,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
                                         </div>
                                     </div>
                                 </div>

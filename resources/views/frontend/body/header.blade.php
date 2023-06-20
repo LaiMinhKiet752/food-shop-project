@@ -172,7 +172,7 @@
                                         <img class="svgInject" alt="Nest"
                                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
-                                    <a href="{{ route('login') }}"><span class="lable ml-0">Login</span></a>
+                                    <a href="{{ route('login') }}"><span class="lable ml-0">Log in</span></a>
 
                                     <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
 
@@ -298,7 +298,7 @@
                                             $subcategories = \App\Models\SubCategory::where('category_id', $category->id)
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
-                                        @endphp        
+                                        @endphp
 
                                         <ul class="sub-menu">
                                             @foreach ($subcategories as $subcategory)

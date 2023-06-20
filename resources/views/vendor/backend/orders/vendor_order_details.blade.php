@@ -94,7 +94,10 @@
                                 <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
                             </tr>
                             <tr>
-                                @if ($order->status == 'confirmed' && $order->cancel_order_status == 0)
+                                @if ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                    <th>Cancel Date :</th>
+                                    <th>{{ $order->cancel_date }}</th>
+                                @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                     <th>Confirmed Date :</th>
                                     <th>{{ $order->confirmed_date }}</th>
                                 @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
