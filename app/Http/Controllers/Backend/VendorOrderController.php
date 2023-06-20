@@ -16,7 +16,9 @@ class VendorOrderController extends Controller
     public function VendorOrder()
     {
         $id = Auth::user()->id;
-        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        // $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
+        // dd($orderdetails);
         return view('vendor.backend.orders.all_orders', compact('orderdetails'));
     } // End Method
 
@@ -30,7 +32,7 @@ class VendorOrderController extends Controller
     public function VendorReturnOrder()
     {
         $id = Auth::user()->id;
-        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
         return view('vendor.backend.orders.return_orders', compact('orderdetails'));
     } // End Method
 
@@ -44,14 +46,14 @@ class VendorOrderController extends Controller
     public function VendorCompleteReturnOrder()
     {
         $id = Auth::user()->id;
-        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
         return view('vendor.backend.orders.complete_return_orders', compact('orderdetails'));
     } // End Method
 
     public function VendorCancelOrder()
     {
         $id = Auth::user()->id;
-        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
         return view('vendor.backend.orders.cancel_orders', compact('orderdetails'));
     } // End Method
 
@@ -65,7 +67,7 @@ class VendorOrderController extends Controller
     public function VendorCompleteCancelOrder()
     {
         $id = Auth::user()->id;
-        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
         return view('vendor.backend.orders.complete_cancel_orders', compact('orderdetails'));
     } // End Method
 }

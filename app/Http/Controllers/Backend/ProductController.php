@@ -48,9 +48,9 @@ class ProductController extends Controller
         ], [
             'product_code.unique' => 'Product code already exists.',
             'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'product_thumbnail.max' => 'Maximum image size is 2MB.',
+            'product_thumbnail.max' => 'The maximum upload image size is 2MB.',
             'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'multiple_image.*.max' => 'Maximum image size is 2MB.',
+            'multiple_image.*.max' => 'The maximum upload image size is 2MB.',
         ]);
 
         //Main Thumbnail
@@ -237,7 +237,7 @@ class ProductController extends Controller
                 'product_thumbnail' => 'image|max:2048',
             ], [
                 'product_thumbnail.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'product_thumbnail.max' => 'Maximum image size is 2MB.',
+                'product_thumbnail.max' => 'The maximum upload image size is 2MB.',
             ]);
 
             $filename = hexdec(uniqid()) . '_product_thumbnail' . '.' . $file->getClientOriginalExtension();
@@ -275,7 +275,7 @@ class ProductController extends Controller
                 'add_new_multiple_image.*' => 'image|max:2048',
             ], [
                 'add_new_multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'add_new_multiple_image.*.max' => 'Maximum image size is 2MB.',
+                'add_new_multiple_image.*.max' => 'The maximum upload image size is 2MB.',
             ]);
             $images = $request->file('add_new_multiple_image');
             foreach ($images as $image) {
@@ -311,7 +311,7 @@ class ProductController extends Controller
                 'multiple_image.*' => 'image|max:2048',
             ], [
                 'multiple_image.*.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'multiple_image.*.max' => 'Maximum image size is 2MB.',
+                'multiple_image.*.max' => 'The maximum upload image size is 2MB.',
             ]);
             foreach ($images as $id => $image) {
                 $imageDelete = MultiImage::findOrFail($id);

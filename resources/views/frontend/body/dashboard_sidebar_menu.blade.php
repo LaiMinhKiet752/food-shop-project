@@ -43,7 +43,7 @@
                     Password</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.logout') }}"><i class="fi-rs-sign-out mr-5"></i>Logout</a>
+                <a class="nav-link" href="{{ route('user.logout') }}"><i class="fi-rs-sign-out mr-5"></i>Log out</a>
             </li>
         </ul>
     </div>

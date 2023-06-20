@@ -279,11 +279,11 @@
                 @if ($order_check)
                     <form action="{{ route('user.return.order', $order->id) }}" method="POST" id="myFormOrderReturn">
                         @csrf
-                        <div class="from-group"
-                            style="font-weight: 600;font-size: initial; color: #000000; margin-top: 20px;">
-                            <label>Order Return Reason<span class="text-danger"> * </span></label>
+                        <div class="form-group"
+                            style="font-weight: 600; font-size: initial; color: #000000; margin-top: 20px;">
+                            <label class="form-group">Order Return Reason<span class="text-danger"> * </span></label>
                             <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for the return of the order..."
-                                style="height: 200px;"></textarea>
+                                style="height: 100px;"></textarea>
                         </div>
                         <button type="submit" class="btn-sm"
                             style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order
@@ -303,11 +303,13 @@
                 rules: {
                     return_reason: {
                         required: true,
+                        maxlength: 255,
                     },
                 },
                 messages: {
                     return_reason: {
                         required: 'Please enter order return reason.',
+                        maxlength: 'The order return reason must not be greater than 255 characters.',
                     },
                 },
                 errorElement: 'span',

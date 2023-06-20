@@ -27,7 +27,7 @@ class SliderController extends Controller
             'slider_image' => 'image|max:2048'
         ], [
             'slider_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'slider_image.max' => 'Maximum image size is 2MB.',
+            'slider_image.max' => 'The maximum upload image size is 2MB.',
         ]);
         $image = $request->file('slider_image');
         $name_gen = hexdec(uniqid()) . '_slider' . '.' . $image->getClientOriginalExtension();
@@ -66,7 +66,7 @@ class SliderController extends Controller
                 'slider_image' => 'image|max:2048'
             ], [
                 'slider_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'slider_image.max' => 'Maximum image size is 2MB.',
+                'slider_image.max' => 'The maximum upload image size is 2MB.',
             ]);
             $image = $request->file('slider_image');
             $name_gen = hexdec(uniqid()) . '_slider' . '.' . $image->getClientOriginalExtension();

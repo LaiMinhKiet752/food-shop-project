@@ -30,7 +30,7 @@ class UserController extends Controller
                     'photo' => 'image|max:2048'
                 ], [
                     'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'Maximum image size is 2MB.',
+                    'photo.max' => 'The maximum upload image size is 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();
@@ -55,7 +55,7 @@ class UserController extends Controller
                     'photo' => 'image|max:2048'
                 ], [
                     'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'Maximum image size is 2MB.',
+                    'photo.max' => 'The maximum upload image size is 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();
@@ -81,7 +81,7 @@ class UserController extends Controller
                     'photo' => 'image|max:2048'
                 ], [
                     'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'Maximum image size is 2MB.',
+                    'photo.max' => 'The maximum upload image size is 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();
@@ -109,7 +109,7 @@ class UserController extends Controller
                     'photo' => 'image|max:2048'
                 ], [
                     'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'Maximum image size is 2MB.',
+                    'photo.max' => 'The maximum upload image size is 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_user' . '.' . $file->getClientOriginalExtension();

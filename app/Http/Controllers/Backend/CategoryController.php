@@ -39,7 +39,7 @@ class CategoryController extends Controller
             'category_name' => 'unique:categories'
         ], [
             'category_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-            'category_image.max' => 'Maximum image size is 2MB.',
+            'category_image.max' => 'The maximum upload image size is 2MB.',
             'category_name.unique' => 'The category name already exists. Please enter another category name.',
         ]);
         $file = $request->file('category_image');
@@ -87,7 +87,7 @@ class CategoryController extends Controller
                 'category_image' => 'image|max:2048'
             ], [
                 'category_image.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                'category_image.max' => 'Maximum image size is 2MB.',
+                'category_image.max' => 'The maximum upload image size is 2MB.',
             ]);
 
             $file = $request->file('category_image');

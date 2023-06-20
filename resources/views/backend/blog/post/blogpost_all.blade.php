@@ -3,7 +3,7 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">All Blog Post</div>
+            <div class="breadcrumb-title pe-3">Blog Post</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
@@ -15,7 +15,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.blog.postt') }}" class="btn btn-primary"><i class="lni lni-plus"> Add Blog Post</i></a>
+                    <a href="{{ route('add.blog.post') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Blog
+                            Post</i></a>
                 </div>
             </div>
         </div>
@@ -35,18 +36,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($blogpost as $key => $item)
-                            <tr>
-                                <td> {{ $key+1 }} </td>
-                                <td>{{ $item['blogcategory']['blog_category_name'] }}</td>
-                                <td> <img src="{{ asset($item->post_image) }}" style="width: 70px; height:40px;" >  </td>
-                                <td>{{ $item->post_title }}</td>
-                                <td>
-                <a href="{{ route('edit.blog.postt',$item->id) }}" class="btn btn-info">Edit</a>
-                <a href="{{ route('delete.blog.postt',$item->id) }}" class="btn btn-danger" id="delete" >Delete</a>
-
-                                </td>
-                            </tr>
+                            @foreach ($blogpost as $key => $item)
+                                <tr>
+                                    <td> {{ $key + 1 }} </td>
+                                    <td>{{ $item['blogcategory']['blog_category_name'] }}</td>
+                                    <td> <img src="{{ asset($item->post_image) }}" style="width: 150px; height:80px;"> </td>
+                                    <td>{{ $item->post_title }}</td>
+                                    <td>
+                                        <a href="{{ route('edit.blog.post', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('delete.blog.post', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    </td>
+                                </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
