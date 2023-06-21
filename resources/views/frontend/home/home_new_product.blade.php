@@ -91,58 +91,82 @@
                                         $avarage = \App\Models\Review::where('product_id', $product->id)
                                             ->where('status', 1)
                                             ->avg('rating');
+                                        $count_review = \App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->count('rating');
                                     @endphp
                                     <div class="product-rate-cover">
                                         @if ($avarage == 0)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 0%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (0.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage == 1)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 20%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (1.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage > 1 && $avarage < 2)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 30%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage == 2)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 40%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (2.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }}
+                                                reviews)
+                                            </span>
                                         @elseif($avarage > 2 && $avarage < 3)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 50%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage == 3)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 60%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage > 3 && $avarage < 4)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 70%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage == 4)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage > 4 && $avarage < 5)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @elseif($avarage == 5)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 100%"></div>
                                             </div>
-                                            <span class="font-small ml-5 text-muted"> (5.0)</span>
+                                            <span class="font-small ml-5 text-muted">
+                                                ({{ $count_review }} reviews)
+                                            </span>
                                         @endif
                                     </div>
 
@@ -151,8 +175,7 @@
 
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a
-                                                    href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
@@ -262,58 +285,82 @@
                                             $avarage = \App\Models\Review::where('product_id', $product->id)
                                                 ->where('status', 1)
                                                 ->avg('rating');
+                                            $count_review = \App\Models\Review::where('product_id', $product->id)
+                                                ->where('status', 1)
+                                                ->count('rating');
                                         @endphp
                                         <div class="product-rate-cover">
                                             @if ($avarage == 0)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 0%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (0.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage == 1)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 20%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (1.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage > 1 && $avarage < 2)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 30%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage == 2)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 40%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (2.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }}
+                                                    reviews)
+                                                </span>
                                             @elseif($avarage > 2 && $avarage < 3)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 50%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage == 3)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 60%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (3.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage > 3 && $avarage < 4)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 70%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage == 4)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage > 4 && $avarage < 5)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @elseif($avarage == 5)
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 100%"></div>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (5.0)</span>
+                                                <span class="font-small ml-5 text-muted">
+                                                    ({{ $count_review }} reviews)
+                                                </span>
                                             @endif
                                         </div>
 
