@@ -516,8 +516,7 @@
                                                                                 @endif
                                                                             </div>
                                                                         </div>
-                                                                        <p class="mb-10">{{ $item->comment }}<a
-                                                                                href="#" class="reply">Reply</a>
+                                                                        <p class="mb-10">{{ $item->comment }}   
                                                                         </p>
                                                                     </div>
                                                                 </div>

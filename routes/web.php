@@ -132,6 +132,12 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
         Route::get('/vendor/cancel/order/details/{order_id}', 'VendorCancelOrderDetails')->name('vendor.cancel.order.details');
         Route::get('/vendor/complete/cancel/order', 'VendorCompleteCancelOrder')->name('vendor.complete.cancel.order');
     });
+
+    //Vendor Review All Route
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
+        Route::get('/vendor/review/details/{id}', 'VendorReviewDetails')->name('vendor.review.details');
+    });
 }); //End Group Middleware Vendor
 
 
