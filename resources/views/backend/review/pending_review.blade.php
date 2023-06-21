@@ -26,6 +26,7 @@
                         <thead>
                             <tr>
                                 <th>No.</th>
+                                <th>Product Image</th>
                                 <th>Product Name</th>
                                 <th>Full Name</th>
                                 <th>Comment</th>
@@ -38,6 +39,10 @@
                             @foreach ($review as $key => $item)
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
+                                    <td>
+                                        <img src="{{ asset($item['product']['product_thumbnail']) }}" alt=""
+                                            style="width: 80px; height: 60px;">
+                                    </td>
                                     <td>{{ $item['product']['product_name'] }}</td>
                                     <td>{{ $item['user']['name'] }}</td>
                                     <td>{{ Str::limit($item->comment, 30, '...') }}</td>
@@ -96,6 +101,7 @@
                         <tfoot>
                             <tr>
                                 <th>No.</th>
+                                <th>Product Image</th>
                                 <th>Product Name</th>
                                 <th>Full Name</th>
                                 <th>Comment</th>

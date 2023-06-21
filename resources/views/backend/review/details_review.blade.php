@@ -42,6 +42,16 @@
                                 <input type="hidden" name="id" value="{{ $review->id }}">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
+                                        <h6 class="mb-0">Product Code :</h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" value="{{ $review['product']['product_code'] }}"
+                                            class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
                                         <h6 class="mb-0">Product Name :</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
@@ -56,6 +66,16 @@
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" value="{{ $review['user']['name'] }}" class="form-control"
+                                            readonly />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email :</h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" value="{{ $review['user']['email'] }}" class="form-control"
                                             readonly />
                                     </div>
                                 </div>
