@@ -22,7 +22,8 @@
             <div class="col-lg-4-5">
                 <div class="shop-product-fillter">
                     <div class="totall-product">
-                        <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($products) }}</strong> items for you!</p>
+                        <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($products) }}</strong>
+                            items for you!</p>
                     </div>
                     <div class="sort-by-product-area">
                         <div class="sort-by-cover mr-10">
@@ -120,12 +121,71 @@
                                     <h2><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                             {{ $product->product_name }} </a></h2>
+
+
+
+                                    @php
+                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                            ->where('status', 1)
+                                            ->avg('rating');
+                                    @endphp
+
                                     <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        @if ($avarage == 0)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 0%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (0.0)</span>
+                                        @elseif($avarage == 1)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 20%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (1.0)</span>
+                                        @elseif($avarage > 1 && $avarage < 2)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 30%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                        @elseif($avarage == 2)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 40%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (2.0)</span>
+                                        @elseif($avarage > 2 && $avarage < 3)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 50%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                        @elseif($avarage == 3)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 60%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (3.0)</span>
+                                        @elseif($avarage > 3 && $avarage < 4)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 70%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                        @elseif($avarage == 4)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 80%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (4.0)</span>
+                                        @elseif($avarage > 4 && $avarage < 5)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 90%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> ({{ $avarage }})</span>
+                                        @elseif($avarage == 5)
+                                            <div class="product-rate d-inline-block">
+                                                <div class="product-rating" style="width: 100%"></div>
+                                            </div>
+                                            <span class="font-small ml-5 text-muted"> (5.0)</span>
+                                        @endif
                                     </div>
+
+
+
                                     <div>
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
@@ -204,8 +264,8 @@
                             <li>
                                 <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
                                     <img src=" {{ asset($category->category_image) }} "
-                                        alt="" />{{ $category->category_name }}</a><span
-                                    class="text-brand" style="font-weight: bold;">{{ count($products) }}</span>
+                                        alt="" />{{ $category->category_name }}</a><span class="text-brand"
+                                    style="font-weight: bold;">{{ count($products) }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -232,9 +292,52 @@
                                     <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
                                 @endif
 
-                                <div class="product-rate">
-                                    <div class="product-rating" style="width: 90%"></div>
-                                </div>
+                                @php
+                                    $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        ->where('status', 1)
+                                        ->avg('rating');
+                                @endphp
+                                @if ($avarage == 0)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 0%"></div>
+                                    </div>
+                                @elseif($avarage == 1)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 20%"></div>
+                                    </div>
+                                @elseif($avarage > 1 && $avarage < 2)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 30%"></div>
+                                    </div>
+                                @elseif($avarage == 2)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 40%"></div>
+                                    </div>
+                                @elseif($avarage > 2 && $avarage < 3)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 50%"></div>
+                                    </div>
+                                @elseif($avarage == 3)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 60%"></div>
+                                    </div>
+                                @elseif($avarage > 3 && $avarage < 4)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 70%"></div>
+                                    </div>
+                                @elseif($avarage == 4)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 80%"></div>
+                                    </div>
+                                @elseif($avarage > 4 && $avarage < 5)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 90%"></div>
+                                    </div>
+                                @elseif($avarage == 5)
+                                    <div class="product-rate">
+                                        <div class="product-rating" style="width: 100%"></div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @endforeach

@@ -95,6 +95,10 @@
                                                 <h3 class="mb-15">Leave a Comment</h3>
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12">
+                                                        @guest
+                                                            <p><b>To Comment You Need To Login First! <a
+                                                                        href="{{ route('login') }}"> Log in here</a></b></p>
+                                                        @else
                                                         <form class="form-contact comment_form mb-50" method="POST"
                                                             action="{{ route('comments.blog') }}" id="commentForm">
                                                             @csrf
@@ -112,7 +116,7 @@
                                                                     class="button button-contactForm">Post Comment</button>
                                                             </div>
                                                         </form>
-
+                                                        @endguest
                                                         @php
                                                             $comment = \App\Models\BlogComment::where('blog_post_id', $blogdetails->id)
                                                                 ->where('parent_id', null)
@@ -129,7 +133,8 @@
                                                                         <div class="user justify-content-between d-flex">
                                                                             <div class="thumb text-center">
                                                                                 <img src="{{ !empty($item['user']['photo']) ? url('upload/user_images/' . $item['user']['photo']) : url('upload/no_image.jpg') }}"
-                                                                                    alt="" />
+                                                                                    alt=""
+                                                                                    style="width: 70px; height: 80px;" />
                                                                                 <a href="#"
                                                                                     class="font-heading text-brand">{{ $item['user']['name'] }}</a>
                                                                             </div>
@@ -159,7 +164,8 @@
                                                                                 class="user justify-content-between d-flex">
                                                                                 <div class="thumb text-center">
                                                                                     <img src="{{ url('upload/admin.jpg') }}"
-                                                                                        alt="" />
+                                                                                        alt=""
+                                                                                        style="width: 70px; height: 80px;" />
                                                                                     <a href="#"
                                                                                         class="font-heading text-brand">{{ $item['user']['name'] }}</a>
                                                                                 </div>
@@ -169,10 +175,11 @@
                                                                                         <div
                                                                                             class="d-flex align-items-cer">
                                                                                             <span
-                                                                                            class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
+                                                                                                class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <p class="mb-10">{{ $item->comment }}</p>
+                                                                                    <p class="mb-10">{{ $item->comment }}
+                                                                                    </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>

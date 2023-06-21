@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\User\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -391,13 +392,12 @@ Route::controller(BlogController::class)->group(function () {
     Route::get('/blog', 'AllBlog')->name('home.blog');
     Route::get('/post/details/{id}/{slug}', 'BlogDetails');
     Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+    Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
 });
 
-//Auth All Route
-Route::middleware(['auth'])->group(function () {
-    Route::controller(BlogController::class)->group(function () {
-        Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
-    });
+// Review All Route
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/store/review', 'StoreReview')->name('store.review');
 });
 
 //User All Route
@@ -465,6 +465,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
     });
 });
-
 
 require __DIR__ . '/auth.php';
