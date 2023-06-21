@@ -1,5 +1,8 @@
 @extends('frontend.master_dashboard')
 @section('main')
+@section('title')
+    {{ $breadcategory->category_name }} Category
+@endsection
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="page-header mt-30 mb-50">
         <div class="container">
@@ -379,7 +382,7 @@
                         </div>
                     @endforeach
                 </div>
-                
+
             </div>
 
         </div>

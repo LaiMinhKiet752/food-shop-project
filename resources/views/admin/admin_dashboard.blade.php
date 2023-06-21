@@ -42,7 +42,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.4.2/tinymce.min.js"></script>
 
-    <title>Admin Dashboard</title>
+    <title>@yield('title')</title>
 </head>
 
 <body>

@@ -250,8 +250,8 @@ class BlogController extends Controller
     public function BlogPostCategory($id, $slug)
     {
         $blogcategories = BlogCategory::latest()->get();
-        $blogpost = BlogPost::where('category_id', $id)->get();
-        $breadcat = BlogCategory::where('id', $id)->get();
+        $blogpost = BlogPost::where('category_id', $id)->latest()->get();
+        $breadcat = BlogCategory::where('id', $id)->first();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(4)->get();
         return view('frontend.blog.category_post', compact('blogcategories', 'blogpost', 'breadcat', 'products'));
     } // End Method

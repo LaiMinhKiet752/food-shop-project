@@ -1,5 +1,8 @@
 @extends('vendor.vendor_dashboard')
 @section('vendor')
+@section('title')
+    Cancel Order
+@endsection
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
