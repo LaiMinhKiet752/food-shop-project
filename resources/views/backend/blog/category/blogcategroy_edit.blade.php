@@ -17,7 +17,8 @@
             </div>
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('admin.blog.category') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go Back</i></a>
+                    <a href="{{ route('admin.blog.category') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
+                            Back</i></a>
                 </div>
             </div>
         </div>

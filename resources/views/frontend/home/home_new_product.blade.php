@@ -152,10 +152,10 @@
                                     <div>
                                         @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">Owner</a></span>
+                                                    href="#">Owner</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
-                                                    href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                         @endif
                                     </div>
                                     <div class="product-card-bottom">
@@ -321,10 +321,10 @@
                                         <div>
                                             @if ($product->vendor_id == null)
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                        href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">

@@ -345,6 +345,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/blog/comment/reply/{id}', 'AdminCommentReply')->name('admin.comment.reply');
         Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
     });
+
+    // Review All Route
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/admin/pending/review', 'PendingReview')->name('admin.pending.review');
+        Route::get('/admin/publish/review', 'PublishReview')->name('admin.publish.review');
+        Route::get('/admin/review/details/{id}', 'ReviewDetails')->name('admin.review.details');
+        Route::post('/admin/review/approve', 'ReviewApprove')->name('admin.review.approve');
+        Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
+    });
 }); //End Group Middleware Admin
 
 

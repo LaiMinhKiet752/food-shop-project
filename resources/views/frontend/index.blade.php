@@ -138,11 +138,10 @@
 
                                         <div>
                                             @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -310,11 +309,10 @@
 
                                         <div>
                                             @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -482,11 +480,10 @@
 
                                         <div>
                                             @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -654,11 +651,10 @@
 
                                         <div>
                                             @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -826,11 +822,10 @@
 
                                         <div>
                                             @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">Owner</a></span>
+                                                <span class="font-small text-muted">By <a href="#">Owner</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
-                                                        href="vendor-details-1.html">{{ $product['vendor']['shop_name'] }}</a></span>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                             @endif
                                         </div>
                                         <div class="product-card-bottom">
@@ -896,7 +891,7 @@
 
 
                                     @php
-                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        $avarage = \App\Models\Review::where('product_id', $item->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                     @endphp
@@ -995,7 +990,7 @@
 
 
                                     @php
-                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        $avarage = \App\Models\Review::where('product_id', $item->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                     @endphp
@@ -1094,7 +1089,7 @@
 
 
                                     @php
-                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        $avarage = \App\Models\Review::where('product_id', $item->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                     @endphp
@@ -1193,7 +1188,7 @@
 
 
                                     @php
-                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        $avarage = \App\Models\Review::where('product_id', $item->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                     @endphp

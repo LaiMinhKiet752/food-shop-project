@@ -315,21 +315,118 @@
                                         <div class="vendor-name ml-15">
                                             @if ($product->vendor_id == null)
                                                 <h6>
-                                                    <a href="vendor-details-2.html">Owner</a>
+                                                    <a href="#">Owner</a>
                                                 </h6>
                                             @else
                                                 <h6>
                                                     <a
-                                                        href="vendor-details-2.html">{{ $product['vendor']['shop_name'] }}</a>
+                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a>
                                                 </h6>
                                             @endif
 
-                                            <div class="product-rate-cover text-end">
-                                                <div class="product-rate d-inline-block">
-                                                    <div class="product-rating" style="width: 90%"></div>
+
+                                            @php
+                                                $avarage = \App\Models\Review::where('vendor_id', $product->vendor_id)
+                                                    ->where('status', 1)
+                                                    ->avg('rating');
+                                                $count_review_vendor = \App\Models\Review::where('vendor_id', $product->vendor_id)
+                                                    ->where('status', 1)
+                                                    ->count('rating');
+                                            @endphp
+                                            @if ($avarage == 0)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 0%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
                                                 </div>
-                                                <span class="font-small ml-5 text-muted"> (32 reviews)</span>
-                                            </div>
+                                            @elseif($avarage == 1)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 20%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage > 1 && $avarage < 2)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 30%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage == 2)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 40%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage > 2 && $avarage < 3)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 50%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage == 3)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 60%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage > 3 && $avarage < 4)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 70%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage == 4)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 80%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage > 4 && $avarage < 5)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 90%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @elseif($avarage == 5)
+                                                <div class="product-rate-cover text-end">
+                                                    <div class="product-rate d-inline-block">
+                                                        <div class="product-rating" style="width: 100%"></div>
+                                                    </div>
+                                                    <span class="font-small ml-5 text-muted">
+                                                        ({{ $count_review_vendor }}
+                                                        reviews)</span>
+                                                </div>
+                                            @endif
+
+
+
                                         </div>
                                     </div>
                                     @if ($product->vendor_id == null)
@@ -437,10 +534,6 @@
                                                 $avarage = \App\Models\Review::where('product_id', $product->id)
                                                     ->where('status', 1)
                                                     ->avg('rating');
-                                                $review_count = \App\Models\Review::where('product_id', $product->id)
-                                                    ->where('status', 1)
-                                                    ->latest()
-                                                    ->get();
                                             @endphp
                                             <div class="col-lg-4">
                                                 <h4 class="mb-30">Customer reviews</h4>
@@ -513,6 +606,9 @@
                                                 @endif
 
                                                 @php
+                                                    $check = \App\Models\Review::where('product_id', $product->id)
+                                                        ->where('status', 1)
+                                                        ->get();
                                                     $all_stars = \App\Models\Review::where('product_id', $product->id)
                                                         ->where('status', 1)
                                                         ->count();
@@ -536,41 +632,59 @@
                                                         ->where('status', 1)
                                                         ->where('rating', 1)
                                                         ->count();
-                                                    $percent_5_stars = ($count_5_stars / $all_stars) * 100;
-                                                    $percent_4_stars = ($count_4_stars / $all_stars) * 100;
-                                                    $percent_3_stars = ($count_3_stars / $all_stars) * 100;
-                                                    $percent_2_stars = ($count_2_stars / $all_stars) * 100;
-                                                    $percent_1_star = ($count_1_star / $all_stars) * 100;
+                                                    if (count($check) < 1) {
+                                                        $percent_5_stars = 0;
+                                                        $percent_4_stars = 0;
+                                                        $percent_3_stars = 0;
+                                                        $percent_2_stars = 0;
+                                                        $percent_1_star = 0;
+                                                    } else {
+                                                        $percent_5_stars = ($count_5_stars / $all_stars) * 100;
+                                                        $percent_4_stars = ($count_4_stars / $all_stars) * 100;
+                                                        $percent_3_stars = ($count_3_stars / $all_stars) * 100;
+                                                        $percent_2_stars = ($count_2_stars / $all_stars) * 100;
+                                                        $percent_1_star = ($count_1_star / $all_stars) * 100;
+                                                    }
 
                                                 @endphp
                                                 <div class="progress">
                                                     <span>5 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent_5_stars }}%"
-                                                        aria-valuenow="{{ $percent_5_stars }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_5_stars }}%
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ $percent_5_stars }}%"
+                                                        aria-valuenow="{{ $percent_5_stars }}" aria-valuemin="0"
+                                                        aria-valuemax="100">{{ $percent_5_stars }}%
                                                     </div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>4 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent_4_stars }}%"
-                                                        aria-valuenow="{{ $percent_4_stars }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_4_stars }}%
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ $percent_4_stars }}%"
+                                                        aria-valuenow="{{ $percent_4_stars }}" aria-valuemin="0"
+                                                        aria-valuemax="100">{{ $percent_4_stars }}%
                                                     </div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>3 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent_3_stars }}%"
-                                                        aria-valuenow="{{ $percent_3_stars }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_3_stars }}%
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ $percent_3_stars }}%"
+                                                        aria-valuenow="{{ $percent_3_stars }}" aria-valuemin="0"
+                                                        aria-valuemax="100">{{ $percent_3_stars }}%
                                                     </div>
                                                 </div>
                                                 <div class="progress">
                                                     <span>2 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent_2_stars }}%"
-                                                        aria-valuenow="{{ $percent_2_stars }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_2_stars }}%
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ $percent_2_stars }}%"
+                                                        aria-valuenow="{{ $percent_2_stars }}" aria-valuemin="0"
+                                                        aria-valuemax="100">{{ $percent_2_stars }}%
                                                     </div>
                                                 </div>
                                                 <div class="progress mb-30">
                                                     <span>1 star</span>
-                                                    <div class="progress-bar" role="progressbar" style="width: {{ $percent_1_star }}%"
-                                                        aria-valuenow="{{ $percent_1_star }}" aria-valuemin="0" aria-valuemax="100">{{ $percent_1_star }}%
+                                                    <div class="progress-bar" role="progressbar"
+                                                        style="width: {{ $percent_1_star }}%"
+                                                        aria-valuenow="{{ $percent_1_star }}" aria-valuemin="0"
+                                                        aria-valuemax="100">{{ $percent_1_star }}%
                                                     </div>
                                                 </div>
                                                 <a href="#" class="font-xs text-muted">How are ratings

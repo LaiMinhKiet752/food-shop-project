@@ -37,18 +37,18 @@
                             @foreach ($comment as $key => $item)
                                 <tr>
                                     <td> {{ $key + 1 }} </td>
-                                    <td>{{ Str::substr($item['blogpost']['post_title'], 0, 30) }}...</td>
+                                    <td>{{ Str::limit($item['blogpost']['post_title'], 30, '...') }}</td>
                                     <td> <img src="{{ asset($item['blogpost']['post_image']) }}"
                                             style="width: 150px; height:80px;"> </td>
                                     <td>{{ $item['user']['name'] }}</td>
-                                    <td>{{ Str::substr($item->comment, 0, 30) }}...</td>
+                                    <td>{{ Str::limit($item->comment, 30, '...') }}</td>
                                     @if ($item->parent_id == null && $item->status == 0)
                                         <td>
                                             <a href="{{ route('admin.comment.reply', $item->id) }}"
                                                 class="btn btn-warning">Reply</a>
                                         </td>
                                     @else
-                                    <td><a href="#" class="btn btn-danger">Responded</a></td>
+                                        <td><a href="#" class="btn btn-success">Responded</a></td>
                                     @endif
                                 </tr>
                             @endforeach
