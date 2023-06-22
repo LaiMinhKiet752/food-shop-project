@@ -167,8 +167,8 @@
                                         <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                     </div>
                                 </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

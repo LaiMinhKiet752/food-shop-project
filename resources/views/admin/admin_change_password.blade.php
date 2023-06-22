@@ -28,7 +28,6 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
                             <form method="post" action="{{ route('admin.update.password') }}" id="myForm">
                                 @csrf
 
@@ -67,8 +66,8 @@
                                         <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                     </div>
                                 </div>
+                            </form>
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>

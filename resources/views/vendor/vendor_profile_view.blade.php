@@ -86,7 +86,6 @@
                                         aria-label="Close"></button>
                                 </div>
                             @enderror
-
                             <form method="post" action="{{ route('vendor.profile.store') }}"
                                 enctype="multipart/form-data" id="myForm">
                                 @csrf
@@ -195,9 +194,8 @@
                                         <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                     </div>
                                 </div>
+                            </form>
                         </div>
-
-                        </form>
                     </div>
                 </div>
             </div>

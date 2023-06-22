@@ -79,7 +79,7 @@
                                         <h6 class="mb-0"> </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage" src="{{ asset($banner->banner_image) }}" alt="Admin"
+                                        <img id="showImage" src="{{ asset($banner->banner_image) }}" alt="Banner"
                                             style="width: 250px; height: 120px;">
                                     </div>
                                 </div>

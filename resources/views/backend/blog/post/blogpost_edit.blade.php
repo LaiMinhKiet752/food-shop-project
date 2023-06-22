@@ -103,7 +103,7 @@
                                         <h6 class="mb-0"> </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <img id="showImage" src="{{ asset($blogpost->post_image) }}" alt="Admin"
+                                        <img id="showImage" src="{{ asset($blogpost->post_image) }}" alt="Post Image"
                                             style="width: 250px; height: 120px;">
                                     </div>
                                 </div>

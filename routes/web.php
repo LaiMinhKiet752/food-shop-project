@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\User\ReviewController;
 
 /*
@@ -359,6 +360,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/review/details/{id}', 'ReviewDetails')->name('admin.review.details');
         Route::post('/admin/review/approve', 'ReviewApprove')->name('admin.review.approve');
         Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
+    });
+
+    // Site Setting All Route
+    Route::controller(SiteSettingController::class)->group(function () {
+        Route::get('/admin/site/setting', 'SiteSetting')->name('admin.site.setting');
+        Route::post('/admin/site/setting/update', 'SiteSettingUpdate')->name('admin.site.setting.update');
     });
 }); //End Group Middleware Admin
 
