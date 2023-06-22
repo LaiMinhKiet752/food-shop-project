@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seo;
 use App\Models\SiteSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -74,5 +75,28 @@ class SiteSettingController extends Controller
             );
             return redirect()->back()->with($notification);
         }
+    } //End Method
+
+    public function SeoSetting()
+    {
+        $seo = Seo::find(1);
+        return view('backend.seo.seo_update', compact('seo'));
+    } //End Method
+
+    public function SeoSettingUpdate(Request $request)
+    {
+        $seo_id = $request->id;
+        Seo::findOrFail($seo_id)->update([
+            'meta_title' => $request->meta_title,
+            'meta_author' => $request->meta_author,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array(
+            'message' => 'Seo Setting Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     } //End Method
 }

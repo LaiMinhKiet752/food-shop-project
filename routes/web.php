@@ -366,6 +366,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(SiteSettingController::class)->group(function () {
         Route::get('/admin/site/setting', 'SiteSetting')->name('admin.site.setting');
         Route::post('/admin/site/setting/update', 'SiteSettingUpdate')->name('admin.site.setting.update');
+        Route::get('/admin/seo/setting', 'SeoSetting')->name('admin.seo.setting');
+        Route::post('/admin/seo/setting/update', 'SeoSettingUpdate')->name('admin.seo.setting.update');
     });
 }); //End Group Middleware Admin
 
