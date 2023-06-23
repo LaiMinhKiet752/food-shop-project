@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('call_us_phone')->nullable();
             $table->string('email')->nullable();
             $table->text('company_address')->nullable();
+            $table->string('hours')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('youtube')->nullable();

@@ -45,7 +45,7 @@
                             <tr>
                                 <td> {{ $key + 1 }} </td>
                                 <td> {{ $item->coupon_code }}</td>
-                                <td> <span class="badge rounded-pill bg-danger">- {{ $item->coupon_discount }}%</span>
+                                <td> <span class="badge rounded-pill bg-danger" style="font-size: 12px;">- {{ $item->coupon_discount }}%</span>
                                 </td>
                                 <td> {{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }} </td>
                                 <td>

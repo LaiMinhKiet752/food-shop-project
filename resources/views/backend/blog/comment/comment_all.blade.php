@@ -29,10 +29,11 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Post Title </th>
                             <th>Post Image </th>
+                            <th>Post Title </th>
                             <th>Full Name </th>
                             <th>Comment </th>
+                            <th>Status </th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -40,18 +41,28 @@
                         @foreach ($comment as $key => $item)
                             <tr>
                                 <td> {{ $key + 1 }} </td>
-                                <td>{{ Str::limit($item['blogpost']['post_title'], 30, '...') }}</td>
                                 <td> <img src="{{ asset($item['blogpost']['post_image']) }}"
                                         style="width: 150px; height:80px;"> </td>
+                                <td>{{ Str::limit($item['blogpost']['post_title'], 30, '...') }}</td>
                                 <td>{{ $item['user']['name'] }}</td>
                                 <td>{{ Str::limit($item->comment, 30, '...') }}</td>
                                 @if ($item->parent_id == null && $item->status == 0)
                                     <td>
-                                        <a href="{{ route('admin.comment.reply', $item->id) }}"
-                                            class="btn btn-warning">Reply</a>
+                                        <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Not
+                                            answered</span>
                                     </td>
                                 @else
-                                    <td><a href="#" class="btn btn-success">Responded</a></td>
+                                    <td><span class="badge rounded-pill bg-success"
+                                            style="font-size: 13px;">Responded</span></td>
+                                @endif
+                                @if ($item->parent_id == null && $item->status == 0)
+                                    <td>
+                                        <a href="{{ route('admin.comment.reply', $item->id) }}"
+                                            class="btn btn-danger">Reply</a>
+                                    </td>
+                                @else
+                                    <td><a href="{{ route('admin.comment.reply.edit', $item->id) }}"
+                                            class="btn btn-info">Edit</a></td>
                                 @endif
                             </tr>
                         @endforeach
@@ -59,10 +70,11 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Post Title </th>
                             <th>Post Image </th>
+                            <th>Post Title </th>
                             <th>Full Name </th>
                             <th>Comment </th>
+                            <th>Status </th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

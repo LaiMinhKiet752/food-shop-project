@@ -125,7 +125,7 @@
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}"
                                     alt="" /><strong>Email: </strong><span>{{ $setting->email }}</span></li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}"
-                                    alt="" /><strong>Hours: </strong><span>08:00 - 21:00, Mon - Sun</span>
+                                    alt="" /><strong>Hours: </strong><span>{{ $setting->hours }}</span>
                             </li>
                         </ul>
                     </div>
@@ -187,8 +187,7 @@
                 <div class="footer-bottom"></div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6">
-                <p class="font-sm mb-0">&copy; 2023, <strong class="text-brand">Nest</strong> - Food Shop <br>
-                    {{ $setting->copyright }}</p>
+                <p class="font-sm mb-0">&copy; {{ $setting->copyright }}</p>
             </div>
             <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
 
