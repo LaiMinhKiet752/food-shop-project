@@ -186,6 +186,42 @@ class BlogController extends Controller
         return redirect()->back()->with($notification);
     } // End Method
 
+    public function AdminBlogComment()
+    {
+        $comment = BlogComment::where('parent_id', null)->latest()->get();
+        return view('backend.blog.comment.comment_all', compact('comment'));
+    } // End Method
+
+    public function AdminCommentReply($id)
+    {
+        $comment = BlogComment::where('id', $id)->first();
+        return view('backend.blog.comment.comment_reply', compact('comment'));
+    } // End Method
+
+    public function AdminReplyCommentSubmit(Request $request)
+    {
+        $id = $request->id;
+        $blog_post_id = $request->blog_post_id;
+
+        BlogComment::find($id)->update([
+            'status' => 1,
+        ]);
+        BlogComment::insert([
+            'blog_post_id' => $blog_post_id,
+            'user_id' => 1,
+            'parent_id' => $id,
+            'comment' => $request->comment,
+            'status' => 1,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Reply To Comment Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.blog.comment')->with($notification);
+    } // End Method
+
 
 
     //////////-----Frontend Blog Post-----//////////
@@ -202,29 +238,28 @@ class BlogController extends Controller
         $blogcategories = BlogCategory::latest()->get();
         $blogdetails = BlogPost::findOrFail($id);
         $breadcat = BlogCategory::where('id', $blogdetails->category_id)->get();
-        $user_info_comment = BlogComment::where('blog_post_id', $id)->latest()->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(4)->get();
 
         $new_value = $blogdetails->visitors + 1;
         $blogdetails->visitors = $new_value;
         $blogdetails->update();
 
-        return view('frontend.blog.blog_details', compact('blogcategories', 'blogdetails', 'breadcat', 'user_info_comment', 'products'));
+        return view('frontend.blog.blog_details', compact('blogcategories', 'blogdetails', 'breadcat', 'products'));
     } // End Method
 
     public function BlogPostCategory($id, $slug)
     {
         $blogcategories = BlogCategory::latest()->get();
-        $blogpost = BlogPost::where('category_id', $id)->get();
-        $breadcat = BlogCategory::where('id', $id)->get();
+        $blogpost = BlogPost::where('category_id', $id)->latest()->get();
+        $breadcat = BlogCategory::where('id', $id)->first();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(4)->get();
-        return view('frontend.blog.category_post', compact('blogcategories', 'blogpost', 'breadcat','products'));
+        return view('frontend.blog.category_post', compact('blogcategories', 'blogpost', 'breadcat', 'products'));
     } // End Method
 
     public function BlogComments(Request $request)
     {
         if (Auth::check()) {
-            $exists = BlogComment::where('user_id', Auth::id())->where('blog_post_id', $request->blog_post_id)->first();
+            $exists = BlogComment::where('user_id', Auth::id())->where('blog_post_id', $request->blog_post_id)->where('parent_id', null)->first();
             if (!$exists) {
                 BlogComment::insert([
                     'blog_post_id' => $request->blog_post_id,

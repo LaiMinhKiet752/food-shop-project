@@ -76,9 +76,57 @@
                                             <h2><a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h2>
-                                            <div class="product-rate d-inline-block">
-                                                <div class="product-rating" style="width: 80%"></div>
-                                            </div>
+
+                                            @php
+                                                $avarage = \App\Models\Review::where('product_id', $product->id)
+                                                    ->where('status', 1)
+                                                    ->avg('rating');
+                                            @endphp
+
+                                            @if ($avarage == 0)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 0%"></div>
+                                                </div>
+                                            @elseif($avarage == 1)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 20%"></div>
+                                                </div>
+                                            @elseif($avarage > 1 && $avarage < 2)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 30%"></div>
+                                                </div>
+                                            @elseif($avarage == 2)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 40%"></div>
+                                                </div>
+                                            @elseif($avarage > 2 && $avarage < 3)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 50%"></div>
+                                                </div>
+                                            @elseif($avarage == 3)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 60%"></div>
+                                                </div>
+                                            @elseif($avarage > 3 && $avarage < 4)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 70%"></div>
+                                                </div>
+                                            @elseif($avarage == 4)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 80%"></div>
+                                                </div>
+                                            @elseif($avarage > 4 && $avarage < 5)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 90%"></div>
+                                                </div>
+                                            @elseif($avarage == 5)
+                                                <div class="product-rate d-inline-block">
+                                                    <div class="product-rating" style="width: 100%"></div>
+                                                </div>
+                                            @endif
+
+
+
                                             @if ($product->discount_price == null)
                                                 <div class="product-price mt-10">
                                                     <span>${{ $product->selling_price }}</span>
@@ -95,7 +143,8 @@
                                                         aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
                                             </div>
-                                            <input type="hidden" value="{{ $product->id }}" class="featured_prod_id">
+                                            <input type="hidden" value="{{ $product->id }}"
+                                                class="featured_prod_id">
 
                                             <input type="hidden" class="home_featured_category_pname"
                                                 value="{{ $product->product_name }}">

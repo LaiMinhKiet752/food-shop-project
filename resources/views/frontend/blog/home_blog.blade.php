@@ -1,5 +1,8 @@
 @extends('frontend.master_dashboard')
 @section('main')
+@section('title')
+    Blog
+@endsection
     <div class="page-header mt-30 mb-75">
         <div class="container">
             <div class="archive-header">
@@ -107,9 +110,6 @@
                                         @else
                                             <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
                                         @endif
-                                        {{-- <div class="product-rate">
-                                            <div class="product-rating" style="width: 90%"></div>
-                                        </div> --}}
                                     </div>
                                 </div>
                             @endforeach

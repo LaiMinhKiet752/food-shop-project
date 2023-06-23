@@ -33,6 +33,8 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\User\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +132,12 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
         Route::get('/vendor/cancel/order', 'VendorCancelOrder')->name('vendor.cancel.order');
         Route::get('/vendor/cancel/order/details/{order_id}', 'VendorCancelOrderDetails')->name('vendor.cancel.order.details');
         Route::get('/vendor/complete/cancel/order', 'VendorCompleteCancelOrder')->name('vendor.complete.cancel.order');
+    });
+
+    //Vendor Review All Route
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
+        Route::get('/vendor/review/details/{id}', 'VendorReviewDetails')->name('vendor.review.details');
     });
 }); //End Group Middleware Vendor
 
@@ -340,6 +348,26 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/blog/post/{id}', 'EditBlogPost')->name('edit.blog.post');
         Route::post('/admin/update/blog/post', 'UpdateBlogPost')->name('update.blog.post');
         Route::get('/admin/delete/blog/post/{id}', 'DeleteBlogPost')->name('delete.blog.post');
+        Route::get('/admin/blog/comment', 'AdminBlogComment')->name('admin.blog.comment');
+        Route::get('/admin/blog/comment/reply/{id}', 'AdminCommentReply')->name('admin.comment.reply');
+        Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
+    });
+
+    // Review All Route
+    Route::controller(ReviewController::class)->group(function () {
+        Route::get('/admin/pending/review', 'PendingReview')->name('admin.pending.review');
+        Route::get('/admin/publish/review', 'PublishReview')->name('admin.publish.review');
+        Route::get('/admin/review/details/{id}', 'ReviewDetails')->name('admin.review.details');
+        Route::post('/admin/review/approve', 'ReviewApprove')->name('admin.review.approve');
+        Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
+    });
+
+    // Site Setting All Route
+    Route::controller(SiteSettingController::class)->group(function () {
+        Route::get('/admin/site/setting', 'SiteSetting')->name('admin.site.setting');
+        Route::post('/admin/site/setting/update', 'SiteSettingUpdate')->name('admin.site.setting.update');
+        Route::get('/admin/seo/setting', 'SeoSetting')->name('admin.seo.setting');
+        Route::post('/admin/seo/setting/update', 'SeoSettingUpdate')->name('admin.seo.setting.update');
     });
 }); //End Group Middleware Admin
 
@@ -388,13 +416,12 @@ Route::controller(BlogController::class)->group(function () {
     Route::get('/blog', 'AllBlog')->name('home.blog');
     Route::get('/post/details/{id}/{slug}', 'BlogDetails');
     Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+    Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
 });
 
-//Auth All Route
-Route::middleware(['auth'])->group(function () {
-    Route::controller(BlogController::class)->group(function () {
-        Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
-    });
+// Review All Route
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/store/review', 'StoreReview')->name('store.review');
 });
 
 //User All Route
@@ -462,6 +489,5 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
     });
 });
-
 
 require __DIR__ . '/auth.php';

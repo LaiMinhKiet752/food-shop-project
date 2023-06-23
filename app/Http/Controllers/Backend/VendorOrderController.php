@@ -16,9 +16,7 @@ class VendorOrderController extends Controller
     public function VendorOrder()
     {
         $id = Auth::user()->id;
-        // $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
         $orderdetails = OrderDetails::with('order')->where('vendor_id', $id)->orderBy('id', 'DESC')->select('order_id')->groupBy('order_id')->get();
-        // dd($orderdetails);
         return view('vendor.backend.orders.all_orders', compact('orderdetails'));
     } // End Method
 
