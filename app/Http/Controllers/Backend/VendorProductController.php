@@ -121,10 +121,11 @@ class VendorProductController extends Controller
 
     public function VendorEditProduct($id)
     {
+        $products = Product::findOrFail($id);
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
-        $subcategory = SubCategory::latest()->get();
-        $products = Product::findOrFail($id);
+        $get_category_id = $products->category_id;
+        $subcategory = SubCategory::where('category_id', $get_category_id)->latest()->get();
         $multipleImages = MultiImage::where('product_id', $id)->latest()->get();
         return view('vendor.backend.product.vendor_product_edit', compact('brands', 'categories', 'subcategory', 'products', 'multipleImages'));
     } //End Method

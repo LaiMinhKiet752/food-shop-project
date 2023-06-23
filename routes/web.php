@@ -351,6 +351,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/blog/comment', 'AdminBlogComment')->name('admin.blog.comment');
         Route::get('/admin/blog/comment/reply/{id}', 'AdminCommentReply')->name('admin.comment.reply');
         Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
+        Route::get('/admin/blog/comment/reply/edit/{id}', 'AdminCommentReplyEdit')->name('admin.comment.reply.edit');
+        Route::post('/admin/blog/comment/reply/update', 'AdminReplyCommentUpdate')->name('admin.reply.comment.update');
     });
 
     // Review All Route
@@ -395,6 +397,7 @@ Route::controller(CartController::class)->group(function () {
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');
     Route::get('/cart-remove/{rowId}', 'CartRemove');
+    Route::get('/cart/remove/all/product', 'CartRemoveAllProduct')->name('cart.remove.all.product');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
     //Frontend Coupon Option All Route

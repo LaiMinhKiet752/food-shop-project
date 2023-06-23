@@ -222,6 +222,28 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.comment')->with($notification);
     } // End Method
 
+    public function AdminCommentReplyEdit($id)
+    {
+        $comment = BlogComment::where('id', $id)->first();
+        $comment_admin = BlogComment::where('parent_id', $id)->first();
+        return view('backend.blog.comment.comment_edit', compact('comment', 'comment_admin'));
+    } // End Method
+
+    public function AdminReplyCommentUpdate(Request $request)
+    {
+        $id = $request->id;
+
+        BlogComment::find($id)->update([
+            'comment' => $request->admin_comment,
+        ]);
+
+        $notification = array(
+            'message' => 'Comment Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.blog.comment')->with($notification);
+    } // End Method
+
 
 
     //////////-----Frontend Blog Post-----//////////

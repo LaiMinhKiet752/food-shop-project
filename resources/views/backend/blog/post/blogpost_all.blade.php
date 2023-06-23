@@ -32,8 +32,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Post Category </th>
                             <th>Post Image </th>
+                            <th>Post Category </th>
                             <th>Post Title </th>
                             <th>Action</th>
                         </tr>
@@ -42,8 +42,8 @@
                         @foreach ($blogpost as $key => $item)
                             <tr>
                                 <td> {{ $key + 1 }} </td>
-                                <td>{{ $item['blogcategory']['blog_category_name'] }}</td>
                                 <td> <img src="{{ asset($item->post_image) }}" style="width: 150px; height:80px;"> </td>
+                                <td>{{ $item['blogcategory']['blog_category_name'] }}</td>
                                 <td>{{ Str::limit($item->post_title, 30, '...') }}</td>
                                 <td>
                                     <a href="{{ route('edit.blog.post', $item->id) }}" class="btn btn-info">Edit</a>
@@ -56,8 +56,8 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Post Category </th>
                             <th>Post Image </th>
+                            <th>Post Category </th>
                             <th>Post Title </th>
                             <th>Action</th>
                         </tr>

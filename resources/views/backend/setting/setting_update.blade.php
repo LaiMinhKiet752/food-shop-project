@@ -69,7 +69,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                 @enderror
-                                
+
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Support Phone </h6>
@@ -107,6 +107,16 @@
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="company_address" class="form-control"
                                             value="{{ $setting->company_address }}" />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Hours </h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" name="hours" class="form-control"
+                                            value="{{ $setting->hours }}" />
                                     </div>
                                 </div>
 

@@ -482,7 +482,14 @@ class CartController extends Controller
         }
         return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
     } //End Method
-    
+
+    public function CartRemoveAllProduct()
+    {
+        Cart::destroy();
+        Session::forget('coupon');
+        return redirect()->back();
+    } //End Method
+
     public function CartDecrement($rowId)
     {
         $row = Cart::get($rowId);
