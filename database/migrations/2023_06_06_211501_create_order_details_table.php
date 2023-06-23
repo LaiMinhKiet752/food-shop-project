@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->float('price', 8, 2);
             $table->string('quantity');
+            $table->float('discount', 8, 2)->nullable();
             $table->float('total', 8, 2);
             $table->timestamps();
         });

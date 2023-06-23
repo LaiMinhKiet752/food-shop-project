@@ -21,10 +21,12 @@ class StripeController extends Controller
 
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
+            $discount_percent = Session::get('coupon')['coupon_discount'];
             $discount_amount = Session::get('coupon')['discount_amount'];
         } else {
             $total_amount = round(Cart::total());
             $discount_amount = 0;
+            $discount_percent = 0;
         }
 
         $response = \Stripe\Checkout\Session::create([
@@ -83,9 +85,10 @@ class StripeController extends Controller
                 'product_id' => $cart->id,
                 'brand_id' => $cart->options->brand_id,
                 'vendor_id' => $cart->options->vendor_id,
-                'quantity' => $cart->qty,
                 'price' => $cart->price,
-                'total' => $cart->qty * $cart->price,
+                'quantity' => $cart->qty,
+                'discount' => ($cart->price * $discount_percent / 100),
+                'total' => $discount_percent == 0 ? ($cart->price * $cart->qty) : ($cart->price * $cart->qty * $discount_percent / 100),
                 'created_at' => Carbon::now(),
             ]);
         }
