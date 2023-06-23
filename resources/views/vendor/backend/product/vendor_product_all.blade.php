@@ -49,7 +49,7 @@
                         @foreach ($products as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 70px; height: 40px;">
+                                <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
                                 </td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_name }}</td>
@@ -99,8 +99,6 @@
                                 </td>
                             </tr>
                         @endforeach
-
-
                     </tbody>
                     <tfoot>
                         <tr>
@@ -120,8 +118,5 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 @endsection

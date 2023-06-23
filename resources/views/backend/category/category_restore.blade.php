@@ -36,7 +36,6 @@
                         <tr>
                             <th>No.</th>
                             <th>Category Name</th>
-                            <th>Category Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,8 +44,6 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->category_name }}</td>
-                                <td><img src="{{ asset($item->category_image) }}" style="width: 100px; height: 70px;">
-                                </td>
                                 <td>
                                     <a href="{{ route('restore.category.submit', $item->id) }}" class="btn btn-warning"
                                         id="restore_category">Restore</a>
@@ -58,7 +55,6 @@
                         <tr>
                             <th>No.</th>
                             <th>Category Name</th>
-                            <th>Category Image</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

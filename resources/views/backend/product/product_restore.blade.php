@@ -36,7 +36,6 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
                             <th>Action</th>
@@ -46,8 +45,6 @@
                         @foreach ($products as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
-                                </td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_name }}</td>
                                 <td>
@@ -60,7 +57,6 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
                             <th>Action</th>

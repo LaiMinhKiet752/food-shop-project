@@ -85,6 +85,7 @@ class StripeController extends Controller
                 'vendor_id' => $cart->options->vendor_id,
                 'quantity' => $cart->qty,
                 'price' => $cart->price,
+                'total' => $cart->qty * $cart->price,
                 'created_at' => Carbon::now(),
             ]);
         }

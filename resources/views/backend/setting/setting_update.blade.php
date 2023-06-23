@@ -33,6 +33,43 @@
                                 @csrf
                                 <input type="hidden" name="id" value="{{ $setting->id }}">
                                 <input type="hidden" name="old_image" value="{{ $setting->logo }}">
+
+                                @error('facebook')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('twitter')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('youtube')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('instagram')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                @error('pinterest')
+                                    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                        <div class="text-white">{{ $message }}</div>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    </div>
+                                @enderror
+                                
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Support Phone </h6>

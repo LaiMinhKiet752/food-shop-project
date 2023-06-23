@@ -29,8 +29,8 @@
         ->where('order_month', '=', $end_month)
         ->where('order_day', '>=', $start_day)
         ->where('order_day', '<=', $end_day)
-        ->where('return_order_status', 0)
         ->where('cancel_order_status', 0)
+        ->where('return_order_status', 0)
         ->where('status', 'delivered')
         ->sum('amount');
 
@@ -43,22 +43,22 @@
     $sales_today = \App\Models\Order::where('order_year', '=', $date_year)
         ->where('order_month', '=', $date_month)
         ->where('order_day', '=', $date_day)
-        ->where('return_order_status', 0)
         ->where('cancel_order_status', 0)
+        ->where('return_order_status', 0)
         ->where('status', 'delivered')
         ->sum('amount');
 
     $month = date('F');
     $sales_month = \App\Models\Order::where('order_month', $month)
-        ->where('return_order_status', 0)
         ->where('cancel_order_status', 0)
+        ->where('return_order_status', 0)
         ->where('status', 'delivered')
         ->sum('amount');
 
     $year = date('Y');
     $sales_year = \App\Models\Order::where('order_year', $year)
-        ->where('return_order_status', 0)
         ->where('cancel_order_status', 0)
+        ->where('return_order_status', 0)
         ->where('status', 'delivered')
         ->sum('amount');
 
@@ -67,7 +67,6 @@
         ->count();
 
     $success_orders = \App\Models\Order::where('status', 'delivered')
-        ->where('cancel_order_status', 0)
         ->where('return_order_status', 0)
         ->count();
 
@@ -84,7 +83,7 @@
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
         <div class="col">
-            <div class="card radius-10 bg-gradient-moonlit">
+            <div class="card radius-10 bg-gradient-blues">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $sales_today }} USD</h5>
@@ -104,7 +103,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 bg-gradient-deepblue">
+            <div class="card radius-10 bg-gradient-moonlit">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $sales_week }} USD</h5>
@@ -124,7 +123,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 bg-gradient-ohhappiness">
+            <div class="card radius-10 bg-gradient-burning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $sales_month }} USD</h5>
@@ -164,7 +163,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 bg-gradient-lush">
+            <div class="card radius-10 bg-gradient-ohhappiness">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $success_orders }}</h5>
@@ -177,7 +176,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">ALL ORDER SUCCESSFUL DELIVERY</p>
+                        <p class="mb-0">TOTAL ORDER SUCCESSFUL</p>
                         {{-- <p class="mb-0 ms-auto">+5.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>
@@ -197,14 +196,14 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">ALL PENDING ORDERS</p>
+                        <p class="mb-0">TOTAL ORDER PENDING APPROVAL</p>
                         {{-- <p class="mb-0 ms-auto">+5.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 bg-gradient-ibiza">
+            <div class="card radius-10 bg-gradient-deepblue">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $vendor_active }}</h5>
@@ -217,7 +216,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">ALL VENDORS ARE ACTIVE</p>
+                        <p class="mb-0">TOTAL ACTIVE VENDOR ACCOUNTS</p>
                         {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>
@@ -237,7 +236,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">ALL USERS ARE ACTIVE</p>
+                        <p class="mb-0">TOTAL ACTIVE USER ACCOUNTS</p>
                         {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>

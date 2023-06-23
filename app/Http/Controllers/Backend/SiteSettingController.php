@@ -20,13 +20,26 @@ class SiteSettingController extends Controller
     {
         $setting_id = $request->id;
         $old_image = $request->old_image;
+        $regex = '/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/';
+
 
         if ($request->file('logo')) {
             $request->validate([
-                'logo' => 'image|max:2048'
+                'logo' => 'image|max:2048',
+                'facebook' => 'regex:' . $regex,
+                'twitter' => 'regex:' . $regex,
+                'youtube' => 'regex:' . $regex,
+                'instagram' => 'regex:' . $regex,
+                'pinterest' => 'regex:' . $regex,
+
             ], [
                 'logo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
                 'logo.max' => 'The maximum upload image size is 2MB.',
+                'facebook.regex' => 'You entered an invalid Facebook link.',
+                'twitter.regex' => 'You entered an invalid Twitter link.',
+                'youtube.regex' => 'You entered an invalid Youtube link.',
+                'instagram.regex' => 'You entered an invalid Instagram link.',
+                'pinterest.regex' => 'You entered an invalid Pinterest link.',
             ]);
             if (file_exists($old_image)) {
                 unlink($old_image);
@@ -56,6 +69,19 @@ class SiteSettingController extends Controller
             );
             return redirect()->back()->with($notification);
         } else {
+            $request->validate([
+                'facebook' => 'regex:' . $regex,
+                'twitter' => 'regex:' . $regex,
+                'youtube' => 'regex:' . $regex,
+                'instagram' => 'regex:' . $regex,
+                'pinterest' => 'regex:' . $regex,
+            ], [
+                'facebook.regex' => 'You entered an invalid Facebook link.',
+                'twitter.regex' => 'You entered an invalid Twitter link.',
+                'youtube.regex' => 'You entered an invalid Youtube link.',
+                'instagram.regex' => 'You entered an invalid Instagram link.',
+                'pinterest.regex' => 'You entered an invalid Pinterest link.',
+            ]);
             SiteSetting::findOrFail($setting_id)->update([
                 'support_phone' => $request->support_phone,
                 'call_us_phone' => $request->call_us_phone,
