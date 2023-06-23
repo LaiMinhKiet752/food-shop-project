@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
-use App\Models\OrderItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderMail;
 use App\Models\OrderDetails;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -76,6 +77,12 @@ class OrderController extends Controller
 
     public function ProcessingToDelivered($order_id)
     {
+        $product = OrderDetails::where('order_id', $order_id)->get();
+        foreach($product as $item){
+            Product::where('id',$item->product_id)->update([
+                'product_quantity'=> DB::raw('product_quantity - '.$item->quantity)
+            ]); 
+        }
         Order::findOrFail($order_id)->update([
             'status' => 'delivered',
             'delivered_date' => Carbon::now()->format('d F Y H:i:s'),

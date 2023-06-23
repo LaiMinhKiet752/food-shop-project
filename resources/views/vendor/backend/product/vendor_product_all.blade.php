@@ -40,7 +40,6 @@
                             <th>Selling Price</th>
                             <th>Discount Price</th>
                             <th>Percent Discount</th>
-                            <th>Quantity</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -70,7 +69,6 @@
                                         <span class="badge rounded-pill bg-danger"> - {{ round($discount) }}%</span>
                                     @endif
                                 </td>
-                                <td>{{ $item->product_quantity }}</td>
                                 <td>
                                     @if ($item->status == 1)
                                         <span class="badge rounded-pill bg-success"
@@ -109,7 +107,6 @@
                             <th>Selling Price</th>
                             <th>Discount Price</th>
                             <th>Percent Discount</th>
-                            <th>Quantity</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>

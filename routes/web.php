@@ -120,6 +120,8 @@ Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
         Route::get('/vendor/restore/product', 'VendorRestoreProduct')->name('vendor.restore.product');
         Route::get('/vendor/restore/product/submit/{id}', 'VendorRestoreProductSubmit')->name('vendor.restore.product.submit');
         Route::get('/vendor/restore/all/product/submit', 'VendorRestoreAllProductSubmit')->name('vendor.restore.all.product.submit');
+        Route::get('/vendor/product/stock', 'VendorProductStock')->name('vendor.product.stock');
+
     });
 
     //Vendor Order All Route
@@ -209,6 +211,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/restore/product', 'RestoreProduct')->name('restore.product');
         Route::get('/restore/product/submit/{id}', 'RestoreProductSubmit')->name('restore.product.submit');
         Route::get('/restore/all/product/submit', 'RestoreAllProductSubmit')->name('restore.all.product.submit');
+        Route::get('/product/stock', 'ProductStock')->name('product.stock');
     });
 
     //Slider All Route
