@@ -15,7 +15,6 @@
                             <span></span> {{ $breadcategory->category_name }}
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

@@ -422,4 +422,11 @@ class VendorProductController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
+
+    public function VendorProductStock()
+    {
+        $id = Auth::user()->id;
+        $products = Product::where('vendor_id', $id)->latest()->get();
+       return view('vendor.backend.product.vendor_product_stock',compact('products'));
+    } //End Method
 }

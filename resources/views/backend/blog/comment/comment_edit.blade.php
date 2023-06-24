@@ -92,13 +92,13 @@
     $(document).ready(function() {
         $('#myForm').validate({
             rules: {
-                comment: {
+                admin_comment: {
                     required: true,
                     maxlength: 500,
                 },
             },
             messages: {
-                comment: {
+                admin_comment: {
                     required: 'Please enter feedback.',
                     maxlength: 'Reply content cannot be longer than 500 characters.',
                 },
