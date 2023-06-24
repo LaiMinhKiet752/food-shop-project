@@ -34,12 +34,10 @@
     </div>
     <!--end breadcrumb-->
     <hr />
-    <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Username:
-        {{ $user_info->username }}</label><br>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Full name:
-        {{ $user_info->name }}</label><br>
+        {{ $user_info->name }} // </label>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Email:
-        {{ $user_info->email }}</label><br>
+        {{ $user_info->email }} // </label>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Phone Number:
         {{ $user_info->phone }}</label>
     <div class="card">

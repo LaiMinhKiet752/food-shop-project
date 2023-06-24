@@ -28,7 +28,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-home-circle'></i>
                     </div>
-                    <div class="menu-title">Product Manage </div>
+                    <div class="menu-title">Product</div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All
@@ -47,20 +47,20 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='bx bx-home-circle'></i>
                     </div>
-                    <div class="menu-title">Stock Manage </div>
+                    <div class="menu-title">Inventory</div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
                     </li>
                 </ul>
             </li>
-            
+
 
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="bx bx-category"></i>
                     </div>
-                    <div class="menu-title">Order Manage</div>
+                    <div class="menu-title">Order</div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.order') }}"><i class="bx bx-right-arrow-alt"></i>All Orders</a>
@@ -86,7 +86,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="bx bx-category"></i>
                     </div>
-                    <div class="menu-title">Review Manage</div>
+                    <div class="menu-title">Review</div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Review</a>

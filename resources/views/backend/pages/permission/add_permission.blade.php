@@ -1,13 +1,13 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Permission
+    Permissions
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Permission </div>
+        <div class="breadcrumb-title pe-3">Permissions </div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">

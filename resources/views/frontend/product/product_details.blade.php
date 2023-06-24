@@ -641,11 +641,11 @@
                                                     $percent_2_stars = 0;
                                                     $percent_1_star = 0;
                                                 } else {
-                                                    $percent_5_stars = ($count_5_stars / $all_stars) * 100;
-                                                    $percent_4_stars = ($count_4_stars / $all_stars) * 100;
-                                                    $percent_3_stars = ($count_3_stars / $all_stars) * 100;
-                                                    $percent_2_stars = ($count_2_stars / $all_stars) * 100;
-                                                    $percent_1_star = ($count_1_star / $all_stars) * 100;
+                                                    $percent_4_stars = round(($count_4_stars / $all_stars) * 100, 1, PHP_ROUND_HALF_ODD);
+                                                    $percent_5_stars = round(($count_5_stars / $all_stars) * 100, 1, PHP_ROUND_HALF_ODD);
+                                                    $percent_3_stars = round(($count_3_stars / $all_stars) * 100, 1, PHP_ROUND_HALF_ODD);
+                                                    $percent_2_stars = round(($count_2_stars / $all_stars) * 100, 1, PHP_ROUND_HALF_ODD);
+                                                    $percent_1_star = round(($count_1_star / $all_stars) * 100, 1, PHP_ROUND_HALF_ODD);
                                                 }
 
                                             @endphp

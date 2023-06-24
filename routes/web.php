@@ -395,6 +395,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/role/{id}', 'EditRole')->name('edit.role');
         Route::post('/admin/update/role', 'UpdateRole')->name('update.role');
         Route::get('/admin/delete/role/{id}', 'DeleteRole')->name('delete.role');
+        //Role in Permissions
+        Route::get('/admin/add/role/permissions', 'AddRolePermissions')->name('add.role.permissions');
     });
 }); //End Group Middleware Admin
 

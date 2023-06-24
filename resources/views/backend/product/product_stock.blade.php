@@ -33,6 +33,8 @@
                             <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Manufacturing Date</th>
+                            <th>Expiry Date</th>
                             <th>In Stock</th>
                             <th>Status</th>
                         </tr>
@@ -45,6 +47,8 @@
                                 </td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_name }}</td>
+                                <td>{{ $item->manufacturing_date->format('d-m-Y') }}</td>
+                                <td>{{ $item->expiry_date->format('d-m-Y') }}</td>
                                 <td>{{ $item->product_quantity }}</td>
                                 <td>
                                     @if ($item->status == 1)
@@ -64,6 +68,8 @@
                             <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Manufacturing Date</th>
+                            <th>Expiry Date</th>
                             <th>In Stock</th>
                             <th>Status</th>
                         </tr>
