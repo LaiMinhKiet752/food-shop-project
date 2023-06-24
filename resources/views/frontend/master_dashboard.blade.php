@@ -15,7 +15,7 @@
     <meta name="description" content="{{ $seo->meta_description }}" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -101,6 +101,8 @@
     <script src="{{ asset('frontend/assets/js/shop.js?v=5.3') }}"></script>
 
     <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
+
+    <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 

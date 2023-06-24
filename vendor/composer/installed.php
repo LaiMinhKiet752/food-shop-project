@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '0d347ff6df671a22e2c6f2188ae2ea84ea371a06',
+        'reference' => 'ac963d224b9b915ace2ac5ea363f31985bbadd4a',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -442,7 +442,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '0d347ff6df671a22e2c6f2188ae2ea84ea371a06',
+            'reference' => 'ac963d224b9b915ace2ac5ea363f31985bbadd4a',
             'dev_requirement' => false,
         ),
         'laravel/pint' => array(
@@ -1084,6 +1084,15 @@
             'aliases' => array(),
             'reference' => '1a2b4bd3d48c72526c0ba417687e5c56b5cf49bc',
             'dev_requirement' => true,
+        ),
+        'spatie/laravel-permission' => array(
+            'pretty_version' => '5.10.1',
+            'version' => '5.10.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../spatie/laravel-permission',
+            'aliases' => array(),
+            'reference' => 'd08b3ffc5870cce4a47a39f22174947b33c191ae',
+            'dev_requirement' => false,
         ),
         'srmklive/paypal' => array(
             'pretty_version' => '3.0.21',

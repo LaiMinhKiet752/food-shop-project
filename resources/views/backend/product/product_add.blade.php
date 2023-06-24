@@ -35,26 +35,26 @@
                         <div class="col-lg-8">
                             <div class="border border-3 p-4 rounded">
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Name <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="product_name" class="form-control"
                                         value="{{ old('product_name') }}">
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Tags </label>
                                     <input type="text" name="product_tags" class="form-control visually-hidden"
                                         data-role="tagsinput" value="new product">
                                 </div>
 
-                                <div class="row g-3">
+                                <div class="row g-3 text-dark">
                                     <div class="form-group numbers-only col-md-6">
                                         <label for="inputProductTitle" class="form-label">Product Weight</label>
                                         <input type="text" name="product_weight" class="form-control"
                                             value="{{ old('product_weight') }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-dark">
                                         <label for="inputProductTitle" class="form-label">Select Weight/Volume</label>
                                         <select name="product_measure" class="form-control form-select single-select">
                                             <option></option>
@@ -67,24 +67,24 @@
                                 </div>
                                 <br>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Dimensions</label>
                                     <input type="text" name="product_dimensions" class="form-control"
                                         value="{{ old('product_dimensions') }}">
                                 </div>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductDescription" class="form-label">Short Description <span
                                             class="text-danger">*</span></label>
                                     <textarea name="short_description" class="form-control" rows="5">{{ old('short_description') }}</textarea>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 text-dark">
                                     <label for="inputProductDescription" class="form-label">Long Description </label>
                                     <textarea id="mytextarea" name="long_description">{{ old('long_description') }}</textarea>
                                 </div>
                                 <br>
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Main Thumbnail <span
                                             class="text-danger">*</span></label>
                                     <input name="product_thumbnail" class="form-control" type="file"
@@ -95,7 +95,7 @@
                                     <img src="" id="mainthumbnail" alt="" style="margin-top: 10px;">
                                 </div>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Multiple Images <span
                                             class="text-danger">*</span></label>
                                     <input class="form-control" name="multiple_image[]" type="file"
@@ -120,28 +120,28 @@
                                     </div>
                                 @enderror
                                 <div class="row g-3">
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputPrice" class="form-label">Selling Price (USD) <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="selling_price" class="form-control"
                                             id="product_selling_price" placeholder="00.00"
                                             value="{{ old('selling_price') }}">
                                     </div>
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputCompareatprice" class="form-label">Discount Price
                                             (USD)</label>
                                         <input type="text" name="discount_price" class="form-control"
                                             id="product_discount_price" placeholder="00.00"
                                             value="{{ old('discount_price') }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-dark">
                                         <label for="inputCostPerPrice" class="form-label">Product Code <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="product_code" class="form-control"
                                             id="inputCostPerPrice" placeholder="1q2w3e"
                                             value="{{ old('product_code') }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-dark">
                                         <label for="inputStarPoints" class="form-label">Product Quantity <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="product_quantity" class="form-control"
@@ -149,19 +149,19 @@
                                             value="{{ old('product_quantity') }}">
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-dark">
                                         <label class="form-label">Manufacturing Date </label>
                                         <input type="date" name="manufacturing_date" class="form-control"
                                             id="mfg_product">
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-dark">
                                         <label class="form-label">Expiry Date </label>
                                         <input type="date" name="expiry_date" class="form-control"
                                             id="exp_product">
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputProductType" class="form-label">Product Brand <span
                                                 class="text-danger">*</span></label>
                                         <select name="brand_id" class="form-control form-select single-select">
@@ -172,7 +172,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputVendor" class="form-label">Product Category <span
                                                 class="text-danger">*</span></label>
                                         <select name="category_id" class="form-control form-select single-select">
@@ -184,7 +184,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputVendor" class="form-label">Product SubCategory <span
                                                 class="text-danger">*</span></label>
                                         <select name="subcategory_id" class="form-control form-select single-select">
@@ -193,7 +193,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputCollection" class="form-label">Select Vendor </label>
                                         <select name="vendor_id" class="form-control form-select single-select">
                                             <option></option>
@@ -205,7 +205,7 @@
 
                                     <div class="col-12">
                                         <div class="row g-3">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 text-dark">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="hot_deals" type="checkbox"
                                                         value="1" />
@@ -214,7 +214,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 text-dark">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="featured" type="checkbox"
                                                         value="1" />
@@ -223,7 +223,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 text-dark">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="special_offer"
                                                         type="checkbox" value="1" />
@@ -232,7 +232,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-6 text-dark">
                                                 <div class="form-check">
                                                     <input class="form-check-input" name="special_deals"
                                                         type="checkbox" value="1" />

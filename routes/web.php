@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\User\ReviewController;
 
@@ -65,6 +66,9 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/product/subcategory/{id}/{slug}', 'SubCategoryWiseProduct');
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}', 'ProductViewAjax');
+    //Product Search
+    Route::post('/product/search' , 'ProductSearch')->name('product.search');
+    Route::post('/search-product' , 'SearchProduct');
 });
 
 //Frontend All Route
@@ -333,7 +337,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
     });
 
-    // Blog All Category Route
+    //Blog All Category Route
     Route::controller(BlogController::class)->group(function () {
         Route::get('/admin/blog/category', 'AllBlogCateogry')->name('admin.blog.category');
         Route::get('/admin/add/blog/category', 'AddBlogCateogry')->name('add.blog.categroy');
@@ -343,7 +347,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/delete/blog/category/{id}', 'DeleteBlogCateogry')->name('delete.blog.category');
     });
 
-    // Blog Post All Route
+    //Blog Post All Route
     Route::controller(BlogController::class)->group(function () {
         Route::get('/admin/blog/post', 'AllBlogPost')->name('admin.blog.post');
         Route::get('/admin/add/blog/post', 'AddBlogPost')->name('add.blog.post');
@@ -358,7 +362,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/blog/comment/reply/update', 'AdminReplyCommentUpdate')->name('admin.reply.comment.update');
     });
 
-    // Review All Route
+    //Review All Route
     Route::controller(ReviewController::class)->group(function () {
         Route::get('/admin/pending/review', 'PendingReview')->name('admin.pending.review');
         Route::get('/admin/publish/review', 'PublishReview')->name('admin.publish.review');
@@ -367,12 +371,22 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
     });
 
-    // Site Setting All Route
+    //Site Setting All Route
     Route::controller(SiteSettingController::class)->group(function () {
         Route::get('/admin/site/setting', 'SiteSetting')->name('admin.site.setting');
         Route::post('/admin/site/setting/update', 'SiteSettingUpdate')->name('admin.site.setting.update');
         Route::get('/admin/seo/setting', 'SeoSetting')->name('admin.seo.setting');
         Route::post('/admin/seo/setting/update', 'SeoSettingUpdate')->name('admin.seo.setting.update');
+    });
+
+    //Role And Permission All Route
+    Route::controller(RoleController::class)->group(function () {
+        Route::get('/admin/all/permission', 'AllPermission')->name('all.permission');
+        Route::get('/admin/add/permission', 'AddPermission')->name('add.permission');
+        Route::post('/admin/store/permission', 'StorePermission')->name('store.permission');
+        Route::get('/admin/edit/permission/{id}', 'EditPermission')->name('edit.permission');
+        Route::post('/admin/update/permission', 'UpdatePermission')->name('update.permission');
+        Route::get('/admin/delete/permission/{id}', 'DeletePermission')->name('delete.permission');
     });
 }); //End Group Middleware Admin
 
@@ -396,6 +410,7 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
     Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
     Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
+    Route::post('/product/search/cart/store/{id}', 'AddToCartProductSearch');
     //My Cart All Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');

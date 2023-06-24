@@ -279,7 +279,8 @@
                 </li>
                 <li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>Blog Post</a>
                 </li>
-                <li> <a href="{{ route('admin.blog.comment') }}"><i class="bx bx-right-arrow-alt"></i>Blog Comment</a>
+                <li> <a href="{{ route('admin.blog.comment') }}"><i class="bx bx-right-arrow-alt"></i>Blog
+                        Comment</a>
                 </li>
             </ul>
         </li>
@@ -292,9 +293,11 @@
                 <div class="menu-title">Review Manage</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.pending.review') }}"><i class="bx bx-right-arrow-alt"></i>Pending Review</a>
+                <li> <a href="{{ route('admin.pending.review') }}"><i class="bx bx-right-arrow-alt"></i>Pending
+                        Review</a>
                 </li>
-                <li> <a href="{{ route('admin.publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish Review</a>
+                <li> <a href="{{ route('admin.publish.review') }}"><i class="bx bx-right-arrow-alt"></i>Publish
+                        Review</a>
                 </li>
             </ul>
         </li>
@@ -307,13 +310,30 @@
                 <div class="menu-title">Setting Manage</div>
             </a>
             <ul>
-                <li> <a href="{{ route('admin.site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site Setting</a>
+                <li> <a href="{{ route('admin.site.setting') }}"><i class="bx bx-right-arrow-alt"></i>Site
+                        Setting</a>
                 </li>
                 <li> <a href="{{ route('admin.seo.setting') }}"><i class="bx bx-right-arrow-alt"></i>Seo Setting</a>
                 </li>
             </ul>
         </li>
 
+
+        <li class="menu-label">Roles And Permission</li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                </div>
+                <div class="menu-title">Role & Permission</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.permission') }}"><i class="bx bx-right-arrow-alt"></i>All Permission</a>
+                </li>
+                <li> <a href="charts-chartjs.html"><i class="bx bx-right-arrow-alt"></i>Add Permission</a>
+                </li>
+
+            </ul>
+        </li>
 
 
         <li>

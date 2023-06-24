@@ -50,7 +50,7 @@
                             <div class="product-detail-rating">
                                 <div class="product-rate-cover text-end">
                                     @php
-                                        $avarage = \App\Models\Review::where('product_id', $product->id)
+                                        $average = \App\Models\Review::where('product_id', $product->id)
                                             ->where('status', 1)
                                             ->avg('rating');
                                         $review_count = \App\Models\Review::where('product_id', $product->id)
@@ -59,24 +59,24 @@
                                             ->get();
                                     @endphp
                                     <div class="product-rate d-inline-block">
-                                        @if ($avarage == 0)
-                                        @elseif($avarage == 1)
+                                        @if ($average == 0)
+                                        @elseif($average == 1)
                                             <div class="product-rating" style="width: 20%"></div>
-                                        @elseif($avarage > 1 && $avarage < 2)
+                                        @elseif($average > 1 && $average < 2)
                                             <div class="product-rating" style="width: 30%"></div>
-                                        @elseif($avarage == 2)
+                                        @elseif($average == 2)
                                             <div class="product-rating" style="width: 40%"></div>
-                                        @elseif($avarage > 2 && $avarage < 3)
+                                        @elseif($average > 2 && $average < 3)
                                             <div class="product-rating" style="width: 50%"></div>
-                                        @elseif($avarage == 3)
+                                        @elseif($average == 3)
                                             <div class="product-rating" style="width: 60%"></div>
-                                        @elseif($avarage > 3 && $avarage < 4)
+                                        @elseif($average > 3 && $average < 4)
                                             <div class="product-rating" style="width: 70%"></div>
-                                        @elseif($avarage == 4)
+                                        @elseif($average == 4)
                                             <div class="product-rating" style="width: 80%"></div>
-                                        @elseif($avarage > 4 && $avarage < 5)
+                                        @elseif($average > 4 && $average < 5)
                                             <div class="product-rating" style="width: 90%"></div>
-                                        @elseif($avarage == 5)
+                                        @elseif($average == 5)
                                             <div class="product-rating" style="width: 100%"></div>
                                         @endif
                                     </div>
@@ -329,14 +329,14 @@
 
 
                                         @php
-                                            $avarage = \App\Models\Review::where('vendor_id', $product->vendor_id)
+                                            $average = \App\Models\Review::where('vendor_id', $product->vendor_id)
                                                 ->where('status', 1)
                                                 ->avg('rating');
                                             $count_review_vendor = \App\Models\Review::where('vendor_id', $product->vendor_id)
                                                 ->where('status', 1)
                                                 ->count('rating');
                                         @endphp
-                                        @if ($avarage == 0)
+                                        @if ($average == 0)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 0%"></div>
@@ -345,7 +345,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage == 1)
+                                        @elseif($average == 1)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 20%"></div>
@@ -354,7 +354,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage > 1 && $avarage < 2)
+                                        @elseif($average > 1 && $average < 2)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 30%"></div>
@@ -363,7 +363,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage == 2)
+                                        @elseif($average == 2)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 40%"></div>
@@ -372,7 +372,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage > 2 && $avarage < 3)
+                                        @elseif($average > 2 && $average < 3)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 50%"></div>
@@ -381,7 +381,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage == 3)
+                                        @elseif($average == 3)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 60%"></div>
@@ -390,7 +390,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage > 3 && $avarage < 4)
+                                        @elseif($average > 3 && $average < 4)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 70%"></div>
@@ -399,7 +399,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage == 4)
+                                        @elseif($average == 4)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 80%"></div>
@@ -408,7 +408,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage > 4 && $avarage < 5)
+                                        @elseif($average > 4 && $average < 5)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 90%"></div>
@@ -417,7 +417,7 @@
                                                     ({{ $count_review_vendor }}
                                                     reviews)</span>
                                             </div>
-                                        @elseif($avarage == 5)
+                                        @elseif($average == 5)
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">
                                                     <div class="product-rating" style="width: 100%"></div>
@@ -533,72 +533,72 @@
 
 
                                         @php
-                                            $avarage = \App\Models\Review::where('product_id', $product->id)
+                                            $average = \App\Models\Review::where('product_id', $product->id)
                                                 ->where('status', 1)
                                                 ->avg('rating');
                                         @endphp
                                         <div class="col-lg-4">
                                             <h4 class="mb-30">Customer reviews</h4>
-                                            @if ($avarage == 0)
+                                            @if ($average == 0)
                                                 <div class="product-rate d-inline-block mr-15">
                                                 </div>
-                                            @elseif($avarage == 1)
+                                            @elseif($average == 1)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 20%"></div>
                                                     </div>
                                                     <h6>1 out of 5</h6>
                                                 </div>
-                                            @elseif($avarage > 1 && $avarage < 2)
+                                            @elseif($average > 1 && $average < 2)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 30%"></div>
                                                     </div>
-                                                    <h6>{{ $avarage }} out of 5</h6>
+                                                    <h6>{{ $average }} out of 5</h6>
                                                 </div>
-                                            @elseif($avarage == 2)
+                                            @elseif($average == 2)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 40%"></div>
                                                     </div>
                                                     <h6>2 out of 5</h6>
                                                 </div>
-                                            @elseif($avarage > 2 && $avarage < 3)
+                                            @elseif($average > 2 && $average < 3)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 50%"></div>
                                                     </div>
-                                                    <h6>{{ $avarage }} out of 5</h6>
+                                                    <h6>{{ $average }} out of 5</h6>
                                                 </div>
-                                            @elseif($avarage == 3)
+                                            @elseif($average == 3)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 60%"></div>
                                                     </div>
                                                     <h6>3 out of 5</h6>
                                                 </div>
-                                            @elseif($avarage > 3 && $avarage < 4)
+                                            @elseif($average > 3 && $average < 4)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 70%"></div>
                                                     </div>
-                                                    <h6>{{ $avarage }} out of 5</h6>
+                                                    <h6>{{ $average }} out of 5</h6>
                                                 </div>
-                                            @elseif($avarage == 4)
+                                            @elseif($average == 4)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
                                                     <h6>4 out of 5</h6>
                                                 </div>
-                                            @elseif($avarage > 4 && $avarage < 5)
+                                            @elseif($average > 4 && $average < 5)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 90%"></div>
                                                     </div>
-                                                    <h6>{{ $avarage }} out of 5</h6>
+                                                    <h6>{{ $average }} out of 5</h6>
                                                 </div>
-                                            @elseif($avarage == 5)
+                                            @elseif($average == 5)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 100%"></div>
@@ -835,7 +835,7 @@
 
 
                                             @php
-                                                $avarage = \App\Models\Review::where('product_id', $product->id)
+                                                $average = \App\Models\Review::where('product_id', $product->id)
                                                     ->where('status', 1)
                                                     ->avg('rating');
                                                 $count_review = \App\Models\Review::where('product_id', $product->id)
@@ -843,28 +843,28 @@
                                                     ->count('rating');
                                             @endphp
                                             <div class="product-rate-cover">
-                                                @if ($avarage == 0)
+                                                @if ($average == 0)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 0%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage == 1)
+                                                @elseif($average == 1)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 20%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage > 1 && $avarage < 2)
+                                                @elseif($average > 1 && $average < 2)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 30%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage == 2)
+                                                @elseif($average == 2)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 40%"></div>
                                                     </div>
@@ -872,42 +872,42 @@
                                                         ({{ $count_review }}
                                                         reviews)
                                                     </span>
-                                                @elseif($avarage > 2 && $avarage < 3)
+                                                @elseif($average > 2 && $average < 3)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 50%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage == 3)
+                                                @elseif($average == 3)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 60%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage > 3 && $avarage < 4)
+                                                @elseif($average > 3 && $average < 4)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 70%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage == 4)
+                                                @elseif($average == 4)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage > 4 && $avarage < 5)
+                                                @elseif($average > 4 && $average < 5)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 90%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }} reviews)
                                                     </span>
-                                                @elseif($avarage == 5)
+                                                @elseif($average == 5)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 100%"></div>
                                                     </div>
