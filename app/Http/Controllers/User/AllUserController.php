@@ -103,4 +103,26 @@ class AllUserController extends Controller
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         return view('frontend.order.cancel_order_details', compact('order', 'orderItem'));
     } //End Method
+
+    public function UserTrackOrderPage()
+    {
+        return view('frontend.userdashboard.user_track_order');
+    } //End Method
+
+    public function UserOrderTracking(Request $request)
+    {
+        $invoice_number = $request->code;
+        $user_id = Auth::user()->id;
+        $track = Order::where('user_id', $user_id)->where('invoice_number', $invoice_number)->first();
+
+        if ($track) {
+            return view('frontend.tracking.track_order', compact('track'));
+        } else {
+            $notification = array(
+                'message' => 'Invoice Number Is Invalid!',
+                'alert-type' => 'error'
+            );
+            return redirect()->back()->with($notification);
+        }
+    } //End Method
 }

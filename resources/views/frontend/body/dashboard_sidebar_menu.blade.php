@@ -17,7 +17,8 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.return.order.page' ? 'active' : '' }}"
-                    href="{{ route('user.return.order.page') }}"><i class="fa-solid fa-arrow-rotate-left mr-5"></i>Return
+                    href="{{ route('user.return.order.page') }}"><i
+                        class="fa-solid fa-arrow-rotate-left mr-5"></i>Return
                     Orders</a>
             </li>
             <li class="nav-item">
@@ -26,11 +27,9 @@
                     Orders</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fi-rs-shopping-cart-check mr-5"></i>Track Your
-                    Order</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fi-rs-marker mr-5"></i>My Address</a>
+                <a class="nav-link {{ $route == 'user.track.order.page' ? 'active' : '' }}"
+                    href="{{ route('user.track.order.page') }}"><i class="fi-rs-shopping-cart-check mr-5"></i>Track
+                    Your Order</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.account.page' ? 'active' : '' }}"
