@@ -11,13 +11,17 @@
 
     $this_week_start = date('Y-F-d', $monday);
     $this_week_end = date('Y-F-d', $sunday);
+ 
 
     $date_explode_start = explode('-', $this_week_start);
     $date_explode_end = explode('-', $this_week_end);
 
+
+
     $start_day = $date_explode_start[2];
     $start_month = $date_explode_start[1];
     $start_year = $date_explode_start[0];
+
 
     $end_day = $date_explode_end[2];
     $end_month = $date_explode_end[1];
