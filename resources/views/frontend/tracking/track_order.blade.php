@@ -165,7 +165,7 @@
                 <div class="card-body row" style="justify-content: space-evenly;">
                     <div class="col"> <strong>Order Date:</strong> <br>{{ $track->order_date }} </div>
                     <div class="col"> <strong>Shipping By: </strong> <br> <i class="fa fa-shop">
-                        </i> Nest Food Shop | 1900 - 999 <br>
+                        </i> Nest Shop | 1900 - 999 <br>
                     </div>
 
                     <div class="col"> <strong>Shipping To: </strong> <br> <i class="fa fa-person">

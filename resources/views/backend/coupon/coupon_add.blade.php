@@ -74,7 +74,7 @@
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="submit" class="btn btn-primary px-4 savedata"
-                                            value="Add Coupon" />
+                                            value="Add" />
                                     </div>
                                 </div>
                             </form>
@@ -96,6 +96,7 @@
                 },
                 coupon_discount: {
                     required: true,
+                    digits: true,
                     min: 1,
                     max: 100,
                 },
@@ -110,6 +111,7 @@
                 },
                 coupon_discount: {
                     required: 'Please enter coupon discount.',
+                    digits: 'Please enter only positive integers.',
                     min: 'Coupon discount must be greater than 0.',
                     max: 'Coupon discount must be less than or equal 100.',
                 },

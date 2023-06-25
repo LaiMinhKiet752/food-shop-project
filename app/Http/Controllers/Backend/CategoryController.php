@@ -44,11 +44,11 @@ class CategoryController extends Controller
         ]);
         $file = $request->file('category_image');
         $filename = hexdec(uniqid()) . '_category' . '.' . $file->getClientOriginalExtension();
-        Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
+        $file->move(public_path('upload/category/'), $filename);
         $save_url = 'upload/category/' . $filename;
 
         $category = new Category();
-        $category->category_name = $request->category_name;
+        $category->category_name = strtoupper($request->category_name);
         $category->category_slug = strtolower(str_replace(' ', '-', $request->category_name));
         $category->category_image = $save_url;
         $category->save();
@@ -100,7 +100,7 @@ class CategoryController extends Controller
                 if (file_exists($old_image)) {
                     unlink($old_image);
                 }
-                Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
+                $file->move(public_path('upload/category/'), $filename);
                 Category::findOrFail($cat_id)->update([
                     'category_image' => $save_url,
                 ]);
@@ -120,9 +120,9 @@ class CategoryController extends Controller
                 if (file_exists($old_image)) {
                     unlink($old_image);
                 }
-                Image::make($file)->resize(120, 120)->save('upload/category/' . $filename);
+                $file->move(public_path('upload/category/'), $filename);
                 Category::findOrFail($cat_id)->update([
-                    'category_name' => $request->category_name,
+                    'category_name' => strtoupper($request->category_name),
                     'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
                     'category_image' => $save_url,
                 ]);
@@ -159,7 +159,7 @@ class CategoryController extends Controller
                     'category_name.unique' => 'The category name already exists. Please enter another category name.',
                 ]);
                 Category::findOrFail($cat_id)->update([
-                    'category_name' => $request->category_name,
+                    'category_name' => strtoupper($request->category_name),
                     'category_slug' => strtolower(str_replace(' ', '-', $request->category_name)),
                 ]);
 

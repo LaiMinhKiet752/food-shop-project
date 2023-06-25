@@ -344,7 +344,7 @@
                                 @endforeach
 
                                 <li>
-                                    <a href="{{ route('home.blog') }}">Blog</a>
+                                    <a href="{{ route('home.blog') }}">BLOG</a>
                                 </li>
                             </ul>
                         </nav>

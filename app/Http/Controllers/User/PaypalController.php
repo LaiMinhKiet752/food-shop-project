@@ -23,7 +23,7 @@ class PaypalController extends Controller
             $discount_percent = Session::get('coupon')['coupon_discount'];
             $discount_amount = Session::get('coupon')['discount_amount'];
         } else {
-            $total_amount = round(Cart::total());
+            $total_amount = round(Cart::total(), 2);
             $discount_amount = 0;
             $discount_percent = 0;
         }
@@ -94,7 +94,7 @@ class PaypalController extends Controller
         //Send Mail
         $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-        $subject = 'Nest Food Shop';
+        $subject = 'Nest Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
 
         if (isset($response['id']) && $response['id'] != null) {

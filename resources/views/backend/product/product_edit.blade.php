@@ -490,7 +490,7 @@
                 },
                 short_description: {
                     required: true,
-                    maxlength: 255,
+                    maxlength: 500,
                 },
                 product_thumbnail: {
                     required: true,
@@ -531,7 +531,7 @@
                 },
                 short_description: {
                     required: 'Please enter short description.',
-                    maxlength: 'The short description must not be greater than 255 characters.',
+                    maxlength: 'The short description must not be greater than 500 characters.',
                 },
                 product_thumbnail: {
                     required: 'Please select product thumbnail image.',

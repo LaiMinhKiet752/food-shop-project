@@ -52,7 +52,7 @@
                                                 d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                                             </path>
                                         </svg>Website</h6>
-                                    <span class="text-secondary">https://nestfoodshop.com</span>
+                                    <span class="text-secondary">https://nest.com</span>
                                 </li>
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -63,7 +63,7 @@
                                             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
                                             </path>
                                         </svg>Facebook</h6>
-                                    <span class="text-secondary">Nest Food Shop</span>
+                                    <span class="text-secondary">Nest Shop</span>
                                 </li>
                             </ul>
                         </div>

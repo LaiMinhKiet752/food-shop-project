@@ -54,15 +54,15 @@
     <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
             <td valign="top">
-                <img src="{{ public_path('upload/logo.png') }}" alt="" style="width: 200px; height: 70px;" />
-                <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
+                <img src="{{ public_path('/upload/logo.png') }}" alt="" style="width: 200px; height: 70px;" />
+                <h2 style="color: green; font-size: 26px;"><strong>Nest Shop</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               Nest Food Shop Head Office
-               Email: support@nestfoodshop.com
+               Nest Shop Head Office
+               Email: nest@gmail.com
                Address: Ho Chi Minh city, Viet Nam
-               Hotline: 1900 888
+               Hotline: 1900 900
             </pre>
             </td>
         </tr>

@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Nest - Food Shop
+    Nest
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 @include('frontend.home.home_slider')
@@ -20,7 +20,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>{{ $skip_category_0->category_name }} Category</h3>
+            <h3>{{ $skip_category_0->category_name }} CATEGORY</h3>
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -160,11 +160,9 @@
                                         @endif
                                     </div>
 
-
-
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
@@ -214,7 +212,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>{{ $skip_category_1->category_name }} Category</h3>
+            <h3>{{ $skip_category_1->category_name }} CATEGORY</h3>
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -358,7 +356,7 @@
 
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
@@ -408,7 +406,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>{{ $skip_category_2->category_name }} Category</h3>
+            <h3>{{ $skip_category_2->category_name }} CATEGORY</h3>
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -552,7 +550,7 @@
 
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
@@ -602,7 +600,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>{{ $skip_category_3->category_name }} Category</h3>
+            <h3>{{ $skip_category_3->category_name }} CATEGORY</h3>
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -746,7 +744,7 @@
 
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
@@ -796,7 +794,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3>{{ $skip_category_4->category_name }} Category</h3>
+            <h3>{{ $skip_category_4->category_name }} CATEGORY</h3>
         </div>
         <!--End nav-tabs-->
         <div class="tab-content" id="myTabContent">
@@ -940,7 +938,7 @@
 
                                     <div>
                                         @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Owner</a></span>
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         @else
                                             <span class="font-small text-muted">By <a
                                                     href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>

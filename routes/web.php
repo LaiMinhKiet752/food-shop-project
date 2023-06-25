@@ -96,7 +96,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 }); //End Group Middleware User
 
 
-Route::middleware(['auth', 'role:vendor', 'verified'])->group(function () {
+Route::middleware(['auth', 'role:vendor'])->group(function () {
 
     //Vendor Dashborad
     Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
