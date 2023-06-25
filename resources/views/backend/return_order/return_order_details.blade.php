@@ -99,13 +99,20 @@
                             <th>Order Number :</th>
                             <th>{{ $order->order_number }}</th>
                         </tr>
+                        @php
+                            $order_date = strtotime($order->order_date);
+                            $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                            $return_date = strtotime($order->return_date);
+                            $return_date_format = date('d-m-Y H:i:s', $return_date);
+                        @endphp
                         <tr>
                             <th>Order Date :</th>
-                            <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
+                            <th>{{ $order_date_format }}</th>
                         </tr>
                         <tr>
                             <th>Return Date :</th>
-                            <th>{{ $order->return_date }}</th>
+                            <th>{{ $return_date_format }}</th>
                         </tr>
                         <tr>
                             <th>Discount :</th>

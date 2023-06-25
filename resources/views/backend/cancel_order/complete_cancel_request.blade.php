@@ -45,8 +45,15 @@
                             <tr>
                                 <td> {{ $key + 1 }} </td>
                                 <td>{{ $item->invoice_number }}</td>
-                                <td>{{ $item->order_date }}</td>
-                                <td>{{ $item->cancel_date }}</td>
+                                @php
+                                    $order_date = strtotime($item->order_date);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                                    $cancel_date = strtotime($item->cancel_date);
+                                    $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
+                                <td>{{ $cancel_date_format }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>
                                 <td>

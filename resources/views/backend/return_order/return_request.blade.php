@@ -46,8 +46,15 @@
                             <tr>
                                 <td> {{ $key + 1 }} </td>
                                 <td>{{ $item->invoice_number }}</td>
-                                <td>{{ $item->order_date }}</td>
-                                <td>{{ $item->return_date }}</td>
+                                @php
+                                    $order_date = strtotime($item->order_date);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                                    $return_date = strtotime($item->return_date);
+                                    $return_date_format = date('d-m-Y H:i:s', $return_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
+                                <td>{{ $return_date_format }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>
                                 <td>{{ $item->return_reason }}</td>

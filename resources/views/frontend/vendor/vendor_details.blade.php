@@ -411,7 +411,7 @@
                                     src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
                                     alt="" /><strong>Call Us: </strong><span>{{ $vendor->phone }}</span></li>
                         </ul>
-                        <a href="vendor-details-1.html" class="btn btn-xs">Contact Seller <i
+                        <a href="vendor-details-1.html" class="btn btn-xs">Contact <i
                                 class="fi-rs-arrow-small-right"></i></a>
                     </div>
                 </div>

@@ -28,20 +28,17 @@
         }
 
         .authority {
-            /*text-align: center;*/
             float: right
         }
 
         .authority h5 {
             margin-top: -10px;
             color: green;
-            /*text-align: center;*/
             margin-left: 35px;
         }
 
         .thanks p {
             color: green;
-            ;
             font-size: 16px;
             font-weight: normal;
             font-family: serif;
@@ -87,9 +84,11 @@
             <td>
                 <p class="font">
                 <h3><span style="color: green;">Invoice Number :</span> #{{ $order->invoice_number }}</h3>
-                
-                <strong>Order Date: </strong> {{ $order->order_date }}<br>
-                <strong>Delivery Date: </strong> {{ $order->delivered_date }}<br>
+                @php
+                    $order_date = strtotime($order->order_date);
+                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                @endphp
+                <strong>Order Date: </strong> {{ $order_date_format }}<br>
                 <strong>Payment Type: </strong> {{ $order->payment_type }}<br>
                 <strong>Payment Method: </strong> {{ $order->payment_method }}<br>
                 <strong>Notes: </strong> {{ $order->notes }}

@@ -47,9 +47,24 @@
                                 <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
                                 </td>
                                 <td>{{ $item->product_code }}</td>
-                                <td>{{ $item->product_name }}</td>
-                                <td>{{ $item->manufacturing_date->format('d-m-Y') }}</td>
-                                <td>{{ $item->expiry_date->format('d-m-Y') }}</td>
+                                <td>{{ Str::limit($item->product_name, 15, '...') }}</td>
+                                @php
+                                    $manufacturing_date = strtotime($item->manufacturing_date);
+                                    $manufacturing_date_format = date('d-m-Y', $manufacturing_date);
+
+                                    $expiry_date = strtotime($item->expiry_date);
+                                    $expiry_date_format = date('d-m-Y', $expiry_date);
+                                @endphp
+                                @if ($item->manufacturing_date == null)
+                                    <td></td>
+                                @else
+                                    <td>{{ $manufacturing_date_format }}</td>
+                                @endif
+                                @if ($item->expiry_date == null)
+                                    <td></td>
+                                @else
+                                    <td>{{ $expiry_date_format }}</td>
+                                @endif
                                 <td>{{ $item->product_quantity }}</td>
                                 <td>
                                     @if ($item->status == 1)

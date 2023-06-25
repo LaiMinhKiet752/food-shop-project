@@ -163,7 +163,11 @@
             </p>
             <article class="card">
                 <div class="card-body row" style="justify-content: space-evenly;">
-                    <div class="col"> <strong>Order Date:</strong> <br>{{ $track->order_date }} </div>
+                    @php
+                        $order_date = strtotime($track->order_date);
+                        $order_date_format = date('d-m-Y H:i:s', $order_date);
+                    @endphp
+                    <div class="col"> <strong>Order Date:</strong> <br>{{ $order_date_format }} </div>
                     <div class="col"> <strong>Shipping By: </strong> <br> <i class="fa fa-shop">
                         </i> Nest Shop | 1900 - 999 <br>
                     </div>
@@ -195,7 +199,7 @@
                 @elseif($track->status == 'confirmed')
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
-                        $confirmed_date_format = date('Y-m-d H:i:s', $confirmed_date);
+                        $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
                     @endphp
                     <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                             class="text">Order Pending</span> </div>
@@ -214,9 +218,9 @@
                 @elseif($track->status == 'processing')
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
-                        $confirmed_date_format = date('Y-m-d H:i:s', $confirmed_date);
+                        $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
                         $processing_date = strtotime($track->processing_date);
-                        $processing_date_format = date('Y-m-d H:i:s', $processing_date);
+                        $processing_date_format = date('d-m-Y H:i:s', $processing_date);
                     @endphp
                     <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                             class="text">Order Pending</span> </div>
@@ -237,11 +241,11 @@
                 @elseif($track->status == 'delivered')
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
-                        $confirmed_date_format = date('Y-m-d H:i:s', $confirmed_date);
+                        $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
                         $processing_date = strtotime($track->processing_date);
-                        $processing_date_format = date('Y-m-d H:i:s', $processing_date);
+                        $processing_date_format = date('d-m-Y H:i:s', $processing_date);
                         $delivered_date = strtotime($track->delivered_date);
-                        $delivered_date_format = date('Y-m-d H:i:s', $delivered_date);
+                        $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
                     @endphp
                     <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                             class="text">Order Pending</span> </div>
@@ -259,8 +263,8 @@
 
                     <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                             class="text">Delivered </span>
-                            Delivered Date: {{ $delivered_date_format }}
-                        </div>
+                        Delivered Date: {{ $delivered_date_format }}
+                    </div>
                 @endif
 
             </div><br>

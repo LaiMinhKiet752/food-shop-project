@@ -86,8 +86,17 @@
             <td>
                 <p class="font">
                 <h3><span style="color: green;">Invoice Number :</span> #{{ $order->invoice_number }}</h3>
-                <strong>Order Date: </strong> {{ $order->order_date }}<br>
-                <strong>Delivery Date: </strong> {{ $order->delivered_date }}<br>
+                @php
+                    $order_date = strtotime($order->order_date);
+                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                    $delivered_date = strtotime($order->delivered_date);
+                    $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
+                @endphp
+                <strong>Order Date: </strong> {{ $order_date_format }}<br>
+                @if ($order->status == 'delivered' && $order->return_order_status == 0)
+                <strong>Delivery Date: </strong> {{ $delivered_date_format }}<br>
+                @endif
                 <strong>Payment Type: </strong> {{ $order->payment_type }}<br>
                 <strong>Payment Method: </strong> {{ $order->payment_method }}<br>
                 <strong>Notes: </strong> {{ $order->notes }}
@@ -125,7 +134,7 @@
                     <td align="center">{{ $item->product->product_code }}</td>
                     <td align="center">{{ $item->product->product_name }}</td>
                     @if ($item->vendor_id == null)
-                        <td align="center">Owner</td>
+                        <td align="center">Nest</td>
                     @else
                         <td align="center">{{ $item->product->vendor->shop_name }}</td>
                     @endif
@@ -146,7 +155,7 @@
                 @else
                     <h2><span style="color: green;">Discount: </span>${{ $order->discount }}</h2>
                 @endif
-                <h2><span style="color: green;">Total Amount: </span>${{ $order->amount }}</h2>
+                <h2><span style="color: green;">Total: </span>${{ $order->amount }}</h2>
             </td>
         </tr>
     </table>

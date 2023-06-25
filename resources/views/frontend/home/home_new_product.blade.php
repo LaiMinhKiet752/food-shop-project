@@ -368,7 +368,7 @@
                                         <div>
                                             @if ($product->vendor_id == null)
                                                 <span class="font-small text-muted">By <a
-                                                        href="#">Owner</a></span>
+                                                        href="#">Nest</a></span>
                                             @else
                                                 <span class="font-small text-muted">By <a
                                                         href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
