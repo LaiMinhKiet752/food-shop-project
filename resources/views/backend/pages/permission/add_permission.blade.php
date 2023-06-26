@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Permissions
+    Roles & Permissions
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
@@ -78,7 +78,7 @@
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="submit" class="btn btn-primary px-4" value="Add Permission" />
+                                        <input type="submit" class="btn btn-primary px-4" value="Add" />
                                     </div>
                                 </div>
                             </form>

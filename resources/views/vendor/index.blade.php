@@ -26,8 +26,8 @@
 
         $sunday = strtotime(date('Y-m-d', $monday) . ' +6 days');
 
-        $this_week_start = date('Y-F-d', $monday);
-        $this_week_end = date('Y-F-d', $sunday);
+        $this_week_start = date('Y-m-d', $monday);
+        $this_week_end = date('Y-m-d', $sunday);
 
         $date_explode_start = explode('-', $this_week_start);
         $date_explode_end = explode('-', $this_week_end);
@@ -40,16 +40,32 @@
         $end_month = $date_explode_end[1];
         $end_year = $date_explode_end[0];
 
-        //////////////////// --- Sales Today --- ////////////////////
-        $date = date('d F Y');
-        $date_format = explode(' ', $date);
+        // echo $start_day;
+        // echo '<br>';
+        // echo $start_month;
+        // echo '<br>';
+        // echo $start_year;
+        // echo '<br>';
+        // echo '<br>';
+        // echo '<br>';
+
+        // echo $end_day;
+        // echo '<br>';
+        // echo $end_month;
+        // echo '<br>';
+        // echo $end_year;
+        // echo '<br>';
+
+        ///////////////////////// --- Sales Today --- /////////////////////////
+        $date = date('d-m-Y');
+        $date_format = explode('-', $date);
         $date_day = $date_format[0];
         $date_month = $date_format[1];
         $date_year = $date_format[2];
 
-        $get_order_today = \App\Models\Order::where('order_year', '=', $date_year)
-            ->where('order_month', '=', $date_month)
-            ->where('order_day', '=', $date_day)
+        $get_order_today = \App\Models\Order::where('delivered_year', '=', $date_year)
+            ->where('delivered_month', '=', $date_month)
+            ->where('delivered_day', '=', $date_day)
             ->where('return_order_status', 0)
             ->where('cancel_order_status', 0)
             ->where('status', 'delivered')
@@ -60,27 +76,66 @@
             ->whereIn('order_id', $get_order_today)
             ->sum('total');
 
-        //////////////////// --- Sales Week --- ////////////////////
-        $get_order_week = \App\Models\Order::where('order_year', '=', $start_year)
-            ->where('order_year', '=', $end_year)
-            ->where('order_month', '=', $start_month)
-            ->where('order_month', '=', $end_month)
-            ->where('order_day', '>=', $start_day)
-            ->where('order_day', '<=', $end_day)
-            ->where('cancel_order_status', 0)
-            ->where('return_order_status', 0)
-            ->where('status', 'delivered')
-            ->get('id');
+        ///////////////////////// --- Sales Week --- /////////////////////////
+        if ($start_day < $end_day) {
+            $get_order_week = \App\Models\Order::where('delivered_year', '=', $start_year)
+                ->where('delivered_year', '=', $end_year)
+                ->where('delivered_month', '=', $start_month)
+                ->where('delivered_month', '=', $end_month)
+                ->where('delivered_day', '>=', $start_day)
+                ->where('delivered_day', '<=', $end_day)
+                ->where('cancel_order_status', 0)
+                ->where('return_order_status', 0)
+                ->where('status', 'delivered')
+                ->get('id');
+        }
+        if ($start_day > $end_day) {
+            $get_order_week = \App\Models\Order::where('delivered_year', '=', $start_year)
+                ->where('delivered_year', '=', $end_year)
+                ->where('delivered_month', '>=', $start_month)
+                ->where('delivered_month', '<=', $end_month)
+                ->where(function ($query1) use ($start_day) {
+                    $query1->where('delivered_day', '>=', $start_day)->orWhere('delivered_day', '<=', $start_day);
+                })
+                ->where(function ($query2) use ($end_day) {
+                    $query2->where('delivered_day', '>=', $end_day)->orWhere('delivered_day', '<=', $end_day);
+                })
+                ->where('cancel_order_status', 0)
+                ->where('return_order_status', 0)
+                ->where('status', 'delivered')
+                ->get('id');
+        }
+        if ($start_year < $end_year) {
+            $get_order_week = \App\Models\Order::where(function ($query1) use ($start_year, $end_year) {
+                $query1->where('delivered_year', '>=', $start_year)->orWhere('delivered_year', '<=', $end_year);
+            })
+                ->where(function ($query2) use ($start_month) {
+                    $query2->where('delivered_month', '>=', $start_month)->orWhere('delivered_month', '<=', $start_month);
+                })
 
+                ->where(function ($query3) use ($end_month) {
+                    $query3->where('delivered_month', '>=', $end_month)->orWhere('delivered_month', '<=', $end_month);
+                })
+
+                ->where(function ($query4) use ($start_day) {
+                    $query4->where('delivered_day', '>=', $start_day)->orWhere('delivered_day', '<=', $start_day);
+                })
+                ->where(function ($query5) use ($end_day) {
+                    $query5->where('delivered_day', '>=', $end_day)->orWhere('delivered_day', '<=', $end_day);
+                })
+                ->where('cancel_order_status', 0)
+                ->where('return_order_status', 0)
+                ->where('status', 'delivered')
+                ->get('id');
+        }
         // dd($get_order_week);
-
         $sales_week = \App\Models\OrderDetails::where('vendor_id', $vendor_id)
             ->whereIn('order_id', $get_order_week)
             ->sum('total');
 
-        //////////////////// --- Sales Month --- ////////////////////
-        $month = date('F');
-        $get_order_month = \App\Models\Order::where('order_month', '=', $month)
+        ///////////////////////// --- Sales Month --- /////////////////////////
+        $month = date('m');
+        $get_order_month = \App\Models\Order::where('delivered_month', '=', $month)
             ->where('return_order_status', 0)
             ->where('cancel_order_status', 0)
             ->where('status', 'delivered')
@@ -90,9 +145,9 @@
             ->whereIn('order_id', $get_order_month)
             ->sum('total');
 
-        //////////////////// --- Sales Year --- ////////////////////
+        ///////////////////////// --- Sales Year --- /////////////////////////
         $year = date('Y');
-        $get_order_year = \App\Models\Order::where('order_year', $year)
+        $get_order_year = \App\Models\Order::where('delivered_year', $year)
             ->where('return_order_status', 0)
             ->where('cancel_order_status', 0)
             ->where('status', 'delivered')
@@ -102,9 +157,9 @@
             ->whereIn('order_id', $get_order_year)
             ->sum('total');
 
-        //////////////////// --- Another --- ////////////////////
+        ///////////////////////// --- Another --- /////////////////////////
 
-        //TOTAL ORDER PENDING APPROVAL
+        //////////---TOTAL ORDER PENDING APPROVAL---//////////
         $pending_orders_get_id = \App\Models\Order::where('status', 'pending')
             ->where('cancel_order_status', 0)
             ->get('id');
@@ -115,7 +170,7 @@
             ->distinct('order_id')
             ->count('order_id');
 
-        //TOTAL ORDER SUCCESSFUL
+        //////////---TOTAL ORDER SUCCESSFUL---//////////
         $success_orders_get_id = \App\Models\Order::where('status', 'delivered')
             ->where('cancel_order_status', 0)
             ->where('return_order_status', 0)
@@ -126,10 +181,9 @@
             ->distinct('order_id')
             ->count('order_id');
 
-        //TOTAL ORDER CANCELLED
+        //////////---TOTAL ORDER CANCELLED---//////////
         $cancel_orders_get_id = \App\Models\Order::where('status', 'pending')
-            ->where('cancel_order_status', 1)
-            ->orWhere('cancel_order_status', 2)
+            ->where('cancel_order_status', 2)
             ->get('id');
         // dd($cancel_orders_get_id);
         $cancel_orders = \App\Models\OrderDetails::where('vendor_id', $vendor_id)
@@ -137,10 +191,9 @@
             ->distinct('order_id')
             ->count('order_id');
 
-        //TOTAL ORDER RETURNED
+        //////////---TOTAL ORDER RETURNED---//////////
         $return_orders_get_id = \App\Models\Order::where('status', 'delivered')
-            ->where('return_order_status', 1)
-            ->orWhere('return_order_status', 2)
+            ->where('return_order_status', 2)
             ->get('id');
         // dd($return_orders_get_id);
         $return_orders = \App\Models\OrderDetails::where('vendor_id', $vendor_id)

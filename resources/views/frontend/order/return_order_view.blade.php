@@ -61,7 +61,7 @@
                                                             <td>{{ $order->return_date }}</td>
                                                             <td>${{ $order->amount }}</td>
                                                             <td>{{ $order->payment_method }}</td>
-                                                            <td>{{ $order->return_reason }}</td>
+                                                            <td>{{ Str::limit($order->return_reason, 15, '...') }}</td>
                                                             <td>
                                                                 @if ($order->return_order_status == 1)
                                                                     <span class="badge rounded-pill bg-warning"
