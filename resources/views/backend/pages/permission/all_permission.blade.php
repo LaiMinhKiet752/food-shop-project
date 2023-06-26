@@ -27,6 +27,10 @@
     <hr />
     <div class="card">
         <div class="card-body">
+            <a href="{{ route('admin.import.permission') }}" class="btn btn-success"><i class="lni lni-upload"> Import</i></a>&nbsp;&nbsp;
+            <a href="{{ route('admin.export.permission') }}" class="btn btn-warning"><i class="lni lni-download"> Export</i></a>
+            <br>
+            <br>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>

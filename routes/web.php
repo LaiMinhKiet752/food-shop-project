@@ -402,6 +402,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/role/permissions/{id}', 'AdminEditRolePermissions')->name('admin.edit.role');
         Route::post('/admin/update/role/permissions/{id}', 'AdminUpdateRolePermissions')->name('admin.update.role');
         Route::get('/admin/delete/role/permissions/{id}', 'AdminDeleteRolePermissions')->name('admin.delete.role');
+        //Import And Export All Route
+        Route::get('/admin/import/permission', 'ImportPermission')->name('admin.import.permission');
+        Route::get('/admin/export/permission', 'ExportPermission')->name('admin.export.permission');
+        Route::post('/admin/import/permission/submit', 'ImportPermissionSubmit')->name('admin.import.permission.submit');
     });
 }); //End Group Middleware Admin
 
