@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Role
+    Roles & Permissions
 @endsection
 <div class="page-content">
     <!--breadcrumb-->

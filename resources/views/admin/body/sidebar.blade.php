@@ -335,6 +335,9 @@
                 <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Role Has
                         Permissions</a>
                 </li>
+                <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Role Has
+                        Permissions</a>
+                </li>
             </ul>
         </li>
 

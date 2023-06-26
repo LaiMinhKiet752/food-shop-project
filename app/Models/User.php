@@ -61,4 +61,16 @@ class User extends Authenticatable implements MustVerifyEmail
         $permissions = DB::table('permissions')->select('name', 'id')->where('group_name', $group_name)->get();
         return $permissions;
     }
+
+    public static function roleHasPermissions($role, $permissions)
+    {
+        $hasPermission = true;
+        foreach ($permissions as $permission) {
+            if (!$role->hasPermissionTo($permission->name)) {
+                $hasPermission = false;
+                return $hasPermission;
+            }
+            return $hasPermission;
+        }
+    }
 }
