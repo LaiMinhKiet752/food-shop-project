@@ -53,7 +53,7 @@ class OrderController extends Controller
     {
         Order::findOrFail($order_id)->update([
             'status' => 'confirmed',
-            'confirmed_date' => Carbon::now()->format('d F Y H:i:s'),
+            'confirmed_date' => Carbon::now()->format('d-m-Y H:i:s'),
         ]);
         $notification = array(
             'message' => 'Order Confirmed Successfully!',
@@ -66,7 +66,7 @@ class OrderController extends Controller
     {
         Order::findOrFail($order_id)->update([
             'status' => 'processing',
-            'processing_date' => Carbon::now()->format('d F Y H:i:s'),
+            'processing_date' => Carbon::now()->format('d-m-Y H:i:s'),
         ]);
         $notification = array(
             'message' => 'Order Processing Successfully!',
@@ -81,11 +81,14 @@ class OrderController extends Controller
         foreach($product as $item){
             Product::where('id',$item->product_id)->update([
                 'product_quantity'=> DB::raw('product_quantity - '.$item->quantity)
-            ]); 
+            ]);
         }
         Order::findOrFail($order_id)->update([
             'status' => 'delivered',
-            'delivered_date' => Carbon::now()->format('d F Y H:i:s'),
+            'delivered_date' => Carbon::now()->format('d-m-Y H:i:s'),
+            'delivered_day' => Carbon::now()->format('d'),
+            'delivered_month' => Carbon::now()->format('m'),
+            'delivered_year' => Carbon::now()->format('Y'),
         ]);
         $notification = array(
             'message' => 'Order Delivered Successfully!',

@@ -57,7 +57,7 @@
                                 <td>{{ $return_date_format }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>
-                                <td>{{ $item->return_reason }}</td>
+                                <td>{{ Str::limit($item->return_reason, 20, '...') }}</td>
                                 <td>
                                     <span class="badge rounded-pill bg-success" style="font-size: 13px;">
                                         Success</span>

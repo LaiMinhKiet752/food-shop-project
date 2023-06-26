@@ -332,7 +332,7 @@
                 </li>
                 <li> <a href="{{ route('all.role') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
                 </li>
-                <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Role in
+                <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Role Has
                         Permissions</a>
                 </li>
             </ul>

@@ -59,7 +59,7 @@ class AllUserController extends Controller
     public function ReturnOrderSubmit(Request $request, $order_id)
     {
         Order::findOrFail($order_id)->update([
-            'return_date' => Carbon::now()->format('d F Y H:i:s'),
+            'return_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'return_reason' => $request->return_reason,
             'return_order_status' => 1,
         ]);
@@ -87,7 +87,7 @@ class AllUserController extends Controller
     {
         $order_id = $request->order_id;
         Order::findOrFail($order_id)->update([
-            'cancel_date' => Carbon::now()->format('d F Y H:i:s'),
+            'cancel_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'cancel_order_status' => 1,
         ]);
         $notification = array(

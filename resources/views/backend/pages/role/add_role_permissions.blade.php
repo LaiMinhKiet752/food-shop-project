@@ -1,19 +1,19 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Role In Permissions
+    Role Has Permissions
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Role In Permissions </div>
+        <div class="breadcrumb-title pe-3">Role Has Permissions </div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Role In Permissions</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Role Has Permissions</li>
                 </ol>
             </nav>
         </div>
@@ -46,31 +46,42 @@
                                         </select>
                                     </div>
                                 </div>
+                                <br>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="flexCheckDefaultAll">
+                                    <label class="form-check-label" for="flexCheckDefaultAll">Allow all
+                                        permissions</label>
+                                </div>
                                 <hr>
                                 @foreach ($permission_groups as $group)
                                     <div class="row">
                                         <div class="col-3">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault">
+                                                <input class="form-check-input" type="checkbox" value="">
                                                 <label class="form-check-label"
                                                     for="flexCheckDefault">{{ $group->group_name }}</label>
                                             </div>
                                         </div>
                                         <div class="col-9">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">Default
-                                                    checkbox</label>
-                                            </div>
+                                            @php
+                                                $permissions = \App\Models\User::getPermissionByGroupName($group->group_name);
+                                            @endphp
+                                            @foreach ($permissions as $permission)
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="">
+                                                    <label class="form-check-label"
+                                                        for="flexCheckDefault">{{ $permission->name }}</label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
+                                    <hr>
                                 @endforeach
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="submit" class="btn btn-primary px-4" value="Add" />
+                                        <input type="submit" class="btn btn-primary px-4" value="Save Changes" />
                                     </div>
                                 </div>
                             </form>
@@ -81,4 +92,13 @@
         </div>
     </div>
 </div>
+<script>
+    $('#flexCheckDefaultAll').click(function (e) {
+        if($(this).is(':checked')){
+            $('input[type = checkbox]').prop('checked', true);
+        }else{
+            $('input[type = checkbox]').prop('checked', false);
+        }
+    });
+</script>
 @endsection

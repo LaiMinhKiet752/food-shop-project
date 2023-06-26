@@ -115,6 +115,10 @@
                             <th>{{ $return_date_format }}</th>
                         </tr>
                         <tr>
+                            <th>Reason :</th>
+                            <th>{{ $order->return_reason }}</th>
+                        </tr>
+                        <tr>
                             <th>Discount :</th>
                             <th>${{ $order->discount }}</th>
                         </tr>
