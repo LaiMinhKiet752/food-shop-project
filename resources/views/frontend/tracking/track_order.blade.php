@@ -64,6 +64,10 @@
         background: #3BB77E
     }
 
+    .track .step.cancel:before {
+        background: #ff0000
+    }
+
     .track .step::before {
         height: 7px;
         position: absolute;
@@ -75,6 +79,11 @@
 
     .track .step.active .icon {
         background: #3BB77E;
+        color: #fff
+    }
+
+    .track .step.active.cancel .icon {
+        background: #ff0000;
         color: #fff
     }
 
@@ -184,7 +193,7 @@
                 </div>
             </article>
             <div class="track">
-                @if ($track->status == 'pending')
+                @if ($track->status == 'pending' && $track->cancel_order_status == 0)
                     <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
                             class="text">Order Pending</span> </div>
 
@@ -196,7 +205,22 @@
 
                     <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                             class="text">Delivered </span> </div>
-                @elseif($track->status == 'confirmed')
+                @elseif(
+                    $track->status == 'pending' &&
+                        $track->confirmed_date == null &&
+                        ($track->cancel_order_status == 1 || $track->cancel_order_status == 2))
+                    @php
+                        $cancel_date = strtotime($track->cancel_date);
+                        $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
+                    @endphp
+                    <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                            class="text">Order Pending</span> </div>
+                    <div class="step active cancel"> <span class="icon"> <i class="fa fa-user"></i>
+                        </span> <span class="text">
+                            Cancel</span>
+                        Cancel Date: {{ $cancel_date_format }}
+                    </div>
+                @elseif($track->status == 'confirmed' && $track->cancel_order_status == 0)
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
                         $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
@@ -215,10 +239,32 @@
 
                     <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                             class="text">Delivered </span> </div>
+                @elseif($track->status == 'confirmed' && ($track->cancel_order_status == 1 || $track->cancel_order_status == 2))
+                    @php
+                        $confirmed_date = strtotime($track->confirmed_date);
+                        $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
+
+                        $cancel_date = strtotime($track->cancel_date);
+                        $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
+                    @endphp
+                    <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                            class="text">Order Pending</span> </div>
+
+                    <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
+                            class="text">
+                            Order Confirmed</span>
+                        Confirmed Date: {{ $confirmed_date_format }}
+                    </div>
+                    <div class="step active cancel"> <span class="icon"> <i class="fa fa-user"></i>
+                        </span> <span class="text">
+                            Cancel</span>
+                        Cancel Date: {{ $cancel_date_format }}
+                    </div>
                 @elseif($track->status == 'processing')
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
                         $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
+
                         $processing_date = strtotime($track->processing_date);
                         $processing_date_format = date('d-m-Y H:i:s', $processing_date);
                     @endphp
@@ -238,12 +284,14 @@
 
                     <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                             class="text">Delivered </span> </div>
-                @elseif($track->status == 'delivered')
+                @elseif($track->status == 'delivered' && $track->return_order_status == 0)
                     @php
                         $confirmed_date = strtotime($track->confirmed_date);
                         $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
+
                         $processing_date = strtotime($track->processing_date);
                         $processing_date_format = date('d-m-Y H:i:s', $processing_date);
+
                         $delivered_date = strtotime($track->delivered_date);
                         $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
                     @endphp
@@ -264,6 +312,44 @@
                     <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                             class="text">Delivered </span>
                         Delivered Date: {{ $delivered_date_format }}
+                    </div>
+                @elseif($track->status == 'delivered' && ($track->return_order_status == 1 || $track->return_order_status == 2))
+                    @php
+                        $confirmed_date = strtotime($track->confirmed_date);
+                        $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
+
+                        $processing_date = strtotime($track->processing_date);
+                        $processing_date_format = date('d-m-Y H:i:s', $processing_date);
+
+                        $delivered_date = strtotime($track->delivered_date);
+                        $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
+
+                        $return_date = strtotime($track->return_date);
+                        $return_date_format = date('d-m-Y H:i:s', $return_date);
+                    @endphp
+                    <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
+                            class="text">Order Pending</span> </div>
+
+                    <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
+                            class="text">
+                            Order Confirmed</span>
+                        Confirmed Date: {{ $confirmed_date_format }}
+                    </div>
+
+                    <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
+                            class="text">Order Processing </span>
+                        Processing Date: {{ $processing_date_format }}
+                    </div>
+
+                    <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
+                            class="text">Delivered </span>
+                        Delivered Date: {{ $delivered_date_format }}
+                    </div>
+
+                    <div class="step active cancel"> <span class="icon"> <i class="fa fa-user"></i>
+                        </span> <span class="text">
+                            Return</span>
+                        Return Date: {{ $return_date_format }}
                     </div>
                 @endif
 

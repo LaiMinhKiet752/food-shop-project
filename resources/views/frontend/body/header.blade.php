@@ -167,13 +167,17 @@
                                         <ul>
                                             <li>
                                                 <a href="{{ route('user.account.page') }}"><i
-                                                        class="fi fi-rs-user mr-10"></i>My
-                                                    Account</a>
+                                                        class="fi fi-rs-user mr-10"></i>Account Information</a>
                                             </li>
 
                                             <li>
                                                 <a href="{{ route('user.change.password') }}"><i
                                                         class="fa-solid fa-code-compare mr-10"></i>Change Password</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route('user.order.page') }}"><i
+                                                        class="fa-solid fa-cart-shopping mr-10"></i>Your Order</a>
                                             </li>
 
                                             <li>

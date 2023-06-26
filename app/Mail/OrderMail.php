@@ -7,7 +7,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
 class OrderMail extends Mailable
@@ -35,7 +34,6 @@ class OrderMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            from: new Address('no-reply@nest.com', 'Nest'),
             subject: $this->subject,
         );
     }

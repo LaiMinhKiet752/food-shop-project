@@ -626,6 +626,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Http\\Controllers\\Backend\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ProductController.php',
         'App\\Http\\Controllers\\Backend\\ReportController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ReportController.php',
         'App\\Http\\Controllers\\Backend\\ReturnController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ReturnController.php',
+        'App\\Http\\Controllers\\Backend\\RoleController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/RoleController.php',
         'App\\Http\\Controllers\\Backend\\ShippingAreaController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/ShippingAreaController.php',
         'App\\Http\\Controllers\\Backend\\SiteSettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SiteSettingController.php',
         'App\\Http\\Controllers\\Backend\\SliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SliderController.php',
