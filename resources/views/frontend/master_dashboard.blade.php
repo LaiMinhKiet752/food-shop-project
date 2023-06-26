@@ -15,7 +15,7 @@
     <meta name="description" content="{{ $seo->meta_description }}" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="" />
     <meta property="og:type" content="" />
@@ -102,6 +102,8 @@
 
     <script src="{{ asset('frontend/assets/js/validate.min.js') }}"></script>
 
+    <script src="{{ asset('frontend/assets/js/script.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.all.min.js"></script>
@@ -115,7 +117,7 @@
                 text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 6000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })
@@ -147,7 +149,7 @@
                 text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 6000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })

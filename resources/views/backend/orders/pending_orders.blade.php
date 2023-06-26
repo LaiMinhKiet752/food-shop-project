@@ -43,7 +43,11 @@
                         @foreach ($orders as $key => $item)
                             <tr>
                                 <td> {{ $key + 1 }} </td>
-                                <td>{{ $item->order_date }}</td>
+                                @php
+                                    $order_date = strtotime($item->order_date);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
                                 <td>{{ $item->invoice_number }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>

@@ -99,13 +99,20 @@
                             <th>Order Number :</th>
                             <th>{{ $order->order_number }}</th>
                         </tr>
+                        @php
+                            $order_date = strtotime($order->order_date);
+                            $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                            $cancel_date = strtotime($order->cancel_date);
+                            $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
+                        @endphp
                         <tr>
                             <th>Order Date :</th>
-                            <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
+                            <th>{{ $order_date_format }}</th>
                         </tr>
                         <tr>
                             <th>Cancel Date :</th>
-                            <th>{{ $order->cancel_date }}</th>
+                            <th>{{ $cancel_date_format }}</th>
                         </tr>
                         <tr>
                             <th>Discount :</th>
@@ -187,7 +194,7 @@
                                     </td>
                                     @if ($item->vendor_id == null)
                                         <td class="col-md-2">
-                                            <label>Owner</label>
+                                            <label>Nest</label>
                                         </td>
                                     @else
                                         <td class="col-md-2">

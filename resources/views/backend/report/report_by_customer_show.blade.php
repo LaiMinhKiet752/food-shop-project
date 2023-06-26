@@ -34,12 +34,10 @@
     </div>
     <!--end breadcrumb-->
     <hr />
-    <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Username:
-        {{ $user_info->username }}</label><br>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Full name:
-        {{ $user_info->name }}</label><br>
+        {{ $user_info->name }} </label> <br>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Email:
-        {{ $user_info->email }}</label><br>
+        {{ $user_info->email }} </label> <br>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Phone Number:
         {{ $user_info->phone }}</label>
     <div class="card">
@@ -61,7 +59,11 @@
                         @foreach ($orders as $key => $item)
                             <tr>
                                 <td> {{ $key + 1 }} </td>
-                                <td>{{ $item->order_date }}</td>
+                                @php
+                                    $order_date = strtotime($item->order_date);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
                                 <td>{{ $item->invoice_number }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>

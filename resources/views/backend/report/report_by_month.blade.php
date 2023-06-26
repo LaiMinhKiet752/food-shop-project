@@ -33,8 +33,12 @@
     </div>
     <!--end breadcrumb-->
     <hr />
+    @php
+        $mon = strtotime($month);
+        $month_format = date('m', $mon);
+    @endphp
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Search By Month - Year :
-        ({{ $month }} - {{ $year }})</label>
+        ({{ $month_format }} - {{ $year }})</label>
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">
@@ -54,7 +58,11 @@
                         @foreach ($orders as $key => $item)
                             <tr>
                                 <td> {{ $key + 1 }} </td>
-                                <td>{{ $item->order_date }}</td>
+                                @php
+                                    $order_date = strtotime($item->order_date);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
                                 <td>{{ $item->invoice_number }}</td>
                                 <td>${{ $item->amount }}</td>
                                 <td>{{ $item->payment_method }}</td>

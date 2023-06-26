@@ -48,7 +48,7 @@
                                 <td><img src="{{ asset($item->brand_image) }}" style="width: 100px; height: 70px;"></td>
                                 <td>{{ $item->brand_email }}</td>
                                 <td>{{ $item->brand_phone }}</td>
-                                <td>{{ $item->brand_address }}</td>
+                                <td>{{ Str::limit($item->brand_address, 30, '...') }}</td>
                                 <td>
                                     <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
                                     <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"

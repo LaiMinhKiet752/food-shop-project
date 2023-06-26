@@ -50,7 +50,7 @@
                                 <td>{{ $item->brand_name }}</td>
                                 <td>{{ $item->brand_email }}</td>
                                 <td>{{ $item->brand_phone }}</td>
-                                <td>{{ $item->brand_address }}</td>
+                                <td>{{ Str::limit($item->brand_address, 30, '...') }}</td>
                                 <td>
                                     <a href="{{ route('restore.brand.submit', $item->id) }}" class="btn btn-warning"
                                         id="restore_brand">Restore</a>

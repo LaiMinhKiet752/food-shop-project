@@ -32,7 +32,7 @@
                                 <div class="heading_s1">
                                     <h4 class="mb-12">1. Collect personal information</h4>
                                     <p class="mb-30">In order to access and use some services at
-                                        Nest Food Shop, you may be required to register with us with personal
+                                        Nest Shop, you may be required to register with us with personal
                                         information (Email, Full Name, Contact Phone number...). All information
                                         declared must be accurate and legal. Nest does not bear any
                                         responsibility related to the law of declared information.</p>

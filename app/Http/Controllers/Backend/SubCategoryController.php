@@ -40,7 +40,7 @@ class SubCategoryController extends Controller
         ]);
         $subcategory = new SubCategory();
         $subcategory->category_id = $request->category_id;
-        $subcategory->subcategory_name = $request->subcategory_name;
+        $subcategory->subcategory_name = strtoupper($request->subcategory_name);
         $subcategory->subcategory_slug = strtolower(str_replace(' ', '-', $request->subcategory_name));
         $subcategory->save();
 
@@ -75,7 +75,7 @@ class SubCategoryController extends Controller
         if ($current_subcategory_name == $request->subcategory_name) {
             SubCategory::findOrFail($subcat_id)->update([
                 'category_id' => $request->category_id,
-                'subcategory_name' => $request->subcategory_name,
+                'subcategory_name' => strtoupper($request->subcategory_name),
                 'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
             ]);
             $notification = array(
@@ -91,7 +91,7 @@ class SubCategoryController extends Controller
             ]);
             SubCategory::findOrFail($subcat_id)->update([
                 'category_id' => $request->category_id,
-                'subcategory_name' => $request->subcategory_name,
+                'subcategory_name' => strtoupper($request->subcategory_name),
                 'subcategory_slug' => strtolower(str_replace(' ', '-', $request->subcategory_name)),
             ]);
 

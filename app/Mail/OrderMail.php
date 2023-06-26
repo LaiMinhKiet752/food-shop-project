@@ -50,7 +50,7 @@ class OrderMail extends Mailable
         $discount_amount = $this->discount_amount;
         return new Content(
             view: 'mail.order_mail',
-            with: compact('order', 'orderItem','discount_amount'),
+            with: compact('order', 'orderItem', 'discount_amount'),
         );
     }
 

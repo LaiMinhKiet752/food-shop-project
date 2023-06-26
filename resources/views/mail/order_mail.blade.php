@@ -28,20 +28,17 @@
         }
 
         .authority {
-            /*text-align: center;*/
             float: right
         }
 
         .authority h5 {
             margin-top: -10px;
             color: green;
-            /*text-align: center;*/
             margin-left: 35px;
         }
 
         .thanks p {
             color: green;
-            ;
             font-size: 16px;
             font-weight: normal;
             font-family: serif;
@@ -54,15 +51,16 @@
     <table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
         <tr>
             <td valign="top">
-                <img src="{{ asset('upload/logo.svg') }}" alt="" style="width: 200px; height: 70px;" />
-                <h2 style="color: green; font-size: 26px;"><strong>Nest Food Shop</strong></h2>
+                <img src="{{ $message->embed(public_path() . '/upload/logo.png') }}" alt=""
+                    style="width: 200px; height: 70px;" />
+                <h2 style="color: green; font-size: 28px;"><strong>Nest Shop</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               Nest Food Shop Head Office
-               Email: support@nestfoodshop.com
+               Nest Shop Head Office
+               Email: nest@gmail.com
                Address: Ho Chi Minh city, Viet Nam
-               Hotline: 1900 888
+               Hotline: 1900 900
             </pre>
             </td>
         </tr>
@@ -86,8 +84,11 @@
             <td>
                 <p class="font">
                 <h3><span style="color: green;">Invoice Number :</span> #{{ $order->invoice_number }}</h3>
-                <strong>Order Date: </strong> {{ $order->order_date }}<br>
-                <strong>Delivery Date: </strong> {{ $order->delivered_date }}<br>
+                @php
+                    $order_date = strtotime($order->order_date);
+                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                @endphp
+                <strong>Order Date: </strong> {{ $order_date_format }}<br>
                 <strong>Payment Type: </strong> {{ $order->payment_type }}<br>
                 <strong>Payment Method: </strong> {{ $order->payment_method }}<br>
                 <strong>Notes: </strong> {{ $order->notes }}
@@ -119,13 +120,13 @@
                 @endphp
                 <tr class="font">
                     <td align="center">
-                        <img src="{{ asset($item->product->product_thumbnail) }}" height="60px;" width="60px;"
-                            alt="">
+                        <img src="{{ $message->embed(public_path() . '/' . $item->product->product_thumbnail) }}"
+                            height="60px;" width="60px;" alt="">
                     </td>
                     <td align="center">{{ $item->product->product_code }}</td>
                     <td align="center">{{ $item->product->product_name }}</td>
                     @if ($item->vendor_id == null)
-                        <td align="center">Owner</td>
+                        <td align="center">Nest</td>
                     @else
                         <td align="center">{{ $item->product->vendor->shop_name }}</td>
                     @endif

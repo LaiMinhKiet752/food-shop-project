@@ -44,7 +44,11 @@
                             <tr>
                                 <td> {{ $key + 1 }} </td>
                                 <td>{{ $item['order']['invoice_number'] }}</td>
-                                <td>{{ $item['order']['order_date'] }}</td>
+                                @php
+                                    $order_date = strtotime($item['order']['order_date']);
+                                    $order_date_format = date('d-m-Y H:i:s', $order_date);
+                                @endphp
+                                <td>{{ $order_date_format }}</td>
                                 <td>${{ $item['order']['amount'] }}</td>
                                 <td>{{ $item['order']['payment_method'] }}</td>
                                 <td>

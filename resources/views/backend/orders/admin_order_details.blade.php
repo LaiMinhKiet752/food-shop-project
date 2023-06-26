@@ -108,33 +108,52 @@
                 <hr>
                 <div class="card-body">
                     <table class="table" style="background: #F4F6FA; font-weight: 600;">
+                        @php
+                            $order_date = strtotime($order->order_date);
+                            $order_date_format = date('d-m-Y H:i:s', $order_date);
+
+                            $cancel_date = strtotime($order->cancel_date);
+                            $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
+
+                            $confirmed_date = strtotime($order->confirmed_date);
+                            $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
+
+                            $processing_date = strtotime($order->processing_date);
+                            $processing_date_format = date('d-m-Y H:i:s', $processing_date);
+
+                            $delivered_date = strtotime($order->delivered_date);
+                            $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
+
+                            $return_date = strtotime($order->return_date);
+                            $return_date_format = date('d-m-Y H:i:s', $return_date);
+                        @endphp
                         <tr>
                             <th>Order Number :</th>
                             <th>{{ $order->order_number }}</th>
                         </tr>
                         <tr>
                             <th>Order Date :</th>
-                            <th>{{ $order->order_date->format('d F Y H:i:s') }}</th>
+                            <th>{{ $order_date_format }}</th>
                         </tr>
                         <tr>
                             @if ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
                                 <th>Cancel Date :</th>
-                                <th>{{ $order->cancel_date }}</th>
+                                <th>{{ $cancel_date_format }}</th>
                             @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                 <th>Confirmed Date :</th>
-                                <th>{{ $order->confirmed_date }}</th>
+                                <th>{{ $confirmed_date_format }}</th>
                             @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
                                 <th>Cancel Date :</th>
-                                <th>{{ $order->cancel_date }}</th>
+                                <th>{{ $cancel_date_format }}</th>
                             @elseif($order->status == 'processing')
                                 <th>Processing Date :</th>
-                                <th>{{ $order->processing_date }}</th>
+                                <th>{{ $processing_date_format }}</th>
                             @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                                 <th>Delivered Date :</th>
-                                <th>{{ $order->delivered_date }}</th>
+                                <th>{{ $delivered_date_format }}</th>
                             @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
                                 <th>Return Date :</th>
-                                <th>{{ $order->return_date }}</th>
+                                <th>{{ $return_date_format }}</th>
                             @endif
                         </tr>
                         <tr>
@@ -259,7 +278,7 @@
                                     </td>
                                     @if ($item->vendor_id == null)
                                         <td class="col-md-2">
-                                            <label>Owner</label>
+                                            <label>Nest</label>
                                         </td>
                                     @else
                                         <td class="col-md-2">

@@ -36,26 +36,26 @@
                         <div class="col-lg-8">
                             <div class="border border-3 p-4 rounded">
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Name <span
                                             class="text-danger">*</span></label>
                                     <input type="text" name="product_name" class="form-control"
                                         value="{{ $products->product_name }}">
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Tags </label>
                                     <input type="text" name="product_tags" class="form-control visually-hidden"
                                         data-role="tagsinput" value="{{ $products->product_tags }}">
                                 </div>
 
                                 <div class="row g-3">
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputProductTitle" class="form-label">Product Weight</label>
                                         <input type="text" name="product_weight" class="form-control"
                                             value="{{ $products->product_weight }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-dark">
                                         <label for="inputProductTitle" class="form-label">Select Weight/Volume</label>
                                         <select name="product_measure" class="form-control form-select single-select">
                                             <option></option>
@@ -76,19 +76,19 @@
                                 </div>
                                 <br>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Dimensions</label>
                                     <input type="text" name="product_dimensions" class="form-control"
                                         value="{{ $products->product_dimensions }}">
                                 </div>
 
-                                <div class="form-group mb-3">
+                                <div class="form-group mb-3 text-dark">
                                     <label for="inputProductDescription" class="form-label">Short Description <span
                                             class="text-danger">*</span></label>
                                     <textarea name="short_description" class="form-control" rows="5">{{ $products->short_description }}</textarea>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3 text-dark">
                                     <label for="inputProductDescription" class="form-label">Long Description</label>
                                     <textarea id="mytextarea" name="long_description">{!! $products->long_description !!}</textarea>
                                 </div>
@@ -106,46 +106,46 @@
                                     </div>
                                 @enderror
                                 <div class="row g-3">
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputPrice" class="form-label">Selling Price (USD) <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="selling_price" class="form-control"
                                             id="product_selling_price" value="{{ $products->selling_price }}">
                                     </div>
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputCompareatprice" class="form-label">Discount Price
                                             (USD)</label>
                                         <input type="text" name="discount_price" class="form-control"
                                             id="product_discount_price" value="{{ $products->discount_price }}">
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6 text-dark">
                                         <label for="inputCostPerPrice" class="form-label">Product Code <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="product_code" class="form-control"
                                             id="inputCostPerPrice" value="{{ $products->product_code }}">
                                     </div>
-                                    <div class="form-group numbers-only col-md-6">
+                                    <div class="form-group numbers-only col-md-6 text-dark">
                                         <label for="inputStarPoints" class="form-label">Product Quantity <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="product_quantity" class="form-control"
                                             id="inputStarPoints" value="{{ $products->product_quantity }}">
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-dark">
                                         <label for="inputStarPoints" class="form-label">Manufacturing Date </label>
                                         <input type="date" id="mfg_product" name="manufacturing_date"
                                             class="form-control"
                                             value="{{ $products->manufacturing_date == null ? '' : $products->manufacturing_date->format('Y-m-d') }}">
                                     </div>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-dark">
                                         <label for="inputStarPoints" class="form-label">Expiry Date </label>
                                         <input type="date" id="exp_product" name="expiry_date"
                                             class="form-control"
                                             value="{{ $products->expiry_date == null ? '' : $products->expiry_date->format('Y-m-d') }}">
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputProductType" class="form-label">Product Brand <span
                                                 class="text-danger">*</span></label>
                                         <select name="brand_id" class="form-control form-select single-select">
@@ -158,7 +158,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputVendor" class="form-label">Product Category <span
                                                 class="text-danger">*</span></label>
                                         <select name="category_id" class="form-control form-select single-select">
@@ -172,7 +172,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12">
+                                    <div class="form-group col-12 text-dark">
                                         <label for="inputVendor" class="form-label">Product SubCategory <span
                                                 class="text-danger">*</span></label>
                                         <select name="subcategory_id" class="form-control form-select single-select">
@@ -187,7 +187,7 @@
                                     </div>
 
 
-                                    <div class="col-12">
+                                    <div class="col-12 text-dark">
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <div class="form-check">
@@ -480,7 +480,7 @@
                 },
                 short_description: {
                     required: true,
-                    maxlength: 255,
+                    maxlength: 500,
                 },
                 product_thumbnail: {
                     required: true,
@@ -521,7 +521,7 @@
                 },
                 short_description: {
                     required: 'Please enter short description.',
-                    maxlength: 'The short description must not be greater than 255 characters.',
+                    maxlength: 'The short description must not be greater than 500 characters.',
                 },
                 product_thumbnail: {
                     required: 'Please select product thumbnail image.',

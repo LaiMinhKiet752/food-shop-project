@@ -1,6 +1,31 @@
 @php
-$setting = \App\Models\SiteSetting::find(1);
+    $setting = \App\Models\SiteSetting::find(1);
 @endphp
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    #searchProducts {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+</style>
+
+<script>
+    function search_result_show() {
+        $("#searchProducts").slideDown();
+    }
+
+    function search_result_hide() {
+        $("#searchProducts").slideUp();
+    }
+</script>
 <!-- Header  -->
 <header class="header-area header-style-1 header-height-2">
     <div class="mobile-promotion">
@@ -14,7 +39,7 @@ $setting = \App\Models\SiteSetting::find(1);
                         <ul>
                             <li><a href="{{ route('mycart') }}">My Cart</a></li>
                             <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                            <li><a href="shop-order.html">Order Tracking</a></li>
+                            <li><a href="{{ route('user.track.order.page') }}">Order Tracking</a></li>
                         </ul>
                     </div>
                 </div>
@@ -34,28 +59,19 @@ $setting = \App\Models\SiteSetting::find(1);
                         <ul>
 
                             <li>
-                                <a class="language-dropdown-active" href="#">English <i
+                                <a class="language-dropdown-active" href="#">ENG<i
                                         class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
                                     <li>
                                         <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-fr.png') }}"
-                                                alt="" />Français</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-dt.png') }}"
-                                                alt="" />Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><img
-                                                src="{{ asset('frontend/assets/imgs/theme/flag-ru.png') }}"
-                                                alt="" />Pусский</a>
+                                                src="{{ asset('frontend/assets/imgs/theme/flag-vn.png') }}"
+                                                alt="" />VN</a>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li>Need help? Call Us: <strong class="text-brand"> {{ $setting->call_us_phone }}</strong></li>
+                            <li>Need help? Call Us: <strong class="text-brand"> {{ $setting->call_us_phone }}</strong>
+                            </li>
 
                         </ul>
                     </div>
@@ -74,17 +90,24 @@ $setting = \App\Models\SiteSetting::find(1);
                     $all_categories = \App\Models\Category::orderBy('id', 'DESC')->get();
                 @endphp
                 <div class="header-right">
+
+
                     <div class="search-style-2">
-                        <form action="#">
+                        <form action="{{ route('product.search') }}" method="post">
+                            @csrf
                             <select class="select-active">
                                 <option>All Categories</option>
                                 @foreach ($all_categories as $category)
                                     <option>{{ $category->category_name }}</option>
                                 @endforeach
                             </select>
-                            <input type="text" placeholder="Search for items..." />
+                            <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
+                                id="search" placeholder="Search for items..." />
+                            <div id="searchProducts"></div>
                         </form>
                     </div>
+
+
                     <div class="header-action-right">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
@@ -143,25 +166,36 @@ $setting = \App\Models\SiteSetting::find(1);
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i class="fi fi-rs-user mr-10"></i>My
-                                                    Account</a>
+                                                <a href="{{ route('user.account.page') }}"><i
+                                                        class="fi fi-rs-user mr-10"></i>Account Information</a>
                                             </li>
+
                                             <li>
-                                                <a href="{{ route('dashboard') }}"><i
+                                                <a href="{{ route('user.change.password') }}"><i
+                                                        class="fa-solid fa-code-compare mr-10"></i>Change Password</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route('user.order.page') }}"><i
+                                                        class="fa-solid fa-cart-shopping mr-10"></i>Your Order</a>
+                                            </li>
+
+                                            <li>
+                                                <a href="{{ route('user.track.order.page') }}"><i
                                                         class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
                                             </li>
-                                            <li>
+                                            {{-- <li>
                                                 <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My
                                                     Voucher</a>
-                                            </li>
-                                            <li>
+                                            </li> --}}
+                                            {{-- <li>
                                                 <a href="{{ route('dashboard') }}"><i class="fi fi-rs-heart mr-10"></i>My
                                                     Wishlist</a>
-                                            </li>
-                                            <li>
+                                            </li> --}}
+                                            {{-- <li>
                                                 <a href="{{ route('dashboard') }}"><i
                                                         class="fi fi-rs-settings-sliders mr-10"></i>Setting</a>
-                                            </li>
+                                            </li> --}}
                                             <li>
                                                 <a href="{{ route('user.logout') }}"><i
                                                         class="fi fi-rs-sign-out mr-10"></i>Log out</a>
@@ -314,7 +348,7 @@ $setting = \App\Models\SiteSetting::find(1);
                                 @endforeach
 
                                 <li>
-                                    <a href="{{ route('home.blog') }}">Blog</a>
+                                    <a href="{{ route('home.blog') }}">BLOG</a>
                                 </li>
                             </ul>
                         </nav>
@@ -395,9 +429,6 @@ $setting = \App\Models\SiteSetting::find(1);
 </header>
 
 <!-- End Header  -->
-
-
-
 
 <div class="mobile-header-active mobile-header-wrapper-style">
     <div class="mobile-header-wrapper-inner">
