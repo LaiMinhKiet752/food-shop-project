@@ -49,9 +49,13 @@
                                 <td>{{ $item->brand_phone }}</td>
                                 <td>{{ Str::limit($item->brand_address, 30, '...') }}</td>
                                 <td>
-                                    <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('brand.edit'))
+                                        <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
+                                    @if (Auth::user()->can('brand.delete'))
+                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

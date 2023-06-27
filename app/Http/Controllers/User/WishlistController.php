@@ -4,8 +4,6 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\User;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +20,9 @@ class WishlistController extends Controller
                     'product_id' => $product_id,
                     'created_at' => Carbon::now(),
                 ]);
-                return response()->json(['success' => 'Successfully Added The Product To Your Wishlist List!']);
+                return response()->json(['success' => 'Successfully Added The Product To Your Wishlist!']);
             } else {
-                return response()->json(['error' => 'This Product Is Already On Your Wishlist List!']);
+                return response()->json(['error' => 'This Product Is Already On Your Wishlist!']);
             }
         } else {
             return response()->json(['error' => 'Please Login Before Adding Products To Wishlist!']);
@@ -50,7 +48,7 @@ class WishlistController extends Controller
     {
         Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
         return response()->json([
-            'success' => 'Product Successfully Removed From Wishlist List!'
+            'success' => 'Product Successfully Removed From Wishlist!'
         ]);
     } //End Method
 }

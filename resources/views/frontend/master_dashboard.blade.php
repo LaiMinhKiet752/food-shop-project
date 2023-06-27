@@ -29,12 +29,11 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
     <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <script src="https://js.stripe.com/v3/"></script>
@@ -259,7 +258,7 @@
         }
         // End Product View With Modal
 
-        // Start Add To Cart Product
+        // Start Add To Cart Quick View
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
@@ -304,9 +303,9 @@
                 }
             })
         }
-        // End Add To Cart Product
+        // End Add To Cart Quick View
 
-        // Start Details Page Add To Cart Product
+        // Start Details Page Add To Cart
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
@@ -347,7 +346,7 @@
                 }
             })
         }
-        // End Details Page Add To Cart Product
+        // End Details Page Add To Cart
     </script>
 
     <script type="text/javascript">
@@ -367,7 +366,7 @@
                         miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image} " style="width: 60px;height: 60px;" /></a>
+                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image}" style="width: 60px;height: 60px;" /></a>
                                         </div>
                                         <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                                             <h4><a href="shop-product-right.html"> ${value.name} </a></h4>

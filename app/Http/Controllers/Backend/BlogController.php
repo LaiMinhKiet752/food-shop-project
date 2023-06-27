@@ -12,7 +12,6 @@ use App\Models\User;
 use Intervention\Image\ImageManagerStatic as Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {

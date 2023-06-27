@@ -321,7 +321,7 @@
                                 </li>
 
                                 @php
-                                    $categories = App\Models\Category::orderBy('id', 'DESC')
+                                    $categories = App\Models\Category::orderBy('category_name', 'ASC')
                                         ->limit(8)
                                         ->get();
                                 @endphp
@@ -347,9 +347,12 @@
                                     </li>
                                 @endforeach
 
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('home.blog') }}">BLOG</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('home.blog') }}">BLOG</a>
+                                </li> --}}
                             </ul>
                         </nav>
                     </div>
