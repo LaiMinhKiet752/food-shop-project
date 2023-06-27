@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.blog.post') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New Blog
-                        Post</i></a>
+                <a href="{{ route('add.blog.post') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New                       Post</i></a>
             </div>
         </div>
     </div>

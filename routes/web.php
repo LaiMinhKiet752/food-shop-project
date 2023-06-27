@@ -74,7 +74,7 @@ Route::controller(IndexController::class)->group(function () {
 //Frontend All Route
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
-//RegisteredUserController All Route
+//Captcha
 Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
 
 //Admin Login Route
@@ -406,6 +406,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/import/permission', 'ImportPermission')->name('admin.import.permission');
         Route::get('/admin/export/permission', 'ExportPermission')->name('admin.export.permission');
         Route::post('/admin/import/permission/submit', 'ImportPermissionSubmit')->name('admin.import.permission.submit');
+    });
+
+    //Admin User Account All Route
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/all/admin/account', 'AllAdminAccount')->name('all.admin.account');
+        Route::get('/add/admin/account', 'AddAdminAccount')->name('add.admin.account');
+        Route::post('/add/admin/account/store', 'AdminAccountStore')->name('admin.account.store');
+        Route::get('/edit/admin/role/{id}', 'EditAdminRole')->name('edit.admin.role');
+        Route::post('/admin/account/update/{id}', 'AdminAccountUpdate')->name('admin.account.update');
+        Route::get('/delete/admin/role/{id}', 'DeleteAdminRole')->name('delete.admin.role');
     });
 }); //End Group Middleware Admin
 

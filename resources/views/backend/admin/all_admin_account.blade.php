@@ -1,24 +1,24 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Slider
+    Admin User Account
 @endsection
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Slider</div>
+        <div class="breadcrumb-title pe-3">Admin User Account</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Slider</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Admin User Accounts</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.slider') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+                <a href="{{ route('add.admin.account') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -31,31 +31,32 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Slider Title</th>
-                            <th>Short Title</th>
-                            <th>Slider Image</th>
-                            <th>Status</th>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($sliders as $key => $item)
+                        @foreach ($allAdminAccount as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $item->slider_title }}</td>
-                                <td>{{ $item->short_title }}</td>
-                                <td><img src="{{ asset($item->slider_image) }}" style="width: 150px; height: 80px;">
-                                <td>
-                                    @if ($item->status == 'hide')
-                                        <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Hide</span>
-                                    @else
-                                        <span class="badge rounded-pill bg-success" style="font-size: 13px;">Show</span>
-                                    @endif
+                                <td><img src="{{ !empty($item->photo) ? url('upload/admin_images/' . $item->photo) : url('upload/no_image.jpg') }}"
+                                        style="width: 90px; height: 80px;">
                                 </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->phone }}</td>
+                                <td>
+                                    @foreach ($item->roles as $role)
+                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">{{ $role->name }}</span>
+                                    @endforeach
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"
+                                    <a href="{{ route('edit.admin.role', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('delete.admin.role', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>
                             </tr>
@@ -64,10 +65,11 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Slider Title</th>
-                            <th>Short Title</th>
-                            <th>Slider Image</th>
-                            <th>Status</th>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Role</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('last_seen')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

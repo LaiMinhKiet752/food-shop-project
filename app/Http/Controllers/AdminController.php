@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminController extends Controller
 {
@@ -229,5 +231,228 @@ class AdminController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->route('inactive.vendor')->with($notification);
+    } //End Method
+
+    public function AllAdminAccount()
+    {
+        $allAdminAccount = User::where('role', 'admin')->latest()->get();
+        return view('backend.admin.all_admin_account', compact('allAdminAccount'));
+    } //End Method
+
+    public function AddAdminAccount()
+    {
+        $role = Role::all();
+        return view('backend.admin.add_admin_account', compact('role'));
+    } //End Method
+
+    public function AdminAccountStore(Request $request)
+    {
+        $request->validate([
+            'username' => ['unique:' . User::class],
+            'email' => ['unique:' . User::class],
+            'phone' => ['unique:' . User::class],
+        ], [
+            'username.unique' => 'The user name already exists. Please enter another user name.',
+            'email.unique' => 'The email already exists. Please enter another email.',
+            'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+        ]);
+        $user = new User();
+        $user->username = $request->username;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->password = Hash::make($request->password);
+        $user->role = 'admin';
+        $user->status = 'active';
+        $user->save();
+        if ($request->roles) {
+            $user->assignRole($request->roles);
+        }
+        $notification = array(
+            'message' => 'Successfully Created New Admin User Account!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('all.admin.account')->with($notification);
+    } //End Method
+
+    public function EditAdminRole($id)
+    {
+        $user = User::findOrFail($id);
+        $role = Role::all();
+        return view('backend.admin.edit_admin_account', compact('user', 'role'));
+    } //End Method
+
+    public function AdminAccountUpdate(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->address = $request->address;
+        $user->role = 'admin';
+        $user->status = 'active';
+
+        $current_user_name = User::find($id)->username;
+        $current_email = User::find($id)->email;
+        $current_phone_number = User::find($id)->phone;
+
+        if ($current_user_name == $request->username && $current_email == $request->email && $current_phone_number == $request->phone) {
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name != $request->username && $current_email == $request->email && $current_phone_number == $request->phone) {
+            $request->validate([
+                'username' => ['unique:' . User::class],
+            ], [
+                'username.unique' => 'The user name already exists. Please enter another user name.',
+            ]);
+            $user->username = $request->username;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name == $request->username && $current_email != $request->email && $current_phone_number == $request->phone) {
+            $request->validate([
+                'email' => ['unique:' . User::class],
+            ], [
+                'email.unique' => 'The email already exists. Please enter another email.',
+            ]);
+            $user->email = $request->email;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name == $request->username && $current_email == $request->email && $current_phone_number != $request->phone) {
+            $request->validate([
+                'phone' => ['unique:' . User::class],
+            ], [
+                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            $user->phone = $request->phone;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name != $request->username && $current_email != $request->email && $current_phone_number == $request->phone) {
+            $request->validate([
+                'username' => ['unique:' . User::class],
+                'email' => ['unique:' . User::class],
+            ], [
+                'username.unique' => 'The user name already exists. Please enter another user name.',
+                'email.unique' => 'The email already exists. Please enter another email.',
+            ]);
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name != $request->username && $current_email == $request->email && $current_phone_number != $request->phone) {
+            $request->validate([
+                'username' => ['unique:' . User::class],
+                'phone' => ['unique:' . User::class],
+            ], [
+                'username.unique' => 'The user name already exists. Please enter another user name.',
+                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            $user->username = $request->username;
+            $user->phone = $request->phone;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name == $request->username && $current_email != $request->email && $current_phone_number != $request->phone) {
+            $request->validate([
+                'email' => ['unique:' . User::class],
+                'phone' => ['unique:' . User::class],
+            ], [
+                'email.unique' => 'The email already exists. Please enter another email.',
+                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        } else if ($current_user_name != $request->username && $current_email != $request->email && $current_phone_number != $request->phone) {
+            $request->validate([
+                'username' => ['unique:' . User::class],
+                'email' => ['unique:' . User::class],
+                'phone' => ['unique:' . User::class],
+            ], [
+                'username.unique' => 'The user name already exists. Please enter another user name.',
+                'email.unique' => 'The email already exists. Please enter another email.',
+                'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+            ]);
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->phone = $request->phone;
+            $user->update();
+            $user->roles()->detach();
+            if ($request->roles) {
+                $user->assignRole($request->roles);
+            }
+            $notification = array(
+                'message' => 'Successfully Updated Admin User Account!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.admin.account')->with($notification);
+        }
+    } //End Method
+
+    public function DeleteAdminRole($id)
+    {
+        $user = User::findOrFail($id);
+        if (!is_null($user)) {
+            $user->delete();
+        }
+        $notification = array(
+            'message' => 'Successfully Deleted Admin User Account!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     } //End Method
 }

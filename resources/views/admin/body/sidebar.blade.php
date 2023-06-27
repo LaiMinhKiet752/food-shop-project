@@ -343,6 +343,21 @@
 
 
         <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="bx bx-line-chart"></i>
+                </div>
+                <div class="menu-title">Admin User Account</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.admin.account') }}"><i class="bx bx-right-arrow-alt"></i>All Admin User Accounts</a>
+                </li>
+                <li> <a href="{{ route('add.admin.account') }}"><i class="bx bx-right-arrow-alt"></i>Add Admin User Account</a>
+                </li>
+            </ul>
+        </li>
+
+
+        <li>
             <a href="#" target="_blank">
                 <div class="parent-icon"><i class="bx bx-support"></i>
                 </div>

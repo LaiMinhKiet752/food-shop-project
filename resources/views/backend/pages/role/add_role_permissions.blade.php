@@ -4,6 +4,11 @@
     Roles & Permissions
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<style>
+    .form-check-label{
+        text-transform: capitalize;
+    }
+</style>
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
