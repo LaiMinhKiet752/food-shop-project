@@ -48,14 +48,9 @@ use App\Http\Controllers\User\ReviewController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('frontend.index');
-// });
-
-
 //Index All Route
 Route::controller(IndexController::class)->group(function () {
-
+    
     //Home Page
     Route::get('/', 'Index');
     //Frontend Product Details All Route

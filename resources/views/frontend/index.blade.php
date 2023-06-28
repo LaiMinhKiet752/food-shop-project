@@ -71,9 +71,23 @@
                                         <a
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
+                                    <h2
+                                        style="overflow: hidden;
+                                    line-height: 1.3em;
+                                    padding: 16px 0 0;
+                                    margin-bottom: 12px;
+                                    text-overflow: ellipsis;
+                                    white-space: initial;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    min-height: 70px;
+                                    height: 30px;
+                                    box-sizing: border-box;">
+                                        <a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            {{ $product->product_name }} </a></h2>
+                                            {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                    </h2>
 
 
 
@@ -263,9 +277,23 @@
                                         <a
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
+                                    <h2
+                                        style="overflow: hidden;
+                                    line-height: 1.3em;
+                                    padding: 16px 0 0;
+                                    margin-bottom: 12px;
+                                    text-overflow: ellipsis;
+                                    white-space: initial;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    min-height: 70px;
+                                    height: 30px;
+                                    box-sizing: border-box;">
+                                        <a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            {{ $product->product_name }} </a></h2>
+                                            {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                    </h2>
 
 
 
@@ -457,9 +485,23 @@
                                         <a
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
+                                    <h2
+                                        style="overflow: hidden;
+                                    line-height: 1.3em;
+                                    padding: 16px 0 0;
+                                    margin-bottom: 12px;
+                                    text-overflow: ellipsis;
+                                    white-space: initial;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    min-height: 70px;
+                                    height: 30px;
+                                    box-sizing: border-box;">
+                                        <a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            {{ $product->product_name }} </a></h2>
+                                            {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                    </h2>
 
 
 
@@ -651,9 +693,23 @@
                                         <a
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
+                                    <h2
+                                        style="overflow: hidden;
+                                    line-height: 1.3em;
+                                    padding: 16px 0 0;
+                                    margin-bottom: 12px;
+                                    text-overflow: ellipsis;
+                                    white-space: initial;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    min-height: 70px;
+                                    height: 30px;
+                                    box-sizing: border-box;">
+                                        <a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            {{ $product->product_name }} </a></h2>
+                                            {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                    </h2>
 
 
 
@@ -845,9 +901,23 @@
                                         <a
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                     </div>
-                                    <h2><a
+                                    <h2
+                                        style="overflow: hidden;
+                                    line-height: 1.3em;
+                                    padding: 16px 0 0;
+                                    margin-bottom: 12px;
+                                    text-overflow: ellipsis;
+                                    white-space: initial;
+                                    display: -webkit-box;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                    min-height: 70px;
+                                    height: 30px;
+                                    box-sizing: border-box;">
+                                        <a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                            {{ $product->product_name }} </a></h2>
+                                            {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                    </h2>
 
 
 
@@ -999,9 +1069,19 @@
                                         src="{{ asset($item->product_thumbnail) }}" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
-                                <h6>
+                                <h6
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 50px;
+                                height: 30px;
+                                box-sizing: border-box;">
                                     <a
-                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ $item->product_name }}</a>
+                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ Str::limit($item->product_name, 50, '...') }}</a>
                                 </h6>
 
 
@@ -1121,9 +1201,19 @@
                                         src="{{ asset($item->product_thumbnail) }}" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
-                                <h6>
+                                <h6
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 50px;
+                                height: 30px;
+                                box-sizing: border-box;">
                                     <a
-                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ $item->product_name }}</a>
+                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ Str::limit($item->product_name, 50, '...') }}</a>
                                 </h6>
 
 
@@ -1243,9 +1333,19 @@
                                         src="{{ asset($item->product_thumbnail) }}" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
-                                <h6>
+                                <h6
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 50px;
+                                height: 30px;
+                                box-sizing: border-box;">
                                     <a
-                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ $item->product_name }}</a>
+                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ Str::limit($item->product_name, 50, '...') }}</a>
                                 </h6>
 
 
@@ -1365,9 +1465,19 @@
                                         src="{{ asset($item->product_thumbnail) }}" alt="" /></a>
                             </figure>
                             <div class="col-md-8 mb-0">
-                                <h6>
+                                <h6
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 50px;
+                                height: 30px;
+                                box-sizing: border-box;">
                                     <a
-                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ $item->product_name }}</a>
+                                        href="{{ url('product/details/' . $item->id . '/' . $item->product_slug) }}">{{ Str::limit($item->product_name, 50, '...') }}</a>
                                 </h6>
 
 

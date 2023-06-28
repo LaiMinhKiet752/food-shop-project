@@ -254,7 +254,7 @@
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span> All Categories
+                            <span class="fi-rs-apps"></span> ALL CATEGORIES
                             <i class="fi-rs-angle-down"></i>
                         </a>
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
@@ -316,7 +316,7 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="{{ url('/') }}">Home </a>
+                                    <a class="active" href="{{ url('/') }}">HOME </a>
 
                                 </li>
 
