@@ -35,6 +35,7 @@ use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\User\ReviewController;
 
 /*
@@ -50,7 +51,7 @@ use App\Http\Controllers\User\ReviewController;
 
 //Index All Route
 Route::controller(IndexController::class)->group(function () {
-    
+
     //Home Page
     Route::get('/', 'Index');
     //Frontend Product Details All Route
@@ -456,7 +457,7 @@ Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToW
 //Add To Compare
 Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
 
-// Frontend Blog Post All Route
+//Frontend Blog Post All Route
 Route::controller(BlogController::class)->group(function () {
     Route::get('/blog', 'AllBlog')->name('home.blog');
     Route::get('/post/details/{id}/{slug}', 'BlogDetails');
@@ -464,9 +465,15 @@ Route::controller(BlogController::class)->group(function () {
     Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
 });
 
-// Review All Route
+//Review All Route
 Route::controller(ReviewController::class)->group(function () {
     Route::post('/store/review', 'StoreReview')->name('store.review');
+});
+
+//Shop Page All Route
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/shop', 'ShopPage')->name('shop.page');
+    Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
 });
 
 //User All Route

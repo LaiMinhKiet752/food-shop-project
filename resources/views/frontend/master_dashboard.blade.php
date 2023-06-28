@@ -28,6 +28,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/imgs/theme/favicon.svg') }}" />
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/slider-range.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
     <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
@@ -84,6 +85,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.syotimer.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/waypoints.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/wow.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/slider-range.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/magnific-popup.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/select2.min.js') }}"></script>

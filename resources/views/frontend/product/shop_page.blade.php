@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    {{ $breadsubcategory->category->category_name }} - {{ $breadsubcategory->subcategory_name }} SubCategory
+    Shop Page
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header mt-30 mb-50">
@@ -9,14 +9,12 @@
         <div class="archive-header">
             <div class="row align-items-center">
                 <div class="col-xl-3">
-                    <h1 class="mb-15">{{ $breadsubcategory->subcategory_name }}</h1>
+                    <h1 class="mb-15"> Shop Page</h1>
                     <div class="breadcrumb">
                         <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-                        <span></span>{{ $breadsubcategory->category->category_name }} <span></span>
-                        {{ $breadsubcategory->subcategory_name }}
+                        <span></span> Shop Page
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -73,7 +71,7 @@
             <div class="row product-grid">
                 @foreach ($products as $product)
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn subcat_product_data"
+                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data"
                             data-wow-delay=".1s" style="height: 430px;">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
@@ -85,7 +83,6 @@
                                     </a>
                                 </div>
                                 <div class="product-action-1">
-
                                     <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
                                         onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
@@ -95,7 +92,6 @@
                                     <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
                                         data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                         onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
-
                                 </div>
 
                                 @php
@@ -118,12 +114,11 @@
                             </div>
                             @php
                                 $category = \App\Models\Category::where('id', $product->category_id)->first();
-                                $subcategory = App\Models\SubCategory::where('category_id', $category->id)->first();
                             @endphp
                             <div class="product-content-wrap">
                                 <div class="product-category">
                                     <a
-                                        href="{{ url('product/subcategory/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $product['subcategory']['subcategory_name'] }}</a>
+                                        href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                 </div>
                                 <h2
                                     style="overflow: hidden;
@@ -140,7 +135,8 @@
                                 box-sizing: border-box;">
                                     <a
                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                        {{ $product->product_name }} </a></h2>
+                                        {{ $product->product_name }} </a>
+                                </h2>
 
 
 
@@ -237,6 +233,7 @@
                                                 href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
                                     @endif
 
+
                                 </div>
                                 <div class="product-card-bottom">
 
@@ -253,15 +250,15 @@
                                     @endif
 
                                     <div class="add-cart">
-                                        <input type="hidden" value="{{ $product->id }}" class="subcat_prod_id">
+                                        <input type="hidden" value="{{ $product->id }}" class="cat_prod_id">
 
-                                        <input type="hidden" class="subcategory_view_pname"
+                                        <input type="hidden" class="category_view_pname"
                                             value="{{ $product->product_name }}">
-                                        <input type="hidden" class="subcategory_view_vendor_id"
+                                        <input type="hidden" class="category_view_vendor_id"
                                             value="{{ $product->vendor_id }}">
-                                        <input type="hidden" class="subcategory_view_brand_id"
+                                        <input type="hidden" class="category_view_brand_id"
                                             value="{{ $product->brand_id }}">
-                                        <a class="add SubCategoryProductAddToCart" type="submit"><i
+                                        <a class="add CategoryProductAddToCart" type="submit"><i
                                                 class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                     </div>
                                 </div>
@@ -270,8 +267,6 @@
                     </div>
                     <!--end product card-->
                 @endforeach
-
-
 
             </div>
             <!--product grid-->
@@ -292,31 +287,76 @@
                     </ul>
                 </nav>
             </div>
+
             <!--End Deals-->
         </div>
+
         <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
-            <div class="sidebar-widget widget-category-2 mb-30">
-                <h5 class="section-title style-1 mb-30">Category</h5>
-                <ul>
-
-                    @foreach ($categories as $category)
-                        @php
-
-                            $products = App\Models\Product::where('category_id', $category->id)->get();
-
-                        @endphp
-
-                        <li>
-                            <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                <img src=" {{ asset($category->category_image) }} "
-                                    alt="" />{{ $category->category_name }}</a><span class="text-brand"
-                                style="font-weight: bold;">{{ count($products) }}</span>
-                        </li>
-                    @endforeach
-                </ul>
+            <!-- Filter By Price -->
+            <div class="sidebar-widget price_range range mb-30">
+                <form action="{{ route('shop.filter') }}" method="post">
+                    @csrf
+                    <h5 class="section-title style-1 mb-30">Fill by price</h5>
+                    <div class="price-filter">
+                        <div class="price-filter-inner">
+                            <div id="slider-range" class="mb-20"></div>
+                            <div class="d-flex justify-content-between">
+                                <div class="caption">From: <strong id="slider-range-value1"
+                                        class="text-brand"></strong>
+                                </div>
+                                <div class="caption">To: <strong id="slider-range-value2"
+                                        class="text-brand"></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item mb-10 mt-10">
+                            @if (!empty($_GET['category']))
+                                @php
+                                    $filterCategory = explode(',', $_GET['category']);
+                                @endphp
+                            @else
+                            @endif
+                            <label class="fw-900">All Categoies</label>
+                            @foreach ($categories as $category)
+                                @php
+                                    $products = \App\Models\Product::where('category_id', $category->id)->get();
+                                @endphp
+                                <div class="custome-checkbox">
+                                    <input class="form-check-input" type="checkbox" name="category[]"
+                                        id="exampleCheckbox{{ $category->id }}"
+                                        value="{{ $category->category_slug }}"
+                                        @if (!empty($filterCategory) && in_array($category->category_slug, $filterCategory)) checked @endif
+                                        onchange="this.form.submit()" />
+                                    <label class="form-check-label"
+                                        for="exampleCheckbox{{ $category->id }}"><span>{{ $category->category_name }}
+                                            ({{ count($products) }})
+                                        </span></label>
+                                </div>
+                            @endforeach
+                            <label class="fw-900 mt-15">Item Condition</label>
+                            <div class="custome-checkbox">
+                                <input class="form-check-input" type="checkbox" name="checkbox"
+                                    id="exampleCheckbox11" value="" />
+                                <label class="form-check-label" for="exampleCheckbox11"><span>New
+                                        (1506)</span></label>
+                                <br />
+                                <input class="form-check-input" type="checkbox" name="checkbox"
+                                    id="exampleCheckbox21" value="" />
+                                <label class="form-check-label" for="exampleCheckbox21"><span>Refurbished
+                                        (27)</span></label>
+                                <br />
+                                <input class="form-check-input" type="checkbox" name="checkbox"
+                                    id="exampleCheckbox31" value="" />
+                                <label class="form-check-label" for="exampleCheckbox31"><span>Used (45)</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
+                        Fillter</a>
+                </form>
             </div>
-            <!-- Fillter By Price -->
-
             <!-- Product sidebar Widget -->
             <div class="sidebar-widget product-sidebar mb-30 p-30 bg-grey border-radius-10">
                 <h5 class="section-title style-1 mb-30">New products</h5>
@@ -336,18 +376,13 @@
                             @else
                                 <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
                             @endif
-
-
-
-
                             @php
                                 $average = \App\Models\Review::where('product_id', $product->id)
                                     ->where('status', 1)
                                     ->avg('rating');
                                 $count_review = \App\Models\Review::where('product_id', $product->id)
                                     ->where('status', 1)
-                                    ->count('rating');
-                            @endphp
+                                ->count('rating'); @endphp
                             <div class="product-rate-cover">
                                 @if ($average == 0)
                                     <div class="product-rate d-inline-block">
@@ -437,25 +472,26 @@
                 </div>
             </div>
         </div>
+
     </div>
 </div>
 
-{{-- Start SubCategory Product Add To Card --}}
+{{-- Start Category Product Add To Cart --}}
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.SubCategoryProductAddToCart').click(function(e) {
+        $('.CategoryProductAddToCart').click(function(e) {
             e.preventDefault();
-            var id = $(this).closest('.subcat_product_data').find('.subcat_prod_id').val();
-            var product_name = $(this).closest('.subcat_product_data').find(
-                '.subcategory_view_pname').val();
-            var vendor_id = $(this).closest('.subcat_product_data').find(
-                '.subcategory_view_vendor_id').val();
-            var brand_id = $(this).closest('.subcat_product_data').find(
-                '.subcategory_view_brand_id').val();
+            var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
+            var product_name = $(this).closest('.cat_product_data').find(
+                '.category_view_pname').val();
+            var vendor_id = $(this).closest('.cat_product_data').find(
+                '.category_view_vendor_id').val();
+            var brand_id = $(this).closest('.cat_product_data').find(
+                '.category_view_brand_id').val();
             var quantity = 1;
             $.ajax({
                 type: "POST",
-                url: "/subcategory/product/cart/store/" + id,
+                url: "/category/product/cart/store/" + id,
                 data: {
                     quantity: quantity,
                     product_name: product_name,
@@ -489,5 +525,5 @@
         });
     });
 </script>
-{{-- End SubCategory Product Add To Card --}}
+{{-- Start Category Product Add To Cart --}}
 @endsection
