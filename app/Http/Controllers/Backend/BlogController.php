@@ -12,7 +12,6 @@ use App\Models\User;
 use Intervention\Image\ImageManagerStatic as Image;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class BlogController extends Controller
 {
@@ -262,8 +261,8 @@ class BlogController extends Controller
         $breadcat = BlogCategory::where('id', $blogdetails->category_id)->get();
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(4)->get();
 
-        $new_value = $blogdetails->visitors + 1;
-        $blogdetails->visitors = $new_value;
+        $new_value = $blogdetails->views + 1;
+        $blogdetails->views = $new_value;
         $blogdetails->update();
 
         return view('frontend.blog.blog_details', compact('blogcategories', 'blogdetails', 'breadcat', 'products'));

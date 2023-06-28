@@ -19,8 +19,8 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('vendor.add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Product</i></a>
+                <a href="{{ route('vendor.add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                        New</i></a>
             </div>
         </div>
     </div>
@@ -60,13 +60,14 @@
                                 @endif
                                 <td>
                                     @if ($item->discount_price == null)
-                                        <span class="badge rounded-pill bg-dark">0%</span>
+                                        <span class="badge rounded-pill bg-dark" style="font-size: 12px;">0%</span>
                                     @else
                                         @php
                                             $amount = $item->selling_price - $item->discount_price;
                                             $discount = ($amount / $item->selling_price) * 100;
                                         @endphp
-                                        <span class="badge rounded-pill bg-danger"> - {{ round($discount) }}%</span>
+                                        <span class="badge rounded-pill bg-danger" style="font-size: 12px;"> -
+                                            {{ round($discount) }}%</span>
                                     @endif
                                 </td>
                                 <td>

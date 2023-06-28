@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.slider') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Slider</i></a>
+                <a href="{{ route('add.slider') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -55,9 +54,14 @@
                                 </td>
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('slider.edit'))
+                                        <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
+
+                                    @if (Auth::user()->can('slider.delete'))
+                                        <a href="{{ route('delete.slider', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

@@ -29,11 +29,13 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/plugins/animate.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css?v=5.3') }}" />
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
     <!-- Toaster -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" type="text/css"
+        media="all" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
@@ -85,6 +87,7 @@
     <script src="{{ asset('frontend/assets/js/plugins/jquery.syotimer.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/waypoints.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/wow.js') }}"></script>
+    <script src="{{ asset('frontend/assets/js/plugins/slider-range.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/perfect-scrollbar.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/magnific-popup.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/plugins/select2.min.js') }}"></script>
@@ -259,7 +262,7 @@
         }
         // End Product View With Modal
 
-        // Start Add To Cart Product
+        // Start Add To Cart Quick View
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
@@ -304,9 +307,9 @@
                 }
             })
         }
-        // End Add To Cart Product
+        // End Add To Cart Quick View
 
-        // Start Details Page Add To Cart Product
+        // Start Details Page Add To Cart
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
@@ -347,7 +350,7 @@
                 }
             })
         }
-        // End Details Page Add To Cart Product
+        // End Details Page Add To Cart
     </script>
 
     <script type="text/javascript">
@@ -367,7 +370,7 @@
                         miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image} " style="width: 60px;height: 60px;" /></a>
+                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image}" style="width: 60px;height: 60px;" /></a>
                                         </div>
                                         <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                                             <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
@@ -696,14 +699,7 @@
                                         alt="#"></td>
                                 <td class="product-des product-name">
                                     <h6 class="mb-5"><a class="product-name mb-10 text-heading"
-                                            href="shop-product-right.html">${value.name}</a></h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width:90%">
-                                            </div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+                                            href="#">${value.name}</a></h6>
                                 </td>
                                 <td class="price" data-title="Price">
                                     <h4 class="text-body">$${value.price} </h4>

@@ -19,7 +19,7 @@ class ReportController extends Controller
     {
         $date = new DateTime($request->date);
         $format_day = $date->format('d');
-        $format_month = $date->format('F');
+        $format_month = $date->format('m');
         $format_year = $date->format('Y');
         $orders = Order::where('order_day', $format_day)->where('order_month', $format_month)->where('order_year', $format_year)->latest()->get();
         return view('backend.report.report_by_date', compact('orders', 'format_day', 'format_month', 'format_year'));

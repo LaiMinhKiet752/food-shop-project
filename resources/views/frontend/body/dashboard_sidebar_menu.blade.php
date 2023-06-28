@@ -13,18 +13,18 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.order.page' ? 'active' : '' }}"
-                    href="{{ route('user.order.page') }}"><i class="fa-solid fa-cart-shopping mr-5"></i>Orders</a>
+                    href="{{ route('user.order.page') }}"><i class="fa-solid fa-cart-shopping mr-5"></i>Order</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.return.order.page' ? 'active' : '' }}"
                     href="{{ route('user.return.order.page') }}"><i
                         class="fa-solid fa-arrow-rotate-left mr-5"></i>Return
-                    Orders</a>
+                    Order</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.cancel.order.page' ? 'active' : '' }}"
                     href="{{ route('user.cancel.order.page') }}"><i class="fa-solid fa-rectangle-xmark mr-5"></i>Cancel
-                    Orders</a>
+                    Order</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.track.order.page' ? 'active' : '' }}"

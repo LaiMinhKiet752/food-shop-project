@@ -461,6 +461,35 @@ class CartController extends Controller
         }
     } // End Method
 
+    public function AddToCartShopPage(Request $request, $id)
+    {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        $product = Product::findOrFail($id);
+        if ($product->discount_price == NULL) {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->selling_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+        } else {
+            Cart::add([
+                'id' => $id,
+                'name' => $product->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => ['image' => $product->product_thumbnail, 'vendor_id' => $request->vendor_id, 'brand_id' => $request->brand_id],
+            ]);
+            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+        }
+    } // End Method
+
     public function MyCart()
     {
         return view('frontend.mycart.view_mycart');

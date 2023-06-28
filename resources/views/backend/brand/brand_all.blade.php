@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Brand</i></a>
+                <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -50,9 +49,13 @@
                                 <td>{{ $item->brand_phone }}</td>
                                 <td>{{ Str::limit($item->brand_address, 30, '...') }}</td>
                                 <td>
-                                    <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('brand.edit'))
+                                        <a href="{{ route('edit.brand', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
+                                    @if (Auth::user()->can('brand.delete'))
+                                        <a href="{{ route('delete.brand', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

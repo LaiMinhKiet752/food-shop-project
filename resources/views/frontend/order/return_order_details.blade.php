@@ -1,13 +1,13 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Return Orders
+    Return Order
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
             <span></span> Your Orders
         </div>
     </div>

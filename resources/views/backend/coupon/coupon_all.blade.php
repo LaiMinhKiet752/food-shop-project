@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.coupon') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Coupon</i></a>
+                <a href="{{ route('add.coupon') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -45,7 +44,8 @@
                             <tr>
                                 <td> {{ $key + 1 }} </td>
                                 <td> {{ $item->coupon_code }}</td>
-                                <td> <span class="badge rounded-pill bg-danger" style="font-size: 12px;">- {{ $item->coupon_discount }}%</span>
+                                <td> <span class="badge rounded-pill bg-danger" style="font-size: 12px;">-
+                                        {{ $item->coupon_discount }}%</span>
                                 </td>
                                 <td> {{ Carbon\Carbon::parse($item->coupon_validity)->format('D, d F Y') }} </td>
                                 <td>
@@ -58,10 +58,14 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('edit.coupon', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.coupon', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('coupon.edit'))
+                                        <a href="{{ route('edit.coupon', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
 
+                                    @if (Auth::user()->can('coupon.delete'))
+                                        <a href="{{ route('delete.coupon', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

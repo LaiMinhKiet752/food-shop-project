@@ -7,7 +7,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
             <span></span> Vendor Details Page
         </div>
     </div>
@@ -68,7 +68,7 @@
                 @foreach ($vproduct as $product)
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn vendor_product_data"
-                            data-wow-delay=".1s">
+                            data-wow-delay=".1s" style="height: 430px;">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a
@@ -118,9 +118,23 @@
                                     <a
                                         href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                 </div>
-                                <h2><a
+                                <h2
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                padding: 16px 0 0;
+                                margin-bottom: 12px;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 58px;
+                                height: 30px;
+                                box-sizing: border-box;">
+                                    <a
                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                        {{ $product->product_name }} </a></h2>
+                                        {{ $product->product_name }} </a>
+                                </h2>
 
 
                                 @php

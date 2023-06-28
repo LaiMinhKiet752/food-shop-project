@@ -6,7 +6,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
             <span></span> Vendors List
         </div>
     </div>
@@ -81,7 +81,7 @@
         <div class="row vendor-grid">
             @foreach ($vendors as $vendor)
                 <div class="col-lg-3 col-md-6 col-12 col-sm-6">
-                    <div class="vendor-wrap mb-40">
+                    <div class="vendor-wrap mb-40" style="height: 450px;">
                         <div class="vendor-img-action-wrap">
                             <div class="vendor-img">
                                 <a href="{{ route('vendor.details', $vendor->id) }}">
@@ -113,7 +113,16 @@
                                 </div>
                             </div>
                             <div class="vendor-info mb-30">
-                                <ul class="contact-infor text-muted">
+                                <ul class="contact-infor text-muted" style="overflow: hidden;
+                                line-height: 1.3em;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                -webkit-box-orient: vertical;
+                                min-height: 100px;
+                                height: 30px;
+                                box-sizing: border-box;">
                                     <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                             alt="" /><strong>Address: </strong>
                                         <span>{{ $vendor->address }}</span>

@@ -52,7 +52,7 @@
                                                 d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
                                             </path>
                                         </svg>Website</h6>
-                                    <span class="text-secondary">https://nest.com</span>
+                                    <span class="text-secondary">https://www.nest.com</span>
                                 </li>
 
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">

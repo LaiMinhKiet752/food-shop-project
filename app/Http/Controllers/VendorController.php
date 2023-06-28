@@ -10,6 +10,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Notifications\VendorRegisterNotification;
+use Illuminate\Support\Facades\Notification;
 
 class VendorController extends Controller
 {
@@ -190,6 +192,7 @@ class VendorController extends Controller
 
     public function VendorRegister(Request $request)
     {
+        $vendor_user = User::where('role', 'admin')->get();
         $request->validate([
             'username' => ['unique:' . User::class],
             'phone' => ['unique:' . User::class],
@@ -220,6 +223,8 @@ class VendorController extends Controller
             'message' => 'Vendor Registration Successful!',
             'alert-type' => 'success'
         );
+        //Notification To Admin
+        Notification::send($vendor_user, new VendorRegisterNotification($request));
         return redirect()->route('vendor.login')->with($notification);
     } //End Method
 

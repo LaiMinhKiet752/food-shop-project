@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('post_image');
             $table->text('post_short_description');
             $table->text('post_long_description');
-            $table->integer('visitors')->nullable();
+            $table->integer('views')->nullable();
             $table->timestamps();
         });
     }

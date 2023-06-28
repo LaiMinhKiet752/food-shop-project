@@ -10,7 +10,7 @@
                     <div class="col-xl-3">
                         <h1 class="mb-15">Blog & News</h1>
                         <div class="breadcrumb">
-                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
                             <span></span> Blog & News
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                                     <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
                                         <div>
                                             <span class="post-on">{{ $post->created_at->format('M d Y') }}</span>
-                                            <span class="hit-count has-dot">{{ $post->visitors }} Views</span>
+                                            <span class="hit-count has-dot">{{ $post->views }} Views</span>
                                         </div>
                                         <a href="{{ url('post/details/' . $post->id . '/' . $post->post_slug) }}"
                                             class="text-brand font-heading font-weight-bold">Read more <i

@@ -31,8 +31,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-
-                            <div method="post" action="{{ route('active.vendor.approve') }}">
+                            <form method="post" action="{{ route('active.vendor.approve') }}" id="SubmitForm">
                                 @csrf
 
                                 <input type="hidden" name="id" value="{{ $inactiveVendorDetails->id }}">
@@ -131,17 +130,36 @@
                                 <div class="row">
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-9 text-secondary">
-                                        <input type="submit" class="btn btn-success px-4" value="ACTIVE"
-                                            title="Active Vendor" />
+                                        <button type="submit" class="btn btn-success px-4" title="Active Vendor"
+                                            onclick="submitActiveVendor(event)">ACTIVE</button>
                                     </div>
                                 </div>
+                            </form>
                         </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function submitActiveVendor(e) {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            timer: 5000,
+            timerProgressBar: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Active it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById("SubmitForm").submit();
+            }
+        })
+    }
+</script>
 @endsection

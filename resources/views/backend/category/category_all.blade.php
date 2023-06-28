@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.category') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Category</i></a>
+                <a href="{{ route('add.category') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -45,9 +44,14 @@
                                 <td><img src="{{ asset($item->category_image) }}" style="width: 100px; height: 70px;">
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('category.edit'))
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
+
+                                    @if (Auth::user()->can('category.delete'))
+                                        <a href="{{ route('delete.category', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

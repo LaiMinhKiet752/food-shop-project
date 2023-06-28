@@ -53,9 +53,14 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.banner', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('banner.edit'))
+                                        <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
+                                    @endif
+
+                                    @if (Auth::user()->can('banner.delete'))
+                                        <a href="{{ route('delete.banner', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
 
                                 </td>
                             </tr>

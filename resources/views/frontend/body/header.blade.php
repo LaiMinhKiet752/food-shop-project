@@ -226,20 +226,20 @@
 
 
     @php
-        $five_categories_first = \App\Models\Category::orderBy('id', 'DESC')
+        $five_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
             ->skip(0)
-            ->limit(5)
-            ->get();
-        $five_categories_second = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(5)
-            ->limit(5)
-            ->get();
-        $show_more_categories_first = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(10)
             ->limit(3)
             ->get();
-        $show_more_categories_second = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(13)
+        $five_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(3)
+            ->limit(3)
+            ->get();
+        $show_more_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(6)
+            ->limit(3)
+            ->get();
+        $show_more_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(9)
             ->limit(3)
             ->get();
     @endphp
@@ -254,7 +254,7 @@
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span> All Categories
+                            <span class="fi-rs-apps"></span> ALL CATEGORIES
                             <i class="fi-rs-angle-down"></i>
                         </a>
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
@@ -316,12 +316,12 @@
                             <ul>
 
                                 <li>
-                                    <a class="active" href="{{ url('/') }}">Home </a>
+                                    <a class="active" href="{{ url('/') }}">HOME </a>
 
                                 </li>
 
                                 @php
-                                    $categories = App\Models\Category::orderBy('id', 'DESC')
+                                    $categories = App\Models\Category::orderBy('category_name', 'ASC')
                                         ->limit(8)
                                         ->get();
                                 @endphp
@@ -347,9 +347,12 @@
                                     </li>
                                 @endforeach
 
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('home.blog') }}">BLOG</a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('home.blog') }}">BLOG</a>
+                                </li> --}}
                             </ul>
                         </nav>
                     </div>

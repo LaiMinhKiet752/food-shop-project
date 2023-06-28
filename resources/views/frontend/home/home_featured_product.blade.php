@@ -73,7 +73,20 @@
                                                 <a
                                                     href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                             </div>
-                                            <h2><a
+                                            <h2
+                                                style="overflow: hidden;
+                                            line-height: 1.3em;
+                                            padding: 16px 0 0;
+                                            margin-bottom: 12px;
+                                            text-overflow: ellipsis;
+                                            white-space: initial;
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2;
+                                            -webkit-box-orient: vertical;
+                                            min-height: 60px;
+                                            height: 30px;
+                                            box-sizing: border-box;">
+                                                <a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h2>
 

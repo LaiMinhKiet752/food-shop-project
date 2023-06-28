@@ -15,7 +15,7 @@
                             <h4 style="font-size: 20px;">
                                 {{ $item->banner_title }}
                             </h4>
-                            <a href="{{ url('/') }}" class="btn btn-xs">Shop Now <i
+                            <a href="{{ route('shop.page') }}" class="btn btn-xs">Shop Now <i
                                     class="fi-rs-arrow-small-right"></i></a>
                         </div>
                     </div>

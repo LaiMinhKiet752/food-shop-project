@@ -18,8 +18,7 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.commune') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                        Commune</i></a>
+                <a href="{{ route('add.commune') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
