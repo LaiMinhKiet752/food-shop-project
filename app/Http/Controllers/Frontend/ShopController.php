@@ -17,12 +17,18 @@ class ShopController extends Controller
             $slugs = explode(',', $_GET['category']);
             $category_id = Category::select('id')->whereIn('category_slug', $slugs)->pluck('id')->toArray();
             $products = Product::whereIn('category_id', $category_id)->get();
-        } else if (!empty($_GET['brand'])) {
+        }
+        if (!empty($_GET['brand'])) {
             $slugs = explode(',', $_GET['brand']);
             $brand_id = Brand::select('id')->whereIn('brand_slug', $slugs)->pluck('id')->toArray();
             $products = Product::whereIn('brand_id', $brand_id)->get();
-        } else {
+        }
+        else {
             $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
+        }
+        if (!empty($_GET['price'])) {
+            $price = explode('-', $_GET['price']);
+            $products = $products->whereBetween('selling_price', $price);
         }
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $brands = Brand::orderBy('brand_name', 'ASC')->get();
@@ -34,9 +40,10 @@ class ShopController extends Controller
     {
         $data = $request->all();
 
-        //Filter By Category And Filter By Brand    
+        //Filter By Category And Filter By Brand
         $category_url = "";
         $brand_url = "";
+        $price_range_url = "";
 
         if (!empty($data['category'])) {
             foreach ($data['category'] as $category) {
@@ -56,6 +63,9 @@ class ShopController extends Controller
                 }
             }
             return redirect()->route('shop.page', $brand_url);
+        } else if (!empty($data['price_range'])) {
+            $price_range_url .= '&price=' . $data['price_range'];
+            return redirect()->route('shop.page', $price_range_url);
         } else {
             return redirect()->route('shop.page');
         }

@@ -436,6 +436,7 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
     Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
     Route::post('/product/search/cart/store/{id}', 'AddToCartProductSearch');
+    Route::post('/shop/page/product/cart/store/{id}', 'AddToCartShopPage');
     //My Cart All Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');

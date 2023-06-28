@@ -71,7 +71,7 @@
             <div class="row product-grid">
                 @foreach ($products as $product)
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
-                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn cat_product_data"
+                        <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn shop_page_data"
                             data-wow-delay=".1s" style="height: 430px;">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
@@ -250,15 +250,15 @@
                                     @endif
 
                                     <div class="add-cart">
-                                        <input type="hidden" value="{{ $product->id }}" class="cat_prod_id">
+                                        <input type="hidden" value="{{ $product->id }}" class="shop_page_prod_id">
 
-                                        <input type="hidden" class="category_view_pname"
+                                        <input type="hidden" class="shop_page_pname"
                                             value="{{ $product->product_name }}">
-                                        <input type="hidden" class="category_view_vendor_id"
+                                        <input type="hidden" class="shop_page_vendor_id"
                                             value="{{ $product->vendor_id }}">
-                                        <input type="hidden" class="category_view_brand_id"
+                                        <input type="hidden" class="shop_page_brand_id"
                                             value="{{ $product->brand_id }}">
-                                        <a class="add CategoryProductAddToCart" type="submit"><i
+                                        <a class="add ShopPageAddToCart" type="submit"><i
                                                 class="fi-rs-shopping-cart mr-5"></i>Add </a>
                                     </div>
                                 </div>
@@ -299,17 +299,36 @@
                     <h5 class="section-title style-1 mb-30">Fill by price</h5>
                     <div class="price-filter">
                         <div class="price-filter-inner">
-                            <div id="slider-range" class="mb-20"></div>
-                            <div class="d-flex justify-content-between">
-                                <div class="caption">From: <strong id="slider-range-value1"
-                                        class="text-brand"></strong>
+                            <div id="slider-range" class="price-filter-range" data-min="0" data-max="2000"></div>
+                            <input type="hidden" id="price_range" name="price_range" value="">
+                            <input class="text-center" type="text" id="amount" value="$0 - $2000" readonly="" style="padding: 0;">
+                            <br><br>
+                            <button type="submit" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
+                                Fillter</button>
+                        </div>
+                    </div>
+
+                    <div style="display: none;">
+                        <h5 class="section-title style-1 mb-30">Fill by price</h5>
+                        <div class="price-filter">
+                            <div class="price-filter-inner">
+                                <div id="slider-range" class="mb-20"></div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="caption">From: <strong id="slider-range-value1"
+                                            class="text-brand"></strong>
+                                    </div>
+                                    <div class="caption">To: <strong id="slider-range-value2"
+                                            class="text-brand"></strong>
+                                    </div>
                                 </div>
-                                <div class="caption">To: <strong id="slider-range-value2"
-                                        class="text-brand"></strong>
-                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-sm btn-default"><i
+                                        class="fi-rs-filter mr-5"></i>
+                                    Fillter</button>
                             </div>
                         </div>
                     </div>
+
                     <div class="list-group">
                         <div class="list-group-item mb-10 mt-10">
                             @if (!empty($_GET['category']))
@@ -357,8 +376,6 @@
                             @endforeach
                         </div>
                     </div>
-                    <a href="shop-grid-right.html" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
-                        Fillter</a>
                 </form>
             </div>
             <!-- Product sidebar Widget -->
@@ -479,23 +496,44 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        if ($('#slider-range').length >= 0) {
+            const max_price = parseInt($('#slider-range').data('max'));
+            const min_price = parseInt($('#slider-range').data('min'));
+            let price_range = min_price + "-" + max_price;
+            let price = price_range.split('-');
+            $("#slider-range").slider({
+                range: true,
+                min: min_price,
+                max: max_price,
+                values: price,
+                slide: function(event, ui) {
+
+                    $("#amount").val('$' + ui.values[0] + "-" + '$' + ui.values[1]);
+                    $("#price_range").val(ui.values[0] + "-" + ui.values[1]);
+                }
+            });
+        }
+    })
+</script>
 
 {{-- Start Category Product Add To Cart --}}
 <script type="text/javascript">
     $(document).ready(function() {
-        $('.CategoryProductAddToCart').click(function(e) {
+        $('.ShopPageAddToCart').click(function(e) {
             e.preventDefault();
-            var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
-            var product_name = $(this).closest('.cat_product_data').find(
-                '.category_view_pname').val();
-            var vendor_id = $(this).closest('.cat_product_data').find(
-                '.category_view_vendor_id').val();
-            var brand_id = $(this).closest('.cat_product_data').find(
-                '.category_view_brand_id').val();
+            var id = $(this).closest('.shop_page_data').find('.shop_page_prod_id').val();
+            var product_name = $(this).closest('.shop_page_data').find(
+                '.shop_page_pname').val();
+            var vendor_id = $(this).closest('.shop_page_data').find(
+                '.shop_page_vendor_id').val();
+            var brand_id = $(this).closest('.shop_page_data').find(
+                '.shop_page_brand_id').val();
             var quantity = 1;
             $.ajax({
                 type: "POST",
-                url: "/category/product/cart/store/" + id,
+                url: "/shop/page/product/cart/store/" + id,
                 data: {
                     quantity: quantity,
                     product_name: product_name,
