@@ -7,8 +7,11 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -18,6 +21,7 @@ class PaypalController extends Controller
 {
     public function PaypalOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
             $discount_percent = Session::get('coupon')['coupon_discount'];
@@ -96,6 +100,9 @@ class PaypalController extends Controller
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         $subject = 'Nest Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
+
+        //Notification To Admin
+        Notification::send($user, new OrderCompleteNotification($request->name));
 
         if (isset($response['id']) && $response['id'] != null) {
             foreach ($response['links'] as $link) {

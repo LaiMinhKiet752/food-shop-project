@@ -34,6 +34,7 @@
                             <th>Post Image </th>
                             <th>Post Category </th>
                             <th>Post Title </th>
+                            <th>Views</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -44,6 +45,7 @@
                                 <td> <img src="{{ asset($item->post_image) }}" style="width: 150px; height:80px;"> </td>
                                 <td>{{ $item['blogcategory']['blog_category_name'] }}</td>
                                 <td>{{ Str::limit($item->post_title, 30, '...') }}</td>
+                                <td>{{ $item->views }}</td>
                                 <td>
                                     <a href="{{ route('edit.blog.post', $item->id) }}" class="btn btn-info">Edit</a>
                                     <a href="{{ route('delete.blog.post', $item->id) }}" class="btn btn-danger"
@@ -58,6 +60,7 @@
                             <th>Post Image </th>
                             <th>Post Category </th>
                             <th>Post Title </th>
+                            <th>Views</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

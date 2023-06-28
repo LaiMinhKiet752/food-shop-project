@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <script src="https://js.stripe.com/v3/"></script>
@@ -695,14 +695,7 @@
                                         alt="#"></td>
                                 <td class="product-des product-name">
                                     <h6 class="mb-5"><a class="product-name mb-10 text-heading"
-                                            href="shop-product-right.html">${value.name}</a></h6>
-                                    <div class="product-rate-cover">
-                                        <div class="product-rate d-inline-block">
-                                            <div class="product-rating" style="width:90%">
-                                            </div>
-                                        </div>
-                                        <span class="font-small ml-5 text-muted"> (4.0)</span>
-                                    </div>
+                                            href="#">${value.name}</a></h6>
                                 </td>
                                 <td class="price" data-title="Price">
                                     <h4 class="text-body">$${value.price} </h4>

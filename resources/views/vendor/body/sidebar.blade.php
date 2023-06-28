@@ -18,7 +18,7 @@
     <ul class="metismenu" id="menu">
         <li>
             <a href="{{ route('vendor.dashboard') }}">
-                <div class="parent-icon"><i class='bx bx-cookie'></i>
+                <div class="parent-icon"><i class='bx bx-home-circle'></i>
                 </div>
                 <div class="menu-title">Dashboard</div>
             </a>
@@ -26,7 +26,7 @@
         @if ($status === 'active')
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                    <div class="parent-icon"><i class='lni lni-fresh-juice'></i>
                     </div>
                     <div class="menu-title">Product</div>
                 </a>
@@ -45,7 +45,7 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bx-home-circle'></i>
+                    <div class="parent-icon"><i class='lni lni-archive'></i>
                     </div>
                     <div class="menu-title">Inventory</div>
                 </a>
@@ -58,7 +58,7 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="bx bx-category"></i>
+                    <div class="parent-icon"><i class="bx bx-cart"></i>
                     </div>
                     <div class="menu-title">Order</div>
                 </a>
@@ -84,7 +84,7 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="bx bx-category"></i>
+                    <div class="parent-icon"><i class="lni lni-comments"></i>
                     </div>
                     <div class="menu-title">Review</div>
                 </a>

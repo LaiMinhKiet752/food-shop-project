@@ -60,7 +60,6 @@
             <td align="right">
                 <pre class="font">
                Nest Shop Head Office
-               Email: nest@gmail.com
                Address: Ho Chi Minh city, Viet Nam
                Hotline: 1900 900
             </pre>
@@ -77,9 +76,9 @@
                     <strong>Email: </strong> {{ $order->email }}<br>
                     <strong>Phone Number: </strong> {{ $order->phone }} <br>
                     <strong>Address: </strong> {{ $order->address }} <br>
-                    <strong>City/Province: </strong> {{ $order->city->city_name }} <br>
-                    <strong>District: </strong> {{ $order->district->district_name }} <br>
                     <strong>Commune: </strong> {{ $order->commune->commune_name }} <br>
+                    <strong>District: </strong> {{ $order->district->district_name }} <br>
+                    <strong>City/Province: </strong> {{ $order->city->city_name }} <br>
                     <strong>Postal Code: </strong> {{ $order->post_code }}
                 </p>
             </td>

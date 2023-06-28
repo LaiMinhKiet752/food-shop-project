@@ -7,8 +7,11 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -18,6 +21,7 @@ class MollieController extends Controller
 {
     public function MollieOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
             $discount_percent = Session::get('coupon')['coupon_discount'];
@@ -93,7 +97,10 @@ class MollieController extends Controller
         $subject = 'Nest Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
 
-        // redirect customer to Mollie checkout page
+        //Notification To Admin
+        Notification::send($user, new OrderCompleteNotification($request->name));
+        
+        // Redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);
     } //End Method
 

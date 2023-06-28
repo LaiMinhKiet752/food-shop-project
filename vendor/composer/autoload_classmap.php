@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Exports\\PermissionExport' => $baseDir . '/app/Exports/PermissionExport.php',
     'App\\Http\\Controllers\\AdminController' => $baseDir . '/app/Http/Controllers/AdminController.php',
     'App\\Http\\Controllers\\Auth\\AuthenticatedSessionController' => $baseDir . '/app/Http/Controllers/Auth/AuthenticatedSessionController.php',
     'App\\Http\\Controllers\\Auth\\ConfirmablePasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmablePasswordController.php',
@@ -65,6 +66,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
+    'App\\Imports\\PermissionImport' => $baseDir . '/app/Imports/PermissionImport.php',
     'App\\Mail\\OrderMail' => $baseDir . '/app/Mail/OrderMail.php',
     'App\\Models\\Banner' => $baseDir . '/app/Models/Banner.php',
     'App\\Models\\BlogCategory' => $baseDir . '/app/Models/BlogCategory.php',

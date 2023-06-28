@@ -226,20 +226,20 @@
 
 
     @php
-        $five_categories_first = \App\Models\Category::orderBy('id', 'DESC')
+        $five_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
             ->skip(0)
-            ->limit(5)
-            ->get();
-        $five_categories_second = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(5)
-            ->limit(5)
-            ->get();
-        $show_more_categories_first = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(10)
             ->limit(3)
             ->get();
-        $show_more_categories_second = \App\Models\Category::orderBy('id', 'DESC')
-            ->skip(13)
+        $five_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(3)
+            ->limit(3)
+            ->get();
+        $show_more_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(6)
+            ->limit(3)
+            ->get();
+        $show_more_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
+            ->skip(9)
             ->limit(3)
             ->get();
     @endphp

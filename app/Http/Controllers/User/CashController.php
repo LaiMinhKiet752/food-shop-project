@@ -7,6 +7,9 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderCompleteNotification;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -17,6 +20,7 @@ class CashController extends Controller
 {
     public function CashOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
             $discount_percent = Session::get('coupon')['coupon_discount'];
@@ -82,6 +86,7 @@ class CashController extends Controller
         $notification = array(
             'cash_order_success' => 'success',
         );
+        Notification::send($user, new OrderCompleteNotification($request->name));
         return redirect()->route('dashboard')->with($notification);
     } //End Method
 }

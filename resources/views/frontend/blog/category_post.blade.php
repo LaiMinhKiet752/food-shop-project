@@ -45,7 +45,7 @@
                                 <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
                                     <div>
                                         <span class="post-on">{{ $post->created_at->format('M d Y') }}</span>
-                                        <span class="hit-count has-dot">{{ $post->visitors }} Views</span>
+                                        <span class="hit-count has-dot">{{ $post->views }} Views</span>
                                     </div>
                                     <a href="{{ url('post/details/' . $post->id . '/' . $post->post_slug) }}"
                                         class="text-brand font-heading font-weight-bold">Read more <i

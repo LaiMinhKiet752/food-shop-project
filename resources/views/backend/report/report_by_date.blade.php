@@ -33,12 +33,8 @@
     </div>
     <!--end breadcrumb-->
     <hr />
-    @php
-        $month = strtotime($format_month);
-        $month_format = date('m', $month);
-    @endphp
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Search By Date :
-        ({{ $format_day }} - {{ $month_format }} - {{ $format_year }})</label>
+        ({{ $format_day }} - {{ $format_month }} - {{ $format_year }})</label>
     <div class="card">
         <div class="card-body">
             <div class="table-responsive">

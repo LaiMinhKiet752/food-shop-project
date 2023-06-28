@@ -7,8 +7,11 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -17,6 +20,7 @@ class StripeController extends Controller
 {
     public function StripeOrder(Request $request)
     {
+        $user = User::where('role','admin')->get();
         \Stripe\Stripe::setApiKey(config('stripe.stripe_sk'));
 
         if (Session::has('coupon')) {
@@ -97,6 +101,9 @@ class StripeController extends Controller
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         $subject = 'Nest Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
+
+        //Notification To Admin
+        Notification::send($user, new OrderCompleteNotification($request->name));
 
         return redirect()->away($response->url);
     } //End Method

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Notifications\VendorApproveNotification;
+use App\Notifications\VendorDisapproveNotification;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Notification;
 
 class AdminController extends Controller
 {
@@ -211,6 +213,9 @@ class AdminController extends Controller
             'message' => 'Vendor Activated Successfully!',
             'alert-type' => 'success',
         );
+        $vendor_approve = User::where('id', $vendor_id)->where('role', 'vendor')->get();
+        //Notification To Vendor
+        Notification::send($vendor_approve, new VendorApproveNotification($request));
         return redirect()->route('active.vendor')->with($notification);
     } //End Method
 
@@ -230,6 +235,9 @@ class AdminController extends Controller
             'message' => 'Vendor Inactivated Successfully!',
             'alert-type' => 'success',
         );
+        $vendor_disapprove = User::where('id', $vendor_id)->where('role', 'vendor')->get();
+        //Notification To Vendor
+        Notification::send($vendor_disapprove, new VendorDisapproveNotification($request));
         return redirect()->route('inactive.vendor')->with($notification);
     } //End Method
 
