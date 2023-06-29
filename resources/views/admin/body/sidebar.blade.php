@@ -453,6 +453,21 @@
             </li>
         @endif
 
+        <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-cloud-sync'></i>
+                </div>
+                <div class="menu-title">Database Backup</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('database.backup') }}"><i class="bx bx-right-arrow-alt"></i>Database
+                        Backup</a>
+                </li>
+            </ul>
+        </li>
+
+
 
         <li>
             <a href="#" target="_blank">
