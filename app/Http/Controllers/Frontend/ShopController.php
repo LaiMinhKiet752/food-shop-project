@@ -13,23 +13,23 @@ class ShopController extends Controller
     public function ShopPage()
     {
         $products = Product::query();
-        if (!empty($_GET['category'])) {
-            $slugs = explode(',', $_GET['category']);
-            $category_id = Category::select('id')->whereIn('category_slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('category_id', $category_id)->get();
-        }
+
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
         if (!empty($_GET['brand'])) {
             $slugs = explode(',', $_GET['brand']);
             $brand_id = Brand::select('id')->whereIn('brand_slug', $slugs)->pluck('id')->toArray();
             $products = Product::whereIn('brand_id', $brand_id)->get();
         }
-        else {
-            $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
+        if (!empty($_GET['category'])) {
+            $slugs = explode(',', $_GET['category']);
+            $catId = Category::select('id')->whereIn('category_slug', $slugs)->pluck('id')->toArray();
+            $products = Product::whereIn('category_id', $catId)->get();
         }
         if (!empty($_GET['price'])) {
             $price = explode('-', $_GET['price']);
             $products = $products->whereBetween('selling_price', $price);
         }
+
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $brands = Brand::orderBy('brand_name', 'ASC')->get();
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
@@ -40,21 +40,19 @@ class ShopController extends Controller
     {
         $data = $request->all();
 
-        //Filter By Category And Filter By Brand
-        $category_url = "";
-        $brand_url = "";
-        $price_range_url = "";
-
+        $cate = "";
         if (!empty($data['category'])) {
             foreach ($data['category'] as $category) {
-                if (empty($category_url)) {
-                    $category_url .= '&category=' . $category;
+                if (empty($catUrl)) {
+                    $catUrl .= '&category=' . $category;
                 } else {
-                    $category_url .= ',' . $category;
+                    $catUrl .= ',' . $category;
                 }
             }
-            return redirect()->route('shop.page', $category_url);
-        } else if (!empty($data['brand'])) {
+        }
+
+        $brand_url = "";
+        if (!empty($data['brand'])) {
             foreach ($data['brand'] as $brand) {
                 if (empty($brand_url)) {
                     $brand_url .= '&brand=' . $brand;
@@ -62,12 +60,13 @@ class ShopController extends Controller
                     $brand_url .= ',' . $brand;
                 }
             }
-            return redirect()->route('shop.page', $brand_url);
-        } else if (!empty($data['price_range'])) {
-            $price_range_url .= '&price=' . $data['price_range'];
-            return redirect()->route('shop.page', $price_range_url);
-        } else {
-            return redirect()->route('shop.page');
         }
+
+        $price_range_url = "";
+        if (!empty($data['price_range'])) {
+            $price_range_url .= '&price=' . $data['price_range'];
+        }
+
+        return redirect()->route('shop.page', $catUrl . $brand_url . $price_range_url);
     } //End Method
 }

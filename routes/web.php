@@ -542,7 +542,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
         Route::get('/user/track/order/page', 'UserTrackOrderPage')->name('user.track.order.page');
         Route::post('/user/order/tracking', 'UserOrderTracking')->name('user.order.tracking');
-
     });
 });
 

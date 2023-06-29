@@ -214,6 +214,11 @@
                 dataType: 'json',
                 success: function(data) {
                     // console.log(data)
+                    if(data.product.vendor_id == null){
+                        $('#pvendor').text('Nest');
+                    }else{
+                        $('#pvendor').text(data.product.vendor.shop_name);
+                    }
 
                     if (data.product.manufacturing_date == null) {
                         var mfg_date_format = '';
@@ -226,6 +231,7 @@
                     $('#pprice').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
+                    $('#pbrand').text(data.product.brand.brand_name);
                     $('#pmfg').text(mfg_date_format);
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
 

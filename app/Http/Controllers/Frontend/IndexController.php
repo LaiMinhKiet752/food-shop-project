@@ -85,7 +85,7 @@ class IndexController extends Controller
 
     public function ProductViewAjax($id)
     {
-        $product = Product::with('category', 'brand')->findOrFail($id);
+        $product = Product::with('category', 'brand', 'vendor')->findOrFail($id);
         return response()->json(array(
             'product' => $product
         ));

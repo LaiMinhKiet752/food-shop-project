@@ -331,7 +331,7 @@
                     maxlength: 255,
                 },
                 product_weight: {
-                    digits: true,
+                    number: true,
                     min: 1,
                 },
                 short_description: {
@@ -343,9 +343,11 @@
                 },
                 selling_price: {
                     required: true,
+                    number: true,
                     min: 1,
                 },
                 discount_price: {
+                    number: true,
                     min: 1,
                 },
                 product_code: {
@@ -372,7 +374,7 @@
                     maxlength: 'The product name must not be greater than 255 characters.',
                 },
                 product_weight: {
-                    digits: 'Please enter only positive integers.',
+                    number: 'Please enter only positive integers or decimals.',
                     min: 'The product weight must be greater than 0.',
                 },
                 short_description: {
@@ -384,9 +386,11 @@
                 },
                 selling_price: {
                     required: 'Please enter selling price.',
+                    number: 'Please enter only positive integers or decimals.',
                     min: 'The selling price must be greater than 0.',
                 },
                 discount_price: {
+                    number: 'Please enter only positive integers or decimals.',
                     min: 'The discount price must be greater than 0.',
                 },
                 product_code: {

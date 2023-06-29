@@ -167,7 +167,7 @@
                                         <ul>
                                             <li>
                                                 <a href="{{ route('user.account.page') }}"><i
-                                                        class="fi fi-rs-user mr-10"></i>Account Information</a>
+                                                        class="fi fi-rs-user mr-10"></i>Account Details</a>
                                             </li>
 
                                             <li>
