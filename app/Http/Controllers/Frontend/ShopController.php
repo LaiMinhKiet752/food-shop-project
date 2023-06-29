@@ -40,7 +40,7 @@ class ShopController extends Controller
     {
         $data = $request->all();
 
-        $cate = "";
+        $catUrl = "";
         if (!empty($data['category'])) {
             foreach ($data['category'] as $category) {
                 if (empty($catUrl)) {

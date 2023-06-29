@@ -214,7 +214,7 @@
             </li>
         @endif
 
-        @if (Auth::user()->can('ship.menu'))
+        @if (Auth::user()->can('shipping.area.menu'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-map"></i>
@@ -296,7 +296,7 @@
             </li>
         @endif
 
-        @if (Auth::user()->can('report.menu'))
+        @if (Auth::user()->can('report.order.menu'))
             <li>
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='lni lni-stats-up'></i>
@@ -371,7 +371,6 @@
                 </ul>
             </li>
         @endif
-
 
         <li class="menu-label" style="color: black; font-weight: bold;">Roles and Permissions</li>
         @if (Auth::user()->can('roles.permissions.menu'))
@@ -453,6 +452,21 @@
             </li>
         @endif
 
+        <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>
+        @if (Auth::user()->can('database.backup'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-cloud-sync'></i>
+                    </div>
+                    <div class="menu-title">Database Backup</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('database.backup') }}"><i class="bx bx-right-arrow-alt"></i>Database
+                            Backup</a>
+                    </li>
+                </ul>
+            </li>
+        @endif
 
         <li>
             <a href="#" target="_blank">

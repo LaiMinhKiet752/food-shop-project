@@ -7,9 +7,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Notifications\VendorApproveNotification;
 use App\Notifications\VendorDisapproveNotification;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -463,4 +466,37 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
+
+    public function DatabaseBackup()
+    {
+        return view('admin.database_backup')->with('files', File::allFiles(storage_path('/app/Nest')));
+    } //End Method
+
+    public function BackupNow()
+    {
+        Artisan::call('backup:run');
+
+        $notification = array(
+            'message' => 'Database Backup Successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function DownloadDatabase($getFilename)
+    {
+        $path = storage_path('app\Nest/' . $getFilename);
+        return response()->download($path);
+    } // End Method
+
+    public function DeleteDatabase($getFilename)
+    {
+        Storage::delete('Nest/' . $getFilename);
+
+        $notification = array(
+            'message' => 'Database Deleted Successfully!',
+            'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
 }

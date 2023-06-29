@@ -49,6 +49,8 @@ use App\Http\Controllers\User\ReviewController;
 |
 */
 
+require __DIR__ . '/auth.php';
+
 //Index All Route
 Route::controller(IndexController::class)->group(function () {
 
@@ -63,8 +65,8 @@ Route::controller(IndexController::class)->group(function () {
     // Product View Modal With Ajax
     Route::get('/product/view/modal/{id}', 'ProductViewAjax');
     //Product Search
-    Route::post('/product/search' , 'ProductSearch')->name('product.search');
-    Route::post('/search-product' , 'SearchProduct');
+    Route::post('/product/search', 'ProductSearch')->name('product.search');
+    Route::post('/search-product', 'SearchProduct');
 });
 
 //Frontend All Route
@@ -121,7 +123,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/restore/product/submit/{id}', 'VendorRestoreProductSubmit')->name('vendor.restore.product.submit');
         Route::get('/vendor/restore/all/product/submit', 'VendorRestoreAllProductSubmit')->name('vendor.restore.all.product.submit');
         Route::get('/vendor/product/stock', 'VendorProductStock')->name('vendor.product.stock');
-
     });
 
     //Vendor Order All Route
@@ -413,6 +414,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/account/update/{id}', 'AdminAccountUpdate')->name('admin.account.update');
         Route::get('/delete/admin/role/{id}', 'DeleteAdminRole')->name('delete.admin.role');
     });
+    //Database Backup
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/database/backup', 'DatabaseBackup')->name('database.backup');
+        Route::get('/admin/backup/now', 'BackupNow');
+        Route::get('{getFilename}', 'DownloadDatabase');
+        Route::get('/admin/delete/database/{getFilename}', 'DeleteDatabase');
+    });
 }); //End Group Middleware Admin
 
 
@@ -544,5 +552,3 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::post('/user/order/tracking', 'UserOrderTracking')->name('user.order.tracking');
     });
 });
-
-require __DIR__ . '/auth.php';

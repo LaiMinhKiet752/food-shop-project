@@ -55,22 +55,23 @@
                                             <option value="category">Category</option>
                                             <option value="subcategory">Subcategory</option>
                                             <option value="product">Product</option>
+                                            <option value="inventory">Inventory</option>
                                             <option value="slider">Slider</option>
                                             <option value="banner">Banner</option>
                                             <option value="coupon">Coupon</option>
-                                            <option value="area">Area</option>
-                                            <option value="vendor">Vendor</option>
+                                            <option value="shipping area">Shipping Area</option>
                                             <option value="order">Order</option>
-                                            <option value="return">Return Order</option>
-                                            <option value="cancel">Cancel Order</option>
-                                            <option value="report">Report</option>
-                                            <option value="user">User Management</option>
+                                            <option value="return order">Return Order</option>
+                                            <option value="cancel order">Cancel Order</option>
+                                            <option value="report order">Report Order</option>
                                             <option value="blog">Blog</option>
                                             <option value="review">Review</option>
                                             <option value="setting">Setting</option>
-                                            <option value="role">Role</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="stock">Stock</option>
+                                            <option value="roles and permissions">Roles And Permissions</option>
+                                            <option value="admin user account">Admin User Account</option>
+                                            <option value="vendor management">Vendor Management</option>
+                                            <option value="user management">User Management</option>
+                                            <option value="database backup">Database Backup</option>
                                         </select>
                                     </div>
                                 </div>

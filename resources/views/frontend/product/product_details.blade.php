@@ -551,7 +551,7 @@
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 30%"></div>
                                                     </div>
-                                                    <h6>{{ $average }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
                                                 </div>
                                             @elseif($average == 2)
                                                 <div class="d-flex mb-30">
@@ -565,7 +565,7 @@
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 50%"></div>
                                                     </div>
-                                                    <h6>{{ $average }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
                                                 </div>
                                             @elseif($average == 3)
                                                 <div class="d-flex mb-30">
@@ -579,7 +579,7 @@
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 70%"></div>
                                                     </div>
-                                                    <h6>{{ $average }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
                                                 </div>
                                             @elseif($average == 4)
                                                 <div class="d-flex mb-30">
@@ -593,7 +593,7 @@
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 90%"></div>
                                                     </div>
-                                                    <h6>{{ $average }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
                                                 </div>
                                             @elseif($average == 5)
                                                 <div class="d-flex mb-30">
