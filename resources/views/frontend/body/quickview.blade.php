@@ -50,11 +50,15 @@
                                 <div class="col-md-6">
                                     <div class="font-xs">
                                         <ul>
+                                            <li class="mb-5">Brand : <span class="text-brand" id="pbrand">
+                                                </span>
+                                            </li>
                                             <li class="mb-5">Category : <span class="text-brand" id="pcategory">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
-                                            </li>
+                                            <li class="mb-5">Vendor : <span class="text-brand" id="pvendor">
+                                            </span>
+                                        </li>
                                         </ul>
                                     </div>
                                 </div> <!-- // End col  -->
@@ -65,6 +69,8 @@
                                         <ul>
                                             <li class="mb-5">Product Code : <span class="text-brand" id="pcode">
                                                 </span></li>
+                                            <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
+                                            </li>
                                             <li class="mb-5">Stock : <span class="badge badge-pill badge-success"
                                                     id="instock" style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"

@@ -301,7 +301,8 @@
                         <div class="price-filter-inner">
                             <div id="slider-range" class="price-filter-range" data-min="0" data-max="2000"></div>
                             <input type="hidden" id="price_range" name="price_range" value="">
-                            <input class="text-center" type="text" id="amount" value="$0 - $2000" readonly="" style="padding: 0;">
+                            <input class="text-center" type="text" id="amount" value="$0 - $2000"
+                                readonly="" style="padding: 0;">
                             <br><br>
                             <button type="submit" class="btn btn-sm btn-default"><i class="fi-rs-filter mr-5"></i>
                                 Fillter</button>
@@ -333,24 +334,25 @@
                         <div class="list-group-item mb-10 mt-10">
                             @if (!empty($_GET['category']))
                                 @php
-                                    $filterCategory = explode(',', $_GET['category']);
+                                    $filterCat = explode(',', $_GET['category']);
                                 @endphp
                             @endif
-                            <label class="fw-900">All Categoies</label>
+                            <label class="fw-900">Category</label>
                             @foreach ($categories as $category)
                                 @php
-                                    $products = \App\Models\Product::where('category_id', $category->id)->get();
+                                    $products = App\Models\Product::where('category_id', $category->id)->get();
                                 @endphp
+
                                 <div class="custome-checkbox">
                                     <input class="form-check-input" type="checkbox" name="category[]"
                                         id="exampleCheckbox{{ $category->id }}"
                                         value="{{ $category->category_slug }}"
-                                        @if (!empty($filterCategory) && in_array($category->category_slug, $filterCategory)) checked @endif
+                                        @if (!empty($filterCat) && in_array($category->category_slug, $filterCat)) checked @endif
                                         onchange="this.form.submit()" />
                                     <label class="form-check-label"
                                         for="exampleCheckbox{{ $category->id }}"><span>{{ $category->category_name }}
-                                            ({{ count($products) }})
-                                        </span></label>
+                                            ({{ count($products) }})</span></label>
+
                                 </div>
                             @endforeach
 
