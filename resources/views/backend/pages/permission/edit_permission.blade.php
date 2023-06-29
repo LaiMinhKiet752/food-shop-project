@@ -51,69 +51,69 @@
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="group_name" class="form-control form-select single-select">
                                             <option></option>
-                                            <option value="brand"
-                                                {{ $permission->group_name == 'brand' ? 'selected' : '' }}>Brand
-                                            </option>
-                                            <option value="category"
-                                                {{ $permission->group_name == 'category' ? 'selected' : '' }}>Category
-                                            </option>
-                                            <option value="subcategory"
-                                                {{ $permission->group_name == 'subcategory' ? 'selected' : '' }}>
-                                                Subcategory
-                                            </option>
-                                            <option value="product"
-                                                {{ $permission->group_name == 'product' ? 'selected' : '' }}>Product
-                                            </option>
-                                            <option value="slider"
-                                                {{ $permission->group_name == 'slider' ? 'selected' : '' }}>Slider
-                                            </option>
-                                            <option value="banner"
-                                                {{ $permission->group_name == 'banner' ? 'selected' : '' }}>Banner
-                                            </option>
-                                            <option value="coupon"
-                                                {{ $permission->group_name == 'coupon' ? 'selected' : '' }}>Coupon
-                                            </option>
-                                            <option value="area"
-                                                {{ $permission->group_name == 'area' ? 'selected' : '' }}>Area
-                                            </option>
-                                            <option value="vendor"
-                                                {{ $permission->group_name == 'vendor' ? 'selected' : '' }}>Vendor
-                                            </option>
-                                            <option value="order"
-                                                {{ $permission->group_name == 'order' ? 'selected' : '' }}>Order
-                                            </option>
-                                            <option value="return"
-                                                {{ $permission->group_name == 'return' ? 'selected' : '' }}>Return
-                                                Order
-                                            </option>
-                                            <option value="cancel"
-                                                {{ $permission->group_name == 'cancel' ? 'selected' : '' }}>Cancel
-                                                Order
-                                            </option>
-                                            <option value="report"
-                                                {{ $permission->group_name == 'report' ? 'selected' : '' }}>Report
-                                            </option>
-                                            <option value="user"
-                                                {{ $permission->group_name == 'user' ? 'selected' : '' }}>User
-                                                Management</option>
-                                            <option value="blog"
-                                                {{ $permission->group_name == 'blog' ? 'selected' : '' }}>Blog
-                                            </option>
-                                            <option value="review"
-                                                {{ $permission->group_name == 'review' ? 'selected' : '' }}>Review
-                                            </option>
-                                            <option value="setting"
-                                                {{ $permission->group_name == 'setting' ? 'selected' : '' }}>Setting
-                                            </option>
-                                            <option value="role"
-                                                {{ $permission->group_name == 'role' ? 'selected' : '' }}>Role
-                                            </option>
-                                            <option value="admin"
-                                                {{ $permission->group_name == 'admin' ? 'selected' : '' }}>Admin
-                                            </option>
-                                            <option value="stock"
-                                                {{ $permission->group_name == 'stock' ? 'selected' : '' }}>Stock
-                                            </option>
+                                            <option
+                                                value="brand"{{ $permission->group_name == 'brand' ? 'selected' : '' }}>
+                                                Brand</option>
+                                            <option
+                                                value="category"{{ $permission->group_name == 'category' ? 'selected' : '' }}>
+                                                Category</option>
+                                            <option
+                                                value="subcategory"{{ $permission->group_name == 'subcategory' ? 'selected' : '' }}>
+                                                Subcategory</option>
+                                            <option
+                                                value="product"{{ $permission->group_name == 'product' ? 'selected' : '' }}>
+                                                Product</option>
+                                            <option
+                                                value="inventory"{{ $permission->group_name == 'inventory' ? 'selected' : '' }}>
+                                                Inventory</option>
+                                            <option
+                                                value="slider"{{ $permission->group_name == 'slider' ? 'selected' : '' }}>
+                                                Slider</option>
+                                            <option
+                                                value="banner"{{ $permission->group_name == 'banner' ? 'selected' : '' }}>
+                                                Banner</option>
+                                            <option
+                                                value="coupon"{{ $permission->group_name == 'coupon' ? 'selected' : '' }}>
+                                                Coupon</option>
+                                            <option
+                                                value="shipping area"{{ $permission->group_name == 'shipping area' ? 'selected' : '' }}>
+                                                Shipping Area</option>
+                                            <option
+                                                value="order"{{ $permission->group_name == 'order' ? 'selected' : '' }}>
+                                                Order</option>
+                                            <option
+                                                value="return order"{{ $permission->group_name == 'return order' ? 'selected' : '' }}>
+                                                Return Order</option>
+                                            <option
+                                                value="cancel order"{{ $permission->group_name == 'cancel order' ? 'selected' : '' }}>
+                                                Cancel Order</option>
+                                            <option
+                                                value="report order"{{ $permission->group_name == 'report order' ? 'selected' : '' }}>
+                                                Report Order</option>
+                                            <option
+                                                value="blog"{{ $permission->group_name == 'blog' ? 'selected' : '' }}>
+                                                Blog</option>
+                                            <option
+                                                value="review"{{ $permission->group_name == 'review' ? 'selected' : '' }}>
+                                                Review</option>
+                                            <option
+                                                value="setting"{{ $permission->group_name == 'setting' ? 'selected' : '' }}>
+                                                Setting</option>
+                                            <option
+                                                value="roles and permissions"{{ $permission->group_name == 'roles and permissions' ? 'selected' : '' }}>
+                                                Roles And Permissions</option>
+                                            <option
+                                                value="admin user account"{{ $permission->group_name == 'admin user account' ? 'selected' : '' }}>
+                                                Admin User Account</option>
+                                            <option
+                                                value="vendor management"{{ $permission->group_name == 'vendor management' ? 'selected' : '' }}>
+                                                Vendor Management</option>
+                                            <option
+                                                value="user management"{{ $permission->group_name == 'user management' ? 'selected' : '' }}>
+                                                User Management</option>
+                                            <option
+                                                value="database backup"{{ $permission->group_name == 'database backup' ? 'selected' : '' }}>
+                                                Database Backup</option>
                                         </select>
                                     </div>
                                 </div>
