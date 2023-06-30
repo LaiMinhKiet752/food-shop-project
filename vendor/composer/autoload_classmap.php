@@ -77,6 +77,7 @@ return array(
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Compare' => $baseDir . '/app/Models/Compare.php',
     'App\\Models\\Coupon' => $baseDir . '/app/Models/Coupon.php',
+    'App\\Models\\Employee' => $baseDir . '/app/Models/Employee.php',
     'App\\Models\\MultiImage' => $baseDir . '/app/Models/MultiImage.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\OrderDetails' => $baseDir . '/app/Models/OrderDetails.php',

@@ -36,9 +36,9 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '5e8fe2a5ffaded85af682684fe3bbf5a' => __DIR__ . '/..' . '/mews/captcha/src/helpers.php',
         '1b8b16d5e16612118084bfbc3cca2fc5' => __DIR__ . '/..' . '/mollie/laravel-mollie/src/helpers.php',
+        '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
-        '0c3c22e27afa83be19b4c938f4c6e9ea' => __DIR__ . '/..' . '/spatie/laravel-backup/src/Helpers/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -741,6 +741,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Compare' => __DIR__ . '/../..' . '/app/Models/Compare.php',
         'App\\Models\\Coupon' => __DIR__ . '/../..' . '/app/Models/Coupon.php',
+        'App\\Models\\Employee' => __DIR__ . '/../..' . '/app/Models/Employee.php',
         'App\\Models\\MultiImage' => __DIR__ . '/../..' . '/app/Models/MultiImage.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
         'App\\Models\\OrderDetails' => __DIR__ . '/../..' . '/app/Models/OrderDetails.php',

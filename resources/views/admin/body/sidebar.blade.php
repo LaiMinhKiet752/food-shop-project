@@ -452,6 +452,23 @@
             </li>
         @endif
 
+        <li class="menu-label" style="color: black; font-weight: bold;">Employee Management</li>
+        {{-- @if (Auth::user()->can('database.backup')) --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-network'></i>
+                </div>
+                <div class="menu-title">Employee</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.employee') }}"><i class="bx bx-right-arrow-alt"></i>All Employees</a>
+                </li>
+                <li> <a href="{{ route('add.employee') }}"><i class="bx bx-right-arrow-alt"></i>Add Employee</a>
+                </li>
+            </ul>
+        </li>
+        {{-- @endif --}}
+
         <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>
         @if (Auth::user()->can('database.backup'))
             <li>
