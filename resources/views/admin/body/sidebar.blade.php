@@ -467,6 +467,19 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-coin'></i>
+                </div>
+                <div class="menu-title">Employee Salary</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All Advance Salary</a>
+                </li>
+                <li> <a href="{{ route('add.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>Add Advance Salary</a>
+                </li>
+            </ul>
+        </li>
         {{-- @endif --}}
 
         <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>

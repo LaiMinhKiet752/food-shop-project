@@ -35,6 +35,7 @@ use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\User\ReviewController;
@@ -474,6 +475,16 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/edit/employee/{id}', 'EditEmployee')->name('edit.employee');
         Route::post('/admin/update/employee', 'UpdateEmployee')->name('update.employee');
         Route::get('/admin/delete/employee/{id}', 'DeleteEmployee')->name('delete.employee');
+    });
+
+    //Advance Salary All Route
+    Route::controller(SalaryController::class)->group(function () {
+        Route::get('/admin/all/advance/salary', 'AllAdvanceSalary')->name('all.advance.salary');
+        Route::get('/admin/add/advance/salary', 'AddAdvanceSalary')->name('add.advance.salary');
+        Route::post('/admin/advance/salary/store', 'StoreAdvanceSalary')->name('store.advance.salary');
+        Route::get('/admin/advance/salary/edit/{id}', 'EditAdvanceSalary')->name('edit.advance.salary');
+        Route::post('/admin/advance/salary/update', 'UpdateAdvanceSalary')->name('update.advance.salary');
+        Route::get('/admin/advance/salary/delete/{id}', 'DeleteAdvanceSalary')->name('delete.advance.salary');
     });
 
     //Database Backup
