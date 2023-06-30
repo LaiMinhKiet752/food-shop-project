@@ -300,4 +300,16 @@ class EmployeeController extends Controller
             return redirect()->route('all.employee')->with($notification);
         }
     } //End Method
+
+    public function DeleteEmployee($id)
+    {
+        $image = Employee::findOrFail($id)->employee_photo;
+        @unlink($image);
+        Employee::findOrFail($id)->delete();
+        $notification = array(
+            'message' => 'Employee Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
 }

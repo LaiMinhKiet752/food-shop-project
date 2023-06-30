@@ -36,7 +36,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Salary (USD)</th>
+                            <th>Salary(USD)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -46,7 +46,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>
                                     <img src="{{ asset($item->employee_photo) }}" alt=""
-                                        style="width: 60px; height: 60px;">
+                                        style="width: 100px; height: 80px;">
                                 </td>
                                 <td>{{ $item->employee_name }}</td>
                                 <td>{{ $item->employee_email }}</td>
@@ -55,7 +55,7 @@
                                 <td>{{ $item->salary }}</td>
                                 <td>
                                     <a href="{{ route('edit.employee', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="#" class="btn btn-danger" id="delete">Delete</a>
+                                    <a href="{{ route('delete.employee', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -68,7 +68,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Address</th>
-                            <th>Salary (USD)</th>
+                            <th>Salary(USD)</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

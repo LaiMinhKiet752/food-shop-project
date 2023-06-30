@@ -473,6 +473,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/store/employee', 'StoreEmployee')->name('store.employee');
         Route::get('/admin/edit/employee/{id}', 'EditEmployee')->name('edit.employee');
         Route::post('/admin/update/employee', 'UpdateEmployee')->name('update.employee');
+        Route::get('/admin/delete/employee/{id}', 'DeleteEmployee')->name('delete.employee');
     });
 
     //Database Backup
