@@ -41,7 +41,7 @@ class EmployeeController extends Controller
         $save_url = 'upload/employee_images/' . $filename;
 
         Employee::insert([
-            'employee_code' => $request->employee_code,
+            'employee_code' => strtoupper($request->employee_code),
             'employee_name' => $request->employee_name,
             'employee_email' => $request->employee_email,
             'employee_phone' => $request->employee_phone,
@@ -57,5 +57,247 @@ class EmployeeController extends Controller
             'alert-type' => 'success',
         );
         return redirect()->route('all.employee')->with($notification);
+    } //End Method
+
+    public function EditEmployee($id)
+    {
+        $employee = Employee::findOrFail($id);
+        return view('backend.employee.edit_employee', compact('employee'));
+    } //End Method
+
+    public function UpdateEmployee(Request $request)
+    {
+        $employee_id = $request->id;
+        $old_image = $request->old_image;
+
+        $data = Employee::find($employee_id);
+        $data->employee_name = $request->employee_name;
+        $data->employee_address = $request->employee_address;
+        $data->experience = $request->experience;
+        $data->salary = $request->salary;
+        $data->vacation = $request->vacation;
+
+        $current_employee_code = Employee::findOrFail($employee_id)->employee_code;
+        $current_employee_email = Employee::findOrFail($employee_id)->employee_email;
+        $current_employee_phone = Employee::findOrFail($employee_id)->employee_phone;
+
+        if ($current_employee_code == $request->employee_code && $current_employee_email == $request->employee_email && $current_employee_phone == $request->employee_phone) {
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code != $request->employee_code && $current_employee_email == $request->employee_email && $current_employee_phone == $request->employee_phone) {
+            $request->validate([
+                'employee_code' => ['unique:' . Employee::class],
+            ], [
+                'employee_code.unique' => 'The employee code already exists. Please enter another employee code.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_code = strtoupper($request->employee_code);
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code == $request->employee_code && $current_employee_email != $request->employee_email && $current_employee_phone == $request->employee_phone) {
+            $request->validate([
+                'employee_email' => ['unique:' . Employee::class],
+            ], [
+                'employee_email.unique' => 'The email already exists. Please enter another email.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_email = $request->employee_email;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code == $request->employee_code && $current_employee_email == $request->employee_email && $current_employee_phone != $request->employee_phone) {
+            $request->validate([
+                'employee_phone' => ['unique:' . Employee::class],
+            ], [
+                'employee_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_phone = $request->employee_phone;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code != $request->employee_code && $current_employee_email != $request->employee_email && $current_employee_phone == $request->employee_phone) {
+            $request->validate([
+                'employee_code' => ['unique:' . Employee::class],
+                'employee_email' => ['unique:' . Employee::class],
+            ], [
+                'employee_code.unique' => 'The employee code already exists. Please enter another employee code.',
+                'employee_email.unique' => 'The email already exists. Please enter another email.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_code = strtoupper($request->employee_code);
+            $data->employee_email = $request->employee_email;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code != $request->employee_code && $current_employee_email == $request->employee_email && $current_employee_phone != $request->employee_phone) {
+            $request->validate([
+                'employee_code' => ['unique:' . Employee::class],
+                'employee_phone' => ['unique:' . Employee::class],
+            ], [
+                'employee_code.unique' => 'The employee code already exists. Please enter another employee code.',
+                'employee_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_code = strtoupper($request->employee_code);
+            $data->employee_phone = $request->employee_phone;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code == $request->employee_code && $current_employee_email != $request->employee_email && $current_employee_phone != $request->employee_phone) {
+            $request->validate([
+                'employee_email' => ['unique:' . Employee::class],
+                'employee_phone' => ['unique:' . Employee::class],
+            ], [
+                'employee_email.unique' => 'The email already exists. Please enter another email.',
+                'employee_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_email = $request->employee_email;
+            $data->employee_phone = $request->employee_phone;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        } else if ($current_employee_code != $request->employee_code && $current_employee_email != $request->employee_email && $current_employee_phone != $request->employee_phone) {
+            $request->validate([
+                'employee_code' => ['unique:' . Employee::class],
+                'employee_email' => ['unique:' . Employee::class],
+                'employee_phone' => ['unique:' . Employee::class],
+            ], [
+                'employee_code.unique' => 'The employee code already exists. Please enter another employee code.',
+                'employee_email.unique' => 'The email already exists. Please enter another email.',
+                'employee_phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            ]);
+            if ($request->file('employee_photo')) {
+                $request->validate([
+                    'employee_photo' => 'image|max:2048'
+                ], [
+                    'employee_photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
+                    'employee_photo.max' => 'The maximum upload image size is 2MB.',
+                ]);
+                $file = $request->file('employee_photo');
+                $filename = hexdec(uniqid()) . '_employee' . '.' . $file->getClientOriginalExtension();
+                @unlink(public_path($old_image));
+                Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
+                $data['employee_photo'] = 'upload/employee_images/' . $filename;
+            }
+            $data->employee_code = strtoupper($request->employee_code);
+            $data->employee_email = $request->employee_email;
+            $data->employee_phone = $request->employee_phone;
+            $data->save();
+            $notification = array(
+                'message' => 'Employee Information Update Successfull!',
+                'alert-type' => 'success',
+            );
+            return redirect()->route('all.employee')->with($notification);
+        }
     } //End Method
 }

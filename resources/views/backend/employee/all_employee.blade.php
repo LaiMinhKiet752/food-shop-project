@@ -54,7 +54,7 @@
                                 <td>{{ Str::limit($item->employee_address, 30, '...') }}</td>
                                 <td>{{ $item->salary }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.employee', $item->id) }}" class="btn btn-info">Edit</a>
                                     <a href="#" class="btn btn-danger" id="delete">Delete</a>
                                 </td>
                             </tr>
