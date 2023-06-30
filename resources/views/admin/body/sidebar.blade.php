@@ -474,9 +474,13 @@
                 <div class="menu-title">Employee Salary</div>
             </a>
             <ul>
-                <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All Advance Salary</a>
+                <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All Advance
+                        Salary</a>
                 </li>
-                <li> <a href="{{ route('add.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>Add Advance Salary</a>
+                <li> <a href="{{ route('add.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>Add Advance
+                        Salary</a>
+                </li>
+                <li> <a href="{{ route('pay.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Salary</a>
                 </li>
             </ul>
         </li>

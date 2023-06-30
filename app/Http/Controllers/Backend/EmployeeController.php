@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AdvanceSalary;
 use App\Models\Employee;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,7 +41,7 @@ class EmployeeController extends Controller
         Image::make($file)->resize(110, 110)->save('upload/employee_images/' . $filename);
         $save_url = 'upload/employee_images/' . $filename;
 
-        Employee::insert([
+        $employee_id = Employee::insertGetId([
             'employee_code' => strtoupper($request->employee_code),
             'employee_name' => $request->employee_name,
             'employee_email' => $request->employee_email,
@@ -50,6 +51,14 @@ class EmployeeController extends Controller
             'experience' => $request->experience,
             'salary' => $request->salary,
             'vacation' => $request->vacation,
+            'created_at' => Carbon::now(),
+        ]);
+
+        AdvanceSalary::insert([
+            'employee_id' => $employee_id,
+            'month' => date("F"),
+            'year' => date("Y"),
+            'advance_salary' => 0,
             'created_at' => Carbon::now(),
         ]);
         $notification = array(

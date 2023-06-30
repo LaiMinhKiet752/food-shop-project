@@ -139,7 +139,6 @@
                 advance_salary: {
                     required: true,
                     number: true,
-                    min: 1,
                 },
             },
             messages: {
@@ -152,7 +151,6 @@
                 advance_salary: {
                     required: 'Please enter advance salary amount.',
                     number: 'Please enter only positive integers or decimals.',
-                    min: 'The advance salary must be greater than 0.',
                 },
             },
             errorElement: 'span',

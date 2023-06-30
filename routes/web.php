@@ -487,6 +487,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/advance/salary/delete/{id}', 'DeleteAdvanceSalary')->name('delete.advance.salary');
     });
 
+    //Pay Salary All Route
+    Route::controller(SalaryController::class)->group(function () {
+        Route::get('/admin/pay/salary', 'PaySalary')->name('pay.salary');
+        Route::get('/admin/pay/now/salary/{id}', 'PayNowSalary')->name('pay.now.salary');
+        Route::post('/admin/employe/salary/store', 'EmployeSalaryStore')->name('employe.salary.store');
+        // Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
+    });
+
     //Database Backup
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/database/backup', 'DatabaseBackup')->name('database.backup');
