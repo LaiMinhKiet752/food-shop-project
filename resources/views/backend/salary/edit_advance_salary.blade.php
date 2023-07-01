@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Employee
+    Employee Management
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
@@ -36,7 +36,16 @@
                                 <input type="hidden" name="id" value="{{ $salary->id }}">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Employee Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">Employee Code </h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-dark">
+                                        <label
+                                            style="font-size: 20px; font-weight: bold;">{{ $employee->employee_code }}</label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Employee Name </h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <label

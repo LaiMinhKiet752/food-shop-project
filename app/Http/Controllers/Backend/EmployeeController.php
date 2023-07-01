@@ -48,15 +48,15 @@ class EmployeeController extends Controller
             'employee_phone' => $request->employee_phone,
             'employee_address' => $request->employee_address,
             'employee_photo' => $save_url,
+            'position' => $request->position,
             'experience' => $request->experience,
             'salary' => $request->salary,
-            'vacation' => $request->vacation,
             'created_at' => Carbon::now(),
         ]);
 
         AdvanceSalary::insert([
             'employee_id' => $employee_id,
-            'month' => date("F"),
+            'month' =>  date('F', strtotime('-1 month')),
             'year' => date("Y"),
             'advance_salary' => 0,
             'created_at' => Carbon::now(),
@@ -82,9 +82,9 @@ class EmployeeController extends Controller
         $data = Employee::find($employee_id);
         $data->employee_name = $request->employee_name;
         $data->employee_address = $request->employee_address;
+        $data->position = $request->position;
         $data->experience = $request->experience;
         $data->salary = $request->salary;
-        $data->vacation = $request->vacation;
 
         $current_employee_code = Employee::findOrFail($employee_id)->employee_code;
         $current_employee_email = Employee::findOrFail($employee_id)->employee_email;

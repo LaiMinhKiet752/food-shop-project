@@ -123,4 +123,10 @@ class SalaryController extends Controller
         $paidsalary = PaySalary::latest()->get();
         return view('backend.salary.month_salary', compact('paidsalary'));
     } // End Method
+
+    public function PayNowSalaryHistory($id)
+    {
+        $paysalary = Employee::findOrFail($id);
+        return view('backend.salary.paid_salary_history', compact('paysalary'));
+    } // End Method
 }

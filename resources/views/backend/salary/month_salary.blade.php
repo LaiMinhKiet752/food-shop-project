@@ -12,14 +12,15 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Employees</li>
+                    <li class="breadcrumb-item active" aria-current="page">Pay Last Month's Salary</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.employee') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
-            </div>
+            {{-- <div class="btn-group">
+                <a href="{{ route('add.advance.salary') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                        New</i></a>
+            </div> --}}
         </div>
     </div>
     <!--end breadcrumb-->
@@ -32,30 +33,32 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Employee Code</th>
                             <th>Employee Name</th>
-                            <th>Position</th>
-                            <th>Experience</th>
+                            <th>Month</th>
+                            <th>Year</th>
                             <th>Salary(USD)</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($employee as $key => $item)
+                        @foreach ($paidsalary as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>
-                                    <img src="{{ asset($item->employee_photo) }}" alt=""
+                                    <img src="{{ asset($item->employee->employee_photo) }}" alt=""
                                         style="width: 100px; height: 80px;">
                                 </td>
-                                <td>{{ $item->employee_code }}</td>
-                                <td>{{ $item->employee_name }}</td>
-                                <td>{{ $item->position }}</td>
-                                <td>{{ $item->experience }}</td>
-                                <td>{{ $item->salary }}</td>
+                                <td>{{ $item->employee->employee_name }}</td>
+                                <td>{{ $item->salary_month }}</td>
+                                <td>{{ $item->salary_year }}</td>
+                                <td>{{ $item->employee->salary }}</td>
                                 <td>
-                                    <a href="{{ route('edit.employee', $item->id) }}" class="btn btn-info">Edit</a>
-                                    <a href="{{ route('delete.employee', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                        Full Paid</span>
+                                </td>
+                                <td>
+                                    <a href="{{ route('pay.now.salary.history', $item->id) }}" class="btn btn-danger">History</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -64,11 +67,11 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Employee Code</th>
                             <th>Employee Name</th>
-                            <th>Position</th>
-                            <th>Experience</th>
+                            <th>Month</th>
+                            <th>Year</th>
                             <th>Salary(USD)</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Employee
+    Employee Management
 @endsection
 <div class="page-content">
     <!--breadcrumb-->
@@ -33,7 +33,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Full Name</th>
+                            <th>Employee Name</th>
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>
@@ -66,7 +66,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Full Name</th>
+                            <th>Employee Name</th>
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>

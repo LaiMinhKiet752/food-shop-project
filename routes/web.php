@@ -491,8 +491,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(SalaryController::class)->group(function () {
         Route::get('/admin/pay/salary', 'PaySalary')->name('pay.salary');
         Route::get('/admin/pay/now/salary/{id}', 'PayNowSalary')->name('pay.now.salary');
+        Route::get('/admin/pay/now/salary/history/{id}', 'PayNowSalaryHistory')->name('pay.now.salary.history');
         Route::post('/admin/employe/salary/store', 'EmployeSalaryStore')->name('employe.salary.store');
-        // Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
+        Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
     });
 
     //Database Backup

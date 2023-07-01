@@ -482,6 +482,8 @@
                 </li>
                 <li> <a href="{{ route('pay.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Salary</a>
                 </li>
+                <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last Month's Salary</a>
+                </li>
             </ul>
         </li>
         {{-- @endif --}}

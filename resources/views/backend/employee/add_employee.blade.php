@@ -1,7 +1,7 @@
 @extends('admin.admin_dashboard')
 @section('admin')
 @section('title')
-    Employee
+    Employee Management
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
@@ -108,10 +108,21 @@
 
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
+                                        <h6 class="mb-0">Position <span class="text-danger">*</span></h6>
+                                    </div>
+                                    <div class="form-group col-sm-9 text-secondary">
+                                        <input type="text" name="position" class="form-control"
+                                            value="{{ old('position') }}" />
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
                                         <h6 class="mb-0">Experience <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="experience" class="form-control form-select single-select">
+                                            <option value="" disabled selected>Select the number of years of experience.</option>
                                             <option value="0 Year">0 Year</option>
                                             <option value="1 Year">1 Year</option>
                                             <option value="2 Years">2 Years</option>
@@ -154,16 +165,6 @@
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="salary" class="form-control"
                                             value="{{ old('salary') }}" />
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Vacation <span class="text-danger">*</span></h6>
-                                    </div>
-                                    <div class="form-group col-sm-9 text-secondary">
-                                        <input type="text" name="vacation" class="form-control"
-                                            value="{{ old('vacation') }}" />
                                     </div>
                                 </div>
 
@@ -227,9 +228,14 @@
                 },
                 employee_address: {
                     required: true,
+                    maxlength: 255,
                 },
                 employee_photo: {
                     required: true,
+                },
+                position: {
+                    required: true,
+                    maxlength: 255,
                 },
                 experience: {
                     required: true,
@@ -238,10 +244,6 @@
                     required: true,
                     number: true,
                     min: 1,
-                },
-                vacation: {
-                    required: true,
-                    digits: true,
                 },
             },
             messages: {
@@ -271,6 +273,10 @@
                 employee_photo: {
                     required: 'Please select an image.',
                 },
+                position: {
+                    required: 'Please enter the position for the employee.',
+                    maxlength: 'The position must not be greater than 255 characters.',
+                },
                 experience: {
                     required: 'Please select the number of years of experience.',
                 },
@@ -278,10 +284,6 @@
                     required: 'Please enter salary.',
                     number: 'Please enter only positive integers or decimals.',
                     min: 'The salary must be greater than 0.',
-                },
-                vacation: {
-                    required: 'Please enter vacation.',
-                    digits: 'Please enter only positive integers.',
                 },
             },
             errorElement: 'span',
