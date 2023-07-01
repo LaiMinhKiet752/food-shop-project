@@ -79,7 +79,7 @@
                                 </td>
                                 <td>
                                     @if (Auth::user()->can('product.edit'))
-                                        <a href="{{ route('edit.product', $item->id) }}" class="btn btn-info"
+                                        <a href="{{ route('edit.product', $item->id) }}" class="btn btn-warning"
                                             title="Edit Data"><i class="fa fa-pencil"></i></a>
                                     @endif
 

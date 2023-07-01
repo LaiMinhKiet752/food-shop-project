@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -33,7 +34,9 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\RoleController;
+use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\User\ReviewController;
@@ -48,8 +51,6 @@ use App\Http\Controllers\User\ReviewController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-require __DIR__ . '/auth.php';
 
 //Index All Route
 Route::controller(IndexController::class)->group(function () {
@@ -69,20 +70,74 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/search-product', 'SearchProduct');
 });
 
+//Cart All Route
+Route::controller(CartController::class)->group(function () {
+    //Add To Cart All Route
+    Route::get('/product/mini/cart', 'AddMiniCart');
+    Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
+    Route::post('/cart/data/store/{id}', 'AddToCartQuickView');
+    Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
+    Route::post('/home/new/product/cart/store/{id}', 'AddToCartHomeNewProduct');
+    Route::post('/home/new/product/category/cart/store/{id}', 'AddToCartHomeNewProductCategory');
+    Route::post('/featured/product/cart/store/{id}', 'AddToCartFeaturedProduct');
+    Route::post('/category/product/cart/store/{id}', 'AddToCartCategoryProduct');
+    Route::post('/subcategory/product/cart/store/{id}', 'AddToCartSubCategoryProduct');
+    Route::post('/related/product/cart/store/{id}', 'AddToCartRelatedProduct');
+    Route::post('/vendor/details/product/cart/store/{id}', 'AddToCartVendorDetailsProduct');
+    Route::post('/categoryone/product/cart/store/{id}', 'AddToCartCategoryOneProduct');
+    Route::post('/categorytwo/product/cart/store/{id}', 'AddToCartCategoryTwoProduct');
+    Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
+    Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
+    Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
+    Route::post('/product/search/cart/store/{id}', 'AddToCartProductSearch');
+    Route::post('/shop/page/product/cart/store/{id}', 'AddToCartShopPage');
+    //My Cart All Route
+    Route::get('/my-cart', 'MyCart')->name('mycart');
+    Route::get('/get-cart-product', 'GetCartProduct');
+    Route::get('/cart-remove/{rowId}', 'CartRemove');
+    Route::get('/cart/remove/all/product', 'CartRemoveAllProduct')->name('cart.remove.all.product');
+    Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+    Route::get('/cart-increment/{rowId}', 'CartIncrement');
+    //Frontend Coupon Option All Route
+    Route::post('/coupon-apply', 'CouponApply');
+    Route::get('/coupon-calculation', 'CouponCalculation');
+    Route::get('/coupon-remove', 'CouponRemove');
+    //Checkout Page All Route
+    Route::get('/checkout', 'CheckoutCreate')->name('checkout');
+});
+
 //Frontend All Route
 Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
 
 //Captcha
 Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
 
-//Admin Login Route
-Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+//Add To Wishlist
+Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
 
-//Vendor Login Route
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
-Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
-Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
+//Add To Compare
+Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
+
+//Frontend Blog Post All Route
+Route::controller(BlogController::class)->group(function () {
+    Route::get('/blog', 'AllBlog')->name('home.blog');
+    Route::get('/post/details/{id}/{slug}', 'BlogDetails');
+    Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
+    Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
+});
+
+//Review All Route
+Route::controller(ReviewController::class)->group(function () {
+    Route::post('/store/review', 'StoreReview')->name('store.review');
+});
+
+//Shop Page All Route
+Route::controller(ShopController::class)->group(function () {
+    Route::get('/shop', 'ShopPage')->name('shop.page');
+    Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
+});
+
+require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -92,7 +147,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
 }); //End Group Middleware User
-
 
 Route::middleware(['auth', 'role:vendor'])->group(function () {
 
@@ -143,7 +197,6 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/review/details/{id}', 'VendorReviewDetails')->name('vendor.review.details');
     });
 }); //End Group Middleware Vendor
-
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -414,6 +467,45 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/account/update/{id}', 'AdminAccountUpdate')->name('admin.account.update');
         Route::get('/delete/admin/role/{id}', 'DeleteAdminRole')->name('delete.admin.role');
     });
+
+    //Employee All Route
+    Route::controller(EmployeeController::class)->group(function () {
+        Route::get('/admin/all/employee', 'AllEmployee')->name('all.employee');
+        Route::get('/admin/add/employee', 'AddEmployee')->name('add.employee');
+        Route::post('/admin/store/employee', 'StoreEmployee')->name('store.employee');
+        Route::get('/admin/edit/employee/{id}', 'EditEmployee')->name('edit.employee');
+        Route::post('/admin/update/employee', 'UpdateEmployee')->name('update.employee');
+        Route::get('/admin/delete/employee/{id}', 'DeleteEmployee')->name('delete.employee');
+    });
+
+    //Advance Salary All Route
+    Route::controller(SalaryController::class)->group(function () {
+        Route::get('/admin/all/advance/salary', 'AllAdvanceSalary')->name('all.advance.salary');
+        Route::get('/admin/add/advance/salary', 'AddAdvanceSalary')->name('add.advance.salary');
+        Route::post('/admin/advance/salary/store', 'StoreAdvanceSalary')->name('store.advance.salary');
+        Route::get('/admin/advance/salary/edit/{id}', 'EditAdvanceSalary')->name('edit.advance.salary');
+        Route::post('/admin/advance/salary/update', 'UpdateAdvanceSalary')->name('update.advance.salary');
+        Route::get('/admin/advance/salary/delete/{id}', 'DeleteAdvanceSalary')->name('delete.advance.salary');
+    });
+
+    //Pay Salary All Route
+    Route::controller(SalaryController::class)->group(function () {
+        Route::get('/admin/pay/salary', 'PaySalary')->name('pay.salary');
+        Route::get('/admin/pay/now/salary/{id}', 'PayNowSalary')->name('pay.now.salary');
+        Route::get('/admin/pay/now/salary/history/{id}', 'PayNowSalaryHistory')->name('pay.now.salary.history');
+        Route::post('/admin/employe/salary/store', 'EmployeSalaryStore')->name('employe.salary.store');
+        Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
+    });
+
+    //Attendence All Route
+    Route::controller(AttendanceController::class)->group(function () {
+        Route::get('/admin/employee/attendance/list', 'EmployeeAttendanceList')->name('employee.attendance.list');
+        Route::get('/admin/add/employee/attendance', 'AddEmployeeAttendance')->name('add.employee.attendance');
+        Route::post('/admin/employee/attendance/store', 'EmployeeAttendanceStore')->name('employee.attendance.store');
+        Route::get('/admin/edit/employee/attendance/{date}', 'EditEmployeeAttendance')->name('employee.attendance.edit');
+        Route::get('/admin/view/employee/attendance/{date}', 'ViewEmployeeAttendance')->name('employee.attendance.view');
+    });
+
     //Database Backup
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/database/backup', 'DatabaseBackup')->name('database.backup');
@@ -423,67 +515,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 }); //End Group Middleware Admin
 
+//Admin Login Route
+Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
 
-//Cart All Route
-Route::controller(CartController::class)->group(function () {
-    //Add To Cart All Route
-    Route::get('/product/mini/cart', 'AddMiniCart');
-    Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
-    Route::post('/cart/data/store/{id}', 'AddToCartQuickView');
-    Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
-    Route::post('/home/new/product/cart/store/{id}', 'AddToCartHomeNewProduct');
-    Route::post('/home/new/product/category/cart/store/{id}', 'AddToCartHomeNewProductCategory');
-    Route::post('/featured/product/cart/store/{id}', 'AddToCartFeaturedProduct');
-    Route::post('/category/product/cart/store/{id}', 'AddToCartCategoryProduct');
-    Route::post('/subcategory/product/cart/store/{id}', 'AddToCartSubCategoryProduct');
-    Route::post('/related/product/cart/store/{id}', 'AddToCartRelatedProduct');
-    Route::post('/vendor/details/product/cart/store/{id}', 'AddToCartVendorDetailsProduct');
-    Route::post('/categoryone/product/cart/store/{id}', 'AddToCartCategoryOneProduct');
-    Route::post('/categorytwo/product/cart/store/{id}', 'AddToCartCategoryTwoProduct');
-    Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
-    Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
-    Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
-    Route::post('/product/search/cart/store/{id}', 'AddToCartProductSearch');
-    Route::post('/shop/page/product/cart/store/{id}', 'AddToCartShopPage');
-    //My Cart All Route
-    Route::get('/my-cart', 'MyCart')->name('mycart');
-    Route::get('/get-cart-product', 'GetCartProduct');
-    Route::get('/cart-remove/{rowId}', 'CartRemove');
-    Route::get('/cart/remove/all/product', 'CartRemoveAllProduct')->name('cart.remove.all.product');
-    Route::get('/cart-decrement/{rowId}', 'CartDecrement');
-    Route::get('/cart-increment/{rowId}', 'CartIncrement');
-    //Frontend Coupon Option All Route
-    Route::post('/coupon-apply', 'CouponApply');
-    Route::get('/coupon-calculation', 'CouponCalculation');
-    Route::get('/coupon-remove', 'CouponRemove');
-    //Checkout Page All Route
-    Route::get('/checkout', 'CheckoutCreate')->name('checkout');
-});
-
-//Add To Wishlist
-Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
-
-//Add To Compare
-Route::post('/add-to-compare/{product_id}', [CompareController::class, 'addToCompare']);
-
-//Frontend Blog Post All Route
-Route::controller(BlogController::class)->group(function () {
-    Route::get('/blog', 'AllBlog')->name('home.blog');
-    Route::get('/post/details/{id}/{slug}', 'BlogDetails');
-    Route::get('/post/category/{id}/{slug}', 'BlogPostCategory');
-    Route::post('/blog/comments', 'BlogComments')->name('comments.blog');
-});
-
-//Review All Route
-Route::controller(ReviewController::class)->group(function () {
-    Route::post('/store/review', 'StoreReview')->name('store.review');
-});
-
-//Shop Page All Route
-Route::controller(ShopController::class)->group(function () {
-    Route::get('/shop', 'ShopPage')->name('shop.page');
-    Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
-});
+//Vendor Login Route
+Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
+Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
+Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
+Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
 
 //User All Route
 Route::middleware(['auth', 'role:user'])->group(function () {

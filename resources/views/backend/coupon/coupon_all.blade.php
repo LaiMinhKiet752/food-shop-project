@@ -59,7 +59,7 @@
 
                                 <td>
                                     @if (Auth::user()->can('coupon.edit'))
-                                        <a href="{{ route('edit.coupon', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('edit.coupon', $item->id) }}" class="btn btn-warning">Edit</a>
                                     @endif
 
                                     @if (Auth::user()->can('coupon.delete'))

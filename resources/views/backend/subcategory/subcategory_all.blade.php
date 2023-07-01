@@ -46,7 +46,7 @@
                                 <td>
                                     @if (Auth::user()->can('subcategory.edit'))
                                         <a href="{{ route('edit.subcategory', $item->id) }}"
-                                            class="btn btn-info">Edit</a>
+                                            class="btn btn-warning">Edit</a>
                                     @endif
 
                                     @if (Auth::user()->can('subcategory.delete'))

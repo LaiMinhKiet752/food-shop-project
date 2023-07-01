@@ -42,7 +42,7 @@
                                 <td> {{ $key + 1 }} </td>
                                 <td> {{ $item->city_name }}</td>
                                 <td>
-                                    <a href="{{ route('edit.city', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.city', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('delete.city', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>

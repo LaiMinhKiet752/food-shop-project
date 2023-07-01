@@ -18,14 +18,26 @@
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                @if ($order->status == 'pending')
+                @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                     <div class="btn-group">
                         <a href="{{ route('pending.order') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
-                @elseif($order->status == 'confirmed')
+                @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                    <div class="btn-group">
+                        <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
+                                class="lni lni-arrow-left"> Go
+                                Back</i></a>
+                    </div>
+                @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
                     <div class="btn-group">
                         <a href="{{ route('admin.confirmed.order') }}" class="btn btn-primary"><i
+                                class="lni lni-arrow-left"> Go
+                                Back</i></a>
+                    </div>
+                @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                    <div class="btn-group">
+                        <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
                                 class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
@@ -35,9 +47,15 @@
                                 class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
-                @elseif($order->status == 'delivered')
+                @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                     <div class="btn-group">
                         <a href="{{ route('admin.delivered.order') }}" class="btn btn-primary"><i
+                                class="lni lni-arrow-left"> Go
+                                Back</i></a>
+                    </div>
+                @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
+                    <div class="btn-group">
+                        <a href="{{ route('admin.complete.return.request') }}" class="btn btn-primary"><i
                                 class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
