@@ -53,12 +53,10 @@
                                 </td>
                                 <td>{{ $item->employee_name }}</td>
                                 <td>
-                                    <span class="badge rounded-pill bg-success"
-                                        style="font-size: 13px;">{{ date('F', strtotime('-1 month')) }}</span>
+                                    {{ date('F') }}
                                 </td>
                                 <td>
-                                    <span class="badge rounded-pill bg-danger"
-                                        style="font-size: 13px;">{{ date('Y') }}</span>
+                                    {{ date('Y') }}
                                 </td>
                                 <td>{{ $item->salary }}</td>
                                 <td>

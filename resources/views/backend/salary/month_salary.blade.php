@@ -37,7 +37,8 @@
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>
-                            <th>Status</th>
+                            <th>Advance Salary(USD)</th>
+                            <th>Due Salary(USD)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -52,7 +53,9 @@
                                 <td>{{ $item->employee->employee_name }}</td>
                                 <td>{{ $item->salary_month }}</td>
                                 <td>{{ $item->salary_year }}</td>
-                                <td>{{ $item->employee->salary }}</td>
+                                <td>{{ $item->paid_amount }}</td>
+                                <td>{{ $item->advance_salary }}</td>
+                                <td>{{ $item->due_salary }}</td>
                                 <td>
                                     <span class="badge rounded-pill bg-success" style="font-size: 13px;">
                                         Full Paid</span>
@@ -71,7 +74,8 @@
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>
-                            <th>Status</th>
+                            <th>Advance Salary(USD)</th>
+                            <th>Due Salary(USD)</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

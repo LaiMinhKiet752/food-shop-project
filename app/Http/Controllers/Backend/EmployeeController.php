@@ -56,7 +56,7 @@ class EmployeeController extends Controller
 
         AdvanceSalary::insert([
             'employee_id' => $employee_id,
-            'month' =>  date('F', strtotime('-1 month')),
+            'month' =>  date("F"),
             'year' => date("Y"),
             'advance_salary' => 0,
             'created_at' => Carbon::now(),

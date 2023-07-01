@@ -87,10 +87,10 @@ class SalaryController extends Controller
 
     public function PaySalary()
     {
-        $employee = Employee::latest()->get();
-        $current_month = date('F', strtotime('-1 month'));
+        $current_month = date('F');
         $current_year = date('Y');
-        return view('backend.salary.pay_salary', compact('employee','current_month','current_year'));
+        $employee = Employee::latest()->get();
+        return view('backend.salary.pay_salary', compact('employee', 'current_month', 'current_year'));
     } // End Method
 
     public function PayNowSalary($id)
@@ -120,7 +120,14 @@ class SalaryController extends Controller
 
     public function MonthSalary()
     {
-        $paidsalary = PaySalary::latest()->get();
+        $get_current_month = date("F");
+        if($get_current_month == "January"){
+            $current_month = "December";
+        }else{
+            $current_month = date('F', strtotime('-1 month'));
+        }
+        $current_year = date('Y');
+        $paidsalary = PaySalary::where('salary_month', $current_month)->where('salary_year', $current_year)->get();
         return view('backend.salary.month_salary', compact('paidsalary'));
     } // End Method
 

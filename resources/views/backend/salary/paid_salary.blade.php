@@ -60,9 +60,9 @@
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <label
-                                            style="font-size: 20px; font-weight: bold;">{{ date('F', strtotime('-1 month')) }}</label>
+                                            style="font-size: 20px; font-weight: bold;">{{ date('F') }}</label>
                                         <input type="hidden" name="salary_month"
-                                            value="{{ date('F', strtotime('-1 month')) }}">
+                                            value="{{ date('F') }}">
                                     </div>
                                 </div>
                                 <hr>
