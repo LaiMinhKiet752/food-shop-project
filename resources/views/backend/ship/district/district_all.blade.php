@@ -44,7 +44,7 @@
                                 <td> {{ $item['city']['city_name'] }}</td>
                                 <td> {{ $item->district_name }}</td>
                                 <td>
-                                    <a href="{{ route('edit.district', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.district', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('delete.district', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>

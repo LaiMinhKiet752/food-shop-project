@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VendorController;
@@ -494,6 +495,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/pay/now/salary/history/{id}', 'PayNowSalaryHistory')->name('pay.now.salary.history');
         Route::post('/admin/employe/salary/store', 'EmployeSalaryStore')->name('employe.salary.store');
         Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
+    });
+
+    //Attendence All Route
+    Route::controller(AttendanceController::class)->group(function () {
+        Route::get('/admin/employee/attendance/list', 'EmployeeAttendanceList')->name('employee.attendance.list');
+        Route::get('/admin/add/employee/attendance', 'AddEmployeeAttendance')->name('add.employee.attendance');
+        Route::post('/admin/employee/attendance/store', 'EmployeeAttendanceStore')->name('employee.attendance.store');
+        Route::get('/admin/edit/employee/attendance/{date}', 'EditEmployeeAttendance')->name('employee.attendance.edit');
+        Route::get('/admin/view/employee/attendance/{date}', 'ViewEmployeeAttendance')->name('employee.attendance.view');
     });
 
     //Database Backup

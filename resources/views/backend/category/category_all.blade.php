@@ -45,7 +45,7 @@
                                 </td>
                                 <td>
                                     @if (Auth::user()->can('category.edit'))
-                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('edit.category', $item->id) }}" class="btn btn-warning">Edit</a>
                                     @endif
 
                                     @if (Auth::user()->can('category.delete'))

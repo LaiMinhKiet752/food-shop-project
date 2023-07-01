@@ -458,7 +458,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-network'></i>
                 </div>
-                <div class="menu-title">Employee</div>
+                <div class="menu-title">Employees</div>
             </a>
             <ul>
                 <li> <a href="{{ route('all.employee') }}"><i class="bx bx-right-arrow-alt"></i>All Employees</a>
@@ -471,7 +471,7 @@
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='lni lni-coin'></i>
                 </div>
-                <div class="menu-title">Employee Salary</div>
+                <div class="menu-title">Employees Salary</div>
             </a>
             <ul>
                 <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All Advance
@@ -482,11 +482,31 @@
                 </li>
                 <li> <a href="{{ route('pay.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Salary</a>
                 </li>
-                <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last Month's Salary</a>
+                <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last Month's
+                        Salary</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='lni lni-save'></i>
+                </div>
+                <div class="menu-title">Employees Attendance</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('employee.attendance.list') }}"><i class="bx bx-right-arrow-alt"></i>Employees
+                        Attendance List</a>
                 </li>
             </ul>
         </li>
         {{-- @endif --}}
+
+
+
+
+
+
+
 
         <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>
         @if (Auth::user()->can('database.backup'))

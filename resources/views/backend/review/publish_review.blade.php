@@ -46,7 +46,7 @@
                                     <img src="{{ asset($item['product']['product_thumbnail']) }}" alt=""
                                         style="width: 80px; height: 60px;">
                                 </td>
-                                <td>{{ $item['product']['product_name'] }}</td>
+                                <td>{{ Str::limit($item['product']['product_name'], 20, '...') }}</td>
                                 <td>{{ $item['user']['name'] }}</td>
                                 <td>{{ Str::limit($item->comment, 30, '...') }}</td>
                                 <td>

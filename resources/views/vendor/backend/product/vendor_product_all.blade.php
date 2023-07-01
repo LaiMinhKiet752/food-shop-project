@@ -80,7 +80,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('vendor.edit.product', $item->id) }}" class="btn btn-info"
+                                    <a href="{{ route('vendor.edit.product', $item->id) }}" class="btn btn-warning"
                                         title="Edit Data"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('vendor.delete.product', $item->id) }}" class="btn btn-danger"
                                         id="delete" title="Delete Data"><i class="fa fa-trash"></i></a>

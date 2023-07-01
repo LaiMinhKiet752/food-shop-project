@@ -86,7 +86,7 @@
                                 @endphp
                                 <td>
                                     @if ($check == '')
-                                    <a href="{{ route('pay.now.salary', $item->id) }}" class="btn btn-info">Pay
+                                    <a href="{{ route('pay.now.salary', $item->id) }}" class="btn btn-danger">Pay
                                         Now</a>
                                     @else
                                     <button class="btn btn-warning">Paid</button>

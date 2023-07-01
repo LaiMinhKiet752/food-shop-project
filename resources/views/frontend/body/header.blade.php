@@ -177,7 +177,7 @@
 
                                             <li>
                                                 <a href="{{ route('user.order.page') }}"><i
-                                                        class="fa-solid fa-cart-shopping mr-10"></i>Your Order</a>
+                                                        class="fa-solid fa-cart-shopping mr-10"></i>My Order</a>
                                             </li>
 
                                             <li>

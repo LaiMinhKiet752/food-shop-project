@@ -55,7 +55,7 @@
                                 </td>
                                 <td>
                                     @if (Auth::user()->can('slider.edit'))
-                                        <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('edit.slider', $item->id) }}" class="btn btn-warning">Edit</a>
                                     @endif
 
                                     @if (Auth::user()->can('slider.delete'))

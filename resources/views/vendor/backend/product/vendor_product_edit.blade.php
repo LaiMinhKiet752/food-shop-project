@@ -235,7 +235,7 @@
                                     <hr>
                                     <div class="col-12">
                                         <div class="d-grid">
-                                            <input type="submit" class="btn btn-primary px-4 checkPrice checkDate"
+                                            <input type="submit" class="btn btn-success px-4 checkPrice checkDate"
                                                 value="Save Changes">
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@
                     <img id="showImage" src="{{ asset($products->product_thumbnail) }}" alt=""
                         style="width: 160px; height: 150px;">
                 </div>
-                <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                <input type="submit" class="btn btn-success px-4" value="Save Changes">
             </div>
         </form>
     </div>
@@ -342,7 +342,7 @@
                                 <td><input type="file" class="form-group"
                                         name="multiple_image[{{ $image->id }}]"></td>
                                 <td>
-                                    <input type="submit" class="btn btn-primary px-4" value="Update Image">
+                                    <input type="submit" class="btn btn-warning px-4" value="Update Image">
                                     <a href="{{ route('vendor.product.multipleimages.delete', $image->id) }}"
                                         class="btn btn-danger" id="delete">Delete</a>
                                 </td>

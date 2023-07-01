@@ -12,13 +12,14 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Employees</li>
+                    <li class="breadcrumb-item active" aria-current="page">Views All Employees Attendance</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.employee') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+                <a href="{{ route('employee.attendance.list') }}" class="btn btn-primary"><i class="lni lni-arrow-left">
+                        Go Back</i></a>
             </div>
         </div>
     </div>
@@ -26,6 +27,7 @@
     <hr />
     <div class="card">
         <div class="card-body">
+            <h3 class="hearder-title text-center"> Date : {{ $details['0']->date }}</h3>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -34,28 +36,29 @@
                             <th>Image</th>
                             <th>Employee Code</th>
                             <th>Employee Name</th>
-                            <th>Position</th>
-                            <th>Experience</th>
-                            <th>Salary(USD)</th>
-                            <th>Action</th>
+                            <th>Date</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($employee as $key => $item)
+                        @foreach ($details as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>
-                                    <img src="{{ asset($item->employee_photo) }}" alt=""
+                                    <img src="{{ asset($item->employee->employee_photo) }}" alt=""
                                         style="width: 100px; height: 80px;">
                                 </td>
-                                <td>{{ $item->employee_code }}</td>
-                                <td>{{ $item->employee_name }}</td>
-                                <td>{{ $item->position }}</td>
-                                <td>{{ $item->experience }}</td>
-                                <td>{{ $item->salary }}</td>
+                                <td>{{ $item->employee->employee_code }}</td>
+                                <td>{{ $item->employee->employee_name }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->date)) }}</td>
                                 <td>
-                                    <a href="{{ route('edit.employee', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ route('delete.employee', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    @if ($item->status == 'Present')
+                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">Present</span>
+                                    @elseif($item->status == 'Absent')
+                                    <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Absent</span>
+                                    @elseif($item->status == 'Leave')
+                                    <span class="badge rounded-pill bg-danger" style="font-size: 13px;">Leave</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -66,10 +69,8 @@
                             <th>Image</th>
                             <th>Employee Code</th>
                             <th>Employee Name</th>
-                            <th>Position</th>
-                            <th>Experience</th>
-                            <th>Salary(USD)</th>
-                            <th>Action</th>
+                            <th>Date</th>
+                            <th>Status</th>
                         </tr>
                     </tfoot>
                 </table>

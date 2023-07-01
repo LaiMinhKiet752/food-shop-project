@@ -54,7 +54,7 @@
                                 </td>
                                 <td>
                                     @if (Auth::user()->can('banner.edit'))
-                                        <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('edit.banner', $item->id) }}" class="btn btn-warning">Edit</a>
                                     @endif
 
                                     @if (Auth::user()->can('banner.delete'))
