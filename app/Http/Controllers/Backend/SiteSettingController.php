@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Seo;
 use App\Models\SiteSetting;
+use App\Models\SmtpSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class SiteSettingController extends Controller
 {
@@ -123,6 +125,32 @@ class SiteSettingController extends Controller
         ]);
         $notification = array(
             'message' => 'Seo Setting Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function SmtpSetting()
+    {
+        $setting = SmtpSetting::find(1);
+        return view('backend.setting.smtp_update', compact('setting'));
+    } //End Method
+
+    public function UpdateSmtpSetting(Request $request)
+    {
+        $smtp_id = $request->id;
+        SmtpSetting::findOrFail($smtp_id)->update([
+            'mailer' => $request->mailer,
+            'host' => $request->host,
+            'port' => $request->port,
+            'username' => $request->username,
+            'password' => $request->password,
+            'encryption' => $request->encryption,
+            'from_address' => $request->from_address,
+            'from_name' => $request->from_name,
+        ]);
+        $notification = array(
+            'message' => 'SMTP Setting Updated Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

@@ -27,6 +27,7 @@
     <hr />
     <div class="card">
         <div class="card-body">
+            <h3 class="hearder-title text-center">{{ $current_month }} {{ $current_year }}</h3>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>

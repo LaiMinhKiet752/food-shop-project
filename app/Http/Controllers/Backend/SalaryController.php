@@ -128,7 +128,7 @@ class SalaryController extends Controller
         }
         $current_year = date('Y');
         $paidsalary = PaySalary::where('salary_month', $current_month)->where('salary_year', $current_year)->get();
-        return view('backend.salary.month_salary', compact('paidsalary'));
+        return view('backend.salary.month_salary', compact('paidsalary','current_month','current_year'));
     } // End Method
 
     public function PayNowSalaryHistory($id)

@@ -95,6 +95,7 @@ return array(
     'App\\Models\\ShipDistricts' => $baseDir . '/app/Models/ShipDistricts.php',
     'App\\Models\\SiteSetting' => $baseDir . '/app/Models/SiteSetting.php',
     'App\\Models\\Slider' => $baseDir . '/app/Models/Slider.php',
+    'App\\Models\\SmtpSetting' => $baseDir . '/app/Models/SmtpSetting.php',
     'App\\Models\\SubCategory' => $baseDir . '/app/Models/SubCategory.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',
     'App\\Models\\Wishlist' => $baseDir . '/app/Models/Wishlist.php',

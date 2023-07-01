@@ -34,7 +34,7 @@ class AttendanceController extends Controller
             $attendance->save();
         }
         $notification = array(
-            'message' => 'Data Added Successfully!',
+            'message' => 'Data Saved Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->route('employee.attendance.list')->with($notification);

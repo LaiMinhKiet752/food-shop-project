@@ -38,8 +38,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Employees
-                        Attendance</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Timekeeping By Day</li>
                 </ol>
             </nav>
         </div>
@@ -65,7 +64,7 @@
                                 @endphp
                                 <div class="form-group col-md-4">
                                     <label for="date" class="control-label"
-                                        style="font-size: 20px; font-weight: 500;">Employees Attendance Date</label><br>
+                                        style="font-size: 20px; font-weight: 500;">Employee's Attendance Day</label><br>
                                     <input type="date" name="date" id="date"
                                         class="checkdate form-control form-control-sm singledatepicker"
                                         value="{{ $date_format }}" placeholder="Attendance Date" autocomplete="off">
@@ -121,7 +120,7 @@
                                                             {{ $item->status == 'Absent' ? 'checked' : '' }}>
                                                         <label for="absent{{ $key }}">Absent</label>
 
-                                                        
+
                                                         <input class="leave" id="leave{{ $key }}"
                                                             name="status{{ $key }}" value="Leave"
                                                             type="radio"

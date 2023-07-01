@@ -70,6 +70,12 @@ Route::controller(IndexController::class)->group(function () {
     Route::post('/search-product', 'SearchProduct');
 });
 
+//Frontend All Route
+Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+
+//Captcha
+Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
+
 //Cart All Route
 Route::controller(CartController::class)->group(function () {
     //Add To Cart All Route
@@ -105,12 +111,6 @@ Route::controller(CartController::class)->group(function () {
     //Checkout Page All Route
     Route::get('/checkout', 'CheckoutCreate')->name('checkout');
 });
-
-//Frontend All Route
-Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
-
-//Captcha
-Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
 
 //Add To Wishlist
 Route::post('/add-to-wishlist/{product_id}', [WishlistController::class, 'addToWishList']);
@@ -427,6 +427,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/site/setting/update', 'SiteSettingUpdate')->name('admin.site.setting.update');
         Route::get('/admin/seo/setting', 'SeoSetting')->name('admin.seo.setting');
         Route::post('/admin/seo/setting/update', 'SeoSettingUpdate')->name('admin.seo.setting.update');
+        Route::get('/admin/smtp/setting', 'SmtpSetting')->name('admin.smtp.setting');
+        Route::post('admin/update/smpt/setting', 'UpdateSmtpSetting')->name('admin.update.smpt.setting');
     });
 
     //Role And Permission All Route

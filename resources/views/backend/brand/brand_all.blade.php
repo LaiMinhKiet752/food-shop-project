@@ -16,11 +16,13 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+        @if (Auth::user()->can('brand.add'))
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('add.brand') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <!--end breadcrumb-->
     <hr />
