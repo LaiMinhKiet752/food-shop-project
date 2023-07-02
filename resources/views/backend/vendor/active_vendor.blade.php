@@ -51,7 +51,7 @@
                                 <td><span class="btn btn-success" style="font-size: 13px;">ACTIVE</span> </td>
                                 <td>
                                     <a href="{{ route('active.vendor.details', $item->id) }}"
-                                        class="btn btn-info">Vendor Details</a>
+                                        class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

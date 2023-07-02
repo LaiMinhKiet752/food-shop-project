@@ -136,6 +136,15 @@ class RoleController extends Controller
         ], [
             'permission.required' => 'Please select a permission for the role.',
         ]);
+        $role_id = $request->role_id;
+        $check = DB::table('role_has_permissions')->where('role_id', $role_id)->groupBy('role_id')->select('role_id')->get();
+        if (count($check) > 0) {
+            $notification = array(
+                'message' => 'This Role Already Has Permissions Please Update Only!',
+                'alert-type' => 'warning'
+            );
+            return redirect()->back()->with($notification);
+        }
         $data = array();
         $permissions = $request->permission;
         foreach ($permissions as $key => $item) {

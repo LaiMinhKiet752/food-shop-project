@@ -16,12 +16,14 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.subcategory') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
-                        New</i></a>
+        @if (Auth::user()->can('subcategory.add'))
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('add.subcategory') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                            New</i></a>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <!--end breadcrumb-->
     <hr />

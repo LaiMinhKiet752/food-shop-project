@@ -27,7 +27,7 @@
     <hr />
     <div class="card">
         <div class="card-body">
-            <h3 class="hearder-title text-center">{{ date('F Y') }}</h3>
+            <h3 class="hearder-title text-center">{{ date('m-Y') }}</h3>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -53,7 +53,7 @@
                                 </td>
                                 <td>{{ $item->employee_name }}</td>
                                 <td>
-                                    {{ date('F') }}
+                                    {{ date('m') }}
                                 </td>
                                 <td>
                                     {{ date('Y') }}

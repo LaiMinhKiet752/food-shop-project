@@ -41,7 +41,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    <a href="{{ route('edit.role', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.role', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('delete.role', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>

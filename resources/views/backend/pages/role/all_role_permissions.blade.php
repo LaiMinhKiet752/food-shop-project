@@ -28,10 +28,11 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Role Name</th>
-                            <th>Permissions</th>
-                            <th>Action</th>
+                            <th style="width: 5%">No.</th>
+                            <th style="width: 10%">Role Name</th>
+                            <th style="width: 80% ; margin-right: 5px;">
+                                Permissions</th>
+                            <th style="width: 5%">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -39,14 +40,22 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>
+                                <td
+                                    style=" width: 99.9%;
+                                height: 100%;
+                                display: flex;
+                                flex-wrap: wrap;
+                                padding: 0;
+                                margin: 0;">
                                     @foreach ($item->permissions as $permission)
-                                        <span class="badge rounded-pill bg-danger" style="font-size: 13px;"> {{ $permission->name }}</span>
+                                        <span class="badge rounded-pill bg-success"
+                                            style="font-size: 13px; margin: 5px;">
+                                            {{ $permission->name }}</span>
                                     @endforeach
                                 </td>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.edit.role', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('admin.edit.role', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('admin.delete.role', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>
@@ -55,10 +64,10 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>No.</th>
-                            <th>Role Name</th>
-                            <th>Permissions</th>
-                            <th>Action</th>
+                            <th style="width: 5%">No.</th>
+                            <th style="width: 10%">Role Name</th>
+                            <th style="width: 80%;">Permissions</th>
+                            <th style="width: 5%">Action</th>
                         </tr>
                     </tfoot>
                 </table>

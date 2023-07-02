@@ -27,6 +27,7 @@
     <hr />
     <div class="card">
         <div class="card-body">
+            <h3 class="hearder-title text-center">{{ date('m', strtotime($current_month)) }} - {{ $current_year }}</h3>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -51,7 +52,7 @@
                                         style="width: 100px; height: 80px;">
                                 </td>
                                 <td>{{ $item->employee->employee_name }}</td>
-                                <td>{{ $item->salary_month }}</td>
+                                <td>{{ date('m',strtotime($item->salary_month)) }}</td>
                                 <td>{{ $item->salary_year }}</td>
                                 <td>{{ $item->paid_amount }}</td>
                                 <td>{{ $item->advance_salary }}</td>

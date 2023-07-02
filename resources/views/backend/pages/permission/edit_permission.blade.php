@@ -98,7 +98,7 @@
                                                 Review</option>
                                             <option
                                                 value="setting"{{ $permission->group_name == 'setting' ? 'selected' : '' }}>
-                                                Setting</option>
+                                                Site Setting</option>
                                             <option
                                                 value="roles and permissions"{{ $permission->group_name == 'roles and permissions' ? 'selected' : '' }}>
                                                 Roles And Permissions</option>
@@ -111,6 +111,15 @@
                                             <option
                                                 value="user management"{{ $permission->group_name == 'user management' ? 'selected' : '' }}>
                                                 User Management</option>
+                                            <option
+                                                value="employee"{{ $permission->group_name == 'employee' ? 'selected' : '' }}>
+                                                Employee Management</option>
+                                            <option
+                                                value="employee salary"{{ $permission->group_name == 'employee salary' ? 'selected' : '' }}>
+                                                Employee Salary Management</option>
+                                            <option
+                                                value="timekeeping"{{ $permission->group_name == 'timekeeping' ? 'selected' : '' }}>
+                                                Timekeeping Management</option>
                                             <option
                                                 value="database backup"{{ $permission->group_name == 'database backup' ? 'selected' : '' }}>
                                                 Database Backup</option>

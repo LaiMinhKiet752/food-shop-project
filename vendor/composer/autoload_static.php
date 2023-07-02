@@ -759,6 +759,7 @@ class ComposerStaticInit5956079eccd30ecc2ff7b23fe03f668a
         'App\\Models\\ShipDistricts' => __DIR__ . '/../..' . '/app/Models/ShipDistricts.php',
         'App\\Models\\SiteSetting' => __DIR__ . '/../..' . '/app/Models/SiteSetting.php',
         'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
+        'App\\Models\\SmtpSetting' => __DIR__ . '/../..' . '/app/Models/SmtpSetting.php',
         'App\\Models\\SubCategory' => __DIR__ . '/../..' . '/app/Models/SubCategory.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Wishlist' => __DIR__ . '/../..' . '/app/Models/Wishlist.php',

@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group col-sm-9 text-dark">
                                     <label
-                                        style="font-size: 20px; font-weight: bold;">{{ date('F') }}</label>
+                                        style="font-size: 20px; font-weight: bold;">{{ date('m',strtotime($current_month)) }}</label>
                                 </div>
                             </div>
                             <hr>
@@ -66,7 +66,7 @@
                                     <h6 class="mb-0">Year :</h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-dark">
-                                    <label style="font-size: 20px; font-weight: bold;">{{ date('Y') }}</label>
+                                    <label style="font-size: 20px; font-weight: bold;">{{ date('Y',strtotime($current_year)) }}</label>
                                 </div>
                             </div>
                             <hr>

@@ -17,11 +17,14 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+        @if (Auth::user()->can('product.add'))
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('add.product') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                            New</i></a>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <!--end breadcrumb-->
     <hr />
@@ -65,7 +68,8 @@
                                             $amount = $item->selling_price - $item->discount_price;
                                             $discount = ($amount / $item->selling_price) * 100;
                                         @endphp
-                                        <span class="badge rounded-pill bg-danger" style="font-size: 12px;"> - {{ round($discount) }}%</span>
+                                        <span class="badge rounded-pill bg-danger" style="font-size: 12px;"> -
+                                            {{ round($discount) }}%</span>
                                     @endif
                                 </td>
                                 <td>

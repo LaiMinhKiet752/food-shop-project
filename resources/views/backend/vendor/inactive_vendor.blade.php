@@ -50,8 +50,8 @@
                                 <td>{{ $item->email }}</td>
                                 <td><span class="btn btn-danger" style="font-size: 13px;">INACTIVE</span></td>
                                 <td>
-                                    <a href="{{ route('inactive.vendor.details', $item->id) }}"
-                                        class="btn btn-info">Vendor Details</a>
+                                        <a href="{{ route('inactive.vendor.details', $item->id) }}"
+                                            class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach

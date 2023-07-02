@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('employee_id');
             $table->string('date');
+            $table->string('day');
+            $table->string('month');
+            $table->string('year');
             $table->string('status');
             $table->timestamps();
         });

@@ -38,7 +38,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Add Employees Attendance</li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Timekeeping By Day</li>
                 </ol>
             </nav>
         </div>
@@ -61,11 +61,12 @@
                                 @csrf
                                 <div class="form-group col-md-4">
                                     <label for="date" class="control-label"
-                                        style="font-size: 20px; font-weight: 500;">Employees Attendance Date</label><br>
+                                        style="font-size: 20px; font-weight: 500;">Employee's Attendance Day</label><br><br>
                                     <input type="date" name="date" id="date"
                                         class="checkdate form-control form-control-sm singledatepicker"
                                         placeholder="Attendance Date" autocomplete="off">
                                 </div>
+                                <br>
                                 <br>
                                 <table class="table sm table-bordered table-striped dt-responsive" style="width: 100%">
                                     <thead>

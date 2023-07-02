@@ -16,11 +16,14 @@
                 </ol>
             </nav>
         </div>
-        <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.employee') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
+        @if (Auth::user()->can('employee.add'))
+            <div class="ms-auto">
+                <div class="btn-group">
+                    <a href="{{ route('add.employee') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                            New</i></a>
+                </div>
             </div>
-        </div>
+        @endif
     </div>
     <!--end breadcrumb-->
     <hr />
@@ -54,8 +57,15 @@
                                 <td>{{ $item->experience }}</td>
                                 <td>{{ $item->salary }}</td>
                                 <td>
-                                    <a href="{{ route('edit.employee', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ route('delete.employee', $item->id) }}" class="btn btn-danger" id="delete">Delete</a>
+                                    @if (Auth::user()->can('employee.edit'))
+                                        <a href="{{ route('edit.employee', $item->id) }}"
+                                            class="btn btn-warning">Edit</a>
+                                    @endif
+
+                                    @if (Auth::user()->can('employee.delete'))
+                                        <a href="{{ route('delete.employee', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
