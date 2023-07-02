@@ -7,7 +7,13 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function PrivacyPolicy(){
+    public function PrivacyPolicy()
+    {
         return view('frontend.page_privacy_policy');
-    }//End Method
+    } //End Method
+
+    public function About()
+    {
+        return view('frontend.page_about');
+    } //End Method
 }

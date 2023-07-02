@@ -289,7 +289,7 @@
                 </a>
                 <ul>
                     <li> <a href="{{ route('admin.blog.category') }}"><i class="bx bx-right-arrow-alt"></i>Blog
-                            Categroy</a>
+                            Category</a>
                     </li>
                     <li> <a href="{{ route('admin.blog.post') }}"><i class="bx bx-right-arrow-alt"></i>Blog Post</a>
                     </li>
@@ -353,8 +353,7 @@
                     </li>
                     <li> <a href="{{ route('all.role') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
                     </li>
-                    <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Role Has
-                            Permissions</a>
+                    <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add Permissions For Roles</a>
                     </li>
                     <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Role
                             Has

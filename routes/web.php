@@ -71,7 +71,10 @@ Route::controller(IndexController::class)->group(function () {
 });
 
 //Frontend All Route
-Route::get('/privacy-policy', [FrontendController::class, 'PrivacyPolicy'])->name('privacy_policy');
+Route::controller(FrontendController::class)->group(function () {
+    Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy_policy');
+    Route::get('/about', 'About')->name('about');
+});
 
 //Captcha
 Route::get('/reload-captcha', [RegisteredUserController::class, 'ReloadCaptcha']);
