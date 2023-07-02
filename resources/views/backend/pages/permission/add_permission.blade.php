@@ -66,11 +66,14 @@
                                             <option value="report order">Report Order</option>
                                             <option value="blog">Blog</option>
                                             <option value="review">Review</option>
-                                            <option value="setting">Setting</option>
+                                            <option value="setting">Site Setting</option>
                                             <option value="roles and permissions">Roles And Permissions</option>
                                             <option value="admin user account">Admin User Account</option>
                                             <option value="vendor management">Vendor Management</option>
                                             <option value="user management">User Management</option>
+                                            <option value="employee">Employee Management</option>
+                                            <option value="employee salary">Employee Salary Management</option>
+                                            <option value="timekeeping">Timekeeping Management</option>
                                             <option value="database backup">Database Backup</option>
                                         </select>
                                     </div>

@@ -34,8 +34,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Category Name</th>
                             <th>Category Image</th>
+                            <th>Category Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -43,9 +43,9 @@
                         @foreach ($categories as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
-                                <td>{{ $item->category_name }}</td>
                                 <td><img src="{{ asset($item->category_image) }}" style="width: 100px; height: 70px;">
                                 </td>
+                                <td>{{ $item->category_name }}</td>
                                 <td>
                                     @if (Auth::user()->can('category.edit'))
                                         <a href="{{ route('edit.category', $item->id) }}"
@@ -63,8 +63,8 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Category Name</th>
                             <th>Category Image</th>
+                            <th>Category Name</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

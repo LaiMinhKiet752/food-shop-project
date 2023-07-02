@@ -415,54 +415,79 @@
         @endif
 
         <li class="menu-label" style="color: black; font-weight: bold;">Employee Management</li>
-        {{-- @if (Auth::user()->can('database.backup')) --}}
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='lni lni-network'></i>
-                </div>
-                <div class="menu-title">Employees</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('all.employee') }}"><i class="bx bx-right-arrow-alt"></i>All Employees</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='lni lni-coin'></i>
-                </div>
-                <div class="menu-title">Employees Salary</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All Advance
-                        Salary</a>
-                </li>
-                <li> <a href="{{ route('pay.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Salary</a>
-                </li>
-                <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last Month's
-                        Salary</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='lni lni-save'></i>
-                </div>
-                <div class="menu-title">Timekeeping</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('employee.attendance.list') }}"><i
-                            class="bx bx-right-arrow-alt"></i>Timekeeping By Day</a>
-                </li>
-            </ul>
-        </li>
-        {{-- @endif --}}
+        @if (Auth::user()->can('employee.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-network'></i>
+                    </div>
+                    <div class="menu-title">Employees</div>
+                </a>
+                <ul>
+                    @if (Auth::user()->can('employee.list'))
+                        <li> <a href="{{ route('all.employee') }}"><i class="bx bx-right-arrow-alt"></i>All
+                                Employees</a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
 
 
+        @if (Auth::user()->can('employee.salary.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-coin'></i>
+                    </div>
+                    <div class="menu-title">Employees Salary</div>
+                </a>
+                <ul>
+                    @if (Auth::user()->can('employee.salary.list'))
+                        <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All
+                                Advance
+                                Salary</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->can('employee.pay.salary'))
+                        <li> <a href="{{ route('pay.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Salary</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->can("employee.pay.last.month's.salary"))
+                        <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last
+                                Month's
+                                Salary</a>
+                        </li>
+                    @endif
+
+                </ul>
+            </li>
+        @endif
 
 
+        @if (Auth::user()->can('timekeeping.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-save'></i>
+                    </div>
+                    <div class="menu-title">Timekeeping</div>
+                </a>
+                <ul>
+                    @if (Auth::user()->can('timekeeping.by.day'))
+                        <li> <a href="{{ route('employee.attendance.list') }}"><i
+                                    class="bx bx-right-arrow-alt"></i>Timekeeping By Day</a>
+                        </li>
+                    @endif
 
-
+                    @if (Auth::user()->can('timekeeping.by.day'))
+                        <li> <a href="{{ route('timekeeping.by.month') }}"><i
+                                    class="bx bx-right-arrow-alt"></i>Timekeeping
+                                By Month</a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
 
 
         <li class="menu-label" style="color: black; font-weight: bold;">Database backup For System</li>

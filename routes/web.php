@@ -499,13 +499,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
     });
 
-    //Attendence All Route
+    //Employee Attendance All Route
     Route::controller(AttendanceController::class)->group(function () {
         Route::get('/admin/employee/attendance/list', 'EmployeeAttendanceList')->name('employee.attendance.list');
         Route::get('/admin/add/employee/attendance', 'AddEmployeeAttendance')->name('add.employee.attendance');
         Route::post('/admin/employee/attendance/store', 'EmployeeAttendanceStore')->name('employee.attendance.store');
         Route::get('/admin/edit/employee/attendance/{date}', 'EditEmployeeAttendance')->name('employee.attendance.edit');
         Route::get('/admin/view/employee/attendance/{date}', 'ViewEmployeeAttendance')->name('employee.attendance.view');
+        Route::get('/admin/timekeeping/by/month', 'TimekeepingByMonth')->name('timekeeping.by.month');
+        Route::post('/admin/timekeeping/search/by/month', 'TimekeepingSearchByMonth')->name('timekeeping.search.by.month');
     });
 
     //Database Backup

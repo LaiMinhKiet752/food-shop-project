@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Notifications\VendorApproveNotification;
 use App\Notifications\VendorDisapproveNotification;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
@@ -276,6 +277,7 @@ class AdminController extends Controller
         $user->password = Hash::make($request->password);
         $user->role = 'admin';
         $user->status = 'active';
+        $user->email_verified_at = Carbon::now();
         $user->save();
         if ($request->roles) {
             $user->assignRole($request->roles);
