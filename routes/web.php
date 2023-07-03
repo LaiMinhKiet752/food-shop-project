@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Backend\ActiveUserController;
+use App\Http\Controllers\Backend\AdminSubscriberController;
 use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
@@ -40,6 +41,7 @@ use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\SubscriberController;
 use App\Http\Controllers\User\ReviewController;
 
 /*
@@ -77,6 +79,12 @@ Route::controller(FrontendController::class)->group(function () {
     Route::get('/about/page', 'About')->name('about');
     Route::get('/contact/page', 'Contact')->name('contact');
     Route::post('/contact/page/submit', 'ContactSubmit')->name('contact.submit');
+});
+
+//Subscriber All Route
+Route::controller(SubscriberController::class)->group(function () {
+    Route::post('/subscriber/send-mail', 'SendMail')->name('subscriber.send.mail');
+    Route::get('/subscriber/verify/{token}/{email}', 'Verify')->name('subscribe.verify.email');
 });
 
 //Captcha
@@ -522,6 +530,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/contact/message/details/{id}', 'ContactMessageDetails')->name('admin.contact.message.details');
         Route::post('/admin/contact/message/send/reply', 'ContactMessageReply')->name('admin.contact.message.send.reply');
         Route::get('/admin/contact/message/delete/{id}', 'ContactMessageDelete')->name('admin.contact.message.delete');
+    });
+
+    //Subscriber All Route
+    Route::controller(AdminSubscriberController::class)->group(function () {
+        Route::get('/admin/subscriber/all', 'ShowAll')->name('admin_subscribers');
+        Route::get('/admin/subscriber/delete/{id}', 'DeleteSubscriber')->name('admin.delete.subscriber');
+        Route::get('/admin/subscriber/send-email', 'SendEmail')->name('admin_subscribers_send_email');
+        Route::post('/admin/subscriber/send-email-submit', 'SendEmailSubmit')->name('admin_subscribers_send_email_submit');
     });
 
     //Database Backup

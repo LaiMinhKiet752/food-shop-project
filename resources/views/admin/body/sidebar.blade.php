@@ -279,23 +279,6 @@
             </li>
         @endif
 
-        <li class="menu-label" style="color: black; font-weight: bold;">Contact Management</li>
-        {{-- @if (Auth::user()->can('blog.menu')) --}}
-            <li>
-                <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-telegram-original"></i>
-                    </div>
-                    <div class="menu-title">Contact</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('admin.contact.message') }}"><i class="bx bx-right-arrow-alt"></i>Contact Messages @if ($unReadMessage > 0)
-                        <span class="badge rounded-pill bg-danger" style="margin-left: 10px;">{{ $unReadMessage }}</span>
-                    @else
-                    @endif</a></li>
-                </ul>
-            </li>
-        {{-- @endif --}}
-
 
         <li class="menu-label" style="color: black; font-weight: bold;">Website Management</li>
         @if (Auth::user()->can('blog.menu'))
@@ -318,10 +301,30 @@
             </li>
         @endif
 
+
+        @if (Auth::user()->can('contact.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="lni lni-telegram-original"></i>
+                    </div>
+                    <div class="menu-title">Contact</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin.contact.message') }}"><i class="bx bx-right-arrow-alt"></i>Contact
+                            Messages @if ($unReadMessage > 0)
+                                <span class="badge rounded-pill bg-danger"
+                                    style="margin-left: 10px;">{{ $unReadMessage }}</span>
+                            @else
+                            @endif
+                        </a></li>
+                </ul>
+            </li>
+        @endif
+
         @if (Auth::user()->can('review.menu'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-star-filled"></i>
+                    <div class="parent-icon"><i class="lni lni-star"></i>
                     </div>
                     <div class="menu-title">Review</div>
                 </a>
@@ -335,6 +338,27 @@
                 </ul>
             </li>
         @endif
+
+
+        @if (Auth::user()->can('subscriber.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="lni lni-emoji-happy"></i>
+                    </div>
+                    <div class="menu-title">Subscribers</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin_subscribers') }}"><i class="bx bx-right-arrow-alt"></i>All
+                            Subscribers</a>
+                    </li>
+                    <li> <a href="{{ route('admin_subscribers_send_email') }}"><i
+                                class="bx bx-right-arrow-alt"></i>Send
+                            Mail To All Subscribers</a>
+                    </li>
+                </ul>
+            </li>
+        @endif
+
 
         @if (Auth::user()->can('setting.menu'))
             <li>

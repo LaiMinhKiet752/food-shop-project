@@ -53,49 +53,55 @@
                                             <option></option>
                                             <option
                                                 value="brand"{{ $permission->group_name == 'brand' ? 'selected' : '' }}>
-                                                Brand</option>
+                                                Brand Management</option>
                                             <option
                                                 value="category"{{ $permission->group_name == 'category' ? 'selected' : '' }}>
-                                                Category</option>
+                                                Category Management</option>
                                             <option
                                                 value="subcategory"{{ $permission->group_name == 'subcategory' ? 'selected' : '' }}>
-                                                Subcategory</option>
+                                                Subcategory Management</option>
                                             <option
                                                 value="product"{{ $permission->group_name == 'product' ? 'selected' : '' }}>
-                                                Product</option>
+                                                Product Management</option>
                                             <option
                                                 value="inventory"{{ $permission->group_name == 'inventory' ? 'selected' : '' }}>
-                                                Inventory</option>
+                                                Inventory Management</option>
                                             <option
                                                 value="slider"{{ $permission->group_name == 'slider' ? 'selected' : '' }}>
-                                                Slider</option>
+                                                Slider Management</option>
                                             <option
                                                 value="banner"{{ $permission->group_name == 'banner' ? 'selected' : '' }}>
-                                                Banner</option>
+                                                Banner Management</option>
                                             <option
                                                 value="coupon"{{ $permission->group_name == 'coupon' ? 'selected' : '' }}>
-                                                Coupon</option>
+                                                Coupon Management</option>
                                             <option
                                                 value="shipping area"{{ $permission->group_name == 'shipping area' ? 'selected' : '' }}>
                                                 Shipping Area</option>
                                             <option
                                                 value="order"{{ $permission->group_name == 'order' ? 'selected' : '' }}>
-                                                Order</option>
+                                                Order Management</option>
                                             <option
                                                 value="return order"{{ $permission->group_name == 'return order' ? 'selected' : '' }}>
-                                                Return Order</option>
+                                                Return Order Management</option>
                                             <option
                                                 value="cancel order"{{ $permission->group_name == 'cancel order' ? 'selected' : '' }}>
-                                                Cancel Order</option>
+                                                Cancel Order Management</option>
                                             <option
                                                 value="report order"{{ $permission->group_name == 'report order' ? 'selected' : '' }}>
-                                                Report Order</option>
+                                                Report Order Management</option>
+                                            <option
+                                                value="contact"{{ $permission->group_name == 'contact' ? 'selected' : '' }}>
+                                                Contact Management</option>
                                             <option
                                                 value="blog"{{ $permission->group_name == 'blog' ? 'selected' : '' }}>
-                                                Blog</option>
+                                                Blog Management</option>
                                             <option
                                                 value="review"{{ $permission->group_name == 'review' ? 'selected' : '' }}>
-                                                Review</option>
+                                                Review Management</option>
+                                            <option
+                                                value="subscriber"{{ $permission->group_name == 'subscriber' ? 'selected' : '' }}>
+                                                Subscriber Management</option>
                                             <option
                                                 value="setting"{{ $permission->group_name == 'setting' ? 'selected' : '' }}>
                                                 Site Setting</option>
