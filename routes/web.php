@@ -34,6 +34,7 @@ use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\ContactMessageController;
 use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SalaryController;
@@ -72,8 +73,10 @@ Route::controller(IndexController::class)->group(function () {
 
 //Frontend All Route
 Route::controller(FrontendController::class)->group(function () {
-    Route::get('/privacy-policy', 'PrivacyPolicy')->name('privacy_policy');
-    Route::get('/about', 'About')->name('about');
+    Route::get('/privacy-policy/page', 'PrivacyPolicy')->name('privacy_policy');
+    Route::get('/about/page', 'About')->name('about');
+    Route::get('/contact/page', 'Contact')->name('contact');
+    Route::post('/contact/page/submit', 'ContactSubmit')->name('contact.submit');
 });
 
 //Captcha
@@ -511,6 +514,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/view/employee/attendance/{date}', 'ViewEmployeeAttendance')->name('employee.attendance.view');
         Route::get('/admin/timekeeping/by/month', 'TimekeepingByMonth')->name('timekeeping.by.month');
         Route::post('/admin/timekeeping/search/by/month', 'TimekeepingSearchByMonth')->name('timekeeping.search.by.month');
+    });
+
+    //Contact All Route
+    Route::controller(ContactMessageController::class)->group(function () {
+        Route::get('/admin/contact/message', 'Index')->name('admin.contact.message');
+        Route::get('/admin/contact/message/details/{id}', 'ContactMessageDetails')->name('admin.contact.message.details');
+        Route::post('/admin/contact/message/send/reply', 'ContactMessageReply')->name('admin.contact.message.send.reply');
+        Route::get('/admin/contact/message/delete/{id}', 'ContactMessageDelete')->name('admin.contact.message.delete');
     });
 
     //Database Backup

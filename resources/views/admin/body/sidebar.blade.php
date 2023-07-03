@@ -279,6 +279,24 @@
             </li>
         @endif
 
+        <li class="menu-label" style="color: black; font-weight: bold;">Contact Management</li>
+        {{-- @if (Auth::user()->can('blog.menu')) --}}
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class="lni lni-telegram-original"></i>
+                    </div>
+                    <div class="menu-title">Contact</div>
+                </a>
+                <ul>
+                    <li> <a href="{{ route('admin.contact.message') }}"><i class="bx bx-right-arrow-alt"></i>Contact Messages @if ($unReadMessage > 0)
+                        <span class="badge rounded-pill bg-danger" style="margin-left: 10px;">{{ $unReadMessage }}</span>
+                    @else
+                    @endif</a></li>
+                </ul>
+            </li>
+        {{-- @endif --}}
+
+
         <li class="menu-label" style="color: black; font-weight: bold;">Website Management</li>
         @if (Auth::user()->can('blog.menu'))
             <li>
@@ -303,7 +321,7 @@
         @if (Auth::user()->can('review.menu'))
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-comments"></i>
+                    <div class="parent-icon"><i class="lni lni-star-filled"></i>
                     </div>
                     <div class="menu-title">Review</div>
                 </a>
@@ -353,7 +371,8 @@
                     </li>
                     <li> <a href="{{ route('all.role') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
                     </li>
-                    <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add Permissions For Roles</a>
+                    <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add
+                            Permissions For Roles</a>
                     </li>
                     <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Role
                             Has

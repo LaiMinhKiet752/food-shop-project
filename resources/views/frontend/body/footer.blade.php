@@ -134,11 +134,11 @@
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
                         <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('home.blog') }}">Blog & News</a></li>
                         <li><a href="#">Delivery Information</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                     </ul>
                 </div>
