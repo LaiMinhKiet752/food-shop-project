@@ -84,7 +84,7 @@
 
             <li>
                 <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-comments"></i>
+                    <div class="parent-icon"><i class="lni lni-star"></i>
                     </div>
                     <div class="menu-title">Review</div>
                 </a>

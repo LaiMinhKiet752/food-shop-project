@@ -14,10 +14,17 @@
                             </h2>
                             <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
                                     Mart</span></p>
-                            <form class="form-subcriber d-flex">
-                                <input type="email" placeholder="Your emaill address" />
+                            <form class="form-subcriber d-flex" method="post"
+                                action="{{ route('subscriber.send.mail') }}" id="formSubscriberSubmit">
+                                @csrf
+                                <input type="email" name="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $error)
+                                    <span class="text-danger">{{ $error }}</span>
+                                @endforeach
+                            @endif
                         </div>
                         <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
                     </div>
@@ -117,7 +124,8 @@
                         <ul class="contact-infor">
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
                                     alt="" /><strong>Address: </strong>
-                                <span>{{ $setting->company_address }}</span></li>
+                                <span>{{ $setting->company_address }}</span>
+                            </li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
                                     alt="" /><strong>Call Us:
                                 </strong><span>{{ $setting->call_us_phone }}</span>
@@ -133,12 +141,12 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="{{ route('about') }}">About Us</a></li>
+                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('home.blog') }}">Blog & News</a></li>
                         <li><a href="#">Delivery Information</a></li>
                         <li><a href="#">Privacy Policy</a></li>
                         <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Contact Us</a></li>
                         <li><a href="#">Support Center</a></li>
                     </ul>
                 </div>

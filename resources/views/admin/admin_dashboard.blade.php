@@ -44,7 +44,9 @@
 
     <title>@yield('title')</title>
 </head>
-
+@php
+     $unReadMessage = \App\Models\ReceivedMail::where('seen', 0)->count();
+@endphp
 <body>
     <!--wrapper-->
     <div class="wrapper">

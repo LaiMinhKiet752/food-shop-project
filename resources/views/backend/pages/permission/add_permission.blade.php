@@ -51,21 +51,23 @@
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="group_name" class="form-control form-select single-select">
                                             <option></option>
-                                            <option value="brand">Brand</option>
-                                            <option value="category">Category</option>
-                                            <option value="subcategory">Subcategory</option>
-                                            <option value="product">Product</option>
-                                            <option value="inventory">Inventory</option>
-                                            <option value="slider">Slider</option>
-                                            <option value="banner">Banner</option>
-                                            <option value="coupon">Coupon</option>
+                                            <option value="brand">Brand Management</option>
+                                            <option value="category">Category Management</option>
+                                            <option value="subcategory">Subcategory Management</option>
+                                            <option value="product">Product Management</option>
+                                            <option value="inventory">Inventory Management</option>
+                                            <option value="slider">Slider Management</option>
+                                            <option value="banner">Banner Management</option>
+                                            <option value="coupon">Coupon Management</option>
                                             <option value="shipping area">Shipping Area</option>
-                                            <option value="order">Order</option>
-                                            <option value="return order">Return Order</option>
-                                            <option value="cancel order">Cancel Order</option>
-                                            <option value="report order">Report Order</option>
-                                            <option value="blog">Blog</option>
-                                            <option value="review">Review</option>
+                                            <option value="order">Order Management</option>
+                                            <option value="return order">Return Order Management</option>
+                                            <option value="cancel order">Cancel Order Management</option>
+                                            <option value="report order">Report Order Management</option>
+                                            <option value="contact">Contact Management</option>
+                                            <option value="blog">Blog Management</option>
+                                            <option value="review">Review Management</option>
+                                            <option value="subscriber">Subscriber Management</option>
                                             <option value="setting">Site Setting</option>
                                             <option value="roles and permissions">Roles And Permissions</option>
                                             <option value="admin user account">Admin User Account</option>

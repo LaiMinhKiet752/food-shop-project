@@ -48,8 +48,7 @@
                                 <td>{{ Str::limit($item->comment, 30, '...') }}</td>
                                 @if ($item->parent_id == null && $item->status == 0)
                                     <td>
-                                        <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Not
-                                            answered</span>
+                                        <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Unanswered</span>
                                     </td>
                                 @else
                                     <td><span class="badge rounded-pill bg-success"
