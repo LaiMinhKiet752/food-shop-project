@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WebsiteMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -212,12 +214,28 @@ class AdminController extends Controller
         $vendor_id = $request->id;
         User::findOrFail($vendor_id)->update([
             'status' => 'active',
+            'email_verified_at' => Carbon::now(),
         ]);
         $notification = array(
             'message' => 'Vendor Activated Successfully!',
             'alert-type' => 'success',
         );
-        $vendor_approve = User::where('id', $vendor_id)->where('role', 'vendor')->get();
+        $vendor_approve = User::where('id', $vendor_id)->where('role', 'vendor')->first();
+
+        //Mail To Vendor
+        $subject = 'Your Account Has Been Approved By Admin';
+        $message = 'Welcome to NEST. Now you can use this account to be able to do business on Nest. <br>';
+        $message .= 'Username: ';
+        $message .= $vendor_approve->username;
+        $message .= '<br>';
+        $message .= 'Email: ';
+        $message .= $vendor_approve->email;
+        $message .= '<br>';
+        $message .= 'If you need assistance with anything please email: support.nestshop@gmail.com <br>';
+        $message .= 'Best regards! <br>';
+        $message .= 'Nest Shop';
+        Mail::to($vendor_approve->email)->send(new WebsiteMail($subject, $message));
+
         //Notification To Vendor
         Notification::send($vendor_approve, new VendorApproveNotification($request));
         return redirect()->route('active.vendor')->with($notification);
@@ -239,7 +257,18 @@ class AdminController extends Controller
             'message' => 'Vendor Inactivated Successfully!',
             'alert-type' => 'success',
         );
-        $vendor_disapprove = User::where('id', $vendor_id)->where('role', 'vendor')->get();
+        $vendor_disapprove = User::where('id', $vendor_id)->where('role', 'vendor')->first();
+
+        //Mail To Vendor
+        $subject = 'Your Account Has Been Disapproved By Admin';
+        $message = 'It looks like you violated some of our policies, so your account is temporarily locked. <br>';
+        $message .= 'Please contact us by: <br>';
+        $message .= 'Call the hotline number: 1900 999 <br>';
+        $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
+        $message .= 'Best regards! <br>';
+        $message .= 'Nest Shop';
+        Mail::to($vendor_disapprove->email)->send(new WebsiteMail($subject, $message));
+
         //Notification To Vendor
         Notification::send($vendor_disapprove, new VendorDisapproveNotification($request));
         return redirect()->route('inactive.vendor')->with($notification);

@@ -111,7 +111,7 @@
                                         <h6 class="mb-0">Vendor Info</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info " rows="3">{{ $activeVendorDetails->vendor_short_info }}</textarea>
+                                        <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info " style="height: 200px;">{{ $activeVendorDetails->vendor_short_info }}</textarea>
                                     </div>
                                 </div>
 

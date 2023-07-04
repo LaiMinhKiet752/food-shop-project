@@ -7,18 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserRegisterNotification extends Notification
+class CancelOrderNotification extends Notification
 {
     use Queueable;
-    public $request;
+    public $name;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($request)
+    public function __construct($name)
     {
-        $this->request = $request;
+        $this->name = $name;
     }
 
     /**
@@ -55,8 +55,8 @@ class UserRegisterNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message'=>'A new account registered',
-            'type'=>'new_customer',
+            'message'=>'A request to cancel the order',
+            'type'=>'cancel_order',
         ];
     }
 }

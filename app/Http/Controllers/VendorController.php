@@ -10,7 +10,9 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use App\Mail\WebsiteMail;
 use App\Notifications\VendorRegisterNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
 class VendorController extends Controller
@@ -192,7 +194,8 @@ class VendorController extends Controller
 
     public function VendorRegister(Request $request)
     {
-        $vendor_user = User::where('role', 'admin')->get();
+        $super_admin_user = User::where('role', 'admin')->where('status','active')->first();
+        $all_admin_user = User::where('role', 'admin')->where('status','active')->get();
         $request->validate([
             'username' => ['unique:' . User::class],
             'phone' => ['unique:' . User::class],
@@ -223,8 +226,35 @@ class VendorController extends Controller
             'message' => 'Vendor Registration Successful!',
             'alert-type' => 'success'
         );
-        //Notification To Admin
-        Notification::send($vendor_user, new VendorRegisterNotification($request));
+
+        //Mail To SuperAdmin
+        $subject = 'Request to become a vendor';
+        $message = 'Registration information to become a vendor: <br>';
+
+        $message .= 'Full Name: ';
+        $message .= $request->name;
+        $message .= '<br>';
+
+        $message .= 'User Name: ';
+        $message .= $request->username;
+        $message .= '<br>';
+
+        $message .= 'Shop Name: ';
+        $message .= $request->shop_name;
+        $message .= '<br>';
+
+        $message .= 'Email: ';
+        $message .= $request->email;
+        $message .= '<br>';
+
+        $message .= 'Phone Number: ';
+        $message .= $request->phone;
+        $message .= '<br>';
+
+        Mail::to($super_admin_user->email)->send(new WebsiteMail($subject, $message));
+
+        //Notification To All Admin
+        Notification::send($all_admin_user, new VendorRegisterNotification($request));
         return redirect()->route('vendor.login')->with($notification);
     } //End Method
 

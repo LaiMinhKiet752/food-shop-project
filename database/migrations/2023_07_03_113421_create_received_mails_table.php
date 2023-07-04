@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('received_mails', function (Blueprint $table) {
             $table->id();
             $table->string('email');
-            $table->string('subject');
-            $table->string('message');
+            $table->text('subject');
+            $table->text('message');
             $table->boolean('seen')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
