@@ -55,7 +55,8 @@ class OrderCompleteNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message'=>'A new order has been placed'
+            'message'=>'A new order has been placed',
+            'type'=>'new_order',
         ];
     }
 }

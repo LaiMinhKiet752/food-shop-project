@@ -55,7 +55,8 @@ class VendorRegisterNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message'=>'A request to become a vendor'
+            'message'=>'A request to become a vendor',
+            'type'=>'new_vendor',
         ];
     }
 }

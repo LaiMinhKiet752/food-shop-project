@@ -96,7 +96,6 @@
                 },
                 message: {
                     required: true,
-                    maxlength: 500,
                 },
             },
             messages: {
@@ -110,7 +109,6 @@
                 },
                 message: {
                     required: 'Please enter your message.',
-                    maxlength: 'The message must not be greater than 500 characters.',
                 },
             },
             errorElement: 'span',

@@ -89,19 +89,79 @@
                             @endphp
                             <div class="header-notifications-list">
                                 @forelse ($user->notifications as $notification)
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="d-flex align-items-center">
-                                            <div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
+                                    @if ($notification->data['type'] == 'new_order')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="bx bx-cart-alt"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Orders <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <h6 class="msg-name">Message <span
-                                                        class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                                                </h6>
-                                                <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'return_order')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-info text-info"><i
+                                                        class="fadeIn animated bx bx-sync"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Request Return Order <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'cancel_order')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-secondary text-secondary"><i
+                                                        class="fadeIn animated bx bx-x-circle"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Request Cancel Order <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_customer')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-primary text-primary"><i
+                                                        class="bx bx-user-pin"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Customer <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_vendor')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-success text-success"><i
+                                                        class="bx bx-group"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Vendor <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @endif
                                 @empty
+                                    <p class="text-center">There are no new notifications.</p>
                                 @endforelse
                             </div>
                             <a href="javascript:;">

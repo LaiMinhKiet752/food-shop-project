@@ -102,6 +102,7 @@
                                         </div>
                                     </a>
                                 @empty
+                                <p class="text-center">There are no new notifications.</p>
                                 @endforelse
                             </div>
                             <a href="javascript:;">
