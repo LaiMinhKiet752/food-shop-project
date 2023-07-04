@@ -4,15 +4,24 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Review;
+use App\Models\User;
+use App\Notifications\NewReviewNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Notification;
 
 class ReviewController extends Controller
 {
     public function StoreReview(Request $request)
     {
+        $request->validate([
+            'quality' => 'required',
+        ], [
+            'quality.required' => 'Please choose a star rating for the product',
+        ]);
+
         $product_id = $request->review_product_id;
         $vendor_id = $request->review_vendor_id;
 
@@ -24,6 +33,10 @@ class ReviewController extends Controller
             'vendor_id' => $vendor_id,
             'created_at' => Carbon::now(),
         ]);
+
+        $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
+        //Notification To Admin
+        Notification::send($all_admin_user, new NewReviewNotification($request));
 
         $notification = array(
             'message' => 'Review Will Be Approved By Admin!',

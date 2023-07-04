@@ -20,11 +20,9 @@
                                 <input type="email" name="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>
                             </form>
-                            @if ($errors->any())
-                                @foreach ($errors->all() as $error)
-                                    <span class="text-danger">{{ $error }}</span>
-                                @endforeach
-                            @endif
+                            @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                         <img src="{{ asset('frontend/assets/imgs/banner/banner-9.png') }}" alt="newsletter" />
                     </div>

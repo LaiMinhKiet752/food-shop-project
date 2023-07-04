@@ -97,6 +97,8 @@
                                 <td>
                                     <a href="{{ route('admin.review.details', $item->id) }}" class="btn btn-info"><i
                                             class="fa fa-eye" title="Details"></i></a>
+                                    <a href="{{ route('admin.review.delete', $item->id) }}" class="btn btn-danger"
+                                        id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                                 </td>
                             </tr>
                         @endforeach

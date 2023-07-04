@@ -159,6 +159,62 @@
                                                 </div>
                                             </div>
                                         </a>
+                                    @elseif($notification->data['type'] == 'new_blog_comment')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="bx bx-message-detail"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Comments <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_contact_message')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-warning text-warning"><i
+                                                        class="bx bx-send"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Contact Message <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_review_product')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-info text-info"><i
+                                                        class="lni lni-star"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Review<span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_subscriber')
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <div class="d-flex align-items-center">
+                                                <div class="notify bg-light-primary text-primary"><i
+                                                        class="lni lni-emoji-happy"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Subscriber<span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     @endif
                                 @empty
                                     <p class="text-center">There are no new notifications.</p>

@@ -77,7 +77,7 @@ class ReturnController extends Controller
         $message .= 'If you need assistance please contact us via: <br>';
         $message .= 'Call the hotline number: 1900 999 <br>';
         $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards! <br>';
+        $message .= 'Best regards, <br>';
         $message .= 'Nest Shop';
 
         Mail::to($order->email)->send(new WebsiteMail($subject, $message));
