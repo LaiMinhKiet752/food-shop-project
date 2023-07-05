@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 
 class ReviewController extends Controller
@@ -101,4 +102,12 @@ class ReviewController extends Controller
         $review = Review::where('id', $id)->latest()->first();
         return view('vendor.backend.review.details_review', compact('review'));
     } //End Method
+
+    public function UpdateStatusNewReviewProduct($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
 }

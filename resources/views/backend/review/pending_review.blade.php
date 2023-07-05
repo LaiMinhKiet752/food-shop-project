@@ -90,7 +90,7 @@
                                 </td>
 
                                 <td>
-                                    <span class="badge rounded-pill bg-danger" style="font-size: 13px;">
+                                    <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
                                         Pending</span>
                                 </td>
 

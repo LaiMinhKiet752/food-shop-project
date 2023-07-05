@@ -35,7 +35,7 @@
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Employee Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">Full Name <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="employee_id" class="form-control form-select single-select">
@@ -128,7 +128,7 @@
             },
             messages: {
                 employee_id: {
-                    required: 'Please select an employee name.',
+                    required: 'Please select an Full Name.',
                 },
                 month: {
                     required: 'Please select a month.',

@@ -69,7 +69,7 @@
                                                         type="text" value="{{ $userData->phone }}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>User Photo</label>
+                                                    <label>Photo</label>
                                                     <input class="form-control" name="photo" type="file"
                                                         id="image" />
                                                     @if ($errors->has('photo'))

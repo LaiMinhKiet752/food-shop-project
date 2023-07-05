@@ -10,6 +10,7 @@ use App\Notifications\VendorApproveNotification;
 use App\Notifications\VendorDisapproveNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Notification;
@@ -527,6 +528,18 @@ class AdminController extends Controller
         $notification = array(
             'message' => 'Database Deleted Successfully!',
             'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function DeleteAllNotification()
+    {
+        $user_id = Auth::user()->id;
+        DB::table('notifications')->where('notifiable_id', $user_id)->delete();
+
+        $notification = array(
+            'message' => 'Successfully Deleted All Notifications!',
+            'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
     } // End Method

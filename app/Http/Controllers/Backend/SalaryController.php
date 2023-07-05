@@ -95,15 +95,10 @@ class SalaryController extends Controller
 
     public function PayNowSalary($id)
     {
-        $get_current_month = date("F");
-        if($get_current_month == "January"){
-            $current_month = "December";
-        }else{
-            $current_month = date('F');
-        }
+        $current_month = date('F');
         $current_year = date('Y');
         $paysalary = Employee::findOrFail($id);
-        return view('backend.salary.paid_salary', compact('paysalary','current_month','current_year'));
+        return view('backend.salary.paid_salary', compact('paysalary', 'current_month', 'current_year'));
     } // End Method
 
     public function EmployeSalaryStore(Request $request)
@@ -127,27 +122,14 @@ class SalaryController extends Controller
 
     public function MonthSalary()
     {
-        $get_current_month = date("F");
-        if($get_current_month == "January"){
-            $current_month = "December";
-        }else{
-            $current_month = date('F', strtotime('-1 month'));
-        }
-        $current_year = date('Y');
-        $paidsalary = PaySalary::where('salary_month', $current_month)->where('salary_year', $current_year)->get();
-        return view('backend.salary.month_salary', compact('paidsalary','current_month','current_year'));
+        return view('backend.salary.month_salary');
     } // End Method
 
-    public function PayNowSalaryHistory($id)
+    public function MonthSalarySearch(Request $request)
     {
-        $get_current_month = date("F");
-        if($get_current_month == "January"){
-            $current_month = "December";
-        }else{
-            $current_month = date('F', strtotime('-1 month'));
-        }
-        $current_year = date('Y');
-        $paysalary = Employee::findOrFail($id);
-        return view('backend.salary.paid_salary_history', compact('paysalary','current_month','current_year'));
+        $month = $request->month;
+        $year = $request->year;
+        $paidsalary = PaySalary::where('salary_month', $month)->where('salary_year', $year)->latest()->get();
+        return view('backend.salary.month_salary_search', compact('paidsalary','month','year'));
     } // End Method
 }

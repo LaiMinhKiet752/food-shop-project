@@ -12,77 +12,50 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Pay Last Month's Salary</li>
+                    <li class="breadcrumb-item active" aria-current="page">Search Pay Salary By Month</li>
                 </ol>
             </nav>
-        </div>
-        <div class="ms-auto">
-            {{-- <div class="btn-group">
-                <a href="{{ route('add.advance.salary') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
-                        New</i></a>
-            </div> --}}
         </div>
     </div>
     <!--end breadcrumb-->
     <hr />
-    <div class="card">
-        <div class="card-body">
-            <h3 class="hearder-title text-center">{{ date('m', strtotime($current_month)) }} - {{ $current_year }}</h3>
-            <div class="table-responsive">
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Image</th>
-                            <th>Employee Name</th>
-                            <th>Month</th>
-                            <th>Year</th>
-                            <th>Salary(USD)</th>
-                            <th>Advance Salary(USD)</th>
-                            <th>Due Salary(USD)</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($paidsalary as $key => $item)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>
-                                    <img src="{{ asset($item->employee->employee_photo) }}" alt=""
-                                        style="width: 100px; height: 80px;">
-                                </td>
-                                <td>{{ $item->employee->employee_name }}</td>
-                                <td>{{ date('m',strtotime($item->salary_month)) }}</td>
-                                <td>{{ $item->salary_year }}</td>
-                                <td>{{ $item->paid_amount }}</td>
-                                <td>{{ $item->advance_salary }}</td>
-                                <td>{{ $item->due_salary }}</td>
-                                <td>
-                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                        Full Paid</span>
-                                </td>
-                                <td>
-                                    <a href="{{ route('pay.now.salary.history', $item->id) }}" class="btn btn-danger">History</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>No.</th>
-                            <th>Image</th>
-                            <th>Employee Name</th>
-                            <th>Month</th>
-                            <th>Year</th>
-                            <th>Salary(USD)</th>
-                            <th>Advance Salary(USD)</th>
-                            <th>Due Salary(USD)</th>
-                            <th>Action</th>
-                        </tr>
-                    </tfoot>
-                </table>
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
+        <form action="{{ route('month.salary.search') }}" method="post">
+            @csrf
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Search By Month</h5>
+                        <label class="form-label">Select Month: </label>
+                        <select name="month" class="form-select mb-3" aria-label="Default select example">
+                            <option selected="" disabled></option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <label class="form-label">Select Year: </label>
+                        <select name="year" class="form-select mb-3" aria-label="Default select example">
+                            <option selected="" disabled></option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                        </select>
+                        <br>
+                        <input type="submit" class="btn btn-rounded btn-primary" value="Search">
+                    </div>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 @endsection

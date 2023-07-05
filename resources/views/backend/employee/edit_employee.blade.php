@@ -312,8 +312,8 @@
                     maxlength: 'The employee code must not be greater than 255 characters.',
                 },
                 employee_name: {
-                    required: 'Please enter employee name.',
-                    maxlength: 'The employee name must not be greater than 255 characters.',
+                    required: 'Please enter Full Name.',
+                    maxlength: 'The Full Name must not be greater than 255 characters.',
                 },
                 employee_email: {
                     required: 'Please enter employee email.',

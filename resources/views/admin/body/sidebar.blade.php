@@ -495,10 +495,8 @@
                         </li>
                     @endif
 
-                    @if (Auth::user()->can("employee.pay.last.month's.salary"))
-                        <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Pay Last
-                                Month's
-                                Salary</a>
+                    @if (Auth::user()->can('employee.search.pay.salary.by.month'))
+                        <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Search Pay Salary By Month</a>
                         </li>
                     @endif
 

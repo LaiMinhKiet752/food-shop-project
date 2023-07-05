@@ -36,7 +36,7 @@
                             <th>No.</th>
                             <th>Image</th>
                             <th>Employee Code</th>
-                            <th>Employee Name</th>
+                            <th>Full Name</th>
                             <th>Position</th>
                             <th>Experience</th>
                             <th>Salary(USD)</th>
@@ -75,7 +75,7 @@
                             <th>No.</th>
                             <th>Image</th>
                             <th>Employee Code</th>
-                            <th>Employee Name</th>
+                            <th>Full Name</th>
                             <th>Position</th>
                             <th>Experience</th>
                             <th>Salary(USD)</th>

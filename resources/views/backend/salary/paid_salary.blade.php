@@ -46,7 +46,7 @@
                                 <hr>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Employee Name :</h6>
+                                        <h6 class="mb-0">Full Name :</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <label
@@ -78,7 +78,7 @@
                                 <hr>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Employee Salary(USD) :</h6>
+                                        <h6 class="mb-0">Salary(USD) :</h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <label

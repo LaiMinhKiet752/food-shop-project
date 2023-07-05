@@ -34,7 +34,7 @@
     </div>
     <!--end breadcrumb-->
     <hr />
-    <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Full name:
+    <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Full Name:
         {{ $user_info->name }} </label> <br>
     <label class="form-label" style="font-size: 20px; color: black; font-weight: bold;">Email:
         {{ $user_info->email }} </label> <br>

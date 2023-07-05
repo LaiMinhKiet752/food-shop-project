@@ -8,6 +8,7 @@ use App\Models\ReceivedMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class ContactMessageController extends Controller
@@ -48,4 +49,12 @@ class ContactMessageController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
+
+    public function UpdateStatusNewContactMessage($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
 }

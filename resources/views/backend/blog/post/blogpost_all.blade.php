@@ -47,7 +47,7 @@
                                 <td>{{ Str::limit($item->post_title, 30, '...') }}</td>
                                 <td>{{ $item->views }}</td>
                                 <td>
-                                    <a href="{{ route('edit.blog.post', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.blog.post', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('delete.blog.post', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>

@@ -144,7 +144,7 @@
                                                                                 class="d-flex justify-content-between mb-10">
                                                                                 <div class="d-flex align-items-center">
                                                                                     <span
-                                                                                        class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
+                                                                                        class="font-xs text-muted">{{ $item->created_at->format('d-m-Y H:i:s') }}</span>
                                                                                 </div>
                                                                             </div>
                                                                             <p class="mb-10">
@@ -176,7 +176,7 @@
                                                                                     <div
                                                                                         class="d-flex align-items-cer">
                                                                                         <span
-                                                                                            class="font-xs text-muted">{{ $item->created_at->format('d F Y H:i:s') }}</span>
+                                                                                            class="font-xs text-muted">{{ $item->created_at->format('d-m-Y H:i:s') }}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <p class="mb-10">{{ $item->comment }}
