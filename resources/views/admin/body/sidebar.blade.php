@@ -97,7 +97,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('product.list'))
-                        <li> <a href="{{ route('all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Product</a>
+                        <li> <a href="{{ route('all.product') }}"><i class="bx bx-right-arrow-alt"></i>All Products</a>
                         </li>
                     @endif
 
@@ -118,7 +118,7 @@
                     <div class="menu-title">Inventory</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                    <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Warehouse</a>
                     </li>
                 </ul>
             </li>
@@ -133,7 +133,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('slider.list'))
-                        <li> <a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Slider</a>
+                        <li> <a href="{{ route('all.slider') }}"><i class="bx bx-right-arrow-alt"></i>All Sliders</a>
                         </li>
                     @endif
                 </ul>
@@ -149,7 +149,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('banner.list'))
-                        <li> <a href="{{ route('all.banner') }}"><i class="bx bx-right-arrow-alt"></i>All Banner</a>
+                        <li> <a href="{{ route('all.banner') }}"><i class="bx bx-right-arrow-alt"></i>All Banners</a>
                         </li>
                     @endif
                 </ul>
@@ -165,7 +165,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('coupon.list'))
-                        <li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Coupon</a>
+                        <li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Coupons</a>
                         </li>
                     @endif
 
@@ -211,12 +211,10 @@
                             Order</a>
                     </li>
                     <li> <a href="{{ route('admin.confirmed.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Confirmed
-                            Order</a>
+                                class="bx bx-right-arrow-alt"></i>Order Confirmed</a>
                     </li>
                     <li> <a href="{{ route('admin.processing.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Processing
-                            Order</a>
+                                class="bx bx-right-arrow-alt"></i>Order Processing</a>
                     </li>
                     <li> <a href="{{ route('admin.delivered.order') }}"><i
                                 class="bx bx-right-arrow-alt"></i>Delivered
@@ -234,8 +232,7 @@
                     <div class="menu-title">Return Order</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Return
-                            Request</a>
+                    <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Request A Refund</a>
                     </li>
                     <li> <a href="{{ route('admin.complete.return.request') }}"><i
                                 class="bx bx-right-arrow-alt"></i>Approved Return Request</a>
@@ -251,8 +248,7 @@
                     <div class="menu-title">Cancel Order</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Cancel
-                            Request</a>
+                    <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Order Cancellation Request</a>
                     </li>
                     <li> <a href="{{ route('admin.complete.cancel.request') }}"><i
                                 class="bx bx-right-arrow-alt"></i>Approved Cancel Request</a>
@@ -345,7 +341,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class="lni lni-emoji-happy"></i>
                     </div>
-                    <div class="menu-title">Subscribers</div>
+                    <div class="menu-title">Subscriber</div>
                 </a>
                 <ul>
                     <li> <a href="{{ route('admin_subscribers') }}"><i class="bx bx-right-arrow-alt"></i>All

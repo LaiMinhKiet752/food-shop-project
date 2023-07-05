@@ -12,7 +12,7 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Coupon: <span
+                    <li class="breadcrumb-item active" aria-current="page">All Coupons: <span
                             class="badge rounded-pill bg-danger">{{ count($coupon) }}</span></li>
                 </ol>
             </nav>
@@ -36,7 +36,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Coupon Code</th>
-                            <th>Coupon Discount</th>
+                            <th>Discount(%)</th>
                             <th>Coupon Validity</th>
                             <th>Coupon Status</th>
                             <th>Action</th>
@@ -77,7 +77,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Coupon Code</th>
-                            <th>Coupon Discount</th>
+                            <th>Discount(%)</th>
                             <th>Coupon Validity</th>
                             <th>Coupon Status</th>
                             <th>Action</th>

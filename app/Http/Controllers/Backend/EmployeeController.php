@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\AdvanceSalary;
+use App\Models\Attendance;
 use App\Models\Employee;
+use App\Models\PaySalary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -315,6 +317,9 @@ class EmployeeController extends Controller
         $image = Employee::findOrFail($id)->employee_photo;
         @unlink($image);
         Employee::findOrFail($id)->delete();
+        AdvanceSalary::where('employee_id',$id)->delete();
+        PaySalary::where('employee_id',$id)->delete();
+        Attendance::where('employee_id',$id)->delete();
         $notification = array(
             'message' => 'Employee Deleted Successfully!',
             'alert-type' => 'success',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
 use App\Models\SubCategory;
 
 class SubCategoryController extends Controller
@@ -106,6 +107,7 @@ class SubCategoryController extends Controller
     public function DeleteSubcategory($id)
     {
         SubCategory::findOrFail($id)->delete();
+        Product::where('subcategory_id', $id)->update(['status' => 0]);
         $notification = array(
             'message' => 'SubCategory Deleted Successfully!',
             'alert-type' => 'success',
@@ -122,18 +124,9 @@ class SubCategoryController extends Controller
     public function RestoreSubcategorySubmit($id)
     {
         Subcategory::whereId($id)->restore();
+        Product::where('subcategory_id', $id)->update(['status' => 1]);
         $notification = array(
             'message' => 'Subcategory Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreAllSubcategorySubmit()
-    {
-        Subcategory::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Subcategory Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

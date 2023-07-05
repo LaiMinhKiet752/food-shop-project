@@ -404,16 +404,6 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
-    public function RestoreAllProductSubmit()
-    {
-        Product::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Product Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
     public function ProductStock()
     {
        $products = Product::latest()->get();

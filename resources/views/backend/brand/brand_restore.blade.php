@@ -6,25 +6,19 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Brand</div>
+        <div class="breadcrumb-title pe-3">Restore Brand</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Restore Brand</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Brands: <span
+                        class="badge rounded-pill bg-danger">{{ count($brands) }}</span></li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
-            @if (!$brands->isEmpty())
-                <div class="btn-group">
-                    <a href="{{ route('restore.all.brand.submit') }}" class="btn btn-danger" id="restore_all_brand"><i
-                            class="lni lni-angle-double-up"> Restore All
-                            Brand</i></a>
-                </div>
-            @else
-            @endif
+
         </div>
     </div>
     <!--end breadcrumb-->
