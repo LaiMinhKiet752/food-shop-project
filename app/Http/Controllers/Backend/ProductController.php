@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function AllProduct()
     {
-        $products = Product::latest()->get();
+        $products = Product::orderBy('status','DESC')->latest()->get();
         return view('backend.product.product_all', compact('products'));
     } //End Method
 
