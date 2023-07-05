@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Mail\ContactMail;
 use App\Models\ReceivedMail;
 use App\Models\User;
+use App\Notifications\NewContactMessageNotification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class FrontendController extends Controller
 {
@@ -31,6 +33,11 @@ class FrontendController extends Controller
     {
         $admin = User::where('role', 'admin')->where('status', 'active')->first();
         Mail::to($admin->email)->send(new ContactMail($request->subject, $request->message, $request->email));
+
+        $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
+        //Notification To Admin
+        Notification::send($all_admin_user, new NewContactMessageNotification($request));
+
         ReceivedMail::insert([
             'email' => $request->email,
             'subject' => $request->subject,

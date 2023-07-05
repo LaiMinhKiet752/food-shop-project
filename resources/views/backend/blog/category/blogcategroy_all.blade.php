@@ -42,7 +42,7 @@
                                 <td>{{ $item->blog_category_name }}</td>
 
                                 <td>
-                                    <a href="{{ route('edit.blog.category', $item->id) }}" class="btn btn-info">Edit</a>
+                                    <a href="{{ route('edit.blog.category', $item->id) }}" class="btn btn-warning">Edit</a>
                                     <a href="{{ route('delete.blog.category', $item->id) }}" class="btn btn-danger"
                                         id="delete">Delete</a>
                                 </td>

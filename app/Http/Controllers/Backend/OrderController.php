@@ -78,9 +78,9 @@ class OrderController extends Controller
     public function ProcessingToDelivered($order_id)
     {
         $product = OrderDetails::where('order_id', $order_id)->get();
-        foreach($product as $item){
-            Product::where('id',$item->product_id)->update([
-                'product_quantity'=> DB::raw('product_quantity - '.$item->quantity)
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)->update([
+                'product_quantity' => DB::raw('product_quantity - ' . $item->quantity)
             ]);
         }
         Order::findOrFail($order_id)->update([
@@ -104,5 +104,13 @@ class OrderController extends Controller
 
         $pdf = Pdf::loadView('backend.orders.admin_order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOption(['tempDir' => public_path(), 'chroot' => public_path()]);
         return $pdf->download('invoice.pdf');
+    } // End Method
+
+    public function UpdateStatusNewOrder($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
     } // End Method
 }

@@ -35,7 +35,7 @@
                             <th>No.</th>
                             <th>Image</th>
                             <th>Employee Code</th>
-                            <th>Employee Name</th>
+                            <th>Full Name</th>
                             <th>Date</th>
                             <th>Status</th>
                         </tr>
@@ -68,7 +68,7 @@
                             <th>No.</th>
                             <th>Image</th>
                             <th>Employee Code</th>
-                            <th>Employee Name</th>
+                            <th>Full Name</th>
                             <th>Date</th>
                             <th>Status</th>
                         </tr>

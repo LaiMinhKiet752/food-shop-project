@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Mail\WebsiteMail;
 use App\Models\Subscriber;
+use App\Models\User;
+use App\Notifications\NewSubscriberNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class SubscriberController extends Controller
 {
@@ -18,8 +21,8 @@ class SubscriberController extends Controller
             'email.required' => 'Please enter your email address.',
             'email.email' => 'The email must be a valid email address.',
         ]);
-        $exists = Subscriber::where('email',$request->email)->first();
-        if($exists){
+        $exists = Subscriber::where('email', $request->email)->first();
+        if ($exists) {
             $notification = array(
                 'message' => 'This Email Is Already Registered!',
                 'alert-type' => 'warning',
@@ -55,6 +58,9 @@ class SubscriberController extends Controller
             $subscriber_data->token = '';
             $subscriber_data->status = 'Active';
             $subscriber_data->update();
+            $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
+            //Notification To Admin
+            Notification::send($all_admin_user, new NewSubscriberNotification($subscriber_data->email));
             $notification = array(
                 'message' => 'You are Successfully Verified As A Subscriber To This Website!',
                 'alert-type' => 'success',
@@ -67,5 +73,5 @@ class SubscriberController extends Controller
             );
             return redirect()->to('/')->with($notification);
         }
-    }//End Method
+    } //End Method
 }

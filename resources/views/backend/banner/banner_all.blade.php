@@ -19,8 +19,7 @@
         @if (Auth::user()->can('banner.add'))
             <div class="ms-auto">
                 <div class="btn-group">
-                    <a href="{{ route('add.banner') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New
-                            Banner</i></a>
+                    <a href="{{ route('add.banner') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
                 </div>
             </div>
         @endif

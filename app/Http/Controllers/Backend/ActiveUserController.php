@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ActiveUserController extends Controller
 {
@@ -19,4 +20,20 @@ class ActiveUserController extends Controller
         $users = User::where('role', 'vendor')->latest()->get();
         return view('backend.user.vendor_all_data', compact('users'));
     } //End Method
+
+    public function UpdateStatusNewCustomer($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
+
+    public function UpdateStatusNewVendor($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
 }

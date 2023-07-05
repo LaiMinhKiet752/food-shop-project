@@ -10,6 +10,7 @@ use App\Notifications\VendorApproveNotification;
 use App\Notifications\VendorDisapproveNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Notification;
@@ -231,8 +232,8 @@ class AdminController extends Controller
         $message .= 'Email: ';
         $message .= $vendor_approve->email;
         $message .= '<br>';
-        $message .= 'If you need assistance with anything please email: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards! <br>';
+        $message .= 'If you need any assistance please email to: support.nestshop@gmail.com <br>';
+        $message .= 'Best regards, <br>';
         $message .= 'Nest Shop';
         Mail::to($vendor_approve->email)->send(new WebsiteMail($subject, $message));
 
@@ -265,7 +266,7 @@ class AdminController extends Controller
         $message .= 'Please contact us by: <br>';
         $message .= 'Call the hotline number: 1900 999 <br>';
         $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards! <br>';
+        $message .= 'Best regards, <br>';
         $message .= 'Nest Shop';
         Mail::to($vendor_disapprove->email)->send(new WebsiteMail($subject, $message));
 
@@ -527,6 +528,18 @@ class AdminController extends Controller
         $notification = array(
             'message' => 'Database Deleted Successfully!',
             'alert-type' => 'success'
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
+
+    public function DeleteAllNotification()
+    {
+        $user_id = Auth::user()->id;
+        DB::table('notifications')->where('notifiable_id', $user_id)->delete();
+
+        $notification = array(
+            'message' => 'Successfully Deleted All Notifications!',
+            'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
     } // End Method

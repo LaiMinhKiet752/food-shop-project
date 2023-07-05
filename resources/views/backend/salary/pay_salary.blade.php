@@ -34,7 +34,8 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Employee Name</th>
+                            <th>Employee Code</th>
+                            <th>Full Name</th>
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>
@@ -51,6 +52,7 @@
                                     <img src="{{ asset($item->employee_photo) }}" alt=""
                                         style="width: 100px; height: 80px;">
                                 </td>
+                                <td>{{ $item->employee_code }}</td>
                                 <td>{{ $item->employee_name }}</td>
                                 <td>
                                     {{ date('m') }}
@@ -89,7 +91,7 @@
                                     <a href="{{ route('pay.now.salary', $item->id) }}" class="btn btn-danger">Pay
                                         Now</a>
                                     @else
-                                    <button class="btn btn-warning">Paid</button>
+                                    <button class="btn btn-success">Paid</button>
                                     @endif
                                 </td>
                             </tr>
@@ -99,7 +101,8 @@
                         <tr>
                             <th>No.</th>
                             <th>Image</th>
-                            <th>Employee Name</th>
+                            <th>Employee Code</th>
+                            <th>Full Name</th>
                             <th>Month</th>
                             <th>Year</th>
                             <th>Salary(USD)</th>

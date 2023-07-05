@@ -67,7 +67,13 @@
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email Reply Subject :</h6>
+                                    <h4 class="mb-0">Email Reply</h4>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Subject <span class="text-danger">*</span></h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
                                     <textarea name="subject" class="form-control" style="width: 100%; height: 50px;"></textarea>
@@ -76,7 +82,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Email Reply Content :</h6>
+                                    <h6 class="mb-0">Message <span class="text-danger">*</span></h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
                                     <textarea name="message" class="form-control" style="width: 100%; height: 200px;"></textarea>

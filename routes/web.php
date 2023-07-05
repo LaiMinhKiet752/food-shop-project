@@ -151,6 +151,74 @@ Route::controller(ShopController::class)->group(function () {
     Route::post('/shop/filter', 'ShopFilter')->name('shop.filter');
 });
 
+//User All Route
+Route::middleware(['auth', 'role:user'])->group(function () {
+
+    //Wishlist All Route
+    Route::controller(WishlistController::class)->group(function () {
+        Route::get('/wishlist', 'AllWishList')->name('wishlist');
+        Route::get('/get-wishlist-product', 'GetWishListProduct');
+        Route::get('/wishlist-remove/{id}', 'WishListRemove');
+    });
+
+    //Compare All Route
+    Route::controller(CompareController::class)->group(function () {
+        Route::get('/compare', 'AllCompare')->name('compare');
+        Route::get('/get-compare-product', 'GetCompareProduct');
+        Route::get('/compare-remove/{id}', 'CompareRemove');
+    });
+
+    //Checkout All Route
+    Route::controller(CheckoutController::class)->group(function () {
+        Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
+        Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
+        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+    });
+
+    //Stripe All Route
+    Route::controller(StripeController::class)->group(function () {
+        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
+        Route::get('/stripe/success', 'StripeSuccess')->name('stripe.success');
+        Route::get('/stripe/cancel', 'StripeCancel')->name('stripe.cancel');
+    });
+
+    //Paypal All Route
+    Route::controller(PaypalController::class)->group(function () {
+        Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
+        Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
+        Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
+    });
+
+    //Mollie All Route
+    Route::controller(MollieController::class)->group(function () {
+        Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
+        Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
+        Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
+    });
+
+    //Cash All Route
+    Route::controller(CashController::class)->group(function () {
+        Route::post('/cash/order', 'CashOrder')->name('cash.order');
+    });
+
+    //User Dashboard All Route
+    Route::controller(AllUserController::class)->group(function () {
+        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
+        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
+        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
+        Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
+        Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
+        Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
+        Route::post('/user/return/order/{order_id}', 'ReturnOrderSubmit')->name('user.return.order');
+        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
+        Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
+        Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
+        Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
+        Route::get('/user/track/order/page', 'UserTrackOrderPage')->name('user.track.order.page');
+        Route::post('/user/order/tracking', 'UserOrderTracking')->name('user.order.tracking');
+    });
+});
+
 require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -367,6 +435,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/confirm/processing/{order_id}', 'ConfirmToProcessing')->name('confirm-processing');
         Route::get('/processing/delivered/{order_id}', 'ProcessingToDelivered')->name('processing-delivered');
         Route::get('/amin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
+
+        //Update Status Notification
+        Route::get('/updated-status/new-order/{id}', 'UpdateStatusNewOrder');
     });
 
     //Return Order All Route
@@ -375,6 +446,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/return/order/details/{order_id}', 'ReturnOrderDetails')->name('admin.return.order.details');
         Route::get('/admin/return/request/approved/{order_id}', 'ReturnRequestApproved')->name('admin.return.request.approved');
         Route::get('/admin/complete/return/request', 'CompleteReturnRequest')->name('admin.complete.return.request');
+
+        //Update Status Notification
+        Route::get('/updated-status/return-order/{id}', 'UpdateStatusReturnOrder');
     });
 
     //Cancel Order All Route
@@ -383,6 +457,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('admin.cancel.order.details');
         Route::get('/admin/cancel/request/approved/{order_id}', 'CancelRequestApproved')->name('admin.cancel.request.approved');
         Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
+
+        //Update Status Notification
+        Route::get('/updated-status/cancel-order/{id}', 'UpdateStatusCancelOrder');
     });
 
     //Report All Route
@@ -399,6 +476,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(ActiveUserController::class)->group(function () {
         Route::get('/all/user', 'AllUser')->name('all.user');
         Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
+
+        //Update Status Notification
+        Route::get('/updated-status/new-customer/{id}', 'UpdateStatusNewCustomer');
+        Route::get('/updated-status/new-vendor/{id}', 'UpdateStatusNewVendor');
     });
 
     //Blog All Category Route
@@ -424,6 +505,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
         Route::get('/admin/blog/comment/reply/edit/{id}', 'AdminCommentReplyEdit')->name('admin.comment.reply.edit');
         Route::post('/admin/blog/comment/reply/update', 'AdminReplyCommentUpdate')->name('admin.reply.comment.update');
+
+        //Update Status Notification
+        Route::get('/updated-status/blog-comment/{id}', 'UpdateStatusBlogComment');
     });
 
     //Review All Route
@@ -433,6 +517,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/review/details/{id}', 'ReviewDetails')->name('admin.review.details');
         Route::post('/admin/review/approve', 'ReviewApprove')->name('admin.review.approve');
         Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
+
+        //Update Status Notification
+        Route::get('/updated-status/new-review-product/{id}', 'UpdateStatusNewReviewProduct');
     });
 
     //Site Setting All Route
@@ -508,9 +595,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(SalaryController::class)->group(function () {
         Route::get('/admin/pay/salary', 'PaySalary')->name('pay.salary');
         Route::get('/admin/pay/now/salary/{id}', 'PayNowSalary')->name('pay.now.salary');
-        Route::get('/admin/pay/now/salary/history/{id}', 'PayNowSalaryHistory')->name('pay.now.salary.history');
         Route::post('/admin/employe/salary/store', 'EmployeSalaryStore')->name('employe.salary.store');
-        Route::get('/admin/month/salary', 'MonthSalary')->name('month.salary');
+        Route::get('/admin/salary/by/month', 'MonthSalary')->name('month.salary');
+        Route::post('/admin/salary/search/by/month', 'MonthSalarySearch')->name('month.salary.search');
     });
 
     //Employee Attendance All Route
@@ -530,6 +617,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/contact/message/details/{id}', 'ContactMessageDetails')->name('admin.contact.message.details');
         Route::post('/admin/contact/message/send/reply', 'ContactMessageReply')->name('admin.contact.message.send.reply');
         Route::get('/admin/contact/message/delete/{id}', 'ContactMessageDelete')->name('admin.contact.message.delete');
+
+        //Update Status Notification
+        Route::get('/updated-status/new-contact-message/{id}', 'UpdateStatusNewContactMessage');
     });
 
     //Subscriber All Route
@@ -538,6 +628,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/subscriber/delete/{id}', 'DeleteSubscriber')->name('admin.delete.subscriber');
         Route::get('/admin/subscriber/send-email', 'SendEmail')->name('admin_subscribers_send_email');
         Route::post('/admin/subscriber/send-email-submit', 'SendEmailSubmit')->name('admin_subscribers_send_email_submit');
+
+        //Update Status Notification
+        Route::get('/updated-status/new-subscriber/{id}', 'UpdateStatusNewSubscriber');
+    });
+
+    //Admin Delete All Notification
+    Route::controller(AdminController::class)->group(function () {
+        Route::get('/admin/delete/all/notification', 'DeleteAllNotification')->name('admin.delete.all.notification');
     });
 
     //Database Backup
@@ -558,70 +656,4 @@ Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('b
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
 
-//User All Route
-Route::middleware(['auth', 'role:user'])->group(function () {
 
-    //Wishlist All Route
-    Route::controller(WishlistController::class)->group(function () {
-        Route::get('/wishlist', 'AllWishList')->name('wishlist');
-        Route::get('/get-wishlist-product', 'GetWishListProduct');
-        Route::get('/wishlist-remove/{id}', 'WishListRemove');
-    });
-
-    //Compare All Route
-    Route::controller(CompareController::class)->group(function () {
-        Route::get('/compare', 'AllCompare')->name('compare');
-        Route::get('/get-compare-product', 'GetCompareProduct');
-        Route::get('/compare-remove/{id}', 'CompareRemove');
-    });
-
-    //Checkout All Route
-    Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
-        Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
-        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
-    });
-
-    //Stripe All Route
-    Route::controller(StripeController::class)->group(function () {
-        Route::post('/stripe/order', 'StripeOrder')->name('stripe.order');
-        Route::get('/stripe/success', 'StripeSuccess')->name('stripe.success');
-        Route::get('/stripe/cancel', 'StripeCancel')->name('stripe.cancel');
-    });
-
-    //Paypal All Route
-    Route::controller(PaypalController::class)->group(function () {
-        Route::post('/paypal/order', 'PaypalOrder')->name('paypal.order');
-        Route::get('/paypal/success', 'PaypalSuccess')->name('paypal.success');
-        Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
-    });
-
-    //Mollie All Route
-    Route::controller(MollieController::class)->group(function () {
-        Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
-        Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
-        Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
-    });
-
-    //Cash All Route
-    Route::controller(CashController::class)->group(function () {
-        Route::post('/cash/order', 'CashOrder')->name('cash.order');
-    });
-
-    //User Dashboard All Route
-    Route::controller(AllUserController::class)->group(function () {
-        Route::get('/user/account/page', 'UserAccount')->name('user.account.page');
-        Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
-        Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
-        Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
-        Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
-        Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
-        Route::post('/user/return/order/{order_id}', 'ReturnOrderSubmit')->name('user.return.order');
-        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
-        Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
-        Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
-        Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
-        Route::get('/user/track/order/page', 'UserTrackOrderPage')->name('user.track.order.page');
-        Route::post('/user/order/tracking', 'UserOrderTracking')->name('user.order.tracking');
-    });
-});

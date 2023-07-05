@@ -351,7 +351,8 @@
                                             <span>{{ $product['vendor']['address'] }}</span>
                                         </li>
                                         <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
-                                                alt="" /><strong>Contact: </strong><span>{{ $product['vendor']['phone'] }}</span></li>
+                                                alt="" /><strong>Contact:
+                                            </strong><span>{{ $product['vendor']['phone'] }}</span></li>
                                     </ul>
                                 @endif
                                 @if ($product->vendor_id == null)
@@ -599,7 +600,6 @@
                                 </div>
 
 
-
                                 <!--comment form-->
                                 <div class="comment-form">
                                     <h4 class="mb-15">Add a review</h4>
@@ -649,9 +649,14 @@
                                                                 </tr>
                                                             </tbody>
                                                         </table>
-
-
-
+                                                        @error('quality')
+                                                            <div
+                                                                class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                                                <div class="text-white">{{ $message }}</div>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="alert" aria-label="Close"></button>
+                                                            </div>
+                                                        @enderror
                                                         <div class="col-12">
                                                             <div class="form-group">
                                                                 <textarea class="form-control w-100" name="comment" id="comment" placeholder="Write Comment"></textarea>
@@ -667,7 +672,6 @@
                                         </div>
                                     @endguest
                                 </div>
-
 
 
                             </div>
@@ -728,7 +732,8 @@
                                                 <a
                                                     href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                             </div>
-                                            <h2 style="overflow: hidden;
+                                            <h2
+                                                style="overflow: hidden;
                                             line-height: 1.3em;
                                             padding: 16px 0 0;
                                             margin-bottom: 12px;
@@ -739,9 +744,11 @@
                                             -webkit-box-orient: vertical;
                                             min-height: 70px;
                                             height: 30px;
-                                            box-sizing: border-box;"><a
+                                            box-sizing: border-box;">
+                                                <a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                    {{ Str::limit($product->product_name, 48, '...') }} </a></h2>
+                                                    {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                            </h2>
 
 
 

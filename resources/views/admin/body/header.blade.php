@@ -1,4 +1,5 @@
 <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand">
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
@@ -81,7 +82,6 @@
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Notifications</p>
-                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
                                 </div>
                             </a>
                             @php
@@ -90,8 +90,10 @@
                             <div class="header-notifications-list">
                                 @forelse ($user->notifications as $notification)
                                     @if ($notification->data['type'] == 'new_order')
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
+                                        <a class="dropdown-item" href="{{ route('pending.order') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusNewOrder(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
                                                 <div class="notify bg-light-danger text-danger"><i
                                                         class="bx bx-cart-alt"></i>
                                                 </div>
@@ -104,8 +106,10 @@
                                             </div>
                                         </a>
                                     @elseif($notification->data['type'] == 'return_order')
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
+                                        <a class="dropdown-item" href="{{ route('admin.return.request') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusReturnOrder(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
                                                 <div class="notify bg-light-info text-info"><i
                                                         class="fadeIn animated bx bx-sync"></i>
                                                 </div>
@@ -118,8 +122,10 @@
                                             </div>
                                         </a>
                                     @elseif($notification->data['type'] == 'cancel_order')
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
+                                        <a class="dropdown-item" href="{{ route('admin.cancel.request') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusCancelOrder(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
                                                 <div class="notify bg-light-secondary text-secondary"><i
                                                         class="fadeIn animated bx bx-x-circle"></i>
                                                 </div>
@@ -132,8 +138,10 @@
                                             </div>
                                         </a>
                                     @elseif($notification->data['type'] == 'new_customer')
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
+                                        <a class="dropdown-item" href="{{ route('all.user') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusNewCustomer(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
                                                 <div class="notify bg-light-primary text-primary"><i
                                                         class="bx bx-user-pin"></i>
                                                 </div>
@@ -146,8 +154,10 @@
                                             </div>
                                         </a>
                                     @elseif($notification->data['type'] == 'new_vendor')
-                                        <a class="dropdown-item" href="javascript:;">
-                                            <div class="d-flex align-items-center">
+                                        <a class="dropdown-item" href="{{ route('inactive.vendor') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusNewVendor(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
                                                 <div class="notify bg-light-success text-success"><i
                                                         class="bx bx-group"></i>
                                                 </div>
@@ -159,13 +169,80 @@
                                                 </div>
                                             </div>
                                         </a>
+                                    @elseif($notification->data['type'] == 'new_blog_comment')
+                                        <a class="dropdown-item" href="{{ route('admin.blog.comment') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusBlogComment(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="bx bx-message-detail"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Comments <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_contact_message')
+                                        <a class="dropdown-item" href="{{ route('admin.contact.message') }}"
+                                            id="{{ $notification->id }}"
+                                            onclick="updateStatusNewContactMessage(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-warning text-warning"><i
+                                                        class="lni lni-telegram-original"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Contact Message <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_review_product')
+                                        <a class="dropdown-item" href="{{ route('admin.pending.review') }}"
+                                            id="{{ $notification->id }}"
+                                            onclick="updateStatusNewReviewProduct(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-info text-info"><i
+                                                        class="lni lni-star"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Review<span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'new_subscriber')
+                                        <a class="dropdown-item" href="{{ route('admin_subscribers') }}"
+                                            id="{{ $notification->id }}"
+                                            onclick="updateStatusNewSubscriber(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-primary text-primary"><i
+                                                        class="lni lni-emoji-happy"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">New Subscriber<span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
+                                            </div>
+                                        </a>
                                     @endif
                                 @empty
                                     <p class="text-center">There are no new notifications.</p>
                                 @endforelse
                             </div>
-                            <a href="javascript:;">
-                                <div class="text-center msg-footer">View All Notifications</div>
+                            <a href="{{ route('admin.delete.all.notification') }}" id="delete">
+                                <div class="text-center msg-footer">Delete All Notifications</div>
                             </a>
                         </div>
                         {{-- End Notification --}}
@@ -375,4 +452,112 @@
             </div>
         </nav>
     </div>
+    <script type="text/javascript">
+        function updateStatusNewOrder(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-order/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusReturnOrder(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/return-order/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusCancelOrder(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/cancel-order/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusNewCustomer(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-customer/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusNewVendor(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-vendor/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusBlogComment(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/blog-comment/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusNewContactMessage(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-contact-message/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusNewReviewProduct(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-review-product/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusNewSubscriber(id) {
+            $.ajax({
+                type: "GET",
+                url: "/updated-status/new-subscriber/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
 </header>

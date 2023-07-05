@@ -90,13 +90,15 @@
                                 </td>
 
                                 <td>
-                                    <span class="badge rounded-pill bg-danger" style="font-size: 13px;">
+                                    <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
                                         Pending</span>
                                 </td>
 
                                 <td>
                                     <a href="{{ route('admin.review.details', $item->id) }}" class="btn btn-info"><i
                                             class="fa fa-eye" title="Details"></i></a>
+                                    <a href="{{ route('admin.review.delete', $item->id) }}" class="btn btn-danger"
+                                        id="delete"><i class="fa fa-trash" title="Delete Data"></i></a>
                                 </td>
                             </tr>
                         @endforeach

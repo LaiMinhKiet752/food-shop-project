@@ -12,23 +12,22 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Advance Salary</li>
+                    <li class="breadcrumb-item active" aria-current="page">Search Pay Salary By Month</li>
                 </ol>
             </nav>
         </div>
-        @if (Auth::user()->can('employee.salary.add'))
-            <div class="ms-auto">
-                <div class="btn-group">
-                    <a href="{{ route('add.advance.salary') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
-                            New</i></a>
-                </div>
+        <div class="ms-auto">
+            <div class="btn-group">
+                <a href="{{ route('month.salary') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
+                        Back</i></a>
             </div>
-        @endif
+        </div>
     </div>
     <!--end breadcrumb-->
     <hr />
     <div class="card">
         <div class="card-body">
+            <h3 class="hearder-title text-center">{{ date('m',strtotime($month)) }} - {{ $year }}</h3>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -41,11 +40,12 @@
                             <th>Year</th>
                             <th>Salary(USD)</th>
                             <th>Advance Salary(USD)</th>
-                            <th>Action</th>
+                            <th>Due Salary(USD)</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($salary as $key => $item)
+                        @foreach ($paidsalary as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>
@@ -54,20 +54,14 @@
                                 </td>
                                 <td>{{ $item->employee->employee_code }}</td>
                                 <td>{{ $item->employee->employee_name }}</td>
-                                <td>{{ date('m', strtotime($item->month)) }}</td>
-                                <td>{{ $item->year }}</td>
-                                <td>{{ $item->employee->salary }}</td>
+                                <td>{{ date('m',strtotime($item->salary_month)) }}</td>
+                                <td>{{ $item->salary_year }}</td>
+                                <td>{{ $item->paid_amount }}</td>
                                 <td>{{ $item->advance_salary }}</td>
+                                <td>{{ $item->due_salary }}</td>
                                 <td>
-                                    @if (Auth::user()->can('employee.salary.edit'))
-                                        <a href="{{ route('edit.advance.salary', $item->id) }}"
-                                            class="btn btn-warning">Edit</a>
-                                    @endif
-
-                                    @if (Auth::user()->can('employee.salary.delete'))
-                                        <a href="{{ route('delete.advance.salary', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
-                                    @endif
+                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                        Full Paid</span>
                                 </td>
                             </tr>
                         @endforeach
@@ -82,7 +76,8 @@
                             <th>Year</th>
                             <th>Salary(USD)</th>
                             <th>Advance Salary(USD)</th>
-                            <th>Action</th>
+                            <th>Due Salary(USD)</th>
+                            <th>Status</th>
                         </tr>
                     </tfoot>
                 </table>

@@ -81,7 +81,6 @@
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Notifications</p>
-                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
                                 </div>
                             </a>
                             @php
@@ -106,7 +105,7 @@
                                 @endforelse
                             </div>
                             <a href="javascript:;">
-                                <div class="text-center msg-footer">View All Notifications</div>
+                                <div class="text-center msg-footer">Delete All Notifications</div>
                             </a>
                         </div>
                     </li>

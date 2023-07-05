@@ -9,9 +9,12 @@ use App\Models\BlogComment;
 use App\Models\BlogPost;
 use App\Models\Product;
 use App\Models\User;
+use App\Notifications\NewBlogCommentNotification;
 use Intervention\Image\ImageManagerStatic as Image;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -288,6 +291,11 @@ class BlogController extends Controller
                     'comment' => $request->comment,
                     'created_at' => Carbon::now(),
                 ]);
+
+                $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
+                //Notification To Admin
+                Notification::send($all_admin_user, new NewBlogCommentNotification($request));
+
                 $notification = array(
                     'message' => 'Post Comment Successfully!',
                     'alert-type' => 'success',
@@ -303,6 +311,14 @@ class BlogController extends Controller
         } else {
             return redirect()->to('/login');
         }
+    } // End Method
+
+    public function UpdateStatusBlogComment($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
     } // End Method
 
 }
