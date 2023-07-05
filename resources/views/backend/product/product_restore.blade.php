@@ -12,19 +12,13 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Product: <span
+                    <li class="breadcrumb-item active" aria-current="page">All Products: <span
                             class="badge rounded-pill bg-danger">{{ count($products) }}</span></li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
-            @if (!$products->isEmpty())
-                <div class="btn-group">
-                    <a href="{{ route('restore.all.product.submit') }}" class="btn btn-danger"
-                        id="restore_all_product"><i class="lni lni-angle-double-up"> Restore All Product</i></a>
-                </div>
-            @else
-            @endif
+
         </div>
     </div>
     <!--end breadcrumb-->

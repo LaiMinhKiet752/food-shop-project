@@ -12,7 +12,8 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Blog Category</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Blog Categories <span
+                        class="badge rounded-pill bg-danger">{{ count($blogcategories) }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -31,7 +32,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Blog Category Name </th>
+                            <th>Blog Category</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -52,7 +53,7 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Blog Category Name </th>
+                            <th>Blog Category</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

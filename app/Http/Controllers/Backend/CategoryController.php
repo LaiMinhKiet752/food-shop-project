@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Category;
-
+use App\Models\Product;
 
 class CategoryController extends Controller
 {
@@ -175,6 +175,7 @@ class CategoryController extends Controller
     public function DeleteCategory($id)
     {
         $category = Category::findOrFail($id);
+        Product::where('category_id', $id)->update(['status' => 0]);
         $img = $category->category_image;
         unlink($img);
         Category::findOrFail($id)->delete();
@@ -194,18 +195,9 @@ class CategoryController extends Controller
     public function RestoreCategorySubmit($id)
     {
         Category::whereId($id)->restore();
+        Product::where('category_id', $id)->update(['status' => 1]);
         $notification = array(
             'message' => 'Category Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreAllCategorySubmit()
-    {
-        Category::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Category Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

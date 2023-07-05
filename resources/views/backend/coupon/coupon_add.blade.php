@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Coupon Discount(%) <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">Discount(%) <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="coupon_discount" class="form-control"
@@ -96,7 +96,7 @@
                 },
                 coupon_discount: {
                     required: true,
-                    digits: true,
+                    number: true,
                     min: 1,
                     max: 100,
                 },
@@ -111,7 +111,7 @@
                 },
                 coupon_discount: {
                     required: 'Please enter coupon discount.',
-                    digits: 'Please enter only positive integers.',
+                    number: 'Please enter only positive integers or decimals.',
                     min: 'Coupon discount must be greater than 0.',
                     max: 'Coupon discount must be less than or equal 100.',
                 },

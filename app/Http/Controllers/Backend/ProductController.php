@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function AllProduct()
     {
-        $products = Product::latest()->get();
+        $products = Product::orderBy('status','DESC')->latest()->get();
         return view('backend.product.product_all', compact('products'));
     } //End Method
 
@@ -399,16 +399,6 @@ class ProductController extends Controller
         Product::whereId($id)->restore();
         $notification = array(
             'message' => 'Product Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreAllProductSubmit()
-    {
-        Product::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Product Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

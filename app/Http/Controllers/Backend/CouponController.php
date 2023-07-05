@@ -128,14 +128,4 @@ class CouponController extends Controller
         );
         return redirect()->back()->with($notification);
     } //End Method
-
-    public function RestoreAllCouponSubmit()
-    {
-        Coupon::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Coupon Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
 }

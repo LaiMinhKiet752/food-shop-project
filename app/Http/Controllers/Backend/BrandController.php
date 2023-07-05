@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -740,6 +741,7 @@ class BrandController extends Controller
     public function DeleteBrand($id)
     {
         $brand = Brand::findOrFail($id);
+        Product::where('brand_id', $id)->update(['status' => 0]);
         $img = $brand->brand_image;
         unlink($img);
         Brand::findOrFail($id)->delete();
@@ -759,18 +761,9 @@ class BrandController extends Controller
     public function RestoreBrandSubmit($id)
     {
         Brand::whereId($id)->restore();
+        Product::where('brand_id', $id)->update(['status' => 1]);
         $notification = array(
             'message' => 'Brand Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreAllBrandSubmit()
-    {
-        Brand::onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Brand Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

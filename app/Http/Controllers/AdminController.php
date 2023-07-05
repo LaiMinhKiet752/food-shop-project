@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\WebsiteMail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -217,6 +218,7 @@ class AdminController extends Controller
             'status' => 'active',
             'email_verified_at' => Carbon::now(),
         ]);
+        Product::where('vendor_id', $vendor_id)->update(['status' => 1]);
         $notification = array(
             'message' => 'Vendor Activated Successfully!',
             'alert-type' => 'success',
@@ -254,6 +256,7 @@ class AdminController extends Controller
         User::findOrFail($vendor_id)->update([
             'status' => 'inactive',
         ]);
+        Product::where('vendor_id', $vendor_id)->update(['status' => 0]);
         $notification = array(
             'message' => 'Vendor Inactivated Successfully!',
             'alert-type' => 'success',
@@ -531,7 +534,7 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     } // End Method
-
+    
     public function DeleteAllNotification()
     {
         $user_id = Auth::user()->id;

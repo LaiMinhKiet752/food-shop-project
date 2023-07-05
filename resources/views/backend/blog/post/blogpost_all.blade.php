@@ -12,13 +12,14 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All Blog Post</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Blog Posts <span
+                        class="badge rounded-pill bg-danger">{{ count($blogpost) }}</span></li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                <a href="{{ route('add.blog.post') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New                       Post</i></a>
+                <a href="{{ route('add.blog.post') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
             </div>
         </div>
     </div>
@@ -32,7 +33,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Post Image </th>
-                            <th>Post Category </th>
+                            <th>Blog Category </th>
                             <th>Post Title </th>
                             <th>Views</th>
                             <th>Action</th>
@@ -58,7 +59,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Post Image </th>
-                            <th>Post Category </th>
+                            <th>Blog Category </th>
                             <th>Post Title </th>
                             <th>Views</th>
                             <th>Action</th>

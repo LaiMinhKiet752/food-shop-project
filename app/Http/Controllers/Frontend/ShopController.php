@@ -18,12 +18,12 @@ class ShopController extends Controller
         if (!empty($_GET['brand'])) {
             $slugs = explode(',', $_GET['brand']);
             $brand_id = Brand::select('id')->whereIn('brand_slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('brand_id', $brand_id)->get();
+            $products = Product::whereIn('brand_id', $brand_id)->where('status', 1)->get();
         }
         if (!empty($_GET['category'])) {
             $slugs = explode(',', $_GET['category']);
             $catId = Category::select('id')->whereIn('category_slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('category_id', $catId)->get();
+            $products = Product::whereIn('category_id', $catId)->where('status', 1)->get();
         }
         if (!empty($_GET['price'])) {
             $price = explode('-', $_GET['price']);

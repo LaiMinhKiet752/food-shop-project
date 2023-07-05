@@ -17,13 +17,7 @@
             </nav>
         </div>
         <div class="ms-auto">
-            @if (!$coupon->isEmpty())
-                <div class="btn-group">
-                    <a href="{{ route('restore.all.coupon.submit') }}" class="btn btn-danger" id="restore_all_coupon"><i
-                            class="lni lni-angle-double-up"> Restore All Coupon</i></a>
-                </div>
-            @else
-            @endif
+
         </div>
     </div>
     <!--end breadcrumb-->
@@ -37,7 +31,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Coupon Code</th>
-                            <th>Coupon Discount</th>
+                            <th>Discount(%)</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -59,7 +53,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Coupon Code</th>
-                            <th>Coupon Discount</th>
+                            <th>Discount(%)</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

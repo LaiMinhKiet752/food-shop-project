@@ -41,7 +41,7 @@
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">City, Province Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">City, Province <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="city_name" class="form-control"

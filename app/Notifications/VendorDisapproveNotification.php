@@ -55,7 +55,8 @@ class VendorDisapproveNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message'=>'Your account has been disapproved'
+            'message'=>'Your account has been disapproved',
+            'type'=>'vendor_disapprove',
         ];
     }
 }

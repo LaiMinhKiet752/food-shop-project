@@ -247,170 +247,184 @@
                         </div>
                         {{-- End Notification --}}
                     </li>
-                    <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span
-                                class="alert-count">8</span>
-                            <i class='bx bx-comment'></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <a href="javascript:;">
-                                <div class="msg-header">
-                                    <p class="msg-header-title">Messages</p>
-                                    <p class="msg-header-clear ms-auto">Marks all as read</p>
-                                </div>
+
+                    <div style="display: none;">
+                        <li class="nav-item dropdown dropdown-large">
+                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative"
+                                href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span
+                                    class="alert-count">8</span>
+                                <i class='bx bx-comment'></i>
                             </a>
-                            <div class="header-message-list">
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-1.png') }}"
-                                                class="msg-avatar" alt="user avatar">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5 sec
-                                                    ago</span></h6>
-                                            <p class="msg-info">The standard chunk of lorem</p>
-                                        </div>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a href="javascript:;">
+                                    <div class="msg-header">
+                                        <p class="msg-header-title">Messages</p>
+                                        <p class="msg-header-clear ms-auto">Marks all as read</p>
                                     </div>
                                 </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-2.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                <div class="header-message-list">
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-1.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Daisy Anderson <span class="msg-time float-end">5
+                                                        sec
+                                                        ago</span></h6>
+                                                <p class="msg-info">The standard chunk of lorem</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Althea Cabardo <span class="msg-time float-end">14
-                                                    sec ago</span></h6>
-                                            <p class="msg-info">Many desktop publishing packages</p>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-2.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Althea Cabardo <span
+                                                        class="msg-time float-end">14
+                                                        sec ago</span></h6>
+                                                <p class="msg-info">Many desktop publishing packages</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-3.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-3.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8
+                                                        min
+                                                        ago</span></h6>
+                                                <p class="msg-info">Various versions have evolved over</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Oscar Garner <span class="msg-time float-end">8 min
-                                                    ago</span></h6>
-                                            <p class="msg-info">Various versions have evolved over</p>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-4.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Katherine Pechon <span
+                                                        class="msg-time float-end">15
+                                                        min ago</span></h6>
+                                                <p class="msg-info">Making this the first true generator</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-4.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-5.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22
+                                                        min
+                                                        ago</span></h6>
+                                                <p class="msg-info">Duis aute irure dolor in reprehenderit</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Katherine Pechon <span class="msg-time float-end">15
-                                                    min ago</span></h6>
-                                            <p class="msg-info">Making this the first true generator</p>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-6.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2
+                                                        hrs
+                                                        ago</span></h6>
+                                                <p class="msg-info">The passage is attributed to an unknown</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-5.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-7.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">James Caviness <span class="msg-time float-end">4
+                                                        hrs
+                                                        ago</span></h6>
+                                                <p class="msg-info">The point of using Lorem</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Amelia Doe <span class="msg-time float-end">22 min
-                                                    ago</span></h6>
-                                            <p class="msg-info">Duis aute irure dolor in reprehenderit</p>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-8.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6
+                                                        hrs
+                                                        ago</span></h6>
+                                                <p class="msg-info">It was popularised in the 1960s</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-6.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-9.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">David Buckley <span class="msg-time float-end">2
+                                                        hrs
+                                                        ago</span></h6>
+                                                <p class="msg-info">Various versions have evolved over</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Cristina Jhons <span class="msg-time float-end">2 hrs
-                                                    ago</span></h6>
-                                            <p class="msg-info">The passage is attributed to an unknown</p>
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-10.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2
+                                                        days
+                                                        ago</span></h6>
+                                                <p class="msg-info">If you are going to use a passage</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-7.png') }}"
-                                                class="msg-avatar" alt="user avatar">
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:;">
+                                        <div class="d-flex align-items-center">
+                                            <div class="user-online">
+                                                <img src="{{ asset('adminbackend/assets/images/avatars/avatar-11.png') }}"
+                                                    class="msg-avatar" alt="user avatar">
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5
+                                                        days
+                                                        ago</span></h6>
+                                                <p class="msg-info">All the Lorem Ipsum generators</p>
+                                            </div>
                                         </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">James Caviness <span class="msg-time float-end">4 hrs
-                                                    ago</span></h6>
-                                            <p class="msg-info">The point of using Lorem</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-8.png') }}"
-                                                class="msg-avatar" alt="user avatar">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Peter Costanzo <span class="msg-time float-end">6 hrs
-                                                    ago</span></h6>
-                                            <p class="msg-info">It was popularised in the 1960s</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-9.png') }}"
-                                                class="msg-avatar" alt="user avatar">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">David Buckley <span class="msg-time float-end">2 hrs
-                                                    ago</span></h6>
-                                            <p class="msg-info">Various versions have evolved over</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-10.png') }}"
-                                                class="msg-avatar" alt="user avatar">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Thomas Wheeler <span class="msg-time float-end">2
-                                                    days
-                                                    ago</span></h6>
-                                            <p class="msg-info">If you are going to use a passage</p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item" href="javascript:;">
-                                    <div class="d-flex align-items-center">
-                                        <div class="user-online">
-                                            <img src="{{ asset('adminbackend/assets/images/avatars/avatar-11.png') }}"
-                                                class="msg-avatar" alt="user avatar">
-                                        </div>
-                                        <div class="flex-grow-1">
-                                            <h6 class="msg-name">Johnny Seitz <span class="msg-time float-end">5 days
-                                                    ago</span></h6>
-                                            <p class="msg-info">All the Lorem Ipsum generators</p>
-                                        </div>
-                                    </div>
+                                    </a>
+                                </div>
+                                <a href="javascript:;">
+                                    <div class="text-center msg-footer">View All Messages</div>
                                 </a>
                             </div>
-                            <a href="javascript:;">
-                                <div class="text-center msg-footer">View All Messages</div>
-                            </a>
-                        </div>
-                    </li>
+                        </li>
+                    </div>
+                    
                 </ul>
             </div>
 
@@ -456,7 +470,7 @@
         function updateStatusNewOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-order/" + id,
+                url: "/update-status/new-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -468,7 +482,7 @@
         function updateStatusReturnOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/return-order/" + id,
+                url: "/update-status/return-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -480,7 +494,7 @@
         function updateStatusCancelOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/cancel-order/" + id,
+                url: "/update-status/cancel-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -492,7 +506,7 @@
         function updateStatusNewCustomer(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-customer/" + id,
+                url: "/update-status/new-customer/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -504,7 +518,7 @@
         function updateStatusNewVendor(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-vendor/" + id,
+                url: "/update-status/new-vendor/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -516,7 +530,7 @@
         function updateStatusBlogComment(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/blog-comment/" + id,
+                url: "/update-status/blog-comment/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -528,7 +542,7 @@
         function updateStatusNewContactMessage(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-contact-message/" + id,
+                url: "/update-status/new-contact-message/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -540,7 +554,7 @@
         function updateStatusNewReviewProduct(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-review-product/" + id,
+                url: "/update-status/new-review-product/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -552,7 +566,7 @@
         function updateStatusNewSubscriber(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-subscriber/" + id,
+                url: "/update-status/new-subscriber/" + id,
                 dataType: "json",
                 success: function(data) {
 

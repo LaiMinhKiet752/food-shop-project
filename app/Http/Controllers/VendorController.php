@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Mail\WebsiteMail;
 use App\Notifications\VendorRegisterNotification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -262,4 +263,32 @@ class VendorController extends Controller
     {
         return response()->json(['captcha' => captcha_img('flat')]);
     }
+
+    public function UpdateStatusVendorApprove($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
+
+    public function UpdateStatusVendorDisapprove($id)
+    {
+        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
+        return response()->json([
+            'success' => 'OK!'
+        ]);
+    } // End Method
+
+    public function DeleteAllNotification()
+    {
+        $user_id = Auth::user()->id;
+        DB::table('notifications')->where('notifiable_id', $user_id)->delete();
+
+        $notification = array(
+            'message' => 'Successfully Deleted All Notifications!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } // End Method
 }

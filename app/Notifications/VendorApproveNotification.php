@@ -55,7 +55,8 @@ class VendorApproveNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message'=>'Your account has been approved'
+            'message'=>'Your account has been approved',
+            'type'=>'vendor_approve',
         ];
     }
 }

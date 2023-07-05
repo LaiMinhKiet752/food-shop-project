@@ -12,7 +12,8 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Active Vendor</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Vendors Are Active <span
+                        class="badge rounded-pill bg-danger">{{ count($activeVendor) }}</span></li>
                 </ol>
             </nav>
         </div>

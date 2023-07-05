@@ -340,7 +340,9 @@
                             <label class="fw-900">Category</label>
                             @foreach ($categories as $category)
                                 @php
-                                    $products = App\Models\Product::where('category_id', $category->id)->get();
+                                    $products = App\Models\Product::where('category_id', $category->id)
+                                        ->where('status', 1)
+                                        ->get();
                                 @endphp
 
                                 <div class="custome-checkbox">
@@ -351,7 +353,8 @@
                                         onchange="this.form.submit()" />
                                     <label class="form-check-label"
                                         for="exampleCheckbox{{ $category->id }}"><span>{{ $category->category_name }}
-                                            ({{ count($products) }})</span></label>
+                                            ({{ count($products) }})
+                                        </span></label>
 
                                 </div>
                             @endforeach
