@@ -43,7 +43,7 @@
                                 <input type="hidden" name="id" value="{{ $commune->id }}">
                                 <div class="row mb-3 ">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">City, Province Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">City, Province <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="city_id" class="form-select mb-3 single-select"
@@ -62,7 +62,7 @@
 
                                 <div class="row mb-3 ">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">District Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">District <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-dark">
                                         <select name="district_id" class="form-select mb-3 single-select"
@@ -81,7 +81,7 @@
 
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Commune Name <span class="text-danger">*</span></h6>
+                                        <h6 class="mb-0">Commune <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
                                         <input type="text" name="commune_name" class="form-control"

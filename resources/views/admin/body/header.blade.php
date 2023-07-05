@@ -456,7 +456,7 @@
         function updateStatusNewOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-order/" + id,
+                url: "/update-status/new-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -468,7 +468,7 @@
         function updateStatusReturnOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/return-order/" + id,
+                url: "/update-status/return-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -480,7 +480,7 @@
         function updateStatusCancelOrder(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/cancel-order/" + id,
+                url: "/update-status/cancel-order/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -492,7 +492,7 @@
         function updateStatusNewCustomer(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-customer/" + id,
+                url: "/update-status/new-customer/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -504,7 +504,7 @@
         function updateStatusNewVendor(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-vendor/" + id,
+                url: "/update-status/new-vendor/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -516,7 +516,7 @@
         function updateStatusBlogComment(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/blog-comment/" + id,
+                url: "/update-status/blog-comment/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -528,7 +528,7 @@
         function updateStatusNewContactMessage(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-contact-message/" + id,
+                url: "/update-status/new-contact-message/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -540,7 +540,7 @@
         function updateStatusNewReviewProduct(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-review-product/" + id,
+                url: "/update-status/new-review-product/" + id,
                 dataType: "json",
                 success: function(data) {
 
@@ -552,7 +552,7 @@
         function updateStatusNewSubscriber(id) {
             $.ajax({
                 type: "GET",
-                url: "/updated-status/new-subscriber/" + id,
+                url: "/update-status/new-subscriber/" + id,
                 dataType: "json",
                 success: function(data) {
 

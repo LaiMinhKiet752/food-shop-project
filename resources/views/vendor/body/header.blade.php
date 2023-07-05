@@ -1,4 +1,5 @@
 <header>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand">
             <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
@@ -88,23 +89,45 @@
                             @endphp
                             <div class="header-notifications-list">
                                 @forelse ($user->notifications as $notification)
-                                    <a class="dropdown-item" href="javascript:;">
-                                        <div class="d-flex align-items-center">
-                                            <div class="notify bg-light-warning text-warning"><i class="bx bx-send"></i>
+                                    @if ($notification->data['type'] == 'vendor_approve')
+                                        <a class="dropdown-item" href="{{ route('vendor.dashboard') }}"
+                                            id="{{ $notification->id }}" onclick="updateStatusVendorApprove(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-success text-success"><i
+                                                        class="fadeIn animated bx bx-comment-check"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Account is activated <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <h6 class="msg-name">Message <span
-                                                        class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                                                </h6>
-                                                <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                        </a>
+                                    @elseif($notification->data['type'] == 'vendor_disapprove')
+                                        <a class="dropdown-item" href="{{ route('vendor.dashboard') }}"
+                                            id="{{ $notification->id }}"
+                                            onclick="updateStatusVendorDisapprove(this.id)">
+                                            <div
+                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
+                                                <div class="notify bg-light-danger text-danger"><i
+                                                        class="fadeIn animated bx bx-comment-x"></i>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="msg-name">Account is locked <span
+                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
+                                                    </h6>
+                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </a>
+                                    @endif
                                 @empty
-                                <p class="text-center">There are no new notifications.</p>
+                                    <p class="text-center">There are no new notifications.</p>
                                 @endforelse
                             </div>
-                            <a href="javascript:;">
+                            <a href="{{ route('vendor.delete.all.notification') }}" id="delete">
                                 <div class="text-center msg-footer">Delete All Notifications</div>
                             </a>
                         </div>
@@ -315,4 +338,28 @@
             </div>
         </nav>
     </div>
+    <script type="text/javascript">
+        function updateStatusVendorApprove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/vendor/update-status/vendor-approve/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
+    <script type="text/javascript">
+        function updateStatusVendorDisapprove(id) {
+            $.ajax({
+                type: "GET",
+                url: "/vedor/update-status/vendor-disapprove/" + id,
+                dataType: "json",
+                success: function(data) {
+
+                }
+            });
+        }
+    </script>
 </header>

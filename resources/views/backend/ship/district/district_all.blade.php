@@ -12,7 +12,8 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">All District</li>
+                    <li class="breadcrumb-item active" aria-current="page">All Districts <span
+                        class="badge rounded-pill bg-danger">{{ count($district) }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -32,8 +33,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>City, Province Name </th>
-                            <th>District Name </th>
+                            <th>City, Province</th>
+                            <th>District</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -54,8 +55,8 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>City, Province Name </th>
-                            <th>District Name </th>
+                            <th>City, Province</th>
+                            <th>District</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

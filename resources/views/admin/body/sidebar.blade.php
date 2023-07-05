@@ -186,12 +186,12 @@
                     <div class="menu-title">Shipping Area</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('all.city') }}"><i class="bx bx-right-arrow-alt"></i>All City,
-                            Province</a>
+                    <li> <a href="{{ route('all.city') }}"><i class="bx bx-right-arrow-alt"></i>All Cities,
+                            Provinces</a>
                     </li>
-                    <li> <a href="{{ route('all.district') }}"><i class="bx bx-right-arrow-alt"></i>All District</a>
+                    <li> <a href="{{ route('all.district') }}"><i class="bx bx-right-arrow-alt"></i>All Districts</a>
                     </li>
-                    <li> <a href="{{ route('all.commune') }}"><i class="bx bx-right-arrow-alt"></i>All Commune</a>
+                    <li> <a href="{{ route('all.commune') }}"><i class="bx bx-right-arrow-alt"></i>All Communes</a>
                     </li>
                 </ul>
             </li>
@@ -485,8 +485,7 @@
                 <ul>
                     @if (Auth::user()->can('employee.salary.list'))
                         <li> <a href="{{ route('all.advance.salary') }}"><i class="bx bx-right-arrow-alt"></i>All
-                                Advance
-                                Salary</a>
+                                Employees Advance Salary</a>
                         </li>
                     @endif
 
@@ -496,7 +495,8 @@
                     @endif
 
                     @if (Auth::user()->can('employee.search.pay.salary.by.month'))
-                        <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Search Pay Salary By Month</a>
+                        <li> <a href="{{ route('month.salary') }}"><i class="bx bx-right-arrow-alt"></i>Search Pay
+                                Salary By Month</a>
                         </li>
                     @endif
 

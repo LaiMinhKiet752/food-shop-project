@@ -278,6 +278,17 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
         Route::get('/vendor/review/details/{id}', 'VendorReviewDetails')->name('vendor.review.details');
     });
+
+    //Vendor Notification All Route
+    Route::controller(VendorController::class)->group(function () {
+
+        //Update Status Notification
+        Route::get('/vendor/update-status/vendor-approve/{id}', 'UpdateStatusVendorApprove');
+        Route::get('/vedor/update-status/vendor-disapprove/{id}', 'UpdateStatusVendorDisapprove');
+
+        //Vendor Delete All Notification
+        Route::get('/vendor/delete/all/notification', 'DeleteAllNotification')->name('vendor.delete.all.notification');
+    });
 }); //End Group Middleware Vendor
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
@@ -437,7 +448,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/amin/invoice/download/{order_id}', 'AdminInvoiceDownload')->name('admin.invoice.download');
 
         //Update Status Notification
-        Route::get('/updated-status/new-order/{id}', 'UpdateStatusNewOrder');
+        Route::get('/update-status/new-order/{id}', 'UpdateStatusNewOrder');
     });
 
     //Return Order All Route
@@ -448,7 +459,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/complete/return/request', 'CompleteReturnRequest')->name('admin.complete.return.request');
 
         //Update Status Notification
-        Route::get('/updated-status/return-order/{id}', 'UpdateStatusReturnOrder');
+        Route::get('/update-status/return-order/{id}', 'UpdateStatusReturnOrder');
     });
 
     //Cancel Order All Route
@@ -459,7 +470,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
 
         //Update Status Notification
-        Route::get('/updated-status/cancel-order/{id}', 'UpdateStatusCancelOrder');
+        Route::get('/update-status/cancel-order/{id}', 'UpdateStatusCancelOrder');
     });
 
     //Report All Route
@@ -478,8 +489,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
 
         //Update Status Notification
-        Route::get('/updated-status/new-customer/{id}', 'UpdateStatusNewCustomer');
-        Route::get('/updated-status/new-vendor/{id}', 'UpdateStatusNewVendor');
+        Route::get('/update-status/new-customer/{id}', 'UpdateStatusNewCustomer');
+        Route::get('/update-status/new-vendor/{id}', 'UpdateStatusNewVendor');
     });
 
     //Blog All Category Route
@@ -507,7 +518,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/blog/comment/reply/update', 'AdminReplyCommentUpdate')->name('admin.reply.comment.update');
 
         //Update Status Notification
-        Route::get('/updated-status/blog-comment/{id}', 'UpdateStatusBlogComment');
+        Route::get('/update-status/blog-comment/{id}', 'UpdateStatusBlogComment');
     });
 
     //Review All Route
@@ -519,7 +530,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/review/delete/{id}', 'ReviewDelete')->name('admin.review.delete');
 
         //Update Status Notification
-        Route::get('/updated-status/new-review-product/{id}', 'UpdateStatusNewReviewProduct');
+        Route::get('/update-status/new-review-product/{id}', 'UpdateStatusNewReviewProduct');
     });
 
     //Site Setting All Route
@@ -619,7 +630,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/contact/message/delete/{id}', 'ContactMessageDelete')->name('admin.contact.message.delete');
 
         //Update Status Notification
-        Route::get('/updated-status/new-contact-message/{id}', 'UpdateStatusNewContactMessage');
+        Route::get('/update-status/new-contact-message/{id}', 'UpdateStatusNewContactMessage');
     });
 
     //Subscriber All Route
@@ -630,7 +641,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/subscriber/send-email-submit', 'SendEmailSubmit')->name('admin_subscribers_send_email_submit');
 
         //Update Status Notification
-        Route::get('/updated-status/new-subscriber/{id}', 'UpdateStatusNewSubscriber');
+        Route::get('/update-status/new-subscriber/{id}', 'UpdateStatusNewSubscriber');
     });
 
     //Admin Delete All Notification
@@ -655,5 +666,3 @@ Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('ven
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);
-
-
