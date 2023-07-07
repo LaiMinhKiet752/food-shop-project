@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('position')->nullable();
             $table->string('experience')->nullable();
             $table->string('salary')->nullable();
-            $table->string('vacation')->nullable();
             $table->timestamps();
         });
     }

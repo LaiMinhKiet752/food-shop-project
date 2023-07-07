@@ -900,7 +900,7 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Discount Amount</h6>
+                                            <h6 class="text-muted">Discount </h6>
                                         </td>
                                         <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$${data.discount_amount}</h4>

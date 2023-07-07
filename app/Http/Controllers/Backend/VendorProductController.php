@@ -19,7 +19,7 @@ class VendorProductController extends Controller
     public function VendorAllProduct()
     {
         $id = Auth::user()->id;
-        $products = Product::where('vendor_id', $id)->orderBy('status','DESC')->latest()->get();
+        $products = Product::where('vendor_id', $id)->orderBy('status', 'DESC')->latest()->get();
         return view('vendor.backend.product.vendor_product_all', compact('products'));
     } // End Method
 
@@ -41,9 +41,9 @@ class VendorProductController extends Controller
         $id = Auth::user()->id;
         $product_check = Product::where('vendor_id', $id)->onlyTrashed()->get();
         foreach ($product_check as $product) {
-            if ($product['product_name'] == $request->product_name) {
+            if ($product['product_name'] == $request->product_name || $product['product_code'] == $request->product_code) {
                 $notification = array(
-                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'message' => "This Product Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
                     'alert-type' => 'warning',
                 );
                 return redirect()->back()->with($notification);
@@ -135,9 +135,9 @@ class VendorProductController extends Controller
         $id = Auth::user()->id;
         $product_check = Product::where('vendor_id', $id)->onlyTrashed()->get();
         foreach ($product_check as $product) {
-            if ($product['product_name'] == $request->product_name) {
+            if ($product['product_name'] == $request->product_name || $product['product_code'] == $request->product_code) {
                 $notification = array(
-                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'message' => "This Product Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
                     'alert-type' => 'warning',
                 );
                 return redirect()->back()->with($notification);
@@ -180,6 +180,8 @@ class VendorProductController extends Controller
                 'special_offer' => $request->special_offer,
                 'special_deals' => $request->special_deals,
 
+                'updated_by' => Auth::user()->id,
+
                 'status' => 1,
             ]);
 
@@ -216,6 +218,8 @@ class VendorProductController extends Controller
                 'featured' => $request->featured,
                 'special_offer' => $request->special_offer,
                 'special_deals' => $request->special_deals,
+
+                'updated_by' => Auth::user()->id,
 
                 'status' => 1,
             ]);
@@ -382,6 +386,7 @@ class VendorProductController extends Controller
     {
         $product = Product::findOrFail($id);
         unlink($product->product_thumbnail);
+        $product->update(['deleted_by' => Auth::user()->id]);
         Product::findOrFail($id)->delete();
         $images = MultiImage::where('product_id', $id)->get();
         foreach ($images as $image) {
@@ -412,21 +417,10 @@ class VendorProductController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
-    public function VendorRestoreAllProductSubmit()
-    {
-        $id = Auth::user()->id;
-        Product::where('vendor_id', $id)->onlyTrashed()->restore();
-        $notification = array(
-            'message' => 'All Product Restored Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
     public function VendorProductStock()
     {
         $id = Auth::user()->id;
         $products = Product::where('vendor_id', $id)->latest()->get();
-       return view('vendor.backend.product.vendor_product_stock',compact('products'));
+        return view('vendor.backend.product.vendor_product_stock', compact('products'));
     } //End Method
 }

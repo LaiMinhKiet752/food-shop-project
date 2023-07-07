@@ -648,7 +648,7 @@ class CartController extends Controller
         } else {
             $notification = array(
                 'message' => 'First You Need To Login To The Website!',
-                'alert-type' => 'error',
+                'alert-type' => 'warning',
             );
             return redirect()->route('login')->with($notification);
         }

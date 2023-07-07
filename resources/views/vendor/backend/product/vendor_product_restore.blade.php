@@ -18,13 +18,7 @@
             </nav>
         </div>
         <div class="ms-auto">
-            @if (!$products->isEmpty())
-                <div class="btn-group">
-                    <a href="{{ route('vendor.restore.all.product.submit') }}" class="btn btn-danger"
-                        id="vendor_restore_all_product"><i class="lni lni-angle-double-up"> Restore All Product</i></a>
-                </div>
-            @else
-            @endif
+
         </div>
     </div>
     <!--end breadcrumb-->
@@ -39,6 +33,8 @@
                             <th>No.</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Deleted By</th>
+                            <th>Deleted At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -48,6 +44,12 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_name }}</td>
+                                <td>
+                                    {{ $item->user->name }}
+                                </td>
+                                <td>
+                                    {{ $item->deleted_at->format('d-m-Y H:i:s') }}
+                                </td>
                                 <td>
                                     <a href="{{ route('vendor.restore.product.submit', $item->id) }}"
                                         class="btn btn-warning" id="vendor_restore_product">Restore</a>
@@ -60,6 +62,8 @@
                             <th>No.</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Deleted By</th>
+                            <th>Deleted At</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
