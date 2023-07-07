@@ -32,6 +32,8 @@
                             <th>No.</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Deleted By</th>
+                            <th>Deleted At</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -41,6 +43,12 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $item->product_code }}</td>
                                 <td>{{ $item->product_name }}</td>
+                                <td>
+                                    {{ $item->user->name }}
+                                </td>
+                                <td>
+                                    {{ $item->deleted_at->format('d-m-Y H:i:s') }}
+                                </td>
                                 <td>
                                     <a href="{{ route('restore.product.submit', $item->id) }}" class="btn btn-warning"
                                         id="restore_product">Restore</a>
@@ -53,6 +61,8 @@
                             <th>No.</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
+                            <th>Deleted By</th>
+                            <th>Deleted At</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

@@ -32,10 +32,7 @@
                 </a>
                 <ul>
                     <li> <a href="{{ route('vendor.all.product') }}"><i class="bx bx-right-arrow-alt"></i>All
-                            Product</a>
-                    </li>
-                    <li> <a href="{{ route('vendor.add.product') }}"><i class="bx bx-right-arrow-alt"></i>Add
-                            Product</a>
+                            Products</a>
                     </li>
                     <li> <a href="{{ route('vendor.restore.product') }}"><i class="bx bx-right-arrow-alt"></i>Restore
                             Product</a>
@@ -50,7 +47,7 @@
                     <div class="menu-title">Inventory</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('vendor.product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Stock</a>
+                    <li> <a href="{{ route('vendor.product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Warehouse</a>
                     </li>
                 </ul>
             </li>
@@ -89,7 +86,7 @@
                     <div class="menu-title">Review</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Review</a>
+                    <li> <a href="{{ route('vendor.all.review') }}"><i class="bx bx-right-arrow-alt"></i>All Reviews</a>
                     </li>
                 </ul>
             </li>

@@ -11,13 +11,14 @@ use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
 {
     public function AllProduct()
     {
-        $products = Product::orderBy('status','DESC')->latest()->get();
+        $products = Product::orderBy('status', 'DESC')->latest()->get();
         return view('backend.product.product_all', compact('products'));
     } //End Method
 
@@ -33,9 +34,9 @@ class ProductController extends Controller
     {
         $product_check = Product::onlyTrashed()->get();
         foreach ($product_check as $product) {
-            if ($product['product_name'] == $request->product_name) {
+            if ($product['product_name'] == $request->product_name || $product['product_code'] == $request->product_code) {
                 $notification = array(
-                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'message' => "This Product Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
                     'alert-type' => 'warning',
                 );
                 return redirect()->back()->with($notification);
@@ -128,9 +129,9 @@ class ProductController extends Controller
     {
         $product_check = Product::onlyTrashed()->get();
         foreach ($product_check as $product) {
-            if ($product['product_name'] == $request->product_name) {
+            if ($product['product_name'] == $request->product_name || $product['product_code'] == $request->product_code) {
                 $notification = array(
-                    'message' => "This Product Name Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
+                    'message' => "This Product Has Been Temporarily Removed. Please Check Again In 'Restore Product'",
                     'alert-type' => 'warning',
                 );
                 return redirect()->back()->with($notification);
@@ -172,6 +173,8 @@ class ProductController extends Controller
                 'special_offer' => $request->special_offer,
                 'special_deals' => $request->special_deals,
 
+                'updated_by' => Auth::user()->id,
+
                 'status' => 1,
             ]);
 
@@ -208,6 +211,8 @@ class ProductController extends Controller
                 'featured' => $request->featured,
                 'special_offer' => $request->special_offer,
                 'special_deals' => $request->special_deals,
+
+                'updated_by' => Auth::user()->id,
 
                 'status' => 1,
             ]);
@@ -375,6 +380,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         unlink($product->product_thumbnail);
+        $product->update(['deleted_by' => Auth::user()->id]);
         Product::findOrFail($id)->delete();
         $images = MultiImage::where('product_id', $id)->get();
         foreach ($images as $image) {
@@ -406,7 +412,7 @@ class ProductController extends Controller
 
     public function ProductStock()
     {
-       $products = Product::latest()->get();
-       return view('backend.product.product_stock',compact('products'));
+        $products = Product::latest()->get();
+        return view('backend.product.product_stock', compact('products'));
     } //End Method
 }
