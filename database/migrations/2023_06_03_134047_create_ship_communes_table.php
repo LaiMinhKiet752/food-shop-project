@@ -19,7 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('district_id');
             $table->string('commune_name');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
