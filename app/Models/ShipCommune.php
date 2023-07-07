@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ShipCommune extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     protected $guarded = [];
     public function city()
     {

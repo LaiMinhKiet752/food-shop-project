@@ -58,6 +58,8 @@ class ShippingAreaController extends Controller
 
     public function DeleteCity($id)
     {
+        ShipDistricts::where('city_id', $id)->delete();
+        ShipCommune::where('city_id', $id)->delete();
         ShipCity::findOrFail($id)->delete();
         $notification = array(
             'message' => 'City, Province Deleted Successfully!',
@@ -119,6 +121,7 @@ class ShippingAreaController extends Controller
 
     public function DeleteDistrict($id)
     {
+        ShipCommune::where('district_id', $id)->delete();
         ShipDistricts::findOrFail($id)->delete();
         $notification = array(
             'message' => 'District Deleted Successfully!',
