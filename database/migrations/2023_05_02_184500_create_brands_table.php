@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('brand_phone')->unique();
             $table->text('brand_address')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -65,6 +65,9 @@ class BlogController extends Controller
 
     public function DeleteBlogCateogry($id)
     {
+        $get_blog_id = BlogPost::where('category_id', $id)->select('id')->get();
+        BlogComment::whereIn('blog_post_id', $get_blog_id)->delete();
+        BlogPost::where('category_id', $id)->delete();
         BlogCategory::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Blog Category Deleted Successfully!',
@@ -177,6 +180,8 @@ class BlogController extends Controller
 
     public function DeleteBlogPost($id)
     {
+        $get_blog_id = BlogPost::where('id', $id)->select('id')->get();
+        BlogComment::whereIn('blog_post_id', $get_blog_id)->delete();
         $blogpost = BlogPost::findOrFail($id);
         $img = $blogpost->post_image;
         unlink($img);

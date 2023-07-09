@@ -257,7 +257,7 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
         Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
         Route::get('/vendor/restore/product', 'VendorRestoreProduct')->name('vendor.restore.product');
         Route::get('/vendor/restore/product/submit/{id}', 'VendorRestoreProductSubmit')->name('vendor.restore.product.submit');
-        Route::get('/vendor/restore/all/product/submit', 'VendorRestoreAllProductSubmit')->name('vendor.restore.all.product.submit');
+        Route::get('/vendor/product/force/delete/{id}', 'VendorForceDeleteProduct')->name('vendor.force.delete.product');
         Route::get('/vendor/product/stock', 'VendorProductStock')->name('vendor.product.stock');
     });
 
@@ -309,8 +309,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/brand/{id}', 'EditBrand')->name('edit.brand');
         Route::post('/update/brand', 'UpdateBrand')->name('update.brand');
         Route::get('/delete/brand/{id}', 'DeleteBrand')->name('delete.brand');
-        Route::get('/restore/brand', 'RestoreBrand')->name('restore.brand');
-        Route::get('/restore/brand/submit/{id}', 'RestoreBrandSubmit')->name('restore.brand.submit');
     });
 
     //Category All Route
@@ -321,8 +319,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
         Route::post('/update/category', 'UpdateCategory')->name('update.category');
         Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
-        Route::get('/restore/category', 'RestoreCategory')->name('restore.category');
-        Route::get('/restore/category/submit/{id}', 'RestoreCategorySubmit')->name('restore.category.submit');
+
     });
 
     //SubCategory All Route
@@ -333,8 +330,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/subcategory/{id}', 'EditSubcategory')->name('edit.subcategory');
         Route::post('/update/subcategory', 'UpdateSubcategory')->name('update.subcategory');
         Route::get('/delete/subcategory/{id}', 'DeleteSubcategory')->name('delete.subcategory');
-        Route::get('/restore/subcategory', 'RestoreSubcategory')->name('restore.subcategory');
-        Route::get('/restore/subcategory/submit/{id}', 'RestoreSubcategorySubmit')->name('restore.subcategory.submit');
         Route::get('/subcategory/ajax/{category_id}', 'GetSubCategory');
     });
 
@@ -354,6 +349,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/delete/product/{id}', 'DeleteProduct')->name('delete.product');
         Route::get('/restore/product', 'RestoreProduct')->name('restore.product');
         Route::get('/restore/product/submit/{id}', 'RestoreProductSubmit')->name('restore.product.submit');
+        Route::get('/product/force/delete/{id}', 'ForceDeleteProduct')->name('force.delete.product');
         Route::get('/product/stock', 'ProductStock')->name('product.stock');
     });
 
@@ -385,8 +381,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/coupon/{id}', 'EditCoupon')->name('edit.coupon');
         Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
         Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
-        Route::get('/restore/coupon', 'RestoreCoupon')->name('restore.coupon');
-        Route::get('/restore/coupon/submit/{id}', 'RestoreCouponSubmit')->name('restore.coupon.submit');
     });
 
     //Shipping City All Route

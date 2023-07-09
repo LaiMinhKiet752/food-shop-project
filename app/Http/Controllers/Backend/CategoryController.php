@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 
 class CategoryController extends Controller
 {
@@ -24,16 +25,6 @@ class CategoryController extends Controller
 
     public function StoreCategory(Request $request)
     {
-        $category_check = Category::onlyTrashed()->get();
-        foreach ($category_check as $category) {
-            if ($category['category_name'] == $request->category_name) {
-                $notification = array(
-                    'message' => "This Category Name Has Been Temporarily Removed. Please Check Again In 'Restore Category'",
-                    'alert-type' => 'warning',
-                );
-                return redirect()->back()->with($notification);
-            }
-        }
         $request->validate([
             'category_image' => 'image|max:2048',
             'category_name' => 'unique:categories'
@@ -73,16 +64,6 @@ class CategoryController extends Controller
 
         //With Image
         if ($request->file('category_image')) {
-            $category_check = Category::onlyTrashed()->get();
-            foreach ($category_check as $category) {
-                if ($category['category_name'] == $request->category_name) {
-                    $notification = array(
-                        'message' => "This Category Name Has Been Temporarily Removed. Please Check Again In 'Restore Category'",
-                        'alert-type' => 'warning',
-                    );
-                    return redirect()->back()->with($notification);
-                }
-            }
             $request->validate([
                 'category_image' => 'image|max:2048'
             ], [
@@ -135,16 +116,6 @@ class CategoryController extends Controller
         }
         //Without Image
         else {
-            $category_check = Category::onlyTrashed()->get();
-            foreach ($category_check as $category) {
-                if ($category['category_name'] == $request->category_name) {
-                    $notification = array(
-                        'message' => "This Category Name Has Been Temporarily Removed. Please Check Again In 'Restore Category'",
-                        'alert-type' => 'warning',
-                    );
-                    return redirect()->back()->with($notification);
-                }
-            }
             $current_category_name = Category::findOrFail($cat_id)->category_name;
             if ($current_category_name == $request->category_name) {
                 $notification = array(
@@ -176,28 +147,12 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         Product::where('category_id', $id)->update(['status' => 0]);
+        SubCategory::where('category_id', $id)->delete();
         $img = $category->category_image;
         unlink($img);
         Category::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Category Deleted Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreCategory()
-    {
-        $categories = Category::onlyTrashed()->get();
-        return view('backend.category.category_restore', compact('categories'));
-    } //End Method
-
-    public function RestoreCategorySubmit($id)
-    {
-        Category::whereId($id)->restore();
-        Product::where('category_id', $id)->update(['status' => 1]);
-        $notification = array(
-            'message' => 'Category Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

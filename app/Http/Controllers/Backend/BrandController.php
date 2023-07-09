@@ -23,16 +23,6 @@ class BrandController extends Controller
 
     public function StoreBrand(Request $request)
     {
-        $brand_check = Brand::onlyTrashed()->get();
-        foreach ($brand_check as $brand) {
-            if ($brand['brand_name'] == $request->brand_name) {
-                $notification = array(
-                    'message' => "This Brand Name Has Been Temporarily Removed. Please Check Again In 'Restore Brand'",
-                    'alert-type' => 'warning',
-                );
-                return redirect()->back()->with($notification);
-            }
-        }
         $request->validate([
             'brand_image' => 'image|max:2048',
             'brand_name' => 'unique:brands',
@@ -79,16 +69,6 @@ class BrandController extends Controller
 
         //With Image
         if ($request->file('brand_image')) {
-            $brand_check = Brand::onlyTrashed()->get();
-            foreach ($brand_check as $brand) {
-                if ($brand['brand_name'] == $request->brand_name) {
-                    $notification = array(
-                        'message' => "This Brand Name Has Been Temporarily Removed. Please Check Again In 'Restore Brand'",
-                        'alert-type' => 'warning',
-                    );
-                    return redirect()->back()->with($notification);
-                }
-            }
             $request->validate([
                 'brand_image' => 'image|max:2048'
             ], [
@@ -448,16 +428,6 @@ class BrandController extends Controller
 
         //Without Image
         else {
-            $brand_check = Brand::onlyTrashed()->get();
-            foreach ($brand_check as $brand) {
-                if ($brand['brand_name'] == $request->brand_name) {
-                    $notification = array(
-                        'message' => "This Brand Name Has Been Temporarily Removed. Please Check Again In 'Restore Brand'",
-                        'alert-type' => 'warning',
-                    );
-                    return redirect()->back()->with($notification);
-                }
-            }
             $current_brand_name = Brand::findOrFail($brand_id)->brand_name;
             $current_brand_email = Brand::findOrFail($brand_id)->brand_email;
             $current_brand_phone = Brand::findOrFail($brand_id)->brand_phone;
@@ -747,23 +717,6 @@ class BrandController extends Controller
         Brand::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Brand Deleted Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } //End Method
-
-    public function RestoreBrand()
-    {
-        $brands = Brand::onlyTrashed()->get();
-        return view('backend.brand.brand_restore', compact('brands'));
-    } //End Method
-
-    public function RestoreBrandSubmit($id)
-    {
-        Brand::whereId($id)->restore();
-        Product::where('brand_id', $id)->update(['status' => 1]);
-        $notification = array(
-            'message' => 'Brand Restored Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
