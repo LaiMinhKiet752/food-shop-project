@@ -22,55 +22,34 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
-    <title>Admin Login </title>
+    <title>Vendor Reset Password </title>
 </head>
 
-<body class="bg-login">
+<body>
     <!--wrapper-->
     <div class="wrapper">
-        <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
-            <div class="container-fluid">
-                <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
-                    <div class="col mx-auto">
-                        <div class="mb-4 text-center">
-                            <img src="{{ asset('adminbackend/assets/images/logo-img.png') }}" width="180"
-                                alt="" />
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="border p-4 rounded">
-                                    <div class="text-center">
-                                        <h3 class="">Admin Sign In</h3>
-                                    </div>
-                                    @if (session()->get('success'))
-                                        <div
-                                            class="alert alert-success border-0 bg-success alert-dismissible fade show">
-                                            <div class="text-white">{{ session()->get('success') }}</div>
-                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                aria-label="Close"></button>
-                                        </div>
-                                    @endif
-                                    @if ($errors->any())
-                                        @foreach ($errors->all() as $error)
-                                            <div
-                                                class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
-                                                <div class="text-white">{{ $error }}</div>
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                                    aria-label="Close"></button>
+        <div class="authentication-reset-password d-flex align-items-center justify-content-center">
+            <div class="row">
+                <div class="col-12 col-lg-10 mx-auto">
+                    <div class="card">
+                        <div class="row g-0">
+                            <div class="col-lg-5 border-end">
+                                <div class="card-body">
+                                    <form action="{{ route('vendor.reset.password.submit') }}" method="post"
+                                        id="myForm">
+                                        @csrf
+                                        <input type="hidden" name="token" value="{{ $token }}">
+                                        <input type="hidden" name="email" value="{{ $email }}">
+                                        <div class="p-5">
+                                            <div class="text-start">
+                                                <img src="{{ asset('adminbackend/assets/images/logo-img.png') }}"
+                                                    width="180" alt="">
                                             </div>
-                                        @endforeach
-                                    @endif
-                                    <div class="form-body">
-                                        <form class="row g-3" method="POST" action="{{ route('login') }}"
-                                            id="myForm">
-                                            @csrf
-                                            <div class="form-group col-12">
-                                                <label for="login" class="form-label">Username or Email <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" name="login" class="form-control" id="login"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group col-12">
+                                            <h4 class="mt-5 font-weight-bold">Genrate New Password</h4>
+                                            <p class="text-muted">We received your reset password request. Please enter
+                                                your
+                                                new password!</p>
+                                            <div class="form-group input-group mb-3 mt-5" id="show_hide_password">
                                                 <label for="password" class="form-label">Password <span
                                                         class="text-danger">*</span></label>
                                                 <div class="input-group" id="show_hide_password">
@@ -80,31 +59,32 @@
                                                             class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-check form-switch">
-                                                    <input class="form-check-input" type="checkbox"
-                                                        id="flexSwitchCheckChecked" checked>
-                                                    <label class="form-check-label"
-                                                        for="flexSwitchCheckChecked">Remember Me</label>
+                                            <div class="form-group mb-3">
+                                                <label for="password" class="form-label">Confirm Password <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="input-group" id="show_hide_retype_password">
+                                                    <input type="password" name="retype_password" class="form-control"
+                                                        id="retype_password" placeholder=""> <a href="javascript:;"
+                                                        class="input-group-text bg-transparent"><i
+                                                            class='bx bx-hide'></i></a>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 text-end"> <a
-                                                    href="{{ route('admin.forgot.password') }}">Forgot Password ?</a>
+                                            <div class="d-grid gap-2">
+                                                <button type="submit" class="btn btn-primary">Change Password</button>
+                                                <a href="{{ urL('admin/login') }}" class="btn btn-light"><i
+                                                        class='bx bx-arrow-back mr-1'></i>Back to Login</a>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="d-grid">
-                                                    <button type="submit" class="btn btn-primary"><i
-                                                            class="bx bxs-lock-open"></i>Sign in</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                        </div>
+                                    </form>
                                 </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <img src="{{ asset('adminbackend/assets/images/login-images/forgot-password-frent-img.jpg') }}"
+                                    class="card-img login-img h-100" alt="...">
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--end row-->
             </div>
         </div>
     </div>
@@ -135,6 +115,22 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $("#show_hide_retype_password a").on('click', function(event) {
+                event.preventDefault();
+                if ($('#show_hide_retype_password input').attr("type") == "text") {
+                    $('#show_hide_retype_password input').attr('type', 'password');
+                    $('#show_hide_retype_password i').addClass("bx-hide");
+                    $('#show_hide_retype_password i').removeClass("bx-show");
+                } else if ($('#show_hide_retype_password input').attr("type") == "password") {
+                    $('#show_hide_retype_password input').attr('type', 'text');
+                    $('#show_hide_retype_password i').removeClass("bx-hide");
+                    $('#show_hide_retype_password i').addClass("bx-show");
+                }
+            });
+        });
+    </script>
     <!--app JS-->
     <script src="{{ asset('adminbackend/assets/js/app.js') }}"></script>
 
@@ -144,19 +140,24 @@
         $(document).ready(function() {
             $('#myForm').validate({
                 rules: {
-                    login: {
-                        required: true,
-                    },
                     password: {
                         required: true,
+                        validatePassword: true,
+                        minlength: 8
+                    },
+                    retype_password: {
+                        required: true,
+                        equalTo: "#password",
                     },
                 },
                 messages: {
-                    login: {
-                        required: 'Please enter your username or email.',
-                    },
                     password: {
                         required: 'Please enter your password.',
+                        minlength: ''
+                    },
+                    retype_password: {
+                        required: 'Please enter your confirmation password.',
+                        equalTo: 'The confirmation password must be the same as the password.',
                     },
                 },
                 errorElement: 'span',
@@ -171,6 +172,13 @@
                     $(element).removeClass('is-invalid');
                 },
             });
+            $.validator.addMethod("validatePassword", function(value, element) {
+                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
+                        .test(
+                            value);
+                },
+                "Your password must be at least 8 characters long, must contain at least 1 Uppercase, 1 Lowercase, 1 Number and 1 special character."
+            );
         });
     </script>
 

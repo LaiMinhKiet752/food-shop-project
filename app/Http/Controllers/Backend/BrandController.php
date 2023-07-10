@@ -41,7 +41,7 @@ class BrandController extends Controller
         $save_url = 'upload/brand/' . $filename;
 
         $brand = new Brand();
-        $brand->brand_name = $request->brand_name;
+        $brand->brand_name =  strtoupper($request->brand_name);
         $brand->brand_email = $request->brand_email;
         $brand->brand_phone = $request->brand_phone;
         $brand->brand_address = $request->brand_address;
@@ -110,7 +110,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
                 ]);
@@ -183,7 +183,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
@@ -206,7 +206,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_phone' => $request->brand_phone,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
@@ -227,7 +227,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                     'brand_image' => $save_url,
@@ -314,7 +314,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_phone' => $request->brand_phone,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -338,7 +338,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -362,7 +362,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_phone' => $request->brand_phone,
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -411,7 +411,7 @@ class BrandController extends Controller
                 }
                 Image::make($file)->resize(1000, 1000)->save('upload/brand/' . $filename);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_phone' => $request->brand_phone,
                     'brand_address' => $request->brand_address,
@@ -446,7 +446,7 @@ class BrandController extends Controller
                     'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                 ]);
 
@@ -504,7 +504,7 @@ class BrandController extends Controller
                     'brand_email.unique' => 'The brand email already exists. Please enter another brand email.'
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                 ]);
@@ -523,7 +523,7 @@ class BrandController extends Controller
                     'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_phone' => $request->brand_phone,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                 ]);
@@ -540,7 +540,7 @@ class BrandController extends Controller
                     'brand_name.unique' => 'The brand name already exists. Please enter another brand name.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
                 ]);
@@ -611,7 +611,7 @@ class BrandController extends Controller
                     'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_phone' => $request->brand_phone,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -631,7 +631,7 @@ class BrandController extends Controller
                     'brand_email.unique' => 'The brand email already exists. Please enter another brand email.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -651,7 +651,7 @@ class BrandController extends Controller
                     'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_phone' => $request->brand_phone,
                     'brand_address' => $request->brand_address,
                     'brand_slug' => strtolower(str_replace(' ', '-', $request->brand_name)),
@@ -692,7 +692,7 @@ class BrandController extends Controller
                     'brand_phone.unique' => 'The phone number already exists. Please enter another phone number.',
                 ]);
                 Brand::findOrFail($brand_id)->update([
-                    'brand_name' => $request->brand_name,
+                    'brand_name' => strtoupper($request->brand_name),
                     'brand_email' => $request->brand_email,
                     'brand_phone' => $request->brand_phone,
                     'brand_address' => $request->brand_address,

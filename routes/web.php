@@ -647,11 +647,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     });
 }); //End Group Middleware Admin
 
-//Admin Login Route
+//Admin Route
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/admin/forgot/password', [AdminController::class, 'AdminForgotPassword'])->name('admin.forgot.password');
+Route::post('/admin/forgot/password/submit', [AdminController::class, 'AdminForgotPasswordSubmit'])->name('admin.forgot.password.submit');
+Route::get('/admin/reset/password/{token}/{email}', [AdminController::class, 'AdminResetPassword'])->name('admin.reset.password');
+Route::post('/admin/reset/password/submit', [AdminController::class, 'AdminResetPasswordSubmit'])->name('admin.reset.password.submit');
 
-//Vendor Login Route
+
+//Vendor Route
 Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
+Route::get('/vendor/forgot/password', [VendorController::class, 'VendorForgotPassword'])->name('vendor.forgot.password');
+Route::post('/vendor/forgot/password/submit', [VendorController::class, 'VendorForgotPasswordSubmit'])->name('vendor.forgot.password.submit');
+Route::get('/vendor/reset/password/{token}/{email}', [VendorController::class, 'VendorResetPassword'])->name('vendor.reset.password');
+Route::post('/vendor/reset/password/submit', [VendorController::class, 'VendorResetPasswordSubmit'])->name('vendor.reset.password.submit');
 Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
 Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
 Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);

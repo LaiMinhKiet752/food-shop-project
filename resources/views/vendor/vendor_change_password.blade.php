@@ -36,8 +36,11 @@
                                         <h6 class="mb-0">Old Password <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="password" name="old_password" class="form-control"
-                                            id="current_password" placeholder="Old Password" />
+                                        <div class="input-group" id="show_hide_old_password">
+                                            <input type="password" name="old_password" class="form-control"
+                                                id="current_password" placeholder="Old Password"> <a href="javascript:;"
+                                                class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -46,8 +49,11 @@
                                         <h6 class="mb-0">New Password <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="password" id="new_password" name="new_password"
-                                            class="form-control" id="new_password" placeholder="New Password" />
+                                        <div class="input-group" id="show_hide_password">
+                                            <input type="password" name="new_password" class="form-control"
+                                                id="new_password" placeholder="New Password"> <a href="javascript:;"
+                                                class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -56,8 +62,12 @@
                                         <h6 class="mb-0">Confirm New Password <span class="text-danger">*</span></h6>
                                     </div>
                                     <div class="form-group col-sm-9 text-secondary">
-                                        <input type="password" name="new_password_confirmation" class="form-control"
-                                            id="new_password_confirmation" placeholder=" Confirm New Password" />
+                                        <div class="input-group" id="show_hide_confirm_password">
+                                            <input type="password" name="new_password_confirmation" class="form-control"
+                                                id="new_password_confirmation" placeholder="Confirm New Password"> <a
+                                                href="javascript:;" class="input-group-text bg-transparent"><i
+                                                    class='bx bx-hide'></i></a>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -123,6 +133,57 @@
             },
             "Your password must be at least 8 characters long, must contain at least 1 Uppercase, 1 Lowercase, 1 Number and 1 special character."
         );
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#show_hide_old_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_old_password input').attr("type") == "text") {
+                $('#show_hide_old_password input').attr('type', 'password');
+                $('#show_hide_old_password i').addClass("bx-hide");
+                $('#show_hide_old_password i').removeClass("bx-show");
+            } else if ($('#show_hide_old_password input').attr("type") == "password") {
+                $('#show_hide_old_password input').attr('type', 'text');
+                $('#show_hide_old_password i').removeClass("bx-hide");
+                $('#show_hide_old_password i').addClass("bx-show");
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_password input').attr("type") == "text") {
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass("bx-hide");
+                $('#show_hide_password i').removeClass("bx-show");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass("bx-hide");
+                $('#show_hide_password i').addClass("bx-show");
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $("#show_hide_confirm_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_confirm_password input').attr("type") == "text") {
+                $('#show_hide_confirm_password input').attr('type', 'password');
+                $('#show_hide_confirm_password i').addClass("bx-hide");
+                $('#show_hide_confirm_password i').removeClass("bx-show");
+            } else if ($('#show_hide_confirm_password input').attr("type") == "password") {
+                $('#show_hide_confirm_password input').attr('type', 'text');
+                $('#show_hide_confirm_password i').removeClass("bx-hide");
+                $('#show_hide_confirm_password i').addClass("bx-show");
+            }
+        });
     });
 </script>
 @endsection

@@ -46,7 +46,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('category.list'))
-                        <li> <a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>All Categories</a>
+                        <li> <a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>All Category</a>
                         </li>
                     @endif
                 </ul>

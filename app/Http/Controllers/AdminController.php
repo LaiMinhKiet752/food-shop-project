@@ -193,6 +193,48 @@ class AdminController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
+    public function AdminForgotPassword()
+    {
+        return view('admin.admin_forget_password');
+    } //End Method
+
+    public function AdminForgotPasswordSubmit(Request $request)
+    {
+        $admin_data = User::where('email', $request->email)->where('role', 'admin')->where('status', 'active')->first();
+        if (!$admin_data) {
+            return redirect()->back()->with('error', 'Email address not found!');
+        }
+        $token = hash('sha256', time());
+        $admin_data->token = $token;
+        $admin_data->update();
+        $reset_link = url('admin/reset/password/' . $token . '/' . $request->email);
+        $subject = 'Reset Password';
+        $message = 'Please click on the following link: <br>';
+        $message .= '<a href= "' . $reset_link . '">Click here</a>';
+
+        Mail::to($request->email)->send(new WebsiteMail($subject, $message));
+
+        return redirect('/admin/login')->with('success', 'Check your email and follow the steps there.');
+    } //End Method
+
+    public function AdminResetPassword($token, $email)
+    {
+        $admin_data = User::where('role', 'admin')->where('status', 'active')->where('email', $email)->where('token', $token)->first();
+        if (!$admin_data) {
+            return redirect('/admin/login');
+        }
+        return view('admin.admin_reset_password', compact('token', 'email'));
+    } //End Method
+
+    public function AdminResetPasswordSubmit(Request $request)
+    {
+        $admin_data = User::where('role', 'admin')->where('status', 'active')->where('email', $request->email)->where('token', $request->token)->first();
+        $admin_data->password = Hash::make($request->password);
+        $admin_data->token = '';
+        $admin_data->update();
+        return redirect('/admin/login')->with('success', 'Password is reset successfully.');
+    } //End Method
+
     public function InActiveVendor()
     {
         $inactiveVendor = User::where('status', 'inactive')->where('role', 'vendor')->latest()->get();
@@ -534,7 +576,7 @@ class AdminController extends Controller
         );
         return redirect()->back()->with($notification);
     } // End Method
-    
+
     public function DeleteAllNotification()
     {
         $user_id = Auth::user()->id;

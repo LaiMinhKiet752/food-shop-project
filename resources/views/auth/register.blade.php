@@ -122,6 +122,7 @@
                 },
                 email: {
                     required: true,
+                    email: true,
                 },
                 password: {
                     required: true,
@@ -138,11 +139,12 @@
             },
             messages: {
                 username: {
-                    required: 'Please enter your user name.',
+                    required: 'Please enter your username.',
                     maxlength: 'The user name must not be greater than 255 characters.',
                 },
                 email: {
                     required: 'Please enter your email.',
+                    email: 'The email must be a valid email address.',
                 },
                 password: {
                     required: 'Please enter your password.',

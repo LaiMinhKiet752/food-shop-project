@@ -330,7 +330,7 @@
                                 class="bx bx-user"></i><span>Profile</span></a>
                     </li>
                     <li><a class="dropdown-item" href="{{ route('vendor.change.password') }}"><i
-                                class="bx bx-cog"></i><span>Change Password</span></a>
+                                class="lni lni-reload"></i><span>Change Password</span></a>
                     </li>
                     <li>
                         <div class="dropdown-divider mb-0"></div>

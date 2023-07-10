@@ -188,6 +188,48 @@ class VendorController extends Controller
         return redirect()->back()->with($notification);
     } //End Method
 
+    public function VendorForgotPassword()
+    {
+        return view('vendor.vendor_forget_password');
+    } //End Method
+
+    public function VendorForgotPasswordSubmit(Request $request)
+    {
+        $vendor_data = User::where('email', $request->email)->where('role', 'vendor')->first();
+        if (!$vendor_data) {
+            return redirect()->back()->with('error', 'Email address not found!');
+        }
+        $token = hash('sha256', time());
+        $vendor_data->token = $token;
+        $vendor_data->update();
+        $reset_link = url('vendor/reset/password/' . $token . '/' . $request->email);
+        $subject = 'Reset Password';
+        $message = 'Please click on the following link: <br>';
+        $message .= '<a href= "' . $reset_link . '">Click here</a>';
+
+        Mail::to($request->email)->send(new WebsiteMail($subject, $message));
+
+        return redirect('/vendor/login')->with('success', 'Check your email and follow the steps there.');
+    } //End Method
+
+    public function VendorResetPassword($token, $email)
+    {
+        $vendor_data = User::where('role', 'vendor')->where('email', $email)->where('token', $token)->first();
+        if (!$vendor_data) {
+            return redirect('/vendor/login');
+        }
+        return view('vendor.vendor_reset_password', compact('token', 'email'));
+    } //End Method
+
+    public function VendorResetPasswordSubmit(Request $request)
+    {
+        $vendor_data = User::where('role', 'vendor')->where('email', $request->email)->where('token', $request->token)->first();
+        $vendor_data->password = Hash::make($request->password);
+        $vendor_data->token = '';
+        $vendor_data->update();
+        return redirect('/vendor/login')->with('success', 'Password is reset successfully.');
+    } //End Method
+
     public function BecomeVendor()
     {
         return view('auth.become_vendor');
