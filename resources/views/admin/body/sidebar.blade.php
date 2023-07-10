@@ -30,13 +30,7 @@
                 </a>
                 <ul>
                     @if (Auth::user()->can('brand.list'))
-                        <li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brand</a>
-                        </li>
-                    @endif
-
-                    @if (Auth::user()->can('brand.restore'))
-                        <li> <a href="{{ route('restore.brand') }}"><i class="bx bx-right-arrow-alt"></i>Restore
-                                Brand</a>
+                        <li> <a href="{{ route('all.brand') }}"><i class="bx bx-right-arrow-alt"></i>All Brands</a>
                         </li>
                     @endif
                 </ul>
@@ -55,12 +49,6 @@
                         <li> <a href="{{ route('all.category') }}"><i class="bx bx-right-arrow-alt"></i>All Category</a>
                         </li>
                     @endif
-
-                    @if (Auth::user()->can('category.restore'))
-                        <li> <a href="{{ route('restore.category') }}"><i class="bx bx-right-arrow-alt"></i>Restore
-                                Category</a>
-                        </li>
-                    @endif
                 </ul>
             </li>
         @endif
@@ -75,13 +63,7 @@
                 <ul>
                     @if (Auth::user()->can('subcategory.list'))
                         <li> <a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All
-                                SubCategory</a>
-                        </li>
-                    @endif
-
-                    @if (Auth::user()->can('subcategory.restore'))
-                        <li> <a href="{{ route('restore.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>Restore
-                                SubCategory</a>
+                                SubCatagories</a>
                         </li>
                     @endif
                 </ul>
@@ -168,12 +150,6 @@
                         <li> <a href="{{ route('all.coupon') }}"><i class="bx bx-right-arrow-alt"></i>All Coupons</a>
                         </li>
                     @endif
-
-                    @if (Auth::user()->can('coupon.restore'))
-                        <li> <a href="{{ route('restore.coupon') }}"><i class="bx bx-right-arrow-alt"></i>Restore
-                                Coupon</a>
-                        </li>
-                    @endif
                 </ul>
             </li>
         @endif
@@ -207,18 +183,16 @@
                     <div class="menu-title">All Orders</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending
-                            Order</a>
+                    <li> <a href="{{ route('pending.order') }}"><i class="bx bx-right-arrow-alt"></i>Pending</a>
                     </li>
                     <li> <a href="{{ route('admin.confirmed.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Order Confirmed</a>
+                                class="bx bx-right-arrow-alt"></i>Confirmed</a>
                     </li>
                     <li> <a href="{{ route('admin.processing.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Order Processing</a>
+                                class="bx bx-right-arrow-alt"></i>Processing</a>
                     </li>
                     <li> <a href="{{ route('admin.delivered.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Delivered
-                            Order</a>
+                                class="bx bx-right-arrow-alt"></i>Delivered</a>
                     </li>
                 </ul>
             </li>

@@ -120,7 +120,7 @@
                 text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 6000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })
@@ -136,7 +136,7 @@
                 text: 'You Canceled Payment!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#FF0000',
             })
@@ -152,7 +152,7 @@
                 text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 6000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })

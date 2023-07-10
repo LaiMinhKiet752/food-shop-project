@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('category_slug');
             $table->string('category_image');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

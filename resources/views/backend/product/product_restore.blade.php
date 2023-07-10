@@ -30,6 +30,7 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Product Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
                             <th>Deleted By</th>
@@ -41,8 +42,10 @@
                         @foreach ($products as $key => $item)
                             <tr>
                                 <td>{{ $key + 1 }}</td>
+                                <td><img src="{{ !empty($item->product_thumbnail) ? asset($item->product_thumbnail) : asset('upload/no_image.jpg') }}"
+                                        style="width: 80px; height: 60px;">
                                 <td>{{ $item->product_code }}</td>
-                                <td>{{ $item->product_name }}</td>
+                                <td>{{ Str::limit($item->product_name, 50, '...') }}</td>
                                 <td>
                                     {{ $item->user->name }}
                                 </td>
@@ -52,6 +55,8 @@
                                 <td>
                                     <a href="{{ route('restore.product.submit', $item->id) }}" class="btn btn-warning"
                                         id="restore_product">Restore</a>
+                                    <a href="{{ route('force.delete.product', $item->id) }}" class="btn btn-danger"
+                                        id="delete">Delete</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -59,6 +64,7 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
+                            <th>Product Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
                             <th>Deleted By</th>

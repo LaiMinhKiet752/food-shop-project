@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('subcategory_name')->unique();
             $table->string('subcategory_slug');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

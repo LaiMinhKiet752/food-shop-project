@@ -31,6 +31,7 @@ return new class extends Migration
             $table->enum('role',['admin','vendor','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('last_seen')->nullable();
+            $table->text('token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

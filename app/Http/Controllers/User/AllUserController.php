@@ -158,6 +158,55 @@ class AllUserController extends Controller
             'message' => 'Order Cancellation Request Successful!',
             'alert-type' => 'success'
         );
+        $first_admin_user = User::where('role', 'admin')->where('status', 'active')->first();
+        $order = Order::where('id', $order_id)->first();
+        $order_date_format = date('m-d-Y H:i:s',strtotime($order->order_date));
+
+         //Mail To Admin
+         $subject = 'There is a request to cancel the order';
+         $message = 'Invoice information: <br><br>';
+
+         $message .= 'Order Number: ';
+         $message .= $order->order_number;
+         $message .= '<br>';
+
+         $message .= 'Invoice Number: ';
+         $message .= $order->invoice_number;
+         $message .= '<br>';
+
+         $message .= 'Full Name: ';
+         $message .= $order->name;
+         $message .= '<br>';
+
+         $message .= 'Email: ';
+         $message .= $order->email;
+         $message .= '<br>';
+
+         $message .= 'Phone Number: ';
+         $message .= $order->phone;
+         $message .= '<br>';
+
+         $message .= 'Payment Method: ';
+         $message .= $order->payment_method;
+         $message .= '<br>';
+
+         $message .= 'Payment Type: ';
+         $message .= $order->payment_type;
+         $message .= '<br>';
+
+         $message .= 'Total (USD): ';
+         $message .= $order->amount;
+         $message .= '<br>';
+
+         $message .= 'Order Date: ';
+         $message .= $order_date_format;
+         $message .= '<br>';
+
+         $message .= 'Cancel Date: ';
+         $message .= $order->cancel_date;
+         $message .= '<br>';
+
+         Mail::to($first_admin_user->email)->send(new WebsiteMail($subject, $message));
 
         //Notification To Admin
         Notification::send($all_admin_user, new CancelOrderNotification($request));

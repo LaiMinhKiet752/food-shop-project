@@ -51,7 +51,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
                                 </td>
-                                <td>{{ $item->product_code }}</td>
+                                <td>{{ $item->product_code }}</td>  
                                 <td>{{ Str::limit($item->product_name, 15, '...') }}</td>
                                 <td>{{ $item->selling_price }}</td>
                                 @if ($item->discount_price == null)

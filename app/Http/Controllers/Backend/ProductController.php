@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\MultiImage;
 use App\Models\Product;
+use App\Models\Review;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -379,14 +380,9 @@ class ProductController extends Controller
     public function DeleteProduct($id)
     {
         $product = Product::findOrFail($id);
-        unlink($product->product_thumbnail);
+        Review::where('product_id', $id)->delete();
         $product->update(['deleted_by' => Auth::user()->id]);
         Product::findOrFail($id)->delete();
-        $images = MultiImage::where('product_id', $id)->get();
-        foreach ($images as $image) {
-            unlink($image->photo_name);
-            MultiImage::where('product_id', $id)->delete();
-        }
         $notification = array(
             'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
@@ -405,6 +401,25 @@ class ProductController extends Controller
         Product::whereId($id)->restore();
         $notification = array(
             'message' => 'Product Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function ForceDeleteProduct($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::whereId($id)->forceDelete();
+        $images = MultiImage::where('product_id', $id)->get();
+        if ($images) {
+            foreach ($images as $image) {
+                unlink($image->photo_name);
+                MultiImage::where('product_id', $id)->delete();
+            }
+        }
+        $notification = array(
+            'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

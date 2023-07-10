@@ -42,6 +42,14 @@
                                     <div class="text-center">
                                         <h3 class="">Admin Sign In</h3>
                                     </div>
+                                    @if (session()->get('success'))
+                                        <div
+                                            class="alert alert-success border-0 bg-success alert-dismissible fade show">
+                                            <div class="text-white">{{ session()->get('success') }}</div>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                        </div>
+                                    @endif
                                     @if ($errors->any())
                                         @foreach ($errors->all() as $error)
                                             <div
@@ -81,7 +89,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6 text-end"> <a
-                                                    href="authentication-forgot-password.html">Forgot Password ?</a>
+                                                    href="{{ route('admin.forgot.password') }}">Forgot Password ?</a>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-grid">

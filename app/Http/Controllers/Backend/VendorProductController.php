@@ -385,14 +385,8 @@ class VendorProductController extends Controller
     public function VendorProductDelete($id)
     {
         $product = Product::findOrFail($id);
-        unlink($product->product_thumbnail);
         $product->update(['deleted_by' => Auth::user()->id]);
         Product::findOrFail($id)->delete();
-        $images = MultiImage::where('product_id', $id)->get();
-        foreach ($images as $image) {
-            unlink($image->photo_name);
-            MultiImage::where('product_id', $id)->delete();
-        }
         $notification = array(
             'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
@@ -412,6 +406,25 @@ class VendorProductController extends Controller
         Product::whereId($id)->restore();
         $notification = array(
             'message' => 'Product Restored Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
+    } //End Method
+
+    public function VendorForceDeleteProduct($id)
+    {
+        $product = Product::withTrashed()->findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::whereId($id)->forceDelete();
+        $images = MultiImage::where('product_id', $id)->get();
+        if ($images) {
+            foreach ($images as $image) {
+                unlink($image->photo_name);
+                MultiImage::where('product_id', $id)->delete();
+            }
+        }
+        $notification = array(
+            'message' => 'Product Deleted Successfully!',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);
