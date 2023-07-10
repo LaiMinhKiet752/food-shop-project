@@ -3,6 +3,9 @@
 @section('title')
     Create New Account
 @endsection
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
@@ -45,12 +48,20 @@
                                             placeholder="Email *" value="{{ old('email') }}" />
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" id="password" type="password" name="password"
-                                            placeholder="Password *" />
+                                        <div class="input-group" id="show_hide_password">
+                                            <input type="password" name="password" class="form-control" id="password"
+                                                placeholder="Password *">
+                                            <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                    class='fa-solid fa-eye-slash'></i></a>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" id="password_confirmation" type="password"
-                                            name="password_confirmation" placeholder="Confirm password *" />
+                                        <div class="input-group" id="show_hide_confirm_password">
+                                            <input type="password" name="password_confirmation" class="form-control"
+                                                id="password_confirmation" placeholder="Confirm password *">
+                                            <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                    class='fa-solid fa-eye-slash'></i></a>
+                                        </div>
                                     </div>
                                     <div class="login_footer form-group">
                                         <div class="form-group chek-form">
@@ -186,6 +197,38 @@
             url: "/reload-captcha",
             success: function(data) {
                 $(".captcha").html(data.captcha);
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_password input').attr("type") == "text") {
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass("fa-eye-slash");
+                $('#show_hide_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass("fa-eye-slash");
+                $('#show_hide_password i').addClass("fa-eye");
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_confirm_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_confirm_password input').attr("type") == "text") {
+                $('#show_hide_confirm_password input').attr('type', 'password');
+                $('#show_hide_confirm_password i').addClass("fa-eye-slash");
+                $('#show_hide_confirm_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_confirm_password input').attr("type") == "password") {
+                $('#show_hide_confirm_password input').attr('type', 'text');
+                $('#show_hide_confirm_password i').removeClass("fa-eye-slash");
+                $('#show_hide_confirm_password i').addClass("fa-eye");
             }
         });
     });
