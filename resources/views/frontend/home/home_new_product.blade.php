@@ -239,6 +239,7 @@
                             $catwiseProduct = \App\Models\Product::where('category_id', $category->id)
                                 ->where('status', 1)
                                 ->orderBy('id', 'DESC')
+                                ->limit(10)
                                 ->get();
                         @endphp
                         @forelse($catwiseProduct as $product)

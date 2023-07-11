@@ -24,7 +24,8 @@
         <div class="col-lg-4-5">
             <div class="shop-product-fillter">
                 <div class="totall-product">
-                    <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($products) }}</strong>
+                    <p>We found <strong class="text-brand"
+                            style="font-weight: bold;">{{ count($count_products) > 0 ? count($count_products) : 0 }}</strong>
                         items for you!</p>
                 </div>
                 <div class="sort-by-product-area">
@@ -135,7 +136,8 @@
                                 box-sizing: border-box;">
                                     <a
                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                        {{ $product->product_name }} </a></h2>
+                                        {{ $product->product_name }} </a>
+                                </h2>
 
 
 
@@ -270,21 +272,7 @@
             </div>
             <!--product grid-->
             <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $products->links('vendor.pagination.custom') }}
             </div>
 
             <!--End Deals-->

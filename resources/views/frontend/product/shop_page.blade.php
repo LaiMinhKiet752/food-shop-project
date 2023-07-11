@@ -337,7 +337,7 @@
                                     $filterCat = explode(',', $_GET['category']);
                                 @endphp
                             @endif
-                            <label class="fw-900">Category</label>
+                            <label class="fw-900">All Categories</label>
                             @foreach ($categories as $category)
                                 @php
                                     $products = App\Models\Product::where('category_id', $category->id)

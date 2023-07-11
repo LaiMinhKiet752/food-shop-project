@@ -257,7 +257,7 @@ class BlogController extends Controller
     public function AllBlog()
     {
         $blogcategories = BlogCategory::latest()->get();
-        $blogpost = BlogPost::latest()->get();
+        $blogpost = BlogPost::latest()->paginate(5);
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(4)->get();
         return view('frontend.blog.home_blog', compact('blogcategories', 'blogpost', 'products'));
     } // End Method
