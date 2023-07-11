@@ -32,7 +32,7 @@
             <div class="col-12 col-lg-8 mx-auto">
                 <div class="shop-product-fillter">
                     <div class="totall-product">
-                        <p>We have <strong class="text-brand">{{ count($vendors) }}</strong> vendors now</p>
+                        <p>We have <strong class="text-brand">{{ count($count_vendors) > 0 ? count($count_vendors) : 0 }}</strong> vendors now</p>
                     </div>
                     <div class="sort-by-product-area">
                         <div class="sort-by-cover mr-10">
@@ -143,21 +143,7 @@
 
         </div>
         <div class="pagination-area mt-20 mb-20">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-start">
-                    <li class="page-item">
-                        <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#">6</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                    </li>
-                </ul>
-            </nav>
+            {{ $vendors->links('vendor.pagination.custom') }}
         </div>
     </div>
 </div>

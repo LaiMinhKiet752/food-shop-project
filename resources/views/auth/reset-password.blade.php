@@ -3,6 +3,9 @@
 @section('title')
     Reset Password
 @endsection
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
@@ -46,13 +49,21 @@
                                             value="{{ old('email', $request->email) }}" readonly />
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" required="" id="password" type="password"
-                                            name="password" placeholder="New password *" />
+                                        <div class="input-group" id="show_hide_new_password">
+                                            <input type="password" name="password" required="" class="form-control"
+                                                id="password" placeholder="New password *">
+                                            <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                    class='fa-solid fa-eye-slash'></i></a>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <input class="form-control" required="" id="password_confirmation"
-                                            type="password" name="password_confirmation"
-                                            placeholder="Confirm new password *" />
+                                        <div class="input-group" id="show_hide_confirm_password">
+                                            <input type="password" name="password_confirmation" required=""
+                                                class="form-control" id="password_confirmation"
+                                                placeholder="Confirm new password *">
+                                            <a href="javascript:;" class="input-group-text bg-transparent"><i
+                                                    class='fa-solid fa-eye-slash'></i></a>
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up"
@@ -110,6 +121,38 @@
             },
             "Your password must be at least 8 characters long, must contain at least 1 Uppercase, 1 Lowercase, 1 Number and 1 special character."
         );
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_new_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_new_password input').attr("type") == "text") {
+                $('#show_hide_new_password input').attr('type', 'password');
+                $('#show_hide_new_password i').addClass("fa-eye-slash");
+                $('#show_hide_new_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_new_password input').attr("type") == "password") {
+                $('#show_hide_new_password input').attr('type', 'text');
+                $('#show_hide_new_password i').removeClass("fa-eye-slash");
+                $('#show_hide_new_password i').addClass("fa-eye");
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#show_hide_confirm_password a").on('click', function(event) {
+            event.preventDefault();
+            if ($('#show_hide_confirm_password input').attr("type") == "text") {
+                $('#show_hide_confirm_password input').attr('type', 'password');
+                $('#show_hide_confirm_password i').addClass("fa-eye-slash");
+                $('#show_hide_confirm_password i').removeClass("fa-eye");
+            } else if ($('#show_hide_confirm_password input').attr("type") == "password") {
+                $('#show_hide_confirm_password input').attr('type', 'text');
+                $('#show_hide_confirm_password i').removeClass("fa-eye-slash");
+                $('#show_hide_confirm_password i').addClass("fa-eye");
+            }
+        });
     });
 </script>
 @endsection

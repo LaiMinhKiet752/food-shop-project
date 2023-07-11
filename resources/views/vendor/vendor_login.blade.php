@@ -69,7 +69,7 @@
                                                 <label for="login" class="form-label">Username or Email <span
                                                         class="text-danger">*</span></label>
                                                 <input type="text" name="login" class="form-control" id="login"
-                                                    placeholder="">
+                                                    placeholder="" value="{{ old('login') }}">
                                             </div>
                                             <div class="form-group col-12">
                                                 <label for="password" class="form-label">Password <span

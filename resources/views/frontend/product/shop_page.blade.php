@@ -24,8 +24,8 @@
         <div class="col-lg-4-5">
             <div class="shop-product-fillter">
                 <div class="totall-product">
-                    <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($products) }}</strong>
-                        items for you!</p>
+                    {{-- <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($count_products) }}</strong>
+                        items for you!</p> --}}
                 </div>
                 <div class="sort-by-product-area">
                     <div class="sort-by-cover mr-10">
@@ -271,21 +271,7 @@
             </div>
             <!--product grid-->
             <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
             </div>
 
             <!--End Deals-->
@@ -337,7 +323,7 @@
                                     $filterCat = explode(',', $_GET['category']);
                                 @endphp
                             @endif
-                            <label class="fw-900">Category</label>
+                            <label class="fw-900">All Categories</label>
                             @foreach ($categories as $category)
                                 @php
                                     $products = App\Models\Product::where('category_id', $category->id)
@@ -347,12 +333,12 @@
 
                                 <div class="custome-checkbox">
                                     <input class="form-check-input" type="checkbox" name="category[]"
-                                        id="exampleCheckbox{{ $category->id }}"
+                                        id="exampleCategory{{ $category->id }}"
                                         value="{{ $category->category_slug }}"
                                         @if (!empty($filterCat) && in_array($category->category_slug, $filterCat)) checked @endif
                                         onchange="this.form.submit()" />
                                     <label class="form-check-label"
-                                        for="exampleCheckbox{{ $category->id }}"><span>{{ $category->category_name }}
+                                        for="exampleCategory{{ $category->id }}"><span>{{ $category->category_name }}
                                             ({{ count($products) }})
                                         </span></label>
 
@@ -368,7 +354,9 @@
                             <label class="fw-900 mt-15">All Brands</label>
                             @foreach ($brands as $brand)
                                 @php
-                                    $products = \App\Models\Product::where('brand_id', $brand->id)->get();
+                                    $products = \App\Models\Product::where('brand_id', $brand->id)
+                                        ->where('status', 1)
+                                        ->get();
                                 @endphp
                                 <div class="custome-checkbox">
                                     <input class="form-check-input" type="checkbox" name="brand[]"
@@ -376,7 +364,8 @@
                                         @if (!empty($filterBrand) && in_array($brand->brand_slug, $filterBrand)) checked @endif
                                         onchange="this.form.submit()" />
                                     <label class="form-check-label"
-                                        for="exampleBrand{{ $brand->id }}"><span>{{ $brand->brand_name }}</span></label>
+                                        for="exampleBrand{{ $brand->id }}"><span>{{ $brand->brand_name }}
+                                            ({{ count($products) }})</span></label>
                                 </div>
                             @endforeach
                         </div>

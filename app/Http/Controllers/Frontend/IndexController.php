@@ -53,34 +53,38 @@ class IndexController extends Controller
     public function VendorDetails($id)
     {
         $vendor = User::findOrFail($id);
-        $vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
-        return view('frontend.vendor.vendor_details', compact('vendor', 'vproduct'));
+        $vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->paginate(20);
+        $count_vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
+        return view('frontend.vendor.vendor_details', compact('vendor', 'vproduct','count_vproduct'));
     } // End Method
 
     public function VendorAll()
     {
-        $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'DESC')->get();
-        return view('frontend.vendor.vendor_all', compact('vendors'));
+        $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'DESC')->paginate(8);
+        $count_vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'DESC')->get();
+        return view('frontend.vendor.vendor_all', compact('vendors','count_vendors'));
     } // End Method
 
 
     public function CategoryWiseProduct(Request $request, $id, $slug)
     {
-        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
+        $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->paginate(20);
+        $count_products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadcategory = Category::where('id', $id)->first();
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct'));
+        return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct','count_products'));
     } // End Method
 
 
     public function SubCategoryWiseProduct(Request $request, $id, $slug)
     {
-        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
+        $products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->paginate(20);
+        $count_products = Product::where('status', 1)->where('subcategory_id', $id)->orderBy('id', 'DESC')->get();
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadsubcategory = SubCategory::where('id', $id)->first();
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcategory', 'newProduct'));
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcategory', 'newProduct','count_products'));
     } // End Method
 
     public function ProductViewAjax($id)

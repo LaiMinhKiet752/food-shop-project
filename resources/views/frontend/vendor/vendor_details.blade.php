@@ -20,7 +20,8 @@
         <div class="col-lg-4-5">
             <div class="shop-product-fillter">
                 <div class="totall-product">
-                    <p>We found <strong class="text-brand" style="font-weight: bold;">{{ count($vproduct) }}</strong>
+                    <p>We found <strong class="text-brand"
+                            style="font-weight: bold;">{{ count($count_vproduct) > 0 ? count($count_vproduct) : 0 }}</strong>
                         items for you!</p>
                 </div>
                 <div class="sort-by-product-area">
@@ -265,21 +266,7 @@
             </div>
             <!--product grid-->
             <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $vproduct->links('vendor.pagination.custom') }}
             </div>
 
             <!--End Deals-->

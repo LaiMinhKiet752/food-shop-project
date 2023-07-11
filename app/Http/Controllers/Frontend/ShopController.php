@@ -14,20 +14,21 @@ class ShopController extends Controller
     {
         $products = Product::query();
 
-        $products = Product::where('status', 1)->orderBy('id', 'DESC')->get();
-        if (!empty($_GET['brand'])) {
-            $slugs = explode(',', $_GET['brand']);
-            $brand_id = Brand::select('id')->whereIn('brand_slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('brand_id', $brand_id)->where('status', 1)->get();
-        }
         if (!empty($_GET['category'])) {
             $slugs = explode(',', $_GET['category']);
             $catId = Category::select('id')->whereIn('category_slug', $slugs)->pluck('id')->toArray();
-            $products = Product::whereIn('category_id', $catId)->where('status', 1)->get();
+            $products = $products->whereIn('category_id', $catId)->where('status', 1)->paginate(5);
+        }
+        if (!empty($_GET['brand'])) {
+            $slugs = explode(',', $_GET['brand']);
+            $brand_id = Brand::select('id')->whereIn('brand_slug', $slugs)->pluck('id')->toArray();
+            $products = $products->whereIn('brand_id', $brand_id)->where('status', 1)->paginate(5);
         }
         if (!empty($_GET['price'])) {
             $price = explode('-', $_GET['price']);
-            $products = $products->whereBetween('selling_price', $price);
+            $products = $products->whereBetween('selling_price', $price)->paginate(2);
+        } else if (empty($_GET['brand']) && empty($_GET['category']) && empty($_GET['price'])) {
+            $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(10);
         }
 
         $categories = Category::orderBy('category_name', 'ASC')->get();
@@ -40,19 +41,23 @@ class ShopController extends Controller
     {
         $data = $request->all();
 
-        $catUrl = "";
-        if (!empty($data['category'])) {
+        $cat_url = "";
+        if (!empty($data['category']) && empty($data['brand'])) {
+            $brand_url = "";
+            $price_range_url = "";
             foreach ($data['category'] as $category) {
-                if (empty($catUrl)) {
-                    $catUrl .= '&category=' . $category;
+                if (empty($cat_url)) {
+                    $cat_url .= '&category=' . $category;
                 } else {
-                    $catUrl .= ',' . $category;
+                    $cat_url .= ',' . $category;
                 }
             }
         }
 
         $brand_url = "";
-        if (!empty($data['brand'])) {
+        if (!empty($data['brand']) && empty($data['category'])) {
+            $cat_url = "";
+            $price_range_url = "";
             foreach ($data['brand'] as $brand) {
                 if (empty($brand_url)) {
                     $brand_url .= '&brand=' . $brand;
@@ -63,10 +68,12 @@ class ShopController extends Controller
         }
 
         $price_range_url = "";
-        if (!empty($data['price_range'])) {
+        if (!empty($data['price_range']) && empty($data['brand']) && empty($data['category'])) {
+            $cat_url = "";
+            $brand_url = "";
             $price_range_url .= '&price=' . $data['price_range'];
         }
 
-        return redirect()->route('shop.page', $catUrl . $brand_url . $price_range_url);
+        return redirect()->route('shop.page', $cat_url . $brand_url . $price_range_url);
     } //End Method
 }
