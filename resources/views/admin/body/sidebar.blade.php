@@ -63,7 +63,7 @@
                 <ul>
                     @if (Auth::user()->can('subcategory.list'))
                         <li> <a href="{{ route('all.subcategory') }}"><i class="bx bx-right-arrow-alt"></i>All
-                                SubCatagories</a>
+                                SubCatagory</a>
                         </li>
                     @endif
                 </ul>
@@ -430,7 +430,7 @@
                 <a href="javascript:;" class="has-arrow">
                     <div class="parent-icon"><i class='lni lni-network'></i>
                     </div>
-                    <div class="menu-title">Employees</div>
+                    <div class="menu-title">Employee</div>
                 </a>
                 <ul>
                     @if (Auth::user()->can('employee.list'))

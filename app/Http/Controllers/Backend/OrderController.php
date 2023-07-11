@@ -77,12 +77,6 @@ class OrderController extends Controller
 
     public function ProcessingToDelivered($order_id)
     {
-        $product = OrderDetails::where('order_id', $order_id)->get();
-        foreach ($product as $item) {
-            Product::where('id', $item->product_id)->update([
-                'product_quantity' => DB::raw('product_quantity - ' . $item->quantity)
-            ]);
-        }
         Order::findOrFail($order_id)->update([
             'status' => 'delivered',
             'delivered_date' => Carbon::now()->format('d-m-Y H:i:s'),

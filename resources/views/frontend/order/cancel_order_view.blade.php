@@ -44,7 +44,6 @@
                                                         <th>Total Amount</th>
                                                         <th>Payment Method</th>
                                                         <th>Status</th>
-                                                        <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -72,11 +71,6 @@
                                                                         Success
                                                                     </span>
                                                                 @endif
-                                                            </td>
-                                                            <td>
-                                                                <a href="{{ route('user.cancel.order.details', $order->id) }}"
-                                                                    class="btn-sm btn-success" title="View Details"><i
-                                                                        class="fa fa-eye"></i></a>
                                                             </td>
                                                         </tr>
                                                     @endforeach

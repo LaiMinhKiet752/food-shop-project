@@ -7,6 +7,7 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Product;
 use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class StripeController extends Controller
@@ -94,6 +96,12 @@ class StripeController extends Controller
                 'discount' => ($cart->price * $discount_percent / 100),
                 'total' => $discount_percent == 0 ? ($cart->price * $cart->qty) : ($cart->price * $cart->qty * $discount_percent / 100),
                 'created_at' => Carbon::now(),
+            ]);
+        }
+        $product = OrderDetails::where('order_id', $order_id)->get();
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)->update([
+                'product_quantity' => DB::raw('product_quantity - ' . $item->quantity)
             ]);
         }
         //Send Mail

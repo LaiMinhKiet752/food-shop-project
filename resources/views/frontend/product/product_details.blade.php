@@ -175,10 +175,9 @@
                                                 class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                         </li>
                                     @endif
-                                    <li>Stock:<span
+                                    <li>In Stock:<span
                                             class="in-stock text-brand ml-5">({{ $product->product_quantity }})
-                                            Items
-                                            In Stock</span></li>
+                                            Items</span></li>
                                 </ul>
                             </div>
                         </div>

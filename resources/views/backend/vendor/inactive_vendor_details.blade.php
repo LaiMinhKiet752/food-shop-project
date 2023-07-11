@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ $inactiveVendorDetails->name }}" />
+                                            value="{{ $inactiveVendorDetails->name }}" readonly/>
                                     </div>
                                 </div>
 
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="shop_name" class="form-control"
-                                            value="{{ $inactiveVendorDetails->shop_name }}" />
+                                            value="{{ $inactiveVendorDetails->shop_name }}" readonly/>
                                     </div>
                                 </div>
 
@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" class="form-control" name="username"
-                                            value="{{ $inactiveVendorDetails->username }}" />
+                                            value="{{ $inactiveVendorDetails->username }}" readonly/>
                                     </div>
                                 </div>
 
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="email" name="email" class="form-control"
-                                            value="{{ $inactiveVendorDetails->email }}" />
+                                            value="{{ $inactiveVendorDetails->email }}" readonly/>
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="phone" class="form-control"
-                                            value="{{ $inactiveVendorDetails->phone }}" />
+                                            value="{{ $inactiveVendorDetails->phone }}" readonly/>
                                     </div>
                                 </div>
 
@@ -92,7 +92,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="address" class="form-control"
-                                            value="{{ $inactiveVendorDetails->address }}" />
+                                            value="{{ $inactiveVendorDetails->address }}" readonly/>
                                     </div>
                                 </div>
 
@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="text" name="address" class="form-control"
-                                            value="{{ $inactiveVendorDetails->vendor_join }}" />
+                                            value="{{ $inactiveVendorDetails->vendor_join }}" readonly/>
                                     </div>
                                 </div>
 
@@ -112,7 +112,7 @@
                                         <h6 class="mb-0">Vendor Info</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info " style="height: 200px;">{{ $inactiveVendorDetails->vendor_short_info }}</textarea>
+                                        <textarea name="vendor_short_info" class="form-control" id="inputAddress2" placeholder="Vendor Info " style="height: 200px;" readonly>{{ $inactiveVendorDetails->vendor_short_info }}</textarea>
                                     </div>
                                 </div>
 

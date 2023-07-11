@@ -133,13 +133,6 @@ class AllUserController extends Controller
         return redirect()->route('user.order.page')->with($notification);
     } //End Method
 
-    public function ReturnOrderDetails($order_id)
-    {
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
-        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-        return view('frontend.order.return_order_details', compact('order', 'orderItem'));
-    } //End Method
-
     public function CancelOrderPage()
     {
         $orders = Order::where('user_id', Auth::id())->where('cancel_date', '!=', NULL)->orderBy('cancel_date', 'DESC')->get();
@@ -211,34 +204,5 @@ class AllUserController extends Controller
         //Notification To Admin
         Notification::send($all_admin_user, new CancelOrderNotification($request));
         return redirect()->route('user.order.page')->with($notification);
-    } //End Method
-
-    public function CancelOrderDetails($order_id)
-    {
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
-        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-        return view('frontend.order.cancel_order_details', compact('order', 'orderItem'));
-    } //End Method
-
-    public function UserTrackOrderPage()
-    {
-        return view('frontend.userdashboard.user_track_order');
-    } //End Method
-
-    public function UserOrderTracking(Request $request)
-    {
-        $invoice_number = $request->code;
-        $user_id = Auth::user()->id;
-        $track = Order::where('user_id', $user_id)->where('invoice_number', $invoice_number)->first();
-
-        if ($track) {
-            return view('frontend.tracking.track_order', compact('track'));
-        } else {
-            $notification = array(
-                'message' => 'Invoice Number Is Invalid!',
-                'alert-type' => 'error'
-            );
-            return redirect()->back()->with($notification);
-        }
     } //End Method
 }

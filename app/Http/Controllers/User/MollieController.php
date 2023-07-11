@@ -7,6 +7,7 @@ use App\Mail\OrderMail;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Product;
 use App\Models\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Mollie\Laravel\Facades\Mollie;
 
@@ -90,7 +92,12 @@ class MollieController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
-
+        $product = OrderDetails::where('order_id', $order_id)->get();
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)->update([
+                'product_quantity' => DB::raw('product_quantity - ' . $item->quantity)
+            ]);
+        }
         //Send Mail
         $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
@@ -99,7 +106,7 @@ class MollieController extends Controller
 
         //Notification To Admin
         Notification::send($user, new OrderCompleteNotification($request->name));
-        
+
         // Redirect customer to Mollie checkout page
         return redirect($payment->getCheckoutUrl(), 303);
     } //End Method

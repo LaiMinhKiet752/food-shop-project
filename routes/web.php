@@ -210,12 +210,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
         Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
         Route::post('/user/return/order/{order_id}', 'ReturnOrderSubmit')->name('user.return.order');
-        Route::get('/user/return/order/details/{order_id}', 'ReturnOrderDetails')->name('user.return.order.details');
         Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');
         Route::post('/user/cancel/order/submit', 'CancelOrderSubmit')->name('user.cancel.order.submit');
-        Route::get('/user/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('user.cancel.order.details');
-        Route::get('/user/track/order/page', 'UserTrackOrderPage')->name('user.track.order.page');
-        Route::post('/user/order/tracking', 'UserOrderTracking')->name('user.order.tracking');
     });
 });
 
