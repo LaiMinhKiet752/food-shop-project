@@ -173,12 +173,12 @@
                 },
             });
             $.validator.addMethod("validatePassword", function(value, element) {
-                    return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
-                        .test(
-                            value);
-                },
-                "Your password must be at least 8 characters long, must contain at least 1 Uppercase, 1 Lowercase, 1 Number and 1 special character."
-            );
+                return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/
+                    .test(
+                        value);
+            },
+            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
+        );
         });
     </script>
 

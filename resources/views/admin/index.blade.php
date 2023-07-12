@@ -123,17 +123,20 @@
         ->where('cancel_order_status', 0)
         ->count();
 
+    $cancel_orders = \App\Models\Order::where(function ($query1) {
+        $query1->where('status', 'pending')->orWhere('status', 'confirmed');
+    })
+        ->Where('cancel_order_status', 2)
+        ->count();
+
+    $return_orders = \App\Models\Order::where('status', 'delivered')
+        ->Where('return_order_status', 2)
+        ->count();
+
     $success_orders = \App\Models\Order::where('status', 'delivered')
         ->where('return_order_status', 0)
         ->count();
 
-    $vendor_active = \App\Models\User::where('role', 'vendor')
-        ->where('status', 'active')
-        ->count();
-
-    $user_active = \App\Models\User::where('role', 'user')
-        ->where('status', 'active')
-        ->count();
 @endphp
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-content">
@@ -241,13 +244,57 @@
             </div>
         </div>
 
+
+
+        <div class="col">
+            <div class="card radius-10 bg-gradient-deepblue">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0 text-white">{{ $cancel_orders }}</h5>
+                        <div class="ms-auto">
+                            <i class='fadeIn animated bx bx-comment-x fs-3 text-white'></i>
+                        </div>
+                    </div>
+                    <div class="progress my-3 bg-light-transparent" style="height:3px;">
+                        <div class="progress-bar bg-white" role="progressbar" style="width: 55%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center text-white">
+                        <p class="mb-0">TOTAL ORDER HAS BEEN CANCELED</p>
+                        {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card radius-10 bg-gradient-cosmic">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <h5 class="mb-0 text-white">{{ $return_orders }}</h5>
+                        <div class="ms-auto">
+                            <i class='fadeIn animated bx bx-recycle fs-3 text-white'></i>
+                        </div>
+                    </div>
+                    <div class="progress my-3 bg-light-transparent" style="height:3px;">
+                        <div class="progress-bar bg-white" role="progressbar" style="width: 55%" aria-valuenow="25"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <div class="d-flex align-items-center text-white">
+                        <p class="mb-0">TOTAL ORDER HAS BEEN REFUNDED</p>
+                        {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="col">
             <div class="card radius-10 bg-gradient-ohhappiness">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $success_orders }}</h5>
                         <div class="ms-auto">
-                            <i class='bx bxs-wallet fs-3 text-white'></i>
+                            <i class='fadeIn animated bx bx-message-alt-check fs-3 text-white'></i>
                         </div>
                     </div>
                     <div class="progress my-3 bg-light-transparent" style="height:3px;">
@@ -262,47 +309,6 @@
             </div>
         </div>
 
-        <div class="col">
-            <div class="card radius-10 bg-gradient-deepblue">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">{{ $vendor_active }}</h5>
-                        <div class="ms-auto">
-                            <i class='bx bx-user-pin fs-3 text-white'></i>
-                        </div>
-                    </div>
-                    <div class="progress my-3 bg-light-transparent" style="height:3px;">
-                        <div class="progress-bar bg-white" role="progressbar" style="width: 55%" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL ACTIVE VENDOR ACCOUNTS</p>
-                        {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card radius-10 bg-gradient-cosmic">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">{{ $user_active }}</h5>
-                        <div class="ms-auto">
-                            <i class='bx bx-group fs-3 text-white'></i>
-                        </div>
-                    </div>
-                    <div class="progress my-3 bg-light-transparent" style="height:3px;">
-                        <div class="progress-bar bg-white" role="progressbar" style="width: 55%" aria-valuenow="25"
-                            aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL ACTIVE USER ACCOUNTS</p>
-                        {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     @php
