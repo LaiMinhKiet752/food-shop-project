@@ -207,7 +207,8 @@ class AdminController extends Controller
         $admin_data->update();
         $reset_link = url('admin/reset/password/' . $token . '/' . $request->email);
         $subject = 'Reset Password';
-        $message = 'Please click on the following link: <br>';
+        $message = 'You are receiving this email because we received a password reset request for your account: <br>';
+        $message .= 'Please click on the following link: <br>';
         $message .= '<a href= "' . $reset_link . '">Click here</a>';
 
         Mail::to($request->email)->send(new WebsiteMail($subject, $message));

@@ -153,22 +153,6 @@
                                                 </div>
                                             </div>
                                         </a>
-                                    @elseif($notification->data['type'] == 'new_vendor')
-                                        <a class="dropdown-item" href="{{ route('inactive.vendor') }}"
-                                            id="{{ $notification->id }}" onclick="updateStatusNewVendor(this.id)">
-                                            <div
-                                                class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">
-                                                <div class="notify bg-light-success text-success"><i
-                                                        class="bx bx-group"></i>
-                                                </div>
-                                                <div class="flex-grow-1">
-                                                    <h6 class="msg-name">New Vendor <span
-                                                            class="msg-time float-end">{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</span>
-                                                    </h6>
-                                                    <p class="msg-info">{{ $notification->data['message'] }}</p>
-                                                </div>
-                                            </div>
-                                        </a>
                                     @elseif($notification->data['type'] == 'new_blog_comment')
                                         <a class="dropdown-item" href="{{ route('admin.blog.comment') }}"
                                             id="{{ $notification->id }}" onclick="updateStatusBlogComment(this.id)">
@@ -507,18 +491,6 @@
             $.ajax({
                 type: "GET",
                 url: "/update-status/new-customer/" + id,
-                dataType: "json",
-                success: function(data) {
-
-                }
-            });
-        }
-    </script>
-    <script type="text/javascript">
-        function updateStatusNewVendor(id) {
-            $.ajax({
-                type: "GET",
-                url: "/update-status/new-vendor/" + id,
                 dataType: "json",
                 success: function(data) {
 

@@ -106,7 +106,7 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="card-login mt-115">
                                     <h6 class="mb-15">Password must:</h6>
-                                    <p>Be more than 8 characters long.</p>
+                                    <p>Be between 8 and 16 characters long.</p>
                                     <p>Include at least tow of the following:</p>
                                     <ol class="list-insider">
                                         <li>An uppercase character</li>
@@ -182,11 +182,11 @@
             },
         });
         $.validator.addMethod("validatePassword", function(value, element) {
-                return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/i
+                return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/
                     .test(
                         value);
             },
-            "Your password must be at least 8 characters long, must contain at least 1 Uppercase, 1 Lowercase, 1 Number and 1 special character."
+            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
         );
     });
 </script>
