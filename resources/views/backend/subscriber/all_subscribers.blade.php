@@ -27,9 +27,9 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Subscriber Email</th>
+                            <th>Email</th>
                             <th>Created at</th>
-                            <th>Verified at</th>
+                            <th>Email Verified at</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -50,9 +50,9 @@
                     <tfoot>
                         <tr>
                             <th>No.</th>
-                            <th>Subscriber Email</th>
+                            <th>Email</th>
                             <th>Created at</th>
-                            <th>Verified at</th>
+                            <th>Email Verified at</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

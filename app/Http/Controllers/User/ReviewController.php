@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\OrderDetails;
 use App\Models\Review;
 use App\Models\User;
 use App\Notifications\NewReviewNotification;
@@ -24,14 +26,30 @@ class ReviewController extends Controller
         ]);
 
         $product_id = $request->review_product_id;
-        $vendor_id = $request->review_vendor_id;
+
+        $get_order_id = Order::where('user_id', Auth::user()->id)->select('id')->get();
+        $check = OrderDetails::whereIn('order_id', $get_order_id)->where('product_id', $product_id)->first();
+        if (!$check) {
+            $notification = array(
+                'message' => 'Please Purchase The Product To Be Able To Rate!',
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+        $check_exists_review = Review::where('product_id', $product_id)->where('user_id', Auth::user()->id)->first();
+        if($check_exists_review){
+            $notification = array(
+                'message' => 'You Can Only Rate The Product Once!',
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
 
         Review::insert([
             'product_id' => $product_id,
             'user_id' => Auth::user()->id,
             'comment' => $request->comment,
             'rating' => $request->quality,
-            'vendor_id' => $vendor_id,
             'created_at' => Carbon::now(),
         ]);
 
@@ -40,7 +58,7 @@ class ReviewController extends Controller
         Notification::send($all_admin_user, new NewReviewNotification($request));
 
         $notification = array(
-            'message' => 'Review Will Be Approved By Admin!',
+            'message' => 'Successful Product Review!',
             'alert-type' => 'success',
         );
 
@@ -88,19 +106,6 @@ class ReviewController extends Controller
         );
 
         return redirect()->back()->with($notification);
-    } //End Method
-
-    public function VendorAllReview()
-    {
-        $id = Auth::user()->id;
-        $review = Review::where('vendor_id', $id)->where('status', 1)->latest()->get();
-        return view('vendor.backend.review.approve_review', compact('review'));
-    } //End Method
-
-    public function VendorReviewDetails($id)
-    {
-        $review = Review::where('id', $id)->latest()->first();
-        return view('vendor.backend.review.details_review', compact('review'));
     } //End Method
 
     public function UpdateStatusNewReviewProduct($id)

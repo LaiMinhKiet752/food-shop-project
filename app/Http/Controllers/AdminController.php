@@ -7,8 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Notifications\VendorApproveNotification;
-use App\Notifications\VendorDisapproveNotification;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -233,91 +231,6 @@ class AdminController extends Controller
         $admin_data->token = '';
         $admin_data->update();
         return redirect('/admin/login')->with('success', 'Password is reset successfully.');
-    } //End Method
-
-    public function InActiveVendor()
-    {
-        $inactiveVendor = User::where('status', 'inactive')->where('role', 'vendor')->latest()->get();
-        return view('backend.vendor.inactive_vendor', compact('inactiveVendor'));
-    } //End Method
-
-    public function ActiveVendor()
-    {
-        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
-        return view('backend.vendor.active_vendor', compact('activeVendor'));
-    } //End Method
-
-    public function InActiveVendorDetails($id)
-    {
-        $inactiveVendorDetails = User::findOrFail($id);
-        return view('backend.vendor.inactive_vendor_details', compact('inactiveVendorDetails'));
-    } //End Method
-
-    public function ActiveVendorApprove(Request $request)
-    {
-        $vendor_id = $request->id;
-        User::findOrFail($vendor_id)->update([
-            'status' => 'active',
-            'email_verified_at' => Carbon::now(),
-        ]);
-        Product::where('vendor_id', $vendor_id)->update(['status' => 1]);
-        $notification = array(
-            'message' => 'Vendor Activated Successfully!',
-            'alert-type' => 'success',
-        );
-        $vendor_approve = User::where('id', $vendor_id)->where('role', 'vendor')->first();
-
-        //Mail To Vendor
-        $subject = 'Your Account Has Been Approved By Admin';
-        $message = 'Welcome to NEST. Now you can use this account to be able to do business on Nest. <br>';
-        $message .= 'Username: ';
-        $message .= $vendor_approve->username;
-        $message .= '<br>';
-        $message .= 'Email: ';
-        $message .= $vendor_approve->email;
-        $message .= '<br>';
-        $message .= 'If you need any assistance please email to: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards, <br>';
-        $message .= 'Nest Shop';
-        Mail::to($vendor_approve->email)->send(new WebsiteMail($subject, $message));
-
-        //Notification To Vendor
-        Notification::send($vendor_approve, new VendorApproveNotification($request));
-        return redirect()->route('active.vendor')->with($notification);
-    } //End Method
-
-    public function ActiveVendorDetails($id)
-    {
-        $activeVendorDetails = User::findOrFail($id);
-        return view('backend.vendor.active_vendor_details', compact('activeVendorDetails'));
-    } //End Method
-
-    public function InActiveVendorApprove(Request $request)
-    {
-        $vendor_id = $request->id;
-        User::findOrFail($vendor_id)->update([
-            'status' => 'inactive',
-        ]);
-        Product::where('vendor_id', $vendor_id)->update(['status' => 0]);
-        $notification = array(
-            'message' => 'Vendor Inactivated Successfully!',
-            'alert-type' => 'success',
-        );
-        $vendor_disapprove = User::where('id', $vendor_id)->where('role', 'vendor')->first();
-
-        //Mail To Vendor
-        $subject = 'Your Account Has Been Disapproved By Admin';
-        $message = 'It looks like you violated some of our policies, so your account is temporarily locked. <br>';
-        $message .= 'Please contact us by: <br>';
-        $message .= 'Call the hotline number: 1900 999 <br>';
-        $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards, <br>';
-        $message .= 'Nest Shop';
-        Mail::to($vendor_disapprove->email)->send(new WebsiteMail($subject, $message));
-
-        //Notification To Vendor
-        Notification::send($vendor_disapprove, new VendorDisapproveNotification($request));
-        return redirect()->route('inactive.vendor')->with($notification);
     } //End Method
 
     public function AllAdminAccount()

@@ -193,16 +193,6 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group col-12 text-dark">
-                                        <label for="inputCollection" class="form-label">Select Vendor </label>
-                                        <select name="vendor_id" class="form-control form-select single-select">
-                                            <option></option>
-                                            @foreach ($activeVendor as $vendor)
-                                                <option value="{{ $vendor->id }}">{{ $vendor->shop_name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
                                     <div class="col-12">
                                         <div class="row g-3">
                                             <div class="col-md-6 text-dark">

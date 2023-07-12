@@ -27,11 +27,6 @@
                     Order</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ $route == 'user.track.order.page' ? 'active' : '' }}"
-                    href="{{ route('user.track.order.page') }}"><i class="fi-rs-shopping-cart-check mr-5"></i>Track
-                    Your Order</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.account.page' ? 'active' : '' }}"
                     href="{{ route('user.account.page') }}"><i class="fi-rs-user mr-5"></i>Account
                     Details</a>

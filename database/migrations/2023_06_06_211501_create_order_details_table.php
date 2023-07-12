@@ -18,12 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
             $table->integer('brand_id')->nullable();
-            $table->string('vendor_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->float('price', 8, 2);
             $table->string('quantity');
-            $table->float('discount', 8, 2)->nullable();
-            $table->float('total', 8, 2);
             $table->timestamps();
         });
     }

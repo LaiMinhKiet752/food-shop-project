@@ -16,11 +16,6 @@ class Product extends Model
         'expiry_date' => 'datetime',
     ];
 
-    public function vendor()
-    {
-        return $this->belongsTo(User::class, 'vendor_id', 'id');
-    }
-
     public function user()
     {
         return $this->belongsTo(User::class, 'deleted_by', 'id');

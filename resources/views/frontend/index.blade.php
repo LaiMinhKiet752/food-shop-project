@@ -175,12 +175,7 @@
                                     </div>
 
                                     <div>
-                                        @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -199,8 +194,6 @@
 
                                             <input type="hidden" class="cat1_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="cat1_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="cat1_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="add CategoryOneProductAddToCart" type="submit"><i
@@ -383,12 +376,7 @@
 
 
                                     <div>
-                                        @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -407,8 +395,6 @@
 
                                             <input type="hidden" class="cat2_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="cat2_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="cat2_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="add CategoryTwoProductAddToCart" type="submit"><i
@@ -591,12 +577,7 @@
 
 
                                     <div>
-                                        @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -615,8 +596,6 @@
 
                                             <input type="hidden" class="cat3_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="cat3_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="cat3_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="add CategoryThreeProductAddToCart" type="submit"><i
@@ -799,12 +778,7 @@
 
 
                                     <div>
-                                        @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -823,8 +797,6 @@
 
                                             <input type="hidden" class="cat4_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="cat4_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="cat4_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="add CategoryFourProductAddToCart" type="submit"><i
@@ -1007,12 +979,7 @@
 
 
                                     <div>
-                                        @if ($product->vendor_id == null)
                                             <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -1031,8 +998,6 @@
 
                                             <input type="hidden" class="cat5_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="cat5_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="cat5_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="add CategoryFiveProductAddToCart" type="submit"><i
@@ -1590,10 +1555,6 @@
 </section>
 
 
-<!--Vendor List -->
-@include('frontend.home.home_vendor_list')
-<!--End Vendor List -->
-
 
 {{-- Start Category One Add To Cart --}}
 <script type="text/javascript">
@@ -1603,8 +1564,6 @@
             var id = $(this).closest('.cat1_product_data').find('.cat1_prod_id').val();
             var product_name = $(this).closest('.cat1_product_data').find(
                 '.cat1_pname').val();
-            var vendor_id = $(this).closest('.cat1_product_data').find(
-                '.cat1_vendor_id').val();
             var brand_id = $(this).closest('.cat1_product_data').find(
                 '.cat1_brand_id').val();
             var quantity = 1;
@@ -1614,7 +1573,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",
@@ -1655,8 +1613,6 @@
             var id = $(this).closest('.cat2_product_data').find('.cat2_prod_id').val();
             var product_name = $(this).closest('.cat2_product_data').find(
                 '.cat2_pname').val();
-            var vendor_id = $(this).closest('.cat2_product_data').find(
-                '.cat2_vendor_id').val();
             var brand_id = $(this).closest('.cat2_product_data').find(
                 '.cat2_brand_id').val();
             var quantity = 1;
@@ -1666,7 +1622,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",
@@ -1707,8 +1662,6 @@
             var id = $(this).closest('.cat3_product_data').find('.cat3_prod_id').val();
             var product_name = $(this).closest('.cat3_product_data').find(
                 '.cat3_pname').val();
-            var vendor_id = $(this).closest('.cat3_product_data').find(
-                '.cat3_vendor_id').val();
             var brand_id = $(this).closest('.cat3_product_data').find(
                 '.cat3_brand_id').val();
             var quantity = 1;
@@ -1718,7 +1671,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",
@@ -1759,8 +1711,6 @@
             var id = $(this).closest('.cat4_product_data').find('.cat4_prod_id').val();
             var product_name = $(this).closest('.cat4_product_data').find(
                 '.cat4_pname').val();
-            var vendor_id = $(this).closest('.cat4_product_data').find(
-                '.cat4_vendor_id').val();
             var brand_id = $(this).closest('.cat4_product_data').find(
                 '.cat4_brand_id').val();
             var quantity = 1;
@@ -1770,7 +1720,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",
@@ -1811,8 +1760,6 @@
             var id = $(this).closest('.cat5_product_data').find('.cat5_prod_id').val();
             var product_name = $(this).closest('.cat5_product_data').find(
                 '.cat5_pname').val();
-            var vendor_id = $(this).closest('.cat5_product_data').find(
-                '.cat5_vendor_id').val();
             var brand_id = $(this).closest('.cat5_product_data').find(
                 '.cat5_brand_id').val();
             var quantity = 1;
@@ -1822,7 +1769,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",

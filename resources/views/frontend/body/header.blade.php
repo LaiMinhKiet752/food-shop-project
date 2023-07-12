@@ -39,7 +39,6 @@
                         <ul>
                             <li><a href="{{ route('mycart') }}">My Cart</a></li>
                             <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                            <li><a href="{{ route('user.track.order.page') }}">Order Tracking</a></li>
                         </ul>
                     </div>
                 </div>
@@ -178,11 +177,6 @@
                                             <li>
                                                 <a href="{{ route('user.order.page') }}"><i
                                                         class="fa-solid fa-cart-shopping mr-10"></i>My Order</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="{{ route('user.track.order.page') }}"><i
-                                                        class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
                                             </li>
                                             {{-- <li>
                                                 <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My

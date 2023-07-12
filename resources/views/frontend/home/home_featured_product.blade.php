@@ -192,8 +192,6 @@
 
                                             <input type="hidden" class="home_featured_category_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="home_featured_category_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="home_featured_category_brand_id"
                                                 value="{{ $product->brand_id }}">
                                             <a class="btn w-100 hover-up featuredProductAddToCart" type="submit"><i
@@ -222,8 +220,6 @@
                 var product_name = $(this).closest('.featured_product_data').find(
                         '.home_featured_category_pname')
                     .val();
-                var vendor_id = $(this).closest('.featured_product_data').find(
-                    '.home_featured_category_vendor_id').val();
                 var brand_id = $(this).closest('.featured_product_data').find(
                     '.home_featured_category_brand_id').val();
                 var quantity = 1;
@@ -233,7 +229,6 @@
                     data: {
                         quantity: quantity,
                         product_name: product_name,
-                        vendor_id: vendor_id,
                         brand_id: brand_id,
                     },
                     dataType: "json",

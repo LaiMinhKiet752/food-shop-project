@@ -226,14 +226,7 @@
 
 
                                 <div>
-                                    @if ($product->vendor_id == null)
-                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                    @else
-                                        <span class="font-small text-muted">By <a
-                                                href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                    @endif
-
-
+                                    <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                 </div>
                                 <div class="product-card-bottom">
 
@@ -254,8 +247,6 @@
 
                                         <input type="hidden" class="shop_page_pname"
                                             value="{{ $product->product_name }}">
-                                        <input type="hidden" class="shop_page_vendor_id"
-                                            value="{{ $product->vendor_id }}">
                                         <input type="hidden" class="shop_page_brand_id"
                                             value="{{ $product->brand_id }}">
                                         <a class="add ShopPageAddToCart" type="submit"><i
@@ -365,7 +356,8 @@
                                         onchange="this.form.submit()" />
                                     <label class="form-check-label"
                                         for="exampleBrand{{ $brand->id }}"><span>{{ $brand->brand_name }}
-                                            ({{ count($products) }})</span></label>
+                                            ({{ count($products) }})
+                                        </span></label>
                                 </div>
                             @endforeach
                         </div>
@@ -520,8 +512,6 @@
             var id = $(this).closest('.shop_page_data').find('.shop_page_prod_id').val();
             var product_name = $(this).closest('.shop_page_data').find(
                 '.shop_page_pname').val();
-            var vendor_id = $(this).closest('.shop_page_data').find(
-                '.shop_page_vendor_id').val();
             var brand_id = $(this).closest('.shop_page_data').find(
                 '.shop_page_brand_id').val();
             var quantity = 1;
@@ -531,7 +521,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",

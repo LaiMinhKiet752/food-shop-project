@@ -22,11 +22,9 @@ return new class extends Migration
             $table->foreign('product_id')
             ->references('id')->on('products')
             ->onDelete('cascade');
-
             $table->foreign('user_id')
             ->references('id')->on('users')
             ->onDelete('cascade');
-            $table->integer('vendor_id')->nullable();
             $table->string('status')->default(0);
             $table->timestamps();
         });

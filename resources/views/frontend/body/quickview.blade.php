@@ -40,7 +40,6 @@
                                 <div class="product-extra-link2">
                                     <input type="hidden" id="product_id">
                                     <input type="hidden" id="brand_id" value="">
-                                    <input type="hidden" id="vendor_id" value="">
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i
                                             class="fi-rs-shopping-cart"></i>Add to cart</button>
                                 </div>
@@ -56,7 +55,7 @@
                                             <li class="mb-5">Category : <span class="text-brand" id="pcategory">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">Vendor : <span class="text-brand" id="pvendor">
+                                            <li class="mb-5">SubCategory : <span class="text-brand" id="psubcategory">
                                             </span>
                                         </li>
                                         </ul>

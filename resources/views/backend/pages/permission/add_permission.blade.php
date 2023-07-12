@@ -71,7 +71,6 @@
                                             <option value="setting">Site Setting</option>
                                             <option value="roles and permissions">Roles And Permissions</option>
                                             <option value="admin user account">Admin User Account</option>
-                                            <option value="vendor management">Vendor Management</option>
                                             <option value="user management">User Management</option>
                                             <option value="employee">Employee Management</option>
                                             <option value="employee salary">Employee Salary Management</option>

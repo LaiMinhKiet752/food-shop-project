@@ -227,14 +227,7 @@
 
 
                                 <div>
-                                    @if ($product->vendor_id == null)
-                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                    @else
-                                        <span class="font-small text-muted">By <a
-                                                href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                    @endif
-
-
+                                    <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                 </div>
                                 <div class="product-card-bottom">
 
@@ -255,8 +248,6 @@
 
                                         <input type="hidden" class="category_view_pname"
                                             value="{{ $product->product_name }}">
-                                        <input type="hidden" class="category_view_vendor_id"
-                                            value="{{ $product->vendor_id }}">
                                         <input type="hidden" class="category_view_brand_id"
                                             value="{{ $product->brand_id }}">
                                         <a class="add CategoryProductAddToCart" type="submit"><i
@@ -429,8 +420,6 @@
             var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
             var product_name = $(this).closest('.cat_product_data').find(
                 '.category_view_pname').val();
-            var vendor_id = $(this).closest('.cat_product_data').find(
-                '.category_view_vendor_id').val();
             var brand_id = $(this).closest('.cat_product_data').find(
                 '.category_view_brand_id').val();
             var quantity = 1;
@@ -440,7 +429,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",
