@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CancelOrder;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\Product;
 use App\Models\User;
 use App\Notifications\CancelOrderNotification;
 use App\Notifications\ReturnOrderNotification;
@@ -12,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
 class AllUserController extends Controller
@@ -65,66 +69,13 @@ class AllUserController extends Controller
             'return_order_status' => 1,
         ]);
         $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
-        $order = Order::where('id', $order_id)->first();
-        // $first_admin_user = User::where('role', 'admin')->where('status', 'active')->first();
-        // $order_date_format = date('m-d-Y H:i:s',strtotime($order->order_date));
-
-        // //Mail To Admin
-        // $subject = 'There is a request to return the order';
-        // $message = 'Invoice information: <br><br>';
-
-        // $message .= 'Order Number: ';
-        // $message .= $order->order_number;
-        // $message .= '<br>';
-
-        // $message .= 'Invoice Number: ';
-        // $message .= $order->invoice_number;
-        // $message .= '<br>';
-
-        // $message .= 'Full Name: ';
-        // $message .= $order->name;
-        // $message .= '<br>';
-
-        // $message .= 'Email: ';
-        // $message .= $order->email;
-        // $message .= '<br>';
-
-        // $message .= 'Phone Number: ';
-        // $message .= $order->phone;
-        // $message .= '<br>';
-
-        // $message .= 'Payment Method: ';
-        // $message .= $order->payment_method;
-        // $message .= '<br>';
-
-        // $message .= 'Payment Type: ';
-        // $message .= $order->payment_type;
-        // $message .= '<br>';
-
-        // $message .= 'Total (USD): ';
-        // $message .= $order->amount;
-        // $message .= '<br>';
-
-        // $message .= 'Order Date: ';
-        // $message .= $order_date_format;
-        // $message .= '<br>';
-
-        // $message .= 'Return Date: ';
-        // $message .= $order->return_date;
-        // $message .= '<br>';
-
-        // $message .= 'Reason: ';
-        // $message .= $order->return_reason;
-        // $message .= '<br>';
-
-        // Mail::to($first_admin_user->email)->send(new WebsiteMail($subject, $message));
 
         //Notification To Admin
         Notification::send($all_admin_user, new ReturnOrderNotification($request));
 
         $notification = array(
             'message' => 'Submit Order Return Request Successfully!',
-            'alert-type' => 'success'
+            'alert-type' => 'success',
         );
         return redirect()->route('user.order.page')->with($notification);
     } //End Method
@@ -139,63 +90,31 @@ class AllUserController extends Controller
     {
         $order_id = $request->order_id;
         $all_admin_user = User::where('role', 'admin')->where('status', 'active')->get();
+        $product = OrderDetails::where('order_id', $order_id)->get();
+        foreach ($product as $item) {
+            Product::where('id', $item->product_id)->update([
+                'product_quantity' => DB::raw('product_quantity + ' . $item->quantity)
+            ]);
+        }
         Order::findOrFail($order_id)->update([
             'cancel_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'cancel_order_status' => 1,
         ]);
+        $order = Order::where('id', $order_id)->first();
+        //Mail To Customer
+        $subject = 'Order has been canceled successfully';
+
+        $message = 'If you need assistance please contact us via: <br>';
+        $message .= 'Call the hotline number: 1900 999 <br>';
+        $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
+        $message .= 'Best regards, <br>';
+
+        Mail::to($order->email)->send(new CancelOrder($subject, $message, $order));
+
         $notification = array(
-            'message' => 'Order Cancellation Request Successful!',
+            'message' => 'Order Canceled Successfully!!',
             'alert-type' => 'success'
         );
-        $order = Order::where('id', $order_id)->first();
-        // $first_admin_user = User::where('role', 'admin')->where('status', 'active')->first();
-        // $order_date_format = date('m-d-Y H:i:s',strtotime($order->order_date));
-
-        //  //Mail To Admin
-        //  $subject = 'There is a request to cancel the order';
-        //  $message = 'Invoice information: <br><br>';
-
-        //  $message .= 'Order Number: ';
-        //  $message .= $order->order_number;
-        //  $message .= '<br>';
-
-        //  $message .= 'Invoice Number: ';
-        //  $message .= $order->invoice_number;
-        //  $message .= '<br>';
-
-        //  $message .= 'Full Name: ';
-        //  $message .= $order->name;
-        //  $message .= '<br>';
-
-        //  $message .= 'Email: ';
-        //  $message .= $order->email;
-        //  $message .= '<br>';
-
-        //  $message .= 'Phone Number: ';
-        //  $message .= $order->phone;
-        //  $message .= '<br>';
-
-        //  $message .= 'Payment Method: ';
-        //  $message .= $order->payment_method;
-        //  $message .= '<br>';
-
-        //  $message .= 'Payment Type: ';
-        //  $message .= $order->payment_type;
-        //  $message .= '<br>';
-
-        //  $message .= 'Total (USD): ';
-        //  $message .= $order->amount;
-        //  $message .= '<br>';
-
-        //  $message .= 'Order Date: ';
-        //  $message .= $order_date_format;
-        //  $message .= '<br>';
-
-        //  $message .= 'Cancel Date: ';
-        //  $message .= $order->cancel_date;
-        //  $message .= '<br>';
-
-        //  Mail::to($first_admin_user->email)->send(new WebsiteMail($subject, $message));
 
         //Notification To Admin
         Notification::send($all_admin_user, new CancelOrderNotification($request));

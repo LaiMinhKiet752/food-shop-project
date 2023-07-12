@@ -122,7 +122,7 @@
                                             </div>
                                         </a>
                                     @elseif($notification->data['type'] == 'cancel_order')
-                                        <a class="dropdown-item" href="{{ route('admin.cancel.request') }}"
+                                        <a class="dropdown-item" href="{{ route('admin.complete.cancel.request') }}"
                                             id="{{ $notification->id }}" onclick="updateStatusCancelOrder(this.id)">
                                             <div
                                                 class="d-flex align-items-center {{ $notification->status == 0 ? 'user-online' : '' }}">

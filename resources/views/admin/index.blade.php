@@ -126,7 +126,7 @@
     $cancel_orders = \App\Models\Order::where(function ($query1) {
         $query1->where('status', 'pending')->orWhere('status', 'confirmed');
     })
-        ->Where('cancel_order_status', 2)
+        ->Where('cancel_order_status', 1)
         ->count();
 
     $return_orders = \App\Models\Order::where('status', 'delivered')
@@ -260,7 +260,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL ORDER HAS BEEN CANCELED</p>
+                        <p class="mb-0">TOTAL ORDER CANCELED</p>
                         {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>
@@ -281,7 +281,7 @@
                             aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL ORDER HAS BEEN REFUNDED</p>
+                        <p class="mb-0">TOTAL ORDER RETURNED</p>
                         {{-- <p class="mb-0 ms-auto">+2.2%<span><i class='bx bx-up-arrow-alt'></i></span></p> --}}
                     </div>
                 </div>

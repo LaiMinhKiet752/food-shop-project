@@ -60,17 +60,10 @@
                                                             <td>${{ $order->amount }}</td>
                                                             <td>{{ $order->payment_method }}</td>
                                                             <td>
-                                                                @if ($order->cancel_order_status == 1)
-                                                                    <span class="badge rounded-pill bg-warning"
-                                                                        style="font-size: 13px;">
-                                                                        Pending
-                                                                    </span>
-                                                                @elseif($order->cancel_order_status == 2)
-                                                                    <span class="badge rounded-pill bg-success"
-                                                                        style="font-size: 13px;">
-                                                                        Success
-                                                                    </span>
-                                                                @endif
+                                                                <span class="badge rounded-pill bg-success"
+                                                                    style="font-size: 13px;">
+                                                                    Success
+                                                                </span>
                                                             </td>
                                                         </tr>
                                                     @endforeach

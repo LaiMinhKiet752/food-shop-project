@@ -28,7 +28,7 @@ class ReturnController extends Controller
         $order = Order::where('id', $order_id)->first();
 
         //Mail To Customer
-        $subject = 'Invoice has been returned successfully';
+        $subject = 'Order has been returned successfully';
 
         $message = 'If you need assistance please contact us via: <br>';
         $message .= 'Call the hotline number: 1900 999 <br>';

@@ -222,10 +222,8 @@
                     <div class="menu-title">Cancel Order</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('admin.cancel.request') }}"><i class="bx bx-right-arrow-alt"></i>Order Cancellation Request</a>
-                    </li>
                     <li> <a href="{{ route('admin.complete.cancel.request') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Approved Cancel Request</a>
+                                class="bx bx-right-arrow-alt"></i>All Orders Canceled</a>
                 </ul>
             </li>
         @endif
