@@ -26,12 +26,10 @@ class PaypalController extends Controller
         $user = User::where('role','admin')->get();
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
-            $discount_percent = Session::get('coupon')['coupon_discount'];
             $discount_amount = Session::get('coupon')['discount_amount'];
         } else {
             $total_amount = round(Cart::total(), 2);
             $discount_amount = 0;
-            $discount_percent = 0;
         }
 
         $provider = new PayPalClient;
@@ -67,7 +65,7 @@ class PaypalController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => 'Credit Card',
+            'payment_type' => 'Credit Cards',
             'payment_method' => 'Paypal Payment',
             'transaction_id' => $response['id'],
             'currency' => 'usd',
@@ -89,11 +87,8 @@ class PaypalController extends Controller
                 'order_id' => $order_id,
                 'product_id' => $cart->id,
                 'brand_id' => $cart->options->brand_id,
-                'vendor_id' => $cart->options->vendor_id,
                 'price' => $cart->price,
                 'quantity' => $cart->qty,
-                'discount' => ($cart->price * $discount_percent / 100),
-                'total' => $discount_percent == 0 ? ($cart->price * $cart->qty) : ($cart->price * $cart->qty * $discount_percent / 100),
                 'created_at' => Carbon::now(),
             ]);
         }

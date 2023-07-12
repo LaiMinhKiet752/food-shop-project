@@ -50,21 +50,6 @@ class IndexController extends Controller
         return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_category_3', 'skip_product_3', 'skip_category_4', 'skip_product_4', 'hot_deals', 'special_offer', 'new', 'special_deals'));
     } //End Method
 
-    public function VendorDetails($id)
-    {
-        $vendor = User::findOrFail($id);
-        $vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->paginate(20);
-        $count_vproduct = Product::where('status', 1)->where('vendor_id', $id)->orderBy('id', 'DESC')->get();
-        return view('frontend.vendor.vendor_details', compact('vendor', 'vproduct','count_vproduct'));
-    } // End Method
-
-    public function VendorAll()
-    {
-        $vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'DESC')->paginate(8);
-        $count_vendors = User::where('status', 'active')->where('role', 'vendor')->orderBy('id', 'DESC')->get();
-        return view('frontend.vendor.vendor_all', compact('vendors','count_vendors'));
-    } // End Method
-
 
     public function CategoryWiseProduct(Request $request, $id, $slug)
     {
@@ -73,7 +58,7 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadcategory = Category::where('id', $id)->first();
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct','count_products'));
+        return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct', 'count_products'));
     } // End Method
 
 
@@ -84,12 +69,12 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name', 'ASC')->get();
         $breadsubcategory = SubCategory::where('id', $id)->first();
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
-        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcategory', 'newProduct','count_products'));
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcategory', 'newProduct', 'count_products'));
     } // End Method
 
     public function ProductViewAjax($id)
     {
-        $product = Product::with('category', 'brand', 'vendor')->findOrFail($id);
+        $product = Product::with('category', 'subcategory', 'brand')->findOrFail($id);
         return response()->json(array(
             'product' => $product
         ));
@@ -101,7 +86,7 @@ class IndexController extends Controller
 
         $item = $request->search;
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        $products = Product::where('product_name', 'LIKE', "%$item%")->get();
+        $products = Product::where('product_name', 'LIKE', "%$item%")->paginate(10);
         $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
         return view('frontend.product.search', compact('products', 'item', 'categories', 'newProduct'));
     } // End Method

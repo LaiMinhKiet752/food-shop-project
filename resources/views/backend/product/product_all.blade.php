@@ -38,8 +38,8 @@
                             <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
-                            <th>Selling Price (USD)</th>
-                            <th>Discount Price (USD)</th>
+                            <th>Selling Price</th>
+                            <th>Discount Price</th>
                             <th>Percent Discount</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -51,13 +51,13 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td><img src="{{ asset($item->product_thumbnail) }}" style="width: 80px; height: 60px;">
                                 </td>
-                                <td>{{ $item->product_code }}</td>  
-                                <td>{{ Str::limit($item->product_name, 15, '...') }}</td>
-                                <td>{{ $item->selling_price }}</td>
+                                <td>{{ $item->product_code }}</td>
+                                <td>{{ Str::limit($item->product_name, 25, '...') }}</td>
+                                <td>${{ $item->selling_price }}</td>
                                 @if ($item->discount_price == null)
                                     <td></td>
                                 @else
-                                    <td>{{ $item->discount_price }}</span>
+                                    <td>${{ $item->discount_price }}</span>
                                     </td>
                                 @endif
                                 <td>
@@ -110,8 +110,8 @@
                             <th>Image</th>
                             <th>Product Code</th>
                             <th>Product Name</th>
-                            <th>Selling Price (USD)</th>
-                            <th>Discount Price (USD)</th>
+                            <th>Selling Price</th>
+                            <th>Discount Price</th>
                             <th>Percent Discount</th>
                             <th>Status</th>
                             <th>Action</th>

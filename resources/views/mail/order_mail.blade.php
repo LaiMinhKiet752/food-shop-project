@@ -103,7 +103,6 @@
                 <th>Image</th>
                 <th>Product Code</th>
                 <th>Product Name</th>
-                <th>Vendor</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Total</th>
@@ -124,11 +123,6 @@
                     </td>
                     <td align="center">{{ $item->product->product_code }}</td>
                     <td align="center">{{ $item->product->product_name }}</td>
-                    @if ($item->vendor_id == null)
-                        <td align="center">Nest</td>
-                    @else
-                        <td align="center">{{ $item->product->vendor->shop_name }}</td>
-                    @endif
                     <td align="center">${{ $item->price }}</td>
                     <td align="center">{{ $item->quantity }}</td>
                     <td align="center">${{ $item->price * $item->quantity }}</td>

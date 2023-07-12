@@ -389,24 +389,7 @@
             </li>
         @endif
 
-        <li class="menu-label" style="color: black; font-weight: bold;">Vendor And User Management</li>
-        @if (Auth::user()->can('vendor.management.menu'))
-            <li>
-                <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class='bx bxs-group'></i>
-                    </div>
-                    <div class="menu-title">Vendor</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('active.vendor') }}"><i class="bx bx-right-arrow-alt"></i>Active
-                            Vendor</a>
-                    </li>
-                    <li> <a href="{{ route('inactive.vendor') }}"><i class="bx bx-right-arrow-alt"></i>InActive
-                            Vendor</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
+        <li class="menu-label" style="color: black; font-weight: bold;">User Management</li>
 
         @if (Auth::user()->can('user.management.menu'))
             <li>
@@ -417,8 +400,6 @@
                 </a>
                 <ul>
                     <li> <a href="{{ route('all.user') }}"><i class="bx bx-right-arrow-alt"></i>All Customers</a>
-                    </li>
-                    <li> <a href="{{ route('all.vendor') }}"><i class="bx bx-right-arrow-alt"></i>All Vendors</a>
                     </li>
                 </ul>
             </li>

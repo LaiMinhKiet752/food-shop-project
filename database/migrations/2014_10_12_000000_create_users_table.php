@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('shop_name')->nullable();
             $table->string('username')->unique()->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -24,11 +23,9 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->unique()->nullable();
             $table->text('address')->nullable();
-            $table->string('vendor_join')->nullable();
-            $table->text('vendor_short_info')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('facebook_link')->nullable();
-            $table->enum('role',['admin','vendor','user'])->default('user');
+            $table->enum('role',['admin','user'])->default('user');
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('last_seen')->nullable();
             $table->text('token')->nullable();

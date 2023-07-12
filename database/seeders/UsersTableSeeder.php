@@ -21,24 +21,11 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             //Admin
             [
-                'name' => 'Admin',
-                'shop_name' => '',
-                'username' => 'admin',
-                'email' => 'admin@gmail.com',
+                'name' => 'SuperAdmin',
+                'username' => 'superadmin',
+                'email' => 'kietminh070502@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),
                 'role' => 'admin',
-                'status' => 'active',
-                'created_at'=>Carbon::now(),
-            ],
-
-            //Vendor
-            [
-                'name' => 'Nature Food',
-                'shop_name' => 'Nature Food',
-                'username' => 'vendor',
-                'email' => 'vendor@gmail.com',
-                'password' => Hash::make('Tinhoc@123'),
-                'role' => 'vendor',
                 'status' => 'active',
                 'created_at'=>Carbon::now(),
             ],
@@ -46,8 +33,7 @@ class UsersTableSeeder extends Seeder
             //User Or Customer
             [
                 'name' => 'Minh Kiet',
-                'shop_name' => '',
-                'username' => 'kiet',
+                'username' => 'laiminhkiet',
                 'email' => 'laiminhkiet07052002@gmail.com',
                 'password' => Hash::make('Tinhoc@123'),
                 'role' => 'user',

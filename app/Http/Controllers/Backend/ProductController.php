@@ -25,10 +25,9 @@ class ProductController extends Controller
 
     public function AddProduct()
     {
-        $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
-        return view('backend.product.product_add', compact('brands', 'categories', 'activeVendor'));
+        return view('backend.product.product_add', compact('brands', 'categories'));
     } //End Method
 
     public function StoreProduct(Request $request)
@@ -65,7 +64,6 @@ class ProductController extends Controller
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
-            'vendor_id' => $request->vendor_id,
 
             'product_name' => $request->product_name,
             'product_code' => $request->product_code,
@@ -150,7 +148,6 @@ class ProductController extends Controller
                 'brand_id' => $request->brand_id,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
-                'vendor_id' => $request->vendor_id,
 
                 'product_name' => $request->product_name,
                 'product_code' => $request->product_code,
@@ -189,7 +186,6 @@ class ProductController extends Controller
                 'brand_id' => $request->brand_id,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
-                'vendor_id' => $request->vendor_id,
 
                 'product_name' => $request->product_name,
                 'product_code' => $request->product_code,

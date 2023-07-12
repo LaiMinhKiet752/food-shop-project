@@ -85,7 +85,7 @@
                                     <h6 class="mb-0">Message <span class="text-danger">*</span></h6>
                                 </div>
                                 <div class="form-group col-sm-9 text-secondary">
-                                    <textarea name="message" class="form-control" style="width: 100%; height: 200px;"></textarea>
+                                    <textarea id="mytextarea" name="message" class="form-control"></textarea>
                                 </div>
                             </div>
 

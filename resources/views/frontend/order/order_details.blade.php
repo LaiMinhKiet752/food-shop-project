@@ -517,9 +517,6 @@
                                 <label>Product Name </label>
                             </td>
                             <td class="col-md-2">
-                                <label>Vendor Name </label>
-                            </td>
-                            <td class="col-md-2">
                                 <label>Quantity </label>
                             </td>
                             <td class="col-md-3">
@@ -545,15 +542,6 @@
                                 <td class="col-md-2">
                                     <label>{{ $item->product->product_name }} </label>
                                 </td>
-                                @if ($item->vendor_id == null)
-                                    <td class="col-md-2">
-                                        <label>Nest</label>
-                                    </td>
-                                @else
-                                    <td class="col-md-2">
-                                        <label>{{ $item->product->vendor->shop_name }} </label>
-                                    </td>
-                                @endif
                                 <td class="col-md-2">
                                     <label>{{ $item->quantity }} </label>
                                 </td>
@@ -567,7 +555,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td class="col-md-1" colspan="5" style="text-align: center;">
+                            <td class="col-md-1" colspan="4" style="text-align: center;">
                                 <label>Subtotal </label>
                             </td>
                             <td class="col-md-1">
@@ -591,7 +579,7 @@
                     <div class="form-group"
                         style="font-weight: 600; font-size: initial; color: #000000; margin-top: 20px;">
                         <label class="form-group">Order Return Reason<span class="text-danger"> * </span></label>
-                        <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for the return of the order..."
+                        <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for returning the order..."
                             style="height: 100px;"></textarea>
                     </div>
                     <button type="submit" class="btn-sm"

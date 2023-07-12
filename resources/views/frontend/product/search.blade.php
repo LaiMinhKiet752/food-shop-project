@@ -189,14 +189,7 @@
 
 
                                 <div>
-                                    @if ($product->vendor_id == null)
-                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                    @else
-                                        <span class="font-small text-muted">By <a
-                                                href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                    @endif
-
-
+                                    <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                 </div>
                                 <div class="product-card-bottom">
 
@@ -217,8 +210,6 @@
 
                                         <input type="hidden" class="product_search_pname"
                                             value="{{ $product->product_name }}">
-                                        <input type="hidden" class="product_search_vendor_id"
-                                            value="{{ $product->vendor_id }}">
                                         <input type="hidden" class="product_search_brand_id"
                                             value="{{ $product->brand_id }}">
                                         <a class="add ProductSearchAddToCart" type="submit"><i
@@ -234,21 +225,7 @@
             </div>
             <!--product grid-->
             <div class="pagination-area mt-20 mb-20">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-start">
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                        <li class="page-item"><a class="page-link" href="#">6</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
+                {{ $products->links() }}
             </div>
 
             <!--End Deals-->
@@ -395,8 +372,6 @@
             var id = $(this).closest('.product_search_data').find('.prod_search_id').val();
             var product_name = $(this).closest('.product_search_data').find(
                 '.product_search_pname').val();
-            var vendor_id = $(this).closest('.product_search_data').find(
-                '.product_search_vendor_id').val();
             var brand_id = $(this).closest('.product_search_data').find(
                 '.product_search_brand_id').val();
             var quantity = 1;
@@ -406,7 +381,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",

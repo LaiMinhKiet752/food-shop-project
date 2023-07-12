@@ -15,12 +15,6 @@ class ActiveUserController extends Controller
         return view('backend.user.user_all_data', compact('users'));
     } //End Method
 
-    public function AllVendor()
-    {
-        $users = User::where('role', 'vendor')->latest()->get();
-        return view('backend.user.vendor_all_data', compact('users'));
-    } //End Method
-
     public function UpdateStatusNewCustomer($id)
     {
         DB::table('notifications')->where('id', $id)->update(['status' => 1]);
@@ -28,12 +22,5 @@ class ActiveUserController extends Controller
             'success' => 'OK!'
         ]);
     } // End Method
-
-    public function UpdateStatusNewVendor($id)
-    {
-        DB::table('notifications')->where('id', $id)->update(['status' => 1]);
-        return response()->json([
-            'success' => 'OK!'
-        ]);
-    } // End Method
+    
 }

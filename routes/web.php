@@ -7,14 +7,12 @@ use App\Http\Controllers\Backend\AdminSubscriberController;
 use App\Http\Controllers\Backend\AttendanceController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\Backend\VendorProductController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\BannerController;
@@ -32,7 +30,6 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReturnController;
-use App\Http\Controllers\Backend\VendorOrderController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\ContactMessageController;
@@ -62,8 +59,6 @@ Route::controller(IndexController::class)->group(function () {
     Route::get('/', 'Index');
     //Frontend Product Details All Route
     Route::get('/product/details/{id}/{slug}', 'ProductDetails');
-    Route::get('/vendor/details/{id}', 'VendorDetails')->name('vendor.details');
-    Route::get('/vendor/all', 'VendorAll')->name('vendor.all');
     Route::get('/product/category/{id}/{slug}', 'CategoryWiseProduct');
     Route::get('/product/subcategory/{id}/{slug}', 'SubCategoryWiseProduct');
     // Product View Modal With Ajax
@@ -103,7 +98,6 @@ Route::controller(CartController::class)->group(function () {
     Route::post('/category/product/cart/store/{id}', 'AddToCartCategoryProduct');
     Route::post('/subcategory/product/cart/store/{id}', 'AddToCartSubCategoryProduct');
     Route::post('/related/product/cart/store/{id}', 'AddToCartRelatedProduct');
-    Route::post('/vendor/details/product/cart/store/{id}', 'AddToCartVendorDetailsProduct');
     Route::post('/categoryone/product/cart/store/{id}', 'AddToCartCategoryOneProduct');
     Route::post('/categorytwo/product/cart/store/{id}', 'AddToCartCategoryTwoProduct');
     Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
@@ -225,67 +219,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/user/logout', [UserController::class, 'UserLogout'])->name('user.logout');
     Route::post('/user/update/password', [UserController::class, 'UserUpdatePassword'])->name('user.update.password');
 }); //End Group Middleware User
-
-Route::middleware(['auth', 'role:vendor'])->group(function () {
-
-    //Vendor Dashborad
-    Route::get('/vendor/dashboard', [VendorController::class, 'VendorDashboard'])->name('vendor.dashboard');
-    Route::get('/vendor/logout', [VendorController::class, 'VendorDestroy'])->name('vendor.logout');
-    Route::get('/vendor/profile', [VendorController::class, 'VendorProfile'])->name('vendor.profile');
-    Route::post('/vendor/profile/store', [VendorController::class, 'VendorProfileStore'])->name('vendor.profile.store');
-    Route::get('/vendor/change/password', [VendorController::class, 'VendorChangePassword'])->name('vendor.change.password');
-    Route::post('/vendor/update/password', [VendorController::class, 'VendorUpdatePassword'])->name('vendor.update.password');
-
-    //Vendor Add Product All Route
-    Route::controller(VendorProductController::class)->group(function () {
-        Route::get('/vendor/all/product', 'VendorAllProduct')->name('vendor.all.product');
-        Route::get('/vendor/add/product', 'VendorAddProduct')->name('vendor.add.product');
-        Route::post('/vendor/store/product', 'VendorStoreProduct')->name('vendor.store.product');
-        Route::get('/vendor/edit/product/{id}', 'VendorEditProduct')->name('vendor.edit.product');
-        Route::post('/vendor/update/product', 'VendorUpdateProduct')->name('vendor.update.product');
-        Route::post('/vendor/update/product/thumbnail', 'VendorUpdateProductThumbnail')->name('vendor.update.product.thumbnail');
-        Route::post('/vendor/update/product/multipleimages', 'VendorUpdateProductMultipleImages')->name('vendor.update.product.multipleimages');
-        Route::post('/vendor/add/new/product/multipleimages', 'VendorAddNewProductMultipleImages')->name('vendor.add.new.product.multipleimages');
-        Route::get('/vendor/product/multipleimages/delete/{id}', 'VendorMultipleimagesDelete')->name('vendor.product.multipleimages.delete');
-        Route::get('/vendor/product/inactive/{id}', 'VendorProductInactive')->name('vendor.product.inactive');
-        Route::get('/vendor/product/active/{id}', 'VendorProductActive')->name('vendor.product.active');
-        Route::get('/vendor/delete/product/{id}', 'VendorProductDelete')->name('vendor.delete.product');
-        Route::get('/vendor/subcategory/ajax/{category_id}', 'VendorGetSubCategory');
-        Route::get('/vendor/restore/product', 'VendorRestoreProduct')->name('vendor.restore.product');
-        Route::get('/vendor/restore/product/submit/{id}', 'VendorRestoreProductSubmit')->name('vendor.restore.product.submit');
-        Route::get('/vendor/product/force/delete/{id}', 'VendorForceDeleteProduct')->name('vendor.force.delete.product');
-        Route::get('/vendor/product/stock', 'VendorProductStock')->name('vendor.product.stock');
-    });
-
-    //Vendor Order All Route
-    Route::controller(VendorOrderController::class)->group(function () {
-        Route::get('/vendor/all/order', 'VendorOrder')->name('vendor.all.order');
-        Route::get('/vendor/order/details/{order_id}', 'VendorOrderDetails')->name('vendor.order.details');
-        Route::get('/vendor/return/order', 'VendorReturnOrder')->name('vendor.return.order');
-        Route::get('/vendor/return/order/details/{order_id}', 'VendorReturnOrderDetails')->name('vendor.return.order.details');
-        Route::get('/vendor/complete/return/order', 'VendorCompleteReturnOrder')->name('vendor.complete.return.order');
-        Route::get('/vendor/cancel/order', 'VendorCancelOrder')->name('vendor.cancel.order');
-        Route::get('/vendor/cancel/order/details/{order_id}', 'VendorCancelOrderDetails')->name('vendor.cancel.order.details');
-        Route::get('/vendor/complete/cancel/order', 'VendorCompleteCancelOrder')->name('vendor.complete.cancel.order');
-    });
-
-    //Vendor Review All Route
-    Route::controller(ReviewController::class)->group(function () {
-        Route::get('/vendor/all/review', 'VendorAllReview')->name('vendor.all.review');
-        Route::get('/vendor/review/details/{id}', 'VendorReviewDetails')->name('vendor.review.details');
-    });
-
-    //Vendor Notification All Route
-    Route::controller(VendorController::class)->group(function () {
-
-        //Update Status Notification
-        Route::get('/vendor/update-status/vendor-approve/{id}', 'UpdateStatusVendorApprove');
-        Route::get('/vedor/update-status/vendor-disapprove/{id}', 'UpdateStatusVendorDisapprove');
-
-        //Vendor Delete All Notification
-        Route::get('/vendor/delete/all/notification', 'DeleteAllNotification')->name('vendor.delete.all.notification');
-    });
-}); //End Group Middleware Vendor
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
@@ -410,15 +343,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/district/ajax/{city_id}', 'GetDistrict');
     });
 
-    //Vendor Active And Inactive All Route
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/inactive/vendor', 'InActiveVendor')->name('inactive.vendor');
-        Route::get('/active/vendor', 'ActiveVendor')->name('active.vendor');
-        Route::get('/inactive/vendor/details/{id}', 'InActiveVendorDetails')->name('inactive.vendor.details');
-        Route::post('/active/vendor/approve', 'ActiveVendorApprove')->name('active.vendor.approve');
-        Route::get('/active/vendor/details/{id}', 'ActiveVendorDetails')->name('active.vendor.details');
-        Route::post('/inactive/vendor/approve', 'InActiveVendorApprove')->name('inactive.vendor.approve');
-    });
 
     //Order All Route
     Route::controller(OrderController::class)->group(function () {
@@ -468,14 +392,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/search/by/customer', 'SearchByCustomer')->name('search-by-customer');
     });
 
-    //Active Customer And Vendor All Route
+    //Active Customer All Route
     Route::controller(ActiveUserController::class)->group(function () {
         Route::get('/all/user', 'AllUser')->name('all.user');
-        Route::get('/all/vendor', 'AllVendor')->name('all.vendor');
 
         //Update Status Notification
         Route::get('/update-status/new-customer/{id}', 'UpdateStatusNewCustomer');
-        Route::get('/update-status/new-vendor/{id}', 'UpdateStatusNewVendor');
     });
 
     //Blog All Category Route
@@ -649,14 +571,3 @@ Route::get('/admin/forgot/password', [AdminController::class, 'AdminForgotPasswo
 Route::post('/admin/forgot/password/submit', [AdminController::class, 'AdminForgotPasswordSubmit'])->name('admin.forgot.password.submit');
 Route::get('/admin/reset/password/{token}/{email}', [AdminController::class, 'AdminResetPassword'])->name('admin.reset.password');
 Route::post('/admin/reset/password/submit', [AdminController::class, 'AdminResetPasswordSubmit'])->name('admin.reset.password.submit');
-
-
-//Vendor Route
-Route::get('/vendor/login', [VendorController::class, 'VendorLogin'])->name('vendor.login')->middleware(RedirectIfAuthenticated::class);
-Route::get('/vendor/forgot/password', [VendorController::class, 'VendorForgotPassword'])->name('vendor.forgot.password');
-Route::post('/vendor/forgot/password/submit', [VendorController::class, 'VendorForgotPasswordSubmit'])->name('vendor.forgot.password.submit');
-Route::get('/vendor/reset/password/{token}/{email}', [VendorController::class, 'VendorResetPassword'])->name('vendor.reset.password');
-Route::post('/vendor/reset/password/submit', [VendorController::class, 'VendorResetPasswordSubmit'])->name('vendor.reset.password.submit');
-Route::get('/become/vendor', [VendorController::class, 'BecomeVendor'])->name('become.vendor');
-Route::post('/vendor/register', [VendorController::class, 'VendorRegister'])->name('vendor.register');
-Route::get('/vendor/register/reload-captcha', [VendorController::class, 'ReloadCaptcha']);

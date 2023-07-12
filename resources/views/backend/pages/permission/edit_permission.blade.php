@@ -112,9 +112,6 @@
                                                 value="admin user account"{{ $permission->group_name == 'admin user account' ? 'selected' : '' }}>
                                                 Admin User Account</option>
                                             <option
-                                                value="vendor management"{{ $permission->group_name == 'vendor management' ? 'selected' : '' }}>
-                                                Vendor Management</option>
-                                            <option
                                                 value="user management"{{ $permission->group_name == 'user management' ? 'selected' : '' }}>
                                                 User Management</option>
                                             <option

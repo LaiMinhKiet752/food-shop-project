@@ -188,12 +188,7 @@
 
 
                                     <div>
-                                        @if ($product->vendor_id == null)
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
-                                        @else
-                                            <span class="font-small text-muted">By <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                        @endif
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         @if ($product->discount_price == null)
@@ -212,8 +207,6 @@
 
                                             <input type="hidden" class="homnew_pname"
                                                 value="{{ $product->product_name }}">
-                                            <input type="hidden" class="homnew_vendor_id"
-                                                value="{{ $product->vendor_id }}">
                                             <input type="hidden" class="homnew_brand_id"
                                                 value="{{ $product->brand_id }}">
 
@@ -306,7 +299,8 @@
                                         box-sizing: border-box;">
                                             <a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                                {{ Str::limit($product->product_name, 48, '...') }} </a></h2>
+                                                {{ Str::limit($product->product_name, 48, '...') }} </a>
+                                        </h2>
 
 
                                         @php
@@ -394,13 +388,7 @@
 
 
                                         <div>
-                                            @if ($product->vendor_id == null)
-                                                <span class="font-small text-muted">By <a
-                                                        href="#">Nest</a></span>
-                                            @else
-                                                <span class="font-small text-muted">By <a
-                                                        href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                            @endif
+                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                         </div>
                                         <div class="product-card-bottom">
                                             @if ($product->discount_price == null)
@@ -420,8 +408,6 @@
 
                                                 <input type="hidden" class="home_new_category_pname"
                                                     value="{{ $product->product_name }}">
-                                                <input type="hidden" class="home_new_category_vendor_id"
-                                                    value="{{ $product->vendor_id }}">
                                                 <input type="hidden" class="home_new_category_brand_id"
                                                     value="{{ $product->brand_id }}">
                                                 <a class="add homeNewProductCategoryAddToCart" type="submit"><i
@@ -453,7 +439,6 @@
                 e.preventDefault();
                 var id = $(this).closest('.product_data').find('.prod_id').val();
                 var product_name = $(this).closest('.product_data').find('.homnew_pname').val();
-                var vendor_id = $(this).closest('.product_data').find('.homnew_vendor_id').val();
                 var brand_id = $(this).closest('.product_data').find('.homnew_brand_id').val();
                 var quantity = 1;
                 $.ajax({
@@ -462,7 +447,6 @@
                     data: {
                         quantity: quantity,
                         product_name: product_name,
-                        vendor_id: vendor_id,
                         brand_id: brand_id,
                     },
                     dataType: "json",
@@ -502,8 +486,6 @@
                 var id = $(this).closest('.cat_product_data').find('.cat_prod_id').val();
                 var product_name = $(this).closest('.cat_product_data').find('.home_new_category_pname')
                     .val();
-                var vendor_id = $(this).closest('.cat_product_data').find('.home_new_category_vendor_id')
-                    .val();
                 var brand_id = $(this).closest('.cat_product_data').find('.home_new_category_brand_id')
                     .val();
                 var quantity = 1;
@@ -513,7 +495,6 @@
                     data: {
                         quantity: quantity,
                         product_name: product_name,
-                        vendor_id: vendor_id,
                         brand_id: brand_id,
                     },
                     dataType: "json",

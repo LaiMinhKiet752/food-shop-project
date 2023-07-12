@@ -118,7 +118,6 @@
                                 <div class="product-extra-link2">
 
                                     <input type="hidden" id="dproduct_id" value="{{ $product->id }}">
-                                    <input type="hidden" id="pvendor_id" value="{{ $product->vendor_id }}">
                                     <input type="hidden" id="pbrand_id" value="{{ $product->brand_id }}">
 
                                     <button type="submit" class="button button-add-to-cart"
@@ -134,25 +133,15 @@
 
                                 </div>
                             </div>
-                            @if ($product->vendor_id == null)
-                                <h6>Sold By <a href=""> <span class="text-danger">Nest</span></a></h6>
-                            @else
-                                <h6>Sold By <a href="#"> <span
-                                            class="text-danger">{{ $product['vendor']['shop_name'] }}</span></a></h6>
-                            @endif
+                            <h6>Sold By <a href="javascript;"> <span class="text-danger">Nest</span></a></h6>
                             <hr>
                             <div class="font-xs">
                                 <ul class="mr-50 float-start">
                                     <li class="mb-5">Product Code: <a
                                             href="#">{{ $product->product_code }}</a>
                                     </li>
-                                    @if ($product->vendor_id == null)
-                                        <li class="mb-5">Brand: <span
-                                                class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
-                                    @else
-                                        <li class="mb-5">Vendor: <span
-                                                class="text-brand">{{ $product['vendor']['shop_name'] }}</span></li>
-                                    @endif
+                                    <li class="mb-5">Brand: <span
+                                            class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
                                     <li class="mb-5">Category: <span
                                             class="text-brand">{{ $product['category']['category_name'] }}</span>
                                     </li>
@@ -196,10 +185,6 @@
                                     href="#Description">Description</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="Vendor-info-tab" data-bs-toggle="tab"
-                                    href="#Vendor-info">Vendor</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews
                                     ({{ count($review_count) }})</a>
                             </li>
@@ -211,153 +196,6 @@
                                 <div class="">
                                     <p>{!! $product->long_description !!}</p>
                                 </div>
-                            </div>
-
-                            <div class="tab-pane fade" id="Vendor-info">
-                                <div class="vendor-logo d-flex mb-30">
-                                    <img src="{{ !empty($product->vendor->photo) ? url('upload/vendor_images/' . $product->vendor->photo) : url('upload/logo.svg') }}"
-                                        alt="" />
-                                    <div class="vendor-name ml-15">
-                                        @if ($product->vendor_id == null)
-                                        @else
-                                            <h6>
-                                                <a
-                                                    href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a>
-                                            </h6>
-                                        @endif
-
-
-                                        @if ($product->vendor_id == null)
-                                        @else
-                                            @php
-                                                $average = \App\Models\Review::where('vendor_id', $product->vendor_id)
-                                                    ->where('status', 1)
-                                                    ->avg('rating');
-                                                $count_review_vendor = \App\Models\Review::where('vendor_id', $product->vendor_id)
-                                                    ->where('status', 1)
-                                                    ->count('rating');
-                                            @endphp
-                                            @if ($average == 0)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 0%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average == 1)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 20%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average > 1 && $average < 2)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 30%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average == 2)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 40%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average > 2 && $average < 3)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 50%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average == 3)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 60%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average > 3 && $average < 4)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 70%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average == 4)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 80%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average > 4 && $average < 5)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 90%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @elseif($average == 5)
-                                                <div class="product-rate-cover text-end">
-                                                    <div class="product-rate d-inline-block">
-                                                        <div class="product-rating" style="width: 100%"></div>
-                                                    </div>
-                                                    <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review_vendor }}
-                                                        reviews)</span>
-                                                </div>
-                                            @endif
-                                        @endif
-
-
-
-                                    </div>
-                                </div>
-                                @if ($product->vendor_id == null)
-                                    <ul class="contact-infor mb-50">
-                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
-                                                alt="" /><strong>Address: </strong>
-                                            <span>Ho Chi Minh city, Viet Nam</span>
-                                        </li>
-                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
-                                                alt="" /><strong>Contact: </strong><span>1900 999</span></li>
-                                    </ul>
-                                @else
-                                    <ul class="contact-infor mb-50">
-                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
-                                                alt="" /><strong>Address: </strong>
-                                            <span>{{ $product['vendor']['address'] }}</span>
-                                        </li>
-                                        <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
-                                                alt="" /><strong>Contact:
-                                            </strong><span>{{ $product['vendor']['phone'] }}</span></li>
-                                    </ul>
-                                @endif
-                                @if ($product->vendor_id == null)
-                                @else
-                                    <p>{{ $product['vendor']['vendor_short_info'] }}</p>
-                                @endif
                             </div>
 
 
@@ -614,12 +452,6 @@
                                                     @csrf
                                                     <input type="hidden" name="review_product_id"
                                                         value="{{ $product->id }}">
-                                                    @if ($product->vendor_id == null)
-                                                        <input type="hidden" name="review_vendor_id" value="">
-                                                    @else
-                                                        <input type="hidden" name="review_vendor_id"
-                                                            value="{{ $product->vendor_id }}">
-                                                    @endif
                                                     <div class="row">
                                                         <table class="table">
                                                             <thead>
@@ -674,6 +506,8 @@
 
 
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -838,13 +672,8 @@
 
 
                                             <div>
-                                                @if ($product->vendor_id == null)
-                                                    <span class="font-small text-muted">By <a
-                                                            href="#">Nest</a></span>
-                                                @else
-                                                    <span class="font-small text-muted">By <a
-                                                            href="{{ route('vendor.details', $product['vendor']['id']) }}">{{ $product['vendor']['shop_name'] }}</a></span>
-                                                @endif
+                                                <span class="font-small text-muted">By <a
+                                                        href="#">Nest</a></span>
                                             </div>
                                             <div class="product-card-bottom">
                                                 @if ($product->discount_price == null)
@@ -864,8 +693,6 @@
 
                                                     <input type="hidden" class="related_pname"
                                                         value="{{ $product->product_name }}">
-                                                    <input type="hidden" class="related_vendor_id"
-                                                        value="{{ $product->vendor_id }}">
                                                     <input type="hidden" class="related_brand_id"
                                                         value="{{ $product->brand_id }}">
                                                     <a class="add RelatedProductAddToCart" type="submit"><i
@@ -879,8 +706,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -894,8 +719,6 @@
             var id = $(this).closest('.related_product_data').find('.related_prod_id').val();
             var product_name = $(this).closest('.related_product_data').find(
                 '.related_pname').val();
-            var vendor_id = $(this).closest('.related_product_data').find(
-                '.related_vendor_id').val();
             var brand_id = $(this).closest('.related_product_data').find(
                 '.related_brand_id').val();
             var quantity = 1;
@@ -905,7 +728,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 dataType: "json",

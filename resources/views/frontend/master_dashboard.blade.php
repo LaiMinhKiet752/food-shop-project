@@ -214,12 +214,6 @@
                 dataType: 'json',
                 success: function(data) {
                     // console.log(data)
-                    if(data.product.vendor_id == null){
-                        $('#pvendor').text('Nest');
-                    }else{
-                        $('#pvendor').text(data.product.vendor.shop_name);
-                    }
-
                     if (data.product.manufacturing_date == null) {
                         var mfg_date_format = '';
                     } else {
@@ -231,12 +225,12 @@
                     $('#pprice').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
+                    $('#psubcategory').text(data.product.subcategory.subcategory_name);
                     $('#pbrand').text(data.product.brand.brand_name);
                     $('#pmfg').text(mfg_date_format);
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
 
                     $('#brand_id').val(data.product.brand_id);
-                    $('#vendor_id').val(data.product.vendor_id);
 
                     $('#product_id').val(id);
                     $('#qty').val(1);
@@ -272,7 +266,6 @@
         function addToCart() {
             var product_name = $('#pname').text();
             var id = $('#product_id').val();
-            var vendor_id = $('#vendor_id').val();
             var brand_id = $('#brand_id').val();
             var quantity = $('#qty').val();
 
@@ -282,7 +275,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 url: "/cart/data/store/" + id,
@@ -319,7 +311,6 @@
         function addToCartDetails() {
             var product_name = $('#dpname').text();
             var id = $('#dproduct_id').val();
-            var vendor_id = $('#pvendor_id').val();
             var brand_id = $('#pbrand_id').val();
             var quantity = $('#dqty').val();
             $.ajax({
@@ -328,7 +319,6 @@
                 data: {
                     quantity: quantity,
                     product_name: product_name,
-                    vendor_id: vendor_id,
                     brand_id: brand_id,
                 },
                 url: "/dcart/data/store/" + id,
