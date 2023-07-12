@@ -199,7 +199,7 @@
                                     @elseif(
                                         $order->status == 'pending' &&
                                             $order->confirmed_date == null &&
-                                            ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                            $order->cancel_order_status == 1)
                                         @php
                                             $cancel_date = strtotime($order->cancel_date);
                                             $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
@@ -230,7 +230,7 @@
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
                                                 class="text">Delivered </span> </div>
-                                    @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                    @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
                                             $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
@@ -442,7 +442,7 @@
                                                         <span class="badge bg-warning" style="font-size: 13px;">
                                                             Pending
                                                         </span>
-                                                    @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                    @elseif($order->status == 'pending' && $order->cancel_order_status == 1)
                                                         <span class="badge bg-secondary" style="font-size: 13px;">
                                                             Cancel
                                                         </span>
@@ -450,7 +450,7 @@
                                                         <span class="badge bg-info" style="font-size: 13px;">
                                                             Confirmed
                                                         </span>
-                                                    @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                    @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                                         <span class="badge bg-secondary" style="font-size: 13px;">
                                                             Cancel
                                                         </span>
@@ -470,8 +470,8 @@
                                                 </th>
                                             </tr>
                                             @if (
-                                                ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)) ||
-                                                    ($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2)))
+                                                ($order->status == 'pending' && $order->cancel_order_status == 1) ||
+                                                    ($order->status == 'confirmed' && $order->cancel_order_status == 1))
                                             @elseif(($order->status == 'pending' || $order->status == 'confirmed') && $order->cancel_order_status == 0)
                                                 <form action="{{ route('user.cancel.order.submit') }}" method="post"
                                                     id="SubmitFormCancelOrder">

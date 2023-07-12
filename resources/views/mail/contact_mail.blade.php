@@ -7,6 +7,6 @@
     <title>Contact</title>
 </head>
 <body>
-    {{ $messages }}
+    {!! $messages !!}
 </body>
 </html>

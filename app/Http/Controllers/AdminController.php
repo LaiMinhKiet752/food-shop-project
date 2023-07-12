@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AdminResetPassword;
 use App\Mail\WebsiteMail;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -209,9 +210,8 @@ class AdminController extends Controller
         $subject = 'Reset Password';
         $message = 'You are receiving this email because we received a password reset request for your account: <br>';
         $message .= 'Please click on the following link: <br>';
-        $message .= '<a href= "' . $reset_link . '">Click here</a>';
 
-        Mail::to($request->email)->send(new WebsiteMail($subject, $message));
+        Mail::to($request->email)->send(new AdminResetPassword($subject, $message, $reset_link));
 
         return redirect('/admin/login')->with('success', 'Check your email and follow the steps there.');
     } //End Method

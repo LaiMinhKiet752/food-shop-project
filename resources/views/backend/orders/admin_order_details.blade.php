@@ -23,7 +23,7 @@
                         <a href="{{ route('pending.order') }}" class="btn btn-primary"><i class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
-                @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                @elseif($order->status == 'pending' && $order->cancel_order_status == 1)
                     <div class="btn-group">
                         <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
                                 class="lni lni-arrow-left"> Go
@@ -35,7 +35,7 @@
                                 class="lni lni-arrow-left"> Go
                                 Back</i></a>
                     </div>
-                @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1 )
                     <div class="btn-group">
                         <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
                                 class="lni lni-arrow-left"> Go
@@ -154,13 +154,13 @@
                             <th>{{ $order_date_format }}</th>
                         </tr>
                         <tr>
-                            @if ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                            @if ($order->status == 'pending' && $order->cancel_order_status == 1 )
                                 <th>Cancel Date :</th>
                                 <th>{{ $cancel_date_format }}</th>
                             @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                 <th>Confirmed Date :</th>
                                 <th>{{ $confirmed_date_format }}</th>
-                            @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                            @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1 )
                                 <th>Cancel Date :</th>
                                 <th>{{ $cancel_date_format }}</th>
                             @elseif($order->status == 'processing')
@@ -197,7 +197,7 @@
                                     <span class="badge bg-warning" style="font-size: 13px;">
                                         Pending
                                     </span>
-                                @elseif($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                @elseif($order->status == 'pending' && $order->cancel_order_status == 1 )
                                     <span class="badge bg-secondary" style="font-size: 13px;">
                                         Cancel
                                     </span>
@@ -205,7 +205,7 @@
                                     <span class="badge bg-info" style="font-size: 13px;">
                                         Confirmed
                                     </span>
-                                @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                     <span class="badge bg-secondary" style="font-size: 13px;">
                                         Cancel
                                     </span>

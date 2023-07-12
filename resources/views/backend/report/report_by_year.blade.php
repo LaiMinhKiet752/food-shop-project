@@ -67,7 +67,7 @@
                                         <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
                                             Pending
                                         </span>
-                                    @elseif ($item['status'] == 'pending' && ($item['cancel_order_status'] == 1 || $item['cancel_order_status'] == 2))
+                                    @elseif ($item['status'] == 'pending' && $item['cancel_order_status'] == 1)
                                         <span class="badge rounded-pill bg-secondary" style="font-size: 13px;">
                                             Cancel
                                         </span>
@@ -75,7 +75,7 @@
                                         <span class="badge rounded-pill bg-info" style="font-size: 13px;">
                                             Confirmed
                                         </span>
-                                    @elseif($item['status'] == 'confirmed' && ($item['cancel_order_status'] == 1 || $item['cancel_order_status'] == 2))
+                                    @elseif($item['status'] == 'confirmed' && $item['cancel_order_status'] == 1)
                                         <span class="badge rounded-pill bg-secondary" style="font-size: 13px;">
                                             Cancel
                                         </span>

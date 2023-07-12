@@ -373,9 +373,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     //Cancel Order All Route
     Route::controller(CancelController::class)->group(function () {
-        Route::get('/admin/cancel/request', 'CancelRequest')->name('admin.cancel.request');
         Route::get('/admin/cancel/order/details/{order_id}', 'CancelOrderDetails')->name('admin.cancel.order.details');
-        Route::get('/admin/cancel/request/approved/{order_id}', 'CancelRequestApproved')->name('admin.cancel.request.approved');
         Route::get('/admin/complete/cancel/request', 'CompleteCancelRequest')->name('admin.complete.cancel.request');
 
         //Update Status Notification

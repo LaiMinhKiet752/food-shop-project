@@ -12,23 +12,16 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Cancel Orders Details</li>
+                    <li class="breadcrumb-item active" aria-current="page">Orders Details</li>
                 </ol>
             </nav>
         </div>
         <div class="ms-auto">
             <div class="btn-group">
-                @if ($order->cancel_order_status == 1)
-                    <div class="btn-group">
-                        <a href="{{ route('admin.cancel.request') }}" class="btn btn-primary"><i
-                                class="lni lni-arrow-left"> Go Back</i></a>
-                    </div>
-                @elseif ($order->cancel_order_status == 2)
-                    <div class="btn-group">
-                        <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
-                                class="lni lni-arrow-left"> Go Back</i></a>
-                    </div>
-                @endif
+                <div class="btn-group">
+                    <a href="{{ route('admin.complete.cancel.request') }}" class="btn btn-primary"><i
+                            class="lni lni-arrow-left"> Go Back</i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -133,13 +126,8 @@
                         <tr>
                             <th>Order Cancel Status :</th>
                             <th>
-                                @if ($order->cancel_order_status == 1)
-                                    <span class="badge rounded-pill bg-warning" style="font-size: 13px;">
-                                        Pending</span>
-                                @elseif ($order->cancel_order_status == 2)
-                                    <span class="badge rounded-pill bg-success" style="font-size: 13px;">
-                                        Success</span>
-                                @endif
+                                <span class="badge rounded-pill bg-success" style="font-size: 13px;">
+                                    Success</span>
                             </th>
                         </tr>
                     </table>

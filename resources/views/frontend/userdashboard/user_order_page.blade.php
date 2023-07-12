@@ -64,7 +64,7 @@
                                                                         style="font-size: 13px;">
                                                                         Pending
                                                                     </span>
-                                                                @elseif ($order->status == 'pending' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                                @elseif ($order->status == 'pending' && $order->cancel_order_status == 1)
                                                                     <span class="badge rounded-pill bg-secondary"
                                                                         style="font-size: 13px;">
                                                                         Cancel
@@ -74,7 +74,7 @@
                                                                         style="font-size: 13px;">
                                                                         Confirmed
                                                                     </span>
-                                                                @elseif($order->status == 'confirmed' && ($order->cancel_order_status == 1 || $order->cancel_order_status == 2))
+                                                                @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                                                     <span class="badge rounded-pill bg-secondary"
                                                                         style="font-size: 13px;">
                                                                         Cancel
