@@ -83,11 +83,17 @@
                         </li>
                     @endif
 
+                    <li> <a href="{{ route('add.product.from.returned.order') }}"><i
+                                class="bx bx-right-arrow-alt"></i>Add Product From Returned Orders</a>
+                    </li>
+
                     @if (Auth::user()->can('product.restore'))
                         <li> <a href="{{ route('restore.product') }}"><i class="bx bx-right-arrow-alt"></i>Restore
                                 Product</a>
                         </li>
                     @endif
+
+
                 </ul>
             </li>
         @endif
@@ -100,7 +106,8 @@
                     <div class="menu-title">Inventory</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product Warehouse</a>
+                    <li> <a href="{{ route('product.stock') }}"><i class="bx bx-right-arrow-alt"></i>Product
+                            Warehouse</a>
                     </li>
                 </ul>
             </li>
@@ -206,7 +213,8 @@
                     <div class="menu-title">Return Order</div>
                 </a>
                 <ul>
-                    <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Request A Refund</a>
+                    <li> <a href="{{ route('admin.return.request') }}"><i class="bx bx-right-arrow-alt"></i>Request A
+                            Refund</a>
                     </li>
                     <li> <a href="{{ route('admin.complete.return.request') }}"><i
                                 class="bx bx-right-arrow-alt"></i>Approved Return Request</a>
@@ -366,7 +374,8 @@
                     <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add
                             Permissions For Roles</a>
                     </li>
-                    <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Roles Already Have Permissions</a>
+                    <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Roles
+                            Already Have Permissions</a>
                     </li>
                 </ul>
             </li>

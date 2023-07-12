@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ReturnOrder;
-use App\Mail\WebsiteMail;
 use App\Models\Order;
 use App\Models\OrderDetails;
+use App\Models\OrderReturn;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,7 +27,16 @@ class ReturnController extends Controller
         ]);
 
         $order = Order::where('id', $order_id)->first();
-
+        $order_details = OrderDetails::where('order_id', $order_id)->get();
+        foreach($order_details as $item){
+            OrderReturn::insert([
+                'order_id' => $order_id,
+                'product_id' => $item->product_id,
+                'price' => $item->price,
+                'quantity' => $item->quantity,
+                'created_at' => Carbon::now(),
+            ]);
+        }
         //Mail To Customer
         $subject = 'Order has been returned successfully';
 
