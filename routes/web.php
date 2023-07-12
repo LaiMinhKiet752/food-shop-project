@@ -248,7 +248,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/edit/category/{id}', 'EditCategory')->name('edit.category');
         Route::post('/update/category', 'UpdateCategory')->name('update.category');
         Route::get('/delete/category/{id}', 'DeleteCategory')->name('delete.category');
-
     });
 
     //SubCategory All Route
@@ -280,6 +279,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/restore/product/submit/{id}', 'RestoreProductSubmit')->name('restore.product.submit');
         Route::get('/product/force/delete/{id}', 'ForceDeleteProduct')->name('force.delete.product');
         Route::get('/product/stock', 'ProductStock')->name('product.stock');
+        Route::get('/add/product/from/returned/order', 'AddProductFromReturnedOrder')->name('add.product.from.returned.order');
+        Route::get('/view/product/from/returned/order/{order_id}', 'ViewProductFromReturnedOrder')->name('view.product.from.returned.order');
+        Route::get('/view/add/product/from/returned/order/{product_id}', 'ViewAddProductFromReturnedOrder')->name('view.add.product.from.returned_orders');
+        Route::post('/store/product/from/returned/order', 'StoreProductFromReturnedOrder')->name('store.product.from.returned_orders');
+        Route::get('/delete/product/from/returned/order/{order_id}/{product_id}', 'DeleteProductFromReturnedOrder')->name('delete.product.from.returned_orders');
     });
 
     //Slider All Route

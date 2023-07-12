@@ -7,12 +7,14 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\SubCategory;
 use App\Models\MultiImage;
+use App\Models\OrderReturn;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
@@ -425,5 +427,61 @@ class ProductController extends Controller
     {
         $products = Product::latest()->get();
         return view('backend.product.product_stock', compact('products'));
+    } //End Method
+
+    public function AddProductFromReturnedOrder()
+    {
+        $invoice = OrderReturn::with('product', 'order')->select('order_id')->groupBy('order_id')->get();
+        return view('backend.product.add_product_from_returned_order', compact('invoice'));
+    } //End Method
+
+    public function ViewProductFromReturnedOrder($order_id)
+    {
+        $invoice = OrderReturn::with('product', 'order')->where('order_id', $order_id)->get();
+        // dd($invoice);
+        return view('backend.product.view_product_from_returned_order', compact('invoice'));
+    } //End Method
+
+    public function ViewAddProductFromReturnedOrder($product_id)
+    {
+        $products = Product::where('id', $product_id)->first();
+        $invoice = OrderReturn::with('product', 'order')->where('product_id', $product_id)->first();
+        // dd($products);
+        return view('backend.product.view_add_product_from_returned_order', compact('products', 'invoice'));
+    } //End Method
+
+
+    public function StoreProductFromReturnedOrder(Request $request)
+    {
+        // dd($request->all());
+        $product_id = $request->product_id;
+        $order_id = $request->order_id;
+        Product::findOrFail($product_id)->update([
+            'product_quantity' => DB::raw('product_quantity + ' . $request->product_quantity)
+        ]);
+        $invoice = OrderReturn::where('product_id', $product_id)->where('order_id', $order_id)->first();
+        // dd($invoice);
+        $invoice->update([
+            'quantity' => DB::raw('quantity - ' . $request->product_quantity)
+        ]);
+        $quantity_check = OrderReturn::where('product_id', $product_id)->where('order_id', $order_id)->first('quantity');
+        if ($quantity_check->quantity == 0) {
+            OrderReturn::where('product_id', $product_id)->where('order_id', $order_id)->delete();
+        }
+        $notification = array(
+            'message' => 'Added Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('view.product.from.returned.order', $order_id)->with($notification);
+    } //End Method
+
+    public function DeleteProductFromReturnedOrder($order_id , $product_id)
+    {
+        OrderReturn::where('product_id', $product_id)->where('order_id', $order_id)->delete();
+        $notification = array(
+            'message' => 'Deleted Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     } //End Method
 }
