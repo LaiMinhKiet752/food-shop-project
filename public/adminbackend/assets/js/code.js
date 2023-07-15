@@ -12,7 +12,7 @@ $(function () {
             timer: 5000,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it !'
+            confirmButtonText: 'Yes, Delete it !'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -104,7 +104,7 @@ $(function () {
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Approved it !",
+            confirmButtonText: "Yes, Approve it !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -113,21 +113,21 @@ $(function () {
     });
 });
 
-//Approved Cancel Order
+//Approved Purchase Order
 $(function () {
-    $(document).on("click", "#approved_cancel", function (e) {
+    $(document).on("click", "#approve_purchase", function (e) {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
             title: "Are you sure?",
-            text: "Approve Cancel Order!",
+            text: "Approve This Data!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Approved it !",
+            confirmButtonText: "Yes, Approve it !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -136,278 +136,5 @@ $(function () {
     });
 });
 
-//Restore Brand
-$(function () {
-    $(document).on("click", "#restore_brand", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this brand!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
 
-//Restore All Brand
-$(function () {
-    $(document).on("click", "#restore_all_brand", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all brand!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
 
-//Restore Category
-$(function () {
-    $(document).on("click", "#restore_category", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this category!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Restore All Category
-$(function () {
-    $(document).on("click", "#restore_all_category", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all category!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Restore Subcategory
-$(function () {
-    $(document).on("click", "#restore_subcategory", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this subcategory!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Restore All Subcategory
-$(function () {
-    $(document).on("click", "#restore_all_subcategory", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all subcategory!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Admin Restore Product
-$(function () {
-    $(document).on("click", "#restore_product", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this product!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Admin Restore All Product
-$(function () {
-    $(document).on("click", "#restore_all_product", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all product!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Vendor Restore Product
-$(function () {
-    $(document).on("click", "#vendor_restore_product", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this product!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Vendor Restore All Product
-$(function () {
-    $(document).on("click", "#vendor_restore_all_product", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all product!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Restore Coupon
-$(function () {
-    $(document).on("click", "#restore_coupon", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore this coupon!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore it !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});
-
-//Restore All Coupon
-$(function () {
-    $(document).on("click", "#restore_all_coupon", function (e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Restore all coupon!",
-            icon: "warning",
-            showCancelButton: true,
-            timerProgressBar: true,
-            timer: 5000,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Restore all !",
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = link;
-            }
-        });
-    });
-});

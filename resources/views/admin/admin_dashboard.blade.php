@@ -237,6 +237,8 @@
 
     <script src="{{ asset('adminbackend/assets/js/validate.min.js') }}"></script>
 
+    <script src="{{ asset('adminbackend/assets/js/handlebars.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.all.min.js"></script>
 
     <script src="{{ asset('adminbackend/assets/js/code.js') }}"></script>

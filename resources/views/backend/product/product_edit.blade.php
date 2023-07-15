@@ -59,17 +59,17 @@
                                         <label for="inputProductTitle" class="form-label">Select Weight/Volume</label>
                                         <select name="product_measure" class="form-control form-select single-select">
                                             <option></option>
-                                            <option value="kilogam"
-                                                {{ $products->product_measure == 'kilogam' ? 'selected' : '' }}>Kilogam
+                                            <option value="Kilogam"
+                                                {{ $products->product_measure == 'Kilogam' ? 'selected' : '' }}>Kilogam
                                             </option>
-                                            <option value="gram"
-                                                {{ $products->product_measure == 'gram' ? 'selected' : '' }}>Gram
+                                            <option value="Gram"
+                                                {{ $products->product_measure == 'Gram' ? 'selected' : '' }}>Gram
                                             </option>
-                                            <option value="liter"
-                                                {{ $products->product_measure == 'liter' ? 'selected' : '' }}>Liter
+                                            <option value="Liter"
+                                                {{ $products->product_measure == 'Liter' ? 'selected' : '' }}>Liter
                                             </option>
-                                            <option value="mililiter"
-                                                {{ $products->product_measure == 'mililiter' ? 'selected' : '' }}>
+                                            <option value="Mililiter"
+                                                {{ $products->product_measure == 'Mililiter' ? 'selected' : '' }}>
                                                 Mililiter</option>
                                         </select>
                                     </div>

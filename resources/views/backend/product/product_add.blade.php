@@ -58,10 +58,10 @@
                                         <label for="inputProductTitle" class="form-label">Select Weight/Volume</label>
                                         <select name="product_measure" class="form-control form-select single-select">
                                             <option></option>
-                                            <option value="kilogam">Kilogam</option>
-                                            <option value="gram">Gram</option>
-                                            <option value="liter">Liter</option>
-                                            <option value="mililiter">Mililiter</option>
+                                            <option value="Kilogam">Kilogam</option>
+                                            <option value="Gram">Gram</option>
+                                            <option value="Liter">Liter</option>
+                                            <option value="Mililiter">Mililiter</option>
                                         </select>
                                     </div>
                                 </div>

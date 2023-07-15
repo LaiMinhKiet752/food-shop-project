@@ -13,7 +13,8 @@
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Report By Customer</li>
+                    <li class="breadcrumb-item active" aria-current="page">Daily
+                        Purchase Report</li>
                 </ol>
             </nav>
         </div>
@@ -21,24 +22,25 @@
     <!--end breadcrumb-->
     <hr />
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
-        <form action="{{ route('search-by-customer') }}" method="post" id="myForm">
+        <form action="{{ route('daily.purchase.pdf') }}" method="get" target="_blank" id="myForm">
             @csrf
             <div class="col">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body form-group">
                         <div class="col-md-12 form-group">
-                            <h5 class="card-title">Search By Customer</h5>
-                            <label class="form-label">Select Customer: </label>
-                            <select name="user" class="form-control form-select mb-3 single-select"
-                                aria-label="Default select example">
-                                <option selected="" disabled></option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
+                            <label class="form-label">Start Date: </label>
+                            <input class="form-control example-date-input" name="start_date" type="date"
+                                id="start_date" placeholder="YY-MM-DD">
                         </div>
                         <br>
-                            <input type="submit" class="btn btn-rounded btn-primary" value="Search">
+
+                        <div class="col-md-12 form-group">
+                            <label class="form-label">End Date: </label>
+                            <input class="form-control example-date-input" name="end_date" type="date" id="end_date"
+                                placeholder="YY-MM-DD">
+                        </div>
+                        <br>
+                        <input type="submit" class="btn btn-rounded btn-primary" value="Search">
                     </div>
                 </div>
             </div>
@@ -49,13 +51,19 @@
     $(document).ready(function() {
         $('#myForm').validate({
             rules: {
-                user: {
+                start_date: {
+                    required: true,
+                },
+                end_date: {
                     required: true,
                 },
             },
             messages: {
-                user: {
-                    required: 'Please select customer name.',
+                start_date: {
+                    required: 'Please select start date.',
+                },
+                end_date: {
+                    required: 'Please select end date.',
                 },
             },
             errorElement: 'span',

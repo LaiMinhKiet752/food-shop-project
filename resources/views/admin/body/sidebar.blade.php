@@ -83,9 +83,11 @@
                         </li>
                     @endif
 
-                    <li> <a href="{{ route('add.product.from.returned.order') }}"><i
-                                class="bx bx-right-arrow-alt"></i>Add Product From Returned Orders</a>
-                    </li>
+                    @if (Auth::user()->can('product.add.from.returned.orders'))
+                        <li> <a href="{{ route('add.product.from.returned.order') }}"><i
+                                    class="bx bx-right-arrow-alt"></i>Add Product From Returned Orders</a>
+                        </li>
+                    @endif
 
                     @if (Auth::user()->can('product.restore'))
                         <li> <a href="{{ route('restore.product') }}"><i class="bx bx-right-arrow-alt"></i>Restore
@@ -254,6 +256,42 @@
                 </ul>
             </li>
         @endif
+
+        <li class="menu-label" style="color: black; font-weight: bold;">Import Management</li>
+        {{-- @if (Auth::user()->can('order.menu')) --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Supplier</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.supplier') }}"><i class="bx bx-right-arrow-alt"></i>All Suppliers</a>
+                </li>
+            </ul>
+        </li>
+        {{-- @endif --}}
+
+        {{-- @if (Auth::user()->can('order.menu')) --}}
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class='bx bx-cart'></i>
+                </div>
+                <div class="menu-title">Purchase Management</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('purchase.all') }}"><i class="bx bx-right-arrow-alt"></i>All Purchase
+                        Orders</a>
+                </li>
+                <li> <a href="{{ route('purchase.pending') }}"><i class="bx bx-right-arrow-alt"></i>Approval
+                        Purchase</a>
+                </li>
+                <li> <a href="{{ route('daily.purchase.report') }}"><i class="bx bx-right-arrow-alt"></i>Daily
+                        Purchase Report</a>
+                </li>
+            </ul>
+        </li>
+        {{-- @endif --}}
 
 
         <li class="menu-label" style="color: black; font-weight: bold;">Website Management</li>

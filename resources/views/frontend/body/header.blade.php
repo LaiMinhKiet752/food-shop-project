@@ -95,7 +95,7 @@
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
                             <select class="select-active">
-                                <option>All Categories</option>
+                                <option>All Category</option>
                                 @foreach ($all_categories as $category)
                                     <option>{{ $category->category_name }}</option>
                                 @endforeach
@@ -248,7 +248,7 @@
                 <div class="header-nav d-none d-lg-flex">
                     <div class="main-categori-wrap d-none d-lg-block">
                         <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span> ALL CATEGORIES
+                            <span class="fi-rs-apps"></span> ALL CATEGORY
                             <i class="fi-rs-angle-down"></i>
                         </a>
                         <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">

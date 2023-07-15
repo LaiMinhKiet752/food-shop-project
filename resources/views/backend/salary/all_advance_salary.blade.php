@@ -64,11 +64,6 @@
                                         <a href="{{ route('edit.advance.salary', $item->id) }}"
                                             class="btn btn-warning">Edit</a>
                                     @endif
-
-                                    @if (Auth::user()->can('employee.salary.delete'))
-                                        <a href="{{ route('delete.advance.salary', $item->id) }}" class="btn btn-danger"
-                                            id="delete">Delete</a>
-                                    @endif
                                 </td>
                             </tr>
                         @endforeach

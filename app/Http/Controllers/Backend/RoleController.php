@@ -28,6 +28,11 @@ class RoleController extends Controller
 
     public function StorePermission(Request $request)
     {
+        $request->validate([
+            'name' => 'unique:permissions'
+        ], [
+            'name.unique' => 'Permission Already Exists!'
+        ]);
         Permission::create([
             'name' => $request->name,
             'group_name' => $request->group_name,
@@ -48,15 +53,33 @@ class RoleController extends Controller
     public function UpdatePermission(Request $request)
     {
         $permission_id = $request->id;
-        Permission::findOrFail($permission_id)->update([
-            'name' => $request->name,
-            'group_name' => $request->group_name,
-        ]);
-        $notification = array(
-            'message' => 'Permission Updated Successfully!',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('all.permission')->with($notification);
+        $current_name = Permission::findOrFail($permission_id)->name;
+        if ($request->name == $current_name) {
+            Permission::findOrFail($permission_id)->update([
+                'name' => $request->name,
+                'group_name' => $request->group_name,
+            ]);
+            $notification = array(
+                'message' => 'Permission Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.permission')->with($notification);
+        } else {
+            $request->validate([
+                'name' => 'unique:permissions'
+            ], [
+                'name.unique' => 'Permission Already Exists!'
+            ]);
+            Permission::findOrFail($permission_id)->update([
+                'name' => $request->name,
+                'group_name' => $request->group_name,
+            ]);
+            $notification = array(
+                'message' => 'Permission Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.permission')->with($notification);
+        }
     } //End Method
 
     public function DeletePermission($id)
@@ -82,6 +105,11 @@ class RoleController extends Controller
 
     public function StoreRole(Request $request)
     {
+        $request->validate([
+            'name' => 'unique:roles'
+        ], [
+            'name.unique' => 'Role Already Exists!'
+        ]);
         Role::create([
             'name' => $request->name,
         ]);
@@ -101,14 +129,31 @@ class RoleController extends Controller
     public function UpdateRole(Request $request)
     {
         $role_id = $request->id;
-        Role::findOrFail($role_id)->update([
-            'name' => $request->name,
-        ]);
-        $notification = array(
-            'message' => 'Role Updated Successfully!',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('all.role')->with($notification);
+        $current_name = Role::findOrFail($role_id)->name;
+        if ($request->name == $current_name) {
+            Role::findOrFail($role_id)->update([
+                'name' => $request->name,
+            ]);
+            $notification = array(
+                'message' => 'Role Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.role')->with($notification);
+        } else {
+            $request->validate([
+                'name' => 'unique:roles'
+            ], [
+                'name.unique' => 'Role Already Exists!'
+            ]);
+            Role::findOrFail($role_id)->update([
+                'name' => $request->name,
+            ]);
+            $notification = array(
+                'message' => 'Role Updated Successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect()->route('all.role')->with($notification);
+        }
     } //End Method
 
     public function DeleteRole($id)

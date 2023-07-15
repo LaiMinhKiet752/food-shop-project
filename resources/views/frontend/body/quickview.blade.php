@@ -46,16 +46,16 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding-right: 0px !important; padding-left: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">Brand : <span class="text-brand" id="pbrand">
+                                            <li class="mb-5">BRAND : <span class="text-brand" id="pbrand">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">Category : <span class="text-brand" id="pcategory">
+                                            <li class="mb-5">CATEGORY : <span class="text-brand" id="pcategory">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">SubCategory : <span class="text-brand" id="psubcategory">
+                                            <li class="mb-5">SUBCATEGORY : <span class="text-brand" id="psubcategory">
                                             </span>
                                         </li>
                                         </ul>
@@ -63,14 +63,14 @@
                                 </div> <!-- // End col  -->
 
 
-                                <div class="col-md-6">
+                                <div class="col-md-6" style="padding-left: 5px !important; padding-right: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">Product Code : <span class="text-brand" id="pcode">
+                                            <li class="mb-5">PRODUCT CODE : <span class="text-brand" id="pcode">
                                                 </span></li>
                                             <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
                                             </li>
-                                            <li class="mb-5">Stock : <span class="badge badge-pill badge-success"
+                                            <li class="mb-5">STOCK STATUS : <span class="badge badge-pill badge-success"
                                                     id="instock" style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"
                                                     style="background:red; color: white;"> </span>
