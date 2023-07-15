@@ -607,8 +607,7 @@ class CartController extends Controller
                 $carts = Cart::content();
                 $cartQty = Cart::content()->count();
                 $cartTotal = Cart::total();
-                $cities = ShipCity::orderBy('city_name', 'ASC')->get();
-                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal', 'cities'));
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
             } else {
                 $notification = array(
                     'message' => 'Cart Is Empty. Please Select A Product To Buy!',

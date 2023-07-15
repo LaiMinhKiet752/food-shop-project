@@ -69,6 +69,11 @@
                                                         type="text" value="{{ $userData->phone }}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
+                                                    <label>Address <span class="text-danger">*</span></label>
+                                                    <input required="" class="form-control" name="address"
+                                                        type="text" value="{{ $userData->address }}" />
+                                                </div>
+                                                <div class="form-group col-md-12">
                                                     <label>Photo</label>
                                                     <input class="form-control" name="photo" type="file"
                                                         id="image" />
@@ -132,6 +137,10 @@
                     maxlength: 10,
                     digits: true,
                 },
+                address: {
+                    required: true,
+                    maxlength: 255,
+                },
             },
             messages: {
                 name: {
@@ -148,6 +157,10 @@
                     minlength: 'Please enter 10 numeric characters correctly.',
                     maxlength: 'Please enter 10 numeric characters correctly.',
                     digits: 'Please enter 10 numeric characters correctly.',
+                },
+                address: {
+                    required: 'Please enter your address.',
+                    maxlength: 'The address must not be greater than 255 characters.',
                 },
             },
             errorElement: 'span',

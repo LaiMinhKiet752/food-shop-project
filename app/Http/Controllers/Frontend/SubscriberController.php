@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Mail\WebsiteMail;
+use App\Mail\SubscriberVerify;
 use App\Models\Subscriber;
 use App\Models\User;
 use App\Notifications\NewSubscriberNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
@@ -29,26 +31,40 @@ class SubscriberController extends Controller
             );
             return redirect()->back()->with($notification);
         }
-        $token = hash('sha256', time());
-        $subscriber = new Subscriber();
-        $subscriber->email = $request->email;
-        $subscriber->token = $token;
-        $subscriber->status = 'Pending';
-        $subscriber->save();
+        else if (Auth::user() && !$exists) {
+            $subscriber = new Subscriber();
+            $subscriber->email = $request->email;
+            $subscriber->status = 'active';
+            $subscriber->token = '';
+            $subscriber->created_at = Carbon::now();
+            $subscriber->status = 'active';
+            $subscriber->save();
+            $notification = array(
+                'message' => 'Successfully Become A Subscriber!',
+                'alert-type' => 'success',
+            );
+            return redirect()->to('/')->with($notification);
+        }
+        else if (!Auth::user() && !$exists) {
+            $token = hash('sha256', time());
+            $subscriber = new Subscriber();
+            $subscriber->email = $request->email;
+            $subscriber->token = $token;
+            $subscriber->status = 'Pending';
+            $subscriber->save();
 
-        //Send email
-        $subject = 'Subscriber Email Verify';
-        $verification_link = url('subscriber/verify/' . $token . '/' . $request->email);
-        $message = 'Please click on the following link in order to verify as subscriber <br>';
-        $message .= '<a href="' . $verification_link . '">';
-        $message .= $verification_link;
-        $message .= '</a>';
-        Mail::to($request->email)->send(new WebsiteMail($subject, $message));
-        $notification = array(
-            'message' => 'Please Check Your Email Address To Verify As Subscriber!',
-            'alert-type' => 'success',
-        );
-        return redirect()->to('/')->with($notification);
+            //Send email
+            $subject = 'Email Verification';
+            $verification_link = url('subscriber/verify/' . $token . '/' . $request->email);
+            $message = 'Please click on the following link in order to verify as subscriber. <br>';
+            Mail::to($request->email)->send(new SubscriberVerify($subject, $message, $verification_link));
+
+            $notification = array(
+                'message' => 'Please Check Your Email To Verify As Subscriber!',
+                'alert-type' => 'success',
+            );
+            return redirect()->to('/')->with($notification);
+        }
     } //End Method
 
     public function Verify($token, $email)
@@ -62,7 +78,7 @@ class SubscriberController extends Controller
             //Notification To Admin
             Notification::send($all_admin_user, new NewSubscriberNotification($subscriber_data->email));
             $notification = array(
-                'message' => 'You are Successfully Verified As A Subscriber To This Website!',
+                'message' => 'You Are Successfully Verified As A Subscriber To This Website!',
                 'alert-type' => 'success',
             );
             return redirect()->to('/')->with($notification);

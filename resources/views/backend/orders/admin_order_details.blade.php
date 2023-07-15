@@ -91,18 +91,6 @@
                             <th>{{ $order->address }}</th>
                         </tr>
                         <tr>
-                            <th>City/Province :</th>
-                            <th>{{ $order['city']['city_name'] }}</th>
-                        </tr>
-                        <tr>
-                            <th>District :</th>
-                            <th>{{ $order['district']['district_name'] }}</th>
-                        </tr>
-                        <tr>
-                            <th>Commune :</th>
-                            <th>{{ $order['commune']['commune_name'] }}</th>
-                        </tr>
-                        <tr>
                             <th>Postal Code :</th>
                             <th>{{ $order->post_code }}</th>
                         </tr>

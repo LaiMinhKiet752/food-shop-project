@@ -42,51 +42,11 @@
                         </div>
                     </div>
 
-                    <div class="row shipping_calculator">
-                        <div class="form-group col-lg-6">
-                            <div class="custom_select">
-                                <label class="form-label">Select City, Province <span
-                                        class="text-danger">*</span></label>
-                                <select required="" name="city_id" class="form-control select-active">
-                                    <option selected="" disabled="" value="">Select City, Province
-                                    </option>
-                                    @foreach ($cities as $item)
-                                        <option value="{{ $item->id }}">{{ $item->city_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
+                    <div class="row">
                         <div class="form-group col-lg-6">
                             <label class="form-label">Phone Number <span class="text-danger">*</span></label>
                             <input class="form-control" required="" type="text" name="shipping_phone"
                                 value="{{ Auth::user()->phone }}">
-                        </div>
-                    </div>
-
-                    <div class="row shipping_calculator">
-                        <div class="form-group col-lg-6">
-                            <div class="custom_select">
-                                <label class="form-label">Select District <span class="text-danger">*</span></label>
-                                <select required="" name="district_id" class="form-control select-active">
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <label class="form-label">Address <span class="text-danger">*</span></label>
-                            <input class="form-control" required="" type="text" name="shipping_address"
-                                placeholder="Street, No." value="{{ Auth::user()->address }}">
-                        </div>
-                    </div>
-
-                    <div class="row shipping_calculator">
-                        <div class="form-group col-lg-6">
-                            <div class="custom_select">
-                                <label class="form-label">Select Commune <span class="text-danger">*</span></label>
-                                <select required="" name="commune_id" class="form-control select-active">
-
-                                </select>
-                            </div>
                         </div>
                         <div class="form-group col-lg-6">
                             <label class="form-label">Postal Code <span class="text-danger">*</span></label>
@@ -95,10 +55,19 @@
                         </div>
                     </div>
 
-                    <div class="form-group mb-30">
-                        <textarea rows="5" placeholder="Additional information" name="notes"></textarea>
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label class="form-label">Address <span class="text-danger">*</span></label>
+                            <input class="form-control" required="" type="text" name="shipping_address"
+                                placeholder="Street, No." value="{{ Auth::user()->address }}">
+                        </div>
                     </div>
-
+                    <div class="row">
+                        <div class="form-group col-lg-12">
+                            <label class="form-label">Note </label>
+                            <textarea rows="5" placeholder="Additional information . . ." name="notes"></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-5">
@@ -245,62 +214,6 @@
         </div>
     </div>
 </form>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="city_id"]').on('change', function() {
-            var city_id = $(this).val();
-            var rows = '';
-            if (city_id) {
-                $.ajax({
-                    url: "{{ url('/district-get/ajax') }}/" + city_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        rows =
-                            `<option selected="" disabled="" value="">Select District</option>`;
-                        $('select[name="district_id"]').html(rows);
-                        $('select[name="commune_id"]').html('');
-                        $.each(data, function(key, value) {
-                            $('select[name="district_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .district_name + '</option>');
-                        });
-                    },
-
-                });
-            }
-        });
-    });
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('select[name="district_id"]').on('change', function() {
-            var district_id = $(this).val();
-            var rows = '';
-            if (district_id) {
-                $.ajax({
-                    url: "{{ url('/commune-get/ajax') }}/" + district_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        rows =
-                            `<option selected="" disabled="" value="">Select Commune</option>`;
-                        $('select[name="commune_id"]').html(rows);
-                        $.each(data, function(key, value) {
-                            $('select[name="commune_id"]').append(
-                                '<option value="' + value.id + '">' + value
-                                .commune_name + '</option>');
-                        });
-                    },
-
-                });
-            }
-        });
-    });
-</script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $('#myForm').validate({
@@ -314,24 +227,15 @@
                     maxlength: 255,
                     email: true,
                 },
-                city_id: {
-                    required: true,
-                },
                 shipping_phone: {
                     required: true,
                     minlength: 10,
                     maxlength: 10,
                     digits: true,
                 },
-                district_id: {
-                    required: true,
-                },
                 post_code: {
                     required: true,
                     digits: true,
-                },
-                commune_id: {
-                    required: true,
                 },
                 shipping_address: {
                     required: true,
@@ -348,24 +252,15 @@
                     maxlength: 'The email must not be greater than 255 characters.',
                     email: 'The email must be a valid email address.',
                 },
-                city_id: {
-                    required: 'Please select a city or province name.',
-                },
                 shipping_phone: {
                     required: 'Please enter your phone number.',
                     minlength: 'Please enter 10 numeric characters correctly.',
                     maxlength: 'Please enter 10 numeric characters correctly.',
                     digits: 'Please enter 10 numeric characters correctly.',
                 },
-                district_id: {
-                    required: 'Please select a district name.',
-                },
                 post_code: {
                     required: 'Please enter your postal code.',
                     digits: 'Please enter numeric characters correctly.',
-                },
-                commune_id: {
-                    required: 'Please select a commune name.',
                 },
                 shipping_address: {
                     required: 'Please enter your address.',
