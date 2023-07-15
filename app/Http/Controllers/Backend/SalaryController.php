@@ -74,17 +74,7 @@ class SalaryController extends Controller
         );
         return redirect()->route('all.advance.salary')->with($notification);
     } // End Method
-
-    public function DeleteAdvanceSalary($id)
-    {
-        AdvanceSalary::findOrFail($id)->delete();
-        $notification = array(
-            'message' => 'Advance Salary Deleted Successfully!',
-            'alert-type' => 'success',
-        );
-        return redirect()->back()->with($notification);
-    } // End Method
-
+   
     public function PaySalary()
     {
         $current_month = date('F');

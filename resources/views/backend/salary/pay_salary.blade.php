@@ -46,55 +46,66 @@
                     </thead>
                     <tbody>
                         @foreach ($employee as $key => $item)
-                            <tr>
-                                <td>{{ $key + 1 }}</td>
-                                <td>
-                                    <img src="{{ asset($item->employee_photo) }}" alt=""
-                                        style="width: 100px; height: 80px;">
-                                </td>
-                                <td>{{ $item->employee_code }}</td>
-                                <td>{{ $item->employee_name }}</td>
-                                <td>
-                                    {{ date('m') }}
-                                </td>
-                                <td>
-                                    {{ date('Y') }}
-                                </td>
-                                <td>{{ $item->salary }}</td>
-                                <td>
-                                    @if ($item->advance->advance_salary == 0)
-                                        <p>0</p>
-                                    @else
-                                        {{ $item->advance->advance_salary }}
-                                    @endif
-                                </td>
-                                <td>
+                            @php
+                                $check = \App\Models\PaySalary::where('employee_id', $item->id)
+                                    ->where('salary_month', $current_month)
+                                    ->where('salary_year', $current_year)
+                                    ->first();
+                            @endphp
+                            @if ($check != '')
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>
+                                        <img src="{{ asset($item->employee_photo) }}" alt=""
+                                            style="width: 100px; height: 80px;">
+                                    </td>
+                                    <td>{{ $item->employee_code }}</td>
+                                    <td>{{ $item->employee_name }}</td>
+                                    <td>
+                                        {{ date('m') }}
+                                    </td>
+                                    <td>
+                                        {{ date('Y') }}
+                                    </td>
+                                    <td>{{ $item->salary }}</td>
+                                    <td>
+                                        @if ($item->advance->advance_salary == 0)
+                                            <p>0</p>
+                                        @else
+                                            {{ $item->advance->advance_salary }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @php
+                                            $amount = $item->salary - $item->advance->advance_salary;
+                                        @endphp
+                                        @if ($item->advance->advance_salary == 0)
+                                            <strong> {{ $item->salary }}</strong>
+                                        @else
+                                            <strong>
+                                                {{ $amount }}
+                                            </strong>
+                                        @endif
+                                    </td>
                                     @php
-                                        $amount = $item->salary - $item->advance->advance_salary;
+                                        $check = \App\Models\PaySalary::where('employee_id', $item->id)
+                                            ->where('salary_month', $current_month)
+                                            ->where('salary_year', $current_year)
+                                            ->first();
                                     @endphp
-                                    @if ($item->advance->advance_salary == 0)
-                                        <strong> {{ $item->salary }}</strong>
-                                    @else
-                                        <strong>
-                                            {{ $amount }}
-                                        </strong>
-                                    @endif
-                                </td>
-                                @php
-                                    $check = \App\Models\PaySalary::where('employee_id', $item->id)
-                                        ->where('salary_month', $current_month)
-                                        ->where('salary_year', $current_year)
-                                        ->first();
-                                @endphp
-                                <td>
-                                    @if ($check == '')
-                                    <a href="{{ route('pay.now.salary', $item->id) }}" class="btn btn-danger">Pay
-                                        Now</a>
-                                    @else
-                                    <button class="btn btn-success">Paid</button>
-                                    @endif
-                                </td>
-                            </tr>
+                                    <td>
+                                        @if ($check == '')
+                                            <a href="{{ route('pay.now.salary', $item->id) }}"
+                                                class="btn btn-danger">Pay
+                                                Now</a>
+                                        @else
+                                            <button class="btn btn-success">Paid</button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @else
+                                <tr></tr>
+                            @endif
                         @endforeach
                     </tbody>
                     <tfoot>

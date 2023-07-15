@@ -37,8 +37,10 @@ use App\Http\Controllers\Backend\EmployeeController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\SalaryController;
 use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Backend\SupplierController;
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\SubscriberController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\User\ReviewController;
 
 /*
@@ -508,7 +510,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/advance/salary/store', 'StoreAdvanceSalary')->name('store.advance.salary');
         Route::get('/admin/advance/salary/edit/{id}', 'EditAdvanceSalary')->name('edit.advance.salary');
         Route::post('/admin/advance/salary/update', 'UpdateAdvanceSalary')->name('update.advance.salary');
-        Route::get('/admin/advance/salary/delete/{id}', 'DeleteAdvanceSalary')->name('delete.advance.salary');
     });
 
     //Pay Salary All Route
@@ -556,6 +557,30 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //Admin Delete All Notification
     Route::controller(AdminController::class)->group(function () {
         Route::get('/admin/delete/all/notification', 'DeleteAllNotification')->name('admin.delete.all.notification');
+    });
+
+    //Supplier All Route
+    Route::controller(SupplierController::class)->group(function () {
+        Route::get('/admin/all/supplier', 'SupplierAll')->name('all.supplier');
+        Route::get('/admin/add/supplier', 'SupplierAdd')->name('add.supplier');
+        Route::post('/admin/store/supplier', 'SupplierStore')->name('store.supplier');
+        Route::get('/admin/edit/supplier/{id}', 'SupplierEdit')->name('edit.supplier');
+        Route::post('/admin/update/supplier', 'SupplierUpdate')->name('update.supplier');
+        Route::get('/admin/delete/supplier/{id}', 'SupplierDelete')->name('delete.supplier');
+    });
+
+    // Purchase All Route
+    Route::controller(PurchaseController::class)->group(function () {
+        Route::get('/purchase/all', 'PurchaseAll')->name('purchase.all');
+        Route::get('/purchase/add', 'PurchaseAdd')->name('purchase.add');
+        Route::post('/purchase/store', 'PurchaseStore')->name('purchase.store');
+        Route::get('/purchase/delete/{id}', 'PurchaseDelete')->name('purchase.delete');
+        Route::get('/purchase/pending', 'PurchasePending')->name('purchase.pending');
+        Route::get('/purchase/approve/{id}', 'PurchaseApprove')->name('purchase.approve');
+        Route::get('/daily/purchase/report', 'DailyPurchaseReport')->name('daily.purchase.report');
+        Route::get('/daily/purchase/pdf', 'DailyPurchasePdf')->name('daily.purchase.pdf');
+        Route::get('/purchase/get-category', 'GetCategory')->name('purchase.get-category');
+        Route::get('/purchase/get-product', 'GetProduct')->name('purchase.get-product');
     });
 
     //Database Backup

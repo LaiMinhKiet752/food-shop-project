@@ -31,6 +31,13 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            @error('name')
+                                <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+                                    <div class="text-white">{{ $message }}</div>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @enderror
                             <form id="myForm" method="post" action="{{ route('store.permission') }}">
                                 @csrf
 
