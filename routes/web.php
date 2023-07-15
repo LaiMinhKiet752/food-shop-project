@@ -578,7 +578,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/purchase/pending', 'PurchasePending')->name('purchase.pending');
         Route::get('/purchase/approve/{id}', 'PurchaseApprove')->name('purchase.approve');
         Route::get('/daily/purchase/report', 'DailyPurchaseReport')->name('daily.purchase.report');
-        Route::get('/daily/purchase/pdf', 'DailyPurchasePdf')->name('daily.purchase.pdf');
+        Route::get('/daily/purchase/report/view', 'DailyPurchaseView')->name('daily.purchase.report.view');
         Route::get('/purchase/get-category', 'GetCategory')->name('purchase.get-category');
         Route::get('/purchase/get-product', 'GetProduct')->name('purchase.get-product');
     });
