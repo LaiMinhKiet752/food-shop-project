@@ -8,6 +8,7 @@
 | Full Name: {{ $order->name }}                                                          |
 | Email: {{ $order->email }}                                                             |
 | Phone Number: {{ $order->phone }}                                                      |
+| Adress: {{ $order->address }}                                                          |
 | Payment Method: {{ $order->payment_method }}                                           |
 | Payment Type: {{ $order->payment_type }}                                               |
 | Total: ${{ $order->amount }}                                                           |

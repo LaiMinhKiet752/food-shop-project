@@ -163,26 +163,6 @@
             </li>
         @endif
 
-        @if (Auth::user()->can('shipping.area.menu'))
-            <li>
-                <a href="javascript:;" class="has-arrow">
-                    <div class="parent-icon"><i class="lni lni-map"></i>
-                    </div>
-                    <div class="menu-title">Shipping Area</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('all.city') }}"><i class="bx bx-right-arrow-alt"></i>All Cities,
-                            Provinces</a>
-                    </li>
-                    <li> <a href="{{ route('all.district') }}"><i class="bx bx-right-arrow-alt"></i>All Districts</a>
-                    </li>
-                    <li> <a href="{{ route('all.commune') }}"><i class="bx bx-right-arrow-alt"></i>All Communes</a>
-                    </li>
-                </ul>
-            </li>
-        @endif
-
-
         <li class="menu-label" style="color: black; font-weight: bold;">Order Management</li>
         @if (Auth::user()->can('order.menu'))
             <li>
@@ -261,7 +241,7 @@
         {{-- @if (Auth::user()->can('order.menu')) --}}
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='lni lni-delivery'></i>
                 </div>
                 <div class="menu-title">Supplier</div>
             </a>
@@ -275,7 +255,7 @@
         {{-- @if (Auth::user()->can('order.menu')) --}}
         <li>
             <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='bx bx-cart'></i>
+                <div class="parent-icon"><i class='lni lni-shopping-basket'></i>
                 </div>
                 <div class="menu-title">Purchase Management</div>
             </a>

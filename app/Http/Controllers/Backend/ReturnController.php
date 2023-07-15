@@ -62,7 +62,7 @@ class ReturnController extends Controller
 
     public function ReturnOrderDetails($order_id)
     {
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
+        $order = Order::with('user')->where('id', $order_id)->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         return view('backend.return_order.return_order_details', compact('order', 'orderItem'));
     } // End Method

@@ -49,10 +49,6 @@ class MollieController extends Controller
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
-            'city_id' => $request->city_id,
-            'district_id' => $request->district_id,
-            'commune_id' => $request->commune_id,
-
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -94,7 +90,7 @@ class MollieController extends Controller
             ]);
         }
         //Send Mail
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
+        $order = Order::with('user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         $subject = 'Nest Shop';
         Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));

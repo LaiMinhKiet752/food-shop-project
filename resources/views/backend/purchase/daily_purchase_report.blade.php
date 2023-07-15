@@ -22,7 +22,7 @@
     <!--end breadcrumb-->
     <hr />
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 row-cols-xl-3">
-        <form action="{{ route('daily.purchase.pdf') }}" method="get" target="_blank" id="myForm">
+        <form action="{{ route('daily.purchase.report.view') }}" method="get" target="_blank" id="myForm">
             @csrf
             <div class="col">
                 <div class="card">

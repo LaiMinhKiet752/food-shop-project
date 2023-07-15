@@ -98,7 +98,7 @@ class PurchaseController extends Controller
         return view('backend.purchase.daily_purchase_report');
     } //End Method
 
-    public function DailyPurchasePdf(Request $request)
+    public function DailyPurchaseView(Request $request)
     {
         $sdate = date('Y-m-d', strtotime($request->start_date));
         $edate = date('Y-m-d', strtotime($request->end_date));
@@ -106,7 +106,7 @@ class PurchaseController extends Controller
 
         $start_date = date('Y-m-d', strtotime($request->start_date));
         $end_date = date('Y-m-d', strtotime($request->end_date));
-        return view('backend.purchase.daily_purchase_report_pdf', compact('allData', 'start_date', 'end_date'));
+        return view('backend.purchase.daily_purchase_report_view', compact('allData', 'start_date', 'end_date'));
     }
 
     public function GetCategory(Request $request)

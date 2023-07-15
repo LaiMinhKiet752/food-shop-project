@@ -166,8 +166,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     //Checkout All Route
     Route::controller(CheckoutController::class)->group(function () {
-        Route::get('/district-get/ajax/{city_id}', 'DistrictGetAjax');
-        Route::get('/commune-get/ajax/{district_id}', 'CommuneGetAjax');
         Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
 
@@ -317,38 +315,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/update/coupon', 'UpdateCoupon')->name('update.coupon');
         Route::get('/delete/coupon/{id}', 'DeleteCoupon')->name('delete.coupon');
     });
-
-    //Shipping City All Route
-    Route::controller(ShippingAreaController::class)->group(function () {
-        Route::get('/all/city', 'AllCity')->name('all.city');
-        Route::get('/add/city', 'AddCity')->name('add.city');
-        Route::post('/store/city', 'StoreCity')->name('store.city');
-        Route::get('/edit/city/{id}', 'EditCity')->name('edit.city');
-        Route::post('/update/city', 'UpdateCity')->name('update.city');
-        Route::get('/delete/city/{id}', 'DeleteCity')->name('delete.city');
-    });
-
-    //Shipping District All Route
-    Route::controller(ShippingAreaController::class)->group(function () {
-        Route::get('/all/district', 'AllDistrict')->name('all.district');
-        Route::get('/add/district', 'AddDistrict')->name('add.district');
-        Route::post('/store/district', 'StoreDistrict')->name('store.district');
-        Route::get('/edit/district/{id}', 'EditDistrict')->name('edit.district');
-        Route::post('/update/district', 'UpdateDistrict')->name('update.district');
-        Route::get('/delete/district/{id}', 'DeleteDistrict')->name('delete.district');
-    });
-
-    //Shipping Commune All Route
-    Route::controller(ShippingAreaController::class)->group(function () {
-        Route::get('/all/commune', 'AllCommune')->name('all.commune');
-        Route::get('/add/commune', 'AddCommune')->name('add.commune');
-        Route::post('/store/commune', 'StoreCommune')->name('store.commune');
-        Route::get('/edit/commune/{id}', 'EditCommune')->name('edit.commune');
-        Route::post('/update/commune', 'UpdateCommune')->name('update.commune');
-        Route::get('/delete/commune/{id}', 'DeleteCommune')->name('delete.commune');
-        Route::get('/district/ajax/{city_id}', 'GetDistrict');
-    });
-
 
     //Order All Route
     Route::controller(OrderController::class)->group(function () {
@@ -578,7 +544,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/purchase/pending', 'PurchasePending')->name('purchase.pending');
         Route::get('/purchase/approve/{id}', 'PurchaseApprove')->name('purchase.approve');
         Route::get('/daily/purchase/report', 'DailyPurchaseReport')->name('daily.purchase.report');
-        Route::get('/daily/purchase/pdf', 'DailyPurchasePdf')->name('daily.purchase.pdf');
+        Route::get('/daily/purchase/report/view', 'DailyPurchaseView')->name('daily.purchase.report.view');
         Route::get('/purchase/get-category', 'GetCategory')->name('purchase.get-category');
         Route::get('/purchase/get-product', 'GetProduct')->name('purchase.get-product');
     });

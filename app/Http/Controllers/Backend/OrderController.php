@@ -26,7 +26,7 @@ class OrderController extends Controller
 
     public function AdminOrderDetails($order_id)
     {
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
+        $order = Order::where('id', $order_id)->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         return view('backend.orders.admin_order_details', compact('order', 'orderItem'));
     } // End Method
@@ -93,7 +93,7 @@ class OrderController extends Controller
 
     public function AdminInvoiceDownload($order_id)
     {
-        $order = Order::with('city', 'district', 'commune', 'user')->where('id', $order_id)->first();
+        $order = Order::with('user')->where('id', $order_id)->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
 
         $pdf = Pdf::loadView('backend.orders.admin_order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOption(['tempDir' => public_path(), 'chroot' => public_path()]);

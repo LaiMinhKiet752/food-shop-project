@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Email</title>
-</head>
-<body>
-    <p>{!! $body !!}</p>
-</body>
-</html>
+<x-mail::message>
+# EMAIL VERIFY
+
+{!! $body !!}
+
+<x-mail::button :url="$verification_link">
+Click here
+</x-mail::button>
+
+Thanks,<br>
+{{ config('app.name') }}
+</x-mail::message>

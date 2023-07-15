@@ -20,9 +20,6 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address')->nullable();
-            $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('district_id');
-            $table->unsignedBigInteger('commune_id');
             $table->string('post_code')->nullable();
             $table->text('notes')->nullable();
             $table->string('payment_method')->nullable();

@@ -20,6 +20,7 @@ class UserController extends Controller
         $id = Auth::user()->id;
         $data = User::find($id);
         $data->name = $request->name;
+        $data->address = $request->address;
 
         $current_phone_number = User::find($id)->phone;
         $current_email = User::find($id)->email;
