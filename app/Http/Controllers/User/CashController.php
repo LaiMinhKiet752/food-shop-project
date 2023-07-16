@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
+use App\Models\CouponUse;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -22,7 +23,7 @@ class CashController extends Controller
 {
     public function CashOrder(Request $request)
     {
-        $user = User::where('role','admin')->get();
+        $user = User::where('role', 'admin')->get();
         if (Session::has('coupon')) {
             $total_amount = Session::get('coupon')['total_amount'];
             $discount_amount = Session::get('coupon')['discount_amount'];
@@ -30,7 +31,11 @@ class CashController extends Controller
             $total_amount = round(Cart::total(), 2);
             $discount_amount = 0;
         }
-
+        CouponUse::insert([
+            'coupon_code' => Session::get('coupon')['coupon_code'],
+            'user_id' => Auth::id(),
+            'created_at' => Carbon::now()
+        ]);
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'name' => $request->name,
@@ -47,7 +52,7 @@ class CashController extends Controller
             'discount' => $discount_amount,
             'order_number' => hexdec(uniqid()),
 
-            'invoice_number' => 'NFS' . time(). mt_rand(100000, 1000000),
+            'invoice_number' => 'NFS' . time() .  mt_rand(100000, 1000000),
             'order_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('m'),
