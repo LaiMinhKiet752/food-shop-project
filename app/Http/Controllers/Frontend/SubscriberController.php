@@ -23,6 +23,7 @@ class SubscriberController extends Controller
             'email.required' => 'Please enter your email address.',
             'email.email' => 'The email must be a valid email address.',
         ]);
+        $request_email = $request->email;
         $exists = Subscriber::where('email', $request->email)->first();
         if ($exists) {
             $notification = array(
@@ -30,22 +31,42 @@ class SubscriberController extends Controller
                 'alert-type' => 'warning',
             );
             return redirect()->back()->with($notification);
-        }
-        else if (Auth::user() && !$exists) {
-            $subscriber = new Subscriber();
-            $subscriber->email = $request->email;
-            $subscriber->status = 'active';
-            $subscriber->token = '';
-            $subscriber->created_at = Carbon::now();
-            $subscriber->status = 'active';
-            $subscriber->save();
-            $notification = array(
-                'message' => 'Successfully Become A Subscriber!',
-                'alert-type' => 'success',
-            );
-            return redirect()->to('/')->with($notification);
-        }
-        else if (!Auth::user() && !$exists) {
+        } else if (Auth::user() && !$exists) {
+            $current_email = Auth::user()->email;
+            if ($current_email == $request_email) {
+                $subscriber = new Subscriber();
+                $subscriber->email = $request->email;
+                $subscriber->status = 'active';
+                $subscriber->token = '';
+                $subscriber->created_at = Carbon::now();
+                $subscriber->status = 'active';
+                $subscriber->save();
+                $notification = array(
+                    'message' => 'Successfully Become A Subscriber!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->to('/')->with($notification);
+            } else if ($current_email != $request_email) {
+                $token = hash('sha256', time());
+                $subscriber = new Subscriber();
+                $subscriber->email = $request->email;
+                $subscriber->token = $token;
+                $subscriber->status = 'Pending';
+                $subscriber->save();
+
+                //Send email
+                $subject = 'Email Verification';
+                $verification_link = url('subscriber/verify/' . $token . '/' . $request->email);
+                $message = 'Please click on the following link in order to verify as subscriber. <br>';
+                Mail::to($request->email)->send(new SubscriberVerify($subject, $message, $verification_link));
+
+                $notification = array(
+                    'message' => 'Please Check Your Email To Verify As Subscriber!',
+                    'alert-type' => 'success',
+                );
+                return redirect()->to('/')->with($notification);
+            }
+        } else if (!Auth::user() && !$exists) {
             $token = hash('sha256', time());
             $subscriber = new Subscriber();
             $subscriber->email = $request->email;

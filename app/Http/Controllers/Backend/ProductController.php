@@ -10,6 +10,7 @@ use App\Models\MultiImage;
 use App\Models\OrderReturn;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Supplier;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,7 +30,8 @@ class ProductController extends Controller
     {
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
-        return view('backend.product.product_add', compact('brands', 'categories'));
+        $suppliers = Supplier::latest()->get();
+        return view('backend.product.product_add', compact('suppliers', 'brands', 'categories'));
     } //End Method
 
     public function StoreProduct(Request $request)
@@ -63,6 +65,7 @@ class ProductController extends Controller
         $save_url = 'upload/products/thumbnail/' . $filename;
 
         $product_id =  Product::insertGetId([
+            'supplier_id' => $request->supplier_id,
             'brand_id' => $request->brand_id,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
@@ -118,12 +121,13 @@ class ProductController extends Controller
     {
         $products = Product::findOrFail($id);
         $activeVendor = User::where('status', 'active')->where('role', 'vendor')->latest()->get();
+        $suppliers = Supplier::latest()->get();
         $brands = Brand::latest()->get();
         $categories = Category::latest()->get();
         $get_category_id = $products->category_id;
         $subcategory = SubCategory::where('category_id', $get_category_id)->latest()->get();
         $multipleImages = MultiImage::where('product_id', $id)->latest()->get();
-        return view('backend.product.product_edit', compact('activeVendor', 'brands', 'categories', 'subcategory', 'products', 'multipleImages'));
+        return view('backend.product.product_edit', compact('activeVendor', 'suppliers', 'brands', 'categories', 'subcategory', 'products', 'multipleImages'));
     } //End Method
 
     public function UpdateProduct(Request $request)
@@ -147,6 +151,7 @@ class ProductController extends Controller
                 'product_code.unique' => 'Product code already exists.',
             ]);
             Product::findOrFail($product_id)->update([
+                'supplier_id' => $request->supplier_id,
                 'brand_id' => $request->brand_id,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
@@ -185,6 +190,7 @@ class ProductController extends Controller
             return redirect()->route('all.product')->with($notification);
         } else {
             Product::findOrFail($product_id)->update([
+                'supplier_id' => $request->supplier_id,
                 'brand_id' => $request->brand_id,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
@@ -425,7 +431,7 @@ class ProductController extends Controller
 
     public function ProductStock()
     {
-        $products = Product::latest()->get();
+        $products = DB::table('products')->orderByRaw('CONVERT(product_quantity, SIGNED) asc')->get();
         return view('backend.product.product_stock', compact('products'));
     } //End Method
 
@@ -449,7 +455,6 @@ class ProductController extends Controller
         // dd($products);
         return view('backend.product.view_add_product_from_returned_order', compact('products', 'invoice'));
     } //End Method
-
 
     public function StoreProductFromReturnedOrder(Request $request)
     {
@@ -475,7 +480,7 @@ class ProductController extends Controller
         return redirect()->route('view.product.from.returned.order', $order_id)->with($notification);
     } //End Method
 
-    public function DeleteProductFromReturnedOrder($order_id , $product_id)
+    public function DeleteProductFromReturnedOrder($order_id, $product_id)
     {
         OrderReturn::where('product_id', $product_id)->where('order_id', $order_id)->delete();
         $notification = array(

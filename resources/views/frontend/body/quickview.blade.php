@@ -33,8 +33,7 @@
                                 <div class="detail-qty border radius">
                                     <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
                                     <input type="text" name="qty" id="qty" class="qty-val" value="1"
-                                        min="1">
-
+                                        min="1" max="100">
                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                 </div>
                                 <div class="product-extra-link2">
@@ -46,7 +45,8 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6" style="padding-right: 0px !important; padding-left: 0px !important;">
+                                <div class="col-md-6"
+                                    style="padding-right: 0px !important; padding-left: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
                                             <li class="mb-5">BRAND : <span class="text-brand" id="pbrand">
@@ -56,29 +56,30 @@
                                                 </span>
                                             </li>
                                             <li class="mb-5">SUBCATEGORY : <span class="text-brand" id="psubcategory">
-                                            </span>
-                                        </li>
+                                                </span>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div> <!-- // End col  -->
 
 
-                                <div class="col-md-6" style="padding-left: 5px !important; padding-right: 0px !important;">
+                                <div class="col-md-6"
+                                    style="padding-left: 5px !important; padding-right: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
                                             <li class="mb-5">PRODUCT CODE : <span class="text-brand" id="pcode">
                                                 </span></li>
                                             <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
                                             </li>
-                                            <li class="mb-5">STOCK STATUS : <span class="badge badge-pill badge-success"
-                                                    id="instock" style="background:green; color: white;"> </span>
+                                            <li class="mb-5">STOCK STATUS : <span
+                                                    class="badge badge-pill badge-success" id="instock"
+                                                    style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"
                                                     style="background:red; color: white;"> </span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div> <!-- // End col  -->
-
                             </div> <!-- // end row -->
                         </div>
                         <!-- Detail Info -->

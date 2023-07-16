@@ -66,11 +66,12 @@
                                             <option value="slider">Slider Management</option>
                                             <option value="banner">Banner Management</option>
                                             <option value="coupon">Coupon Management</option>
-                                            <option value="shipping area">Shipping Area</option>
                                             <option value="order">Order Management</option>
                                             <option value="return order">Return Order Management</option>
                                             <option value="cancel order">Cancel Order Management</option>
                                             <option value="report order">Report Order Management</option>
+                                            <option value="supplier">Supplier Management</option>
+                                            <option value="purchase">Purchase Management</option>
                                             <option value="contact">Contact Management</option>
                                             <option value="blog">Blog Management</option>
                                             <option value="review">Review Management</option>

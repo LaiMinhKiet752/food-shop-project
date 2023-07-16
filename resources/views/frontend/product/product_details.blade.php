@@ -137,20 +137,20 @@
                             <hr>
                             <div class="font-xs">
                                 <ul class="mr-50 float-start">
-                                    <li class="mb-5">Product Code: <a
+                                    <li class="mb-5">PRODUCT CODE: <a
                                             href="#">{{ $product->product_code }}</a>
                                     </li>
-                                    <li class="mb-5">Brand: <span
+                                    <li class="mb-5">BRAND: <span
                                             class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
-                                    <li class="mb-5">Category: <span
+                                    <li class="mb-5">CATEGORY: <span
                                             class="text-brand">{{ $product['category']['category_name'] }}</span>
                                     </li>
-                                    <li class="mb-5">SubCategory: <span
+                                    <li class="mb-5">SUBCATEGORY: <span
                                             class="text-brand">{{ $product['subcategory']['subcategory_name'] }}</span>
                                     </li>
                                 </ul>
                                 <ul class="float-start">
-                                    <li class="mb-5">Tags: <a href="#"
+                                    <li class="mb-5">TAGS: <a href="#"
                                             rel="tag">{{ $product->product_tags }}</a></li>
                                     @if ($product->manufacturing_date == null)
                                     @else
@@ -164,7 +164,7 @@
                                                 class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                         </li>
                                     @endif
-                                    <li>In Stock:<span
+                                    <li>IN STOCK:<span
                                             class="in-stock text-brand ml-5">({{ $product->product_quantity }})
                                             Items</span></li>
                                 </ul>
@@ -732,26 +732,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });

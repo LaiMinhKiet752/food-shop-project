@@ -1,7 +1,7 @@
 <div class="sidebar-wrapper" data-simplebar="true">
     <div class="sidebar-header">
         <div>
-            <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon">
+            {{-- <img src="{{ asset('adminbackend/assets/images/logo-icon.png') }}" class="logo-icon" alt="logo icon"> --}}
         </div>
         <div>
             <h4 class="logo-text">Admin</h4>
@@ -238,40 +238,52 @@
         @endif
 
         <li class="menu-label" style="color: black; font-weight: bold;">Import Management</li>
-        {{-- @if (Auth::user()->can('order.menu')) --}}
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='lni lni-delivery'></i>
-                </div>
-                <div class="menu-title">Supplier</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('all.supplier') }}"><i class="bx bx-right-arrow-alt"></i>All Suppliers</a>
-                </li>
-            </ul>
-        </li>
-        {{-- @endif --}}
+        @if (Auth::user()->can('supplier.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-delivery'></i>
+                    </div>
+                    <div class="menu-title">Supplier</div>
+                </a>
+                <ul>
+                    @if (Auth::user()->can('supplier.list'))
+                        <li> <a href="{{ route('all.supplier') }}"><i class="bx bx-right-arrow-alt"></i>All
+                                Suppliers</a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
 
-        {{-- @if (Auth::user()->can('order.menu')) --}}
-        <li>
-            <a href="javascript:;" class="has-arrow">
-                <div class="parent-icon"><i class='lni lni-shopping-basket'></i>
-                </div>
-                <div class="menu-title">Purchase Management</div>
-            </a>
-            <ul>
-                <li> <a href="{{ route('purchase.all') }}"><i class="bx bx-right-arrow-alt"></i>All Purchase
-                        Orders</a>
-                </li>
-                <li> <a href="{{ route('purchase.pending') }}"><i class="bx bx-right-arrow-alt"></i>Approval
-                        Purchase</a>
-                </li>
-                <li> <a href="{{ route('daily.purchase.report') }}"><i class="bx bx-right-arrow-alt"></i>Daily
-                        Purchase Report</a>
-                </li>
-            </ul>
-        </li>
-        {{-- @endif --}}
+        @if (Auth::user()->can('purchase.menu'))
+            <li>
+                <a href="javascript:;" class="has-arrow">
+                    <div class="parent-icon"><i class='lni lni-shopping-basket'></i>
+                    </div>
+                    <div class="menu-title">Purchase Management</div>
+                </a>
+                <ul>
+                    @if (Auth::user()->can('purchase.list'))
+                        <li> <a href="{{ route('purchase.all') }}"><i class="bx bx-right-arrow-alt"></i>All Purchase
+                                Orders</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->can('purchase.approve'))
+                        <li> <a href="{{ route('purchase.pending') }}"><i class="bx bx-right-arrow-alt"></i>Approval
+                                Purchase</a>
+                        </li>
+                    @endif
+
+                    @if (Auth::user()->can('purchase.report'))
+                        <li> <a href="{{ route('daily.purchase.report') }}"><i
+                                    class="bx bx-right-arrow-alt"></i>Daily
+                                Purchase Report</a>
+                        </li>
+                    @endif
+                </ul>
+            </li>
+        @endif
 
 
         <li class="menu-label" style="color: black; font-weight: bold;">Website Management</li>
@@ -377,26 +389,26 @@
 
         <li class="menu-label" style="color: black; font-weight: bold;">Roles and Permissions</li>
         @if (Auth::user()->can('roles.permissions.menu'))
-            <li>
-                <a class="has-arrow" href="javascript:;">
-                    <div class="parent-icon"><i class="lni lni-users"></i>
-                    </div>
-                    <div class="menu-title">Roles & Permissions</div>
-                </a>
-                <ul>
-                    <li> <a href="{{ route('all.permission') }}"><i class="bx bx-right-arrow-alt"></i>All
-                            Permissions</a>
-                    </li>
-                    <li> <a href="{{ route('all.role') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
-                    </li>
-                    <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add
-                            Permissions For Roles</a>
-                    </li>
-                    <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Roles
-                            Already Have Permissions</a>
-                    </li>
-                </ul>
-            </li>
+        <li>
+            <a class="has-arrow" href="javascript:;">
+                <div class="parent-icon"><i class="lni lni-users"></i>
+                </div>
+                <div class="menu-title">Roles & Permissions</div>
+            </a>
+            <ul>
+                <li> <a href="{{ route('all.permission') }}"><i class="bx bx-right-arrow-alt"></i>All
+                        Permissions</a>
+                </li>
+                <li> <a href="{{ route('all.role') }}"><i class="bx bx-right-arrow-alt"></i>All Roles</a>
+                </li>
+                <li> <a href="{{ route('add.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>Add
+                        Permissions For Roles</a>
+                </li>
+                <li> <a href="{{ route('all.role.permissions') }}"><i class="bx bx-right-arrow-alt"></i>All Roles
+                        Already Have Permissions</a>
+                </li>
+            </ul>
+        </li>
         @endif
 
         @if (Auth::user()->can('admin.user.account.menu'))

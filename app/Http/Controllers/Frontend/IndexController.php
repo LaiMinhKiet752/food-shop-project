@@ -50,7 +50,6 @@ class IndexController extends Controller
         return view('frontend.index', compact('skip_category_0', 'skip_product_0', 'skip_category_1', 'skip_product_1', 'skip_category_2', 'skip_product_2', 'skip_category_3', 'skip_product_3', 'skip_category_4', 'skip_product_4', 'hot_deals', 'special_offer', 'new', 'special_deals'));
     } //End Method
 
-
     public function CategoryWiseProduct(Request $request, $id, $slug)
     {
         $products = Product::where('status', 1)->where('category_id', $id)->orderBy('id', 'DESC')->paginate(20);
@@ -60,7 +59,6 @@ class IndexController extends Controller
         $newProduct = Product::where('status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         return view('frontend.product.category_view', compact('products', 'categories', 'breadcategory', 'newProduct', 'count_products'));
     } // End Method
-
 
     public function SubCategoryWiseProduct(Request $request, $id, $slug)
     {
@@ -86,7 +84,7 @@ class IndexController extends Controller
 
         $item = $request->search;
         $categories = Category::orderBy('category_name', 'ASC')->get();
-        $products = Product::where('product_name', 'LIKE', "%$item%")->paginate(10);
+        $products = Product::where('product_name', 'LIKE', "%$item%")->get();
         $newProduct = Product::orderBy('id', 'DESC')->limit(3)->get();
         return view('frontend.product.search', compact('products', 'item', 'categories', 'newProduct'));
     } // End Method
