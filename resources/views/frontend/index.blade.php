@@ -175,7 +175,7 @@
                                     </div>
 
                                     <div>
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -376,7 +376,7 @@
 
 
                                     <div>
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -577,7 +577,7 @@
 
 
                                     <div>
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -778,7 +778,7 @@
 
 
                                     <div>
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -979,7 +979,7 @@
 
 
                                     <div>
-                                            <span class="font-small text-muted">By <a href="#">Nest</a></span>
+                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
                                     </div>
                                     <div class="product-card-bottom">
 
@@ -1577,26 +1577,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });
@@ -1626,26 +1644,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });
@@ -1675,26 +1711,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });
@@ -1724,26 +1778,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });
@@ -1773,26 +1845,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });

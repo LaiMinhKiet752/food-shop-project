@@ -64,7 +64,11 @@
                                 @else
                                     <td>{{ $expiry_date_format }}</td>
                                 @endif
+                                @if ($item->product_quantity <= 20)
+                                <td class="text-danger" style="font-weight: bold;">{{ $item->product_quantity }}</td>
+                                @else
                                 <td>{{ $item->product_quantity }}</td>
+                                @endif
                                 <td>
                                     @if ($item->status == 1)
                                         <span class="badge rounded-pill bg-success"

@@ -120,7 +120,20 @@
                                     <a
                                         href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $product['category']['category_name'] }}</a>
                                 </div>
-                                <h2><a
+                                <h2
+                                    style="overflow: hidden;
+                                line-height: 1.3em;
+                                padding: 16px 0 0;
+                                margin-bottom: 12px;
+                                text-overflow: ellipsis;
+                                white-space: initial;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                min-height: 58px;
+                                height: 30px;
+                                box-sizing: border-box;">
+                                    <a
                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
                                         {{ $product->product_name }} </a></h2>
 
@@ -224,9 +237,9 @@
 
             </div>
             <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
-                {{ $products->links() }}
-            </div>
+            {{-- <div class="pagination-area mt-20 mb-20">
+                {{ $products->links('vendor.pagination.custom') }}
+            </div> --}}
 
             <!--End Deals-->
         </div>
@@ -385,26 +398,44 @@
                 },
                 dataType: "json",
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             });
         });

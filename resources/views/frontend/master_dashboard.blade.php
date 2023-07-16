@@ -279,29 +279,46 @@
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
-                    miniCart();
-                    $('#closeModal').click();
-                    // console.log(data)
-
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        $('#closeModal').click();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        $('#closeModal').click();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             })
         }
@@ -323,26 +340,44 @@
                 },
                 url: "/dcart/data/store/" + id,
                 success: function(data) {
-                    miniCart();
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        position: 'top-end',
-                        toast: true,
-                        showConfirmButton: false,
-                        timer: 3000,
-                    })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            icon: 'success',
-                            title: data.success,
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
                         })
-                    } else {
                         Toast.fire({
                             icon: 'error',
-                            title: data.error,
+                            text: data.error_quantity,
                         })
+                        // End Message
+                    } else {
+                        miniCart();
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'top-end',
+                            toast: true,
+                            showConfirmButton: false,
+                            timer: 3000,
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: data.success,
+                            })
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: data.error,
+                            })
+                        }
+                        // End Message
                     }
-                    // End Message
                 }
             })
         }
@@ -778,6 +813,23 @@
                 url: "/cart-increment/" + rowId,
                 dataType: "json",
                 success: function(data) {
+                    if (data.error_quantity) {
+                        // Start Message
+                        const Toast = Swal.mixin({
+                            position: 'center',
+                            title: 'Sorry!',
+                            timerProgressBar: true,
+                            showConfirmButton: true,
+                            timer: 3000,
+                            confirmButtonText: "OK",
+                            confirmButtonColor: '#3BB77E',
+                        })
+                        Toast.fire({
+                            icon: 'error',
+                            text: data.error_quantity,
+                        })
+                        // End Message
+                    }
                     couponCalculation();
                     cart();
                     miniCart();
@@ -845,15 +897,6 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping Fee</h6>
-                                    </td>
-                                    <td class="cart_total_amount">
-                                        <h4 class="text-heading text-end">$0</h4>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="cart_total_label">
                                         <h6 class="text-muted">Grand Total</h6>
                                     </td>
                                     <td class="cart_total_amount">
@@ -868,15 +911,6 @@
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">$${data.subtotal}</h4>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="cart_total_label">
-                                            <h6 class="text-muted">Shipping Fee</h6>
-                                        </td>
-                                        <td class="cart_total_amount">
-                                            <h4 class="text-heading text-end">$0</h4>
                                         </td>
                                     </tr>
 

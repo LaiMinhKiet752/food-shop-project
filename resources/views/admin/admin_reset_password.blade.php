@@ -42,7 +42,7 @@
                                         <input type="hidden" name="email" value="{{ $email }}">
                                         <div class="p-5">
                                             <div class="text-start">
-                                                <img src="{{ asset('adminbackend/assets/images/logo-img.png') }}"
+                                                <img src="{{ asset('upload/logo.svg') }}"
                                                     width="180" alt="">
                                             </div>
                                             <h4 class="mt-5 font-weight-bold">Genrate New Password</h4>

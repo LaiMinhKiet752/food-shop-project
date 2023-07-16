@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
-use App\Models\ShipCity;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -31,6 +30,26 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        if ($request->quantity > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        $check_add = 0;
+        if ($check) {
+            $count = $check->qty;
+            $check_add = $request->quantity + $count;
+        }
+        if ($count > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+        if ($check_add > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -60,6 +79,26 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        if ($request->quantity > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        $check_add = 0;
+        if ($check) {
+            $count = $check->qty;
+            $check_add = $request->quantity + $count;
+        }
+        if ($count > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+        if ($check_add > $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -89,6 +128,17 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -117,6 +167,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -147,6 +207,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -175,6 +245,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -205,6 +285,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -233,6 +323,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -263,6 +363,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -291,6 +401,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -321,6 +441,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -349,6 +479,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -379,6 +519,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -408,6 +558,16 @@ class CartController extends Controller
         if (Session::has('coupon')) {
             Session::forget('coupon');
         }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
             Cart::add([
@@ -436,6 +596,16 @@ class CartController extends Controller
     {
         if (Session::has('coupon')) {
             Session::forget('coupon');
+        }
+        $get_product = Product::where('id', $id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        $check = Cart::content()->where('id', $id)->first();
+        $count = 0;
+        if ($check) {
+            $count = $check->qty;
+        }
+        if ($count == $product_quantity_stock) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -541,6 +711,14 @@ class CartController extends Controller
     public function CartIncrement($rowId)
     {
         $row = Cart::get($rowId);
+        $product_id = $row->id;
+        $get_product_quantity_in_cart = $row->qty;
+        $get_product = Product::where('id', $product_id)->first();
+        $product_quantity_stock = $get_product->product_quantity;
+        if ($product_quantity_stock == $get_product_quantity_in_cart) {
+            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+        }
+
         Cart::update($rowId, $row->qty + 1);
 
         if (Session::has('coupon')) {

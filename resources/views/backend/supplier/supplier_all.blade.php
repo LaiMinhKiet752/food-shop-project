@@ -18,10 +18,12 @@
             </nav>
         </div>
         <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('add.supplier') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
-                        New</i></a>
-            </div>
+            @if (Auth::user()->can('supplier.add'))
+                <div class="btn-group">
+                    <a href="{{ route('add.supplier') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                            New</i></a>
+                </div>
+            @endif
         </div>
     </div>
     <!--end breadcrumb-->
@@ -49,9 +51,15 @@
                                 <td>{{ $item->email }}</td>
                                 <td>{{ $item->address }}</td>
                                 <td>
-                                    <a href="{{ route('edit.supplier', $item->id) }}" class="btn btn-warning">Edit</a>
-                                    <a href="{{ route('delete.supplier', $item->id) }}" class="btn btn-danger"
-                                        id="delete">Delete</a>
+                                    @if (Auth::user()->can('supplier.edit'))
+                                        <a href="{{ route('edit.supplier', $item->id) }}"
+                                            class="btn btn-warning">Edit</a>
+                                    @endif
+
+                                    @if (Auth::user()->can('supplier.edit'))
+                                        <a href="{{ route('delete.supplier', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

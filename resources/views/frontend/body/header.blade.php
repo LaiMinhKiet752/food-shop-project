@@ -36,10 +36,6 @@
             <div class="row align-items-center">
                 <div class="col-xl-3 col-lg-4">
                     <div class="header-info">
-                        <ul>
-                            <li><a href="{{ route('mycart') }}">My Cart</a></li>
-                            <li><a href="{{ route('checkout') }}">Checkout</a></li>
-                        </ul>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-4">
@@ -147,8 +143,7 @@
                                             <h4>Total <span id="cartSubTotal"></span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="{{ route('mycart') }}" class="outline">View cart</a>
-                                            <a href="{{ route('checkout') }}">Checkout</a>
+                                            <a href="{{ route('mycart') }}">View cart</a>
                                         </div>
                                     </div>
 

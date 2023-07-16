@@ -83,9 +83,6 @@
                                                 value="coupon"{{ $permission->group_name == 'coupon' ? 'selected' : '' }}>
                                                 Coupon Management</option>
                                             <option
-                                                value="shipping area"{{ $permission->group_name == 'shipping area' ? 'selected' : '' }}>
-                                                Shipping Area</option>
-                                            <option
                                                 value="order"{{ $permission->group_name == 'order' ? 'selected' : '' }}>
                                                 Order Management</option>
                                             <option
@@ -97,6 +94,12 @@
                                             <option
                                                 value="report order"{{ $permission->group_name == 'report order' ? 'selected' : '' }}>
                                                 Report Order Management</option>
+                                            <option
+                                                value="supplier"{{ $permission->group_name == 'supplier' ? 'selected' : '' }}>
+                                                Supplier Management</option>
+                                            <option
+                                                value="purchase"{{ $permission->group_name == 'purchase' ? 'selected' : '' }}>
+                                                Purchase Management</option>
                                             <option
                                                 value="contact"{{ $permission->group_name == 'contact' ? 'selected' : '' }}>
                                                 Contact Management</option>

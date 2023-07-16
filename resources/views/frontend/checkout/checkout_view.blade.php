@@ -127,7 +127,7 @@
 
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Coupon Discount</h6>
+                                            <h6 class="text-muted">Discount</h6>
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">

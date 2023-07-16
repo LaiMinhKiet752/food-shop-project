@@ -142,7 +142,7 @@
                                             value="{{ old('product_code') }}">
                                     </div>
                                     <div class="form-group col-md-6 text-dark">
-                                        <label for="inputStarPoints" class="form-label">Product Quantity <span
+                                        <label for="inputStarPoints" class="form-label">Quantity <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="product_quantity" class="form-control"
                                             id="inputStarPoints" placeholder="0"
@@ -162,7 +162,18 @@
                                     </div>
 
                                     <div class="form-group col-12 text-dark">
-                                        <label for="inputProductType" class="form-label">Product Brand <span
+                                        <label for="inputProductType" class="form-label">Select Supplier <span
+                                                class="text-danger">*</span></label>
+                                        <select name="supplier_id" class="form-control form-select single-select">
+                                            <option></option>
+                                            @foreach ($suppliers as $supplier)
+                                                <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-12 text-dark">
+                                        <label for="inputProductType" class="form-label">Select Brand <span
                                                 class="text-danger">*</span></label>
                                         <select name="brand_id" class="form-control form-select single-select">
                                             <option></option>
@@ -173,7 +184,7 @@
                                     </div>
 
                                     <div class="form-group col-12 text-dark">
-                                        <label for="inputVendor" class="form-label">Product Category <span
+                                        <label for="inputVendor" class="form-label">Select Category <span
                                                 class="text-danger">*</span></label>
                                         <select name="category_id" class="form-control form-select single-select">
                                             <option></option>
@@ -185,7 +196,7 @@
                                     </div>
 
                                     <div class="form-group col-12 text-dark">
-                                        <label for="inputVendor" class="form-label">Product SubCategory <span
+                                        <label for="inputVendor" class="form-label">Select SubCategory <span
                                                 class="text-danger">*</span></label>
                                         <select name="subcategory_id" class="form-control form-select single-select">
                                             <option></option>
@@ -358,6 +369,9 @@
                     digits: true,
                     min: 1,
                 },
+                supplier_id: {
+                    required: true,
+                },
                 brand_id: {
                     required: true,
                 },
@@ -400,6 +414,9 @@
                     required: 'Please enter product quantity.',
                     digits: 'Please enter only positive integers.',
                     min: 'Product quantity must be greater than 0.',
+                },
+                supplier_id: {
+                    required: 'Please select a supplier name.',
                 },
                 brand_id: {
                     required: 'Please select a brand name.',

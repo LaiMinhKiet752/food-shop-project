@@ -17,9 +17,12 @@
             </nav>
         </div>
         <div class="ms-auto">
-            <div class="btn-group">
-                <a href="{{ route('purchase.add') }}" class="btn btn-primary"><i class="lni lni-plus"> Add New</i></a>
-            </div>
+            @if (Auth::user()->can('purchase.add'))
+                <div class="btn-group">
+                    <a href="{{ route('purchase.add') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
+                            New</i></a>
+                </div>
+            @endif
         </div>
     </div>
     <!--end breadcrumb-->
@@ -36,7 +39,7 @@
                             <th>Date</th>
                             <th>Supplier</th>
                             <th>Product Name</th>
-                            <th>Unit Price(USD)</th>
+                            <th>Unit Price</th>
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -50,7 +53,7 @@
                                 <td> {{ date('d-m-Y', strtotime($item->date)) }} </td>
                                 <td> {{ $item['supplier']['name'] }} </td>
                                 <td> {{ Str::limit($item['product']['product_name'], 50, '...') }} </td>
-                                <td> {{ $item->unit_price }} </td>
+                                <td> ${{ $item->unit_price }} </td>
                                 <td> {{ $item->buying_quantity }} </td>
                                 <td>
                                     @if ($item->status == '0')
@@ -65,8 +68,9 @@
                                 </td>
                                 <td>
                                     @if ($item->status == '0')
-                                        <a href="{{ route('purchase.approve',$item->id) }}" class="btn btn-danger"
-                                            id="approve_purchase" title="Approved"><i class="fa fa-check-circle"></i></a>
+                                        <a href="{{ route('purchase.approve', $item->id) }}" class="btn btn-danger"
+                                            id="approve_purchase" title="Approved"><i
+                                                class="fa fa-check-circle"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -79,7 +83,7 @@
                             <th>Date</th>
                             <th>Supplier</th>
                             <th>Product Name</th>
-                            <th>Unit Price(USD)</th>
+                            <th>Unit Price</th>
                             <th>Quantity</th>
                             <th>Status</th>
                             <th>Action</th>
