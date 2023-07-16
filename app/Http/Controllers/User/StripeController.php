@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderMail;
+use App\Models\Coupon;
+use App\Models\CouponUse;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDetails;
@@ -22,7 +24,7 @@ class StripeController extends Controller
 {
     public function StripeOrder(Request $request)
     {
-        $user = User::where('role','admin')->get();
+        $user = User::where('role', 'admin')->get();
         \Stripe\Stripe::setApiKey(config('stripe.stripe_sk'));
 
         if (Session::has('coupon')) {
@@ -53,6 +55,12 @@ class StripeController extends Controller
         ]);
         // dd($response);
 
+        CouponUse::insert([
+            'coupon_code' => Session::get('coupon')['coupon_code'],
+            'user_id' => Auth::id(),
+            'created_at' => Carbon::now()
+        ]);
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'name' => $request->name,
@@ -70,7 +78,7 @@ class StripeController extends Controller
             'discount' => $discount_amount,
             'order_number' => $response->metadata->order_id,
 
-            'invoice_number' => 'NFS' . time(). mt_rand(100000, 1000000),
+            'invoice_number' => 'NFS' . time() .  mt_rand(100000, 1000000),
             'order_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('m'),

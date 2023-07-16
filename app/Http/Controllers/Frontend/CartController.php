@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Coupon;
+use App\Models\CouponUse;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
 use Carbon\Carbon;
@@ -737,19 +738,28 @@ class CartController extends Controller
 
     public function CouponApply(Request $request)
     {
-        $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
-        if ($coupon) {
-            Session::put('coupon', [
-                'coupon_code' => $coupon->coupon_code,
-                'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100, 2),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100, 2)
-            ]);
-            return response()->json(array(
-                'success' => 'Coupon Applied Successfully!'
-            ));
+        if (Auth::check()) {
+            $check = CouponUse::where('coupon_code', $request->coupon_code)->where('user_id', Auth::user()->id)->first();
+            if ($check) {
+                return response()->json(['error' => 'Coupon Code Has Been Used!']);
+            } else {
+                $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+                if ($coupon) {
+                    Session::put('coupon', [
+                        'coupon_code' => $coupon->coupon_code,
+                        'coupon_discount' => $coupon->coupon_discount,
+                        'discount_amount' => round(Cart::total() * $coupon->coupon_discount / 100, 2),
+                        'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100, 2)
+                    ]);
+                    return response()->json(array(
+                        'success' => 'Coupon Applied Successfully!'
+                    ));
+                } else {
+                    return response()->json(['error' => 'Coupon Code Is Not Valid, Please Check Again!']);
+                }
+            }
         } else {
-            return response()->json(['error' => 'Invalid Coupon!']);
+            return response()->json(['error' => 'Please Login Before Using Coupon Code!']);
         }
     } // End Method
 

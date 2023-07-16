@@ -142,10 +142,7 @@
                         <li><a href="{{ route('about') }}">About Us</a></li>
                         <li><a href="{{ route('contact') }}">Contact Us</a></li>
                         <li><a href="{{ route('home.blog') }}">Blog & News</a></li>
-                        <li><a href="#">Delivery Information</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms &amp; Conditions</a></li>
-                        <li><a href="#">Support Center</a></li>
+                        <li><a href="{{ route('privacy_policy') }}">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
@@ -155,30 +152,26 @@
                         <li><a href="#">View Cart</a></li>
                         <li><a href="#">Wishlist</a></li>
                         <li><a href="#">Compare Products</a></li>
-                        <li><a href="#">Track Your Order</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
                     <h4 class="widget-title">Corporate</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        {{-- <li><a href="#">Affiliate Program</a></li>
+                        <li><a href="#">Affiliate Program</a></li>
                         <li><a href="#">Farm Business</a></li>
                         <li><a href="#">Farm Careers</a></li>
                         <li><a href="#">Our Suppliers</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                        <li><a href="#">Promotions</a></li> --}}
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
+                    @php
+                        $categories = \App\Models\Category::orderBy('id', 'ASC')->limit(5)->get();
+                    @endphp
                     <h4 class="widget-title">Popular</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Milk & Flavoured Milk</a></li>
-                        <li><a href="#">Butter and Margarine</a></li>
-                        <li><a href="#">Eggs Substitutes</a></li>
-                        <li><a href="#">Marmalades</a></li>
-                        <li><a href="#">Sour Cream and Dips</a></li>
-                        <li><a href="#">Tea & Kombucha</a></li>
-                        <li><a href="#">Cheese</a></li>
+                        @foreach ($categories as $item)
+                        <li><a href="{{ url('product/category/' . $item->id . '/' . $item->category_slug) }}">{{ Str::title($item->category_name) }}</a></li>
+                        @endforeach
                     </ul>
                 </div>
 

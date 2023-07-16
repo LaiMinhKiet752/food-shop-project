@@ -261,9 +261,9 @@
 
             </div>
             <!--product grid-->
-            <div class="pagination-area mt-20 mb-20">
+            {{-- <div class="pagination-area mt-20 mb-20">
                 {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
-            </div>
+            </div> --}}
 
             <!--End Deals-->
         </div>
@@ -314,7 +314,7 @@
                                     $filterCat = explode(',', $_GET['category']);
                                 @endphp
                             @endif
-                            <label class="fw-900">All Categories</label>
+                            <label class="fw-900">ALL CATEGORY</label>
                             @foreach ($categories as $category)
                                 @php
                                     $products = App\Models\Product::where('category_id', $category->id)
@@ -342,7 +342,7 @@
                                     $filterBrand = explode(',', $_GET['brand']);
                                 @endphp
                             @endif
-                            <label class="fw-900 mt-15">All Brands</label>
+                            <label class="fw-900 mt-15">ALL BRANDS</label>
                             @foreach ($brands as $brand)
                                 @php
                                     $products = \App\Models\Product::where('brand_id', $brand->id)
