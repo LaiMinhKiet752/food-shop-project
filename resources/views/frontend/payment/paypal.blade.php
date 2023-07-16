@@ -80,7 +80,15 @@
                             @else
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping Fee</h6>
+                                        <h6 class="text-muted">Subtotal</h6>
+                                    </td>
+                                    <td class="cart_total_amount">
+                                        <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart_total_label">
+                                        <h6 class="text-muted">Discount</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$0</h4>
