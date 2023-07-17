@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -60,12 +61,12 @@ class SupplierController extends Controller
     } //End Method
     public function SupplierDelete($id)
     {
+        Product::where('supplier_id', $id)->update(['status' => 0]);
         Supplier::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Supplier Deleted Successfully',
             'alert-type' => 'success'
         );
-
         return redirect()->back()->with($notification);
     } //End Method
 }

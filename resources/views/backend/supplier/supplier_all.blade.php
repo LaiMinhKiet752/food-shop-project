@@ -49,7 +49,7 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->phone }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->address }}</td>
+                                <td>{{ Str::limit($item->address, 50, '...') }}</td>
                                 <td>
                                     @if (Auth::user()->can('supplier.edit'))
                                         <a href="{{ route('edit.supplier', $item->id) }}"

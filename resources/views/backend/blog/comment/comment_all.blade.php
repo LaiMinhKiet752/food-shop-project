@@ -13,7 +13,7 @@
                     <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">All Blog Comments <span
-                        class="badge rounded-pill bg-danger">{{ count($comment) }}</span></li>
+                            class="badge rounded-pill bg-danger">{{ count($comment) }}</span></li>
                 </ol>
             </nav>
         </div>
@@ -49,7 +49,8 @@
                                 <td>{{ Str::limit($item->comment, 30, '...') }}</td>
                                 @if ($item->parent_id == null && $item->status == 0)
                                     <td>
-                                        <span class="badge rounded-pill bg-dark" style="font-size: 13px;">Unanswered</span>
+                                        <span class="badge rounded-pill bg-dark"
+                                            style="font-size: 13px;">Unanswered</span>
                                     </td>
                                 @else
                                     <td><span class="badge rounded-pill bg-success"
@@ -58,11 +59,16 @@
                                 @if ($item->parent_id == null && $item->status == 0)
                                     <td>
                                         <a href="{{ route('admin.comment.reply', $item->id) }}"
-                                            class="btn btn-danger">Reply</a>
+                                            class="btn btn-warning">Reply</a>
+                                        <a href="{{ route('admin.comment.reply.delete', ['id' => $item->id, 'user_id' => $item->user_id]) }}"
+                                            class="btn btn-danger" id="delete">Delete</a>
                                     </td>
                                 @else
                                     <td><a href="{{ route('admin.comment.reply.edit', $item->id) }}"
-                                            class="btn btn-info">Edit</a></td>
+                                            class="btn btn-info">Edit</a>
+                                        <a href="{{ route('admin.comment.reply.delete', ['id' => $item->id, 'user_id' => $item->user_id]) }}"
+                                            class="btn btn-danger" id="delete">Delete</a>
+                                    </td>
                                 @endif
                             </tr>
                         @endforeach

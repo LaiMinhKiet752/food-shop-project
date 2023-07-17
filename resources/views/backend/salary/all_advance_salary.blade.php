@@ -17,14 +17,14 @@
                 </ol>
             </nav>
         </div>
-        @if (Auth::user()->can('employee.salary.add'))
+        {{-- @if (Auth::user()->can('employee.salary.add'))
             <div class="ms-auto">
                 <div class="btn-group">
                     <a href="{{ route('add.advance.salary') }}" class="btn btn-primary"><i class="lni lni-plus"> Add
                             New</i></a>
                 </div>
             </div>
-        @endif
+        @endif --}}
     </div>
     <!--end breadcrumb-->
     <hr />
