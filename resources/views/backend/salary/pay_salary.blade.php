@@ -52,7 +52,6 @@
                                     ->where('salary_year', $current_year)
                                     ->first();
                             @endphp
-                            @if ($check != '')
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>
@@ -103,9 +102,6 @@
                                         @endif
                                     </td>
                                 </tr>
-                            @else
-                                <tr></tr>
-                            @endif
                         @endforeach
                     </tbody>
                     <tfoot>

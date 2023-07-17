@@ -28,6 +28,11 @@ class StripeController extends Controller
         \Stripe\Stripe::setApiKey(config('stripe.stripe_sk'));
 
         if (Session::has('coupon')) {
+            CouponUse::insert([
+                'coupon_code' => Session::get('coupon')['coupon_code'],
+                'user_id' => Auth::id(),
+                'created_at' => Carbon::now()
+            ]);
             $total_amount = Session::get('coupon')['total_amount'];
             $discount_amount = Session::get('coupon')['discount_amount'];
         } else {
@@ -55,11 +60,7 @@ class StripeController extends Controller
         ]);
         // dd($response);
 
-        CouponUse::insert([
-            'coupon_code' => Session::get('coupon')['coupon_code'],
-            'user_id' => Auth::id(),
-            'created_at' => Carbon::now()
-        ]);
+
 
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
