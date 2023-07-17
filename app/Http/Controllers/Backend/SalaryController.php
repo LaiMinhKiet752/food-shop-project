@@ -74,7 +74,7 @@ class SalaryController extends Controller
         );
         return redirect()->route('all.advance.salary')->with($notification);
     } // End Method
-   
+
     public function PaySalary()
     {
         $current_month = date('F');

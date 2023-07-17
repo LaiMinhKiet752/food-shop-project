@@ -215,7 +215,7 @@ class BlogController extends Controller
         ]);
         BlogComment::insert([
             'blog_post_id' => $blog_post_id,
-            'user_id' => 1,
+            'user_id' => Auth::user()->id,
             'parent_id' => $id,
             'comment' => $request->comment,
             'status' => 1,
@@ -244,6 +244,17 @@ class BlogController extends Controller
             'comment' => $request->admin_comment,
         ]);
 
+        $notification = array(
+            'message' => 'Comment Updated Successfully!',
+            'alert-type' => 'success',
+        );
+        return redirect()->route('admin.blog.comment')->with($notification);
+    } // End Method
+
+    public function AdminDeleteBlogComment($id)
+    {
+        BlogComment::where('parent_id', $id)->delete();
+        BlogComment::findOrFail($id)->delete();
         $notification = array(
             'message' => 'Comment Updated Successfully!',
             'alert-type' => 'success',

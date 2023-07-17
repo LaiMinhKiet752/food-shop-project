@@ -392,6 +392,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::post('/admin/blog/comment/reply/submit', 'AdminReplyCommentSubmit')->name('admin.reply.comment.submit');
         Route::get('/admin/blog/comment/reply/edit/{id}', 'AdminCommentReplyEdit')->name('admin.comment.reply.edit');
         Route::post('/admin/blog/comment/reply/update', 'AdminReplyCommentUpdate')->name('admin.reply.comment.update');
+        Route::get('/admin/blog/comment/delelte/{id}/{user_id}', 'AdminDeleteBlogComment')->name('admin.comment.reply.delete');
 
         //Update Status Notification
         Route::get('/update-status/blog-comment/{id}', 'UpdateStatusBlogComment');

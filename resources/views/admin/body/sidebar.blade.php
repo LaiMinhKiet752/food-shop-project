@@ -388,7 +388,7 @@
         @endif
 
         <li class="menu-label" style="color: black; font-weight: bold;">Roles and Permissions</li>
-        @if (Auth::user()->can('roles.permissions.menu'))
+        {{-- @if (Auth::user()->can('roles.permissions.menu')) --}}
         <li>
             <a class="has-arrow" href="javascript:;">
                 <div class="parent-icon"><i class="lni lni-users"></i>
@@ -409,7 +409,7 @@
                 </li>
             </ul>
         </li>
-        @endif
+        {{-- @endif --}}
 
         @if (Auth::user()->can('admin.user.account.menu'))
             <li>
