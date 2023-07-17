@@ -111,8 +111,8 @@
                             <div class="detail-extralink mb-50">
                                 <div class="detail-qty border radius">
                                     <a href="#" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                    <input type="text" id="dqty" name="quantity" class="qty-val" value="1"
-                                        min="1">
+                                    <input type="text" id="dqty" name="quantity" class="qty-val numbers-only"
+                                        value="1" min="1">
                                     <a href="#" class="qty-up"><i class="fi-rs-angle-small-up"></i></a>
                                 </div>
                                 <div class="product-extra-link2">
@@ -804,6 +804,21 @@
                 $(element).removeClass('is-invalid');
             },
         });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+
+        $('.numbers-only').keypress(function(e) {
+
+            var charCode = (e.which) ? e.which : event.keyCode
+
+            if (String.fromCharCode(charCode).match(/[^0-9]/g))
+
+                return false;
+
+        });
+
     });
 </script>
 @endsection
