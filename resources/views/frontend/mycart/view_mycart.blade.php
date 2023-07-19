@@ -72,12 +72,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        @if (Session::has('carts'))
                         <a href="{{ route('checkout') }}" class="btn mb-20 w-100">Proceed To Checkout<i
                             class="fi-rs-sign-out ml-15"></i></a>
-                        @else
-                            
-                        @endif
                     </div>
                 </div>
             </div>
