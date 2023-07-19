@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 17, 2023 at 02:02 PM
+-- Generation Time: Jul 19, 2023 at 06:16 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -289,7 +289,14 @@ CREATE TABLE IF NOT EXISTS `coupon_uses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupon_uses`
+--
+
+INSERT INTO `coupon_uses` (`id`, `coupon_code`, `user_id`, `created_at`, `updated_at`) VALUES
+(3, 'NEST', 3, '2023-07-19 16:09:57', NULL);
 
 -- --------------------------------------------------------
 
@@ -647,7 +654,8 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('128e5e58-60bc-49b3-a6d4-ae8e3b60b711', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-17 08:41:32', 1, '2023-07-17 08:40:37', '2023-07-17 08:41:32'),
 ('3fd26638-04af-411a-86b0-10aa6ec022cb', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-17 08:42:32', 1, '2023-07-17 08:42:26', '2023-07-17 08:42:32'),
 ('4644b9f9-26d5-48a5-a3fe-b5c802b7e875', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-17 08:50:52', 0, '2023-07-17 08:50:11', '2023-07-17 08:50:52'),
-('85d45288-9776-4d0d-92b4-a8e672217bb6', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-17 08:50:52', 0, '2023-07-17 08:49:12', '2023-07-17 08:50:52');
+('85d45288-9776-4d0d-92b4-a8e672217bb6', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-17 08:50:52', 0, '2023-07-17 08:49:12', '2023-07-17 08:50:52'),
+('a6db175d-f8a0-4598-a3e6-63afb4c5c00a', 'App\\Notifications\\OrderCompleteNotification', 'App\\Models\\User', 1, '{\"message\":\"A new order has been placed\",\"type\":\"new_order\"}', '2023-07-19 16:11:30', 0, '2023-07-19 16:10:12', '2023-07-19 16:11:30');
 
 -- --------------------------------------------------------
 
@@ -693,7 +701,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
@@ -701,7 +709,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `name`, `email`, `phone`, `address`, `post_code`, `notes`, `payment_method`, `payment_type`, `transaction_id`, `order_number`, `invoice_number`, `amount`, `discount`, `currency`, `order_date`, `order_day`, `order_month`, `order_year`, `confirmed_date`, `processing_date`, `picked_date`, `shipped_date`, `delivered_date`, `delivered_day`, `delivered_month`, `delivered_year`, `cancel_date`, `cancel_order_status`, `return_date`, `return_reason`, `return_order_status`, `status`, `created_at`, `updated_at`) VALUES
 (1, 3, 'Minh Kiet', 'laiminhkiet07052002@gmail.com', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', '738010', NULL, 'Cash On Delivery', 'Cash On Delivery', NULL, '1771656966960068', 'NFS1689583746826647', 150.00, 0.00, 'usd', '17-07-2023 15:49:06', '17', '07', '2023', '17-07-2023 15:51:01', '17-07-2023 15:51:05', NULL, NULL, '17-07-2023 15:51:09', '17', '07', '2023', NULL, '0', NULL, NULL, '0', 'delivered', '2023-07-17 08:49:06', '2023-07-17 08:51:09'),
-(2, 3, 'Minh Kiet', 'laiminhkiet07052002@gmail.com', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', '738005', NULL, 'Stripe Payment', 'Credit Cards', 'cs_test_a14EzjF6VsYQmhH2doNoRojsan5hDpLNHfXYVtC8slLDFlVrUkgMOzSuZW', '1771657026253565', 'NFS1689583804140905', 150.00, 0.00, 'usd', '17-07-2023 15:50:04', '17', '07', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', 'pending', '2023-07-17 08:50:04', NULL);
+(2, 3, 'Minh Kiet', 'laiminhkiet07052002@gmail.com', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', '738005', NULL, 'Stripe Payment', 'Credit Cards', 'cs_test_a14EzjF6VsYQmhH2doNoRojsan5hDpLNHfXYVtC8slLDFlVrUkgMOzSuZW', '1771657026253565', 'NFS1689583804140905', 150.00, 0.00, 'usd', '17-07-2023 15:50:04', '17', '07', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', 'pending', '2023-07-17 08:50:04', NULL),
+(3, 3, 'Minh Kiet', 'laiminhkiet07052002@gmail.com', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', '738010', 'note', 'Stripe Payment', 'Credit Cards', 'cs_test_a1hZwkIPHhNewI2qaB6sDzbyZ2ZJgYghKlEKvIuP4I4i8ynb0QkJUD3VCO', '1771865896337698', 'NFS1689783002322560', 42.00, 28.00, 'usd', '19-07-2023 23:10:02', '19', '07', '2023', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, '0', 'pending', '2023-07-19 16:10:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -720,7 +729,7 @@ CREATE TABLE IF NOT EXISTS `order_details` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `order_details_order_id_foreign` (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `order_details`
@@ -730,7 +739,12 @@ INSERT INTO `order_details` (`id`, `order_id`, `brand_id`, `product_id`, `price`
 (1, 1, 5, 76, 20.00, '5', '2023-07-17 08:49:06', NULL),
 (2, 1, 5, 77, 10.00, '5', '2023-07-17 08:49:06', NULL),
 (3, 2, 5, 78, 20.00, '5', '2023-07-17 08:50:04', NULL),
-(4, 2, 5, 79, 10.00, '5', '2023-07-17 08:50:04', NULL);
+(4, 2, 5, 79, 10.00, '5', '2023-07-17 08:50:04', NULL),
+(5, 3, 4, 110, 5.00, '1', '2023-07-19 16:10:02', NULL),
+(6, 3, 4, 109, 10.00, '1', '2023-07-19 16:10:02', NULL),
+(7, 3, 1, 108, 23.00, '1', '2023-07-19 16:10:02', NULL),
+(8, 3, 3, 107, 30.00, '1', '2023-07-19 16:10:02', NULL),
+(9, 3, 2, 106, 2.00, '1', '2023-07-19 16:10:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -804,7 +818,87 @@ CREATE TABLE IF NOT EXISTS `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at`, `updated_at`) VALUES
+(1, 'brand.menu', 'web', 'brand', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(2, 'brand.list', 'web', 'brand', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(3, 'brand.add', 'web', 'brand', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(4, 'brand.edit', 'web', 'brand', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(5, 'brand.delete', 'web', 'brand', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(6, 'category.menu', 'web', 'category', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(7, 'category.list', 'web', 'category', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(8, 'category.add', 'web', 'category', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(9, 'category.edit', 'web', 'category', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(10, 'category.delete', 'web', 'category', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(11, 'subcategory.menu', 'web', 'subcategory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(12, 'subcategory.list', 'web', 'subcategory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(13, 'subcategory.add', 'web', 'subcategory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(14, 'subcategory.edit', 'web', 'subcategory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(15, 'subcategory.delete', 'web', 'subcategory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(16, 'product.menu', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(17, 'product.list', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(18, 'product.add', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(19, 'product.add.from.returned.orders', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(20, 'product.edit', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(21, 'product.delete', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(22, 'product.restore', 'web', 'product', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(23, 'inventory.menu', 'web', 'inventory', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(24, 'slider.menu', 'web', 'slider', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(25, 'slider.list', 'web', 'slider', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(26, 'slider.add', 'web', 'slider', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(27, 'slider.edit', 'web', 'slider', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(28, 'slider.delete', 'web', 'slider', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(29, 'banner.menu', 'web', 'banner', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(30, 'banner.list', 'web', 'banner', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(31, 'banner.add', 'web', 'banner', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(32, 'banner.edit', 'web', 'banner', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(33, 'banner.delete', 'web', 'banner', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(34, 'coupon.menu', 'web', 'coupon', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(35, 'coupon.list', 'web', 'coupon', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(36, 'coupon.add', 'web', 'coupon', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(37, 'coupon.edit', 'web', 'coupon', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(38, 'coupon.delete', 'web', 'coupon', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(39, 'order.menu', 'web', 'order', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(40, 'return.order.menu', 'web', 'return order', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(41, 'cancel.order.menu', 'web', 'cancel order', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(42, 'report.order.menu', 'web', 'report order', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(43, 'supplier.menu', 'web', 'supplier', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(44, 'supplier.list', 'web', 'supplier', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(45, 'supplier.add', 'web', 'supplier', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(46, 'supplier.edit', 'web', 'supplier', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(47, 'supplier.delete', 'web', 'supplier', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(48, 'purchase.menu', 'web', 'purchase', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(49, 'purchase.list', 'web', 'purchase', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(50, 'purchase.add', 'web', 'purchase', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(51, 'purchase.approve', 'web', 'purchase', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(52, 'purchase.report', 'web', 'purchase', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(53, 'contact.menu', 'web', 'contact', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(54, 'blog.menu', 'web', 'blog', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(55, 'review.menu', 'web', 'review', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(56, 'setting.menu', 'web', 'setting', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(57, 'subscriber.menu', 'web', 'subscriber', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(58, 'roles.permissions.menu', 'web', 'roles and permissions', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(59, 'admin.user.account.menu', 'web', 'admin user account', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(60, 'user.management.menu', 'web', 'user management', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(61, 'employee.menu', 'web', 'employee', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(62, 'employee.list', 'web', 'employee', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(63, 'employee.add', 'web', 'employee', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(64, 'employee.edit', 'web', 'employee', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(65, 'employee.delete', 'web', 'employee', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(66, 'employee.salary.menu', 'web', 'employee salary', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(67, 'employee.salary.list', 'web', 'employee salary', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(68, 'employee.salary.edit', 'web', 'employee salary', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(69, 'employee.pay.salary', 'web', 'employee salary', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(70, 'employee.search.pay.salary.by.month', 'web', 'employee salary', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(71, 'timekeeping.menu', 'web', 'timekeeping', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(72, 'timekeeping.by.day', 'web', 'timekeeping', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(73, 'timekeeping.by.month', 'web', 'timekeeping', '2023-07-19 16:12:03', '2023-07-19 16:12:03'),
+(74, 'database.backup', 'web', 'database backup', '2023-07-19 16:12:03', '2023-07-19 16:12:03');
 
 -- --------------------------------------------------------
 
@@ -967,12 +1061,12 @@ INSERT INTO `products` (`id`, `supplier_id`, `brand_id`, `category_id`, `subcate
 (103, 4, 7, 10, 28, '14321', 'TH true MILK low sugar milk 220ml box', 'th-true-milk-low-sugar-milk-220ml-box', 'upload/products/thumbnail/1771606816495269_product_thumbnail.jpg', '99', 'new product', '220', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '33', '30', 'Product used for 1 year', '<p class=\"MsoNormal\">TH True Milk is guaranteed to be free of flavorings, has a delicious taste of 100% pure fresh milk, contains many vitamins and minerals such as Vitamins A, D, B1, B2, calcium and zinc. Box of 48 bags of low-sugar pasteurized milk TH true MILK 220ml convenient, economical, can be used for a long time, low in sugar, easy to drink.</p>\r\n<p class=\"MsoNormal\">TH true MILK low-sugar fresh milk is made entirely from clean fresh milk at TH\'s dairy farm, with the best conditions for dairy cow breeds, barn standards, and care:</p>\r\n<p class=\"MsoNormal\">The cows are free to move in the shelter with a roof, fan, listen to music and cool off every day to stimulate natural milk production.</p>\r\n<p class=\"MsoNormal\">Chip each dairy cow to detect disease and antibiotic residues, eliminating the risk of early puberty in children. As a result, TH true MILK milk ensures \"fresh\" and \"clean\" standards.</p>\r\n<p class=\"MsoNormal\">In February 2015, the Asian Record Organization confirmed TH farm as \"Asia\'s largest concentrated dairy farm with high-tech application\".</p>', NULL, NULL, NULL, 1, 1, 1, NULL, '2023-07-16 19:31:59', '2023-07-17 06:44:52', NULL),
 (104, 4, 7, 10, 28, '12912', 'Box of 12 boxes of TH true MILK Organic fresh milk 500ml', 'box-of-12-boxes-of-th-true-milk-organic-fresh-milk-500ml', 'upload/products/thumbnail/1771607012038698_product_thumbnail.jpg', '99', 'new product', '500', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '40', '38', 'Product used for 1 year', '<p class=\"MsoNormal\">Supplement essential vitamins and nutrients (DHA, Folic Acid, Calcium, Vitamins B1, B6, C, D). TH True Milk helps to support optimal brain development, height, resistance and absorption of children. Box of 12 boxes of TH true MILK Organic sterilized fresh milk 500ml delicious taste from pure milk</p>\r\n<p class=\"MsoNormal\">TH True Milk Organic is pure pasteurized fresh milk using fresh cow\'s milk raised according to strict European organic standards.</p>\r\n<p class=\"MsoNormal\">Organic products do not contain preservatives, very safe for health, in milk also contain many essential nutrients as well as delicious, greasy taste.</p>\r\n<p class=\"MsoNormal\">Nutritional value</p>\r\n<p class=\"MsoNormal\">Box of 12 boxes of TH true MILK Organic fresh milk 500ml 0</p>\r\n<p class=\"MsoNormal\">Instructions for use and maintenance</p>\r\n<p class=\"MsoNormal\">Use directly. More delicious cold drink.</p>\r\n<p class=\"MsoNormal\">Preserved in dry, cool place.</p>\r\n<p class=\"MsoNormal\">After opening the box, keep refrigerated at 4 degrees C - 10 degrees C and use up within 3 days.</p>', NULL, 1, NULL, NULL, 1, 1, NULL, '2023-07-16 19:35:06', '2023-07-17 06:44:49', NULL),
 (105, 4, 4, 1, 13, '12112', 'Broccoli 600g (1 flower)', 'broccoli-600g-(1-flower)', 'upload/products/thumbnail/1771609242962228_product_thumbnail.jpg', '99', 'new product', '600', 'Gram', NULL, '2023-07-16 17:00:00', '2023-07-19 17:00:00', '10', NULL, 'Product is used for 3 days', '<p>NEST\'s broccoli is grown in China and packed according to strict standards, ensuring green - clean, quality and safe standards for users. High nutritional content, sweet and crispy taste, so it is often used to prepare stir-fried or boiled dishes, helping to strengthen immunity.</p>', NULL, NULL, 1, NULL, 1, 1, NULL, '2023-07-16 19:41:28', '2023-07-17 06:44:45', NULL),
-(106, 1, 2, 6, 12, '15243', 'Oishi cheese-flavored corn snack 32g', 'oishi-cheese-flavored-corn-snack-32g', 'upload/products/thumbnail/1771608046052450_product_thumbnail.jpg', '99', 'new product', '32', 'Gram', NULL, '2023-07-16 17:00:00', '2023-10-16 17:00:00', '2', NULL, 'Product used for 3 months', '<p>Delicious crispy corn snack, fragrant cheese flavor stimulates the taste buds immensely. Oishi cheese-flavored corn snack 32g attractive package, suitable for watching movies, listening to music and enjoying. Snack Oishi is convenient, compact, easy to carry for outdoor activities.</p>', NULL, NULL, 1, NULL, 1, NULL, NULL, '2023-07-16 19:51:32', '2023-07-17 05:11:15', NULL),
-(107, 1, 3, 4, 27, '56879', '6 bottles of C2 peach red tea 455ml', '6-bottles-of-c2-peach-red-tea-455ml', 'upload/products/thumbnail/1771608304337057_product_thumbnail.jpg', '100', 'new product', '455', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '33', '30', 'Product used for 1 year', '<p>Distilled from 100% natural tea processed and bottled in the same day by C2 tea water, providing a wonderfully rich tea flavor. 6 bottles of C2 455ml peach red tea gives you a new choice in enjoying tea, helping to quench thirst and replenish energy for a long active day.<br>C2 is a famous brand of bottled tea in Vietnam introduced by URC Group since 2006. Made from selected Thai Nguyen tea leaves, C2 is extracted and bottled on the same day to help keep the flavor. delicious and the nutrients in the leaves. Not only has the original green tea product lines, C2 also develops black tea, milk tea, and red tea lines, combined with fruit flavors to give users many attractive choices such as lemon, peach , fabric, mint, ....<br>Nutritional performance of the product<br>The product is made from water, refined sugar, fermented tea leaves combined with delicious fresh peach flavor<br>Energy in 100ml is about 47 calories<br>The effect of the product on health<br>Delicious taste, strong aroma of tea, fresh peach taste<br>It is an effective refreshment drink, bringing a feeling of coolness and refreshment<br>Provide vitamin C to the body<br>Strengthen resistance<br>Thanks to the antioxidant content from tea, the product has the effect of helping to beautify the skin, prevent aging, prevent cancer, ...</p>', NULL, NULL, NULL, 1, 1, NULL, NULL, '2023-07-16 19:55:38', NULL, NULL),
-(108, 1, 1, 4, 27, '54543', '6 bottles of C2 Freeze mint black tea 455ml', '6-bottles-of-c2-freeze-mint-black-tea-455ml', 'upload/products/thumbnail/1771608489552710_product_thumbnail.jpg', '89', 'new product', '4455', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '25', '23', 'Product used for 1 year', '<p>Refreshing tea, new flavor comes from C2 tea. 6 bottles of C2 Freeze C2 Freeze Mint Melon Black Tea 455ml are cold and refreshing, helping to cool down the body. A safe, quality product brewed from 100% natural tea, doubling the cool taste of cantaloupe and mint<br>C2 was introduced by URC in 2006 and has become a prestigious brand of bottled tea in the beverage market in Vietnam. Vwowsis sources premium ingredients from selected Thai Nguyen green tea leaves that are extracted and bottled on the same day to keep the flavor and nutrition intact in the tea leaves. Besides the traditional flavors such as lemon, apple, peach, C2 also pampers customers with unique and fresh flavors that are loved by young people such as cherry strawberry, snow mint lemon, mint cantaloupe melon ,...<br>Nutritional ingredients in the product<br>The product is made from water, fermented tea leaves with cool mint flavor,...<br>The energy of the product is about 48 cal/100ml<br>The effect of the product on health<br>Delicious refreshments<br>Helps to relax the mind, bring a feeling of refreshment<br>Relieve fatigue, cool down life<br>Rich in antioxidants to help beautify skin, fight aging, prevent cancer, and sleep better</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 19:58:35', '2023-07-17 06:45:42', NULL),
-(109, 1, 4, 1, 14, '2468', 'Thai enoki mushrooms 150g', 'thai-enoki-mushrooms-150g', 'upload/products/thumbnail/1771609013886171_product_thumbnail.jpg', '99', 'new product', '150', 'Gram', NULL, '2023-07-16 17:00:00', '2023-07-30 17:00:00', '12', '10', 'Product used for 1 week', '<p>Thai enoki mushrooms are fresh, carefully packaged, quality and safe for users. The mycelium is chewy, crispy and sweet, when cooked, it is very fragrant, so it is often rolled in deep-fried dough, cooked in soup or served with grilled.<br>Nutritional value of enoki mushrooms<br>Enoki mushrooms contain a lot of fiber that is good for the digestive system, along with nutrients such as protein, lipid, calcium, and amino acids that are good for the body.<br>In 100g of enoki mushrooms, there are about 37 Kcal.<br>Health benefits of shiitake mushrooms<br>Mushrooms help lower blood cholesterol<br>Helps support brain development<br>Improves digestive system effectively<br>Delicious dishes from enoki mushrooms<br>Needle mushroom soup cooked with minced meat.<br>Mushroom beef soup.<br>Three beef rolls with enoki mushrooms.<br>Spinach with enoki mushroom sauce.<br>How to preserve fresh enoki mushrooms?<br>Needle mushrooms purchased should be used immediately to feel the sweetness and freshness of mushrooms. If not used in time, it should be stored at a temperature of 5-10 degrees Celsius, used within 7 days from the date of manufacture. Or store in the refrigerator for 2-3 days<br>Note: The product received may be different from the picture in color and quantity, but it is still guaranteed in terms of volume and quality.</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 20:06:55', '2023-07-17 05:11:15', NULL);
+(106, 1, 2, 6, 12, '15243', 'Oishi cheese-flavored corn snack 32g', 'oishi-cheese-flavored-corn-snack-32g', 'upload/products/thumbnail/1771608046052450_product_thumbnail.jpg', '98', 'new product', '32', 'Gram', NULL, '2023-07-16 17:00:00', '2023-10-16 17:00:00', '2', NULL, 'Product used for 3 months', '<p>Delicious crispy corn snack, fragrant cheese flavor stimulates the taste buds immensely. Oishi cheese-flavored corn snack 32g attractive package, suitable for watching movies, listening to music and enjoying. Snack Oishi is convenient, compact, easy to carry for outdoor activities.</p>', NULL, NULL, 1, NULL, 1, NULL, NULL, '2023-07-16 19:51:32', '2023-07-19 16:10:02', NULL),
+(107, 1, 3, 4, 27, '56879', '6 bottles of C2 peach red tea 455ml', '6-bottles-of-c2-peach-red-tea-455ml', 'upload/products/thumbnail/1771608304337057_product_thumbnail.jpg', '99', 'new product', '455', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '33', '30', 'Product used for 1 year', '<p>Distilled from 100% natural tea processed and bottled in the same day by C2 tea water, providing a wonderfully rich tea flavor. 6 bottles of C2 455ml peach red tea gives you a new choice in enjoying tea, helping to quench thirst and replenish energy for a long active day.<br>C2 is a famous brand of bottled tea in Vietnam introduced by URC Group since 2006. Made from selected Thai Nguyen tea leaves, C2 is extracted and bottled on the same day to help keep the flavor. delicious and the nutrients in the leaves. Not only has the original green tea product lines, C2 also develops black tea, milk tea, and red tea lines, combined with fruit flavors to give users many attractive choices such as lemon, peach , fabric, mint, ....<br>Nutritional performance of the product<br>The product is made from water, refined sugar, fermented tea leaves combined with delicious fresh peach flavor<br>Energy in 100ml is about 47 calories<br>The effect of the product on health<br>Delicious taste, strong aroma of tea, fresh peach taste<br>It is an effective refreshment drink, bringing a feeling of coolness and refreshment<br>Provide vitamin C to the body<br>Strengthen resistance<br>Thanks to the antioxidant content from tea, the product has the effect of helping to beautify the skin, prevent aging, prevent cancer, ...</p>', NULL, NULL, NULL, 1, 1, NULL, NULL, '2023-07-16 19:55:38', '2023-07-19 16:10:02', NULL),
+(108, 1, 1, 4, 27, '54543', '6 bottles of C2 Freeze mint black tea 455ml', '6-bottles-of-c2-freeze-mint-black-tea-455ml', 'upload/products/thumbnail/1771608489552710_product_thumbnail.jpg', '88', 'new product', '4455', 'Mililiter', NULL, '2023-07-16 17:00:00', '2024-07-16 17:00:00', '25', '23', 'Product used for 1 year', '<p>Refreshing tea, new flavor comes from C2 tea. 6 bottles of C2 Freeze C2 Freeze Mint Melon Black Tea 455ml are cold and refreshing, helping to cool down the body. A safe, quality product brewed from 100% natural tea, doubling the cool taste of cantaloupe and mint<br>C2 was introduced by URC in 2006 and has become a prestigious brand of bottled tea in the beverage market in Vietnam. Vwowsis sources premium ingredients from selected Thai Nguyen green tea leaves that are extracted and bottled on the same day to keep the flavor and nutrition intact in the tea leaves. Besides the traditional flavors such as lemon, apple, peach, C2 also pampers customers with unique and fresh flavors that are loved by young people such as cherry strawberry, snow mint lemon, mint cantaloupe melon ,...<br>Nutritional ingredients in the product<br>The product is made from water, fermented tea leaves with cool mint flavor,...<br>The energy of the product is about 48 cal/100ml<br>The effect of the product on health<br>Delicious refreshments<br>Helps to relax the mind, bring a feeling of refreshment<br>Relieve fatigue, cool down life<br>Rich in antioxidants to help beautify skin, fight aging, prevent cancer, and sleep better</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 19:58:35', '2023-07-19 16:10:02', NULL),
+(109, 1, 4, 1, 14, '2468', 'Thai enoki mushrooms 150g', 'thai-enoki-mushrooms-150g', 'upload/products/thumbnail/1771609013886171_product_thumbnail.jpg', '98', 'new product', '150', 'Gram', NULL, '2023-07-16 17:00:00', '2023-07-30 17:00:00', '12', '10', 'Product used for 1 week', '<p>Thai enoki mushrooms are fresh, carefully packaged, quality and safe for users. The mycelium is chewy, crispy and sweet, when cooked, it is very fragrant, so it is often rolled in deep-fried dough, cooked in soup or served with grilled.<br>Nutritional value of enoki mushrooms<br>Enoki mushrooms contain a lot of fiber that is good for the digestive system, along with nutrients such as protein, lipid, calcium, and amino acids that are good for the body.<br>In 100g of enoki mushrooms, there are about 37 Kcal.<br>Health benefits of shiitake mushrooms<br>Mushrooms help lower blood cholesterol<br>Helps support brain development<br>Improves digestive system effectively<br>Delicious dishes from enoki mushrooms<br>Needle mushroom soup cooked with minced meat.<br>Mushroom beef soup.<br>Three beef rolls with enoki mushrooms.<br>Spinach with enoki mushroom sauce.<br>How to preserve fresh enoki mushrooms?<br>Needle mushrooms purchased should be used immediately to feel the sweetness and freshness of mushrooms. If not used in time, it should be stored at a temperature of 5-10 degrees Celsius, used within 7 days from the date of manufacture. Or store in the refrigerator for 2-3 days<br>Note: The product received may be different from the picture in color and quantity, but it is still guaranteed in terms of volume and quality.</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 20:06:55', '2023-07-19 16:10:02', NULL);
 INSERT INTO `products` (`id`, `supplier_id`, `brand_id`, `category_id`, `subcategory_id`, `product_code`, `product_name`, `product_slug`, `product_thumbnail`, `product_quantity`, `product_tags`, `product_weight`, `product_measure`, `product_dimensions`, `manufacturing_date`, `expiry_date`, `selling_price`, `discount_price`, `short_description`, `long_description`, `hot_deals`, `featured`, `special_offer`, `special_deals`, `status`, `updated_by`, `deleted_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(110, 1, 4, 1, 14, '12864', 'Vi Lam pickled cabbage 500g pack', 'vi-lam-pickled-cabbage-500g-pack', 'upload/products/thumbnail/1771609191259998_product_thumbnail.jpg', '99', 'new product', '500', 'Gram', NULL, '2023-07-16 17:00:00', '2023-08-16 17:00:00', '10', '5', 'Product used for 1 month', '<p>It is a product from Vi Lam sourdough brand, which is loved and trusted by many consumers. Vi Lam pickled cabbage 500g package is made from delicious fresh reed vegetables with a mixture of water and salt, providing a stimulating, crunchy, and sour dish.<br>Pickled cabbage, also known as pickled cabbage, sauerkraut is a long-standing rustic dish of the Vietnamese people that is prepared by making pickled vegetables. The product of 500g pickles from Vy Lam brand is vacuum-cleaned and extremely convenient for housewives.</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 20:09:44', '2023-07-17 05:11:15', NULL);
+(110, 1, 4, 1, 14, '12864', 'Vi Lam pickled cabbage 500g pack', 'vi-lam-pickled-cabbage-500g-pack', 'upload/products/thumbnail/1771609191259998_product_thumbnail.jpg', '98', 'new product', '500', 'Gram', NULL, '2023-07-16 17:00:00', '2023-08-16 17:00:00', '10', '5', 'Product used for 1 month', '<p>It is a product from Vi Lam sourdough brand, which is loved and trusted by many consumers. Vi Lam pickled cabbage 500g package is made from delicious fresh reed vegetables with a mixture of water and salt, providing a stimulating, crunchy, and sour dish.<br>Pickled cabbage, also known as pickled cabbage, sauerkraut is a long-standing rustic dish of the Vietnamese people that is prepared by making pickled vegetables. The product of 500g pickles from Vy Lam brand is vacuum-cleaned and extremely convenient for housewives.</p>', NULL, NULL, NULL, NULL, 1, NULL, NULL, '2023-07-16 20:09:44', '2023-07-19 16:10:02', NULL);
 
 -- --------------------------------------------------------
 
@@ -1089,6 +1183,86 @@ CREATE TABLE IF NOT EXISTS `role_has_permissions` (
   PRIMARY KEY (`permission_id`,`role_id`),
   KEY `role_has_permissions_role_id_foreign` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1),
+(16, 1),
+(17, 1),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1),
+(26, 1),
+(27, 1),
+(28, 1),
+(29, 1),
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(60, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(68, 1),
+(69, 1),
+(70, 1),
+(71, 1),
+(72, 1),
+(73, 1),
+(74, 1);
 
 -- --------------------------------------------------------
 
@@ -1333,8 +1507,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `youtube_link`, `facebook_link`, `role`, `status`, `last_seen`, `token`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'SuperAdmin', 'superadmin', 'kietminh070502@gmail.com', '2023-06-25 04:38:43', '$2y$10$uu2EfLVbBPrcAbjdtWJQXuCpXcr/4LrjSVjTjmxn5gR8TtiuyU7T6', '1769826218799972_admin.jpg', '0376707091', 'Sailing Tower, 111A Pasteur Street, District 1, Ho Chi Minh City', NULL, NULL, 'admin', 'active', '2023-07-17 16:33:11', '', NULL, '2023-06-25 03:22:55', '2023-07-17 09:33:11'),
-(3, 'Minh Kiet', 'laiminhkiet', 'laiminhkiet07052002@gmail.com', '2023-07-15 04:40:34', '$2y$10$u4/aWCAb54dTcCN.3h5gTuEMY.S0qktFqgOJtLwpMXDMmoTg9kCn.', '1769648355286070_user.jpg', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', NULL, NULL, 'user', 'active', '2023-07-17 17:23:52', NULL, 'hvEO6fnJDPXMcg4Lx1fmImp4QQXkWlgfbjoRuxar8gxC3v2379PpndqZT5Wk', '2023-06-25 03:22:56', '2023-07-17 10:23:52'),
+(1, 'SuperAdmin', 'superadmin', 'kietminh070502@gmail.com', '2023-06-25 04:38:43', '$2y$10$uu2EfLVbBPrcAbjdtWJQXuCpXcr/4LrjSVjTjmxn5gR8TtiuyU7T6', '1769826218799972_admin.jpg', '0376707091', 'Sailing Tower, 111A Pasteur Street, District 1, Ho Chi Minh City', NULL, NULL, 'admin', 'active', '2023-07-19 23:16:05', '', NULL, '2023-06-25 03:22:55', '2023-07-19 16:16:05'),
+(3, 'Minh Kiet', 'laiminhkiet', 'laiminhkiet07052002@gmail.com', '2023-07-15 04:40:34', '$2y$10$u4/aWCAb54dTcCN.3h5gTuEMY.S0qktFqgOJtLwpMXDMmoTg9kCn.', '1769648355286070_user.jpg', '0793442309', '246, street 8, Ward 6, Vo Gap district, Ho Chi Minh city', NULL, NULL, 'user', 'active', '2023-07-19 23:11:04', NULL, 'hvEO6fnJDPXMcg4Lx1fmImp4QQXkWlgfbjoRuxar8gxC3v2379PpndqZT5Wk', '2023-06-25 03:22:56', '2023-07-19 16:11:04'),
 (19, 'Hoang Phuc', 'lenguyenhoangphuc', 'hoangphuc270502@gmail.com', '2023-07-14 05:29:34', '$2y$10$7NF27CFRA5TwdDQyt8oCQu8zqzGLVcgF0w6f0nrACl9z1/sKx.kfu', '1771372677495297_user.png', '0332964321', NULL, NULL, NULL, 'user', 'active', '2023-07-14 13:18:14', NULL, NULL, '2023-07-14 05:29:12', '2023-07-14 06:18:14');
 
 -- --------------------------------------------------------
