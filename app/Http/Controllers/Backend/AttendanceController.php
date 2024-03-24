@@ -14,7 +14,7 @@ class AttendanceController extends Controller
     {
         $allData = Attendance::select('date')->groupBy('date')->orderBy('id', 'DESC')->get();
         return view('backend.attendance.view_employee_attendance', compact('allData'));
-    } // End Method
+    } // End Methodz
 
     public function AddEmployeeAttendance()
     {
