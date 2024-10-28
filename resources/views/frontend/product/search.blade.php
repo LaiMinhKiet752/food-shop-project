@@ -135,7 +135,8 @@
                                 box-sizing: border-box;">
                                     <a
                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">
-                                        {{ $product->product_name }} </a></h2>
+                                        {{ $product->product_name }} </a>
+                                </h2>
 
 
 
