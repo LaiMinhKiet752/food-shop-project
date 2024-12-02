@@ -175,9 +175,9 @@
                     maxlength: 'The full name must not be greater than 255 characters.',
                 },
                 email: {
-                    required: 'Please enter your email.',
+                    required: 'Vui lòng nhập email.',
                     maxlength: 'The email must not be greater than 255 characters.',
-                    email: 'The email must be a valid email address.',
+                    email: 'Vui lòng nhập email hợp lệ.',
                 },
                 phone: {
                     required: 'Please enter your phone number.',

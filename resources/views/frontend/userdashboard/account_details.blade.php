@@ -1,14 +1,14 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Account Details
+    Thông tin tài khoản
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Account Details
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span> Thông tin tài khoản
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
                                 aria-labelledby="dashboard-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3>Account Details</h3>
+                                        <h3>Thông tin tài khoản của bạn</h3>
                                     </div>
                                     <div class="card-body">
                                         @error('email')
@@ -49,12 +49,12 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="form-group col-md-6">
-                                                    <label>User Name <span class="text-danger">*</span></label>
+                                                    <label>Username <span class="text-danger">*</span></label>
                                                     <input required="" class="form-control" name="username"
                                                         value="{{ $userData->username }}" type="text" readonly />
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label>Full Name <span class="text-danger">*</span></label>
+                                                    <label>Họ và tên <span class="text-danger">*</span></label>
                                                     <input required="" class="form-control" name="name"
                                                         value="{{ $userData->name }}" />
                                                 </div>
@@ -64,17 +64,17 @@
                                                         type="email" value="{{ $userData->email }}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Phone <span class="text-danger">*</span></label>
+                                                    <label>Số điện thoại <span class="text-danger">*</span></label>
                                                     <input required="" class="form-control" name="phone"
                                                         type="text" value="{{ $userData->phone }}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Address <span class="text-danger">*</span></label>
+                                                    <label>Địa chỉ <span class="text-danger">*</span></label>
                                                     <input required="" class="form-control" name="address"
                                                         type="text" value="{{ $userData->address }}" />
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Photo</label>
+                                                    <label>Ảnh</label>
                                                     <input class="form-control" name="photo" type="file"
                                                         id="image" />
                                                     @if ($errors->has('photo'))
@@ -91,7 +91,7 @@
                                                 <div class="col-md-12">
                                                     <button type="submit"
                                                         class="btn btn-fill-out submit font-weight-bold" name="submit"
-                                                        value="Submit">Save Changes</button>
+                                                        value="Submit">Lưu thay đổi</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -148,9 +148,9 @@
                     maxlength: 'The full name must not be greater than 255 characters.',
                 },
                 email: {
-                    required: 'Please enter your email.',
+                    required: 'Vui lòng nhập email.',
                     maxlength: 'The email must not be greater than 255 characters.',
-                    email: 'The email must be a valid email address.',
+                    email: 'Vui lòng nhập email hợp lệ.',
                 },
                 phone: {
                     required: 'Please enter your phone number.',

@@ -9,35 +9,31 @@
         <ul class="nav flex-column" role="tablist">
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}"><i
-                        class="fi-rs-settings-sliders mr-5"></i>Dashboard</a>
+                        class="fi-rs-settings-sliders mr-5"></i>Bảng điều khiển</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.order.page' ? 'active' : '' }}"
-                    href="{{ route('user.order.page') }}"><i class="fa-solid fa-cart-shopping mr-5"></i>Order</a>
+                    href="{{ route('user.order.page') }}"><i class="fa-solid fa-cart-shopping mr-5"></i>Đơn đặt hàng</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.return.order.page' ? 'active' : '' }}"
                     href="{{ route('user.return.order.page') }}"><i
-                        class="fa-solid fa-arrow-rotate-left mr-5"></i>Return
-                    Order</a>
+                        class="fa-solid fa-arrow-rotate-left mr-5"></i>Đơn hàng đã trả</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.cancel.order.page' ? 'active' : '' }}"
-                    href="{{ route('user.cancel.order.page') }}"><i class="fa-solid fa-rectangle-xmark mr-5"></i>Cancel
-                    Order</a>
+                    href="{{ route('user.cancel.order.page') }}"><i class="fa-solid fa-rectangle-xmark mr-5"></i>Đơn hàng đã hủy</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.account.page' ? 'active' : '' }}"
-                    href="{{ route('user.account.page') }}"><i class="fi-rs-user mr-5"></i>Account
-                    Details</a>
+                    href="{{ route('user.account.page') }}"><i class="fi-rs-user mr-5"></i>Tài khoản</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.change.password' ? 'active' : '' }}"
-                    href="{{ route('user.change.password') }}"><i class="fa-solid fa-code-compare mr-5"></i>Change
-                    Password</a>
+                    href="{{ route('user.change.password') }}"><i class="fa-solid fa-code-compare mr-5"></i>Đổi mật khẩu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('user.logout') }}"><i class="fi-rs-sign-out mr-5"></i>Log out</a>
+                <a class="nav-link" href="{{ route('user.logout') }}"><i class="fi-rs-sign-out mr-5"></i>Đăng xuất</a>
             </li>
         </ul>
     </div>

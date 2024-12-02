@@ -7,7 +7,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> <a href="shop-grid-right.html">{{ $product['category']['category_name'] }}</a> <span></span>
             {{ $product['subcategory']['subcategory_name'] }}<span></span>{{ $product->product_name }}
         </div>
@@ -41,9 +41,9 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="detail-info pr-30 pl-30">
                             @if ($product->product_quantity > 0)
-                                <span class="stock-status in-stock"> In Stock </span>
+                                <span class="stock-status in-stock"> Còn hàng </span>
                             @else
-                                <span class="stock-status out-stock"> Out Of Stock </span>
+                                <span class="stock-status out-stock"> Hết hàng </span>
                             @endif
 
                             <h2 class="title-detail" id="dpname">{{ $product->product_name }}</h2>
@@ -81,7 +81,7 @@
                                         @endif
                                     </div>
                                     <span class="font-small ml-5 text-muted"> ({{ count($review_count) }}
-                                        reviews)</span>
+                                        đánh giá)</span>
                                 </div>
                             </div>
                             <div class="clearfix product-price-cover">
@@ -97,8 +97,7 @@
                                     <div class="product-price primary-color float-left">
                                         <span class="current-price text-brand">${{ $product->discount_price }}</span>
                                         <span>
-                                            <span class="save-price font-md color3 ml-15"> - {{ round($discount) }}%
-                                                Off</span>
+                                            <span class="save-price font-md color3 ml-15"> Giảm {{ round($discount) }}%</span>
                                             <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
                                         </span>
                                     </div>
@@ -121,8 +120,7 @@
                                     <input type="hidden" id="pbrand_id" value="{{ $product->brand_id }}">
 
                                     <button type="submit" class="button button-add-to-cart"
-                                        onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Add to
-                                        cart</button>
+                                        onclick="addToCartDetails()"><i class="fi-rs-shopping-cart"></i>Mua ngay</button>
 
                                     <a aria-label="Add To Wishlist" class="action-btn hover-up"
                                         id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
@@ -133,40 +131,40 @@
 
                                 </div>
                             </div>
-                            <h6>Sold By <a href="javascript;"> <span class="text-danger">Nest</span></a></h6>
+
                             <hr>
                             <div class="font-xs">
                                 <ul class="mr-50 float-start">
-                                    <li class="mb-5">PRODUCT CODE: <a
+                                    <li class="mb-5">MÃ SẢN PHẨM: <a
                                             href="#">{{ $product->product_code }}</a>
                                     </li>
-                                    <li class="mb-5">BRAND: <span
+                                    <li class="mb-5">THƯƠNG HIỆU: <span
                                             class="text-brand">{{ $product['brand']['brand_name'] }}</span></li>
-                                    <li class="mb-5">CATEGORY: <span
+                                    <li class="mb-5">DANH MỤC: <span
                                             class="text-brand">{{ $product['category']['category_name'] }}</span>
                                     </li>
-                                    <li class="mb-5">SUBCATEGORY: <span
+                                    <li class="mb-5">DANH MỤC CON: <span
                                             class="text-brand">{{ $product['subcategory']['subcategory_name'] }}</span>
                                     </li>
                                 </ul>
                                 <ul class="float-start">
-                                    <li class="mb-5">TAGS: <a href="#"
+                                    <li class="mb-5">THẺ: <a href="#"
                                             rel="tag">{{ $product->product_tags }}</a></li>
                                     @if ($product->manufacturing_date == null)
                                     @else
-                                        <li class="mb-5">MFG: <span
+                                        <li class="mb-5">NGÀY SX: <span
                                                 class="text-brand">{{ date('d-m-Y', strtotime($product->manufacturing_date)) }}</span>
                                         </li>
                                     @endif
                                     @if ($product->expiry_date == null)
                                     @else
-                                        <li>EXP: <span
+                                        <li>NGÀY HẾT HẠN: <span
                                                 class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
                                         </li>
                                     @endif
-                                    <li>IN STOCK:<span
-                                            class="in-stock text-brand ml-5">({{ $product->product_quantity }})
-                                            Items</span></li>
+                                    <li>TÌNH TRẠNG: <span
+                                            class="in-stock text-brand ml-5">Còn ({{ $product->product_quantity }})
+                                            sản phẩm</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -182,10 +180,10 @@
                         <ul class="nav nav-tabs text-uppercase">
                             <li class="nav-item">
                                 <a class="nav-link active" id="Description-tab" data-bs-toggle="tab"
-                                    href="#Description">Description</a>
+                                    href="#Description">Thông tin sản phẩm</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Reviews
+                                <a class="nav-link" id="Reviews-tab" data-bs-toggle="tab" href="#Reviews">Đánh giá
                                     ({{ count($review_count) }})</a>
                             </li>
                         </ul>
@@ -204,7 +202,7 @@
                                 <div class="comments-area">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <h4 class="mb-30">Customer questions & answers</h4>
+                                            <h4 class="mb-30">Đánh giá và phản hồi khách hàng</h4>
                                             <div class="comment-list">
 
                                                 @php
@@ -276,7 +274,7 @@
                                                 ->avg('rating');
                                         @endphp
                                         <div class="col-lg-4">
-                                            <h4 class="mb-30">Customer reviews</h4>
+                                            <h4 class="mb-30">Đánh giá sản phẩm</h4>
                                             @if ($average == 0)
                                                 <div class="product-rate d-inline-block mr-15">
                                                 </div>
@@ -285,63 +283,63 @@
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 20%"></div>
                                                     </div>
-                                                    <h6>1 out of 5</h6>
+                                                    <h6>1 trên 5 </h6>
                                                 </div>
                                             @elseif($average > 1 && $average < 2)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 30%"></div>
                                                     </div>
-                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} trên 5</h6>
                                                 </div>
                                             @elseif($average == 2)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 40%"></div>
                                                     </div>
-                                                    <h6>2 out of 5</h6>
+                                                    <h6>2 trên 5</h6>
                                                 </div>
                                             @elseif($average > 2 && $average < 3)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 50%"></div>
                                                     </div>
-                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} trên 5</h6>
                                                 </div>
                                             @elseif($average == 3)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 60%"></div>
                                                     </div>
-                                                    <h6>3 out of 5</h6>
+                                                    <h6>3 trên 5</h6>
                                                 </div>
                                             @elseif($average > 3 && $average < 4)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 70%"></div>
                                                     </div>
-                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} trên 5</h6>
                                                 </div>
                                             @elseif($average == 4)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
-                                                    <h6>4 out of 5</h6>
+                                                    <h6>4 trên 5</h6>
                                                 </div>
                                             @elseif($average > 4 && $average < 5)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 90%"></div>
                                                     </div>
-                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} out of 5</h6>
+                                                    <h6>{{ round($average, 1, PHP_ROUND_HALF_ODD) }} trên 5</h6>
                                                 </div>
                                             @elseif($average == 5)
                                                 <div class="d-flex mb-30">
                                                     <div class="product-rate d-inline-block mr-15">
                                                         <div class="product-rating" style="width: 100%"></div>
                                                     </div>
-                                                    <h6>5 out of 5</h6>
+                                                    <h6>5 trên 5</h6>
                                                 </div>
                                             @endif
 
@@ -388,7 +386,7 @@
 
                                             @endphp
                                             <div class="progress">
-                                                <span>5 star</span>
+                                                <span>5 sao</span>
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{ $percent_5_stars }}%"
                                                     aria-valuenow="{{ $percent_5_stars }}" aria-valuemin="0"
@@ -396,7 +394,7 @@
                                                 </div>
                                             </div>
                                             <div class="progress">
-                                                <span>4 star</span>
+                                                <span>4 sao</span>
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{ $percent_4_stars }}%"
                                                     aria-valuenow="{{ $percent_4_stars }}" aria-valuemin="0"
@@ -404,7 +402,7 @@
                                                 </div>
                                             </div>
                                             <div class="progress">
-                                                <span>3 star</span>
+                                                <span>3 sao</span>
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{ $percent_3_stars }}%"
                                                     aria-valuenow="{{ $percent_3_stars }}" aria-valuemin="0"
@@ -412,7 +410,7 @@
                                                 </div>
                                             </div>
                                             <div class="progress">
-                                                <span>2 star</span>
+                                                <span>2 sao</span>
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{ $percent_2_stars }}%"
                                                     aria-valuenow="{{ $percent_2_stars }}" aria-valuemin="0"
@@ -420,15 +418,14 @@
                                                 </div>
                                             </div>
                                             <div class="progress mb-30">
-                                                <span>1 star</span>
+                                                <span>1 sao</span>
                                                 <div class="progress-bar" role="progressbar"
                                                     style="width: {{ $percent_1_star }}%"
                                                     aria-valuenow="{{ $percent_1_star }}" aria-valuemin="0"
                                                     aria-valuemax="100">{{ $percent_1_star }}%
                                                 </div>
                                             </div>
-                                            <a href="#" class="font-xs text-muted">How are ratings
-                                                calculated?</a>
+                                            <a href="#" class="font-xs text-muted">Làm thế nào để đánh giá sản phẩm?</a>
                                         </div>
 
 
@@ -439,10 +436,10 @@
 
                                 <!--comment form-->
                                 <div class="comment-form">
-                                    <h4 class="mb-15">Add a review</h4>
+                                    <h4 class="mb-15">Thêm đánh giá mới</h4>
                                     @guest
-                                        <p><b>For Add Product Review. You Need To Login First! <a
-                                                    href="{{ route('login') }}"> Log in here</a></b></p>
+                                        <p><b>Để đánh giá sản phẩm, trước tiên bạn phải đăng nhập! <a
+                                                    href="{{ route('login') }}"> Đăng nhập tại đây</a></b></p>
                                     @else
                                         <div class="row">
                                             <div class="col-lg-8 col-md-12">
@@ -457,16 +454,16 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th class="cell-level">&nbsp;</th>
-                                                                    <th class="text-center">1 star</th>
-                                                                    <th class="text-center">2 stars</th>
-                                                                    <th class="text-center">3 stars</th>
-                                                                    <th class="text-center">4 stars</th>
-                                                                    <th class="text-center">5 stars</th>
+                                                                    <th class="text-center">1 sao</th>
+                                                                    <th class="text-center">2 sao</th>
+                                                                    <th class="text-center">3 sao</th>
+                                                                    <th class="text-center">4 sao</th>
+                                                                    <th class="text-center">5 sao</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td class="cell-level text-center">Quality</td>
+                                                                    <td class="cell-level text-center">Chất lượng</td>
                                                                     <td><input type="radio" name="quality"
                                                                             class="radio-sm" value="1"></td>
                                                                     <td><input type="radio" name="quality"
@@ -490,13 +487,12 @@
                                                         @enderror
                                                         <div class="col-12">
                                                             <div class="form-group">
-                                                                <textarea class="form-control w-100" name="comment" id="comment" placeholder="Write Comment"></textarea>
+                                                                <textarea class="form-control w-100" name="comment" id="comment" placeholder="Viết đánh giá . . ."></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <button type="submit" class="button button-contactForm">Submit
-                                                            Review</button>
+                                                        <button type="submit" class="button button-contactForm">Đăng</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -515,7 +511,7 @@
 
                 <div class="row mt-60">
                     <div class="col-12">
-                        <h2 class="section-title style-1 mb-30">Related products</h2>
+                        <h2 class="section-title style-1 mb-30">Sản phẩm liên quan</h2>
                     </div>
                     <div class="col-12">
                         <div class="row related-products">
@@ -532,15 +528,15 @@
                                                 </a>
                                             </div>
                                             <div class="product-action-1">
-                                                <a aria-label="Add To Wishlist" class="action-btn hover-up"
+                                                <a aria-label="Thêm vào yêu thích" class="action-btn hover-up"
                                                     id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
                                                         class="fi-rs-heart"></i></a>
 
-                                                <a aria-label="Compare" class="action-btn small hover-up"
+                                                <a aria-label="Thêm vào so sánh" class="action-btn small hover-up"
                                                     id="{{ $product->id }}" onclick="addToCompare(this.id)"><i
                                                         class="fi-rs-shuffle"></i></a>
 
-                                                <a aria-label="Quick view" class="action-btn small hover-up"
+                                                <a aria-label="Xem nhanh" class="action-btn small hover-up"
                                                     data-bs-toggle="modal" data-bs-target="#quickViewModal"
                                                     id="{{ $product->id }}" onclick="productView(this.id)"><i
                                                         class="fi-rs-eye"></i></a>
@@ -599,21 +595,21 @@
                                                         <div class="product-rating" style="width: 0%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average == 1)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 20%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average > 1 && $average < 2)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 30%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average == 2)
                                                     <div class="product-rate d-inline-block">
@@ -621,49 +617,49 @@
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
                                                         ({{ $count_review }}
-                                                        reviews)
+                                                        đánh giá)
                                                     </span>
                                                 @elseif($average > 2 && $average < 3)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 50%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average == 3)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 60%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average > 3 && $average < 4)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 70%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average == 4)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 80%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average > 4 && $average < 5)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 90%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @elseif($average == 5)
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 100%"></div>
                                                     </div>
                                                     <span class="font-small ml-5 text-muted">
-                                                        ({{ $count_review }} reviews)
+                                                        ({{ $count_review }} đánh giá)
                                                     </span>
                                                 @endif
                                             </div>
@@ -672,8 +668,7 @@
 
 
                                             <div>
-                                                <span class="font-small text-muted">By <a
-                                                        href="#">Nest</a></span>
+
                                             </div>
                                             <div class="product-card-bottom">
                                                 @if ($product->discount_price == null)
@@ -696,7 +691,7 @@
                                                     <input type="hidden" class="related_brand_id"
                                                         value="{{ $product->brand_id }}">
                                                     <a class="add RelatedProductAddToCart" type="submit"><i
-                                                            class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                            class="fi-rs-shopping-cart mr-5"></i>Mua </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -810,15 +805,29 @@
     $(document).ready(function() {
 
         $('.numbers-only').keypress(function(e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            var inputValue = $(this).val() + String.fromCharCode(charCode);
 
-            var charCode = (e.which) ? e.which : event.keyCode
-
-            if (String.fromCharCode(charCode).match(/[^0-9]/g))
-
+            // Kiểm tra nếu ký tự không phải là số
+            if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
                 return false;
+            }
 
+            // Ràng buộc số lượng phải trong phạm vi 1 đến 99
+            if (parseInt(inputValue) < 1 || parseInt(inputValue) > 99) {
+                return false;
+            }
+        });
+
+        // Thêm sự kiện cho input field để chặn không cho nhập khi vượt quá 2 chữ số
+        $('.numbers-only').on('input', function() {
+            var value = $(this).val();
+            if (parseInt(value) < 1 || parseInt(value) > 99) {
+                $(this).val('');
+            }
         });
 
     });
 </script>
+
 @endsection

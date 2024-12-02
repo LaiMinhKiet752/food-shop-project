@@ -12,7 +12,7 @@
                         {{ $breadcat->blog_category_name }}
                     </h3>
                     <div class="breadcrumb">
-                        <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
+                        <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
                         <span></span> Blog
                         <span></span>
                         {{ $breadcat->blog_category_name }}
@@ -45,48 +45,32 @@
                                 <div class="entry-meta meta-1 font-xs color-grey mt-10 pb-10">
                                     <div>
                                         <span class="post-on">{{ $post->created_at->format('M d Y') }}</span>
-                                        <span class="hit-count has-dot">{{ $post->views }} Views</span>
+                                        <span class="hit-count has-dot">{{ $post->views }} lượt xem</span>
                                     </div>
                                     <a href="{{ url('post/details/' . $post->id . '/' . $post->post_slug) }}"
-                                        class="text-brand font-heading font-weight-bold">Read more <i
+                                        class="text-brand font-heading font-weight-bold">Xem thêm <i
                                             class="fi-rs-arrow-right"></i></a>
                                 </div>
                             </div>
                         </article>
                     @empty
-                        <h4 class="text-danger">No Blogs Found!</h4>
+                        <h4 class="text-danger">Không tìm thấy blog nào!</h4>
                     @endforelse
                 </div>
-                <div class="pagination-area mt-15 mb-sm-5 mb-lg-0">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-start">
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-left"></i></a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link dot" href="#">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#">6</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#"><i class="fi-rs-arrow-small-right"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+
             </div>
             <div class="col-lg-3 primary-sidebar sticky-sidebar">
                 <div class="widget-area">
                     <div class="sidebar-widget-2 widget_search mb-50">
                         <div class="search-form">
                             <form action="#">
-                                <input type="text" placeholder="Search…" />
+                                <input type="text" placeholder="Tìm kiếm . . ." />
                                 <button type="submit"><i class="fi-rs-search"></i></button>
                             </form>
                         </div>
                     </div>
                     <div class="sidebar-widget widget-category-2 mb-50">
-                        <h5 class="section-title style-1 mb-30">Category</h5>
+                        <h5 class="section-title style-1 mb-30">Danh mục Blog</h5>
                         <ul>
                             @foreach ($blogcategories as $category)
                                 @php
@@ -103,31 +87,9 @@
                     </div>
 
                     <!-- Product sidebar Widget -->
-                    <div class="sidebar-widget product-sidebar mb-50 p-30 bg-grey border-radius-10">
-                        <h5 class="section-title style-1 mb-30">Trending Now</h5>
-                        @foreach ($products as $product)
-                            <div class="single-post clearfix">
-                                <div class="image">
-                                    <img src="{{ asset($product->product_thumbnail) }}" alt="#" />
-                                </div>
-                                <div class="content pt-10">
-                                    <h5><a
-                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
-                                    </h5>
-                                    @if ($product->discount_price == null)
-                                        <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
-                                    @else
-                                        <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-
 
                     <div class="sidebar-widget widget_instagram mb-50">
-                        <h5 class="section-title style-1 mb-30">Gallery</h5>
+                        <h5 class="section-title style-1 mb-30">Kho ảnh</h5>
                         <div class="instagram-gellay">
                             <ul class="insta-feed">
                                 <li>
@@ -161,40 +123,6 @@
                                             alt="" /></a>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-
-
-                    <!--Tags-->
-                    <div class="sidebar-widget widget-tags mb-50">
-                        <h5 class="section-title style-1 mb-30">Popular Tags</h5>
-                        <ul class="tags-list">
-                            <li>
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Fish</a>&nbsp;
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Meat</a>
-                            </li>
-                            <li>
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Milk</a>&nbsp;
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Fruit</a>
-                            </li>
-                            <li>
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Egg</a>&nbsp;
-                                <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Salad</a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                    <!--Tags-->
-                    <div class="banner-img wow fadeIn mb-50 animated d-lg-block d-none">
-                        <img src="{{ asset('frontend/assets/imgs/banner/banner-11.png') }}" alt="" />
-                        <div class="banner-text">
-                            <span>Oganic</span>
-                            <h4>
-                                Save 17% <br />
-                                on <span class="text-brand">Oganic</span><br />
-                                Juice
-                            </h4>
                         </div>
                     </div>
                 </div>

@@ -9,16 +9,15 @@
                     <div class="position-relative newsletter-inner">
                         <div class="newsletter-content">
                             <h2 class="mb-20">
-                                Stay home & get your daily <br />
-                                needs from our shop
+                                Ở nhà và mua sắm nhu yếu phẩm hàng ngày  <br />
+                                ngay tại cửa hàng của chúng tôi.
                             </h2>
-                            <p class="mb-45">Start You'r Daily Shopping with <span class="text-brand">Nest
-                                    Mart</span></p>
+                            <p class="mb-45">Bắt đầu mua sắm hàng ngày cùng  <span class="text-brand">Nest Mart.</span></p>
                             <form class="form-subcriber d-flex" method="post"
                                 action="{{ route('subscriber.send.mail') }}" id="formSubscriberSubmit">
                                 @csrf
-                                <input type="email" name="email" placeholder="Your emaill address" />
-                                <button class="btn" type="submit">Subscribe</button>
+                                <input type="email" name="email" placeholder="Nhập email của bạn..." />
+                                <button class="btn" type="submit" style="min-width: 150px;">Đăng ký</button>
                             </form>
                             @error('email')
                                 <span class="text-danger">{{ $message }}</span>
@@ -40,8 +39,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-1.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Best prices & offers</h3>
-                            <p>Orders $50 or more</p>
+                            <h3 class="icon-box-title">Giá tốt nhất</h3>
+                            <p>Giá chỉ từ 1.000 VND đến dưới 500.000 VND</p>
                         </div>
                     </div>
                 </div>
@@ -52,8 +51,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-2.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Free delivery</h3>
-                            <p>24/7 amazing services</p>
+                            <h3 class="icon-box-title">Free Ship</h3>
+                            <p>Đơn hàng có giá trị từ 200.000 VND trở lên</p>
                         </div>
                     </div>
                 </div>
@@ -64,8 +63,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-3.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Great daily deal</h3>
-                            <p>When you sign up</p>
+                            <h3 class="icon-box-title">Ưu đãi mỗi ngày</h3>
+                            <p>Hàng tháng bạn sẽ nhận được 1 mã khuyến mãi</p>
                         </div>
                     </div>
                 </div>
@@ -76,8 +75,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-4.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Wide assortment</h3>
-                            <p>Mega Discounts</p>
+                            <h3 class="icon-box-title">Sản phẩm sạch</h3>
+                            <p>Nguồn gốc và xuất xứ rõ ràng</p>
                         </div>
                     </div>
                 </div>
@@ -88,8 +87,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-5.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Easy returns</h3>
-                            <p>Within 30 days</p>
+                            <h3 class="icon-box-title">Dễ hoàn trả</h3>
+                            <p>Trong vòng 7 ngày bạn có thể hoàn trả lại sản phẩm</p>
                         </div>
                     </div>
                 </div>
@@ -117,61 +116,38 @@
                         <div class="logo mb-30">
                             <a href="{{ url('/') }}" class="mb-15"><img src="{{ asset($setting->logo) }}"
                                     alt="logo" /></a>
-                            <p class="font-lg text-heading">Awesome grocery store website</p>
+                            <p class="font-lg text-heading">Chuyên cung cấp thực phẩm khô chay số 1 tại Việt Nam.</p>
                         </div>
                         <ul class="contact-infor">
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-location.svg') }}"
-                                    alt="" /><strong>Address: </strong>
+                                    alt="" /><strong>Địa chỉ: </strong>
                                 <span>{{ $setting->company_address }}</span>
                             </li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-contact.svg') }}"
-                                    alt="" /><strong>Call Us:
+                                    alt="" /><strong>Hotline:
                                 </strong><span>{{ $setting->call_us_phone }}</span>
                             </li>
                             <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-email-2.svg') }}"
                                     alt="" /><strong>Email: </strong><span>{{ $setting->email }}</span></li>
-                            <li><img src="{{ asset('frontend/assets/imgs/theme/icons/icon-clock.svg') }}"
-                                    alt="" /><strong>Hours: </strong><span>{{ $setting->hours }}</span>
-                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".1s">
                     <h4 class=" widget-title">Company</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="{{ route('about') }}">About Us</a></li>
-                        <li><a href="{{ route('contact') }}">Contact Us</a></li>
-                        <li><a href="{{ route('home.blog') }}">Blog & News</a></li>
-                        <li><a href="{{ route('privacy_policy') }}">Privacy Policy</a></li>
+                        <li><a href="{{ route('about') }}">Về chúng tôi</a></li>
+                        <li><a href="{{ route('contact') }}">Liên hệ</a></li>
+                        <li><a href="{{ route('home.blog') }}">Blog & Tin tức</a></li>
+                        <li><a href="{{ route('privacy_policy') }}">Chính sách bảo mật</a></li>
                     </ul>
                 </div>
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <h4 class="widget-title">Account</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Log In</a></li>
-                        <li><a href="#">View Cart</a></li>
-                        <li><a href="#">Wishlist</a></li>
-                        <li><a href="#">Compare Products</a></li>
-                    </ul>
-                </div>
-                <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".3s">
-                    <h4 class="widget-title">Corporate</h4>
-                    <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Affiliate Program</a></li>
-                        <li><a href="#">Farm Business</a></li>
-                        <li><a href="#">Farm Careers</a></li>
-                        <li><a href="#">Our Suppliers</a></li>
-                    </ul>
-                </div>
-                <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".4s">
-                    @php
-                        $categories = \App\Models\Category::orderBy('id', 'ASC')->limit(5)->get();
-                    @endphp
-                    <h4 class="widget-title">Popular</h4>
-                    <ul class="footer-list mb-sm-5 mb-md-0">
-                        @foreach ($categories as $item)
-                        <li><a href="{{ url('product/category/' . $item->id . '/' . $item->category_slug) }}">{{ Str::title($item->category_name) }}</a></li>
-                        @endforeach
+                        <li><a href="#">Đăng nhập</a></li>
+                        <li><a href="#">Đăng ký</a></li>
+                        <li><a href="#">Yêu thích</a></li>
+                        <li><a href="#">So sánh</a></li>
                     </ul>
                 </div>
 
@@ -189,7 +165,7 @@
 
                 <div class="hotline d-lg-inline-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/phone-call.svg') }}" alt="hotline" />
-                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
+                    <p>{{ $setting->support_phone }}<span>Hỗ trợ 24/7</span></p>
                 </div>
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">

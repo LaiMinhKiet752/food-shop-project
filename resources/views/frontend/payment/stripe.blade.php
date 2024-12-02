@@ -1,20 +1,20 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Stripe Payment
+    Thanh toán qua Stripe
 @endsection
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Stripe Payment
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang Chủ</a>
+            <span></span> Thanh toán qua Stripe
         </div>
     </div>
 </div>
 <div class="container mb-80 mt-50">
     <div class="row">
         <div class="col-lg-8 mb-40">
-            <h3 class="heading-2 mb-10">Stripe Payment</h3>
+            <h3 class="heading-2 mb-10">Chi tiết</h3>
             <div class="d-flex justify-content-between">
             </div>
         </div>
@@ -23,7 +23,7 @@
         <div class="col-lg-6">
             <div class="border p-40 cart-totals ml-30 mb-50">
                 <div class="d-flex align-items-end justify-content-between mb-30">
-                    <h4>Total Payment</h4>
+                    <h4>Số tiền phải thanh toán</h4>
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="table-responsive order_table checkout">
@@ -32,7 +32,7 @@
                             @if (Session::has('coupon'))
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Subtotal</h6>
+                                        <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
@@ -41,7 +41,7 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Coupon Code</h6>
+                                        <h6 class="text-muted">Mã giảm giá</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h6 class="text-brand text-end">{{ session()->get('coupon')['coupon_code'] }}
@@ -51,7 +51,7 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Discount</h6>
+                                        <h6 class="text-muted">Giảm</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">
@@ -61,7 +61,7 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Shipping Fee</h6>
+                                        <h6 class="text-muted">Phí Ship</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$0</h4>
@@ -70,7 +70,7 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Grand Total</h6>
+                                        <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">${{ session()->get('coupon')['total_amount'] }}
@@ -80,7 +80,7 @@
                             @else
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Subtotal</h6>
+                                        <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
@@ -88,7 +88,7 @@
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Discount</h6>
+                                        <h6 class="text-muted">Giảm</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$0</h4>
@@ -96,7 +96,15 @@
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Grand Total</h6>
+                                        <h6 class="text-muted">Phí Ship</h6>
+                                    </td>
+                                    <td class="cart_total_amount">
+                                        <h4 class="text-brand text-end">$0</h4>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="cart_total_label">
+                                        <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
@@ -111,7 +119,7 @@
         <div class="col-lg-6">
             <div class="border p-40 cart-totals ml-30 mb-50">
                 <div class="d-flex align-items-end justify-content-between mb-30">
-                    <h4>Make Payment </h4>
+                    <h4>Phương thức thanh toán bạn chọn </h4>
                 </div>
                 <div class="divider-2 mb-30"></div>
                 <div class="table-responsive order_table checkout">
@@ -131,7 +139,7 @@
                                 style="width: 270px; height: 150px;">
                         </div>
                         <br>
-                        <button class="btn">Submit Payment</button>
+                        <button class="btn">Xác nhận</button>
                     </form>
                 </div>
             </div>

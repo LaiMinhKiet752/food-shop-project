@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Create New Account
+    Đăng ký tài khoản
 @endsection
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -10,8 +10,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Create New Account
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <span></span> Đăng ký tài khoản
         </div>
     </div>
 </div>
@@ -24,8 +24,8 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h1 class="mb-5">Create an Account</h1>
-                                    <p class="mb-30">Already have an account? <a href="{{ route('login') }}">Log in</a>
+                                    <h1 class="mb-5">Đăng ký tài khoản</h1>
+                                    <p class="mb-30">Đã có tài khoản? <a href="{{ route('login') }}">Đăng nhập ngay</a>
                                     </p>
                                 </div>
                                 @if ($errors->any())
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <div class="input-group" id="show_hide_password">
                                             <input type="password" name="password" class="form-control" id="password"
-                                                placeholder="Password *">
+                                                placeholder="Mật khẩu *">
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class='fa-solid fa-eye-slash'></i></a>
                                         </div>
@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <div class="input-group" id="show_hide_confirm_password">
                                             <input type="password" name="password_confirmation" class="form-control"
-                                                id="password_confirmation" placeholder="Confirm password *">
+                                                id="password_confirmation" placeholder="Nhập lại mật khẩu *">
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class='fa-solid fa-eye-slash'></i></a>
                                         </div>
@@ -66,7 +66,7 @@
                                     <div class="login_footer form-group">
                                         <div class="form-group chek-form">
                                             <input type="text" required="" name="captcha_code"
-                                                placeholder="Captcha Code *" class="form-control" />
+                                                placeholder="Mã captcha *" class="form-control" />
                                         </div>
                                         <div class="form-group captcha">
                                             {!! captcha_img('flat') !!}
@@ -80,23 +80,18 @@
                                             <div class="custome-checkbox">
                                                 <input class="form-check-input" type="checkbox" name="checkbox"
                                                     id="exampleCheckbox12" />
-                                                <label class="form-check-label" for="exampleCheckbox12"><span>I
-                                                        agree to Terms &amp;
-                                                        Policy.</span></label>
+                                                <label class="form-check-label" for="exampleCheckbox12"><span>Tôi đồng ý với điều khoản &amp; chính sách.</span></label>
                                             </div>
                                         </div>
                                         <a href="{{ route('privacy_policy') }}"><i
-                                                class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
+                                                class="fi-rs-book-alt mr-5 text-muted"></i>Đọc thêm</a>
                                     </div>
                                     <div class="form-group mb-30">
                                         <button type="submit"
                                             class="btn btn-fill-out btn-block hover-up font-weight-bold"
-                                            name="login">Register</button>
+                                            name="login">Đăng ký</button>
                                     </div>
-                                    <p class="font-xs text-muted"><strong>Note:</strong>Your personal data will
-                                        be used to support your experience throughout this website, to manage
-                                        access to your account, and for other purposes described in our privacy
-                                        policy</p>
+                                    <p class="font-xs text-muted"><strong>Lưu ý:</strong> Dữ liệu cá nhân của bạn sẽ được sử dụng để hỗ trợ trải nghiệm của bạn trên website này, quản lý quyền truy cập vào tài khoản của bạn và cho các mục đích khác được mô tả trong chính sách bảo mật của chúng tôi.</p>
                                 </form>
                             </div>
                         </div>
@@ -105,14 +100,14 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="card-login mt-115">
-                                    <h6 class="mb-15">Password must:</h6>
-                                    <p>Be between 8 and 16 characters long.</p>
-                                    <p>Include at least tow of the following:</p>
+                                    <h6 class="mb-15">Mật khẩu bắt buộc phải:</h6>
+                                    <p>Có độ dài từ 8 đến 16 ký tự</p>
+                                    <p>Bao gồm các yếu tố sau:</p>
                                     <ol class="list-insider">
-                                        <li>An uppercase character</li>
-                                        <li>A lowercase character</li>
-                                        <li>A number</li>
-                                        <li>A special character</li>
+                                        <li>Một ký tự in hoa (A-Z)</li>
+                                        <li>Một ký tự in thường (a-z)</li>
+                                        <li>Một số (0-9)</li>
+                                        <li>Một ký tự đặc biệt (@$!%*?&)</li>
                                     </ol>
                                 </div>
                             </div>
@@ -154,8 +149,8 @@
                     maxlength: 'The user name must not be greater than 255 characters.',
                 },
                 email: {
-                    required: 'Please enter your email.',
-                    email: 'The email must be a valid email address.',
+                    required: 'Vui lòng nhập email.',
+                    email: 'Vui lòng nhập email hợp lệ.',
                 },
                 password: {
                     required: 'Please enter your password.',

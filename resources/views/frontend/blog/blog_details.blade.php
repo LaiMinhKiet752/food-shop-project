@@ -7,7 +7,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> <a href="#">
                 @foreach ($breadcat as $cat)
                     {{ $cat->blog_category_name }}
@@ -31,10 +31,10 @@
                                         <h2 class="mb-10">{{ $blogdetails->post_title }}</h2>
                                         <div class="single-header-meta">
                                             <div class="entry-meta meta-1 font-xs mt-15 mb-15">
-                                                    <img class="rounded-circle p-1"
-                                                        src="{{ asset('upload/admin.jpg') }}" alt=""
-                                                        style="width: 50px; height: 50px; margin-right: 10px;" />
-                                                <span class="post-by">By <a href="#">Admin</a></span>
+                                                <img class="rounded-circle p-1" src="{{ asset('upload/admin.jpg') }}"
+                                                    alt=""
+                                                    style="width: 50px; height: 50px; margin-right: 10px;" />
+                                                <span class="post-by">Đăng bởi <a href="#">Admin</a></span>
                                                 <span
                                                     class="post-on has-dot">{{ Carbon\Carbon::parse($blogdetails->created_at)->diffForHumans() }}</span>
                                             </div>
@@ -66,7 +66,7 @@
                                         <div class="entry-bottom mt-10 mb-10">
                                             <div class="social-icons single-share">
                                                 <ul class="text-grey-5 d-inline-block">
-                                                    <li><strong class="mr-10">Share this:</strong></li>
+                                                    <li><strong class="mr-10">Chia sẻ:</strong></li>
                                                     <li class="social-facebook">
                                                         <a href="#"><img
                                                                 src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook.svg') }}"
@@ -93,12 +93,13 @@
 
                                         <!--Comment form-->
                                         <div class="comment-form">
-                                            <h3 class="mb-15">Leave a Comment</h3>
+                                            <h3 class="mb-15">Viết bình luận</h3>
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12">
                                                     @guest
-                                                        <p><b>To Comment You Need To Login First! <a
-                                                                    href="{{ route('login') }}"> Log in here</a></b></p>
+                                                        <p><b>Để bình luận, vui lòng đăng nhập! <a
+                                                                    href="{{ route('login') }}"> Đăng nhập tại đây</a></b>
+                                                        </p>
                                                     @else
                                                         <form class="form-contact comment_form mb-50" method="POST"
                                                             action="{{ route('comments.blog') }}" id="commentForm">
@@ -108,25 +109,29 @@
                                                             <div class="row">
                                                                 <div class="form-group col-12">
                                                                     <div class="form-group">
-                                                                        <textarea class="form-control w-100" name="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                                                        <textarea class="form-control w-100" name="comment" cols="30" rows="9"
+                                                                            placeholder="Viết bình luận tại đây . . ."></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <button type="submit"
-                                                                    class="button button-contactForm">Post Comment</button>
+                                                                    class="button button-contactForm">Đăng</button>
                                                             </div>
                                                         </form>
                                                     @endguest
                                                     @php
-                                                        $comment = \App\Models\BlogComment::where('blog_post_id', $blogdetails->id)
+                                                        $comment = \App\Models\BlogComment::where(
+                                                            'blog_post_id',
+                                                            $blogdetails->id,
+                                                        )
                                                             ->where('parent_id', null)
                                                             ->limit(5)
                                                             ->latest()
                                                             ->get();
                                                     @endphp
                                                     <div class="comments-area">
-                                                        <h3 class="mb-30">Comments</h3>
+                                                        <h3 class="mb-30">Tất cả bình luận</h3>
                                                         <div class="comment-list">
                                                             @foreach ($comment as $item)
                                                                 <div
@@ -155,7 +160,10 @@
 
 
                                                                 @php
-                                                                    $reply = \App\Models\BlogComment::where('parent_id', $item->id)->get();
+                                                                    $reply = \App\Models\BlogComment::where(
+                                                                        'parent_id',
+                                                                        $item->id,
+                                                                    )->get();
                                                                 @endphp
 
                                                                 @foreach ($reply as $item)
@@ -203,13 +211,13 @@
                             <div class="sidebar-widget-2 widget_search mb-50">
                                 <div class="search-form">
                                     <form action="#">
-                                        <input type="text" placeholder="Search…" />
+                                        <input type="text" placeholder="Tìm kiếm . . ." />
                                         <button type="submit"><i class="fi-rs-search"></i></button>
                                     </form>
                                 </div>
                             </div>
                             <div class="sidebar-widget widget-category-2 mb-50">
-                                <h5 class="section-title style-1 mb-30">Category</h5>
+                                <h5 class="section-title style-1 mb-30">Danh mục Blog</h5>
                                 <ul>
                                     @foreach ($blogcategories as $category)
                                         @php
@@ -227,33 +235,11 @@
                             </div>
 
                             <!-- Product sidebar Widget -->
-                            <div class="sidebar-widget product-sidebar mb-50 p-30 bg-grey border-radius-10">
-                                <h5 class="section-title style-1 mb-30">Trending Now</h5>
-                                @foreach ($products as $product)
-                                    <div class="single-post clearfix">
-                                        <div class="image">
-                                            <img src="{{ asset($product->product_thumbnail) }}" alt="#" />
-                                        </div>
-                                        <div class="content pt-10">
-                                            <h5><a
-                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
-                                            </h5>
-                                            @if ($product->discount_price == null)
-                                                <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
-                                            @else
-                                                <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
-                                            @endif
-                                            {{-- <div class="product-rate">
-                                                    <div class="product-rating" style="width: 90%"></div>
-                                                </div> --}}
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+
 
 
                             <div class="sidebar-widget widget_instagram mb-50">
-                                <h5 class="section-title style-1 mb-30">Gallery</h5>
+                                <h5 class="section-title style-1 mb-30">Kho ảnh</h5>
                                 <div class="instagram-gellay">
                                     <ul class="insta-feed">
                                         <li>
@@ -287,41 +273,6 @@
                                                     alt="" /></a>
                                         </li>
                                     </ul>
-                                </div>
-                            </div>
-
-
-                            <!--Tags-->
-                            <div class="sidebar-widget widget-tags mb-50">
-                                <h5 class="section-title style-1 mb-30">Popular Tags</h5>
-                                <ul class="tags-list">
-                                    <li>
-                                        <a class="hover-up" href="#"><i
-                                                class="fi-rs-cross mr-10"></i>Fish</a>&nbsp;
-                                        <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Meat</a>
-                                    </li>
-                                    <li>
-                                        <a class="hover-up" href="#"><i
-                                                class="fi-rs-cross mr-10"></i>Milk</a>&nbsp;
-                                        <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Fruit</a>
-                                    </li>
-                                    <li>
-                                        <a class="hover-up" href="#"><i
-                                                class="fi-rs-cross mr-10"></i>Egg</a>&nbsp;
-                                        <a class="hover-up" href="#"><i class="fi-rs-cross mr-10"></i>Salad</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="banner-img wow fadeIn mb-50 animated d-lg-block d-none">
-                                <img src="{{ asset('frontend/assets/imgs/banner/banner-11.png') }}" alt="" />
-                                <div class="banner-text">
-                                    <span>Oganic</span>
-                                    <h4>
-                                        Save 17% <br />
-                                        on <span class="text-brand">Oganic</span><br />
-                                        Juice
-                                    </h4>
                                 </div>
                             </div>
                         </div>

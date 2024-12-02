@@ -14,7 +14,7 @@
 <section class="product-tabs section-padding position-relative">
     <div class="container">
         <div class="section-title style-2 wow animate__animated animate__fadeIn">
-            <h3> New Products </h3>
+            <h3> Sản phẩm mới </h3>
             <ul class="nav nav-tabs links" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button class="nav-link active" id="nav-tab-one" data-bs-toggle="tab" data-bs-target="#tab-one"
@@ -47,13 +47,13 @@
                                     </div>
                                     <div class="product-action-1">
 
-                                        <a aria-label="Add To Wishlist" class="action-btn" id="{{ $product->id }}"
+                                        <a aria-label="Thêm vào yêu thích" class="action-btn" id="{{ $product->id }}"
                                             onclick="addToWishlist(this.id)"><i class="fi-rs-heart"></i></a>
 
-                                        <a aria-label="Compare" class="action-btn" id="{{ $product->id }}"
+                                        <a aria-label="Thêm vào so sánh" class="action-btn" id="{{ $product->id }}"
                                             onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
 
-                                        <a aria-label="Quick view" class="action-btn" data-bs-toggle="modal"
+                                        <a aria-label="Xem nhanh" class="action-btn" data-bs-toggle="modal"
                                             data-bs-target="#quickViewModal" id="{{ $product->id }}"
                                             onclick="productView(this.id)"><i class="fi-rs-eye"></i></a>
 
@@ -68,7 +68,7 @@
                                     <div class="product-badges product-badges-position product-badges-mrg">
 
                                         @if ($product->discount_price == null)
-                                            <span class="new">New</span>
+                                            <span class="new">Mới</span>
                                         @else
                                             <span class="hot"> - {{ round($discount) }} %</span>
                                         @endif
@@ -115,21 +115,21 @@
                                                 <div class="product-rating" style="width: 0%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average == 1)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 20%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average > 1 && $average < 2)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 30%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average == 2)
                                             <div class="product-rate d-inline-block">
@@ -137,49 +137,49 @@
                                             </div>
                                             <span class="font-small ml-5 text-muted">
                                                 ({{ $count_review }}
-                                                reviews)
+                                                đánh giá)
                                             </span>
                                         @elseif($average > 2 && $average < 3)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 50%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average == 3)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 60%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average > 3 && $average < 4)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 70%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average == 4)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 80%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average > 4 && $average < 5)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 90%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @elseif($average == 5)
                                             <div class="product-rate d-inline-block">
                                                 <div class="product-rating" style="width: 100%"></div>
                                             </div>
                                             <span class="font-small ml-5 text-muted">
-                                                ({{ $count_review }} reviews)
+                                                ({{ $count_review }} đánh giá)
                                             </span>
                                         @endif
                                     </div>
@@ -188,7 +188,7 @@
 
 
                                     <div>
-                                        <span class="font-small text-muted">By <a href="#">Nest</a></span>
+
                                     </div>
                                     <div class="product-card-bottom">
                                         @if ($product->discount_price == null)
@@ -211,7 +211,7 @@
                                                 value="{{ $product->brand_id }}">
 
                                             <a class="add homeNewProductAddToCart" type="submit"><i
-                                                    class="fi-rs-shopping-cart mr-5"></i>Add </a>
+                                                    class="fi-rs-shopping-cart mr-5"></i>Mua</a>
                                         </div>
                                     </div>
                                 </div>

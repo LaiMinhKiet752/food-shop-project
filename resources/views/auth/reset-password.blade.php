@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Reset Password
+    Đặt lại mật khẩu
 @endsection
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -10,8 +10,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Reset Password
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <span></span> Đặt lại mật khẩu
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h1 class="mb-5">Reset Password</h1>
+                                    <h1 class="mb-5">Đặt lại mật khẩu</h1>
                                 </div>
                                 <br>
                                 @if ($errors->any())
@@ -51,7 +51,7 @@
                                     <div class="form-group">
                                         <div class="input-group" id="show_hide_new_password">
                                             <input type="password" name="password" required="" class="form-control"
-                                                id="password" placeholder="New password *">
+                                                id="password" placeholder="Nhập vào mật khẩu mới *">
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class='fa-solid fa-eye-slash'></i></a>
                                         </div>
@@ -60,14 +60,14 @@
                                         <div class="input-group" id="show_hide_confirm_password">
                                             <input type="password" name="password_confirmation" required=""
                                                 class="form-control" id="password_confirmation"
-                                                placeholder="Confirm new password *">
+                                                placeholder="Xác nhận mật khẩu mới *">
                                             <a href="javascript:;" class="input-group-text bg-transparent"><i
                                                     class='fa-solid fa-eye-slash'></i></a>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up"
-                                            name="login">Reset Password</button>
+                                            name="login">Xác nhận</button>
                                     </div>
                                 </form>
                             </div>

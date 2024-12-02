@@ -274,7 +274,7 @@
                 },
                 email: {
                     maxlength: 'The email must not be greater than 255 characters.',
-                    email: 'The email must be a valid email address.',
+                    email: 'Vui lòng nhập email hợp lệ.',
                 },
                 company_address: {
                     maxlength: 'The address must not be greater than 255 characters.',

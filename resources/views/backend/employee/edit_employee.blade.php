@@ -318,7 +318,7 @@
                 employee_email: {
                     required: 'Please enter employee email.',
                     maxlength: 'The email must not be greater than 255 characters.',
-                    email: 'The email must be a valid email address.',
+                    email: 'Vui lòng nhập email hợp lệ.',
                 },
                 employee_phone: {
                     required: 'Please enter your phone number.',

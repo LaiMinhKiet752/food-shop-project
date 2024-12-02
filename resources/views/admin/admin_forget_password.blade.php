@@ -89,8 +89,8 @@
                 },
                 messages: {
                     email: {
-                        required: 'Please enter your email.',
-                        email: 'The email must be a valid email address.',
+                        required: 'Vui lòng nhập email.',
+                        email: 'Vui lòng nhập email hợp lệ.',
                     },
                 },
                 errorElement: 'span',

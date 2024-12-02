@@ -74,7 +74,7 @@
             },
             messages: {
                 subject: {
-                    required: 'Please enter a subject for the email.',
+                    required: 'Vui lòng nhập tiêu đề cho email.',
                 },
                 message: {
                     required: 'Please enter the message for the email.',

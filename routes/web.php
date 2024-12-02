@@ -165,7 +165,7 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     //Checkout All Route
     Route::controller(CheckoutController::class)->group(function () {
-        Route::post('/checkout/store', 'CheckoutStore')->name('checkout.store');
+        Route::get('/checkout/store', 'CheckoutStore')->name('checkout.store');
     });
 
     //Stripe All Route

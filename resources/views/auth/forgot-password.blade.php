@@ -1,14 +1,14 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Set New Password
+    Quên mật khẩu
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Set New Password
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <span></span> Quên mật khẩu
         </div>
     </div>
 </div>
@@ -20,9 +20,8 @@
                     <div class="heading_s1">
                         <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/reset_password.svg') }}"
                             alt="" />
-                        <h2 class="mb-15 mt-15">Set New Password</h2>
-                        <p class="mb-30">Forgot your password? No problem. Just let us know your email address
-                            and we will email you a password reset link that will allow you to choose a new one.
+                        <h2 class="mb-15 mt-15">Quên mật khẩu</h2>
+                        <p class="mb-30">Quên mật khẩu? Không sao cả. Chỉ cần cung cấp địa chỉ email của bạn và chúng tôi sẽ gửi cho bạn một liên kết đặt lại mật khẩu qua email, giúp bạn chọn mật khẩu mới.
                         </p>
                     </div>
                     <div class="col-lg-6 col-md-8">
@@ -48,11 +47,11 @@
                                     @csrf
                                     <div class="form-group">
                                         <input class="form-control" type="email" id="email" required=""
-                                            name="email" placeholder="Email *" />
+                                            name="email" placeholder="Nhập email của bạn vào đây . . ." />
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up"
-                                            name="login">Send</button>
+                                            name="login">Gửi</button>
                                     </div>
                                 </form>
                             </div>
@@ -73,7 +72,7 @@
             },
             messages: {
                 email: {
-                    required: 'Please enter your email.',
+                    required: 'Vui lòng nhập email.',
                 },
             },
             errorElement: 'span',

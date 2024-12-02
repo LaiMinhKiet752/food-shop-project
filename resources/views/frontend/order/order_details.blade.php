@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Order Details
+    Chi tiết đơn hàng
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -167,8 +167,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Your Orders
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span> Chi tiết đơn hàng
         </div>
     </div>
 </div>
@@ -186,16 +186,16 @@
                                 <div class="track">
                                     @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">
-                                                Order Confirmed</span> </div>
+                                                Đã xác nhận</span> </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Order Processing </span> </div>
+                                                class="text">Đang xử lý </span> </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Delivered </span> </div>
+                                                class="text">Đã giao hàng </span> </div>
                                     @elseif(
                                         $order->status == 'pending' &&
                                             $order->confirmed_date == null &&
@@ -205,11 +205,11 @@
                                             $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
                                         <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-rectangle-xmark"></i>
                                             </span> <span class="text">
-                                                Cancel</span>
-                                            Date: {{ $cancel_date_format }}
+                                                Hủy đơn</span>
+                                            Ngày: {{ $cancel_date_format }}
                                         </div>
                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                         @php
@@ -217,19 +217,19 @@
                                             $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                                 class="text">
-                                                Order Confirmed</span>
-                                            Date: {{ $confirmed_date_format }}
+                                                Đã xác nhận</span>
+                                            Ngày: {{ $confirmed_date_format }}
                                         </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Order Processing </span> </div>
+                                                class="text">Đang xử lý </span> </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Delivered </span> </div>
+                                                class="text">Đã giao hàng </span> </div>
                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -239,17 +239,17 @@
                                             $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                                 class="text">
-                                                Order Confirmed</span>
-                                            Date: {{ $confirmed_date_format }}
+                                                Đã xác nhận</span>
+                                            Ngày: {{ $confirmed_date_format }}
                                         </div>
                                         <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-rectangle-xmark"></i>
                                             </span> <span class="text">
-                                                Cancel</span>
-                                            Date: {{ $cancel_date_format }}
+                                                Hủy đơn</span>
+                                            Ngày: {{ $cancel_date_format }}
                                         </div>
                                     @elseif($order->status == 'processing')
                                         @php
@@ -260,21 +260,21 @@
                                             $processing_date_format = date('d-m-Y H:i:s', $processing_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                                 class="text">
-                                                Order Confirmed</span>
-                                            Date: {{ $confirmed_date_format }}
+                                                Đã xác nhận</span>
+                                            Ngày: {{ $confirmed_date_format }}
                                         </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Order Processing </span>
-                                            Date: {{ $processing_date_format }}
+                                                class="text">Đang xử lý </span>
+                                            Ngày: {{ $processing_date_format }}
                                         </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Delivered </span> </div>
+                                                class="text">Đã giao hàng </span> </div>
                                     @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -287,22 +287,22 @@
                                             $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                                 class="text">
-                                                Order Confirmed</span>
-                                            Date: {{ $confirmed_date_format }}
+                                                Đã xác nhận</span>
+                                            Ngày: {{ $confirmed_date_format }}
                                         </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Order Processing </span>
-                                            Date: {{ $processing_date_format }}
+                                                class="text">Đang xử lý </span>
+                                            Ngày: {{ $processing_date_format }}
                                         </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Delivered </span>
-                                            Date: {{ $delivered_date_format }}
+                                                class="text">Đã giao hàng </span>
+                                            Ngày: {{ $delivered_date_format }}
                                         </div>
                                     @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
                                         @php
@@ -319,28 +319,28 @@
                                             $return_date_format = date('d-m-Y H:i:s', $return_date);
                                         @endphp
                                         <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Order Pending</span> </div>
+                                                class="text">Chờ xác nhận</span> </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
                                                 class="text">
-                                                Order Confirmed</span>
-                                            Date: {{ $confirmed_date_format }}
+                                                Đã xác nhận</span>
+                                            Ngày: {{ $confirmed_date_format }}
                                         </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Order Processing </span>
-                                            Date: {{ $processing_date_format }}
+                                                class="text">Đang xử lý </span>
+                                            Ngày: {{ $processing_date_format }}
                                         </div>
 
                                         <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Delivered </span>
-                                            Date: {{ $delivered_date_format }}
+                                                class="text">Đã giao hàng </span>
+                                            Ngày: {{ $delivered_date_format }}
                                         </div>
 
                                         <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-arrow-rotate-left"></i>
                                             </span> <span class="text">
-                                                Return</span>
-                                            Date: {{ $return_date_format }}
+                                                Trả hàng</span>
+                                            Ngày: {{ $return_date_format }}
                                         </div>
                                     @endif
 
@@ -349,13 +349,13 @@
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="card-header" style="padding: 16px 27px 38px 27px;">
-                                        <h4>Shipping Details</h4>
+                                        <h4>Thông tin giao hàng</h4>
                                     </div>
                                     <hr>
                                     <div class="card-body">
                                         <table class="table" style="background: #F4F6FA; font-weight: 600;">
                                             <tr>
-                                                <th>Full Name :</th>
+                                                <th>Họ và tên :</th>
                                                 <th>{{ $order->name }}</th>
                                             </tr>
                                             <tr>
@@ -363,15 +363,15 @@
                                                 <th>{{ $order->email }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Phone Number :</th>
+                                                <th>Số điện thoại :</th>
                                                 <th>{{ $order->phone }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Address :</th>
+                                                <th>Địa chỉ :</th>
                                                 <th>{{ $order->address }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Postal Code :</th>
+                                                <th>Mã bưu điện :</th>
                                                 <th>{{ $order->post_code }}</th>
                                             </tr>
                                         </table>
@@ -383,11 +383,10 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h4>Order Details</h4>
+                                                <h4>Chi tiết đơn hàng</h4>
                                             </div>
                                             <div class="col-md-6">
-                                                <span style="font-weight: bold; font-size: 18px; color: red;">Invoice
-                                                    Number :
+                                                <span style="font-weight: bold; font-size: 18px; color: red;">Số hóa đơn :
                                                     {{ $order->invoice_number }}</span>
                                             </div>
                                         </div>
@@ -396,7 +395,7 @@
                                     <div class="card-body">
                                         <table class="table" style="background: #F4F6FA; font-weight: 600;">
                                             <tr>
-                                                <th>Order Number :</th>
+                                                <th>Số đơn hàng :</th>
                                                 <th>{{ $order->order_number }}</th>
                                             </tr>
                                             @php
@@ -404,55 +403,55 @@
                                                 $order_date_format = date('d-m-Y H:i:s', $order_date);
                                             @endphp
                                             <tr>
-                                                <th>Order Date :</th>
+                                                <th>Ngày đặt hàng :</th>
                                                 <th>{{ $order_date_format }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Discount :</th>
+                                                <th>Giảm giá :</th>
                                                 <th>${{ $order->discount }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Total Amount :</th>
+                                                <th>Tổng tiền :</th>
                                                 <th>${{ $order->amount }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Payment Method :</th>
+                                                <th>Thanh toán bằng :</th>
                                                 <th>{{ $order->payment_method }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Payment Type :</th>
+                                                <th>Loại thanh toán :</th>
                                                 <th>{{ $order->payment_type }}</th>
                                             </tr>
                                             <tr>
-                                                <th>Order Status :</th>
+                                                <th>Trạng thái :</th>
                                                 <th>
                                                     @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                                                         <span class="badge bg-warning" style="font-size: 13px;">
-                                                            Pending
+                                                            Chờ xác nhận
                                                         </span>
                                                     @elseif($order->status == 'pending' && $order->cancel_order_status == 1)
                                                         <span class="badge bg-secondary" style="font-size: 13px;">
-                                                            Cancel
+                                                            Đã hủy
                                                         </span>
                                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                                         <span class="badge bg-info" style="font-size: 13px;">
-                                                            Confirmed
+                                                            Đã xác nhận
                                                         </span>
                                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                                         <span class="badge bg-secondary" style="font-size: 13px;">
-                                                            Cancel
+                                                            Đã hủy
                                                         </span>
                                                     @elseif($order->status == 'processing')
                                                         <span class="badge bg-danger" style="font-size: 13px;">
-                                                            Processing
+                                                            Đang xử lý
                                                         </span>
                                                     @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                                                         <span class="badge bg-success" style="font-size: 13px;">
-                                                            Delivered
+                                                            Đã giao hàng
                                                         </span>
                                                     @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
                                                         <span class="badge bg-dark" style="font-size: 13px;">
-                                                            Return
+                                                            Đã trả hàng
                                                         </span>
                                                     @endif
                                                 </th>
@@ -466,12 +465,11 @@
                                                     @csrf
                                                     <input type="hidden" name="order_id" value="{{ $order->id }}">
                                                     <tr>
-                                                        <th></th>
+                                                        <th>Hành động :</th>
                                                         <th>
                                                             <button type="submit"
                                                                 class="btn btn-heading btn-block hover-up"
-                                                                onclick="submitCancelOrder(event)">Cancel
-                                                                Order</button>
+                                                                onclick="submitCancelOrder(event)">Hủy đơn</button>
                                                         </th>
                                                     </tr>
                                                 </form>
@@ -496,19 +494,19 @@
                     <tbody>
                         <tr style="background: #F4F6FA;">
                             <td class="col-md-1">
-                                <label>Image </label>
+                                <label>Hình ảnh </label>
                             </td>
                             <td class="col-md-2">
-                                <label>Product Code </label>
+                                <label>Mã sản phẩm </label>
                             </td>
                             <td class="col-md-2">
-                                <label>Product Name </label>
+                                <label>Tên sản phẩm </label>
                             </td>
                             <td class="col-md-2">
-                                <label>Quantity </label>
+                                <label>Số lượng </label>
                             </td>
                             <td class="col-md-3">
-                                <label>Price </label>
+                                <label>Đơn giá </label>
                             </td>
                         </tr>
                         @php
@@ -534,7 +532,7 @@
                                     <label>{{ $item->quantity }} </label>
                                 </td>
                                 <td class="col-md-3">
-                                    <label>${{ $item->price }} <br> Total =
+                                    <label>${{ $item->price }} <br> Tổng =
                                         ${{ $item->price * $item->quantity }}
                                     </label>
                                 </td>
@@ -544,7 +542,7 @@
                     <tfoot>
                         <tr>
                             <td class="col-md-1" colspan="4" style="text-align: center;">
-                                <label>Subtotal </label>
+                                <label>Tạm tính </label>
                             </td>
                             <td class="col-md-1">
                                 <label> = ${{ $subtotal }}</label>
@@ -566,16 +564,15 @@
                     @csrf
                     <div class="form-group"
                         style="font-weight: 600; font-size: initial; color: #000000; margin-top: 20px;">
-                        <label class="form-group">Order Return Reason<span class="text-danger"> * </span></label>
-                        <textarea name="return_reason" class="form-control" placeholder="Please enter a reason for returning the order..."
+                        <label class="form-group">Vui lòng nhập lí do trả hàng<span class="text-danger"> * </span></label>
+                        <textarea name="return_reason" class="form-control" placeholder="Nhập lí do..."
                             style="height: 100px;"></textarea>
                     </div>
                     <button type="submit" class="btn-sm"
-                        style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Order
-                        Return</button>
+                        style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Xác nhận</button>
                 </form>
             @else
-                <h5><span style="color: red;">You Have Send Return Request For This Invoice!</span>
+                <h5><span style="color: red;">Bạn đã gửi yêu cầu hoàn trả lại đơn hàng này rồi!</span>
                 </h5><br><br>
             @endif
         @endif

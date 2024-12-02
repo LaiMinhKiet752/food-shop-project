@@ -42,9 +42,9 @@
                     <div class="text-center">
                         <div id="news-flash" class="d-inline-block">
                             <ul>
-                                <li>100% Secure delivery without contacting the courier</li>
-                                <li>Supper Value Deals - Save more with coupons</li>
-                                <li>Trendy 25silver jewelry, save up 35% off today</li>
+                                <li>Giá cả hợp lí nhất thị trường</li>
+                                <li>Tiết kiệm nhiều hơn với phiếu giảm giá</li>
+                                <li>100% thực phẩm tươi sạch</li>
                             </ul>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="header-info header-info-right">
                         <ul>
 
-                            <li>
+                            {{-- <li>
                                 <a class="language-dropdown-active" href="#">ENG<i
                                         class="fi-rs-angle-small-down"></i></a>
                                 <ul class="language-dropdown">
@@ -63,9 +63,10 @@
                                                 alt="" />VN</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
 
-                            <li>Need help? Call Us: <strong class="text-brand"> {{ $setting->call_us_phone }}</strong>
+                            <li>Cần giúp đỡ? Gọi ngay hotline: <strong class="text-brand">
+                                    {{ $setting->call_us_phone }}</strong>
                             </li>
 
                         </ul>
@@ -90,14 +91,9 @@
                     <div class="search-style-2">
                         <form action="{{ route('product.search') }}" method="post">
                             @csrf
-                            <select class="select-active">
-                                <option>All Category</option>
-                                @foreach ($all_categories as $category)
-                                    <option>{{ $category->category_name }}</option>
-                                @endforeach
-                            </select>
+
                             <input onfocus="search_result_show()" onblur="search_result_hide()" name="search"
-                                id="search" placeholder="Search for items..." />
+                                id="search" placeholder="Bạn muốn tìm gì..." />
                             <div id="searchProducts"></div>
                         </form>
                     </div>
@@ -111,7 +107,7 @@
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
                                     <span class="pro-count blue" id="compareQty">0</span>
                                 </a>
-                                <a href="{{ route('compare') }}"><span class="lable ml-0">Compare</span></a>
+                                <a href="{{ route('compare') }}"><span class="lable">So sánh</span></a>
                             </div>
 
                             <div class="header-action-icon-2">
@@ -120,7 +116,7 @@
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishlistQty">0</span>
                                 </a>
-                                <a href="{{ route('wishlist') }}"><span class="lable">Wishlist</span></a>
+                                <a href="{{ route('wishlist') }}"><span class="lable">Yêu thích</span></a>
                             </div>
 
                             <div class="header-action-icon-2">
@@ -129,7 +125,7 @@
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
-                                <a href="{{ route('mycart') }}"><span class="lable">Cart</span></a>
+                                <a href="{{ route('mycart') }}"><span class="lable">Giỏ hàng</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
 
                                     {{-- Mini Cart Start With Ajax --}}
@@ -140,10 +136,10 @@
 
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-total">
-                                            <h4>Total <span id="cartSubTotal"></span></h4>
+                                            <h4>Tổng cộng <span id="cartSubTotal"></span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="{{ route('mycart') }}">View cart</a>
+                                            <a href="{{ route('mycart') }}">Xem giỏ hàng</a>
                                         </div>
                                     </div>
 
@@ -156,22 +152,22 @@
                                         <img class="svgInject" alt="Nest"
                                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
-                                    <a href="{{ route('dashboard') }}"><span class="lable ml-0">Account</span></a>
+                                    <a href="{{ route('dashboard') }}"><span class="lable ml-0">Tài khoản</span></a>
                                     <div class="cart-dropdown-wrap cart-dropdown-hm2 account-dropdown">
                                         <ul>
                                             <li>
                                                 <a href="{{ route('user.account.page') }}"><i
-                                                        class="fi fi-rs-user mr-10"></i>Account Details</a>
+                                                        class="fi fi-rs-user mr-10"></i>Chi tiết tài khoản</a>
                                             </li>
 
                                             <li>
                                                 <a href="{{ route('user.change.password') }}"><i
-                                                        class="fa-solid fa-code-compare mr-10"></i>Change Password</a>
+                                                        class="fa-solid fa-code-compare mr-10"></i>Đổi mật khẩu</a>
                                             </li>
 
                                             <li>
                                                 <a href="{{ route('user.order.page') }}"><i
-                                                        class="fa-solid fa-cart-shopping mr-10"></i>My Order</a>
+                                                        class="fa-solid fa-cart-shopping mr-10"></i>Đơn đặt hàng của tôi</a>
                                             </li>
                                             {{-- <li>
                                                 <a href="{{ route('dashboard') }}"><i class="fi fi-rs-label mr-10"></i>My
@@ -187,7 +183,7 @@
                                             </li> --}}
                                             <li>
                                                 <a href="{{ route('user.logout') }}"><i
-                                                        class="fi fi-rs-sign-out mr-10"></i>Log out</a>
+                                                        class="fi fi-rs-sign-out mr-10"></i>Đăng xuất</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -198,11 +194,11 @@
                                         <img class="svgInject" alt="Nest"
                                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
-                                    <a href="{{ route('login') }}"><span class="lable ml-0">Log in</span></a>
+                                    <a href="{{ route('login') }}"><span class="lable ml-0">Đăng nhập</span></a>
 
                                     <span class="lable" style="margin-left: 2px; margin-right: 2px;"> | </span>
 
-                                    <a href="{{ route('register') }}"><span class="lable ml-0">Register</span></a>
+                                    <a href="{{ route('register') }}"><span class="lable ml-0">Đăng ký</span></a>
                                 </div>
                             @endauth
                         </div>
@@ -214,24 +210,7 @@
     </div>
 
 
-    @php
-        $five_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
-            ->skip(0)
-            ->limit(3)
-            ->get();
-        $five_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
-            ->skip(3)
-            ->limit(3)
-            ->get();
-        $show_more_categories_first = \App\Models\Category::orderBy('category_name', 'ASC')
-            ->skip(6)
-            ->limit(3)
-            ->get();
-        $show_more_categories_second = \App\Models\Category::orderBy('category_name', 'ASC')
-            ->skip(9)
-            ->limit(3)
-            ->get();
-    @endphp
+    
 
     <div class="header-bottom header-bottom-bg-color sticky-bar">
         <div class="container">
@@ -241,78 +220,17 @@
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
-                    <div class="main-categori-wrap d-none d-lg-block">
-                        <a class="categories-button-active" href="#">
-                            <span class="fi-rs-apps"></span> ALL CATEGORY
-                            <i class="fi-rs-angle-down"></i>
-                        </a>
-                        <div class="categories-dropdown-wrap categories-dropdown-active-large font-heading">
-                            <div class="d-flex categori-dropdown-inner">
-                                <ul>
-                                    @foreach ($five_categories_first as $category)
-                                        <li>
-                                            <a
-                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                                <img src="{{ asset($category->category_image) }}" alt="" />
-                                                {{ $category->category_name }} </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                                <ul class="end">
-                                    @foreach ($five_categories_second as $category)
-                                        <li>
-                                            <a
-                                                href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                                <img src="{{ asset($category->category_image) }}" alt="" />
-                                                {{ $category->category_name }} </a>
-                                        </li>
-                                    @endforeach
 
-                                </ul>
-                            </div>
-                            <div class="more_slide_open" style="display: none">
-                                <div class="d-flex categori-dropdown-inner">
-                                    <ul>
-                                        @foreach ($show_more_categories_first as $category)
-                                            <li>
-                                                <a
-                                                    href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                                    <img src="{{ asset($category->category_image) }}"
-                                                        alt="" />
-                                                    {{ $category->category_name }} </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                    <ul class="end">
-                                        @foreach ($show_more_categories_second as $category)
-                                            <li>
-                                                <a
-                                                    href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                                    <img src="{{ asset($category->category_image) }}"
-                                                        alt="" />
-                                                    {{ $category->category_name }} </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="more_categories"><span class="icon"></span> <span class="heading-sm-1">Show
-                                    more...</span></div>
-                        </div>
-                    </div>
                     <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block font-heading">
                         <nav>
                             <ul>
 
                                 <li>
-                                    <a class="active" href="{{ url('/') }}">HOME </a>
-
+                                    <a class="active" href="{{ url('/') }}">TRANG CHỦ </a>
                                 </li>
 
                                 @php
-                                    $categories = App\Models\Category::orderBy('category_name', 'ASC')
-                                        ->limit(8)
-                                        ->get();
+                                    $categories = App\Models\Category::orderBy('category_name', 'ASC')->limit(8)->get();
                                 @endphp
 
                                 @foreach ($categories as $category)
@@ -321,7 +239,10 @@
                                             href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}
                                             <i class="fi-rs-angle-down"></i></a>
                                         @php
-                                            $subcategories = \App\Models\SubCategory::where('category_id', $category->id)
+                                            $subcategories = \App\Models\SubCategory::where(
+                                                'category_id',
+                                                $category->id,
+                                            )
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
                                         @endphp
@@ -347,9 +268,9 @@
                     </div>
                 </div>
 
-                <div class="hotline d-none d-lg-flex">
+                {{-- <div class="hotline d-none d-lg-flex">
                     <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-headphone.svg') }}" alt="hotline" />
-                    <p>{{ $setting->support_phone }}<span>24/7 Support Center</span></p>
+                    <p>{{ $setting->support_phone }}<span>Hỗ trợ online 24/7</span></p>
                 </div>
                 <div class="header-action-icon-2 d-block d-lg-none">
                     <div class="burger-icon burger-icon-white">
@@ -414,7 +335,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Cancel Order
+    Đơn hàng đã hủy
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -11,8 +11,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Cancel Orders
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span> Đơn hàng đã hủy
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
                                 aria-labelledby="dashboard-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="mb-0">All Orders You Canceled</h3>
+                                        <h3 class="mb-0">Tất cả đơn hàng bạn đã hủy</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -38,12 +38,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No.</th>
-                                                        <th>Invoice Number</th>
-                                                        <th>Order Date</th>
-                                                        <th>Cancel Date</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Payment Method</th>
-                                                        <th>Status</th>
+                                                        <th>Số hóa đơn</th>
+                                                        <th>Ngày đặt</th>
+                                                        <th>Ngày hủy</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Phương thức thanh toán</th>
+                                                        <th>Trạng thái</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -62,7 +62,7 @@
                                                             <td>
                                                                 <span class="badge rounded-pill bg-success"
                                                                     style="font-size: 13px;">
-                                                                    Success
+                                                                    Thành công
                                                                 </span>
                                                             </td>
                                                         </tr>

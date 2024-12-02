@@ -1,14 +1,14 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Verify Email Address
+    Xác thực Email
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> Verify Email Address
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <span></span> Xác thực Email
         </div>
     </div>
 </div>
@@ -20,10 +20,8 @@
                     <div class="heading_s1">
                         <img class="border-radius-15" src="{{ asset('frontend/assets/imgs/page/reset_password.svg') }}"
                             alt="" />
-                        <h2 class="mb-15 mt-15">Verify Email Address</h2>
-                        <p class="mb-30">Thanks for signing up! Before getting started, could you verify your
-                            email address by clicking on the link we just emailed to you? If you didn't receive
-                            the email, we will gladly send you another.
+                        <h2 class="mb-15 mt-15">Xác thực Email</h2>
+                        <p class="mb-30">Cảm ơn bạn đã đăng ký! Trước khi bắt đầu, bạn có thể xác minh địa chỉ email của mình bằng cách nhấp vào liên kết mà chúng tôi vừa gửi qua email? Nếu bạn không nhận được email, vui lòng click vào nút "Gửi lại" bến dưới, chúng tôi sẽ gửi lại cho bạn.
                         </p>
                     </div>
                     <div class="col-lg-6 col-md-8">
@@ -38,7 +36,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-heading btn-block hover-up"
-                                            name="login">Resend Verification Email</button>
+                                            name="login">Gửi lại</button>
                                     </div>
                                 </form>
                             </div>

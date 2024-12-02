@@ -41,7 +41,7 @@
                                     <input type="hidden" id="product_id">
                                     <input type="hidden" id="brand_id" value="">
                                     <button type="submit" class="button button-add-to-cart" onclick="addToCart()"><i
-                                            class="fi-rs-shopping-cart"></i>Add to cart</button>
+                                            class="fi-rs-shopping-cart"></i>Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
 
@@ -50,13 +50,13 @@
                                     style="padding-right: 0px !important; padding-left: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">BRAND : <span class="text-brand" id="pbrand">
+                                            <li class="mb-5">THƯƠNG HIỆU : <span class="text-brand" id="pbrand">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">CATEGORY : <span class="text-brand" id="pcategory">
+                                            <li class="mb-5">DANH MỤC : <span class="text-brand" id="pcategory">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">SUBCATEGORY : <span class="text-brand" id="psubcategory">
+                                            <li class="mb-5">DANH MỤC CON : <span class="text-brand" id="psubcategory">
                                                 </span>
                                             </li>
                                         </ul>
@@ -68,11 +68,11 @@
                                     style="padding-left: 5px !important; padding-right: 0px !important;">
                                     <div class="font-xs">
                                         <ul>
-                                            <li class="mb-5">PRODUCT CODE : <span class="text-brand" id="pcode">
+                                            <li class="mb-5">MÃ SẢN PHẨM : <span class="text-brand" id="pcode">
                                                 </span></li>
-                                            <li class="mb-5">MFG : <span class="text-brand" id="pmfg"> </span>
+                                            <li class="mb-5">NGÀY SX : <span class="text-brand" id="pmfg"> </span>
                                             </li>
-                                            <li class="mb-5">STOCK STATUS : <span
+                                            <li class="mb-5">TRẠNG THÁI : <span
                                                     class="badge badge-pill badge-success" id="instock"
                                                     style="background:green; color: white;"> </span>
                                                 <span class="badge badge-pill badge-danger" id="outofstock"
@@ -94,13 +94,26 @@
     $(document).ready(function() {
 
         $('.numbers-only').keypress(function(e) {
+            var charCode = (e.which) ? e.which : event.keyCode;
+            var inputValue = $(this).val() + String.fromCharCode(charCode);
 
-            var charCode = (e.which) ? e.which : event.keyCode
-
-            if (String.fromCharCode(charCode).match(/[^0-9]/g))
-
+            // Kiểm tra nếu ký tự không phải là số
+            if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
                 return false;
+            }
 
+            // Ràng buộc số lượng phải trong phạm vi 1 đến 99
+            if (parseInt(inputValue) < 1 || parseInt(inputValue) > 99) {
+                return false;
+            }
+        });
+
+        // Thêm sự kiện cho input field để chặn không cho nhập khi vượt quá 2 chữ số
+        $('.numbers-only').on('input', function() {
+            var value = $(this).val();
+            if (parseInt(value) < 1 || parseInt(value) > 99) {
+                $(this).val('');
+            }
         });
 
     });

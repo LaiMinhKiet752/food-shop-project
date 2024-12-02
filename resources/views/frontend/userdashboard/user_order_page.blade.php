@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Orders
+    Đơn đặt hàng của bạn
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -11,8 +11,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span>Orders
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span>Đơn đặt hàng của bạn
         </div>
     </div>
 </div>
@@ -30,7 +30,7 @@
                                 aria-labelledby="dashboard-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="mb-0">All Your Orders</h3>
+                                        <h3 class="mb-0">Tất cả đơn đặt hàng của bạn</h3>
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -38,12 +38,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No.</th>
-                                                        <th>Invoice Number</th>
-                                                        <th>Order Date</th>
-                                                        <th>Total Amount</th>
-                                                        <th>Payment Method</th>
-                                                        <th>Status</th>
-                                                        <th>Actions</th>
+                                                        <th>Số hóa đơn</th>
+                                                        <th>Ngày đặt</th>
+                                                        <th>Tổng tiền</th>
+                                                        <th>Phương thức thanh toán</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Hành động</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -62,38 +62,38 @@
                                                                 @if ($order->status == 'pending' && $order->cancel_order_status == 0)
                                                                     <span class="badge rounded-pill bg-warning"
                                                                         style="font-size: 13px;">
-                                                                        Pending
+                                                                        Chờ xác nhận
                                                                     </span>
                                                                 @elseif ($order->status == 'pending' && $order->cancel_order_status == 1)
                                                                     <span class="badge rounded-pill bg-secondary"
                                                                         style="font-size: 13px;">
-                                                                        Cancel
+                                                                        Đã hủy
                                                                     </span>
                                                                 @elseif ($order->status == 'confirmed' && $order->cancel_order_status == 0)
                                                                     <span class="badge rounded-pill bg-info"
                                                                         style="font-size: 13px;">
-                                                                        Confirmed
+                                                                        Đã xác nhận
                                                                     </span>
                                                                 @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                                                     <span class="badge rounded-pill bg-secondary"
                                                                         style="font-size: 13px;">
-                                                                        Cancel
+                                                                        Đã hủy
                                                                     </span>
                                                                 @elseif ($order->status == 'processing')
                                                                     <span class="badge rounded-pill bg-danger"
                                                                         style="font-size: 13px;">
-                                                                        Processing
+                                                                        Đang xử lý
                                                                     </span>
                                                                 @elseif($order->status == 'delivered')
                                                                     <span class="badge rounded-pill bg-success"
                                                                         style="font-size: 13px;">
-                                                                        Delivered
+                                                                        Đã giao hàng
                                                                     </span>
                                                                 @endif
                                                                 @if ($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
                                                                     <span class="badge rounded-pill bg-dark"
                                                                         style="font-size: 13px;">
-                                                                        Return
+                                                                        Đã trả hàng
                                                                     </span>
                                                                 @endif
                                                             </td>

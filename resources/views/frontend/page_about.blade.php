@@ -1,13 +1,13 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    About
+    Về chúng tôi
 @endsection
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span> About
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span> Về chúng tôi
         </div>
     </div>
 </div>

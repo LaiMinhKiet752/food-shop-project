@@ -250,11 +250,11 @@
                     if (data.product.product_quantity > 0) {
                         $('#instock').text('');
                         $('#outofstock').text('');
-                        $('#instock').text('In Stock');
+                        $('#instock').text('Còn hàng');
                     } else {
                         $('#instock').text('');
                         $('#outofstock').text('');
-                        $('#outofstock').text('Out Of Stock');
+                        $('#outofstock').text('Hết hàng');
                     }
                     //End Stock Option
                 }
@@ -485,8 +485,8 @@
                         </td>
                         <td class="text-center detail-info" data-title="Stock">
                             ${value.product.product_quantity > 0
-                                ? `<span class="stock-status in-stock mb-0"> In Stock </span>`
-                                :`<span class="stock-status out-stock mb-0"> Out Of Stock </span>`
+                                ? `<span class="stock-status in-stock mb-0"> Còn hàng </span>`
+                                :`<span class="stock-status out-stock mb-0"> Hết hàng </span>`
                             }
 
                         </td>
@@ -578,16 +578,16 @@
                 success: function(response) {
                     $('#compareQty').text(response.compareQuantity);
                     $('#countproductcompare').text(response.compareQuantity);
-                    var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Preview</td>`;
-                    var title = `<td class="text-muted font-sm fw-600 font-heading">Name</td>`;
-                    var price = `<td class="text-muted font-sm fw-600 font-heading">Price</td>`;
+                    var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Hình ảnh</td>`;
+                    var title = `<td class="text-muted font-sm fw-600 font-heading">Tên</td>`;
+                    var price = `<td class="text-muted font-sm fw-600 font-heading">Giá</td>`;
                     var rating = ``;
-                    var description = `<td class="text-muted font-sm fw-600 font-heading">Description</td>`;
-                    var stock = `<td class="text-muted font-sm fw-600 font-heading">Stock status</td>`;
-                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Weight/Volume</td>`;
-                    var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Dimensions</td>`;
-                    var details = `<td class="text-muted font-sm fw-600 font-heading">Watch now</td>`;
-                    var remove = `<td class="text-muted font-md fw-600"></td>`;
+                    var description = `<td class="text-muted font-sm fw-600 font-heading">Miêu tả</td>`;
+                    var stock = `<td class="text-muted font-sm fw-600 font-heading">Trạng thái</td>`;
+                    var weight = `<td class="text-muted font-sm fw-600 font-heading">Trọng lượng/Thể tích</td>`;
+                    var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Kích thước</td>`;
+                    var details = `<td class="text-muted font-sm fw-600 font-heading">Xem chi tiết</td>`;
+                    var remove = `<td class="text-muted font-sm fw-600 font-heading">Xóa</td>`;
 
                     $.each(response.compare, function(key, value) {
                         images +=
@@ -606,7 +606,7 @@
                                     <p class="font-sm text-muted">${value.product.short_description}</p>
                                         </td>`;
 
-                        stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">In Stock</span>` :`<span class="stock-status out-stock mb-0">Out Of Stock</span>`}
+                        stock += `<td class="row_stock">${value.product.product_quantity > 0 ? `<span class="stock-status in-stock mb-0">Còn hàng</span>` :`<span class="stock-status out-stock mb-0">Hết hàng</span>`}
                             </td>`;
 
                         weight +=
@@ -617,10 +617,10 @@
 
                         details += `<td class="row_btn">
                                         ${value.product.product_quantity > 0 ?
-                                            `<a href="${`product/details/${value.product.id}/${value.product.product_slug}`}" class="btn btn-sm" type="submit"><i class="fi-rs-shopping-cart mr-5"></i>Details</a>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Contact Us</button>`}
+                                            `<a href="${`product/details/${value.product.id}/${value.product.product_slug}`}" class="btn btn-sm" type="submit"><i class="fi-rs-shopping-cart mr-5"></i>Details</a>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Liên hệ</button>`}
                                     </td>`;
                         remove += `<td class="row_remove">
-                                    <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Remove</span>
+                                    <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Xóa</span>
                                     </a>
                                     </td>`;
                     });
@@ -888,7 +888,7 @@
                         $('#couponCalField').html(
                             `<tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Subtotal</h6>
+                                        <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$${data.total}</h4>
@@ -897,7 +897,7 @@
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Grand Total</h6>
+                                        <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$${data.total}</h4>
@@ -907,7 +907,7 @@
                         $('#couponCalField').html(
                             `<tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Subtotal</h6>
+                                            <h6 class="text-muted">Tạm tính</h6>
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">$${data.subtotal}</h4>
@@ -916,7 +916,7 @@
 
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Coupon </h6>
+                                            <h6 class="text-muted">Mã giảm giá </h6>
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">${data.coupon_code} <a type="submit" onclick="couponRemove()"><i class="fi-rs-trash"></i></a></h4>
@@ -924,7 +924,7 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Discount </h6>
+                                            <h6 class="text-muted">Giảm </h6>
                                         </td>
                                         <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">$${data.discount_amount}</h4>
@@ -932,7 +932,7 @@
                                     </tr>
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Grand Total </h6>
+                                            <h6 class="text-muted">Tổng tiền </h6>
                                         </td>
                                         <td class="cart_total_amount">
                                     <h4 class="text-brand text-end">$${data.total_amount}</h4>

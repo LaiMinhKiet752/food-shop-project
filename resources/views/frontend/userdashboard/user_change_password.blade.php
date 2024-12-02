@@ -1,7 +1,7 @@
 @extends('frontend.master_dashboard')
 @section('main')
 @section('title')
-    Change Password
+    Đổi mật khẩu
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -10,8 +10,8 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>HOME</a>
-            <span></span>Change Password
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
+            <span></span>Đổi mật khẩu
         </div>
     </div>
 </div>
@@ -29,7 +29,7 @@
                                 aria-labelledby="dashboard-tab">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3>Change Password</h3>
+                                        <h3>Đổi mật khẩu</h3>
                                     </div>
                                     <div class="card-body">
                                         <form method="post" action="{{ route('user.update.password') }}"
@@ -37,7 +37,7 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="form-group col-md-12">
-                                                    <label>Old Password <span class="text-danger">*</span></label>
+                                                    <label>Mật khẩu cũ <span class="text-danger">*</span></label>
                                                     <div class="input-group" id="show_hide_old_password">
                                                         <input type="password" name="old_password" class="form-control"
                                                             id="current_password">
@@ -47,7 +47,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>New Password <span class="text-danger">*</span></label>
+                                                    <label>Mật khẩu mới <span class="text-danger">*</span></label>
                                                     <div class="input-group" id="show_hide_password">
                                                         <input type="password" name="new_password" class="form-control"
                                                             id="new_password">
@@ -57,7 +57,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group col-md-12">
-                                                    <label>Confirm New Password <span
+                                                    <label>Nhập lại mật khẩu mới <span
                                                             class="text-danger">*</span></label>
                                                     <div class="input-group" id="show_hide_confirm_password">
                                                         <input type="password" name="new_password_confirmation"
@@ -70,7 +70,7 @@
                                                 <div class="col-md-12">
                                                     <button type="submit"
                                                         class="btn btn-fill-out submit font-weight-bold" name="submit"
-                                                        value="Submit">Save Changes</button>
+                                                        value="Submit">Lưu thay đổi</button>
                                                 </div>
                                             </div>
                                         </form>
