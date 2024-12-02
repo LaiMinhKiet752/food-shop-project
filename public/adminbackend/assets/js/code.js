@@ -4,15 +4,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
+            title: "Bạn chắc chứ?",
+            text: "Bạn sẽ không thể hoàn tác lại!",
+            icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, Delete it !'
+            confirmButtonText: "Vâng, Xóa nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -27,15 +27,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Once 'Confirm', You will not be able to 'Pending' again!",
+            title: "Bạn chắc chứ?",
+            text: "Một khi xác nhận, bạn sẽ không về lại được trạng thái chờ!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Confirm it !",
+            confirmButtonText: "Vâng, xác nhận nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -50,15 +50,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Once 'Processing', You will not be able to 'Confirm' again!",
+            title: "Bạn chắc chứ?",
+            text: "Một khi xử lý, bạn sẽ không về lại được trạng thái xác nhận!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Processing it !",
+            confirmButtonText: "Vâng, xử lý nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -73,15 +73,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Once 'Delivered', You will not be able to 'Processing' again!",
+            title: "Bạn chắc chứ?",
+            text: "Một khi đã giao, bạn sẽ không về lại được trạng thái xử lý!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Delivered it !",
+            confirmButtonText: "Vâng, đã giao nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -96,15 +96,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Approve Return Order!",
+            title: "Bạn chắc chứ?",
+            text: "Chấp nhận trả lại đơn hàng!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Approve it !",
+            confirmButtonText: "Vâng, chấp nhận nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;
@@ -119,15 +119,15 @@ $(function () {
         e.preventDefault();
         var link = $(this).attr("href");
         Swal.fire({
-            title: "Are you sure?",
-            text: "Approve This Data!",
+            title: "Bạn chắc chứ?",
+            text: "Chấp nhận dữ liệu này!",
             icon: "warning",
             showCancelButton: true,
             timerProgressBar: true,
             timer: 5000,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, Approve it !",
+            confirmButtonText: "Vâng, chấp nhận nó !",
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = link;

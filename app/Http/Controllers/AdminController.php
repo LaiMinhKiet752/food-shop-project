@@ -39,7 +39,7 @@ class AdminController extends Controller
         $request->session()->regenerateToken();
 
         $notification = array(
-            'message' => 'Logged Out Successfully!',
+            'message' => 'Đăng xuất thành công!',
             'alert-type' => 'success',
         );
 
@@ -67,8 +67,8 @@ class AdminController extends Controller
                 $request->validate([
                     'photo' => 'image|max:2048'
                 ], [
-                    'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'The maximum upload image size is 2MB.',
+                    'photo.image' => 'Tệp được tải lên phải là hình ảnh có một trong các định dạng sau: jpg, jpeg, png, bmp, gif, svg hoặc webp.',
+                    'photo.max' => 'Kích thước hình ảnh tải lên tối đa là 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();
@@ -86,14 +86,14 @@ class AdminController extends Controller
             $request->validate([
                 'phone' => ['unique:' . User::class],
             ], [
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.'
             ]);
             if ($request->file('photo')) {
                 $request->validate([
                     'photo' => 'image|max:2048'
                 ], [
-                    'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'The maximum upload image size is 2MB.',
+                    'photo.image' => 'Tệp được tải lên phải là hình ảnh có một trong các định dạng sau: jpg, jpeg, png, bmp, gif, svg hoặc webp.',
+                    'photo.max' => 'Kích thước hình ảnh tải lên tối đa là 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();
@@ -112,14 +112,14 @@ class AdminController extends Controller
             $request->validate([
                 'email' => ['unique:' . User::class],
             ], [
-                'email.unique' => 'The email already exists. Please enter another email.'
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.'
             ]);
             if ($request->file('photo')) {
                 $request->validate([
                     'photo' => 'image|max:2048'
                 ], [
-                    'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'The maximum upload image size is 2MB.',
+                    'photo.image' => 'Tệp được tải lên phải là hình ảnh có một trong các định dạng sau: jpg, jpeg, png, bmp, gif, svg hoặc webp.',
+                    'photo.max' => 'Kích thước hình ảnh tải lên tối đa là 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();
@@ -139,15 +139,15 @@ class AdminController extends Controller
                 'email' => ['unique:' . User::class],
                 'phone' => ['unique:' . User::class],
             ], [
-                'email.unique' => 'The email already exists. Please enter another email.',
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.'
             ]);
             if ($request->file('photo')) {
                 $request->validate([
                     'photo' => 'image|max:2048'
                 ], [
-                    'photo.image' => 'The uploaded file must be an image in one of the following formats: jpg, jpeg, png, bmp, gif, svg, or webp.',
-                    'photo.max' => 'The maximum upload image size is 2MB.',
+                    'photo.image' => 'Tệp được tải lên phải là hình ảnh có một trong các định dạng sau: jpg, jpeg, png, bmp, gif, svg hoặc webp.',
+                    'photo.max' => 'Kích thước hình ảnh tải lên tối đa là 2MB.',
                 ]);
                 $file = $request->file('photo');
                 $filename = hexdec(uniqid()) . '_admin' . '.' . $file->getClientOriginalExtension();
@@ -176,7 +176,7 @@ class AdminController extends Controller
         //Match the old password
         if (!Hash::check($request->old_password, auth::user()->password)) {
             $notification = array(
-                'message' => "Old Password Doesn't Match!",
+                'message' => "Mật khẩu cũ không khớp!",
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
@@ -186,7 +186,7 @@ class AdminController extends Controller
             'password' => Hash::make($request->new_password)
         ]);
         $notification = array(
-            'message' => 'Password Changed Successfully!',
+            'message' => 'Mật khẩu đã được thay đổi thành công!',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
@@ -254,8 +254,8 @@ class AdminController extends Controller
             'phone' => ['unique:' . User::class],
         ], [
             'username.unique' => 'The user name already exists. Please enter another user name.',
-            'email.unique' => 'The email already exists. Please enter another email.',
-            'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+            'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+            'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.'
         ]);
         $user = new User();
         $user->username = $request->username;
@@ -329,7 +329,7 @@ class AdminController extends Controller
             $request->validate([
                 'email' => ['unique:' . User::class],
             ], [
-                'email.unique' => 'The email already exists. Please enter another email.',
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
             ]);
             $user->email = $request->email;
             $user->update();
@@ -346,7 +346,7 @@ class AdminController extends Controller
             $request->validate([
                 'phone' => ['unique:' . User::class],
             ], [
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.',
             ]);
             $user->phone = $request->phone;
             $user->update();
@@ -365,7 +365,7 @@ class AdminController extends Controller
                 'email' => ['unique:' . User::class],
             ], [
                 'username.unique' => 'The user name already exists. Please enter another user name.',
-                'email.unique' => 'The email already exists. Please enter another email.',
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
             ]);
             $user->username = $request->username;
             $user->email = $request->email;
@@ -385,7 +385,7 @@ class AdminController extends Controller
                 'phone' => ['unique:' . User::class],
             ], [
                 'username.unique' => 'The user name already exists. Please enter another user name.',
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.',
             ]);
             $user->username = $request->username;
             $user->phone = $request->phone;
@@ -404,8 +404,8 @@ class AdminController extends Controller
                 'email' => ['unique:' . User::class],
                 'phone' => ['unique:' . User::class],
             ], [
-                'email.unique' => 'The email already exists. Please enter another email.',
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.',
             ]);
             $user->email = $request->email;
             $user->phone = $request->phone;
@@ -426,8 +426,8 @@ class AdminController extends Controller
                 'phone' => ['unique:' . User::class],
             ], [
                 'username.unique' => 'The user name already exists. Please enter another user name.',
-                'email.unique' => 'The email already exists. Please enter another email.',
-                'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+                'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+                'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.'
             ]);
             $user->username = $request->username;
             $user->email = $request->email;

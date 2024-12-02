@@ -273,11 +273,11 @@
                     maxlength: 'The call us phone must not be greater than 255 characters.',
                 },
                 email: {
-                    maxlength: 'The email must not be greater than 255 characters.',
+                    maxlength: 'Emal không thể dài hơn 255 ký tự.',
                     email: 'Vui lòng nhập email hợp lệ.',
                 },
                 company_address: {
-                    maxlength: 'The address must not be greater than 255 characters.',
+                    maxlength: 'Địa chỉ không được lớn hơn 255 ký tự.',
                 },
                 facebook: {
                     maxlength: 'The facebook link must not be greater than 255 characters.',

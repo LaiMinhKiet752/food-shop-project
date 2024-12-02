@@ -22,7 +22,7 @@ class ReviewController extends Controller
         $request->validate([
             'quality' => 'required',
         ], [
-            'quality.required' => 'Please choose a star rating for the product',
+            'quality.required' => 'Vui lòng chọn xếp hạng sao cho sản phẩm',
         ]);
 
         $product_id = $request->review_product_id;
@@ -31,7 +31,7 @@ class ReviewController extends Controller
         $check = OrderDetails::whereIn('order_id', $get_order_id)->where('product_id', $product_id)->first();
         if (!$check) {
             $notification = array(
-                'message' => 'Please Purchase The Product To Be Able To Rate!',
+                'message' => 'Vui lòng mua sản phẩm để được đánh giá!',
                 'alert-type' => 'error',
             );
             return redirect()->back()->with($notification);
@@ -39,7 +39,7 @@ class ReviewController extends Controller
         $check_exists_review = Review::where('product_id', $product_id)->where('user_id', Auth::user()->id)->first();
         if($check_exists_review){
             $notification = array(
-                'message' => 'You Can Only Rate The Product Once!',
+                'message' => 'Bạn chỉ được đánh giá sản phẩm một lần!',
                 'alert-type' => 'error',
             );
             return redirect()->back()->with($notification);
@@ -58,7 +58,7 @@ class ReviewController extends Controller
         Notification::send($all_admin_user, new NewReviewNotification($request));
 
         $notification = array(
-            'message' => 'Successful Product Review!',
+            'message' => 'Đánh giá sản phẩm thành công!',
             'alert-type' => 'success',
         );
 
@@ -84,7 +84,7 @@ class ReviewController extends Controller
             'status' => 1,
         ]);
         $notification = array(
-            'message' => 'Review Approved Successfully!',
+            'message' => 'Đánh giá đã được phê duyệt thành công!',
             'alert-type' => 'success',
         );
 
@@ -101,7 +101,7 @@ class ReviewController extends Controller
     {
         Review::findOrFail($id)->delete();
         $notification = array(
-            'message' => 'Review Deleted Successfully!',
+            'message' => 'Đánh giá đã được xóa thành công!',
             'alert-type' => 'success',
         );
 

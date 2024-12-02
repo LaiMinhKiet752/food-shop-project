@@ -170,7 +170,7 @@
             </div>
             <div class="col-xl-4 col-lg-6 col-md-6 text-end d-none d-md-block">
                 <div class="mobile-social-icon">
-                    <h6>Follow Us</h6>
+                    <h6>Theo dõi chúng tôi</h6>
                     <a href="{{ $setting->facebook }}"><img
                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}"
                             alt="" /></a>
@@ -187,7 +187,7 @@
                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}"
                             alt="" /></a>
                 </div>
-                <p class="font-sm">Up to 15% discount on your first subscribe</p>
+                <p class="font-sm">Giảm giá lên đến 50% cho lần đăng ký đầu tiên của bạn</p>
             </div>
         </div>
     </div>

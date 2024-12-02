@@ -40,8 +40,8 @@ class RegisteredUserController extends Controller
             'checkbox' => 'accepted'
         ], [
             'username.unique' => 'The user name already exists. Please enter another user name.',
-            'email.unique' => 'The email already exists. Please enter another email.',
-            'phone.unique' => 'The phone number already exists. Please enter another phone number.',
+            'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+            'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.',
             'checkbox.accepted' => 'Please agree to our policies to proceed with account registration.'
         ]);
 

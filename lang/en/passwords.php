@@ -14,7 +14,7 @@ return [
     */
 
     'reset' => 'Your password has been reset!',
-    'sent' => "We have emailed your password reset link. If you don't receive an email make sure to check your junk folder!",
+    'sent' => "Chúng tôi đã gửi email liên kết đặt lại mật khẩu cho bạn. Nếu bạn không nhận được email, hãy kiểm tra thư mục thư rác!",
     'throttled' => 'Please wait before retrying!',
     'token' => 'This password reset token is invalid!',
     'user' => "We can't find a user with that email address!",

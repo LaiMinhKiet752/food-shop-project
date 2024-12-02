@@ -116,8 +116,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Thank you!',
-                text: 'You Have Successfully Placed Your Order And Payment. Please Check Your Email For Order Details!',
+                title: 'Xin cảm ơn!',
+                text: 'Bạn đã đặt hàng và thanh toán thành công. Vui lòng kiểm tra email để biết chi tiết đơn hàng!',
                 timerProgressBar: true,
                 showConfirmButton: true,
                 timer: 10000,
@@ -132,8 +132,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Unfortunately!',
-                text: 'You Canceled Payment!',
+                title: 'Có lỗi xảy ra!',
+                text: 'Bạn đã hủy thanh toán cho đơn hàng này!',
                 timerProgressBar: true,
                 showConfirmButton: true,
                 timer: 10000,
@@ -148,8 +148,8 @@
             Swal.fire({
                 position: 'center',
                 icon: 'success',
-                title: 'Thank you!',
-                text: 'You Have Placed An Order Successfully. Please Pay In Cash Upon Receipt!',
+                title: 'Xin cảm ơn!',
+                text: 'Bạn đã đặt hàng thành công. Vui lòng thanh toán bằng tiền mặt khi nhận hàng!',
                 timerProgressBar: true,
                 showConfirmButton: true,
                 timer: 10000,
@@ -617,7 +617,7 @@
 
                         details += `<td class="row_btn">
                                         ${value.product.product_quantity > 0 ?
-                                            `<a href="${`product/details/${value.product.id}/${value.product.product_slug}`}" class="btn btn-sm" type="submit"><i class="fi-rs-shopping-cart mr-5"></i>Details</a>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Liên hệ</button>`}
+                                            `<a href="${`product/details/${value.product.id}/${value.product.product_slug}`}" class="btn btn-sm" type="submit"><i class="fi-rs-shopping-cart mr-5"></i>Xem chi tiết</a>`:`<button class="btn btn-sm btn-secondary"><i class="fi-rs-headset mr-5"></i>Liên hệ</button>`}
                                     </td>`;
                         remove += `<td class="row_remove">
                                     <a type="submit" class="text-muted" id="${value.id}" onclick="compareRemove(this.id)"><i class="fi-rs-trash mr-5"></i><span>Xóa</span>

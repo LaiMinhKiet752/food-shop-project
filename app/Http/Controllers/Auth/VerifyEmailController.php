@@ -23,7 +23,7 @@ class VerifyEmailController extends Controller
             event(new Verified($request->user()));
         }
         $notification = array(
-            'message' => 'Email Verified Successfully!',
+            'message' => 'Xác thực email thành công!',
             'alert-type' => 'success',
         );
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1')->with($notification);

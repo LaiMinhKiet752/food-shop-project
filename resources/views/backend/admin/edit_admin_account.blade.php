@@ -171,23 +171,23 @@
                     maxlength: 'The user name must not be greater than 255 characters.',
                 },
                 name: {
-                    required: 'Please enter your full name.',
-                    maxlength: 'The full name must not be greater than 255 characters.',
+                    required: 'Vui lòng nhập đầy đủ họ và tên.',
+                    maxlength: 'Họ và tên không thể dài hơn 255 ký tự.',
                 },
                 email: {
                     required: 'Vui lòng nhập email.',
-                    maxlength: 'The email must not be greater than 255 characters.',
+                    maxlength: 'Emal không thể dài hơn 255 ký tự.',
                     email: 'Vui lòng nhập email hợp lệ.',
                 },
                 phone: {
-                    required: 'Please enter your phone number.',
-                    minlength: 'Please enter 10 numeric characters correctly.',
-                    maxlength: 'Please enter 10 numeric characters correctly.',
-                    digits: 'Please enter 10 numeric characters correctly.',
+                    required: 'Vui lòng nhập số điện thoại.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
                 },
                 address: {
-                    required: 'Please enter your address.',
-                    maxlength: 'The address must not be greater than 255 characters.',
+                    digits: 'Vui lòng chỉ nhập địa chỉ.',
+                    maxlength: 'Địa chỉ không được lớn hơn 255 ký tự.',
                 },
                 roles: {
                     required: 'Please select a role.',

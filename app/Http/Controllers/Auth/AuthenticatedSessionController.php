@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         $notification = array(
-            'message' => 'Logged In Successfully!',
+            'message' => 'Đăng nhập thành công!',
             'alert-type' => 'success'
         );
 

@@ -590,8 +590,8 @@
             },
             messages: {
                 return_reason: {
-                    required: 'Please enter order return reason.',
-                    maxlength: 'The order return reason must not be greater than 500 characters.',
+                    required: 'Vui lòng nhập lí do trả đơn hàng.',
+                    maxlength: 'Lí do trả đơn không được vượt quá 500 ký tự.',
                 },
             },
             errorElement: 'span',
@@ -613,15 +613,15 @@
     function submitCancelOrder(e) {
         e.preventDefault();
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
+            title: "Bạn chắc chứ?",
+            text: "Bạn sẽ không thể hoàn tác lại!",
+            icon: "warning",
             showCancelButton: true,
             timer: 5000,
             timerProgressBar: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, cancel it!'
+            confirmButtonText: 'Vâng, hủy nó!'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById("SubmitFormCancelOrder").submit();

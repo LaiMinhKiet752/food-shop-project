@@ -152,11 +152,11 @@
                 },
                 messages: {
                     password: {
-                        required: 'Please enter your password.',
+                        required: 'Vui lòng nhập mật khẩu.',
                         minlength: ''
                     },
                     retype_password: {
-                        required: 'Please enter your confirmation password.',
+                        required: 'Vui lòng nhập lại mật khẩu mới.',
                         equalTo: 'The confirmation password must be the same as the password.',
                     },
                 },
@@ -177,7 +177,7 @@
                     .test(
                         value);
             },
-            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
+            "Mật khẩu của bạn phải dài từ 8 đến 16 ký tự, phải chứa ít nhất 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt."
         );
         });
     </script>

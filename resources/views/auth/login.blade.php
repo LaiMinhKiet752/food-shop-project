@@ -10,7 +10,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> Đăng nhập
         </div>
     </div>
@@ -95,7 +95,7 @@
                     required: 'Please enter your username or email.',
                 },
                 password: {
-                    required: 'Please enter your password.',
+                    required: 'Vui lòng nhập mật khẩu.',
                 },
             },
             errorElement: 'span',

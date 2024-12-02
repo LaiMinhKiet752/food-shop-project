@@ -35,7 +35,7 @@ class CartController extends Controller
         $get_product = Product::where('id', $id)->first();
         $product_quantity_stock = $get_product->product_quantity;
         if ($request->quantity > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $check = Cart::content()->where('id', $id)->first();
         $count = 0;
@@ -45,10 +45,10 @@ class CartController extends Controller
             $check_add = $request->quantity + $count;
         }
         if ($count > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         if ($check_add > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
 
         $product = Product::findOrFail($id);
@@ -61,7 +61,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -71,7 +71,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } //End Method
 
@@ -84,7 +84,7 @@ class CartController extends Controller
         $get_product = Product::where('id', $id)->first();
         $product_quantity_stock = $get_product->product_quantity;
         if ($request->quantity > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $check = Cart::content()->where('id', $id)->first();
         $count = 0;
@@ -94,10 +94,10 @@ class CartController extends Controller
             $check_add = $request->quantity + $count;
         }
         if ($count > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         if ($check_add > $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
 
         $product = Product::findOrFail($id);
@@ -110,7 +110,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -120,7 +120,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -137,7 +137,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
 
         $product = Product::findOrFail($id);
@@ -150,7 +150,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -160,7 +160,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -177,7 +177,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -189,7 +189,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -199,7 +199,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -216,7 +216,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -228,7 +228,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -238,7 +238,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -255,7 +255,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -267,7 +267,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -277,7 +277,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -294,7 +294,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -306,7 +306,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -316,7 +316,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -333,7 +333,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -345,7 +345,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -355,7 +355,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -372,7 +372,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -384,7 +384,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -394,7 +394,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -411,7 +411,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -423,7 +423,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -433,7 +433,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -450,7 +450,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -462,7 +462,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -472,7 +472,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -489,7 +489,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -501,7 +501,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -511,7 +511,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -528,7 +528,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -540,7 +540,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -550,7 +550,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -567,7 +567,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -579,7 +579,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -589,7 +589,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -606,7 +606,7 @@ class CartController extends Controller
             $count = $check->qty;
         }
         if ($count == $product_quantity_stock) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
         $product = Product::findOrFail($id);
         if ($product->discount_price == NULL) {
@@ -618,7 +618,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         } else {
             Cart::add([
                 'id' => $id,
@@ -628,7 +628,7 @@ class CartController extends Controller
                 'weight' => 1,
                 'options' => ['image' => $product->product_thumbnail, 'brand_id' => $request->brand_id],
             ]);
-            return response()->json(['success' => 'Successfully Added Product To Your Cart!']);
+            return response()->json(['success' => 'Đã thêm sản phẩm vào giỏ hàng của bạn!']);
         }
     } // End Method
 
@@ -663,7 +663,7 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100, 2)
             ]);
         }
-        return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
+        return response()->json(['success' => 'Đã xóa sản phẩm khỏi giỏ hàng của bạn!']);
     } // End Method
 
     public function CartRemove($rowId)
@@ -680,7 +680,7 @@ class CartController extends Controller
                 'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100, 2)
             ]);
         }
-        return response()->json(['success' => 'Successfully Removed Product From Your Cart!']);
+        return response()->json(['success' => 'Đã xóa sản phẩm khỏi giỏ hàng của bạn!']);
     } //End Method
 
     public function CartRemoveAllProduct()
@@ -717,7 +717,7 @@ class CartController extends Controller
         $get_product = Product::where('id', $product_id)->first();
         $product_quantity_stock = $get_product->product_quantity;
         if ($product_quantity_stock == $get_product_quantity_in_cart) {
-            return response()->json(['error_quantity' => "Only $product_quantity_stock Products Left In Stock"]);
+            return response()->json(['error_quantity' => "Hiện tại chỉ còn $product_quantity_stock sản phẩm trong kho"]);
         }
 
         Cart::update($rowId, $row->qty + 1);
@@ -741,7 +741,7 @@ class CartController extends Controller
         if (Auth::check()) {
             $check = CouponUse::where('coupon_code', $request->coupon_code)->where('user_id', Auth::user()->id)->first();
             if ($check) {
-                return response()->json(['error' => 'Coupon Code Has Been Used!']);
+                return response()->json(['error' => 'Mã giảm giá đã được sử dụng!']);
             } else {
                 $coupon = Coupon::where('coupon_code', $request->coupon_code)->where('coupon_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
                 if ($coupon) {
@@ -752,14 +752,14 @@ class CartController extends Controller
                         'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount / 100, 2)
                     ]);
                     return response()->json(array(
-                        'success' => 'Coupon Applied Successfully!'
+                        'success' => 'Đã áp dụng mã giảm giá!'
                     ));
                 } else {
-                    return response()->json(['error' => 'Coupon Code Is Not Valid, Please Check Again!']);
+                    return response()->json(['error' => 'Mã giảm giá không hợp lệ!']);
                 }
             }
         } else {
-            return response()->json(['error' => 'Please Login Before Using Coupon Code!']);
+            return response()->json(['error' => 'Vui lòng đăng nhập để sử dụng mã giảm giá!']);
         }
     } // End Method
 
@@ -784,7 +784,7 @@ class CartController extends Controller
     {
         Session::forget('coupon');
         return response()->json(array(
-            'success' => 'Coupon Removed Successfully!'
+            'success' => 'Đã xóa mã giảm giá!'
         ));
     } // End Method
 
@@ -798,14 +798,14 @@ class CartController extends Controller
                 return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
             } else {
                 $notification = array(
-                    'message' => 'Cart Is Empty. Please Select A Product To Buy!',
+                    'message' => 'Giỏ hàng đang trống. Vui lòng chọn sản phẩm để mua!',
                     'alert-type' => 'error',
                 );
                 return redirect()->to('/')->with($notification);
             }
         } else {
             $notification = array(
-                'message' => 'First You Need To Login To The Website!',
+                'message' => 'Đầu tiên bạn cần đăng nhập vào trang web để tiến hàng thanh toán!',
                 'alert-type' => 'warning',
             );
             return redirect()->route('login')->with($notification);

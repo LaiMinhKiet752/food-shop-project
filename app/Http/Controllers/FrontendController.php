@@ -45,7 +45,7 @@ class FrontendController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array(
-            'message' => 'Email Sent Successfully!',
+            'message' => 'Gửi liên hệ thành công! Chúng tôi sẽ sớm liên hệ lại cho bạn.',
             'alert-type' => 'success',
         );
         return redirect()->back()->with($notification);

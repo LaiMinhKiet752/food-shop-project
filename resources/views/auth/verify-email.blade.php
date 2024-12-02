@@ -7,7 +7,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> Xác thực Email
         </div>
     </div>
@@ -29,7 +29,7 @@
                             <div class="padding_eight_all bg-white">
                                 @if (session('status') == 'verification-link-sent')
                                     <div class="alert alert-success" role="alert">
-                                        {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+                                        {{ __('Một liên kết xác minh mới đã được gửi đến địa chỉ email mà bạn cung cấp khi đăng ký.') }}
                                     </div>
                                 @endif
                                 <form method="POST" action="{{ route('verification.send') }}">

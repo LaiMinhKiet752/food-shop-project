@@ -10,7 +10,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> Đăng ký tài khoản
         </div>
     </div>
@@ -153,11 +153,11 @@
                     email: 'Vui lòng nhập email hợp lệ.',
                 },
                 password: {
-                    required: 'Please enter your password.',
+                    required: 'Vui lòng nhập mật khẩu.',
                     minlength: ''
                 },
                 password_confirmation: {
-                    required: 'Please enter your confirmation password.',
+                    required: 'Vui lòng nhập lại mật khẩu mới.',
                     equalTo: 'The confirmation password must be the same as the password.',
                 },
                 captcha_code: {
@@ -181,7 +181,7 @@
                     .test(
                         value);
             },
-            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
+            "Mật khẩu của bạn phải dài từ 8 đến 16 ký tự, phải chứa ít nhất 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt."
         );
     });
 </script>

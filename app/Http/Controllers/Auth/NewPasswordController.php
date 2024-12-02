@@ -50,7 +50,7 @@ class NewPasswordController extends Controller
             }
         );
         $notification = array(
-            'message' => 'Password Changed Successfully!',
+            'message' => 'Mật khẩu đã được thay đổi thành công!',
             'alert-type' => 'success'
         );
 

@@ -293,8 +293,8 @@
             },
             messages: {
                 comment: {
-                    required: 'Please enter your comment.',
-                    maxlength: 'Comments cannot be longer than 500 characters.',
+                    required: 'Vui lòng nhập nội dung bình luận.',
+                    maxlength: 'Nội dung không thể dài hơn 500 ký tự.',
                 },
             },
             errorElement: 'span',

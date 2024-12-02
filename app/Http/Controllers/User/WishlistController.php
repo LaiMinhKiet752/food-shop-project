@@ -20,12 +20,12 @@ class WishlistController extends Controller
                     'product_id' => $product_id,
                     'created_at' => Carbon::now(),
                 ]);
-                return response()->json(['success' => 'Successfully Added The Product To Your Wishlist!']);
+                return response()->json(['success' => 'Đã thêm sản phẩm vào danh sách yêu thích!']);
             } else {
-                return response()->json(['error' => 'This Product Is Already On Your Wishlist!']);
+                return response()->json(['error' => 'Sản phẩm đã nằm trong danh sách yêu thích!']);
             }
         } else {
-            return response()->json(['error' => 'Please Login Before Adding Products To Wishlist!']);
+            return response()->json(['error' => 'Vui lòng đăng nhập để có thể yêu thích sản phẩm!']);
         }
     } //End Method
 
@@ -48,7 +48,7 @@ class WishlistController extends Controller
     {
         Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
         return response()->json([
-            'success' => 'Product Successfully Removed From Wishlist!'
+            'success' => 'Đã xóa sản phẩm khỏi danh sách yêu thích!'
         ]);
     } //End Method
 }

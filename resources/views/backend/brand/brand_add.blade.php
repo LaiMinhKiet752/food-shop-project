@@ -177,10 +177,10 @@
                     email: 'The brand email must be a valid email address.',
                 },
                 brand_phone: {
-                    required: 'Please enter your phone number.',
-                    minlength: 'Please enter 10 numeric characters correctly.',
-                    maxlength: 'Please enter 10 numeric characters correctly.',
-                    digits: 'Please enter 10 numeric characters correctly.',
+                    required: 'Vui lòng nhập số điện thoại.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
                 },
                 brand_address: {
                     required: 'Please enter brand address.',

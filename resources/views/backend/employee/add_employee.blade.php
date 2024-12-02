@@ -253,22 +253,22 @@
                 },
                 employee_name: {
                     required: 'Please enter full name.',
-                    maxlength: 'The Full Name must not be greater than 255 characters.',
+                    maxlength: 'Họ và tên không thể dài hơn 255 ký tự.',
                 },
                 employee_email: {
                     required: 'Please enter email.',
-                    maxlength: 'The email must not be greater than 255 characters.',
+                    maxlength: 'Emal không thể dài hơn 255 ký tự.',
                     email: 'Vui lòng nhập email hợp lệ.',
                 },
                 employee_phone: {
-                    required: 'Please enter your phone number.',
-                    minlength: 'Please enter 10 numeric characters correctly.',
-                    maxlength: 'Please enter 10 numeric characters correctly.',
-                    digits: 'Please enter 10 numeric characters correctly.',
+                    required: 'Vui lòng nhập số điện thoại.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
+                    minlength: 'Vui lòng nhập đúng 10 ký tự số.',
                 },
                 employee_address: {
-                    required: 'Please enter your address.',
-                    maxlength: 'The address must not be greater than 255 characters.',
+                    digits: 'Vui lòng chỉ nhập địa chỉ.',
+                    maxlength: 'Địa chỉ không được lớn hơn 255 ký tự.',
                 },
                 employee_photo: {
                     required: 'Please select an image.',

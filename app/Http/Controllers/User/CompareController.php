@@ -20,12 +20,12 @@ class CompareController extends Controller
                     'product_id' => $product_id,
                     'created_at' => Carbon::now(),
                 ]);
-                return response()->json(['success' => 'Successfully Add The Product To Your Comparison List!']);
+                return response()->json(['success' => 'Đã thêm sản phẩm vào danh sách so sánh!']);
             } else {
-                return response()->json(['error' => 'This Product Is Already On Your Comparison List!']);
+                return response()->json(['error' => 'Sản phẩm đã nằm trong danh sách so sánh!']);
             }
         } else {
-            return response()->json(['error' => 'Please Login Before Adding Products To List Compare!']);
+            return response()->json(['error' => 'Vui lòng đăng nhập để có thể so sánh sản phẩm!']);
         }
     } //End Method
 
@@ -48,7 +48,7 @@ class CompareController extends Controller
     {
         Compare::where('user_id', Auth::id())->where('id', $id)->delete();
         return response()->json([
-            'success' => 'Product Successfully Removed From Comparison List!'
+            'success' => 'Đã xóa sản phẩm khỏi danh sách so sánh!'
         ]);
     } //End Method
 }

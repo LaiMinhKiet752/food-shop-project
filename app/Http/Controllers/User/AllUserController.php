@@ -74,7 +74,7 @@ class AllUserController extends Controller
         Notification::send($all_admin_user, new ReturnOrderNotification($request));
 
         $notification = array(
-            'message' => 'Submit Order Return Request Successfully!',
+            'message' => 'Gửi yêu cầu trả hàng thành công!',
             'alert-type' => 'success',
         );
         return redirect()->route('user.order.page')->with($notification);
@@ -102,17 +102,17 @@ class AllUserController extends Controller
         ]);
         $order = Order::where('id', $order_id)->first();
         //Mail To Customer
-        $subject = 'Order has been canceled successfully';
+        $subject = 'Đơn hàng đã được hủy thành công';
 
-        $message = 'If you need assistance please contact us via: <br>';
-        $message .= 'Call the hotline number: 1900 999 <br>';
-        $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards, <br>';
+        $message = 'Nếu bạn cần hỗ trợ vui lòng liên hệ với chúng tôi qua: <br>';
+        $message .= 'Gọi đến hotline: 1900 999 <br>';
+        $message .= 'Hoặc gửi email đến địa chỉ: support.nestshop@gmail.com <br>';
+        $message .= 'Trân trọng, <br>';
 
         Mail::to($order->email)->send(new CancelOrder($subject, $message, $order));
 
         $notification = array(
-            'message' => 'Order Canceled Successfully!!',
+            'message' => 'Đã hủy đơn hàng thành công!',
             'alert-type' => 'success'
         );
 

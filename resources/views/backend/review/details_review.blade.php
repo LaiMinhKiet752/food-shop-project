@@ -113,9 +113,9 @@
     function submitApproveReview(e) {
         e.preventDefault();
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
+            title: "Bạn chắc chứ?",
+            text: "Bạn sẽ không thể hoàn tác lại!",
+            icon: "warning",
             showCancelButton: true,
             timer: 5000,
             timerProgressBar: true,

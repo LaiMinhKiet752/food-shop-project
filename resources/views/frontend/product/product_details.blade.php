@@ -783,8 +783,8 @@
             },
             messages: {
                 comment: {
-                    required: 'Please enter your review of the product.',
-                    maxlength: 'Your product review cannot be longer than 500 characters.',
+                    required: 'Vui lòng nhập nội dung để đánh giá.',
+                    maxlength: 'Nội dung đánh giá không được vượt quá 500 ký tự.',
                 },
             },
             errorElement: 'span',

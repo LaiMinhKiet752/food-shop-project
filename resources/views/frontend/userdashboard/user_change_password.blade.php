@@ -103,15 +103,15 @@
             },
             messages: {
                 old_password: {
-                    required: 'Please enter your old password.',
+                    required: 'Vui lòng nhập mật khẩu cũ.',
                 },
                 new_password: {
-                    required: 'Please enter your new password.',
+                    required: 'Vui lòng nhập mật khẩu mới.',
                     minlength: ''
                 },
                 new_password_confirmation: {
-                    required: 'Please enter your confirmation password.',
-                    equalTo: 'The confirmation password must be the same as the new password.',
+                    required: 'Vui lòng nhập lại mật khẩu mới.',
+                    equalTo: 'Mật khẩu xác nhận phải giống với mật khẩu mới.',
                 },
             },
             errorElement: 'span',
@@ -131,7 +131,7 @@
                     .test(
                         value);
             },
-            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
+            "Mật khẩu của bạn phải dài từ 8 đến 16 ký tự, phải chứa ít nhất 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt."
         );
     });
 </script>

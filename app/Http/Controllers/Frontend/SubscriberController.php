@@ -20,14 +20,14 @@ class SubscriberController extends Controller
         $request->validate([
             'email' => 'required|email',
         ], [
-            'email.required' => 'Please enter your email address.',
-            'email.email' => 'The email must be a valid email address.',
+            'email.required' => 'Vui lòng nhập email.',
+            'email.email' => 'Địa chỉ email phải là địa chỉ email hợp lệ.',
         ]);
         $request_email = $request->email;
         $exists = Subscriber::where('email', $request->email)->first();
         if ($exists) {
             $notification = array(
-                'message' => 'This Email Is Already Registered!',
+                'message' => 'Email này đã được đăng ký nhận tin!',
                 'alert-type' => 'warning',
             );
             return redirect()->back()->with($notification);
@@ -42,7 +42,7 @@ class SubscriberController extends Controller
                 $subscriber->status = 'active';
                 $subscriber->save();
                 $notification = array(
-                    'message' => 'Successfully Become A Subscriber!',
+                    'message' => 'Trở thành người đăng ký thành công!',
                     'alert-type' => 'success',
                 );
                 return redirect()->to('/')->with($notification);
@@ -55,13 +55,13 @@ class SubscriberController extends Controller
                 $subscriber->save();
 
                 //Send email
-                $subject = 'Email Verification';
+                $subject = 'Xác minh Email';
                 $verification_link = url('subscriber/verify/' . $token . '/' . $request->email);
-                $message = 'Please click on the following link in order to verify as subscriber. <br>';
+                $message = 'Vui lòng nhấp vào liên kết sau để xác minh là người đăng ký. <br>';
                 Mail::to($request->email)->send(new SubscriberVerify($subject, $message, $verification_link));
 
                 $notification = array(
-                    'message' => 'Please Check Your Email To Verify As Subscriber!',
+                    'message' => 'Vui lòng kiểm tra email của bạn để xác minh bạn là người đăng ký!',
                     'alert-type' => 'success',
                 );
                 return redirect()->to('/')->with($notification);
@@ -75,13 +75,13 @@ class SubscriberController extends Controller
             $subscriber->save();
 
             //Send email
-            $subject = 'Email Verification';
+            $subject = 'Xác minh Email';
             $verification_link = url('subscriber/verify/' . $token . '/' . $request->email);
-            $message = 'Please click on the following link in order to verify as subscriber. <br>';
+            $message = 'Vui lòng nhấp vào liên kết sau để xác minh là người đăng ký. <br>';
             Mail::to($request->email)->send(new SubscriberVerify($subject, $message, $verification_link));
 
             $notification = array(
-                'message' => 'Please Check Your Email To Verify As Subscriber!',
+                'message' => 'Vui lòng kiểm tra email của bạn để xác minh bạn là người đăng ký!',
                 'alert-type' => 'success',
             );
             return redirect()->to('/')->with($notification);
@@ -99,13 +99,13 @@ class SubscriberController extends Controller
             //Notification To Admin
             Notification::send($all_admin_user, new NewSubscriberNotification($subscriber_data->email));
             $notification = array(
-                'message' => 'You Are Successfully Verified As A Subscriber To This Website!',
+                'message' => 'Bạn đã được xác minh thành công là người đăng ký của trang web này!',
                 'alert-type' => 'success',
             );
             return redirect()->to('/')->with($notification);
         } else {
             $notification = array(
-                'message' => 'An Error Occurred, Please Try Again Later!',
+                'message' => 'Đã xảy ra lỗi, vui lòng thử lại sau!',
                 'alert-type' => 'error',
             );
             return redirect()->to('/')->with($notification);

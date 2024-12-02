@@ -36,8 +36,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ], [
             'username.unique' => 'The user name already exists. Please enter another user name.',
-            'email.unique' => 'The email already exists. Please enter another email.',
-            'phone.unique' => 'The phone number already exists. Please enter another phone number.'
+            'email.unique' => 'Email đã tồn tại. Vui lòng nhập một email khác.',
+            'phone.unique' => 'Số điện thoại đã tồn tại. Vui lòng nhập số điện thoại khác.'
         ]);
 
         $user = User::create([

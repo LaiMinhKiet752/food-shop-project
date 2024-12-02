@@ -10,7 +10,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+            <a href="{{ url('/') }}" rel="nofollow"><i class="fi-rs-home mr-5"></i>Trang chủ</a>
             <span></span> Đặt lại mật khẩu
         </div>
     </div>
@@ -94,12 +94,12 @@
             },
             messages: {
                 password: {
-                    required: 'Please enter your password.',
+                    required: 'Vui lòng nhập mật khẩu.',
                     minlength: ''
                 },
                 password_confirmation: {
-                    required: 'Please enter your confirmation password.',
-                    equalTo: 'Confirm password must be same as new password.',
+                    required: 'Vui lòng nhập lại mật khẩu mới.',
+                    equalTo: 'Mật khẩu xác nhận phải giống với mật khẩu mới.',
                 },
             },
             errorElement: 'span',
@@ -119,7 +119,7 @@
                     .test(
                         value);
             },
-            "Your password must be between 8 and 16 characters long, must contain at least 1 Uppercase Letter, 1 Lowercase Letter, 1 Number and 1 Special Character."
+            "Mật khẩu của bạn phải dài từ 8 đến 16 ký tự, phải chứa ít nhất 1 chữ cái viết hoa, 1 chữ cái viết thường, 1 chữ số và 1 ký tự đặc biệt."
         );
     });
 </script>

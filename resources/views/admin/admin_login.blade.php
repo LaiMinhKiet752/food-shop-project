@@ -156,7 +156,7 @@
                         required: 'Please enter your username or email.',
                     },
                     password: {
-                        required: 'Please enter your password.',
+                        required: 'Vui lòng nhập mật khẩu.',
                     },
                 },
                 errorElement: 'span',
