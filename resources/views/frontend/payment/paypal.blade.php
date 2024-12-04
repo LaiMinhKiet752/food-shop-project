@@ -35,7 +35,8 @@
                                         <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, '.', ',') }}đ
+                                        </h4>
                                     </td>
                                 </tr>
 
@@ -55,7 +56,8 @@
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">
-                                            ${{ session()->get('coupon')['discount_amount'] }}</h4>
+                                            {{ number_format(session()->get('coupon')['discount_amount'], 0, '.', ',') }}đ
+                                        </h4>
                                     </td>
                                 </tr>
 
@@ -64,7 +66,7 @@
                                         <h6 class="text-muted">Phí Ship</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$0</h4>
+                                        <h4 class="text-brand text-end">0đ</h4>
                                     </td>
                                 </tr>
 
@@ -73,7 +75,8 @@
                                         <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">${{ session()->get('coupon')['total_amount'] }}
+                                        <h4 class="text-brand text-end">
+                                            {{ number_format(session()->get('coupon')['total_amount'], 0, '.', ',') }}đ
                                         </h4>
                                     </td>
                                 </tr>
@@ -83,7 +86,7 @@
                                         <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, '.', ',') }}đ</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -91,7 +94,7 @@
                                         <h6 class="text-muted">Giảm</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$0</h4>
+                                        <h4 class="text-brand text-end">0đ</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -99,7 +102,7 @@
                                         <h6 class="text-muted">Phí Ship</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$0</h4>
+                                        <h4 class="text-brand text-end">0đ</h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -107,7 +110,7 @@
                                         <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">${{ $cartTotal }}</h4>
+                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, '.', ',') }}đ</h4>
                                     </td>
                                 </tr>
                             @endif

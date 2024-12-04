@@ -1,5 +1,5 @@
 <x-mail::message>
-# RESET PASSWORD
+# Đặt lại mật khẩu
 
 {!! $body !!}
 
@@ -7,6 +7,6 @@
 Click here
 </x-mail::button>
 
-Thanks,<br>
+Trân trọng,<br>
 {{ config('app.name') }}
 </x-mail::message>

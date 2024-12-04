@@ -12,10 +12,10 @@
                     <div class="single-hero-slider single-animation-wrap"
                         style="background-image: url({{ asset($item->slider_image) }})">
                         <div class="slider-content">
-                            <h1 class="display-2 mb-40" style="font-size: 45px;">
+                            {{-- <h1 class="display-2 mb-40" style="font-size: 45px;">
                                 {{ $item->slider_title }}
                             </h1>
-                            <p class="mb-65">{{ $item->short_title }}</p>
+                            <p class="mb-65">{{ $item->short_title }}</p> --}}
                             {{-- <form class="form-subcriber d-flex">
                                 <input type="email" placeholder="Your emaill address" />
                                 <button class="btn" type="submit">Subscribe</button>

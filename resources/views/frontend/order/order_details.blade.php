@@ -185,30 +185,29 @@
                             <div class="col-md-12">
                                 <div class="track">
                                     @if ($order->status == 'pending' && $order->cancel_order_status == 0)
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span> <span class="text">
+                                        <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span>
+                                            <span class="text">
                                                 Đã xác nhận</span> </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Đang xử lý </span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span>
+                                            <span class="text">Đang xử lý </span> </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Đã giao hàng </span> </div>
-                                    @elseif(
-                                        $order->status == 'pending' &&
-                                            $order->confirmed_date == null &&
-                                            $order->cancel_order_status == 1)
+                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
+                                            <span class="text">Đã giao hàng </span> </div>
+                                    @elseif($order->status == 'pending' && $order->confirmed_date == null && $order->cancel_order_status == 1)
                                         @php
                                             $cancel_date = strtotime($order->cancel_date);
                                             $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
-                                        <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-rectangle-xmark"></i>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active cancel"> <span class="icon"> <i
+                                                    class="fa-solid fa-rectangle-xmark"></i>
                                             </span> <span class="text">
-                                                Hủy đơn</span>
+                                                Đã hủy</span>
                                             Ngày: {{ $cancel_date_format }}
                                         </div>
                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 0)
@@ -216,20 +215,20 @@
                                             $confirmed_date = strtotime($order->confirmed_date);
                                             $confirmed_date_format = date('d-m-Y H:i:s', $confirmed_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                                                class="text">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
+                                            </span> <span class="text">
                                                 Đã xác nhận</span>
                                             Ngày: {{ $confirmed_date_format }}
                                         </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Đang xử lý </span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span>
+                                            <span class="text">Đang xử lý </span> </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Đã giao hàng </span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
+                                            <span class="text">Đã giao hàng </span> </div>
                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -238,17 +237,18 @@
                                             $cancel_date = strtotime($order->cancel_date);
                                             $cancel_date_format = date('d-m-Y H:i:s', $cancel_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                                                class="text">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
+                                            </span> <span class="text">
                                                 Đã xác nhận</span>
                                             Ngày: {{ $confirmed_date_format }}
                                         </div>
-                                        <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-rectangle-xmark"></i>
+                                        <div class="step active cancel"> <span class="icon"> <i
+                                                    class="fa-solid fa-rectangle-xmark"></i>
                                             </span> <span class="text">
-                                                Hủy đơn</span>
+                                                Đã hủy</span>
                                             Ngày: {{ $cancel_date_format }}
                                         </div>
                                     @elseif($order->status == 'processing')
@@ -259,22 +259,22 @@
                                             $processing_date = strtotime($order->processing_date);
                                             $processing_date_format = date('d-m-Y H:i:s', $processing_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                                                class="text">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
+                                            </span> <span class="text">
                                                 Đã xác nhận</span>
                                             Ngày: {{ $confirmed_date_format }}
                                         </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Đang xử lý </span>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i>
+                                            </span> <span class="text">Đang xử lý </span>
                                             Ngày: {{ $processing_date_format }}
                                         </div>
 
-                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Đã giao hàng </span> </div>
+                                        <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
+                                            <span class="text">Đã giao hàng </span> </div>
                                     @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -286,22 +286,22 @@
                                             $delivered_date = strtotime($order->delivered_date);
                                             $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                                                class="text">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
+                                            </span> <span class="text">
                                                 Đã xác nhận</span>
                                             Ngày: {{ $confirmed_date_format }}
                                         </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Đang xử lý </span>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i>
+                                            </span> <span class="text">Đang xử lý </span>
                                             Ngày: {{ $processing_date_format }}
                                         </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Đã giao hàng </span>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-box"></i>
+                                            </span> <span class="text">Đã giao hàng </span>
                                             Ngày: {{ $delivered_date_format }}
                                         </div>
                                     @elseif($order->status == 'delivered' && ($order->return_order_status == 1 || $order->return_order_status == 2))
@@ -318,26 +318,27 @@
                                             $return_date = strtotime($order->return_date);
                                             $return_date_format = date('d-m-Y H:i:s', $return_date);
                                         @endphp
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span
-                                                class="text">Chờ xác nhận</span> </div>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-check"></i>
+                                            </span> <span class="text">Chờ xác nhận</span> </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i> </span> <span
-                                                class="text">
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-user"></i>
+                                            </span> <span class="text">
                                                 Đã xác nhận</span>
                                             Ngày: {{ $confirmed_date_format }}
                                         </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span
-                                                class="text">Đang xử lý </span>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-truck"></i>
+                                            </span> <span class="text">Đang xử lý </span>
                                             Ngày: {{ $processing_date_format }}
                                         </div>
 
-                                        <div class="step active"> <span class="icon"> <i class="fa fa-box"></i> </span> <span
-                                                class="text">Đã giao hàng </span>
+                                        <div class="step active"> <span class="icon"> <i class="fa fa-box"></i>
+                                            </span> <span class="text">Đã giao hàng </span>
                                             Ngày: {{ $delivered_date_format }}
                                         </div>
 
-                                        <div class="step active cancel"> <span class="icon"> <i class="fa-solid fa-arrow-rotate-left"></i>
+                                        <div class="step active cancel"> <span class="icon"> <i
+                                                    class="fa-solid fa-arrow-rotate-left"></i>
                                             </span> <span class="text">
                                                 Trả hàng</span>
                                             Ngày: {{ $return_date_format }}
@@ -386,7 +387,8 @@
                                                 <h4>Chi tiết đơn hàng</h4>
                                             </div>
                                             <div class="col-md-6">
-                                                <span style="font-weight: bold; font-size: 18px; color: red;">Số hóa đơn :
+                                                <span style="font-weight: bold; font-size: 18px; color: red;">Số hóa
+                                                    đơn :
                                                     {{ $order->invoice_number }}</span>
                                             </div>
                                         </div>
@@ -463,7 +465,8 @@
                                                 <form action="{{ route('user.cancel.order.submit') }}" method="post"
                                                     id="SubmitFormCancelOrder">
                                                     @csrf
-                                                    <input type="hidden" name="order_id" value="{{ $order->id }}">
+                                                    <input type="hidden" name="order_id"
+                                                        value="{{ $order->id }}">
                                                     <tr>
                                                         <th>Hành động :</th>
                                                         <th>
@@ -485,7 +488,10 @@
         </div>
     </div>
 </div>
-
+<div class="container">
+    <h2>Thông tin các sản phẩm có trong đơn hàng:</h2>
+    <br>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -564,12 +570,13 @@
                     @csrf
                     <div class="form-group"
                         style="font-weight: 600; font-size: initial; color: #000000; margin-top: 20px;">
-                        <label class="form-group">Vui lòng nhập lí do trả hàng<span class="text-danger"> * </span></label>
-                        <textarea name="return_reason" class="form-control" placeholder="Nhập lí do..."
-                            style="height: 100px;"></textarea>
+                        <label class="form-group">Vui lòng nhập lí do trả hàng<span class="text-danger"> *
+                            </span></label>
+                        <textarea name="return_reason" class="form-control" placeholder="Nhập lí do..." style="height: 100px;"></textarea>
                     </div>
                     <button type="submit" class="btn-sm"
-                        style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Xác nhận</button>
+                        style="max-width: 10%; margin-left: 10px; margin-top: 20px; margin-bottom: 20px;">Xác
+                        nhận</button>
                 </form>
             @else
                 <h5><span style="color: red;">Bạn đã gửi yêu cầu hoàn trả lại đơn hàng này rồi!</span>

@@ -1,20 +1,20 @@
 <x-mail::message>
-# Order has been returned at your request
+# Đơn hàng đã được trả lại theo yêu cầu của bạn
 
 <x-mail::table>
 
-| <strong style="font-size: 30px;">Invoice Number:  {{ $order->invoice_number }}</strong>|
+| <strong style="font-size: 30px;">Số hóa đơn:  {{ $order->invoice_number }}</strong>|
 | ------------------------------------------------------------                           |
-| Full Name: {{ $order->name }}                                                          |
+| Họ và tên: {{ $order->name }}                                                          |
 | Email: {{ $order->email }}                                                             |
-| Phone Number: {{ $order->phone }}                                                      |
-| Address: {{ $order->address }}                                                         |
-| Payment Method: {{ $order->payment_method }}                                           |
-| Payment Type: {{ $order->payment_type }}                                               |
-| Total: ${{ $order->amount }}                                                           |
-| Order Date: {{ $order->order_date->format("d-m-Y H:i:s") }}                            |
-| Return Date: {{ $order->return_date }}                                                 |
-| Return Reason: {{ $order->return_reason }}                                                 |
+| Số điện thoại: {{ $order->phone }}                                                     |
+| Địa chỉ: {{ $order->address }}                                                         |
+| Phương thức thanh toán: {{ $order->payment_method }}                                   |
+| Loại thanh toán: {{ $order->payment_type }}                                            |
+| Tổng tiền: ${{ $order->amount }}                                                       |
+| Ngày đặt hàng: {{ $order->order_date->format("d-m-Y H:i:s") }}                         |
+| Ngày trả hàng: {{ $order->return_date }}                                               |
+| Lí do: {{ $order->return_reason }}                                                     |
 </x-mail::table>
 
 {!! $body !!}

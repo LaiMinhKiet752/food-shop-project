@@ -91,14 +91,14 @@
                                 @endphp
                                 @if ($product->discount_price == null)
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">${{ $product->selling_price }}</span>
+                                        <span class="current-price text-brand">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                     </div>
                                 @else
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">${{ $product->discount_price }}</span>
+                                        <span class="current-price text-brand">{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
                                         <span>
                                             <span class="save-price font-md color3 ml-15"> Giảm {{ round($discount) }}%</span>
-                                            <span class="old-price font-md ml-15">${{ $product->selling_price }}</span>
+                                            <span class="old-price font-md ml-15">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                         </span>
                                     </div>
                                 @endif
@@ -152,7 +152,7 @@
                                             rel="tag">{{ $product->product_tags }}</a></li>
                                     @if ($product->manufacturing_date == null)
                                     @else
-                                        <li class="mb-5">NGÀY SX: <span
+                                        <li class="mb-5">NGÀY SẢN XUẤT: <span
                                                 class="text-brand">{{ date('d-m-Y', strtotime($product->manufacturing_date)) }}</span>
                                         </li>
                                     @endif
@@ -673,13 +673,13 @@
                                             <div class="product-card-bottom">
                                                 @if ($product->discount_price == null)
                                                     <div class="product-price">
-                                                        <span>${{ $product->selling_price }}</span>
+                                                        <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
 
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span>${{ $product->discount_price }}</span>
-                                                        <span class="old-price">${{ $product->selling_price }}</span>
+                                                        <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
+                                                        <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                                     </div>
                                                 @endif
                                                 <div class="add-cart">
@@ -690,7 +690,7 @@
                                                         value="{{ $product->product_name }}">
                                                     <input type="hidden" class="related_brand_id"
                                                         value="{{ $product->brand_id }}">
-                                                    <a class="add RelatedProductAddToCart" type="submit"><i
+                                                    <a class="add RelatedProductAddToCart" type="submit" style="padding: 4px 15px 4px 15px;"><i
                                                             class="fi-rs-shopping-cart mr-5"></i>Mua </a>
                                                 </div>
                                             </div>

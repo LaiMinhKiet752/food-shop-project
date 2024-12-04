@@ -236,13 +236,13 @@
 
                                     @if ($product->discount_price == null)
                                         <div class="product-price">
-                                            <span>${{ $product->selling_price }}</span>
-
+                                            <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>${{ $product->discount_price }}</span>
-                                            <span class="old-price">${{ $product->selling_price }}</span>
+                                            <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
+                                            <span
+                                                class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                         </div>
                                     @endif
 
@@ -253,7 +253,7 @@
                                             value="{{ $product->product_name }}">
                                         <input type="hidden" class="subcategory_view_brand_id"
                                             value="{{ $product->brand_id }}">
-                                        <a class="add SubCategoryProductAddToCart" type="submit"><i
+                                        <a class="add SubCategoryProductAddToCart" type="submit" style="padding: 4px 15px 4px 15px; top: 20%;"><i
                                                 class="fi-rs-shopping-cart mr-5"></i>Mua </a>
                                     </div>
                                 </div>
@@ -307,9 +307,11 @@
                             </p>
 
                             @if ($product->discount_price == null)
-                                <p class="price mb-0 mt-5">${{ $product->selling_price }}</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, '.', ',') }}đ
+                                </p>
                             @else
-                                <p class="price mb-0 mt-5">${{ $product->discount_price }}</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, '.', ',') }}đ
+                                </p>
                             @endif
 
 
@@ -400,7 +402,7 @@
                     </div>
                 @endforeach
             </div>
-            
+
         </div>
     </div>
 </div>

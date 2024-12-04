@@ -45,7 +45,7 @@
                                 <div class="mb-3 text-dark">
                                     <label for="inputProductTitle" class="form-label">Product Tags </label>
                                     <input type="text" name="product_tags" class="form-control visually-hidden"
-                                        data-role="tagsinput" value="new product">
+                                        data-role="tagsinput" value="sản phẩm mới">
                                 </div>
 
                                 <div class="row g-3 text-dark">

@@ -176,12 +176,12 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $product->selling_price }}</span>
+                                                    <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                                 </div>
                                             @else
                                                 <div class="product-price mt-10">
-                                                    <span>${{ $product->discount_price }}</span>
-                                                    <span class="old-price">${{ $product->selling_price }}</span>
+                                                    <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
+                                                    <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
                                                 </div>
                                             @endif
                                             <div class="sold mt-15 mb-15">

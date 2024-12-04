@@ -144,10 +144,10 @@
                 <div class="footer-link-widget col wow animate__animated animate__fadeInUp" data-wow-delay=".2s">
                     <h4 class="widget-title">Account</h4>
                     <ul class="footer-list mb-sm-5 mb-md-0">
-                        <li><a href="#">Đăng nhập</a></li>
-                        <li><a href="#">Đăng ký</a></li>
-                        <li><a href="#">Yêu thích</a></li>
-                        <li><a href="#">So sánh</a></li>
+                        <li><a href="{{ route('login') }}">Đăng nhập</a></li>
+                        <li><a href="{{ route('register') }}">Đăng ký</a></li>
+                        <li><a href="{{ route('wishlist') }}">Yêu thích</a></li>
+                        <li><a href="{{ route('compare') }}">So sánh</a></li>
                     </ul>
                 </div>
 

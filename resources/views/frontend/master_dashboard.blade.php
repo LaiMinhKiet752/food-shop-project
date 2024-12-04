@@ -392,12 +392,16 @@
                 url: '/product/mini/cart',
                 dataType: 'json',
                 success: function(response) {
-                    // console.log(response)
+                    var formattedTotal = parseInt(response.cartTotal).toLocaleString('vi-VN').replace(/\./g,
+                        ',');
+
                     $('#cartQty').text(response.cartQty);
-                    $('span[id="cartSubTotal"]').text('$' + response.cartTotal);
+                    $('span[id="cartSubTotal"]').text(formattedTotal + 'đ');
 
                     var miniCart = "";
                     $.each(response.carts, function(key, value) {
+                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN').replace(
+                            /\./g, ',');
                         miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
@@ -405,7 +409,7 @@
                                         </div>
                                         <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                                             <h4><a href="shop-product-right.html"> ${value.name} </a></h4>
-                                            <h4><span>${value.qty} × </span>$${value.price}</h4>
+                                            <h4><span>${value.qty} × </span>${formattedPrice}đ</h4>
                                         </div>
                                         <div class="shopping-cart-delete" style="margin: -85px 1px 0px;">
                                             <a type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fi-rs-cross-small"></i></a>
@@ -717,6 +721,11 @@
                     var rows = "";
                     $('#mycartQty').text(response.cartQty);
                     $.each(response.carts, function(key, value) {
+                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN').replace(
+                            /\./g, ',');
+                        var formattedSubtotal = parseInt(value.subtotal).toLocaleString('vi-VN')
+                            .replace(/\./g, ',');
+
                         rows += `<tr class="pt-30">
                                 <td class="custome-checkbox pl-30">
                                 </td>
@@ -727,7 +736,7 @@
                                             href="#">${value.name}</a></h6>
                                 </td>
                                 <td class="price" data-title="Price">
-                                    <h4 class="text-body">$${value.price} </h4>
+                                    <h4 class="text-body">${formattedPrice}đ</h4>
                                 </td>
                                 <td class="text-center detail-info" data-title="Stock">
                                     <div class="detail-extralink mr-15">
@@ -744,7 +753,7 @@
                                     </div>
                                 </td>
                                 <td class="price" data-title="Price">
-                                    <h4 class="text-brand">$${value.subtotal} </h4>
+                                    <h4 class="text-brand">${formattedSubtotal}đ</h4>
                                 </td>
                                 <td class="action text-center" data-title="Remove"><a type="submit" id="${value.rowId}" onclick = "cartRemove(this.id)" class="text-body"><i
                                             class="fi-rs-trash"></i></a></td>
@@ -884,6 +893,13 @@
                 url: "/coupon-calculation",
                 dataType: 'json',
                 success: function(data) {
+                    var formattedTotal = parseInt(data.total).toLocaleString('vi-VN').replace(/\./g, ',');
+                    var formattedSubtotal = parseInt(data.subtotal).toLocaleString('vi-VN').replace(/\./g, ',');
+                    var formattedDiscountAmount = parseInt(data.discount_amount).toLocaleString('vi-VN')
+                        .replace(/\./g, ',');
+                    var formattedTotalAmount = parseInt(data.total_amount).toLocaleString('vi-VN').replace(
+                        /\./g, ',');
+
                     if (data.total) {
                         $('#couponCalField').html(
                             `<tr>
@@ -891,7 +907,7 @@
                                         <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$${data.total}</h4>
+                                        <h4 class="text-brand text-end">${formattedTotal}đ</h4>
                                     </td>
                                         </tr>
 
@@ -900,7 +916,7 @@
                                         <h6 class="text-muted">Tổng tiền</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$${data.total}</h4>
+                                        <h4 class="text-brand text-end">${formattedTotal}đ</h4>
                                     </td>
                                 </tr>`)
                     } else {
@@ -910,7 +926,7 @@
                                             <h6 class="text-muted">Tạm tính</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">$${data.subtotal}</h4>
+                                            <h4 class="text-brand text-end">${formattedSubtotal}đ</h4>
                                         </td>
                                     </tr>
 
@@ -927,7 +943,7 @@
                                             <h6 class="text-muted">Giảm </h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">$${data.discount_amount}</h4>
+                                        <h4 class="text-brand text-end">${formattedDiscountAmount}đ</h4>
                                         </td>
                                     </tr>
                                     <tr>
@@ -935,7 +951,7 @@
                                             <h6 class="text-muted">Tổng tiền </h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                    <h4 class="text-brand text-end">$${data.total_amount}</h4>
+                                    <h4 class="text-brand text-end">${formattedTotalAmount}đ</h4>
                                         </td>
                                     </tr> `)
                     }

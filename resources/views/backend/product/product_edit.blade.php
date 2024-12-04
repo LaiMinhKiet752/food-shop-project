@@ -147,7 +147,7 @@
                                     <div class="form-group col-12 text-dark">
                                         <label for="inputProductType" class="form-label">Select Supplier <span
                                                 class="text-danger">*</span></label>
-                                        <select name="brand_id" class="form-control form-select single-select">
+                                        <select name="supplier_id" class="form-control form-select single-select">
                                             <option></option>
                                             @foreach ($suppliers as $supplier)
                                                 <option

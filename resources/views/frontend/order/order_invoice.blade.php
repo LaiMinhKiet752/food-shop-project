@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Invoice</title>
+    <title>Hóa đơn</title>
     <style type="text/css">
         * {
             font-family: Verdana, Arial, sans-serif;

@@ -22,7 +22,7 @@
                         @php
                             $product = \App\Models\Product::where('category_id',$category->id)->get();
                         @endphp
-                        <span>{{ count($product) }} items</span>
+                        <span>{{ count($product) }} sản phẩm</span>
                     </div>
                 @endforeach
             </div>
