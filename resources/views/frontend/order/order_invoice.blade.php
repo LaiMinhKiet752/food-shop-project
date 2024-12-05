@@ -7,7 +7,7 @@
     <title>Hóa đơn</title>
     <style type="text/css">
         * {
-            font-family: Verdana, Arial, sans-serif;
+            font-family: Roboto;
         }
 
         table {
@@ -55,12 +55,11 @@
         <tr>
             <td valign="top">
                 <img src="{{ public_path('/upload/logo.png') }}" alt="" style="width: 200px; height: 70px;" />
-                <h2 style="color: green; font-size: 26px;"><strong>Nest Shop</strong></h2>
+                <h2 style="color: green; font-size: 26px;"><strong>Bảo Linh</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               Nest Shop Head Office
-               Address: Ho Chi Minh city, Viet Nam
+               Địa chỉ: 10 Lê Lai, Quận 1, Thành phố Hồ Chí Minh
                Hotline: 1900 900
             </pre>
             </td>
@@ -72,11 +71,11 @@
         <tr>
             <td>
                 <p class="font" style="margin-left: 20px;">
-                    <strong>Full Name: </strong> {{ $order->name }}<br>
+                    <strong>Họ và tên: </strong> {{ $order->name }}<br>
                     <strong>Email: </strong> {{ $order->email }}<br>
-                    <strong>Phone Number: </strong> {{ $order->phone }} <br>
-                    <strong>Address: </strong> {{ $order->address }} <br>
-                    <strong>Postal Code: </strong> {{ $order->post_code }}
+                    <strong>Số điện thoại: </strong> {{ $order->phone }} <br>
+                    <strong>Địa chỉ: </strong> {{ $order->address }} <br>
+                    <strong>Mã bưu điện: </strong> {{ $order->post_code }}
                 </p>
             </td>
             <td>
@@ -89,13 +88,13 @@
                     $delivered_date = strtotime($order->delivered_date);
                     $delivered_date_format = date('d-m-Y H:i:s', $delivered_date);
                 @endphp
-                <strong>Order Date: </strong> {{ $order_date_format }}<br>
+                <strong>Ngày đặt: </strong> {{ $order_date_format }}<br>
                 @if ($order->status == 'delivered' && $order->return_order_status == 0)
-                    <strong>Delivery Date: </strong> {{ $delivered_date_format }}<br>
+                    <strong>Ngày giao: </strong> {{ $delivered_date_format }}<br>
                 @endif
-                <strong>Payment Type: </strong> {{ $order->payment_type }}<br>
-                <strong>Payment Method: </strong> {{ $order->payment_method }}<br>
-                <strong>Notes: </strong> {{ $order->notes }}
+                <strong>Loại thanh toán: </strong> {{ $order->payment_type }}<br>
+                <strong>Phương thức thanh toán: </strong> {{ $order->payment_method }}<br>
+                <strong>Ghi chú: </strong> {{ $order->notes }}
                 </p>
             </td>
         </tr>
@@ -105,12 +104,12 @@
     <table width="100%">
         <thead style="background-color: green; color:#FFFFFF;">
             <tr class="font">
-                <th>Image</th>
-                <th>Product Code</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total</th>
+                <th>Hình</th>
+                <th>Mã</th>
+                <th>Tên</th>
+                <th>Giá</th>
+                <th>SL</th>
+                <th>Tổng tiền</th>
             </tr>
         </thead>
         <tbody>
@@ -130,7 +129,7 @@
                     <td align="center">{{ $item->product->product_name }}</td>
                     <td align="center">${{ $item->price }}</td>
                     <td align="center">{{ $item->quantity }}</td>
-                    <td align="center">${{ $item->price * $item->quantity }}</td>
+                    <td align="center">{{ number_format($item->price * $item->quantity, 0, ',', '.') }}đ</td>
                 </tr>
             @endforeach
         </tbody>
@@ -139,22 +138,22 @@
     <table width="100%" style=" padding:0 10px 0 10px;">
         <tr>
             <td align="right">
-                <h2><span style="color: green;">Subtotal: </span>${{ $subtotal }}</h2>
+                <h2><span style="color: green;">Subtotal: </span>{{ number_format($subtotal, 0, ',', '.') }}đ</h2>
                 @if ($order->discount == 0)
-                    <h2><span style="color: green;">Discount: </span>$0</h2>
+                    <h2><span style="color: green;">Discount: </span>0đ</h2>
                 @else
-                    <h2><span style="color: green;">Discount: </span>${{ $order->discount }}</h2>
+                    <h2><span style="color: green;">Discount: </span>{{ number_format($order->discount, 0, ',', '.') }}đ</h2>
                 @endif
-                <h2><span style="color: green;">Total: </span>${{ $order->amount }}</h2>
+                <h2><span style="color: green;">Total: </span>{{ number_format($order->amount, 0, ',', '.') }}đ</h2>
             </td>
         </tr>
     </table>
     <div class="thanks mt-3">
-        <p>Thanks For Buying Products . . . !!!</p>
+        <p>Cảm ơn đã mua sản phẩm của chúng tôi . . . !!!</p>
     </div>
     <div class="authority float-right mt-5">
         <p>-----------------------------------</p>
-        <h5>Authority Signature:</h5>
+        <h5>Chữ ký của cơ quan có thẩm quyền:</h5>
     </div>
 </body>
 

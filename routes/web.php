@@ -182,13 +182,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/paypal/cancel', 'PaypalCancel')->name('paypal.cancel');
     });
 
-    //Mollie All Route
-    Route::controller(MollieController::class)->group(function () {
-        Route::post('/mollie/order', 'MollieOrder')->name('mollie.order');
-        Route::get('/mollie/success', 'MollieSuccess')->name('mollie.success');
-        Route::get('/mollie/cancel', 'MollieCancel')->name('mollie.cancel');
-    });
-
     //Cash All Route
     Route::controller(CashController::class)->group(function () {
         Route::post('/cash/order', 'CashOrder')->name('cash.order');
@@ -200,7 +193,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
         Route::get('/user/change/password', 'UserChangePassword')->name('user.change.password');
         Route::get('/user/order/page', 'UserOrderPage')->name('user.order.page');
         Route::get('/user/order/details/{order_id}', 'UserOrderDetails');
-        Route::get('/user/invoice/download/{order_id}', 'UserInvoiceDownload');
         Route::get('/user/return/order/page', 'ReturnOrderPage')->name('user.return.order.page');
         Route::post('/user/return/order/{order_id}', 'ReturnOrderSubmit')->name('user.return.order');
         Route::get('/user/cancel/order/page', 'CancelOrderPage')->name('user.cancel.order.page');

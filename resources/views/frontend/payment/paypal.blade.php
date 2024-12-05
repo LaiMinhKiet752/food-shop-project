@@ -66,17 +66,27 @@
                                         <h6 class="text-muted">Phí Ship</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">0đ</h4>
+                                        <h4 class="text-brand text-end">
+                                            @if ($cartTotal > 200000)
+                                                0đ
+                                            @else
+                                                25.000đ
+                                            @endif
+                                        </h4>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Tổng tiền</h6>
+                                        <h6 class="text-muted">Tổng tiền phải trả</h6>
                                     </td>
                                     <td class="cart_total_amount">
                                         <h4 class="text-brand text-end">
-                                            {{ number_format(session()->get('coupon')['total_amount'], 0, ',', '.') }}đ
+                                            @if ($cartTotal > 200000)
+                                                {{ number_format(session()->get('coupon')['total_amount'], 0, ',', '.') }}đ
+                                            @else
+                                                {{ number_format(session()->get('coupon')['total_amount'] + 25000, 0, ',', '.') }}đ
+                                            @endif
                                         </h4>
                                     </td>
                                 </tr>
@@ -86,7 +96,8 @@
                                         <h6 class="text-muted">Tạm tính</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
+                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, ',', '.') }}đ
+                                        </h4>
                                     </td>
                                 </tr>
                                 <tr>
@@ -102,15 +113,27 @@
                                         <h6 class="text-muted">Phí Ship</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">0đ</h4>
+                                        <h4 class="text-brand text-end">
+                                            @if ($cartTotal > 200000)
+                                                0đ
+                                            @else
+                                                25.000đ
+                                            @endif
+                                        </h4>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="cart_total_label">
-                                        <h6 class="text-muted">Tổng tiền</h6>
+                                        <h6 class="text-muted">Tổng tiền phải trả</h6>
                                     </td>
                                     <td class="cart_total_amount">
-                                        <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
+                                        <h4 class="text-brand text-end">
+                                            @if ($cartTotal > 200000)
+                                                {{ number_format($cartTotal, 0, ',', '.') }}đ
+                                            @else
+                                                {{ number_format($cartTotal + 25000, 0, ',', '.') }}đ
+                                            @endif
+                                        </h4>
                                     </td>
                                 </tr>
                             @endif

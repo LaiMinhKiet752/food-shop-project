@@ -6,6 +6,7 @@ use App\Models\SmtpSetting;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Services\CurrencyService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(CurrencyService::class, function ($app) {
+            return new CurrencyService();
+        });
     }
 
     /**

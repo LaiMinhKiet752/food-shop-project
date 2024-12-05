@@ -12,7 +12,6 @@ use App\Notifications\CancelOrderNotification;
 use App\Notifications\ReturnOrderNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
@@ -44,15 +43,6 @@ class AllUserController extends Controller
         $order = Order::with('user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         return view('frontend.order.order_details', compact('order', 'orderItem'));
-    } //End Method
-
-    public function UserInvoiceDownload($order_id)
-    {
-        $order = Order::with('user')->where('id', $order_id)->where('user_id', Auth::id())->first();
-        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-
-        $pdf = Pdf::loadView('frontend.order.order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOption(['tempDir' => public_path(), 'chroot' => public_path()]);
-        return $pdf->download('invoice.pdf');
     } //End Method
 
     public function ReturnOrderPage()

@@ -138,7 +138,7 @@
 
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Tổng tiền</h6>
+                                            <h6 class="text-muted">Tổng tiền (chưa tính phí vận chuyển)</h6>
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">
@@ -149,10 +149,11 @@
                                 @else
                                     <tr>
                                         <td class="cart_total_label">
-                                            <h6 class="text-muted">Tổng tiền</h6>
+                                            <h6 class="text-muted">Tổng tiền (chưa tính phí vận chuyển)</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
+                                            <h4 class="text-brand text-end">
+                                                {{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
                                         </td>
                                     </tr>
                                 @endif
@@ -177,12 +178,6 @@
                         </div>
                         <div class="custome-radio">
                             <input class="form-check-input" required="" type="radio" name="payment_option"
-                                value="mollie" id="exampleRadios3">
-                            <label class="form-check-label" for="exampleRadios3" data-bs-toggle="collapse"
-                                data-target="#paypal1" aria-controls="paypal1">Mollie</label>
-                        </div>
-                        <div class="custome-radio">
-                            <input class="form-check-input" required="" type="radio" name="payment_option"
                                 value="cash" id="exampleRadios4">
                             <label class="form-check-label" for="exampleRadios4" data-bs-toggle="collapse"
                                 data-target="#checkPayment" aria-controls="checkPayment">Thanh toán khi nhận hàng
@@ -194,17 +189,14 @@
                         <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-paypal.svg') }}"
                             alt="" style="width: 110px; height: 50px; margin-top: 5px;">
 
+                        <img src="{{ asset('upload/stripe.png') }}" alt=""
+                            style="width: 90px; height: 50px; margin-top: 5px; margin-right: 5px">
+
                         <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-visa.svg') }}"
                             alt="">
 
                         <img class="mr-15" src="{{ asset('frontend/assets/imgs/theme/icons/payment-master.svg') }}"
                             alt="" style="width: 80px; height: 40px; margin-top: 10px;">
-
-                        <img class="mr-15" src="{{ asset('upload/mollie.png') }}" alt=""
-                            style="width: 80px; height: 35px; margin-top: 13px;">
-
-                        <img src="{{ asset('upload/stripe.png') }}" alt=""
-                            style="width: 90px; height: 50px; margin-top: 5px;">
 
                         <img src="{{ asset('upload/cash_on_delivery.png') }}" alt=""
                             style="width: 100px; height: 60px;">

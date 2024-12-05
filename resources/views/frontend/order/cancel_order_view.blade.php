@@ -57,7 +57,7 @@
                                                             @endphp
                                                             <td>{{ $cancel_date_format }}</td>
                                                             <td>{{ $order->cancel_date }}</td>
-                                                            <td>${{ $order->amount }}</td>
+                                                            <td>{{ number_format($order->amount, 0, ',', '.') }}đ</td>
                                                             <td>{{ $order->payment_method }}</td>
                                                             <td>
                                                                 <span class="badge rounded-pill bg-success"

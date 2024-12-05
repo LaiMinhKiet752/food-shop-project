@@ -58,7 +58,7 @@
                                                             @endphp
                                                             <td>{{ $order_date_format }}</td>
                                                             <td>{{ $order->return_date }}</td>
-                                                            <td>${{ $order->amount }}</td>
+                                                            <td>{{ number_format($order->amount, 0, ',', '.') }}đ</td>
                                                             <td>{{ $order->payment_method }}</td>
                                                             <td>{{ $order->return_reason }}</td>
                                                             <td>

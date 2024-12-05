@@ -37,6 +37,10 @@ class CashController extends Controller
             $discount_amount = 0;
         }
 
+        if (Cart::total() < 200000) {
+            $total_amount = $total_amount + 25000;
+        }
+
         $order_id = Order::insertGetId([
             'user_id' => Auth::id(),
             'name' => $request->name,
@@ -46,14 +50,14 @@ class CashController extends Controller
             'post_code' => $request->post_code,
             'notes' => $request->notes,
 
-            'payment_type' => 'Cash On Delivery',
-            'payment_method' => 'Cash On Delivery',
-            'currency' => 'usd',
+            'payment_type' => 'Thanh toán khi nhận hàng',
+            'payment_method' => 'Thanh toán khi nhận hàng',
+            'currency' => 'VND',
             'amount' => $total_amount,
             'discount' => $discount_amount,
             'order_number' => hexdec(uniqid()),
 
-            'invoice_number' => 'NFS' . time() .  mt_rand(100000, 1000000),
+            'invoice_number' => 'BL' . time() .  mt_rand(100000, 1000000),
             'order_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'order_day' => Carbon::now()->format('d'),
             'order_month' => Carbon::now()->format('m'),
@@ -78,11 +82,6 @@ class CashController extends Controller
                 'product_quantity' => DB::raw('product_quantity - ' . $item->quantity)
             ]);
         }
-        //Send Mail
-        $order = Order::with('user')->where('id', $order_id)->where('user_id', Auth::id())->first();
-        $orderItem = OrderDetails::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
-        $subject = 'Nest Shop';
-        Mail::to($request->email)->send(new OrderMail($order, $orderItem, $discount_amount, $subject));
 
         if (Session::has('coupon')) {
             Session::forget('coupon');

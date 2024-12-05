@@ -56,7 +56,7 @@
                                                                 $order_date_format = date('d-m-Y H:i:s', $order_date);
                                                             @endphp
                                                             <td>{{ $order_date_format }}</td>
-                                                            <td>${{ $order->amount }}</td>
+                                                            <td>{{ number_format($order->amount, 0, ',', '.') }}đ</td>
                                                             <td>{{ $order->payment_method }}</td>
                                                             <td>
                                                                 @if ($order->status == 'pending' && $order->cancel_order_status == 0)
@@ -97,17 +97,10 @@
                                                                     </span>
                                                                 @endif
                                                             </td>
-                                                            <td>
+                                                            <td align="center">
                                                                 <a href="{{ url('user/order/details/' . $order->id) }}"
                                                                     class="btn-sm btn-success" title="View Details"><i
                                                                         class="fa fa-eye"></i></a>
-                                                                @if ($order->status == 'pending' && $order->cancel_order_status == 0)
-                                                                @else
-                                                                <a href="{{ url('user/invoice/download/' . $order->id) }}"
-                                                                    class="btn-sm btn-danger"
-                                                                    title="Download Invoice PDF"><i
-                                                                        class="fa fa-download"></i></a>
-                                                                @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach

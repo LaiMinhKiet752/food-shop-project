@@ -9,10 +9,10 @@
                     <div class="position-relative newsletter-inner">
                         <div class="newsletter-content">
                             <h2 class="mb-20">
-                                Ở nhà và mua sắm nhu yếu phẩm hàng ngày  <br />
+                                Ở nhà và mua sắm nhu yếu phẩm hàng ngày <br />
                                 ngay tại cửa hàng của chúng tôi.
                             </h2>
-                            <p class="mb-45">Bắt đầu mua sắm hàng ngày cùng  <span class="text-brand">Nest Mart.</span></p>
+                            <p class="mb-45">Bắt đầu mua sắm hàng ngày cùng <span class="text-brand">Bảo Linh.</span></p>
                             <form class="form-subcriber d-flex" method="post"
                                 action="{{ route('subscriber.send.mail') }}" id="formSubscriberSubmit">
                                 @csrf
@@ -114,8 +114,8 @@
                     <div class="widget-about font-md mb-md-3 mb-lg-3 mb-xl-0 wow animate__animated animate__fadeInUp"
                         data-wow-delay="0">
                         <div class="logo mb-30">
-                            <a href="{{ url('/') }}" class="mb-15"><img src="{{ asset($setting->logo) }}"
-                                    alt="logo" /></a>
+                            <a style="max-width: 50%;" href="{{ url('/') }}" class="mb-15"><img
+                                    src="{{ asset($setting->logo) }}" alt="logo" /></a>
                             <p class="font-lg text-heading">Chuyên cung cấp thực phẩm khô chay số 1 tại Việt Nam.</p>
                         </div>
                         <ul class="contact-infor">

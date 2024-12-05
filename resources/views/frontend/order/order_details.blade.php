@@ -190,13 +190,16 @@
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-user"></i> </span>
                                             <span class="text">
-                                                Đã xác nhận</span> </div>
+                                                Đã xác nhận</span>
+                                        </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-                                            <span class="text">Đang xử lý </span> </div>
+                                            <span class="text">Đang xử lý </span>
+                                        </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                            <span class="text">Đã giao hàng </span> </div>
+                                            <span class="text">Đã giao hàng </span>
+                                        </div>
                                     @elseif($order->status == 'pending' && $order->confirmed_date == null && $order->cancel_order_status == 1)
                                         @php
                                             $cancel_date = strtotime($order->cancel_date);
@@ -225,10 +228,12 @@
                                         </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span>
-                                            <span class="text">Đang xử lý </span> </div>
+                                            <span class="text">Đang xử lý </span>
+                                        </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                            <span class="text">Đã giao hàng </span> </div>
+                                            <span class="text">Đã giao hàng </span>
+                                        </div>
                                     @elseif($order->status == 'confirmed' && $order->cancel_order_status == 1)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -274,7 +279,8 @@
                                         </div>
 
                                         <div class="step"> <span class="icon"> <i class="fa fa-box"></i> </span>
-                                            <span class="text">Đã giao hàng </span> </div>
+                                            <span class="text">Đã giao hàng </span>
+                                        </div>
                                     @elseif($order->status == 'delivered' && $order->return_order_status == 0)
                                         @php
                                             $confirmed_date = strtotime($order->confirmed_date);
@@ -410,11 +416,11 @@
                                             </tr>
                                             <tr>
                                                 <th>Giảm giá :</th>
-                                                <th>${{ $order->discount }}</th>
+                                                <th>{{ number_format($order->discount, 0, ',', '.') }}đ</th>
                                             </tr>
                                             <tr>
-                                                <th>Tổng tiền :</th>
-                                                <th>${{ $order->amount }}</th>
+                                                <th>Tổng tiền phải trả :</th>
+                                                <th>{{ number_format($order->amount, 0, ',', '.') }}đ</th>
                                             </tr>
                                             <tr>
                                                 <th>Thanh toán bằng :</th>
@@ -538,8 +544,9 @@
                                     <label>{{ $item->quantity }} </label>
                                 </td>
                                 <td class="col-md-3">
-                                    <label>${{ $item->price }} <br> Tổng =
-                                        ${{ $item->price * $item->quantity }}
+                                    {{ number_format($item->price, 0, ',', '.') }}đ
+                                    <label> | Tổng =
+                                        {{ number_format($item->price * $item->quantity, 0, ',', '.') }}đ
                                     </label>
                                 </td>
                             </tr>
@@ -551,7 +558,7 @@
                                 <label>Tạm tính </label>
                             </td>
                             <td class="col-md-1">
-                                <label> = ${{ $subtotal }}</label>
+                                <label> = {{ number_format($subtotal, 0, ',', '.') }}đ</label>
                             </td>
                         </tr>
                     </tfoot>
