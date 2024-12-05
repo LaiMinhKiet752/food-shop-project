@@ -56,8 +56,7 @@
                                             <li class="mb-5">DANH MỤC : <span class="text-brand" id="pcategory">
                                                 </span>
                                             </li>
-                                            <li class="mb-5">DANH MỤC CON : <span class="text-brand" id="psubcategory">
-                                                </span>
+                                            <li class="mb-5">NGÀY SX : <span class="text-brand" id="pmfg"> </span>
                                             </li>
                                         </ul>
                                     </div>
@@ -70,8 +69,6 @@
                                         <ul>
                                             <li class="mb-5">MÃ SẢN PHẨM : <span class="text-brand" id="pcode">
                                                 </span></li>
-                                            <li class="mb-5">NGÀY SX : <span class="text-brand" id="pmfg"> </span>
-                                            </li>
                                             <li class="mb-5">TRẠNG THÁI : <span
                                                     class="badge badge-pill badge-success" id="instock"
                                                     style="background:green; color: white;"> </span>

@@ -70,7 +70,7 @@
                 @foreach ($products as $product)
                     <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                         <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn product_search_data"
-                            data-wow-delay=".1s">
+                            data-wow-delay=".1s"  style="height: 430px;">
                             <div class="product-img-action-wrap">
                                 <div class="product-img product-img-zoom">
                                     <a
@@ -229,12 +229,12 @@
                                 <div class="product-card-bottom">
                                     @if ($product->discount_price == null)
                                         <div class="product-price">
-                                            <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                            <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                            <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                            <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                            <span class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @endif
 
@@ -256,12 +256,6 @@
                 @endforeach
 
             </div>
-            <!--product grid-->
-            {{-- <div class="pagination-area mt-20 mb-20">
-                {{ $products->links('vendor.pagination.custom') }}
-            </div> --}}
-
-            <!--End Deals-->
         </div>
 
         <div class="col-lg-1-5 primary-sidebar sticky-sidebar">
@@ -298,9 +292,9 @@
                             </p>
 
                             @if ($product->discount_price == null)
-                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, ',', '.') }}đ</p>
                             @else
-                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, ',', '.') }}đ</p>
                             @endif
 
 
@@ -425,7 +419,7 @@
                             title: 'Sorry!',
                             timerProgressBar: true,
                             showConfirmButton: true,
-                            timer: 3000,
+                            timer: 2000,
                             confirmButtonText: "OK",
                             confirmButtonColor: '#3BB77E',
                         })
@@ -441,7 +435,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({

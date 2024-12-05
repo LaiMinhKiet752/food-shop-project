@@ -91,21 +91,21 @@ Route::controller(CartController::class)->group(function () {
     //Add To Cart All Route
     Route::get('/product/mini/cart', 'AddMiniCart');
     Route::get('/minicart/product/remove/{rowId}', 'RemoveMiniCart');
-    Route::post('/cart/data/store/{id}', 'AddToCartQuickView');
-    Route::post('/dcart/data/store/{id}', 'AddToCartDetails');
-    Route::post('/home/new/product/cart/store/{id}', 'AddToCartHomeNewProduct');
-    Route::post('/home/new/product/category/cart/store/{id}', 'AddToCartHomeNewProductCategory');
-    Route::post('/featured/product/cart/store/{id}', 'AddToCartFeaturedProduct');
-    Route::post('/category/product/cart/store/{id}', 'AddToCartCategoryProduct');
-    Route::post('/subcategory/product/cart/store/{id}', 'AddToCartSubCategoryProduct');
-    Route::post('/related/product/cart/store/{id}', 'AddToCartRelatedProduct');
-    Route::post('/categoryone/product/cart/store/{id}', 'AddToCartCategoryOneProduct');
-    Route::post('/categorytwo/product/cart/store/{id}', 'AddToCartCategoryTwoProduct');
-    Route::post('/categorythree/product/cart/store/{id}', 'AddToCartCategoryThreeProduct');
-    Route::post('/categoryfour/product/cart/store/{id}', 'AddToCartCategoryFourProduct');
-    Route::post('/categoryfive/product/cart/store/{id}', 'AddToCartCategoryFiveProduct');
-    Route::post('/product/search/cart/store/{id}', 'AddToCartProductSearch');
-    Route::post('/shop/page/product/cart/store/{id}', 'AddToCartShopPage');
+    Route::post('/cart/data/store/{id}', 'AddProductToCart');
+    Route::post('/dcart/data/store/{id}', 'AddProductToCart');
+    Route::post('/home/new/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/home/new/product/category/cart/store/{id}', 'AddProductToCart');
+    Route::post('/featured/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/category/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/subcategory/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/related/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/categoryone/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/categorytwo/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/categorythree/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/categoryfour/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/categoryfive/product/cart/store/{id}', 'AddProductToCart');
+    Route::post('/product/search/cart/store/{id}', 'AddProductToCart');
+    Route::post('/shop/page/product/cart/store/{id}', 'AddProductToCart');
     //My Cart All Route
     Route::get('/my-cart', 'MyCart')->name('mycart');
     Route::get('/get-cart-product', 'GetCartProduct');

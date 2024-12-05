@@ -63,7 +63,7 @@
                                 <div class="d-flex flex-column ml-5"
                                     style="margin-left:10px; font-size:16px; font-weight: bold;">
                                     <span>{{ $item->product_name }}</span> <small
-                                        style="color: black; font-weight: 500;">{{ number_format($item->selling_price, 0, '.', ',') }}đ</small>
+                                        style="color: black; font-weight: 500;">{{ number_format($item->selling_price, 0, ',', '.') }}đ</small>
                                 </div>
                             </div>
                         </a>

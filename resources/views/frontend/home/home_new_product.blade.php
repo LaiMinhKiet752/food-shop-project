@@ -4,9 +4,7 @@
         ->orderBy('id', 'DESC')
         ->limit(5)
         ->get();
-    $categories = \App\Models\Category::orderBy('category_name', 'ASC')
-        ->limit(5)
-        ->get();
+    $categories = \App\Models\Category::orderBy('category_name', 'ASC')->limit(5)->get();
 @endphp
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
@@ -193,13 +191,14 @@
                                     <div class="product-card-bottom">
                                         @if ($product->discount_price == null)
                                             <div class="product-price">
-                                                <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
 
                                             </div>
                                         @else
                                             <div class="product-price">
-                                                <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                                <span class="old-price" style="margin: 0 0 0 5px;">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                                <span class="old-price"
+                                                    style="margin: 0 0 0 5px;">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                             </div>
                                         @endif
                                         <div class="add-cart">
@@ -210,7 +209,8 @@
                                             <input type="hidden" class="homnew_brand_id"
                                                 value="{{ $product->brand_id }}">
 
-                                            <a class="add homeNewProductAddToCart" type="submit" style="padding: 4px 15px 4px 15px;"><i
+                                            <a class="add homeNewProductAddToCart" type="submit"
+                                                style="padding: 4px 15px 4px 15px;"><i
                                                     class="fi-rs-shopping-cart mr-5"></i>Mua</a>
                                         </div>
                                     </div>
@@ -254,8 +254,9 @@
                                                 id="{{ $product->id }}" onclick="addToWishlist(this.id)"><i
                                                     class="fi-rs-heart"></i></a>
 
-                                            <a aria-label="Thêm vào so sánh" class="action-btn" id="{{ $product->id }}"
-                                                onclick="addToCompare(this.id)"><i class="fi-rs-shuffle"></i></a>
+                                            <a aria-label="Thêm vào so sánh" class="action-btn"
+                                                id="{{ $product->id }}" onclick="addToCompare(this.id)"><i
+                                                    class="fi-rs-shuffle"></i></a>
 
                                             <a aria-label="Xem nhanh" class="action-btn" data-bs-toggle="modal"
                                                 data-bs-target="#quickViewModal" id="{{ $product->id }}"
@@ -393,13 +394,14 @@
                                         <div class="product-card-bottom">
                                             @if ($product->discount_price == null)
                                                 <div class="product-price">
-                                                    <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                    <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
 
                                                 </div>
                                             @else
                                                 <div class="product-price">
-                                                    <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                                    <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                    <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                                    <span
+                                                        class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                                 </div>
                                             @endif
                                             <div class="add-cart">
@@ -458,7 +460,7 @@
                                 title: 'Sorry!',
                                 timerProgressBar: true,
                                 showConfirmButton: true,
-                                timer: 3000,
+                                timer: 2000,
                                 confirmButtonText: "OK",
                                 confirmButtonColor: '#3BB77E',
                             })
@@ -467,28 +469,27 @@
                                 text: data.error_quantity,
                             })
                             // End Message
-                        }
-                        else{
-                            miniCart();
-                        // Start Message
-                        const Toast = Swal.mixin({
-                            position: 'top-end',
-                            toast: true,
-                            showConfirmButton: false,
-                            timer: 3000,
-                        })
-                        if ($.isEmptyObject(data.error)) {
-                            Toast.fire({
-                                icon: 'success',
-                                title: data.success,
-                            })
                         } else {
-                            Toast.fire({
-                                icon: 'error',
-                                title: data.error,
+                            miniCart();
+                            // Start Message
+                            const Toast = Swal.mixin({
+                                position: 'top-end',
+                                toast: true,
+                                showConfirmButton: false,
+                                timer: 2000,
                             })
-                        }
-                        // End Message
+                            if ($.isEmptyObject(data.error)) {
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: data.success,
+                                })
+                            } else {
+                                Toast.fire({
+                                    icon: 'error',
+                                    title: data.error,
+                                })
+                            }
+                            // End Message
                         }
                     }
                 });
@@ -525,7 +526,7 @@
                                 title: 'Sorry!',
                                 timerProgressBar: true,
                                 showConfirmButton: true,
-                                timer: 3000,
+                                timer: 2000,
                                 confirmButtonText: "OK",
                                 confirmButtonColor: '#3BB77E',
                             })
@@ -541,7 +542,7 @@
                                 position: 'top-end',
                                 toast: true,
                                 showConfirmButton: false,
-                                timer: 3000,
+                                timer: 2000,
                             })
                             if ($.isEmptyObject(data.error)) {
                                 Toast.fire({

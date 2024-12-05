@@ -176,12 +176,12 @@
 
                                             @if ($product->discount_price == null)
                                                 <div class="product-price mt-10">
-                                                    <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                    <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                                 </div>
                                             @else
                                                 <div class="product-price mt-10">
-                                                    <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                                    <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                    <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                                    <span class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                                 </div>
                                             @endif
                                             <div class="sold mt-15 mb-15">
@@ -240,7 +240,7 @@
                                 title: 'Sorry!',
                                 timerProgressBar: true,
                                 showConfirmButton: true,
-                                timer: 3000,
+                                timer: 2000,
                                 confirmButtonText: "OK",
                                 confirmButtonColor: '#3BB77E',
                             })
@@ -256,7 +256,7 @@
                                 position: 'top-end',
                                 toast: true,
                                 showConfirmButton: false,
-                                timer: 3000,
+                                timer: 2000,
                             })
                             if ($.isEmptyObject(data.error)) {
                                 Toast.fire({

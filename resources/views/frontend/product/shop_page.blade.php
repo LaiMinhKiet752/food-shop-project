@@ -229,13 +229,13 @@
                                 <div class="product-card-bottom">
                                     @if ($product->discount_price == null)
                                         <div class="product-price">
-                                            <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                            <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
+                                            <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
                                             <span
-                                                class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @endif
 
@@ -347,9 +347,9 @@
                             </p>
 
                             @if ($product->discount_price == null)
-                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, ',', '.') }}đ</p>
                             @else
-                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, ',', '.') }}đ</p>
                             @endif
                             @php
                                 $average = \App\Models\Review::where('product_id', $product->id)

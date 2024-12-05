@@ -235,15 +235,18 @@
                     $('#product_id').val(id);
                     $('#qty').val(1);
 
+                    var formattedSellingPrice = parseInt(data.product.selling_price).toLocaleString('vi-VN');
+                    var formattedDiscountPrice = parseInt(data.product.discount_price).toLocaleString('vi-VN');
+
                     // Product Price
                     if (data.product.discount_price == null) {
                         $('#pprice').text('');
                         $('#oldprice').text('');
-                        $('#pprice').text('$' + data.product.selling_price);
+                        $('#pprice').text(formattedSellingPrice + 'đ');
 
                     } else {
-                        $('#pprice').text('$' + data.product.discount_price);
-                        $('#oldprice').text('$' + data.product.selling_price);
+                        $('#pprice').text(formattedDiscountPrice + 'đ');
+                        $('#oldprice').text(formattedSellingPrice + 'đ');
                     }
 
                     //Start Stock Option
@@ -287,7 +290,7 @@
                             title: 'Sorry!',
                             timerProgressBar: true,
                             showConfirmButton: true,
-                            timer: 3000,
+                            timer: 2000,
                             confirmButtonText: "OK",
                             confirmButtonColor: '#3BB77E',
                         })
@@ -304,7 +307,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -347,7 +350,7 @@
                             title: 'Sorry!',
                             timerProgressBar: true,
                             showConfirmButton: true,
-                            timer: 3000,
+                            timer: 2000,
                             confirmButtonText: "OK",
                             confirmButtonColor: '#3BB77E',
                         })
@@ -363,7 +366,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({
@@ -392,16 +395,14 @@
                 url: '/product/mini/cart',
                 dataType: 'json',
                 success: function(response) {
-                    var formattedTotal = parseInt(response.cartTotal).toLocaleString('vi-VN').replace(/\./g,
-                        ',');
+                    var formattedTotal = parseInt(response.cartTotal).toLocaleString('vi-VN');
 
                     $('#cartQty').text(response.cartQty);
                     $('span[id="cartSubTotal"]').text(formattedTotal + 'đ');
 
                     var miniCart = "";
                     $.each(response.carts, function(key, value) {
-                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN').replace(
-                            /\./g, ',');
+                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN');
                         miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
@@ -442,7 +443,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -474,6 +475,11 @@
                     $('#countproductwishlist').text(response.wishlistQuantity);
                     var rows = "";
                     $.each(response.wishlist, function(key, value) {
+                        var formattedSellingPrice = parseInt(value.product.selling_price)
+                            .toLocaleString('vi-VN');
+                        var formattedDiscountPrice = parseInt(value.product.discount_price)
+                            .toLocaleString('vi-VN');
+
                         rows += `<tr class="pt-30">
                         <td class="custome-checkbox pl-30">
                         </td>
@@ -483,8 +489,8 @@
                         </td>
                         <td class="price" data-title="Price">
                         ${(value.product.discount_price == null || value.product.discount_price == 0)
-                        ? `<h3 class="text-brand">$${value.product.selling_price}</h3>`
-                        :`<h3 class="text-brand">$${value.product.discount_price}</h3>`
+                        ? `<h3 class="text-brand">${formattedSellingPrice}đ</h3>`
+                        :`<h3 class="text-brand">${formattedDiscountPrice}đ</h3>`
                         }
                         </td>
                         <td class="text-center detail-info" data-title="Stock">
@@ -517,7 +523,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -551,7 +557,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -585,15 +591,20 @@
                     var images = `<td class="text-muted font-sm fw-600 font-heading mw-200">Hình ảnh</td>`;
                     var title = `<td class="text-muted font-sm fw-600 font-heading">Tên</td>`;
                     var price = `<td class="text-muted font-sm fw-600 font-heading">Giá</td>`;
-                    var rating = ``;
                     var description = `<td class="text-muted font-sm fw-600 font-heading">Miêu tả</td>`;
                     var stock = `<td class="text-muted font-sm fw-600 font-heading">Trạng thái</td>`;
                     var weight = `<td class="text-muted font-sm fw-600 font-heading">Trọng lượng/Thể tích</td>`;
-                    var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Kích thước</td>`;
+                    var dimensions = `<td class="text-muted font-sm fw-600 font-heading">Kích thước (d/r/c)</td>`;
                     var details = `<td class="text-muted font-sm fw-600 font-heading">Xem chi tiết</td>`;
                     var remove = `<td class="text-muted font-sm fw-600 font-heading">Xóa</td>`;
 
                     $.each(response.compare, function(key, value) {
+
+                        var formattedSellingPrice = parseInt(value.product.selling_price)
+                            .toLocaleString('vi-VN');
+                        var formattedDiscountPrice = parseInt(value.product.discount_price)
+                            .toLocaleString('vi-VN');
+
                         images +=
                             `<td class="row_img"><img src="/${value.product.product_thumbnail}"alt="compare-img" /></td>`;
                         title += `<td class="product_name">
@@ -601,8 +612,8 @@
                                 </td>`;
                         price += `<td class="product_price">
                                     <h4 class="price text-brand">${(value.product.discount_price == null || value.product.discount_price == 0)
-                        ? `$${value.product.selling_price}`
-                        :`$${value.product.discount_price}`
+                        ? `${formattedSellingPrice}đ`
+                        :`${formattedDiscountPrice}đ`
                         }</h4>
                                     </td>`;
 
@@ -631,7 +642,6 @@
                     $('#images').html(images);
                     $('#title').html(title);
                     $('#price').html(price);
-                    $('#rating').html(rating);
                     $('#product_description').html(description);
                     $('#stock').html(stock);
                     $('#weight').html(weight);
@@ -655,7 +665,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -689,7 +699,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -721,10 +731,8 @@
                     var rows = "";
                     $('#mycartQty').text(response.cartQty);
                     $.each(response.carts, function(key, value) {
-                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN').replace(
-                            /\./g, ',');
-                        var formattedSubtotal = parseInt(value.subtotal).toLocaleString('vi-VN')
-                            .replace(/\./g, ',');
+                        var formattedPrice = parseInt(value.price).toLocaleString('vi-VN');
+                        var formattedSubtotal = parseInt(value.subtotal).toLocaleString('vi-VN');
 
                         rows += `<tr class="pt-30">
                                 <td class="custome-checkbox pl-30">
@@ -781,7 +789,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -829,7 +837,7 @@
                             title: 'Sorry!',
                             timerProgressBar: true,
                             showConfirmButton: true,
-                            timer: 3000,
+                            timer: 2000,
                             confirmButtonText: "OK",
                             confirmButtonColor: '#3BB77E',
                         })
@@ -868,7 +876,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
@@ -893,12 +901,10 @@
                 url: "/coupon-calculation",
                 dataType: 'json',
                 success: function(data) {
-                    var formattedTotal = parseInt(data.total).toLocaleString('vi-VN').replace(/\./g, ',');
-                    var formattedSubtotal = parseInt(data.subtotal).toLocaleString('vi-VN').replace(/\./g, ',');
-                    var formattedDiscountAmount = parseInt(data.discount_amount).toLocaleString('vi-VN')
-                        .replace(/\./g, ',');
-                    var formattedTotalAmount = parseInt(data.total_amount).toLocaleString('vi-VN').replace(
-                        /\./g, ',');
+                    var formattedTotal = parseInt(data.total).toLocaleString('vi-VN');
+                    var formattedSubtotal = parseInt(data.subtotal).toLocaleString('vi-VN');
+                    var formattedDiscountAmount = parseInt(data.discount_amount).toLocaleString('vi-VN');
+                    var formattedTotalAmount = parseInt(data.total_amount).toLocaleString('vi-VN');
 
                     if (data.total) {
                         $('#couponCalField').html(
@@ -978,7 +984,7 @@
                         position: 'top-end',
                         toast: true,
                         showConfirmButton: false,
-                        timer: 3000,
+                        timer: 2000,
                     })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({

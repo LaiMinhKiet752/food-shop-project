@@ -230,13 +230,13 @@
                                 <div class="product-card-bottom">
                                     @if ($product->discount_price == null)
                                         <div class="product-price">
-                                            <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
-
+                                            <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @else
                                         <div class="product-price">
-                                            <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                            <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                            <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                            <span
+                                                class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </div>
                                     @endif
 
@@ -247,7 +247,8 @@
                                             value="{{ $product->product_name }}">
                                         <input type="hidden" class="category_view_brand_id"
                                             value="{{ $product->brand_id }}">
-                                        <a class="add CategoryProductAddToCart" type="submit" style="padding: 4px 15px 4px 15px; top: 20%;"><i
+                                        <a class="add CategoryProductAddToCart" type="submit"
+                                            style="padding: 4px 15px 4px 15px; top: 20%;"><i
                                                 class="fi-rs-shopping-cart mr-5"></i>Mua </a>
                                     </div>
                                 </div>
@@ -300,9 +301,11 @@
                             </p>
 
                             @if ($product->discount_price == null)
-                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->selling_price, 0, ',', '.') }}đ
+                                </p>
                             @else
-                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, '.', ',') }}đ</p>
+                                <p class="price mb-0 mt-5">{{ number_format($product->discount_price, 0, ',', '.') }}đ
+                                </p>
                             @endif
 
 
@@ -427,7 +430,7 @@
                             title: 'Sorry!',
                             timerProgressBar: true,
                             showConfirmButton: true,
-                            timer: 3000,
+                            timer: 2000,
                             confirmButtonText: "OK",
                             confirmButtonColor: '#3BB77E',
                         })
@@ -443,7 +446,7 @@
                             position: 'top-end',
                             toast: true,
                             showConfirmButton: false,
-                            timer: 3000,
+                            timer: 2000,
                         })
                         if ($.isEmptyObject(data.error)) {
                             Toast.fire({

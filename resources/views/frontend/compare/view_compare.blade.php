@@ -32,11 +32,7 @@
 
                             </tr>
 
-                            <tr class="pr_rating">
-                                <td class="text-muted font-sm fw-600 font-heading">Đánh giá</td>
-
-                            </tr>
-
+                            
                             <tr class="description" id="product_description">
 
                             </tr>

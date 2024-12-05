@@ -94,7 +94,7 @@
                                             <h6 class="text-muted pl-20 pr-20">x {{ $item->qty }}</h6>
                                         </td>
                                         <td>
-                                            <h4 class="text-brand">{{ number_format($item->price, 0, '.', ',') }}đ</h4>
+                                            <h4 class="text-brand">{{ number_format($item->price, 0, ',', '.') }}đ</h4>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -109,7 +109,7 @@
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">
-                                                {{ number_format($cartTotal, 0, '.', ',') }}đ</h4>
+                                                {{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
                                         </td>
                                     </tr>
 
@@ -131,7 +131,7 @@
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">
-                                                {{ number_format(session()->get('coupon')['discount_amount'], 0, '.', ',') }}đ
+                                                {{ number_format(session()->get('coupon')['discount_amount'], 0, ',', '.') }}đ
                                             </h4>
                                         </td>
                                     </tr>
@@ -142,7 +142,7 @@
                                         </td>
                                         <td class="cart_total_amount">
                                             <h4 class="text-brand text-end">
-                                                {{ number_format(session()->get('coupon')['total_amount'], 0, '.', ',') }}đ
+                                                {{ number_format(session()->get('coupon')['total_amount'], 0, ',', '.') }}đ
                                             </h4>
                                         </td>
                                     </tr>
@@ -152,7 +152,7 @@
                                             <h6 class="text-muted">Tổng tiền</h6>
                                         </td>
                                         <td class="cart_total_amount">
-                                            <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, '.', ',') }}đ</h4>
+                                            <h4 class="text-brand text-end">{{ number_format($cartTotal, 0, ',', '.') }}đ</h4>
                                         </td>
                                     </tr>
                                 @endif

@@ -91,14 +91,14 @@
                                 @endphp
                                 @if ($product->discount_price == null)
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                        <span class="current-price text-brand">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                     </div>
                                 @else
                                     <div class="product-price primary-color float-left">
-                                        <span class="current-price text-brand">{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
+                                        <span class="current-price text-brand">{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
                                         <span>
                                             <span class="save-price font-md color3 ml-15"> Giảm {{ round($discount) }}%</span>
-                                            <span class="old-price font-md ml-15">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                            <span class="old-price font-md ml-15">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                         </span>
                                     </div>
                                 @endif
@@ -149,7 +149,7 @@
                                 </ul>
                                 <ul class="float-start">
                                     <li class="mb-5">THẺ: <a href="#"
-                                            rel="tag">{{ $product->product_tags }}</a></li>
+                                            rel="tag">{{ strtoupper($product->product_tags) }}</a></li>
                                     @if ($product->manufacturing_date == null)
                                     @else
                                         <li class="mb-5">NGÀY SẢN XUẤT: <span
@@ -163,8 +163,8 @@
                                         </li>
                                     @endif
                                     <li>TÌNH TRẠNG: <span
-                                            class="in-stock text-brand ml-5">Còn ({{ $product->product_quantity }})
-                                            sản phẩm</span></li>
+                                            class="in-stock text-brand ml-5">CÒN ({{ $product->product_quantity }})
+                                            SẢN PHẨM</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -673,13 +673,13 @@
                                             <div class="product-card-bottom">
                                                 @if ($product->discount_price == null)
                                                     <div class="product-price">
-                                                        <span>{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                        <span>{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
 
                                                     </div>
                                                 @else
                                                     <div class="product-price">
-                                                        <span>{{ number_format($product->discount_price, 0, '.', ',') }}đ</span>
-                                                        <span class="old-price">{{ number_format($product->selling_price, 0, '.', ',') }}đ</span>
+                                                        <span>{{ number_format($product->discount_price, 0, ',', '.') }}đ</span>
+                                                        <span class="old-price">{{ number_format($product->selling_price, 0, ',', '.') }}đ</span>
                                                     </div>
                                                 @endif
                                                 <div class="add-cart">
