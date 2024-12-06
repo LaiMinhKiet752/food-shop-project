@@ -17,34 +17,30 @@
             <div class="col-xl-6 col-lg-8 col-md-12 m-auto">
                 <div class="row">
                     <div class="heading_s1">
-                        <img style="padding: 0; margin-left: 25%; margin-right: 25%; width: 300px; height: 150px;"
-                            class="border-radius-15" src="{{ asset('upload/logo.svg') }}" alt="" />
-                        <p class="mb-30" style="color: #037841; font-weight: 500;">NEST is an online platform where
-                            consumers can purchase food products that are produced and processed using organic and
-                            sustainable methods. The products on this website are generally grown or raised according to
-                            strict environmental and food safety standards. By purchasing products from this website,
-                            consumers can support local farmers and reduce their negative impact on the environment.
+                        <img style="padding: 0; margin-left: 25%; margin-right: 25%; width: 300px; height: 300px;"
+                            class="border-radius-15" src="{{ asset('upload/logo.png') }}" alt="" />
+                        <p class="mb-30" style="color: #037841; font-weight: 500;">Bảo Linh là công ty chuyên cung cấp
+                            thực phẩm chay khô chất lượng cao, phục vụ nhu cầu của những người tìm kiếm một chế độ ăn
+                            lành mạnh, thuần chay và đầy đủ dinh dưỡng. Chúng tôi tự hào mang đến các sản phẩm thực phẩm
+                            chay được chế biến từ nguyên liệu tự nhiên, đảm bảo an toàn cho sức khỏe và thân thiện với
+                            môi trường.
                         </p>
-                    </div>
-                    <div class="col-lg-12 col-md-8">
-                        <div class="login_wrap widget-taber-content background-white">
-                            <div class="padding_eight_all bg-white">
-                                <div class="heading_s1">
-                                    <h4 class="mb-12">1. Our story</h4>
-                                    <p class="mb-30">Nest is a website specializing in providing organic and clean food
-                                        with the goal
-                                        of helping Vietnamese consumers lead a healthier life through certified organic
-                                        foods, natural and non-sourced foods. genetically modified (GMO) origin. We
-                                        select organic foods, natural foods from domestic and foreign manufacturers and
-                                        companies through a careful selection process for sourcing capabilities,
-                                        standard certificates issued by world-renowned organization. We love what we do
-                                        and we are passionate about the benefits of a healthy lifestyle, sourcing the
-                                        highest quality organic produce to our customers and providing the best home
-                                        delivery service. . We fully believe that products made from organic and natural
-                                        farming and production are good for everyone's body, better for the community
-                                        and better for the planet we live in.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
+                        <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
                                         src="{{ asset('upload/about/about_1.jpg') }}" alt="" />
+                    </div>
+                    <div class="col-lg-12 col-md-8">
+                        <div class="login_wrap widget-taber-content background-white">
+                            <div class="padding_eight_all bg-white">
+                                <div class="heading_s1">
+                                    <h4 class="mb-12">1. Câu chuyện của Bảo Linh</h4>
+                                    <p class="mb-30">Bảo Linh được thành lập với sứ mệnh mang đến cho người tiêu dùng
+                                        Việt Nam một lựa chọn thực phẩm chay khô chất lượng, giúp cải thiện sức khỏe và
+                                        hỗ trợ lối sống lành mạnh. Chúng tôi hiểu rằng chế độ ăn uống thuần chay ngày
+                                        càng trở thành xu hướng sống khỏe và bền vững, không chỉ vì lợi ích sức khỏe mà
+                                        còn vì tình yêu và sự tôn trọng đối với thiên nhiên và động vật. Chính vì vậy,
+                                        Bảo Linh cam kết cung cấp các sản phẩm thực phẩm chay được chế biến từ nguyên
+                                        liệu tự nhiên, dễ dàng sử dụng và thân thiện với môi trường, góp phần nâng cao
+                                        chất lượng cuộc sống cho mọi người.</p>
                                 </div>
                             </div>
                         </div>
@@ -53,20 +49,14 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">2. Business mission</h4>
-                                    <p class="mb-30">NEST's mission is to make it easier for people to access organic
-                                        and natural foods. Not only providing organic products, we also bring useful
-                                        information about the health that organic food brings to people and the
-                                        community. Everyone has a different need and approach to organic and natural
-                                        food, so we are here to support you by: Providing only organic foods , natural
-                                        foods achieved prestigious certifications in general and verified by NEST in
-                                        particular. Create positive, long-term and trusting relationships between NEST
-                                        and customers, employees, suppliers and the community. Support the development
-                                        of farms, small communities in remote areas, ethnic minority areas and
-                                        vulnerable groups in the farming society according to organic and natural
-                                        methods to have a good life.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_4.png') }}" alt="" />
+                                    <h4 class="mb-12">2. Sứ mệnh của chúng tôi</h4>
+                                    <p class="mb-30">Sứ mệnh của Bảo Linh là mang lại cho cộng đồng một lựa chọn thực
+                                        phẩm chay khô đa dạng, chất lượng, giúp mọi người dễ dàng duy trì chế độ ăn uống
+                                        lành mạnh và thuần chay. Chúng tôi không chỉ cung cấp các sản phẩm chay khô mà
+                                        còn cung cấp thông tin bổ ích về lợi ích của thực phẩm chay đối với sức khỏe.
+                                        Bảo Linh luôn chú trọng đến việc phát triển các sản phẩm đạt tiêu chuẩn cao về
+                                        chất lượng và an toàn thực phẩm, đồng thời xây dựng mối quan hệ lâu dài và bền
+                                        vững với khách hàng, đối tác và cộng đồng.</p>
                                 </div>
                             </div>
                         </div>
@@ -75,15 +65,13 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">3. Spread the good and much more</h4>
-                                    <p class="mb-30">As a NEST customer you don't have to spend hours going to the
-                                        market or supermarket looking for the freshest organic produce because we do it
-                                        for you and then deliver it to your door. We choose fresh and certified organic
-                                        products. During our packing process we also ensure that the quality of all
-                                        products is further checked so that the product delivered is of the best
-                                        standard.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_2.jpg') }}" alt="" />
+                                    <h4 class="mb-12">3. Cung cấp thực phẩm chất lượng cao</h4>
+                                    <p class="mb-30">Tại Bảo Linh, chúng tôi luôn lựa chọn những nguyên liệu tự nhiên
+                                        và thực phẩm chay khô chất lượng cao từ những nguồn cung cấp uy tín trong và
+                                        ngoài nước. Các sản phẩm của chúng tôi được chế biến theo quy trình nghiêm ngặt,
+                                        không sử dụng phẩm màu, chất bảo quản hay bất kỳ hóa chất độc hại nào. Chúng tôi
+                                        cam kết mang đến những sản phẩm tươi ngon, đầy đủ dinh dưỡng, đảm bảo sự an tâm
+                                        tuyệt đối cho người tiêu dùng.</p>
                                 </div>
                             </div>
                         </div>
@@ -92,14 +80,13 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">4. Great customer service</h4>
-                                    <p class="mb-30">Our mission is to provide the best service to our customers, to
-                                        help you enjoy the best shopping experience. We love interacting with our
-                                        customers and we always welcome feedback on your services. That's how we
-                                        understand you better, as well as do our service better, improve ourselves more
-                                        and more every day.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_3.jpg') }}" alt="" />
+                                    <h4 class="mb-12">4. Dịch vụ khách hàng tuyệt vời</h4>
+                                    <p class="mb-30">Chúng tôi luôn đặt khách hàng lên hàng đầu và cam kết mang đến
+                                        dịch vụ tận tâm, chuyên nghiệp. Mỗi khách hàng là một phần quan trọng trong hành
+                                        trình phát triển của Bảo Linh, vì vậy chúng tôi luôn lắng nghe ý kiến và phản
+                                        hồi từ bạn để cải thiện dịch vụ và sản phẩm. Chúng tôi mong muốn không chỉ cung
+                                        cấp thực phẩm chất lượng mà còn mang đến trải nghiệm mua sắm dễ dàng và thoải
+                                        mái nhất.</p>
                                 </div>
                             </div>
                         </div>
@@ -108,14 +95,13 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">5. Above all wishes</h4>
-                                    <p class="mb-30">We like to promote nutritious organic foods and minimize processed
-                                        foods as much as possible. Whatever food you choose for you and your family, we
-                                        insist that organic food is the healthiest lifestyle support. Organic food is
-                                        not yet known by many people, but it is more and more trusted by many people
-                                        because it is really good for the health of you and your family.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_5.jpg') }}" alt="" />
+                                    <h4 class="mb-12">5. Lối sống lành mạnh với thực phẩm chay</h4>
+                                    <p class="mb-30">Tại Bảo Linh, chúng tôi tin rằng một chế độ ăn chay không chỉ mang
+                                        lại lợi ích cho sức khỏe mà còn là lựa chọn bảo vệ môi trường và động vật. Những
+                                        sản phẩm thực phẩm chay của chúng tôi giúp bạn duy trì một lối sống lành mạnh,
+                                        giàu dinh dưỡng, dễ dàng chế biến và thưởng thức trong cuộc sống hàng ngày.
+                                        Chúng tôi luôn khuyến khích bạn lựa chọn thực phẩm chay chất lượng để có một sức
+                                        khỏe dẻo dai và bền vững.</p>
                                 </div>
                             </div>
                         </div>
@@ -124,13 +110,13 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">6. True Value</h4>
-                                    <p class="mb-30">Most of the products we offer are certified organic in addition to
-                                        some organic, all-natural farming where we also have some local growers so you
-                                        can rest assured that all Our processes and systems are all rigorously tested.
-                                    </p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_6.jpg') }}" alt="" />
+                                    <h4 class="mb-12">6. Giá trị thực sự</h4>
+                                    <p class="mb-30">Mỗi sản phẩm của Bảo Linh đều được chọn lọc và kiểm tra kỹ lưỡng,
+                                        đảm bảo tiêu chuẩn chất lượng cao. Chúng tôi hợp tác với những nhà cung cấp uy
+                                        tín và có chứng nhận chất lượng từ các tổ chức nổi tiếng trên thế giới, mang đến
+                                        cho khách hàng những sản phẩm thực phẩm chay an toàn, bổ dưỡng và đáng tin cậy.
+                                        Tất cả quy trình chế biến đều tuân thủ nghiêm ngặt, từ khâu lựa chọn nguyên liệu
+                                        cho đến đóng gói và vận chuyển sản phẩm.</p>
                                 </div>
                             </div>
                         </div>
@@ -139,16 +125,8 @@
                         <div class="login_wrap widget-taber-content background-white">
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
-                                    <h4 class="mb-12">7. Sustainable Development</h4>
-                                    <p class="mb-30">Organic farming, clean food is getting better and better for our
-                                        planet. We look to the places where there are non-polluted land, water and air
-                                        resources to build a good ecosystem, we have mapped out the best way to save
-                                        emissions. We keep waste to a minimum with food scraps donated to local
-                                        residents for composting and pet food. Our packaging is reusable and can be
-                                        recycled. We use certified compostable and biodegradable bags. Our boxes can be
-                                        reused and we ask customers to return the paper box on their next purchase.</p>
-                                    <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_7.jpg') }}" alt="" />
+                                    <h4 class="mb-12">7. Phát triển bền vững</h4>
+                                    <p class="mb-30">Chúng tôi cam kết không chỉ đem lại lợi ích cho người tiêu dùng mà còn đóng góp vào việc bảo vệ môi trường và phát triển cộng đồng. Bảo Linh ưu tiên sử dụng bao bì tái chế và có thể phân hủy sinh học, đồng thời thực hiện các chương trình hỗ trợ phát triển nông nghiệp bền vững, bảo vệ nguồn tài nguyên thiên nhiên. Chúng tôi tin rằng thực phẩm chay là một phần quan trọng trong chiến lược phát triển bền vững, giúp giảm thiểu tác động tiêu cực đến hành tinh và thúc đẩy một tương lai khỏe mạnh hơn.</p>
                                 </div>
                             </div>
                         </div>

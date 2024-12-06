@@ -90,16 +90,6 @@ class AllUserController extends Controller
             'cancel_date' => Carbon::now()->format('d-m-Y H:i:s'),
             'cancel_order_status' => 1,
         ]);
-        $order = Order::where('id', $order_id)->first();
-        //Mail To Customer
-        $subject = 'Đơn hàng đã được hủy thành công';
-
-        $message = 'Nếu bạn cần hỗ trợ vui lòng liên hệ với chúng tôi qua: <br>';
-        $message .= 'Gọi đến hotline: 1900 999 <br>';
-        $message .= 'Hoặc gửi email đến địa chỉ: support.nestshop@gmail.com <br>';
-        $message .= 'Trân trọng, <br>';
-
-        Mail::to($order->email)->send(new CancelOrder($subject, $message, $order));
 
         $notification = array(
             'message' => 'Đã hủy đơn hàng thành công!',

@@ -37,15 +37,6 @@ class ReturnController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
-        //Mail To Customer
-        $subject = 'Order has been returned successfully';
-
-        $message = 'If you need assistance please contact us via: <br>';
-        $message .= 'Call the hotline number: 1900 999 <br>';
-        $message .= 'Or send an email to the address: support.nestshop@gmail.com <br>';
-        $message .= 'Best regards, <br>';
-
-        Mail::to($order->email)->send(new ReturnOrder($subject, $message, $order));
 
         $notification = array(
             'message' => 'Approved Return Order Successfully!',

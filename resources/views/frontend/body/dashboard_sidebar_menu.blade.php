@@ -12,6 +12,10 @@
                         class="fi-rs-settings-sliders mr-5"></i>Bảng điều khiển</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ $route == 'user.account.page' ? 'active' : '' }}"
+                    href="{{ route('user.account.page') }}"><i class="fi-rs-user mr-5"></i>Tài khoản</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.order.page' ? 'active' : '' }}"
                     href="{{ route('user.order.page') }}"><i class="fa-solid fa-cart-shopping mr-5"></i>Đơn đặt hàng</a>
             </li>
@@ -23,10 +27,6 @@
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.cancel.order.page' ? 'active' : '' }}"
                     href="{{ route('user.cancel.order.page') }}"><i class="fa-solid fa-rectangle-xmark mr-5"></i>Đơn hàng đã hủy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link {{ $route == 'user.account.page' ? 'active' : '' }}"
-                    href="{{ route('user.account.page') }}"><i class="fi-rs-user mr-5"></i>Tài khoản</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ $route == 'user.change.password' ? 'active' : '' }}"
