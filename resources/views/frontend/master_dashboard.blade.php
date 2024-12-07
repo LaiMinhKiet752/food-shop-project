@@ -406,7 +406,7 @@
                         miniCart += ` <ul>
                                     <li>
                                         <div class="shopping-cart-img">
-                                            <a href="shop-product-right.html"><img alt="Nest" src="/${value.options.image}" style="width: 60px;height: 60px;" /></a>
+                                            <a href="shop-product-right.html"><img alt="Bảo Linh" src="/${value.options.image}" style="width: 60px;height: 60px;" /></a>
                                         </div>
                                         <div class="shopping-cart-title" style="margin: -73px 74px 14px; width" 146px;>
                                             <h4><a href="shop-product-right.html"> ${value.name} </a></h4>

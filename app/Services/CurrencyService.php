@@ -4,17 +4,12 @@ namespace App\Services;
 
 class CurrencyService
 {
-    protected $accessKey;
-
-    public function __construct()
-    {
-        
-    }
+    public function __construct() {}
 
     public function convertCurrency()
     {
         // Tạo URL
-        $url = 'https://data.fixer.io/api/latest?access_key=bbd79a69dd2944e2921496de36f95aac&format=1';
+        $url = 'https://v6.exchangerate-api.com/v6/5a5c6acf5dd7289a52bc3eea/latest/VND';
 
         // Khởi tạo cURL
         $ch = curl_init($url);
@@ -28,8 +23,8 @@ class CurrencyService
         $conversionResult = json_decode($json, true);
 
         // Kiểm tra kết quả và trả về
-        if (isset($conversionResult['rates'])) {
-            return $conversionResult['rates'];  // Trả về mảng tỷ giá
+        if (isset($conversionResult['conversion_rates'])) {
+            return $conversionResult['conversion_rates'];  // Trả về mảng tỷ giá
         } else {
             // Xử lý lỗi nếu có
             return null;

@@ -160,12 +160,15 @@ class PaypalController extends Controller
             }
 
             if (Session::has('coupon')) {
-                CouponUse::insert([
-                    'coupon_code' => Session::get('coupon')['coupon_code'],
-                    'user_id' => Auth::id(),
-                    'created_at' => Carbon::now()
-                ]);
-                Session::forget('coupon');
+                $checkCouponExists = CouponUse::where('coupon_code', Session::get('coupon')['coupon_code'])->first();
+                if (!$checkCouponExists) {
+                    CouponUse::insert([
+                        'coupon_code' => Session::get('coupon')['coupon_code'],
+                        'user_id' => Auth::id(),
+                        'created_at' => Carbon::now()
+                    ]);
+                    Session::forget('coupon');
+                }
             }
 
             // Gửi thông báo đến admin
@@ -186,10 +189,6 @@ class PaypalController extends Controller
 
     public function PaypalCancel()
     {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
-        }
-        Cart::destroy();
         $notification = array(
             'order_cancel' => 'cancel',
         );

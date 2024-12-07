@@ -15,7 +15,7 @@
             <div class="col-lg-3 d-none d-lg-flex wow animate__animated animate__fadeIn">
                 <div class="banner-img style-2">
                     <div class="banner-text">
-                        <h2 class="mb-100">Bring nature into your home</h2>
+                        <h2 class="mb-100" style="font-size: 35px;">Ẩm thực <br> khô chay</h2>
                         <a href="{{ route('shop.page') }}" class="btn btn-xs">Mua ngay <i
                                 class="fi-rs-arrow-small-right"></i></a>
                     </div>

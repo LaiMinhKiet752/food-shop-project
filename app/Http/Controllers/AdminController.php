@@ -460,7 +460,7 @@ class AdminController extends Controller
 
     public function DatabaseBackup()
     {
-        return view('admin.database_backup')->with('files', File::allFiles(storage_path('/app/Nest')));
+        return view('admin.database_backup')->with('files', File::allFiles(storage_path('/app/BaoLinh')));
     } //End Method
 
     public function BackupNow()
@@ -476,13 +476,13 @@ class AdminController extends Controller
 
     public function DownloadDatabase($getFilename)
     {
-        $path = storage_path('app\Nest/' . $getFilename);
+        $path = storage_path('app\BaoLinh/' . $getFilename);
         return response()->download($path);
     } // End Method
 
     public function DeleteDatabase($getFilename)
     {
-        Storage::delete('Nest/' . $getFilename);
+        Storage::delete('BaoLinh/' . $getFilename);
 
         $notification = array(
             'message' => 'Database Deleted Successfully!',

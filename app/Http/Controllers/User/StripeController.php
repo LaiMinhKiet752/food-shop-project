@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Mail\OrderMail;
 use App\Models\CouponUse;
 use Illuminate\Http\Request;
 use App\Models\Order;
@@ -17,7 +16,6 @@ use App\Notifications\OrderCompleteNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use App\Services\CurrencyService;
 
 class StripeController extends Controller
@@ -149,12 +147,15 @@ class StripeController extends Controller
                 }
 
                 if (Session::has('coupon')) {
-                    CouponUse::insert([
-                        'coupon_code' => Session::get('coupon')['coupon_code'],
-                        'user_id' => Auth::id(),
-                        'created_at' => Carbon::now()
-                    ]);
-                    Session::forget('coupon');
+                    $checkCouponExists = CouponUse::where('coupon_code', Session::get('coupon')['coupon_code'])->first();
+                    if (!$checkCouponExists) {
+                        CouponUse::insert([
+                            'coupon_code' => Session::get('coupon')['coupon_code'],
+                            'user_id' => Auth::id(),
+                            'created_at' => Carbon::now()
+                        ]);
+                        Session::forget('coupon');
+                    }
                 }
 
                 // Gửi thông báo đến admin
@@ -185,10 +186,6 @@ class StripeController extends Controller
 
     public function StripeCancel()
     {
-        if (Session::has('coupon')) {
-            Session::forget('coupon');
-        }
-        Cart::destroy();
         $notification = array(
             'order_cancel' => 'cancel',
         );

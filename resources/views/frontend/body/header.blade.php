@@ -56,7 +56,7 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a href="{{ route('compare') }}">
-                                    <img class="svgInject" alt="Nest"
+                                    <img class="svgInject" alt="Bảo Linh"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-compare.svg') }}" />
                                     <span class="pro-count blue" id="compareQty">0</span>
                                 </a>
@@ -65,7 +65,7 @@
 
                             <div class="header-action-icon-2">
                                 <a href="{{ route('wishlist') }}">
-                                    <img class="svgInject" alt="Nest"
+                                    <img class="svgInject" alt="Bảo Linh"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-heart.svg') }}" />
                                     <span class="pro-count blue" id="wishlistQty">0</span>
                                 </a>
@@ -74,7 +74,7 @@
 
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{{ route('mycart') }}">
-                                    <img alt="Nest"
+                                    <img alt="Bảo Linh"
                                         src="{{ asset('frontend/assets/imgs/theme/icons/icon-cart.svg') }}" />
                                     <span class="pro-count blue" id="cartQty">0</span>
                                 </a>
@@ -92,7 +92,8 @@
                                             <h4>Tổng cộng <span id="cartSubTotal"></span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="{{ route('mycart') }}">Xem giỏ hàng</a>
+                                            <a href="{{ route('mycart') }}" class="outline">Xem giỏ hàng</a>
+                                            <a href="{{ route('checkout') }}">Thanh toán</a>
                                         </div>
                                     </div>
 
@@ -102,7 +103,7 @@
                             @auth
                                 <div class="header-action-icon-2">
                                     <a href="{{ route('dashboard') }}">
-                                        <img class="svgInject" alt="Nest"
+                                        <img class="svgInject" alt="Bảo Linh"
                                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
                                     <a href="{{ route('dashboard') }}"><span class="lable ml-0">Tài khoản</span></a>
@@ -133,7 +134,7 @@
                             @else
                                 <div class="header-action-icon-2">
                                     <a href="{{ route('login') }}">
-                                        <img class="svgInject" alt="Nest"
+                                        <img class="svgInject" alt="Bảo Linh"
                                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-user.svg') }}" />
                                     </a>
                                     <a href="{{ route('login') }}"><span class="lable ml-0">Đăng nhập</span></a>
