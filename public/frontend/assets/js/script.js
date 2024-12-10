@@ -1,4 +1,4 @@
-const site_url = "http://laravel9-food-shop.test/";
+const site_url = "https://baolinhkhochay.io.vn/";
 $("body").on("keyup", "#search", function () {
 	let text = $("#search").val();
 	// console.log(text);

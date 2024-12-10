@@ -40,7 +40,7 @@
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Giá tốt nhất</h3>
-                            <p>Giá chỉ từ 1.000 VND đến dưới 500.000 VND</p>
+                            <p>Giá chỉ từ 1.000đ đến dưới 300.000đ</p>
                         </div>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-4.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Sản phẩm sạch</h3>
-                            <p>Nguồn gốc và xuất xứ rõ ràng</p>
+                            <h3 class="icon-box-title">Nhà cung cấp uy tín</h3>
+                            <p>Nguồn gốc và xuất xứ sản phẩm rõ ràng</p>
                         </div>
                     </div>
                 </div>
