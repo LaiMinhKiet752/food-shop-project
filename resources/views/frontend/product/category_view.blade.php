@@ -276,9 +276,7 @@
                             $products = \App\Models\Product::where('category_id', $category->id)->get();
                         @endphp
                         <li>
-                            <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">
-                                <img src=" {{ asset($category->category_image) }} "
-                                    alt="" />{{ $category->category_name }}</a><span class="text-brand"
+                            <a href="{{ url('product/category/' . $category->id . '/' . $category->category_slug) }}">{{ $category->category_name }}</a><span class="text-brand"
                                 style="font-weight: bold;">{{ count($products) }}</span>
                         </li>
                     @endforeach

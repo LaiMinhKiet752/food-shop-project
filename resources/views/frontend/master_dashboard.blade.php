@@ -120,7 +120,7 @@
                 text: 'Bạn đã đặt hàng và thanh toán thành công. Chúng tôi sẽ sắp xếp giao hàng trong thời gian sớm nhất. Cảm ơn bạn đã tin tưởng và mua sắm cùng chúng tôi!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })
@@ -132,11 +132,11 @@
             Swal.fire({
                 position: 'center',
                 icon: 'error',
-                title: 'Có lỗi xảy ra!',
-                text: 'Bạn đã hủy thanh toán cho đơn hàng này!',
+                title: 'Thật đáng tiếc!',
+                text: 'Bạn đã hủy thanh toán online cho đơn hàng này!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#FF0000',
             })
@@ -152,7 +152,7 @@
                 text: 'Bạn đã đặt hàng thành công. Vui lòng thanh toán bằng tiền mặt khi nhận hàng. Cảm ơn bạn đã tin tưởng và mua sắm cùng chúng tôi!',
                 timerProgressBar: true,
                 showConfirmButton: true,
-                timer: 5000,
+                timer: 10000,
                 confirmButtonText: "OK",
                 confirmButtonColor: '#3BB77E',
             })

@@ -2,7 +2,7 @@
     $products = \App\Models\Product::where('status', 1)
         ->where('product_quantity', '>', '0')
         ->orderBy('id', 'DESC')
-        ->limit(5)
+        ->limit(10)
         ->get();
     $categories = \App\Models\Category::orderBy('category_name', 'ASC')->limit(5)->get();
 @endphp
