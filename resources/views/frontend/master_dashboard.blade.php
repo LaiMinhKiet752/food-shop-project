@@ -214,20 +214,14 @@
                 dataType: 'json',
                 success: function(data) {
                     // console.log(data)
-                    if (data.product.manufacturing_date == null) {
-                        var mfg_date_format = '';
-                    } else {
-                        var mfg_date_format = moment(data.product.manufacturing_date).add(1, 'days').utc()
-                            .format(
-                                'DD-MM-YYYY');
-                    }
+
                     $('#pname').text(data.product.product_name);
                     $('#pprice').text(data.product.selling_price);
                     $('#pcode').text(data.product.product_code);
                     $('#pcategory').text(data.product.category.category_name);
                     $('#psubcategory').text(data.product.subcategory.subcategory_name);
                     $('#pbrand').text(data.product.brand.brand_name);
-                    $('#pmfg').text(mfg_date_format);
+                    $('#pmfg').text("TRÊN BAO BÌ");
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
 
                     $('#brand_id').val(data.product.brand_id);

@@ -143,23 +143,18 @@
                                     <li class="mb-5">DANH MỤC: <span
                                             class="text-brand">{{ $product['category']['category_name'] }}</span>
                                     </li>
-                                    <li class="mb-5">DANH MỤC CON: <span
-                                            class="text-brand">{{ $product['subcategory']['subcategory_name'] }}</span>
-                                    </li>
                                 </ul>
                                 <ul class="float-start">
-                                    <li class="mb-5">THẺ: <a href="#"
-                                            rel="tag">{{ strtoupper($product->product_tags) }}</a></li>
                                     @if ($product->manufacturing_date == null)
                                     @else
                                         <li class="mb-5">NGÀY SẢN XUẤT: <span
-                                                class="text-brand">{{ date('d-m-Y', strtotime($product->manufacturing_date)) }}</span>
+                                                class="text-brand">XEM TRÊN BAO BÌ</span>
                                         </li>
                                     @endif
                                     @if ($product->expiry_date == null)
                                     @else
                                         <li>NGÀY HẾT HẠN: <span
-                                                class="text-brand">{{ date('d-m-Y', strtotime($product->expiry_date)) }}</span>
+                                                class="text-brand">XEM TRÊN BAO BÌ</span>
                                         </li>
                                     @endif
                                     <li>TÌNH TRẠNG: <span

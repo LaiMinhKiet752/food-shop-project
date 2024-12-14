@@ -9,7 +9,7 @@
                     <div class="position-relative newsletter-inner">
                         <div class="newsletter-content">
                             <h2 class="mb-20">
-                                Ở nhà và mua sắm nhu yếu phẩm hàng ngày <br />
+                                Ở nhà và mua sắm các loại khô chay <br />
                                 ngay tại cửa hàng của chúng tôi.
                             </h2>
                             <p class="mb-45">Bắt đầu mua sắm hàng ngày cùng <span class="text-brand">Bảo Linh.</span></p>
@@ -40,7 +40,7 @@
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Giá tốt nhất</h3>
-                            <p>Giá chỉ từ 1.000đ đến dưới 300.000đ</p>
+                            <p>Giá chỉ từ 1.000đ đến dưới 200.000đ</p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="banner-text">
                             <h3 class="icon-box-title">Free Ship</h3>
-                            <p>Đơn hàng có giá trị từ 200.000 VND trở lên</p>
+                            <p>Đơn hàng có giá trị từ 200.000đ trở lên</p>
                         </div>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
                             <img src="{{ asset('frontend/assets/imgs/theme/icons/icon-3.svg') }}" alt="" />
                         </div>
                         <div class="banner-text">
-                            <h3 class="icon-box-title">Ưu đãi mỗi ngày</h3>
+                            <h3 class="icon-box-title">Ưu đãi cực lớn</h3>
                             <p>Hàng tháng bạn sẽ nhận được 1 mã khuyến mãi</p>
                         </div>
                     </div>
@@ -174,18 +174,12 @@
                     <a href="{{ $setting->facebook }}"><img
                             src="{{ asset('frontend/assets/imgs/theme/icons/icon-facebook-white.svg') }}"
                             alt="" /></a>
-                    <a href="{{ $setting->twitter }}"><img
-                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-twitter-white.svg') }}"
-                            alt="" /></a>
-                    <a href="{{ $setting->instagram }}"><img
-                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-instagram-white.svg') }}"
-                            alt="" /></a>
-                    <a href="{{ $setting->pinterest }}"><img
-                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-pinterest-white.svg') }}"
-                            alt="" /></a>
-                    <a href="{{ $setting->youtube }}"><img
-                            src="{{ asset('frontend/assets/imgs/theme/icons/icon-youtube-white.svg') }}"
-                            alt="" /></a>
+                    <a href="https://www.tiktok.com/@baolinhtt"><img
+                            src="{{ asset('frontend/assets/imgs/theme/icons/tiktok_shop.svg') }}"
+                            alt=""/></a>
+                    <a href="https://vn.shp.ee/D6SrJNS"><img
+                            src="{{ asset('frontend/assets/imgs/theme/icons/shopee.svg') }}"
+                            alt=""/></a>
                 </div>
                 <p class="font-sm">Giảm giá lên đến 50% cho lần đăng ký đầu tiên của bạn</p>
             </div>

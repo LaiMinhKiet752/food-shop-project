@@ -25,8 +25,6 @@
                             chay được chế biến từ nguyên liệu tự nhiên, đảm bảo an toàn cho sức khỏe và thân thiện với
                             môi trường.
                         </p>
-                        <img style="width: 100%; height: 300px;" class="border-radius-15 mb-30"
-                                        src="{{ asset('upload/about/about_1.jpg') }}" alt="" />
                     </div>
                     <div class="col-lg-12 col-md-8">
                         <div class="login_wrap widget-taber-content background-white">

@@ -153,7 +153,7 @@
                 },
                 messages: {
                     login: {
-                        required: 'Please enter your username or email.',
+                        required: 'Vui lòng nhập username hoặc email.',
                     },
                     password: {
                         required: 'Vui lòng nhập mật khẩu.',

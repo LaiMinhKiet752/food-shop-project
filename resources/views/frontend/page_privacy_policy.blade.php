@@ -121,7 +121,7 @@ thực hiện, nhằm tôn trọng và bảo vệ quyền của khách truy cậ
                             <div class="padding_eight_all bg-white">
                                 <div class="heading_s1">
                                     <h4 class="mb-12">9. Thông tin liên hệ</h4>
-                                    <p class="mb-30">Chúng tôi luôn hoan nghênh các ý kiến ​​đóng góp, liên hệ và phản hồi của bạn về “Chính sách bảo mật thông tin khách hàng” này. Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua Email: contact@baolinhchaykho.com</p>
+                                    <p>Chúng tôi luôn hoan nghênh các ý kiến ​​đóng góp, liên hệ và phản hồi của bạn về “Chính sách bảo mật thông tin khách hàng” này. Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua Email: contact@baolinhchaykho.com</p>
                                 </div>
                             </div>
                         </div>

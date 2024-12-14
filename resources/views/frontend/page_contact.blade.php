@@ -65,11 +65,9 @@
                             <div class="padding_eight_all bg-white">
                                 <div class="card-login" style="margin-top: 62px;">
                                     <h6 class="mb-15">Vị trí:</h6>
-                                    <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp; 65 Huynh Thuc Khang, Ben
-                                        Nghe
-                                        Ward, District 1, Ho Chi Minh City, Vietnam.</p>
-                                    <p><i class="fa-solid fa-phone"></i>&nbsp;&nbsp; 1900 999</p>
-                                    <p><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp; support.nestshop@gmail.com</p>
+                                    <p><i class="fa-solid fa-location-dot"></i>&nbsp;&nbsp; 10 Lê Lai, Quận 1, Thành phố Hồ Chí Minh.</p>
+                                    <p><i class="fa-solid fa-phone"></i>&nbsp;&nbsp; 19007799</p>
+                                    <p><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp; baolinh.amthucchay@gmail.com</p>
                                 </div>
                             </div>
                         </div>

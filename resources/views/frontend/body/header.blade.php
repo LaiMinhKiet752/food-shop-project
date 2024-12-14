@@ -156,7 +156,7 @@
         <div class="container">
             <div class="header-wrap header-space-between position-relative">
                 <div class="logo logo-width-1 d-block d-lg-none">
-                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.svg') }}"
+                    <a href="{{ url('/') }}"><img src="{{ asset('frontend/assets/imgs/theme/logo.png') }}"
                             alt="logo" /></a>
                 </div>
                 <div class="header-nav d-none d-lg-flex">
